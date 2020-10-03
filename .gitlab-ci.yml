@@ -1,0 +1,41 @@
+ # These are the default stages.
+ # You don't need to explicitly define them.
+ # But you could define any stages you want.
+image: maven:latest
+
+stages:
+   - build
+   - test
+   - deploy
+
+build:
+  stage: build
+  tags:
+    - ugrad
+  script:
+    - echo "Maven build started"
+    - mvn compile
+  
+test:
+  stage: test
+  tags:
+    - ugrad
+  script:
+    - echo "Maven test started"
+    - mvn verify
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+
+# CD is remaining
+deploy:
+  stage: deploy
+  tags:
+    - ugrad
+  script:
+    - echo "Maven deploy started"
+    - mvn verify
+  only:
+    - master
