@@ -24,13 +24,10 @@ public class StateMachine {
 	}
 	
 	public void runState() {
-	}
-	
-	public void exitState() {
 		
 	}
 	
-	public void exit() {
+	public void exitState() {
 		
 	}
 

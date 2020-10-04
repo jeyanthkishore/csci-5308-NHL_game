@@ -5,9 +5,12 @@ public interface IState {
 	public void enter();
 	public void performStateTask();
 	public void exit();
-	public void transitionState();
+	public void transitionState(IState state);
 	public StateMachine getInnerStateMachine();
 	public void setInnerStateMachine(StateMachine stateMachine);
-	public void runInnerStateMachine(IState state);
+	public void runInnerStateMachine();
+	public boolean didEnterState();
+	public boolean didRunState();
+	public boolean didExitState();
 	
 }

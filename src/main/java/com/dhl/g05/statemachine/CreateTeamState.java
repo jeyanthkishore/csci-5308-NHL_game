@@ -36,7 +36,7 @@ public class CreateTeamState implements IState {
 	}
 
 	@Override
-	public void transitionState() {
+	public void transitionState(IState state) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -54,7 +54,7 @@ public class CreateTeamState implements IState {
 	}
 
 	@Override
-	public void runInnerStateMachine(IState state) {
+	public void runInnerStateMachine() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -69,6 +69,24 @@ public class CreateTeamState implements IState {
 	
 	private void persistTeam() {
 		
+	}
+
+	@Override
+	public boolean didEnterState() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean didRunState() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean didExitState() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

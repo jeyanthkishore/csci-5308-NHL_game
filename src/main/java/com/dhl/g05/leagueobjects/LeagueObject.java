@@ -17,7 +17,7 @@ public class LeagueObject {
 		return null;
 	}
 
-	public Object getConferences() {
+	public Map<String,ConferenceObject> getConferences() {
 		// TODO Auto-generated method stub
 		return null;
 	}

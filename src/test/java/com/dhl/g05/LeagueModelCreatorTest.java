@@ -65,6 +65,7 @@ public class LeagueModelCreatorTest {
 		
 		assertNotNull(league);
 		assertNotNull(league.getConferences());
+		assertEquals(league.getConferences().size(),2);
 		assertNotNull(league.getFreeAgents());
 		assertEquals(league.getName(),"Dalhousie Hockey League");
 		
@@ -97,7 +98,6 @@ public class LeagueModelCreatorTest {
 		
 		assertNull(league);
 	}
-	
 	
 	@Test
 	public void testCreateLeagueFromFileDivisionsBad() {

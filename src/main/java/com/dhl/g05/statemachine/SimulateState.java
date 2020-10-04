@@ -28,7 +28,7 @@ public class SimulateState implements IState {
 	}
 
 	@Override
-	public void transitionState() {
+	public void transitionState(IState state) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -46,9 +46,27 @@ public class SimulateState implements IState {
 	}
 	
 	@Override
-	public void runInnerStateMachine(IState state) {
+	public void runInnerStateMachine() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean didEnterState() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean didRunState() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean didExitState() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
