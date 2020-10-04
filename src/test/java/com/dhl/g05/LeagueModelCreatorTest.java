@@ -42,7 +42,7 @@ public class LeagueModelCreatorTest {
 		Exception exception = new Exception();
 		
 		try {
-			LeagueObject league  = leagueModelCreator.createLeagueFromFile("src/test/java/jsonInvalidFile.json");
+			LeagueObject league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonInvalidFile.json");
 		} catch (ParseException e) {
 			exception = e;
 			e.printStackTrace();
@@ -58,7 +58,7 @@ public class LeagueModelCreatorTest {
 		LeagueModelCreator  leagueModelCreator = new LeagueModelCreator();
 		LeagueObject league = null;
 		try {
-			league  = leagueModelCreator.createLeagueFromFile("/g05/src/test/java/com/dhl/g05/jsonGoodInfo.json");
+			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles//jsonGoodInfo.json");
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}	
@@ -76,7 +76,7 @@ public class LeagueModelCreatorTest {
 		LeagueModelCreator  leagueModelCreator = new LeagueModelCreator();
 		LeagueObject league = new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
 		try {
-			league  = leagueModelCreator.createLeagueFromFile("src/test/java/jsonBadPlayerInfo.json");
+			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadPlayerInfo.json");
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
@@ -90,7 +90,7 @@ public class LeagueModelCreatorTest {
 		LeagueModelCreator  leagueModelCreator = new LeagueModelCreator();
 		LeagueObject league = new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
 		try {
-			league  = leagueModelCreator.createLeagueFromFile("src/test/java/jsonBadTeamInfo.json");
+			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadTeamInfo.json");
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
@@ -104,7 +104,7 @@ public class LeagueModelCreatorTest {
 		LeagueModelCreator  leagueModelCreator = new LeagueModelCreator();
 		LeagueObject league = new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
 		try {
-			league  = leagueModelCreator.createLeagueFromFile("src/test/java/jsonBadDivisionInfo.json");
+			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadDivisionInfo.json");
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
@@ -118,7 +118,7 @@ public class LeagueModelCreatorTest {
 		LeagueModelCreator  leagueModelCreator = new LeagueModelCreator();
 		LeagueObject league = new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
 		try {
-			league  = leagueModelCreator.createLeagueFromFile("jsonBadConferenceInfo.json");
+			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadConferenceInfo.json");
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
@@ -131,7 +131,7 @@ public class LeagueModelCreatorTest {
 		LeagueModelCreator  leagueModelCreator = new LeagueModelCreator();
 		LeagueObject league = new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
 		try {
-			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com.dhl.g05/jsonBadFreeAgentInfo.json");
+			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadFreeAngentInfo.json");
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
