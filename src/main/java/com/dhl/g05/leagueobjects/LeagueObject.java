@@ -10,4 +10,19 @@ public class LeagueObject {
 	public boolean validate() {
 		return false;
 	}
+
+	public Object getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getConferences() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getFreeAgents() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

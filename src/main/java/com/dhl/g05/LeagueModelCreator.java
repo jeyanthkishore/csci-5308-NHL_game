@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.json.simple.JSONArray;
@@ -25,11 +26,11 @@ public class LeagueModelCreator {
 		parser = new JSONParser();
 	}
 	
-	public LeagueObject createLeagueFromFile(String fileName) {
-		return null;
+	public LeagueObject createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException {
+		return new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
 	}
 	
-	private LeagueObject createLeague(JSONObject leagueData, LeagueObject league) {
+	private LeagueObject createLeague(JSONObject leagueData) {
 		return null;
 	}
 	
