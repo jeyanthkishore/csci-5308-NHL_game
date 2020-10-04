@@ -12,23 +12,23 @@ public class StateMachine {
 	}
 	
 	public IState getCurrentState() {
-		return null;
+		return currentState;
 	}
 
 	public void setCurrentState(IState state) {
-		
+		currentState = state;
 	}
 	
 	public void enterState() {
-
+		currentState.enter();
 	}
 	
 	public void runState() {
-		
+		currentState.performStateTask();
 	}
 	
 	public void exitState() {
-		
+		currentState.exit();
 	}
 
 }
