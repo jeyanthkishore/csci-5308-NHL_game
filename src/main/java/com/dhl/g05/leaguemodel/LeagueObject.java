@@ -47,48 +47,4 @@ public class LeagueObject {
 		freeAgent = agent;
 	}
 
-	public boolean isLeagueNameEmptyOrNull() {
-		if(leagueName == "" || leagueName== null) {
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean isConferenceListEmpty() {
-		return conferenceDetails.isEmpty();
-	}
-	
-	public boolean hasEvenNumberConference() {
-		if(conferenceDetails.size()%2 ==0) {
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean isFreeAgentPositionWrong() {
-		Boolean position = freeAgent.stream().anyMatch(v -> !(v.getTeamPlayers().get("position").equals("forward")
-				|| v.getTeamPlayers().get("position").equals("defense") || v.getTeamPlayers().get("position").equals("goalie")));
-		return position;
-	}
-	public boolean isFreeAgentListEmpty() {
-		return freeAgent.isEmpty();
-	}
-	public boolean isFreeAgentDetailsEmptyOrNull() {
-		Boolean emptyOrNull = freeAgent.stream().anyMatch(v -> v.getTeamPlayers().get("playerName")==""
-				||v.getTeamPlayers().get("position")==""||v.getTeamPlayers().get("captain")==""
-				||v.getTeamPlayers().get("playerName")==null||v.getTeamPlayers().get("position")==null||v.getTeamPlayers().get("captain")==null);
-		return emptyOrNull;
-	}
-	public boolean isAgentCaptainNotFalseBoolean() {
-		Boolean captainBoolean = freeAgent.stream().anyMatch(v -> !(v.getTeamPlayers().get("captain").equals(false)));
-		return captainBoolean;
-	}
-	public boolean isAgentCaptainTrue() {
-		return false;
-	}
-	
-	public int checkLeaguePresent() {
-		return 1;
-	}
-	
 }

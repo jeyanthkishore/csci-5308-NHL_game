@@ -1,59 +1,56 @@
 package com.dhl.g05.leaguemodel;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
 public class ConferenceObjectTest {
-	
 	@Test
-	public void checkConferenceNameEmpty() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		ConferenceObject validate = new ConferenceObject(mock); 
-		assertFalse(validate.isNameEmptyOrNull());
-	}
-	
-	@Test
-	public void checkConferenceNameEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setConferenceNameEmpty();
-		ConferenceObject validate = new ConferenceObject(mock);
-		assertTrue(validate.isNameEmptyOrNull());
-	}
-	
-	@Test
-	public void checkConferenceNameNullTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setConferenceNameNull();
-		ConferenceObject validate = new ConferenceObject(mock); 
-		assertTrue(validate.isNameEmptyOrNull());
-	}
-	
-	@Test
-	public void isDivisonListEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		ConferenceObject validate = new ConferenceObject(mock); 
-		assertFalse(validate.isDivisionListEmpty());
+	public void conferenceConstructorTest() {
+		ConferenceObject object = new ConferenceObject();
+		assertNull(object.getConferenceName());
+		assertNull(object.getDivisionDetails());
 	}
 	@Test
-	public void divisonListEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.removeDivision();
-		ConferenceObject validate = new ConferenceObject(mock); 
-		assertTrue(validate.hasEvenNumberDivision());
+	public void setDivisionTest() {
+		ConferenceObject object = new ConferenceObject();
+		object.setConferenceName("conference");
+		assertSame("conference",object.getConferenceName());
 	}
 	@Test
-	public void hasEvenDivsionTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		ConferenceObject validate = new ConferenceObject(mock); 
-		assertTrue(validate.hasEvenNumberDivision());
+	public void getDivisionTest() {
+		ConferenceObject object = new ConferenceObject();
+		object.setConferenceName("conference");
+		assertSame("conference",object.getConferenceName());
 	}
 	@Test
-	public void hasOddDivsionTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.removeOneDivision();
-		ConferenceObject validate = new ConferenceObject(mock); 
-		assertFalse(validate.hasEvenNumberDivision());
+	public void setTeamListTest() {
+		JsonMockDataDb data = new JsonMockDataDb();
+		ConferenceObject object = new ConferenceObject();
+		object.setDivisionDetails(data.divisionList);
+		assertSame(data.divisionList,object.getDivisionDetails());
 	}
+	@Test
+	public void getTeamListTest() {
+		JsonMockDataDb data = new JsonMockDataDb();
+		ConferenceObject object = new ConferenceObject();
+		object.setDivisionDetails(data.divisionList);
+		assertSame(data.divisionList,object.getDivisionDetails());
+	}
+	@Test
+	public void divisionParameterConstructor() {
+		JsonMockDataDb data = new JsonMockDataDb();
+		ConferenceObject object = new ConferenceObject(data.conferenceName,data.divisionList);
+		assertSame(data.conferenceName,object.getConferenceName());
+		assertSame(data.divisionList,object.getDivisionDetails());
+	}
+	@Test
+	public void divisionReferenceConstructor() {
+		JsonMockDataDb data = new JsonMockDataDb();
+		ConferenceObject object = new ConferenceObject(data);
+		assertSame(data.conferenceName,object.getConferenceName());
+		assertSame(data.divisionList,object.getDivisionDetails());
+	}
+
 }

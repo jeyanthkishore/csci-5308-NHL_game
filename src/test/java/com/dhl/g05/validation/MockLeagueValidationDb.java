@@ -1,11 +1,18 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.validation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JsonMockDataDb implements ILeagueValidation{
+import com.dhl.g05.leaguemodel.ConferenceObject;
+import com.dhl.g05.leaguemodel.DivisionObject;
+import com.dhl.g05.leaguemodel.PlayerObject;
+import com.dhl.g05.leaguemodel.TeamObject;
+
+public class MockLeagueValidationDb implements ILeagueModelValidation{
+
+
 
 	public String leagueName = "HockeyLeague";
 	public Map<String,Object> firstPlayerInfo;
@@ -22,7 +29,7 @@ public class JsonMockDataDb implements ILeagueValidation{
 	public String divisionTwoName = "Pacific";
 	public String conferenceName = "Western Conference";
 	
-	public  JsonMockDataDb () {
+	public  MockLeagueValidationDb () {
 		setJsonValues();
 	}
 	
@@ -220,34 +227,35 @@ public class JsonMockDataDb implements ILeagueValidation{
 		freeAgentList.add(new PlayerObject(firstPlayerInfo));
 	}
 	@Override
-	public void loadTeamData(TeamObject teamObject) {
+	public void loadTeamData(TeamValidation teamObject) {
 		teamObject.setTeamName(teamName);
-		teamObject.setCoachName(headCoachName);
-		teamObject.setManagerName(generalManagerName);
+		teamObject.setHeadCoachName(generalManagerName);
+		teamObject.setGeneralManagerName(headCoachName);
 		teamObject.setPlayerList(playerList);
 	}
 
 	@Override
-	public void loadPlayerData(PlayerObject playerOject) {
-		playerOject.setTeamPlayers(firstPlayerInfo);
+	public void loadPlayerData(PlayerValidation playerOject) {
+		playerOject.setplayerDetails(firstPlayerInfo);
 	}
 
 	@Override
-	public void LoadDivisionData(DivisionObject divisionObject) {
+	public void LoadDivisionData(DivisionValidation divisionObject) {
 		divisionObject.setDivisionName(divisionOneName);
 		divisionObject.setTeamDetails(teamList);
 	}
 
 	@Override
-	public void loadLeagueData(LeagueObject leagueObject) {
+	public void loadLeagueData(LeagueValidation leagueObject) {
 		leagueObject.setLeagueName(leagueName);
 		leagueObject.setConferenceDetails(conferenceList);
 		leagueObject.setFreeAgent(freeAgentList);
 	}
 
 	@Override
-	public void loadConferenceData(ConferenceObject conferenceObject) {
+	public void loadConferenceData(ConferenceValidation conferenceObject) {
 		conferenceObject.setConferenceName(conferenceName);
 		conferenceObject.setDivisionDetails(divisionList);
 	}
+
 }
