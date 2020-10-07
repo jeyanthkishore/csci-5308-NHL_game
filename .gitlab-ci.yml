@@ -3,11 +3,6 @@
 # But you could define any stages you want.
 image: maven:latest
 
-before_script:
-    - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval $(ssh-agent -s)
-    - echo "${DEPLOY_SSH_KEY}" | tr -d '\r' | ssh-add -
-
 stages:
     - build
     - test
@@ -41,6 +36,11 @@ deploy:
   stage: deploy
   tags:
     - ugrad
+  before_script:
+    - 'command-vssh-agent>/dev/null||(apt-getupdate-y&&apt-getinstallopenssh-client-y)'
+    - eval $(ssh-agent -s)
+    - echo "$DEPLOY_SSH_KEY" | tr -d '\r' | ssh-add -
   script:
     - zip -r ${CI_COMMIT_SHORT_SHA}.zip target
     - scp -r -o StrictHostKeyChecking=no ${CI_COMMIT_SHORT_SHA}.zip "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/${CI_COMMIT_SHORT_SHA}.zip"
+
