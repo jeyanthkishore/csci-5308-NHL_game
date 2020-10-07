@@ -1,17 +1,13 @@
 package com.dhl.g05.statemachine;
 
-public class CreateTeamState implements IState {
+import java.util.Map;
+
+import com.dhl.g05.leagueobjects.TeamObject;
+
+public class CreateTeamState extends AbstractState {
 	
-	private StateMachine outerStateMachine;
-	private StateMachine innerStateMachine;
-	
-	private String conference;
-	private String division;
-	private String generalManager;
-	private String headCoach;
-	
-	//private Team newTeam;
-	
+	private Map<String,Object> teamDetails;
+	private TeamObject team;
 	
 	public CreateTeamState(StateMachine stateMachine) {
 		
@@ -35,33 +31,14 @@ public class CreateTeamState implements IState {
 		
 	}
 
-	@Override
-	public void transitionState(IState state) {
-		// TODO Auto-generated method stub
-		
+	public Map<String,Object> getTeamDetails() {
+		return teamDetails;
 	}
-
-	@Override
-	public StateMachine getInnerStateMachine() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public TeamObject getTeam() {
+		return team;
 	}
-
-	@Override
-	public void setInnerStateMachine(StateMachine stateMachine) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void runInnerStateMachine() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void getTeamData() {
-		
-	}
+	
 	
 	private void makeTeam() {
 		
@@ -69,24 +46,6 @@ public class CreateTeamState implements IState {
 	
 	private void persistTeam() {
 		
-	}
-
-	@Override
-	public boolean didEnterState() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean didRunState() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean didExitState() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

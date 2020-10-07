@@ -1,20 +1,22 @@
 package com.dhl.g05.statemachine;
 
-public class ImportState implements IState{
+public class ImportState extends AbstractState{
 	
 	private StateMachine outerStateMachine;
 	private StateMachine innerStateMachine;
+	private String fileName;
 
 	//private league
 	
 	public ImportState(StateMachine stateMachine) {
-		
+		outerStateMachine = stateMachine;
 	}
 	
 	@Override
 	public void enter() {
+		//create league modelCreator
+		//check if file is valid json file
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -29,47 +31,8 @@ public class ImportState implements IState{
 		
 	}
 
-	@Override
-	public StateMachine getInnerStateMachine() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getFileName() {
+		return fileName;
 	}
-
-	@Override
-	public void setInnerStateMachine(StateMachine stateMachine) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void transitionState(IState state) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void runInnerStateMachine() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean didEnterState() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean didRunState() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean didExitState() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 
 }

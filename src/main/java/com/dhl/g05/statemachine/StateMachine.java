@@ -4,18 +4,18 @@ import com.dhl.g05.leagueobjects.LeagueObject;
 
 public class StateMachine {
 	
-	private IState currentState;   
+	private AbstractState currentState;   
 	private LeagueObject league;
 
 	public StateMachine() {
 		currentState = new ImportState(this);  
 	}
 	
-	public IState getCurrentState() {
+	public AbstractState getCurrentState() {
 		return currentState;
 	}
 
-	public void setCurrentState(IState state) {
+	public void setCurrentState(AbstractState state) {
 		currentState = state;
 	}
 	
@@ -29,6 +29,14 @@ public class StateMachine {
 	
 	public void exitState() {
 		currentState.exit();
+	}
+	
+	public void setLeague(LeagueObject league) {
+		
+	}
+	
+	public LeagueObject getLeague() {
+		return league;
 	}
 
 }

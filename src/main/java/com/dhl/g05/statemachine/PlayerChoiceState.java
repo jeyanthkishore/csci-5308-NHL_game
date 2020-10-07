@@ -1,9 +1,10 @@
 package com.dhl.g05.statemachine;
 
-public class PlayerChoiceState implements IState{
+public class PlayerChoiceState extends AbstractState{
 	
 	private StateMachine outerStateMachine;
 	private StateMachine InnerStateMachine;
+	private String playerChoice;
 	
 
 	public PlayerChoiceState(StateMachine stateMachine) {
@@ -13,61 +14,30 @@ public class PlayerChoiceState implements IState{
 	@Override
 	public void enter() {
 		// TODO Auto-generated method stub
+		//ask for input
 		
 	}
 
 	@Override
 	public void performStateTask() {
 		// TODO Auto-generated method stub
+		//get input
 		
 	}
 
 	@Override
 	public void exit() {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void transitionState(IState state) {
-		// TODO Auto-generated method stub
+		//transition to appropriate state
 		
 	}
 	
-	@Override
-	public StateMachine getInnerStateMachine() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getChoice() {
+		return playerChoice;
 	}
-
-	@Override
-	public void setInnerStateMachine(StateMachine stateMachine) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void runInnerStateMachine() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean didEnterState() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean didRunState() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean didExitState() {
-		// TODO Auto-generated method stub
-		return false;
+	
+	public void setChoice(String choice) {
+		playerChoice = choice;
 	}
 
 }

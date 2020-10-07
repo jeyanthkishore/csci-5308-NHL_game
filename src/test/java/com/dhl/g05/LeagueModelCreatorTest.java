@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import org.json.simple.parser.ParseException;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -17,11 +18,28 @@ import com.dhl.g05.leagueobjects.PlayerObject;
 
 
 public class LeagueModelCreatorTest {
+	LeagueModelCreator  leagueModelCreator;
+	Exception exception;
+	
+	@Before
+	public void init() {
+		leagueModelCreator = new LeagueModelCreator();
+		exception = new Exception();
+	}
+	
+	@Test
+	public void testisFileValidJsonInvalid() {
+		assertFalse(leagueModelCreator.isFileValidJson("src/test/java/com/dhl/g05/jsontestfiles/jsonInvalidFile.json"));
+	}
+	
+	@Test
+	public void testisFileValidJsonValid() {
+		assertTrue(leagueModelCreator.isFileValidJson("src/test/java/com/dhl/g05/jsontestfiles/jsonGoodInfo.json"));
+	}
+	
 
 	@Test
 	public void testCreateLeagueFromFileNoFile() {
-		LeagueModelCreator  leagueModelCreator = new LeagueModelCreator();
-		Exception exception = new Exception();
 		try {
 			LeagueObject league  = leagueModelCreator.createLeagueFromFile("filedoesnotexist");
 		} catch (FileNotFoundException e) {
@@ -37,10 +55,7 @@ public class LeagueModelCreatorTest {
 	}
 
 	@Test
-	public void testCreateLeagueFromFileInvalidJsonFile() {
-		LeagueModelCreator  leagueModelCreator = new LeagueModelCreator();
-		Exception exception = new Exception();
-		
+	public void testCreateLeagueFromFileInvalidJsonFile() {		
 		try {
 			LeagueObject league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonInvalidFile.json");
 		} catch (ParseException e) {
@@ -55,7 +70,6 @@ public class LeagueModelCreatorTest {
 	
 	@Test
 	public void testCreateLeagueFromFileGoodFile() {
-		LeagueModelCreator  leagueModelCreator = new LeagueModelCreator();
 		LeagueObject league = null;
 		try {
 			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles//jsonGoodInfo.json");
@@ -64,17 +78,11 @@ public class LeagueModelCreatorTest {
 		}	
 		
 		assertNotNull(league);
-		assertNotNull(league.getConferences());
-		assertEquals(league.getConferences().size(),2);
-		assertNotNull(league.getFreeAgents());
-		assertEquals(league.getName(),"Dalhousie Hockey League");
-		
 	}
 	
 	
 	@Test
 	public void testCreateLeagueFromFilePlayersBad() {
-		LeagueModelCreator  leagueModelCreator = new LeagueModelCreator();
 		LeagueObject league = new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
 		try {
 			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadPlayerInfo.json");
@@ -88,7 +96,6 @@ public class LeagueModelCreatorTest {
 
 	@Test
 	public void testCreateLeagueFromFileTeamsBad() {
-		LeagueModelCreator  leagueModelCreator = new LeagueModelCreator();
 		LeagueObject league = new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
 		try {
 			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadTeamInfo.json");
@@ -101,7 +108,6 @@ public class LeagueModelCreatorTest {
 	
 	@Test
 	public void testCreateLeagueFromFileDivisionsBad() {
-		LeagueModelCreator  leagueModelCreator = new LeagueModelCreator();
 		LeagueObject league = new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
 		try {
 			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadDivisionInfo.json");
@@ -115,7 +121,6 @@ public class LeagueModelCreatorTest {
 	
 	@Test
 	public void testCreateLeagueFromFileConferencesBad() {
-		LeagueModelCreator  leagueModelCreator = new LeagueModelCreator();
 		LeagueObject league = new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
 		try {
 			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadConferenceInfo.json");
@@ -128,7 +133,6 @@ public class LeagueModelCreatorTest {
 	
 	@Test
 	public void testCreateLeagueFromFileFreeAgentsBad() {
-		LeagueModelCreator  leagueModelCreator = new LeagueModelCreator();
 		LeagueObject league = new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
 		try {
 			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadFreeAngentInfo.json");

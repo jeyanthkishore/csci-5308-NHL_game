@@ -1,73 +1,50 @@
 package com.dhl.g05.statemachine;
 
-public class LoadTeamState implements IState{
+import java.util.Map;
+
+import com.dhl.g05.leagueobjects.LeagueObject;
+
+public class LoadTeamState extends AbstractState{
 	
 	private StateMachine outerStateMachine;
 	private StateMachine InnerStateMachine;
+	private Map<String,Object> teamDetails;
+	private LeagueObject league;
+	private boolean wasTeamValid;
 
 	
 	public LoadTeamState(StateMachine stateMachine) {
 		
 	}
-
+	
 	@Override
 	public void enter() {
-		// TODO Auto-generated method stub
-		
+		//prompts user and gets input
+
 	}
 
 	@Override
 	public void performStateTask() {
-		// TODO Auto-generated method stub
-		
+		//loads data		
 	}
 
 	@Override
 	public void exit() {
+		//instantiate league model;
+	}
+	
+	
+	public Map<String,Object> getTeamDetails() {
+		return teamDetails;
+	}
+	
+	public LeagueObject getLeague() {
+		return league;
+	}
+
+	public void setTeamDetails(Map<String,Object> teamDetails) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void transitionState(IState state) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public StateMachine getInnerStateMachine() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setInnerStateMachine(StateMachine stateMachine) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void runInnerStateMachine() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean didEnterState() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean didRunState() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean didExitState() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

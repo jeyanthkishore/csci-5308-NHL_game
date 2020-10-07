@@ -1,6 +1,6 @@
 package com.dhl.g05.statemachine;
 
-public class StateMock implements IState {
+public class StateMock extends AbstractState {
 	
 	private StateMachine outerStateMachine;
 	private StateMachine innerStateMachine;
@@ -30,27 +30,6 @@ public class StateMock implements IState {
 		exitState = true;
 	}
 
-	@Override
-	public void transitionState(IState state) {
-		outerStateMachine.setCurrentState(state);
-		
-	}
-
-	@Override
-	public StateMachine getInnerStateMachine() {
-		return innerStateMachine;
-	}
-
-	@Override
-	public void setInnerStateMachine(StateMachine stateMachine) {
-		innerStateMachine = stateMachine;
-	}
-
-	@Override
-	public void runInnerStateMachine() {
-		innerStateMachine.enterState();
-	}
-	
 	public boolean didEnterState() {
 		return enterState;
 	}
@@ -62,5 +41,6 @@ public class StateMock implements IState {
 	public boolean didExitState() {
 		return exitState;
 	}
+
 
 }

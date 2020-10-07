@@ -20,21 +20,21 @@ public class StateMachineTest {
 	public void testEnterState() {
 		stateMachine.enterState();
 		assertNotNull(stateMachine.getCurrentState());
-		assertTrue(stateMachine.getCurrentState().didEnterState());	
+		assertTrue(((StateMock)stateMachine.getCurrentState()).didEnterState());	
 	}
 
 	@Test
 	public void testRunState() {
 		stateMachine.runState();
 		assertNotNull(stateMachine.getCurrentState());
-		assertTrue(stateMachine.getCurrentState().didRunState());	
+		assertTrue(((StateMock)stateMachine.getCurrentState()).didRunState());	
 	}
 
 	@Test
 	public void testExitState() {
 		stateMachine.exitState();
 		assertNotNull(stateMachine.getCurrentState());
-		assertTrue(stateMachine.getCurrentState().didExitState());	
+		assertTrue(((StateMock)stateMachine.getCurrentState()).didExitState());	
 	}
 
 

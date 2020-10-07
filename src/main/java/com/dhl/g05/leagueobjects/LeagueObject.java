@@ -12,18 +12,4 @@ public class LeagueObject {
 		return false;
 	}
 
-	public Object getName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Map<String,ConferenceObject> getConferences() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Object getFreeAgents() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
