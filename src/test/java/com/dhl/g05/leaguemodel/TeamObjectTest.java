@@ -13,15 +13,9 @@ public class TeamObjectTest{
 		JsonMockDataDb data= new JsonMockDataDb();
 		TeamObject object = new TeamObject();
 		assertNull(object.getCoachName());
-		object.setCoachName("Zidane");
-		assertFalse(object.getCoachName().isBlank());
 		object.setManagerName("");
 		assertTrue(object.getManagerName().isEmpty());
-		object.setManagerName("Ronaldo");
-		assertFalse(object.getCoachName().isBlank());
 		assertNull(object.getTeamName());
-		object.setTeamName("Super Strikers");
-		assertFalse(object.getCoachName().isBlank());
 		assertNull(object.getPlayerList());
 		object.setPlayerList(data.playerList);
 		assertFalse(object.getPlayerList().isEmpty());
