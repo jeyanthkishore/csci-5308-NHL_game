@@ -37,7 +37,7 @@ deploy:
   tags:
     - ugrad
   before_script:
-    - 'command-vssh-agent>/dev/null||(apt-getupdate-y&&apt-getinstallopenssh-client-y)'
+    - 'command-vssh-agent>/dev/null||(apt-get update-y&&apt-get install openssh-client-y)'
     - eval $(ssh-agent -s)
     - echo "$DEPLOY_SSH_KEY" | tr -d '\r' | ssh-add -
   script:
