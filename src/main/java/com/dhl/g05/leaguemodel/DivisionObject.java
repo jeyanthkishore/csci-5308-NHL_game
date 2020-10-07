@@ -36,16 +36,4 @@ public class DivisionObject {
 	public void setTeamDetails(List<TeamObject> teamDetails) {
 		this.teamDetails = teamDetails;
 	}
-	
-	public boolean isDivisionNameEmptyorNull() {
-		if(divisionName == "" || divisionName == null) {
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean isTeamListEmpty() {
-		return teamDetails.isEmpty();
-	}
-	
 }

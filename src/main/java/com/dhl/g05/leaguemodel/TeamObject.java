@@ -13,9 +13,9 @@ public class TeamObject {
 		setCoachName(null);
 		setManagerName(null);
 		setTeamName(null);
-		setPlayerDetails(null);
+		setPlayerList(null);
 	}
-	
+
 	public TeamObject(ILeagueValidation teamObject) {
 		teamObject.loadTeamData(this);
 	}
@@ -50,43 +50,11 @@ public class TeamObject {
 	public void setManagerName(String managerName) {
 		this.generalManagerName = managerName;
 	}
-
-	public List<PlayerObject> getPlayerDetails() {
+	public List<PlayerObject> getPlayerList() {
 		return playerList;
 	}
 
-	public void setPlayerDetails(List<PlayerObject> playerDetails) {
-		this.playerList = playerDetails;
-	}
-	
-	public boolean isTeamDetailsEmpty() {
-		if(teamName == "" || headCoachName ==""
-				|| generalManagerName =="") {
-			return true;
-		}
-		return false;
-	}
-	public boolean isTeamDetailsNull() {
-		if(teamName == null || headCoachName ==null
-				|| generalManagerName ==null) {
-			return true;
-		}
-		return false;
-	}
-	public boolean isPlayerListEmpty() {
-		return (playerList.isEmpty());
-	}
-	public boolean isPlayerListMaximum() {
-		if(playerList.size() > 20) {
-			return true;
-		}
-		return false;
-	}
-	public boolean containOneTeamCaptain() {
-		long captainCount = playerList.stream().filter(p -> p.getTeamPlayers().get("captain").equals(true)).count();
-		if(captainCount > 1 ||captainCount ==0) {
-			return false;
-		}
-		return true;
+	public void setPlayerList(List<PlayerObject> playerList) {
+		this.playerList = playerList;
 	}
 }

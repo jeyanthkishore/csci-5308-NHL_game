@@ -35,22 +35,4 @@ public class ConferenceObject {
 		this.divisionDetails = divisionDetails;
 	}
 	
-	public boolean hasEvenNumberDivision() {
-		if(divisionDetails.size()%2 == 0) {
-			return true;	
-		}
-		return false;
-	}
-	
-	public boolean isNameEmptyOrNull() {
-		if(conferenceName == "" || conferenceName == null) {
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean isDivisionListEmpty() {
-		return divisionDetails.isEmpty();
-	}
-	
 }

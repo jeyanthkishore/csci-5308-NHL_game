@@ -1,102 +1,110 @@
 package com.dhl.g05.leaguemodel;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 public class TeamObjectTest{
-	
 	@Test
-	public void checkPlayerListTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		TeamObject validate = new TeamObject(mock);
-		assertFalse(validate.isPlayerListEmpty());
+	public void TeamObjectConstructorTest() {
+		JsonMockDataDb data= new JsonMockDataDb();
+		TeamObject object = new TeamObject();
+		assertNull(object.getCoachName());
+		object.setCoachName("Zidane");
+		assertFalse(object.getCoachName().isBlank());
+		object.setManagerName("");
+		assertTrue(object.getManagerName().isEmpty());
+		object.setManagerName("Ronaldo");
+		assertFalse(object.getCoachName().isBlank());
+		assertNull(object.getTeamName());
+		object.setTeamName("Super Strikers");
+		assertFalse(object.getCoachName().isBlank());
+		assertNull(object.getPlayerList());
+		object.setPlayerList(data.playerList);
+		assertFalse(object.getPlayerList().isEmpty());
+	}
+	@Test
+	public void setTeamNameTest()
+	{
+		TeamObject object = new TeamObject();
+		object.setTeamName("Strikers");
+		assertTrue(object.getTeamName().equals("Strikers"));
 	}
 	
 	@Test
-	public void checkPlayerListEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setPlayerListEmpty();
-		TeamObject validate = new TeamObject(mock);
-		assertTrue(validate.isPlayerListEmpty());
+	public void getTeamNameTest()
+	{
+		TeamObject object = new TeamObject();
+		object.setTeamName("Strikers");
+		assertTrue(object.getTeamName().equals("Strikers"));
+	}
+	@Test
+	public void setCoachNameTest()
+	{
+		TeamObject object = new TeamObject();
+		object.setCoachName("Pele");
+		assertTrue(object.getCoachName().equals("Pele"));
 	}
 	
 	@Test
-	public void checkPlayerListMaxTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.addMaximumPlayer();
-		TeamObject validate = new TeamObject(mock);
-		assertTrue(validate.isPlayerListMaximum());
+	public void getCoachNameTest()
+	{
+		TeamObject object = new TeamObject();
+		object.setCoachName("Pele");
+		assertTrue(object.getCoachName().equals("Pele"));
+	}
+	@Test
+	public void setManagerNameTest()
+	{
+		TeamObject object = new TeamObject();
+		object.setManagerName("Rubinho");
+		assertTrue(object.getManagerName().equals("Rubinho"));
 	}
 	
 	@Test
-	public void teamNameEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setTeamNameEmpty();
-		TeamObject validate = new TeamObject(mock);
-		assertTrue(validate.isTeamDetailsEmpty());
+	public void getManagerNameTest()
+	{
+		TeamObject object = new TeamObject();
+		object.setManagerName("Rubinho");
+		assertTrue(object.getManagerName().equals("Rubinho"));
+	}
+	@Test
+	public void setPlayerListTest()
+	{
+		JsonMockDataDb data= new JsonMockDataDb();
+		TeamObject object = new TeamObject();
+		object.setPlayerList(data.playerList);
+		assertSame(data.playerList,object.getPlayerList());
 	}
 	
 	@Test
-	public void teamNameNullTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setTeamNameNull();
-		TeamObject validate = new TeamObject(mock);
-		assertTrue(validate.isTeamDetailsNull());
+	public void getPlayerListTest()
+	{
+		JsonMockDataDb data= new JsonMockDataDb();
+		TeamObject object = new TeamObject();
+		object.setPlayerList(data.playerList);
+		assertSame(data.playerList,object.getPlayerList());
 	}
 	
 	@Test
-	public void coachNameEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setCoachNameEmpty();
-		TeamObject validate = new TeamObject(mock);
-		assertTrue(validate.isTeamDetailsEmpty());
-	}
-	
-	@Test
-	public void coachNameNullTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setCoachNameNull();
-		TeamObject validate = new TeamObject(mock);
-		assertTrue(validate.isTeamDetailsNull());
-	}
-
-	@Test
-	public void managerNameEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setManagerNameEmpty();
-		TeamObject validate = new TeamObject(mock);
-		assertTrue(validate.isTeamDetailsEmpty());
-	}
-	
-	@Test
-	public void managerNameNullTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setManagerNameNull();
-		TeamObject validate = new TeamObject(mock);
-		assertTrue(validate.isTeamDetailsNull());
-	}
-	
-	@Test
-	public void oneTeamCaptainTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		TeamObject validate = new TeamObject(mock);
-		assertTrue(validate.containOneTeamCaptain());
+	public void ConstructorWithParamerterTest() {
+		JsonMockDataDb data= new JsonMockDataDb();
+		TeamObject object = new TeamObject(data.teamName,data.headCoachName,data.generalManagerName,data.playerList);
+		assertSame(data.playerList,object.getPlayerList());
+		assertSame(data.teamName,object.getTeamName());
+		assertSame(data.headCoachName,object.getCoachName());
+		assertSame(data.generalManagerName,object.getManagerName());
 	}
 	@Test
-	public void twoTeamCaptainTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setSecondCaptain();
-		TeamObject validate = new TeamObject(mock);
-		assertFalse(validate.containOneTeamCaptain());
-	}
-	
-	@Test
-	public void noTeamCaptainTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.removeCaptain();
-		TeamObject validate = new TeamObject(mock);
-		assertFalse(validate.containOneTeamCaptain());
+	public void ConstructorWithReferenceTest() {
+		JsonMockDataDb data= new JsonMockDataDb();
+		TeamObject object = new TeamObject(data);
+		assertSame(data.playerList,object.getPlayerList());
+		assertSame(data.teamName,object.getTeamName());
+		assertSame(data.headCoachName,object.getCoachName());
+		assertSame(data.generalManagerName,object.getManagerName());
 	}
 }
