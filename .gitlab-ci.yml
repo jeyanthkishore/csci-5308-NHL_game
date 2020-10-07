@@ -1,9 +1,9 @@
 # These are the default stages.
- # You don't need to explicitly define them.
- # But you could define any stages you want.
- image: maven:latest
+# You don't need to explicitly define them.
+# But you could define any stages you want.
+image: maven:latest
 
- stages:
+stages:
     - build
     - test
     - deploy
@@ -32,7 +32,6 @@ test:
       junit:
         - target/surefire-reports/TEST-*.xml
 
-# CD is remaining
 deploy:
   stage: deploy
   tags:
