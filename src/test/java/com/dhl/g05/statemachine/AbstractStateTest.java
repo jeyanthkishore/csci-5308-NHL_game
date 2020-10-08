@@ -32,7 +32,7 @@ public class AbstractStateTest {
 		assertTrue(state.runInnerStateMachine());
 
 		assertNotEquals(state.getInnerStateMachine().getCurrentState(),state);
-		assertEquals(state.getInnerStateMachine().getCurrentState(),newInnerState);
+		assertEquals(state.getInnerStateMachine().getCurrentState(),null);
 	}
 	
 

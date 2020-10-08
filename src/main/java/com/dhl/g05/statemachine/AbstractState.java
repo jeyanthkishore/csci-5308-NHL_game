@@ -5,6 +5,7 @@ public abstract class AbstractState {
 	private StateMachine innerStateMachine;
 	private boolean completedState;
 	private AbstractState nextState;
+	private String playerInput;
 	
 	public abstract boolean enter();
 	public abstract boolean performStateTask();
@@ -49,6 +50,14 @@ public abstract class AbstractState {
 	
 	public boolean didStateComplete() {
 		return this.completedState;
+	}
+	
+	public void setPlayerInput(String input) {
+		this.playerInput = input;
+	}
+	
+	public String getPlayerInput() {
+		return	playerInput;
 	}
 	
 }

@@ -30,18 +30,18 @@ public class StateMachine {
 		if (currentState.enter()) {
 			return runState();
 		} else {
-			//TODO:
-			return false;
+			enterState();
 		}
+		return false;
 	}
 	
 	public boolean runState() {
 		 if (currentState.performStateTask()) {
 			 return exitState();
 		 } else {
-			 //TODO:
-			 return false;
+			enterState();
 		 }
+		 return false;
 	}
 	
 	public boolean exitState() {
@@ -50,6 +50,7 @@ public class StateMachine {
 			if (currentState!=null) {
 				return enterState();
 			} else {
+				this.exit();
 				return true;
 			}
 		}
@@ -57,6 +58,10 @@ public class StateMachine {
 		return false;
 	}
 	
+	public void exit() {
+		leagueModel.persistLeague();
+		playerCommunication.sendMessage("program complete");
+	}
 	public void setLeague(LeagueObject league) {
 		leagueModel.setLeague(league);
 	}

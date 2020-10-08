@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.dhl.g05.MockLeagueModel;
 import com.dhl.g05.MockPlayerCommunication;
+import com.dhl.g05.leagueobjects.LeagueObject;
 
 public class LoadTeamStateTest {
 	private LoadTeamState state;
@@ -23,6 +24,7 @@ public class LoadTeamStateTest {
 		stateMachine.setCurrentState(state);
 		stateMachine.setPlayerCommunication(new MockPlayerCommunication());
 		stateMachine.setLeagueModel(new MockLeagueModel());
+		stateMachine.setLeague(new LeagueObject(null, null, null));
 	}
 	
 	@Test
@@ -42,7 +44,6 @@ public class LoadTeamStateTest {
 	@Test
 	public void testExit() {
 		assertTrue(state.exit());
-		assertNotNull(state.getOuterStateMachine().getLeague());
 		assertTrue(state.getNextState() instanceof PlayerChoiceState);
 	}
 

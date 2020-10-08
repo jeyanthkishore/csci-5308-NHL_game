@@ -40,7 +40,7 @@ public class LoadTeamState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		this.setNextState(new PlayerChoiceState(this.getOuterStateMachine()));
+		this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(),"Enter number of seasons to simulate"));
 		this.markStateCompleted();
 		return true;
 	}

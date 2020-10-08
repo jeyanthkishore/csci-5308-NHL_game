@@ -2,6 +2,8 @@ package com.dhl.g05.statemachine;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,7 +33,7 @@ public class CreateTeamStateTest {
 
 	@Test
 	public void testPerformStateTask() {
-		assertNotNull(state.getTeamDetails());
+		state.setTeamDetails(new HashMap<String,Object>());
 		assertTrue(state.performStateTask());
 		assertNotNull(state.getTeam());
 	}

@@ -13,26 +13,25 @@ public class ImportState extends AbstractState{
 	
 	public ImportState(StateMachine stateMachine) {
 		super(stateMachine);
-		creator = new LeagueModelCreator(this.getOuterStateMachine().getLeagueModel());
 	}
 	
 	@Override
 	public boolean enter() {
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter file name:");
+		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter a file name to create a new team or hit enter to load and existing team:");
 		fileName = this.getOuterStateMachine().getPlayerCommunication().getFile();
-		if (fileName.equals("")) {
-			this.setNextState(new LoadTeamState(this.getOuterStateMachine()));
-			this.markStateCompleted();
-		}
-		
 		return true;
 	}
 
 	@Override
 	public boolean performStateTask() {
+		if (fileName.equals("")||fileName.isEmpty()) {
+			return true;
+		}
+		
+		creator = new LeagueModelCreator(this.getOuterStateMachine().getLeagueModel());
 		try {
 			creator.createLeagueFromFile(fileName);
-			if(this.getOuterStateMachine().getLeague()==null) {
+			if(this.getOuterStateMachine().getLeague() == null) {
 				//TODO: get accurate error
 				this.getOuterStateMachine().getPlayerCommunication().sendMessage("League model not created");
 			} else {
@@ -52,13 +51,12 @@ public class ImportState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		// TODO persist to data base and confirm successful
-		if (this.getOuterStateMachine().getLeagueModel().persistLeague()) {
-			this.setNextState(new PlayerChoiceState(super.getOuterStateMachine()));
-			this.markStateCompleted();
-			return true;
+		if (fileName.equals("")||fileName.isEmpty()) {
+			this.setNextState(new LoadTeamState(this.getOuterStateMachine())); 
+		} else {
+			this.setNextState(new CreateTeamState(this.getOuterStateMachine()));
 		}
-		return false;
+		return true;
 	}
 
 	public String getFileName() {

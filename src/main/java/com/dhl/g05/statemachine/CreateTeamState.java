@@ -40,7 +40,7 @@ public class CreateTeamState extends AbstractState {
 	public boolean performStateTask() {
 		team = this.getOuterStateMachine().getLeagueModel().createTeam((String)teamDetails.get("teamName"), (String)teamDetails.get("teamManager"), (String)teamDetails.get("teamCoach"), new ArrayList<PlayerObject>());
 		if (this.getOuterStateMachine().getLeagueModel().validateTeam(team) 
-				&& this.getOuterStateMachine().getLeagueModel().addTeam(conferenceName,divisionName,team)) {
+			&& this.getOuterStateMachine().getLeagueModel().addTeam(conferenceName,divisionName,team)) {
 			
 			return true;
 		}
@@ -51,7 +51,7 @@ public class CreateTeamState extends AbstractState {
 	@Override
 	public boolean exit() {
 		if(getOuterStateMachine().getLeagueModel().persistLeague()) {
-			this.setNextState(new PlayerChoiceState(this.getOuterStateMachine()));
+			this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(), "Enter number of seasons to simulate"));
 			this.markStateCompleted();
 			return true;
 		}
@@ -61,6 +61,10 @@ public class CreateTeamState extends AbstractState {
 
 	public Map<String,Object> getTeamDetails() {
 		return teamDetails;
+	}
+	
+	public void setTeamDetails(Map<String,Object> details) {
+		teamDetails = details;
 	}
 	
 	public TeamObject getTeam() {

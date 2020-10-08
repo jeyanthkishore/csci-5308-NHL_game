@@ -30,17 +30,24 @@ public class ImportStateTest {
 
 	@Test
 	public void testPerformStateTask() {
-		state.setFileName("src/test/java/com/dhl/g05/jsontestfiles//jsonGoodInfo.json");
+		state.setFileName("src/test/java/com/dhl/g05/jsontestfiles/jsonGoodInfo.json");
 		assertTrue(state.performStateTask());
 		assertNotNull(state.getOuterStateMachine());
 		assertNotNull(state.getOuterStateMachine().getLeague());
 	}
 
 	@Test
-	public void testExit() {
-		assertNotNull(state.getOuterStateMachine().getLeague());
+	public void testExitWithFile() {
+		state.setFileName("src/test/java/com/dhl/g05/jsontestfiles/jsonGoodInfo.json");
 		assertTrue(state.exit());
-		assertTrue(state.didStateComplete());
+		assertTrue(state.getNextState() instanceof CreateTeamState);
+	}
+	
+	@Test
+	public void testExitNoFile() {
+		state.setFileName("");
+		assertTrue(state.exit());
+		assertTrue(state.getNextState() instanceof LoadTeamState);
 	}
 
 }
