@@ -12,7 +12,7 @@ public class DivisionObject {
 		setTeamDetails(null);
 	}
 	
-	public DivisionObject(ILeagueValidation divisionObject) {
+	public DivisionObject(ILeagueModel divisionObject) {
 		divisionObject.LoadDivisionModelData(this);
 	}
 	

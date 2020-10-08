@@ -16,7 +16,7 @@ public class TeamObject {
 		setPlayerList(null);
 	}
 
-	public TeamObject(ILeagueValidation teamObject) {
+	public TeamObject(ILeagueModel teamObject) {
 		teamObject.loadTeamModelData(this);
 	}
 	

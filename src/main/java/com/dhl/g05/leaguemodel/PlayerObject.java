@@ -11,7 +11,7 @@ public class PlayerObject {
 		setPlayerDetails(null);
 	}
 
-	public PlayerObject(ILeagueValidation player) {
+	public PlayerObject(ILeagueModel player) {
 		player.loadPlayerModelData(this);
 	}
 	
