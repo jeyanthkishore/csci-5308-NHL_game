@@ -12,24 +12,25 @@ public class PlayerChoiceState extends AbstractState{
 	
 	
 	@Override
-	public void enter() {
+	public boolean enter() {
 		// TODO Auto-generated method stub
 		//ask for input
+		return false;
 		
 	}
 
 	@Override
-	public void performStateTask() {
+	public boolean performStateTask() {
 		// TODO Auto-generated method stub
 		//get input
-		
+		return false;
 	}
 
 	@Override
-	public void exit() {
+	public boolean exit() {
 		// TODO Auto-generated method stub
 		//transition to appropriate state
-		
+		return false;
 	}
 	
 	public String getChoice() {

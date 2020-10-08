@@ -1,6 +1,7 @@
 package com.dhl.g05;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -94,6 +95,12 @@ public class LeagueModel implements ILeagueModel{
 
 	@Override
 	public boolean addTeam(String conferenceName, String divisionName, TeamObject team) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean loadTeam(Map<String, Object> teamDetails) {
 		// TODO Auto-generated method stub
 		return false;
 	}

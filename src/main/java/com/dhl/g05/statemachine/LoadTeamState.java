@@ -18,7 +18,7 @@ public class LoadTeamState extends AbstractState{
 	}
 	
 	@Override
-	public void enter() {
+	public boolean enter() {
 		teamDetails = new HashMap<String,Object>();
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter conference name:");
 		conferenceName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
@@ -30,18 +30,19 @@ public class LoadTeamState extends AbstractState{
 		teamDetails.put("teamManager", this.getOuterStateMachine().getPlayerCommunication().getResponse());
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team coach:");
 		teamDetails.put("teamCoach", this.getOuterStateMachine().getPlayerCommunication().getResponse());
+		return true;
 	}
 
 	@Override
-	public void performStateTask() {
-		//TODO: get league from db
-	//	this.getOuterStateMachine().setLeague(loadTeam(teamdeltails)));	
+	public boolean performStateTask() {
+		return this.getOuterStateMachine().getLeagueModel().loadTeam(teamDetails);
 	}
 
 	@Override
-	public void exit() {
-		this.transitionState(new PlayerChoiceState(this.getOuterStateMachine()));
-		this.getOuterStateMachine().enterState();
+	public boolean exit() {
+		this.setNextState(new PlayerChoiceState(this.getOuterStateMachine()));
+		this.markStateCompleted();
+		return true;
 	}
 	
 	

@@ -1,7 +1,6 @@
 package com.dhl.g05;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,8 +10,8 @@ import com.dhl.g05.leagueobjects.LeagueObject;
 import com.dhl.g05.leagueobjects.PlayerObject;
 import com.dhl.g05.leagueobjects.TeamObject;
 
-public class MockLeagueModel implements ILeagueModel{
-	private LeagueObject league;
+public class MockLeagueModelValidationFails implements ILeagueModel{
+private LeagueObject league;
 	
 	@Override
 	public LeagueObject getLeague() {
@@ -52,42 +51,42 @@ public class MockLeagueModel implements ILeagueModel{
 
 	@Override
 	public boolean validateLeague(LeagueObject league) {
-		return true;
+		return false;
 	}
 
 	@Override
 	public boolean validateConference(ConferenceObject conference) {
-		return true;
+		return false;
 	}
 
 	@Override
 	public boolean validateDivision(DivisionObject division) {
-		return true;
+		return false;
 	}
 
 	@Override
 	public boolean validateTeam(TeamObject team) {
-		return true;
+		return false;
 	}
 
 	@Override
 	public boolean validatePlayer(PlayerObject player) {
-		return true;
+		return false;
 	}
 
 	@Override
 	public boolean persistLeague() {
-		return true;
+		return false;
 	}
 	
 	@Override
 	public boolean addTeam(String conferenceName, String divisionName, TeamObject team) {
-		return true;
+		return false;
 	}
 
 	@Override
 	public boolean loadTeam(Map<String, Object> teamDetails) {
-		return true;
+		return false;
 	}
 
 }

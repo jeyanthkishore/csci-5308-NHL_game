@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dhl.g05.MockLeagueModel;
 import com.dhl.g05.MockPlayerCommunication;
 
 public class PlayerChoiceStateTest {
@@ -17,32 +18,34 @@ public class PlayerChoiceStateTest {
 		state = new PlayerChoiceState(stateMachine);
 		stateMachine.setCurrentState(state);
 		stateMachine.setPlayerCommunication(new MockPlayerCommunication());
+		stateMachine.setLeagueModel(new MockLeagueModel());
+
 	}
 	
 	@Test
 	public void testEnter() {
-		state.enter();
+		assertTrue(state.enter());
 		assertNotEquals(stateMachine.getCurrentState(),state);
 	}
 
 	@Test
 	public void testPerformStateTask() {
-		state.performStateTask();
+		assertTrue(state.performStateTask());
 		assertNotNull(state.getChoice());
 	}
 
 	@Test
 	public void testExitCreate() {
 		state.setChoice("create");
-		state.exit();
-		assertTrue(stateMachine.getCurrentState() instanceof CreateTeamState);
+		assertTrue(state.exit());
+		assertTrue(state.getNextState() instanceof CreateTeamState);
 	}
 	
 	@Test
 	public void testExitLoad() {
 		state.setChoice("load");
-		state.exit();
-		assertTrue(stateMachine.getCurrentState() instanceof LoadTeamState);
+		assertTrue(state.exit());
+		assertTrue(state.getNextState() instanceof LoadTeamState);
 	}
 
 }

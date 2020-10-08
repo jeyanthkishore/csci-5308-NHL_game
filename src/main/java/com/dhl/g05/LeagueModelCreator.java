@@ -23,6 +23,7 @@ public class LeagueModelCreator {
 
 	public LeagueModelCreator(ILeagueModel leagueModel) {
 		parser = new JSONParser();
+		this.leagueModel = leagueModel;
 	}
 	
 	
@@ -46,11 +47,11 @@ public class LeagueModelCreator {
 	}
 	
 	public boolean createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException {
-		
-		reader = new FileReader(new File(fileName));
+		File file = new File(fileName);
+		reader = new FileReader(file);
 		LeagueObject league = (createLeague((JSONObject)parser.parse(reader)));
 		leagueModel.setLeague(league);
-		return (leagueModel.getLeague() == null);
+		return (leagueModel.getLeague() != null);
 	}
 	
 	private LeagueObject createLeague(JSONObject leagueData) {

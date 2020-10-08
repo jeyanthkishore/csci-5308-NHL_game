@@ -21,7 +21,7 @@ public class CreateTeamState extends AbstractState {
 	}
 
 	@Override
-	public void enter() {
+	public boolean enter() {
 		teamDetails = new HashMap<String, Object>();
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter conference name:");
 		conferenceName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
@@ -33,21 +33,30 @@ public class CreateTeamState extends AbstractState {
 		teamDetails.put("teamManager", this.getOuterStateMachine().getPlayerCommunication().getResponse());
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team coach:");
 		teamDetails.put("teamCoach", this.getOuterStateMachine().getPlayerCommunication().getResponse());
+		return true;
 	}
 
 	@Override
-	public void performStateTask() {
-		// TODO fix object method calls once final league objects are merged
+	public boolean performStateTask() {
 		team = this.getOuterStateMachine().getLeagueModel().createTeam((String)teamDetails.get("teamName"), (String)teamDetails.get("teamManager"), (String)teamDetails.get("teamCoach"), new ArrayList<PlayerObject>());
-		getOuterStateMachine().getLeagueModel().addTeam(conferenceName,divisionName,team);
+		if (this.getOuterStateMachine().getLeagueModel().validateTeam(team) 
+				&& this.getOuterStateMachine().getLeagueModel().addTeam(conferenceName,divisionName,team)) {
+			
+			return true;
+		}
+		//TODO: error reporting
+		return false;
 	}
 
 	@Override
-	public void exit() {
-		// TODO fix league object method calls once final league objects are merged, add check that league was saved
-		getOuterStateMachine().getLeagueModel().persistLeague();
-		this.transitionState(new PlayerChoiceState(this.getOuterStateMachine()));
-		
+	public boolean exit() {
+		if(getOuterStateMachine().getLeagueModel().persistLeague()) {
+			this.setNextState(new PlayerChoiceState(this.getOuterStateMachine()));
+			this.markStateCompleted();
+			return true;
+		}
+		//TODO: error reporting
+		 return false;
 	}
 
 	public Map<String,Object> getTeamDetails() {

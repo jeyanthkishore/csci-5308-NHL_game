@@ -5,33 +5,42 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dhl.g05.MockLeagueModel;
+import com.dhl.g05.MockPlayerCommunication;
+
 public class AbstractStateTest {
-private ImportState state;
+	private StateMock state;
+	private StateMachine stateMachine;
 	
 	@Before
 	public void init() {
-		state = new ImportState(new StateMachine());
+		stateMachine = new StateMachine();
+		stateMachine.setLeagueModel(new MockLeagueModel());
+		stateMachine.setPlayerCommunication(new MockPlayerCommunication());
+		
+		state = new StateMock(stateMachine);
 	}
 	
 	@Test
-	public void testTransitionState() {
-		state.transitionState(new CreateTeamState(state.getOuterStateMachine()));
-		assertNotNull(state.getOuterStateMachine());
-		assertNotEquals(state.getOuterStateMachine().getCurrentState(),state);
-	}
-
-	@Test
 	public void testRunInnerStateMachine() {
-		StateMachine innerState = new StateMachine();
-		state.setInnerStateMachine(innerState);
-		StateMock newState = new StateMock(innerState);
+		StateMachine innerStateMachine = stateMachine;
+		state.setInnerStateMachine(innerStateMachine);
+		StateMock newInnerState = new StateMock(innerStateMachine);
 
 		assertNotNull(state.getInnerStateMachine());
-		state.getInnerStateMachine().setCurrentState(newState);
-		state.runInnerStateMachine();
+		state.getInnerStateMachine().setCurrentState(newInnerState);
+		assertTrue(state.runInnerStateMachine());
 
 		assertNotEquals(state.getInnerStateMachine().getCurrentState(),state);
-		assertEquals(state.getInnerStateMachine().getCurrentState(),newState);
+		assertEquals(state.getInnerStateMachine().getCurrentState(),newInnerState);
 	}
+	
+
+	@Test
+	public void testMarkStateCompleted() {
+		state.markStateCompleted();
+		assertTrue(state.didStateComplete());
+	}
+
 
 }

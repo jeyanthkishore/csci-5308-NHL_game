@@ -26,20 +26,39 @@ public class StateMachine {
 		currentState = state;
 	}
 	
-	public void enterState() {
-		currentState.enter();
+	public boolean enterState() {
+		if (currentState.enter()) {
+			return runState();
+		} else {
+			//TODO:
+			return false;
+		}
 	}
 	
-	public void runState() {
-		currentState.performStateTask();
+	public boolean runState() {
+		 if (currentState.performStateTask()) {
+			 return exitState();
+		 } else {
+			 //TODO:
+			 return false;
+		 }
 	}
 	
-	public void exitState() {
-		currentState.exit();
+	public boolean exitState() {
+		if (currentState.exit()) {
+			currentState = currentState.getNextState();
+			if (currentState!=null) {
+				return enterState();
+			} else {
+				return true;
+			}
+		}
+		//TODO:
+		return false;
 	}
 	
 	public void setLeague(LeagueObject league) {
-		
+		leagueModel.setLeague(league);
 	}
 	
 	public LeagueObject getLeague() {

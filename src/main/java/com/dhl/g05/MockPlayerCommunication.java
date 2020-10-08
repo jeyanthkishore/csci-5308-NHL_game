@@ -4,7 +4,7 @@ public class MockPlayerCommunication implements IPlayerCommunication{
 
 	@Override
 	public void sendMessage(String message) {
-		System.out.println(message);		
+		//do nothing
 	}
 
 	@Override

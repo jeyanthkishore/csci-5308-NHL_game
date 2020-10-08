@@ -2,6 +2,7 @@ package com.dhl.g05;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.dhl.g05.leagueobjects.ConferenceObject;
@@ -25,6 +26,6 @@ public interface ILeagueModel {
 	public boolean validatePlayer(PlayerObject player);
 	public boolean persistLeague();
 	public boolean addTeam(String conferenceName, String divisionName, TeamObject team);
+	public boolean loadTeam(Map<String, Object> teamDetails);
 
-	
 }

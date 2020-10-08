@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dhl.g05.MockLeagueModel;
+import com.dhl.g05.MockPlayerCommunication;
+
 public class StateMachineTest {
 	StateMachine stateMachine;
 	StateMock state;
@@ -14,28 +17,25 @@ public class StateMachineTest {
 		stateMachine = new StateMachine();
 		state = new StateMock(stateMachine);
 		stateMachine.setCurrentState(state);
+		stateMachine.setLeagueModel(new MockLeagueModel());
+		stateMachine.setPlayerCommunication(new MockPlayerCommunication());
+		state.setNextState(null);
 	}
 
 	@Test
 	public void testEnterState() {
-		stateMachine.enterState();
 		assertNotNull(stateMachine.getCurrentState());
-		assertTrue(((StateMock)stateMachine.getCurrentState()).didEnterState());	
+		assertTrue(stateMachine.enterState());
 	}
 
 	@Test
 	public void testRunState() {
-		stateMachine.runState();
 		assertNotNull(stateMachine.getCurrentState());
-		assertTrue(((StateMock)stateMachine.getCurrentState()).didRunState());	
+		assertTrue(stateMachine.runState());
 	}
 
 	@Test
 	public void testExitState() {
-		stateMachine.exitState();
-		assertNotNull(stateMachine.getCurrentState());
-		assertTrue(((StateMock)stateMachine.getCurrentState()).didExitState());	
+		assertTrue(stateMachine.exitState());
 	}
-
-
 }

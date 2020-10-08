@@ -13,29 +13,30 @@ public class ImportState extends AbstractState{
 	
 	public ImportState(StateMachine stateMachine) {
 		super(stateMachine);
+		creator = new LeagueModelCreator(this.getOuterStateMachine().getLeagueModel());
 	}
 	
 	@Override
-	public void enter() {
-		creator = new LeagueModelCreator(this.getOuterStateMachine().getLeagueModel());
+	public boolean enter() {
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter file name:");
 		fileName = this.getOuterStateMachine().getPlayerCommunication().getFile();
 		if (fileName.equals("")) {
-			this.transitionState(new LoadTeamState(this.getOuterStateMachine()));
+			this.setNextState(new LoadTeamState(this.getOuterStateMachine()));
+			this.markStateCompleted();
 		}
 		
-		performStateTask();
+		return true;
 	}
 
 	@Override
-	public void performStateTask() {
+	public boolean performStateTask() {
 		try {
 			creator.createLeagueFromFile(fileName);
 			if(this.getOuterStateMachine().getLeague()==null) {
 				//TODO: get accurate error
 				this.getOuterStateMachine().getPlayerCommunication().sendMessage("League model not created");
 			} else {
-				exit();
+				return true;
 			}
 		} catch (FileNotFoundException e) {
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("File not found\n");
@@ -45,20 +46,27 @@ public class ImportState extends AbstractState{
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage(e.getLocalizedMessage());
 		} 
 		
-		this.enter();
+		return false;
 		
 	}
 
 	@Override
-	public void exit() {
+	public boolean exit() {
 		// TODO persist to data base and confirm successful
-		this.getOuterStateMachine().getLeagueModel().persistLeague();
-		this.transitionState(new PlayerChoiceState(super.getOuterStateMachine()));
-		super.getOuterStateMachine().enterState();
+		if (this.getOuterStateMachine().getLeagueModel().persistLeague()) {
+			this.setNextState(new PlayerChoiceState(super.getOuterStateMachine()));
+			this.markStateCompleted();
+			return true;
+		}
+		return false;
 	}
 
 	public String getFileName() {
 		return fileName;
+	}
+	
+	public void setFileName(String filename) {
+		this.fileName = filename;
 	}
 
 }

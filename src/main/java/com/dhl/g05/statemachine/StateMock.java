@@ -2,39 +2,23 @@ package com.dhl.g05.statemachine;
 
 public class StateMock extends AbstractState {
 
-	private boolean enterState = false;
-	private boolean ranState = false;
-	private boolean exitState = false;
-
 	public StateMock(StateMachine stateMachine) {
 		super(stateMachine);
 	}
 	
 	@Override
-	public void enter() {
-		enterState = true;
+	public boolean enter() {
+		return true;
 	}
 
 	@Override
-	public void performStateTask() {
-		ranState = true;
+	public boolean performStateTask() {
+		return true;
 	}
 
 	@Override
-	public void exit() {
-		exitState = true;
-	}
-
-	public boolean didEnterState() {
-		return enterState;
-	}
-	
-	public boolean didRunState() {
-		return ranState;
-	}
-	
-	public boolean didExitState() {
-		return exitState;
+	public boolean exit() {
+		return true;
 	}
 
 
