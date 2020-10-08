@@ -1,15 +1,15 @@
 package com.dhl.g05.statemachine;
 
 public class PlayerChoiceState extends AbstractState{
-	
-	private StateMachine outerStateMachine;
-	private StateMachine InnerStateMachine;
+
 	private String playerChoice;
 	
-
 	public PlayerChoiceState(StateMachine stateMachine) {
-		
+		super(stateMachine);
+		// TODO Auto-generated constructor stub
 	}
+
+	
 	
 	@Override
 	public void enter() {

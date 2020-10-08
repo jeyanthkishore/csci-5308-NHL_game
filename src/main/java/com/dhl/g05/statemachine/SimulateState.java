@@ -1,14 +1,14 @@
 package com.dhl.g05.statemachine;
 
 public class SimulateState extends AbstractState {
-	
-	private StateMachine outerStateMachine;
-	private StateMachine InnerStateMachine;
 
-	public SimulateState(StateMachine stateMachine) {
-		
-	}
+
 	
+	public SimulateState(StateMachine stateMachine) {
+		super(stateMachine);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void enter() {
 		// TODO Auto-generated method stub

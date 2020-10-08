@@ -1,18 +1,26 @@
-package com.dhl.g05.statemachine;
+package com.dhl.g05;
 
 import java.util.Scanner;
 
-public class PlayerCommunication {
+public class PlayerCommunication implements IPlayerCommunication{
 	private static Scanner scanner = new Scanner(System.in);
 	
 	
-	public static void sendMessage(String message) {
+	public void sendMessage(String message) {
 		System.out.println(message);
 	}
 	
 	
-	public static String getResponse() {
-		return scanner.nextLine();
+	public String getResponse() {
+		String response =  scanner.nextLine();
+		System.out.println();
+		return response;
+	}
+
+
+	@Override
+	public String getFile() {
+		return getResponse();
 	}
 
 }

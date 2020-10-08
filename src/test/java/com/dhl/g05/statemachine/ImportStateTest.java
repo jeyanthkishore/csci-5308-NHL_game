@@ -5,12 +5,18 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dhl.g05.MockPlayerCommunication;
+
 public class ImportStateTest {
 	private ImportState state;
+	private StateMachine stateMachine;
 	
 	@Before
 	public void init() {
-		state = new ImportState(new StateMachine());
+		stateMachine = new StateMachine();
+		state = new ImportState(stateMachine);
+		stateMachine.setCurrentState(state);
+		stateMachine.setPlayerCommunication(new MockPlayerCommunication());
 	}
 
 	@Test
@@ -28,6 +34,7 @@ public class ImportStateTest {
 
 	@Test
 	public void testExit() {
+		assertNotNull(state.getOuterStateMachine().getLeague());
 		state.exit();
 		assertNotNull(state.getOuterStateMachine());
 		assertNotEquals(state.getOuterStateMachine().getCurrentState(),state);

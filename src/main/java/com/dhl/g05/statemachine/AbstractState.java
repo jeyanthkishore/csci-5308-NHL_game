@@ -8,26 +8,33 @@ public abstract class AbstractState {
 	public abstract void performStateTask();
 	public abstract void exit();
 	
+	public AbstractState(StateMachine stateMachine) {
+		this.setOuterStateMachine(stateMachine);
+	}
+	
 	public void transitionState(AbstractState state) {
-		//TODO:
+		outerStateMachine.setCurrentState(state);
 	}
 	
 	public StateMachine getInnerStateMachine() {
-		return null;
+		return innerStateMachine;
 	}
 	
 	public void setInnerStateMachine(StateMachine stateMachine) {
-		//TODO:
-		
+		this.innerStateMachine = stateMachine;		
 	}
 	
 	public void runInnerStateMachine() {
-		//TODO:
-		
+		innerStateMachine.enterState();
 	}
 	
 	public StateMachine getOuterStateMachine() {
-		return null;
+		return outerStateMachine;
+	}
+	
+	public void setOuterStateMachine(StateMachine stateMachine) {
+		this.outerStateMachine = stateMachine;
+		this.outerStateMachine.setCurrentState(this);
 	}
 	
 }

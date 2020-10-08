@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class LeagueObject {
-	public LeagueObject(String name, Map<String,ConferenceObject> conferences, Map<String,PlayerObject> freeAgents) {
+	public LeagueObject(String league, ArrayList<ConferenceObject> conferencedetail,
+			ArrayList<PlayerObject> agent) {
 		
-	}
-	
-	public boolean validate() {
-		return false;
 	}
 
 }

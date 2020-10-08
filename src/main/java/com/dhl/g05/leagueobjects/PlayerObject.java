@@ -1,13 +1,10 @@
 package com.dhl.g05.leagueobjects;
 
-import java.util.List;
+import java.util.Map;
 
 public class PlayerObject {
-	public PlayerObject(List<Object> details) {
+	public PlayerObject(Map<String, Object> playerss) {
 		
 	}
-	
-	public boolean validate() {
-		return false;
-	}
+
 }

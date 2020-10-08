@@ -23,7 +23,7 @@ public class LeagueModelCreatorTest {
 	
 	@Before
 	public void init() {
-		leagueModelCreator = new LeagueModelCreator();
+		leagueModelCreator = new LeagueModelCreator(new MockLeagueModel());
 		exception = new Exception();
 	}
 	
@@ -41,7 +41,7 @@ public class LeagueModelCreatorTest {
 	@Test
 	public void testCreateLeagueFromFileNoFile() {
 		try {
-			LeagueObject league  = leagueModelCreator.createLeagueFromFile("filedoesnotexist");
+			leagueModelCreator.createLeagueFromFile("filedoesnotexist");
 		} catch (FileNotFoundException e) {
 			exception = e;
 			e.printStackTrace();
@@ -57,7 +57,7 @@ public class LeagueModelCreatorTest {
 	@Test
 	public void testCreateLeagueFromFileInvalidJsonFile() {		
 		try {
-			LeagueObject league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonInvalidFile.json");
+			leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonInvalidFile.json");
 		} catch (ParseException e) {
 			exception = e;
 			e.printStackTrace();
@@ -70,77 +70,76 @@ public class LeagueModelCreatorTest {
 	
 	@Test
 	public void testCreateLeagueFromFileGoodFile() {
-		LeagueObject league = null;
+		boolean result = false;
 		try {
-			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles//jsonGoodInfo.json");
+			result = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles//jsonGoodInfo.json");
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}	
-		
-		assertNotNull(league);
+		assertTrue(result);
 	}
 	
 	
 	@Test
 	public void testCreateLeagueFromFilePlayersBad() {
-		LeagueObject league = new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
+		boolean result = true;
 		try {
-			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadPlayerInfo.json");
+			result  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadPlayerInfo.json");
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
 		
-		assertNull(league);
+		assertFalse(result);
 
 	}
 
 	@Test
 	public void testCreateLeagueFromFileTeamsBad() {
-		LeagueObject league = new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
+		boolean result = true;
 		try {
-			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadTeamInfo.json");
+			result  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadTeamInfo.json");
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
 		
-		assertNull(league);
+		assertFalse(result);
 	}
 	
 	@Test
 	public void testCreateLeagueFromFileDivisionsBad() {
-		LeagueObject league = new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
+		boolean result = true;
 		try {
-			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadDivisionInfo.json");
+			result  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadDivisionInfo.json");
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
 		
-		assertNull(league);
+		assertFalse(result);
 		
 	}
 	
 	@Test
 	public void testCreateLeagueFromFileConferencesBad() {
-		LeagueObject league = new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
+		boolean result = true;
 		try {
-			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadConferenceInfo.json");
+			result = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadConferenceInfo.json");
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
 		
-		assertNull(league);
+		assertFalse(result);
 	}
 	
 	@Test
 	public void testCreateLeagueFromFileFreeAgentsBad() {
-		LeagueObject league = new LeagueObject(new String(), new HashMap<String,ConferenceObject>(), new HashMap<String,PlayerObject>());
+		boolean result = true;
 		try {
-			league  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadFreeAngentInfo.json");
+			result  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadFreeAngentInfo.json");
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
 		
-		assertNull(league);
+		assertFalse(result);
 	}
 
 }

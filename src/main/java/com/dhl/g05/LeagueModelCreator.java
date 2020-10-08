@@ -19,12 +19,10 @@ public class LeagueModelCreator {
 	
 	private FileReader reader;
 	private JSONParser parser;
+	private ILeagueModel leagueModel;
 
-
-	public LeagueModelCreator() {
-		
+	public LeagueModelCreator(ILeagueModel leagueModel) {
 		parser = new JSONParser();
-		
 	}
 	
 	
@@ -47,45 +45,46 @@ public class LeagueModelCreator {
 		return false;
 	}
 	
-	public LeagueObject createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException {
+	public boolean createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException {
 		
 		reader = new FileReader(new File(fileName));
-		LeagueObject league = createLeague((JSONObject)parser.parse(reader));
-		reader.close();
-		
-		return league;
-		
+		LeagueObject league = (createLeague((JSONObject)parser.parse(reader)));
+		leagueModel.setLeague(league);
+		return (leagueModel.getLeague() == null);
 	}
 	
 	private LeagueObject createLeague(JSONObject leagueData) {
 		if (leagueData == null) return null;
 		
-		HashMap<String,ConferenceObject> conferences = createConferences((JSONArray)leagueData.get("conferences"));
-		HashMap<String,PlayerObject> freeAgents = createFreeAgents((JSONArray)leagueData.get("freeAgents"));
+		ArrayList<ConferenceObject> conferences = createConferences((JSONArray)leagueData.get("conferences"));
+		ArrayList<PlayerObject> freeAgents = createFreeAgents((JSONArray)leagueData.get("freeAgents"));
 		String leagueName = (String)leagueData.get("leagueName");
 		
-		LeagueObject league = new LeagueObject(leagueName,conferences,freeAgents); 
+		LeagueObject league = leagueModel.createLeague(leagueName,conferences,freeAgents); 
 		
-		if (league.validate()) return league;
+		if (leagueModel.validateLeague(league)) {
+			
+			return league;
+		}
 		
 		return null;
 	}
 	
 	
-	private HashMap<String,ConferenceObject> createConferences(JSONArray jsonConferences) {
+	private ArrayList<ConferenceObject> createConferences(JSONArray jsonConferences) {
 		if (jsonConferences == null) return null;
 		
-		HashMap<String,ConferenceObject> conferences = new HashMap<>();
+		ArrayList<ConferenceObject> conferences = new ArrayList<>();
 		
 		for (Object c: jsonConferences) {
 			
-			HashMap<String,DivisionObject> divisions = createDivisions((JSONArray)((JSONObject) c).get("divisions"));
+			ArrayList<DivisionObject> divisions = createDivisions((JSONArray)((JSONObject) c).get("divisions"));
 			String conferenceName = (String)((JSONObject) c).get("conferenceName");
-			ConferenceObject newConference = new ConferenceObject(conferenceName,divisions);
+			ConferenceObject newConference = leagueModel.createConference(conferenceName, divisions);
 			
-			if (newConference.validate()) {
+			if (leagueModel.validateConference(newConference)) {
 				
-				conferences.put(conferenceName,newConference);
+				conferences.add(newConference);
 				
 			} else {
 				
@@ -98,20 +97,20 @@ public class LeagueModelCreator {
 	}
 	
 	
-	private HashMap<String,DivisionObject> createDivisions(JSONArray jsonDivisions) {
+	private ArrayList<DivisionObject> createDivisions(JSONArray jsonDivisions) {
 		if (jsonDivisions == null) return null;
 		
-		HashMap<String,DivisionObject> divisions = new HashMap<>();
+		ArrayList<DivisionObject> divisions = new ArrayList<>();
 		
 		for (Object d: jsonDivisions) {
 			
-			HashMap<String,TeamObject> teams = createTeams((JSONArray)((JSONObject) d).get("teams"));
+			ArrayList<TeamObject> teams = createTeams((JSONArray)((JSONObject) d).get("teams"));
 			String divisionName = (String)((JSONObject) d).get("divisionName");
-			DivisionObject newDivision = new DivisionObject(divisionName,teams);
+			DivisionObject newDivision = leagueModel.createDivision(divisionName,teams);
 			
-			if (newDivision.validate()) {
+			if (leagueModel.validateDivision(newDivision)) {
 				
-				divisions.put(divisionName,newDivision);
+				divisions.add(newDivision);
 				
 			} else {
 				
@@ -124,24 +123,24 @@ public class LeagueModelCreator {
 	}
 	
 	
-	private HashMap<String,TeamObject> createTeams(JSONArray jsonTeams) {
+	private ArrayList<TeamObject> createTeams(JSONArray jsonTeams) {
 		if (jsonTeams == null) return null;
 		
-		HashMap<String,TeamObject> teams = new HashMap<>();
+		ArrayList<TeamObject> teams = new ArrayList<>();
 	
 		for (Object t: jsonTeams) {
 			
-			HashMap<String,PlayerObject> players = createPlayers((JSONArray)((JSONObject) t).get("players"));
+			ArrayList<PlayerObject> players = createPlayers((JSONArray)((JSONObject) t).get("players"));
 			
 			String teamName = (String)((JSONObject) t).get("teamName");
 			String managerName = (String)((JSONObject) t).get("generalManager");
 			String coachName = (String)((JSONObject) t).get("headCoach");
 			
-			TeamObject newTeam = new TeamObject(teamName, managerName, coachName, players);
+			TeamObject newTeam = leagueModel.createTeam(teamName, managerName, coachName, players);
 			
-			if (newTeam.validate()) {
+			if (leagueModel.validateTeam(newTeam)) {
 				
-				teams.put(teamName,newTeam);
+				teams.add(newTeam);
 				
 			} else {
 
@@ -155,26 +154,26 @@ public class LeagueModelCreator {
 	}
 	
 	
-	private HashMap<String,PlayerObject> createPlayers(JSONArray jsonPlayers) { 
+	private ArrayList<PlayerObject> createPlayers(JSONArray jsonPlayers) { 
 		if (jsonPlayers == null) return null;
 	
-		HashMap<String,PlayerObject> players = new HashMap<>();
+		ArrayList<PlayerObject> players = new ArrayList<>();
 		
 		for (Object p: jsonPlayers) {
 			
-			ArrayList<Object> playerDetails = new ArrayList<>();
+			HashMap<String,Object> playerDetails = new HashMap<>();
 			
 			String playerName = (String)((JSONObject) p).get("playerName");
 			
-			playerDetails.add(playerName);
-			playerDetails.add((String)((JSONObject) p).get("position"));
-			playerDetails.add((Boolean)((JSONObject) p).get("captain"));
+			playerDetails.put("playerName",playerName);
+			playerDetails.put("position",(String)((JSONObject) p).get("position"));
+			playerDetails.put("captain",(Boolean)((JSONObject) p).get("captain"));
 			
-			PlayerObject newPlayer = new PlayerObject(playerDetails);
+			PlayerObject newPlayer = leagueModel.createPlayer(playerDetails);
 			
-			if (newPlayer.validate()) {
+			if (leagueModel.validatePlayer(newPlayer)) {
 				
-				players.put(playerName,newPlayer);
+				players.add(newPlayer);
 				
 			} else {
 				
@@ -186,7 +185,7 @@ public class LeagueModelCreator {
 		return players;
 	}
 	
-	private HashMap<String,PlayerObject> createFreeAgents(JSONArray freeAgents) {
+	private ArrayList<PlayerObject> createFreeAgents(JSONArray freeAgents) {
 		
 		return createPlayers(freeAgents);	
 	

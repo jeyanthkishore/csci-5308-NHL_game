@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dhl.g05.MockPlayerCommunication;
+
 public class PlayerChoiceStateTest {
 	public PlayerChoiceState state;
 	private StateMachine stateMachine;
@@ -14,6 +16,7 @@ public class PlayerChoiceStateTest {
 		stateMachine = new StateMachine();
 		state = new PlayerChoiceState(stateMachine);
 		stateMachine.setCurrentState(state);
+		stateMachine.setPlayerCommunication(new MockPlayerCommunication());
 	}
 	
 	@Test

@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dhl.g05.MockPlayerCommunication;
+
 public class CreateTeamStateTest {
 	private CreateTeamState state;
 	private StateMachine stateMachine;
@@ -15,6 +17,7 @@ public class CreateTeamStateTest {
 		stateMachine = new StateMachine();
 		state = new CreateTeamState(stateMachine);
 		stateMachine.setCurrentState(state);
+		stateMachine.setPlayerCommunication(new MockPlayerCommunication());
 	}
 
 	@Test
@@ -25,6 +28,7 @@ public class CreateTeamStateTest {
 
 	@Test
 	public void testPerformStateTask() {
+		assertNotNull(state.getTeamDetails());
 		state.performStateTask();
 		assertNotNull(state.getTeam());
 	}

@@ -1,18 +1,13 @@
 package com.dhl.g05.statemachine;
 
 public class StateMock extends AbstractState {
-	
-	private StateMachine outerStateMachine;
-	private StateMachine innerStateMachine;
-	
+
 	private boolean enterState = false;
 	private boolean ranState = false;
 	private boolean exitState = false;
 
-	
-
 	public StateMock(StateMachine stateMachine) {
-		
+		super(stateMachine);
 	}
 	
 	@Override

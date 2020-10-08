@@ -8,6 +8,8 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dhl.g05.MockPlayerCommunication;
+
 public class LoadTeamStateTest {
 	private LoadTeamState state;
 	private StateMachine stateMachine;
@@ -18,6 +20,7 @@ public class LoadTeamStateTest {
 		stateMachine = new StateMachine();
 		state = new LoadTeamState(stateMachine);
 		stateMachine.setCurrentState(state);
+		stateMachine.setPlayerCommunication(new MockPlayerCommunication());
 	}
 	
 	@Test
@@ -30,14 +33,14 @@ public class LoadTeamStateTest {
 	@Test
 	public void testPerformStateTask() {
 		state.performStateTask();
-		assertNotNull(state.getLeague());
+		assertNotNull(state.getOuterStateMachine().getLeague());
 	}
 	
 
 	@Test
 	public void testExit() {
 		state.exit();
-		assertNotNull(state.getLeague());
+		assertNotNull(state.getOuterStateMachine().getLeague());
 		assertNotEquals(state,stateMachine.getCurrentState());
 	}
 
