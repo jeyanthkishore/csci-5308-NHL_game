@@ -1,27 +1,30 @@
- # These are the default stages.
- # You don't need to explicitly define them.
- # But you could define any stages you want.
+# These are the default stages.
+# You don't need to explicitly define them.
+# But you could define any stages you want.
 image: maven:latest
 
 stages:
-   - build
-   - test
-   - deploy
+  - build
+  - test
+  - deploy
 
 build:
   stage: build
   tags:
     - ugrad
   script:
-    - echo "Maven build started"
-    - mvn compile
-  
+    - echo "build started"
+    - mvn clean install -P test
+  artifacts:
+    paths:
+      - target
+
 test:
   stage: test
   tags:
     - ugrad
   script:
-    - echo "Maven test started"
+    - echo "test started"
     - mvn verify
   artifacts:
     when: always
@@ -29,13 +32,15 @@ test:
       junit:
         - target/surefire-reports/TEST-*.xml
 
-# CD is remaining
 deploy:
   stage: deploy
   tags:
     - ugrad
+  before_script:
+    - 'command -v ssh-agent >/dev/null||(apt-get update-y && apt-get install openssh-client-y)'
+    - eval $(ssh-agent -s)
+    - echo "$DEPLOY_SSH_KEY" | tr -d '\r' | ssh-add -
   script:
-    - echo "Maven deploy started"
-    - mvn verify
-  only:
-    - master
+    - zip -r ${CI_COMMIT_SHORT_SHA}.zip target
+    - scp -r -o StrictHostKeyChecking=no ${CI_COMMIT_SHORT_SHA}.zip "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DIR}/${CI_COMMIT_SHORT_SHA}.zip"
+
