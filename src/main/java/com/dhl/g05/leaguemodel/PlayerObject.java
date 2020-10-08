@@ -5,25 +5,25 @@ import java.util.Map;
 public class PlayerObject {
 
 	
-	private Map<String,Object> teamPlayers;
+	private Map<String,Object> playerDetails;
 	
 	public PlayerObject() {
-		setTeamPlayers(null);
+		setPlayerDetails(null);
 	}
 
 	public PlayerObject(ILeagueValidation player) {
-		player.loadPlayerData(this);
+		player.loadPlayerModelData(this);
 	}
 	
 	public PlayerObject(Map<String, Object> players) {
-		this.teamPlayers = players;
+		this.playerDetails = players;
 	}
 	
-	public void setTeamPlayers(Map<String, Object> player) {
-		this.teamPlayers = player;
+	public void setPlayerDetails(Map<String, Object> player) {
+		this.playerDetails = player;
 	}
 	
-	public Map<String, Object> getTeamPlayers() {
-		return teamPlayers;
+	public Map<String, Object> getPlayerDetails() {
+		return playerDetails;
 	}
 }

@@ -6,17 +6,19 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.dhl.g05.leaguemodel.JsonMockDataDb;
+
 public class TeamValidationTest {
 	@Test
 	public void checkPlayerListTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		TeamValidation validate = new TeamValidation(mock);
 		assertFalse(validate.isPlayerListEmpty());
 	}
 	
 	@Test
 	public void checkPlayerListEmptyTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPlayerListEmpty();
 		TeamValidation validate = new TeamValidation(mock);
 		assertTrue(validate.isPlayerListEmpty());
@@ -24,7 +26,7 @@ public class TeamValidationTest {
 	
 	@Test
 	public void checkPlayerListMaxTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.addMaximumPlayer();
 		TeamValidation validate = new TeamValidation(mock);
 		assertTrue(validate.isPlayerListMaximum());
@@ -32,7 +34,7 @@ public class TeamValidationTest {
 	
 	@Test
 	public void teamNameEmptyTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setTeamNameEmpty();
 		TeamValidation validate = new TeamValidation(mock);
 		assertTrue(validate.isTeamDetailsEmpty());
@@ -40,7 +42,7 @@ public class TeamValidationTest {
 	
 	@Test
 	public void teamNameNullTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setTeamNameNull();
 		TeamValidation validate = new TeamValidation(mock);
 		assertTrue(validate.isTeamDetailsNull());
@@ -48,7 +50,7 @@ public class TeamValidationTest {
 	
 	@Test
 	public void coachNameEmptyTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setCoachNameEmpty();
 		TeamValidation validate = new TeamValidation(mock);
 		assertTrue(validate.isTeamDetailsEmpty());
@@ -56,7 +58,7 @@ public class TeamValidationTest {
 	
 	@Test
 	public void coachNameNullTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setCoachNameNull();
 		TeamValidation validate = new TeamValidation(mock);
 		assertTrue(validate.isTeamDetailsNull());
@@ -64,7 +66,7 @@ public class TeamValidationTest {
 
 	@Test
 	public void managerNameEmptyTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setManagerNameEmpty();
 		TeamValidation validate = new TeamValidation(mock);
 		assertTrue(validate.isTeamDetailsEmpty());
@@ -72,7 +74,7 @@ public class TeamValidationTest {
 	
 	@Test
 	public void managerNameNullTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setManagerNameNull();
 		TeamValidation validate = new TeamValidation(mock);
 		assertTrue(validate.isTeamDetailsNull());
@@ -80,13 +82,13 @@ public class TeamValidationTest {
 	
 	@Test
 	public void oneTeamCaptainTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		TeamValidation validate = new TeamValidation(mock);
 		assertTrue(validate.containOneTeamCaptain());
 	}
 	@Test
 	public void twoTeamCaptainTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setSecondCaptain();
 		TeamValidation validate = new TeamValidation(mock);
 		assertFalse(validate.containOneTeamCaptain());
@@ -94,29 +96,29 @@ public class TeamValidationTest {
 	
 	@Test
 	public void noTeamCaptainTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.removeCaptain();
 		TeamValidation validate = new TeamValidation(mock);
 		assertFalse(validate.containOneTeamCaptain());
 	}
 	@Test
 	public void validateTeamTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		TeamValidation validate = new TeamValidation(mock);
 		assertEquals("success",validate.validateTeam());
-		mock = new MockLeagueValidationDb();
+		mock = new JsonMockDataDb();
 		mock.setPlayerListEmpty();
 		validate = new TeamValidation(mock);
 		assertEquals("Player List is empty",validate.validateTeam());
-		mock = new MockLeagueValidationDb();
+		mock = new JsonMockDataDb();
 		mock.setTeamNameNull();
 		validate = new TeamValidation(mock);
 		assertEquals("Team Details are Empty",validate.validateTeam());
-		mock = new MockLeagueValidationDb();
+		mock = new JsonMockDataDb();
 		mock.addMaximumPlayer();
 		validate = new TeamValidation(mock);
 		assertEquals("There can be only 20 Players in a Team",validate.validateTeam());
-		mock = new MockLeagueValidationDb();
+		mock = new JsonMockDataDb();
 		mock.setSecondCaptain();
 		validate = new TeamValidation(mock);
 		assertEquals("Team Must Contain Only One Captain",validate.validateTeam());

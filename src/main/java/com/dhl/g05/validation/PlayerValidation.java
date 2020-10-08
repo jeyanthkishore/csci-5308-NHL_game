@@ -6,7 +6,7 @@ public class PlayerValidation {
 	private Map<String,Object> playerDetails;
 	
 	public PlayerValidation() {
-		setplayerDetails(null);
+		setPlayerDetails(null);
 	}
 
 	public PlayerValidation(ILeagueModelValidation player) {
@@ -17,11 +17,11 @@ public class PlayerValidation {
 		this.playerDetails = players;
 	}
 	
-	public void setplayerDetails(Map<String, Object> player) {
+	public void setPlayerDetails(Map<String, Object> player) {
 		this.playerDetails = player;
 	}
 	
-	public Map<String, Object> getplayerDetails() {
+	public Map<String, Object> getPlayerDetails() {
 		return playerDetails;
 	}
 	
