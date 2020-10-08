@@ -51,4 +51,4 @@ deploy:
     - cat $dbConfigFile
     - scp -r -o StrictHostKeyChecking=no ${dbConfigFile} "${DEPLOY_USER_DEV}@${DEPLOY_HOST}:${DEPLOY_DIR}/${dbConfigFile}"
   only:
-    - projectsetup
+    - develop
