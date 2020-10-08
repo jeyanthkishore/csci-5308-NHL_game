@@ -1,6 +1,6 @@
 package com.dhl.g05.leaguemodel;
 
-public interface ILeagueValidation {
+public interface ILeagueModel {
 
 	public void loadTeamModelData(TeamObject teamObject);
 	

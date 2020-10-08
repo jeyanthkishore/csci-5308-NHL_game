@@ -12,7 +12,7 @@ import com.dhl.g05.validation.LeagueValidation;
 import com.dhl.g05.validation.PlayerValidation;
 import com.dhl.g05.validation.TeamValidation;
 
-public class JsonMockDataDb implements ILeagueValidation,ILeagueModelValidation{
+public class JsonMockDataDb implements ILeagueModel,ILeagueModelValidation{
 
 	public String leagueName = "HockeyLeague";
 	public Map<String,Object> firstPlayerInfo;
@@ -32,7 +32,16 @@ public class JsonMockDataDb implements ILeagueValidation,ILeagueModelValidation{
 	public String divisionTwoName = "Pacific";
 	public String conferenceName = "Western Conference";
 	public String conferenceTwoName = "Eastern Conference";
+	public LeagueObject league;
 	
+	public LeagueObject getLeague() {
+		return league;
+	}
+
+	public void setLeague(LeagueObject league) {
+		this.league = league;
+	}
+
 	public  JsonMockDataDb () {
 		setJsonValues();
 	}
@@ -44,6 +53,7 @@ public class JsonMockDataDb implements ILeagueValidation,ILeagueModelValidation{
 		teamList = new ArrayList<TeamObject>();
 		freeAgentList = new ArrayList<PlayerObject>();
 		conferenceList = new ArrayList<ConferenceObject>();
+		league = new LeagueObject();
 		firstPlayerInfo.put("playerName", "Cristiano Ronaldo");
 		firstPlayerInfo.put("position", "forward");
 		firstPlayerInfo.put("captain", true);
@@ -61,6 +71,9 @@ public class JsonMockDataDb implements ILeagueValidation,ILeagueModelValidation{
 		freeAgentList.add(new PlayerObject(secondPlayerInfo));
 		conferenceList.add(new ConferenceObject(conferenceName,divisionList));
 		conferenceList.add(new ConferenceObject(conferenceTwoName,divisionList));
+		league.setLeagueName(leagueName);
+		league.setConferenceDetails(conferenceList);
+		league.setFreeAgent(freeAgentList);
 	}
 	
 	public void setLeagueEmpty() {
