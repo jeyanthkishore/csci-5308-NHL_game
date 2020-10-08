@@ -97,26 +97,26 @@ public class LeagueValidation {
 	}
 	
 	public boolean isFreeAgentPositionWrong() {
-		Boolean position = freeAgent.stream().anyMatch(v -> !(v.getTeamPlayers().get("position").equals("forward")
-				|| v.getTeamPlayers().get("position").equals("defense") || v.getTeamPlayers().get("position").equals("goalie")));
+		Boolean position = freeAgent.stream().anyMatch(v -> !(v.getPlayerDetails().get("position").equals("forward")
+				|| v.getPlayerDetails().get("position").equals("defense") || v.getPlayerDetails().get("position").equals("goalie")));
 		return position;
 	}
 	public boolean isFreeAgentListEmpty() {
 		return freeAgent.isEmpty();
 	}
 	public boolean isFreeAgentDetailsEmptyOrNull() {
-		Boolean emptyOrNull = freeAgent.stream().anyMatch(v -> v.getTeamPlayers().get("playerName")==""
-				||v.getTeamPlayers().get("position")==""||v.getTeamPlayers().get("captain")==""
-				||v.getTeamPlayers().get("playerName")==null||v.getTeamPlayers().get("position")==null||v.getTeamPlayers().get("captain")==null);
+		Boolean emptyOrNull = freeAgent.stream().anyMatch(v -> v.getPlayerDetails().get("playerName")==""
+				||v.getPlayerDetails().get("position")==""||v.getPlayerDetails().get("captain")==""
+				||v.getPlayerDetails().get("playerName")==null||v.getPlayerDetails().get("position")==null||v.getPlayerDetails().get("captain")==null);
 		return emptyOrNull;
 	}
 	public boolean isCaptainNotFalseBoolean() {
-		Boolean captainBoolean = freeAgent.stream().anyMatch(v -> !(v.getTeamPlayers().get("captain").equals(false)));
+		Boolean captainBoolean = freeAgent.stream().anyMatch(v -> !(v.getPlayerDetails().get("captain").equals(false)));
 		return captainBoolean;
 	}
 	
 	public boolean isAgentCaptainTrue() {
-		Boolean captainBoolean = freeAgent.stream().anyMatch(v -> (v.getTeamPlayers().get("captain").equals(true)));
+		Boolean captainBoolean = freeAgent.stream().anyMatch(v -> (v.getPlayerDetails().get("captain").equals(true)));
 		return captainBoolean;
 	}
 	

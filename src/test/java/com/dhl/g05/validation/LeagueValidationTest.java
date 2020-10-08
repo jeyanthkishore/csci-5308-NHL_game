@@ -7,6 +7,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.dhl.g05.leaguemodel.JsonMockDataDb;
+
 public class LeagueValidationTest {
 	@Test
 	public void setLeagueNameTest() {
@@ -24,35 +26,35 @@ public class LeagueValidationTest {
 	
 	@Test
 	public void checkLeagueName() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertEquals("HockeyLeague", valid.getLeagueName());
 	}
 	
 	@Test
 	public void isLeagueNameEmptyTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setLeagueEmpty();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertTrue(valid.isLeagueNameEmptyOrNull());
 	}
 	@Test
 	public void isLeagueNameNullTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setLeagueNull();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertTrue(valid.isLeagueNameEmptyOrNull());
 	}
 	@Test
 	public void checkLeagueExistenceTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertSame(1,valid.checkLeaguePresent());
 	}
 	
 	@Test
 	public void checkEmptyConference() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.removeConference();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertTrue(valid.isConferenceListEmpty());
@@ -60,14 +62,14 @@ public class LeagueValidationTest {
 	
 	@Test
 	public void checkEvenConference() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertTrue(valid.hasEvenNumberConference());
 	}
 	
 	@Test
 	public void checkOddConference() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.removeOneConference();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertFalse(valid.hasEvenNumberConference());
@@ -75,28 +77,28 @@ public class LeagueValidationTest {
 	
 	@Test
 	public void isFreeAgentListEmptyTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertFalse(valid.isFreeAgentDetailsEmptyOrNull());
 	}
 	
 	@Test
 	public void freeAgentListEmptyTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setFreeAgentListEmpty();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertTrue(valid.isFreeAgentListEmpty());
 	}
 	@Test
 	public void isFreeAgentAttributeEmptyTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertFalse(valid.isFreeAgentDetailsEmptyOrNull());
 	}
 	
 	@Test
 	public void isFreeAgentNameEmpty() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setFreeAgentNameEmpty();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
@@ -104,7 +106,7 @@ public class LeagueValidationTest {
 	
 	@Test
 	public void checkFreeAgentNameeNull() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setFreeAgentNameNull();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
@@ -112,7 +114,7 @@ public class LeagueValidationTest {
 	
 	@Test
 	public void checkFreeAgentPositionEmpty() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setFreeAgentPositionEmpty();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
@@ -120,7 +122,7 @@ public class LeagueValidationTest {
 	
 	@Test
 	public void checkFreeAgentPositionNull() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setFreeAgentPositionNull();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
@@ -128,7 +130,7 @@ public class LeagueValidationTest {
 	
 	@Test
 	public void checkFreeAgentCaptainEmpty() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setFreeAgentCaptainEmpty();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
@@ -136,77 +138,77 @@ public class LeagueValidationTest {
 	
 	@Test
 	public void checkFreeAgentCaptainNull() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setFreeAgentCaptainNull();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
 	}
 	@Test
 	public void checkFreeAgentWrongPositionTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertFalse(valid.isFreeAgentPositionWrong());
 	}
 	@Test
 	public void checkFreeAgentWrongPositionChange() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setFreeAgentPositionDifferent();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertTrue(valid.isFreeAgentPositionWrong());
 	}
 	@Test
 	public void isAgentCaptainNonBooleanTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertFalse(valid.isCaptainNotFalseBoolean());
 	}
 	@Test
 	public void agentCaptainNonBooleanTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setFreeAgentCaptainNonBoolean();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertTrue(valid.isCaptainNotFalseBoolean());
 	}
 	@Test
 	public void agentCaptainTrueTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setFreeAgentCaptainTrueBoolean();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertTrue(valid.isAgentCaptainTrue());
 	}
 	@Test
 	public void validateLeagueTest() {
-		MockLeagueValidationDb mock = new MockLeagueValidationDb();
+		JsonMockDataDb mock = new JsonMockDataDb();
 		LeagueValidation valid = new LeagueValidation(mock);
 		assertEquals("success",valid.validateLeague());
 		mock.setLeagueEmpty();
 		valid = new LeagueValidation(mock);
 		assertEquals("League Name is empty",valid.validateLeague());
-		mock = new MockLeagueValidationDb();
+		mock = new JsonMockDataDb();
 		mock.removeConference();
 		valid = new LeagueValidation(mock);
 		assertEquals("Conference List is empty",valid.validateLeague());
-		mock = new MockLeagueValidationDb();
+		mock = new JsonMockDataDb();
 		mock.removeOneConference();
 		valid = new LeagueValidation(mock);
 		assertEquals("Conference must be evenly sized",valid.validateLeague());
-		mock = new MockLeagueValidationDb();
+		mock = new JsonMockDataDb();
 		mock.setFreeAgentListEmpty();
 		valid = new LeagueValidation(mock);
 		assertEquals("Free Agent List is empty",valid.validateLeague());
-		mock = new MockLeagueValidationDb();
+		mock = new JsonMockDataDb();
 		mock.setFreeAgentNameEmpty();
 		valid = new LeagueValidation(mock);
 		assertEquals("Free Agent Attribue is empty",valid.validateLeague());
-		mock = new MockLeagueValidationDb();
+		mock = new JsonMockDataDb();
 		mock.setFreeAgentPositionDifferent();
 		valid = new LeagueValidation(mock);
 		assertEquals("Position of the player cannot be different",valid.validateLeague());
-		mock = new MockLeagueValidationDb();
+		mock = new JsonMockDataDb();
 		mock.setFreeAgentCaptainTrueBoolean();
 		valid = new LeagueValidation(mock);
 		assertEquals("Free Agent Cannot be Captain",valid.validateLeague());
-		mock = new MockLeagueValidationDb();
+		mock = new JsonMockDataDb();
 		mock.setFreeAgentCaptainNonBoolean();
 		valid = new LeagueValidation(mock);
 		assertEquals("Captain Should be a False Boolean",valid.validateLeague());

@@ -13,7 +13,7 @@ public class DivisionObject {
 	}
 	
 	public DivisionObject(ILeagueValidation divisionObject) {
-		divisionObject.LoadDivisionData(this);
+		divisionObject.LoadDivisionModelData(this);
 	}
 	
 	public DivisionObject(String division, List<TeamObject> teamdetail) {

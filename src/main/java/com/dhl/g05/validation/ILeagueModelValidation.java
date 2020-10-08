@@ -2,9 +2,9 @@ package com.dhl.g05.validation;
 
 public interface ILeagueModelValidation {
 
-	void loadPlayerData(PlayerValidation playerObject);
+	public void loadPlayerData(PlayerValidation playerObject);
 
-	void loadTeamData(TeamValidation teamObject);
+	public void loadTeamData(TeamValidation teamObject);
 	
     public void LoadDivisionData(DivisionValidation divisionObject);
 	
