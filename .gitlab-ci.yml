@@ -32,7 +32,28 @@ test:
       junit:
         - target/surefire-reports/TEST-*.xml
 
-deploy:
+deploy_dev:
+  stage: deploy
+  tags:
+    - ugrad
+  before_script:
+    - 'command -v ssh-agent >/dev/null||(apt-get update-y && apt-get install openssh-client-y)'
+    - eval $(ssh-agent -s)
+    - echo "$DEPLOY_SSH_KEY_DEV" | tr -d '\r' | ssh-add -
+  script:
+    - zip -r ${CI_COMMIT_SHORT_SHA}.zip target
+    - scp -r -o StrictHostKeyChecking=no ${CI_COMMIT_SHORT_SHA}.zip "${DEPLOY_USER_DEV}@${DEPLOY_HOST}:${DEPLOY_DIR}/${CI_COMMIT_SHORT_SHA}.zip"
+    - dbConfigFile="application.properties"
+    - echo "$DB_DRIVER" > $dbConfigFile
+    - echo "$DB_URL_DEV" >> $dbConfigFile
+    - echo "$DB_PASSWORD_DEV" >> $dbConfigFile
+    - echo "$DB_USERNAME_DEV" >> $dbConfigFile
+    - cat $dbConfigFile
+    - scp -r -o StrictHostKeyChecking=no ${dbConfigFile} "${DEPLOY_USER_DEV}@${DEPLOY_HOST}:${DEPLOY_DIR}/${dbConfigFile}"
+  only:
+    - projectsetup
+
+deploy_prod:
   stage: deploy
   tags:
     - ugrad
