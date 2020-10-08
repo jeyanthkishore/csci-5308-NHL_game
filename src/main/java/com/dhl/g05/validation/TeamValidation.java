@@ -82,7 +82,7 @@ public class TeamValidation {
 		return false;
 	}
 	public boolean containOneTeamCaptain() {
-		long captainCount = playerList.stream().filter(p -> p.getTeamPlayers().get("captain").equals(true)).count();
+		long captainCount = playerList.stream().filter(p -> p.getPlayerDetails().get("captain").equals(true)).count();
 		if(captainCount > 1 ||captainCount ==0) {
 			return false;
 		}

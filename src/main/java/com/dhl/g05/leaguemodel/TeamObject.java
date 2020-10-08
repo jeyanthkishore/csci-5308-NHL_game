@@ -10,14 +10,14 @@ public class TeamObject {
 	private List<PlayerObject> playerList;
 	
 	public TeamObject() {
-		setCoachName(null);
-		setManagerName(null);
+		setHeadCoachName(null);
+		setGeneralManagerName(null);
 		setTeamName(null);
 		setPlayerList(null);
 	}
 
 	public TeamObject(ILeagueValidation teamObject) {
-		teamObject.loadTeamData(this);
+		teamObject.loadTeamModelData(this);
 	}
 	
 	public TeamObject(String team, String coach, String manager, List<PlayerObject> players) {
@@ -35,19 +35,19 @@ public class TeamObject {
 		this.teamName = teamName;
 	}
 
-	public String getCoachName() {
+	public String getHeadCoachName() {
 		return headCoachName;
 	}
 
-	public void setCoachName(String coachName) {
+	public void setHeadCoachName(String coachName) {
 		this.headCoachName = coachName;
 	}
 
-	public String getManagerName() {
+	public String getGeneralManagerName() {
 		return generalManagerName;
 	}
 
-	public void setManagerName(String managerName) {
+	public void setGeneralManagerName(String managerName) {
 		this.generalManagerName = managerName;
 	}
 	public List<PlayerObject> getPlayerList() {

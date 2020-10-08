@@ -14,7 +14,7 @@ public class LeagueObject {
 	}
 	
 	public LeagueObject(ILeagueValidation leagueObject) {
-		leagueObject.loadLeagueData(this);
+		leagueObject.loadLeagueModelData(this);
 	}
 	
 	public LeagueObject(String league, List<ConferenceObject> conferencedetail,List<PlayerObject> agent) {

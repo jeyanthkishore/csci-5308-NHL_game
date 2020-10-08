@@ -12,9 +12,9 @@ public class TeamObjectTest{
 	public void TeamObjectConstructorTest() {
 		JsonMockDataDb data= new JsonMockDataDb();
 		TeamObject object = new TeamObject();
-		assertNull(object.getCoachName());
-		object.setManagerName("");
-		assertTrue(object.getManagerName().isEmpty());
+		assertNull(object.getHeadCoachName());
+		object.setGeneralManagerName("");
+		assertTrue(object.getGeneralManagerName().isEmpty());
 		assertNull(object.getTeamName());
 		assertNull(object.getPlayerList());
 		object.setPlayerList(data.playerList);
@@ -39,31 +39,31 @@ public class TeamObjectTest{
 	public void setCoachNameTest()
 	{
 		TeamObject object = new TeamObject();
-		object.setCoachName("Pele");
-		assertTrue(object.getCoachName().equals("Pele"));
+		object.setHeadCoachName("Pele");
+		assertTrue(object.getHeadCoachName().equals("Pele"));
 	}
 	
 	@Test
 	public void getCoachNameTest()
 	{
 		TeamObject object = new TeamObject();
-		object.setCoachName("Pele");
-		assertTrue(object.getCoachName().equals("Pele"));
+		object.setHeadCoachName("Pele");
+		assertTrue(object.getHeadCoachName().equals("Pele"));
 	}
 	@Test
 	public void setManagerNameTest()
 	{
 		TeamObject object = new TeamObject();
-		object.setManagerName("Rubinho");
-		assertTrue(object.getManagerName().equals("Rubinho"));
+		object.setGeneralManagerName("Rubinho");
+		assertTrue(object.getGeneralManagerName().equals("Rubinho"));
 	}
 	
 	@Test
 	public void getManagerNameTest()
 	{
 		TeamObject object = new TeamObject();
-		object.setManagerName("Rubinho");
-		assertTrue(object.getManagerName().equals("Rubinho"));
+		object.setGeneralManagerName("Rubinho");
+		assertTrue(object.getGeneralManagerName().equals("Rubinho"));
 	}
 	@Test
 	public void setPlayerListTest()
@@ -89,8 +89,8 @@ public class TeamObjectTest{
 		TeamObject object = new TeamObject(data.teamName,data.headCoachName,data.generalManagerName,data.playerList);
 		assertSame(data.playerList,object.getPlayerList());
 		assertSame(data.teamName,object.getTeamName());
-		assertSame(data.headCoachName,object.getCoachName());
-		assertSame(data.generalManagerName,object.getManagerName());
+		assertSame(data.headCoachName,object.getHeadCoachName());
+		assertSame(data.generalManagerName,object.getGeneralManagerName());
 	}
 	@Test
 	public void ConstructorWithReferenceTest() {
@@ -98,7 +98,7 @@ public class TeamObjectTest{
 		TeamObject object = new TeamObject(data);
 		assertSame(data.playerList,object.getPlayerList());
 		assertSame(data.teamName,object.getTeamName());
-		assertSame(data.headCoachName,object.getCoachName());
-		assertSame(data.generalManagerName,object.getManagerName());
+		assertSame(data.headCoachName,object.getHeadCoachName());
+		assertSame(data.generalManagerName,object.getGeneralManagerName());
 	}
 }

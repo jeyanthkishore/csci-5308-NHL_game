@@ -10,32 +10,32 @@ public class PlayerObjectTest {
 	@Test
 	public void constructorTest() {
 		PlayerObject object = new PlayerObject();
-		assertNull(object.getTeamPlayers());
+		assertNull(object.getPlayerDetails());
 	}
 	@Test
 	public void setPlayerTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
 		PlayerObject object = new PlayerObject();
-		object.setTeamPlayers(data.firstPlayerInfo);
-		assertSame(object.getTeamPlayers(),data.firstPlayerInfo);
+		object.setPlayerDetails(data.firstPlayerInfo);
+		assertSame(object.getPlayerDetails(),data.firstPlayerInfo);
 	}
 	@Test
 	public void getPlayerTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
 		PlayerObject object = new PlayerObject();
-		object.setTeamPlayers(data.firstPlayerInfo);
-		assertSame(object.getTeamPlayers(),data.firstPlayerInfo);
+		object.setPlayerDetails(data.firstPlayerInfo);
+		assertSame(object.getPlayerDetails(),data.firstPlayerInfo);
 	}
 	@Test
 	public void playerParameterConstructorTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
 		PlayerObject object = new PlayerObject(data.firstPlayerInfo);
-		assertSame(object.getTeamPlayers(),data.firstPlayerInfo);
+		assertSame(object.getPlayerDetails(),data.firstPlayerInfo);
 	}
 	@Test
 	public void playerReferenceConstructorTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
 		PlayerObject object = new PlayerObject(data);
-		assertSame(object.getTeamPlayers(),data.firstPlayerInfo);
+		assertSame(object.getPlayerDetails(),data.firstPlayerInfo);
 	}
 }

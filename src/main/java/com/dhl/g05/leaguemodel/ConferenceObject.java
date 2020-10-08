@@ -11,7 +11,7 @@ public class ConferenceObject {
 		setConferenceName(null);
 	}
 	public ConferenceObject(ILeagueValidation conferenceObject) {
-		conferenceObject.loadConferenceData(this);
+		conferenceObject.loadConferenceModelData(this);
 	}
 	
 	public ConferenceObject(String conference, List<DivisionObject> divisiondetail) {
