@@ -22,6 +22,7 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean enter() {
+		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Create a new team:");
 		teamDetails = new HashMap<String, Object>();
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter conference name:");
 		conferenceName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
@@ -33,7 +34,7 @@ public class CreateTeamState extends AbstractState {
 		teamDetails.put("teamManager", this.getOuterStateMachine().getPlayerCommunication().getResponse());
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team coach:");
 		teamDetails.put("teamCoach", this.getOuterStateMachine().getPlayerCommunication().getResponse());
-		return true;
+		return true; 
 	}
 
 	@Override
@@ -45,14 +46,14 @@ public class CreateTeamState extends AbstractState {
 			return true;
 		}
 		//TODO: error reporting
+		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Team could not be created");
 		return false;
 	}
 
 	@Override
 	public boolean exit() {
 		if(getOuterStateMachine().getLeagueModel().persistLeague()) {
-			this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(), "Enter number of seasons to simulate"));
-			this.markStateCompleted();
+			this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(), "Enter number of seasons to simulate", new SimulateState(this.getOuterStateMachine())));
 			return true;
 		}
 		//TODO: error reporting

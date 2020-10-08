@@ -33,7 +33,6 @@ public abstract class AbstractState {
 	
 	public void setOuterStateMachine(StateMachine stateMachine) {
 		this.outerStateMachine = stateMachine;
-		this.outerStateMachine.setCurrentState(this);
 	}
 	
 	public void setNextState(AbstractState state) {
@@ -42,14 +41,6 @@ public abstract class AbstractState {
 	
 	public AbstractState getNextState() {
 		return nextState;
-	}
-	
-	public void markStateCompleted() {
-		this.completedState = true;
-	}
-	
-	public boolean didStateComplete() {
-		return this.completedState;
 	}
 	
 	public void setPlayerInput(String input) {

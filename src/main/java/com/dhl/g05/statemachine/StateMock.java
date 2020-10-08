@@ -19,7 +19,6 @@ public class StateMock extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		this.setNextState(null);
 		return true;
 	}
 

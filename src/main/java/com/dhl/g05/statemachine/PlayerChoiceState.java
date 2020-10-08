@@ -7,11 +7,13 @@ public class PlayerChoiceState extends AbstractState{
 	
 	public PlayerChoiceState(StateMachine stateMachine, String message) {
 		super(stateMachine);
+		this.message = message;
 	}
 	
 	public PlayerChoiceState(StateMachine stateMachine, String message, AbstractState state) {
 		super(stateMachine);
 		this.setNextState(state);
+		this.message = message;
 	}
 
 	@Override

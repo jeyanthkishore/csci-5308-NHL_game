@@ -8,6 +8,7 @@ public class PlayerCommunication implements IPlayerCommunication{
 	
 	public void sendMessage(String message) {
 		System.out.println(message);
+		System.out.println();
 	}
 	
 	

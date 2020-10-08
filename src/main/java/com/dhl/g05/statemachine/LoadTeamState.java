@@ -19,6 +19,8 @@ public class LoadTeamState extends AbstractState{
 	
 	@Override
 	public boolean enter() {
+		
+		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Load a saved team:");
 		teamDetails = new HashMap<String,Object>();
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter conference name:");
 		conferenceName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
@@ -35,13 +37,17 @@ public class LoadTeamState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
-		return this.getOuterStateMachine().getLeagueModel().loadTeam(teamDetails);
+		if (this.getOuterStateMachine().getLeagueModel().loadTeam(teamDetails)) {
+			return true;
+		} else {
+			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Could not load team");
+			return true; //TODO: change to false
+		}
 	}
 
 	@Override
 	public boolean exit() {
-		this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(),"Enter number of seasons to simulate"));
-		this.markStateCompleted();
+		this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(),"Enter number of seasons to simulate", new SimulateState(this.getOuterStateMachine())));
 		return true;
 	}
 	

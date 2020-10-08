@@ -41,7 +41,6 @@ public class CreateTeamStateTest {
 	@Test
 	public void testExit() {
 		assertTrue(state.exit());
-		assertTrue(state.didStateComplete());
 	}
 
 

@@ -16,6 +16,7 @@ public class SimulateState extends AbstractState {
 
 	@Override
 	public boolean performStateTask() {
+		//TODO: check that input is an int
 		for (int i = 0; i<Integer.parseInt(this.getPlayerInput()); i++){
 			this.getInnerStateMachine().enterState();
 			this.getInnerStateMachine().setCurrentState(new StateMock(this.getInnerStateMachine()));

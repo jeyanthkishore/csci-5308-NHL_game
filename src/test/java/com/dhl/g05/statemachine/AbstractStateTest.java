@@ -36,11 +36,4 @@ public class AbstractStateTest {
 	}
 	
 
-	@Test
-	public void testMarkStateCompleted() {
-		state.markStateCompleted();
-		assertTrue(state.didStateComplete());
-	}
-
-
 }

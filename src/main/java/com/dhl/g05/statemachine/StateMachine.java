@@ -45,8 +45,11 @@ public class StateMachine {
 	}
 	
 	public boolean exitState() {
+
 		if (currentState.exit()) {
+
 			currentState = currentState.getNextState();
+		
 			if (currentState!=null) {
 				return enterState();
 			} else {
@@ -60,7 +63,6 @@ public class StateMachine {
 	
 	public void exit() {
 		leagueModel.persistLeague();
-		playerCommunication.sendMessage("program complete");
 	}
 	public void setLeague(LeagueObject league) {
 		leagueModel.setLeague(league);
@@ -69,7 +71,6 @@ public class StateMachine {
 	public LeagueObject getLeague() {
 		return leagueModel.getLeague();
 	}
-
 	
 	public void setPlayerCommunication(IPlayerCommunication playerCommunication) {
 		this.playerCommunication = playerCommunication;
