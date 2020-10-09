@@ -76,13 +76,13 @@ public class StoredProcedure {
 		return list;
 	}
 	
-	public ArrayList<HashMap<String, Object>> fetchAllTeams(int conference_id) 
+	public ArrayList<HashMap<String, Object>> fetchAllTeams(int division_id) 
 	{
 		try {
 			conn = db.createNewDBconnection();
 			String query = "{CALL fetchAllTeams(?)}";
 			java.sql.CallableStatement stmt = conn.prepareCall(query);
-			stmt.setInt(1,conference_id);
+			stmt.setInt(1,division_id);
 			rs = stmt.executeQuery();
 			list = rsToList.resultSetToArrayList(rs);
 		}
