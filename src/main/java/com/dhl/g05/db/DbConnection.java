@@ -1,4 +1,4 @@
-package com.dhl.g05.database;
+package com.dhl.g05.db;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -60,7 +60,6 @@ public class DbConnection {
 
 		} 
 		catch (SQLException e) {
-			System.out.println("Cannot connect to database");
 			e.printStackTrace();
 		}
 		return conn; 
@@ -81,7 +80,6 @@ public class DbConnection {
 			if(conn !=null)
 				try {
 					conn.close();
-					System.out.println("Connection closed");
 				} 
 			catch (SQLException e)
 			{

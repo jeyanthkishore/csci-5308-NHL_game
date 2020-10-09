@@ -1,4 +1,4 @@
-package com.dhl.g05.database;
+package com.dhl.g05.db;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.dhl.g05.database;
+package com.dhl.g05.db;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
