@@ -126,10 +126,10 @@ public class PlayerValidationTest {
 		mock = new JsonMockDataDb();
 		mock.setCaptainNonBoolean();
 		validate = new PlayerValidation(mock);
-		assertEquals("Captain attribute must be boolean",validate.validatePlayer());
+		assertEquals("Captain Attribute Must Be Boolean",validate.validatePlayer());
 		mock = new JsonMockDataDb();
 		mock.setPositionDifferent();
 		validate = new PlayerValidation(mock);
-		assertEquals("Player Position is wrong",validate.validatePlayer());
+		assertEquals("Player Position Is Wrong",validate.validatePlayer());
 	}
 }

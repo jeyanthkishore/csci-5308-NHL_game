@@ -33,10 +33,10 @@ public class PlayerValidation {
 			return "Player Should Not have Empty Value";
 		}
 		if(!isPlayerPositionValid()) {
-			return "Player Position is wrong";
+			return "Player Position Is Wrong";
 		}
 		if(isCaptainNotBoolean()) {
-			return "Captain attribute must be boolean";
+			return "Captain Attribute Must Be Boolean";
 		}
 		return "success";
 	}
