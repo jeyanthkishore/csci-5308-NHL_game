@@ -37,6 +37,14 @@ public class PlayerChoiceState extends AbstractState{
 			this.setNextState(new LoadTeamState(this.getOuterStateMachine()));
 		} else {
 			this.getNextState().setPlayerInput(choice);
+			if (this.getNextState().validateInput()) {
+				return true;
+			} else {
+				this.getOuterStateMachine().getPlayerCommunication().sendMessage("Invalid input");
+				
+				return false;
+			
+			}
 		}
 		return true;
 	}

@@ -50,5 +50,8 @@ public abstract class AbstractState {
 	public String getPlayerInput() {
 		return	playerInput;
 	}
+	public boolean validateInput() {
+		return true;
+	}
 	
 }

@@ -52,5 +52,16 @@ public class SimulateStateTest {
 		assertTrue(state1.exit());
 		assertTrue(state1.getNextState() == null);
 	}
+	
+	@Test
+	public void testValidateInputGoodInput() {
+		assertTrue(state1.validateInput());
+	}
+	
+	@Test
+	public void testValidateInputBadInput() {
+		state1.setPlayerInput("not an int");
+		assertFalse(state1.validateInput());
+	}
 
 }

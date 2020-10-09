@@ -29,20 +29,24 @@ public class ImportState extends AbstractState{
 		} 
 		
 		creator = new LeagueModelCreator(this.getOuterStateMachine().getLeagueModel());
+		
 		try {
+			
 			creator.createLeagueFromFile(fileName);
-			if(this.getOuterStateMachine().getLeague() == null) {
+			
+			if (this.getOuterStateMachine().getLeague() == null) {
 				this.getOuterStateMachine().getPlayerCommunication().sendMessage("Issue creating league, try again");
 			} else {
 				return true;
 			}
+			
 		} catch (FileNotFoundException e) {
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("File not found\n");
 		} catch (IOException e) {
-			e.printStackTrace();
+			this.getOuterStateMachine().getPlayerCommunication().sendMessage(e.toString());
 		} catch (ParseException e) {
-			e.printStackTrace();
-		} 
+			this.getOuterStateMachine().getPlayerCommunication().sendMessage(e.toString());
+		}
 		
 		return false;
 		

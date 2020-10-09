@@ -16,11 +16,12 @@ public class SimulateState extends AbstractState {
 
 	@Override
 	public boolean performStateTask() {
-		//TODO: check that input is an int
+	
 		for (int i = 0; i<Integer.parseInt(this.getPlayerInput()); i++){
 			this.getInnerStateMachine().enterState();
 			this.getInnerStateMachine().setCurrentState(new StateMock(this.getInnerStateMachine()));
 		}
+		
 		return true;
 	}
 
@@ -29,6 +30,16 @@ public class SimulateState extends AbstractState {
 		this.setNextState(null);
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("simulation complete");
 		return true;
+	}
+	
+	@Override
+	public boolean validateInput() {
+		try {
+			Integer.parseInt(this.getPlayerInput());
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 }

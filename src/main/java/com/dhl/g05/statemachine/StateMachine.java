@@ -54,15 +54,15 @@ public class StateMachine {
 				return enterState();
 			} else {
 				this.exit();
-				return true;
 			}
 		}
-		//TODO:
 		return false;
 	}
 	
 	public void exit() {
-		leagueModel.persistLeague();
+		if(leagueModel.getLeague()!=null) {
+			leagueModel.persistLeague();
+		}
 	}
 	public void setLeague(LeagueObject league) {
 		leagueModel.setLeague(league);
