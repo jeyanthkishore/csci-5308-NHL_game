@@ -55,28 +55,28 @@ public class LeagueValidation {
 	
     public String validateLeague() {
     	if(isLeagueNameEmptyOrNull()) {
-    		return "League Name is empty";
+    		return "League Name Is Empty";
     	}
     	if(isConferenceListEmpty()) {
-    		return "Conference List is empty";
+    		return "Conference List Is Empty";
     	}
     	if(!hasEvenNumberConference()) {
-    		return "Conference must be evenly sized";
+    		return "Conference Count Must Be Even";
     	}
     	if(isFreeAgentListEmpty()) {
-    		return "Free Agent List is empty";
+    		return "Free Agent List Is Empty";
     	}
     	if(isFreeAgentDetailsEmptyOrNull()) {
-    		return "Free Agent Attribue is empty";
+    		return "Free Agent Attribue Is Empty";
     	}
     	if(isFreeAgentPositionWrong()) {
-    		return "Position of the player cannot be different";
+    		return "Position Of The Player Cannot Be Different";
     	}
     	if(isAgentCaptainTrue()) {
-    		return "Free Agent Cannot be Captain";
+    		return "Free Agent Cannot Be Captain";
     	}
     	if(isCaptainNotFalseBoolean()) {
-    		return "Captain Should be a False Boolean";
+    		return "Captain Should Be False Boolean For Free Agent";
     	}
     	return "success";
     }

@@ -39,13 +39,13 @@ public class ConferenceValidation {
 	}
 	public String validateConference() {
 		if(isNameEmptyOrNull()) {
-			return "Conference name is Empty";
+			return "Conference Name Is Empty";
 		}
 		if(isDivisionListEmpty()) {
-			return "Division List is Empty";
+			return "Division List Is Empty";
 		}
 		if(!hasEvenNumberDivision()) {
-			return "Division must be even";
+			return "Division Count Must Be Even";
 		}
 		return "success";
 	}

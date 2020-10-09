@@ -83,7 +83,42 @@ public class DatabaseClass implements IDataBasePersistence{
 
 	@Override
 	public void saveModel(OperationModel operationModel) {
-		// TODO Auto-generated method stub
+		LeagueObject league = new LeagueObject();
+		String leagueName = league.getLeagueName();
+		String conferenceName = "";
+		String divisionName = "";
+		String teamName = "";
+		String managerName = "";
+		String coachName ="";
+		String playerName = "";
+		String position = "";
+		Object captain = null;
+		//int leagueId = saveLeague(leagueName);
+		conferenceList = league.getConferenceDetails();
+		for(int conSet = 0; conSet < conferenceList.size();conSet++) {
+			conferenceName = conferenceList.get(conSet).getConferenceName();
+		//	int conferenceId = saveConference(leagueId,conferenceName) ;
+			divisionList = conferenceList.get(conSet).getDivisionDetails();
+			for(int divSet = 0; divSet < divisionList.size();divSet++) {
+				divisionName = divisionList.get(divSet).getDivisionName();
+				//int divId = saveDivision(divisionName.conferenceId);
+				teamList = divisionList.get(divSet).getTeamDetails();
+				for(int teamSet = 0; teamSet < teamList.size();teamSet++) {
+					teamName = teamList.get(teamSet).getTeamName();
+					managerName = teamList.get(teamSet).getGeneralManagerName();
+					coachName = teamList.get(teamSet).getHeadCoachName();
+					//int teamId = saveTeam(teamName,managerName,divId,coachName);
+					playerList = teamList.get(teamSet).getPlayerList();
+					for(int playerSet = 0; playerSet< playerList.size();playerSet++) {
+						playerName = playerList.get(playerSet).getPlayerDetails().get("playerName").toString();
+						position = playerList.get(playerSet).getPlayerDetails().get("position").toString();
+						//int positionId = getPositionId(position);
+						captain = playerList.get(playerSet).getPlayerDetails().get("captain");
+						//int playerId = savePlayer(teamId,positionId,player_name,captain);
+					}
+				}
+			}
+		}
 		
 	}
 

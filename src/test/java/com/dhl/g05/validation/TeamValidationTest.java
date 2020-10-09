@@ -109,15 +109,15 @@ public class TeamValidationTest {
 		mock = new JsonMockDataDb();
 		mock.setPlayerListEmpty();
 		validate = new TeamValidation(mock);
-		assertEquals("Player List is empty",validate.validateTeam());
+		assertEquals("Player List Is Empty",validate.validateTeam());
 		mock = new JsonMockDataDb();
 		mock.setTeamNameNull();
 		validate = new TeamValidation(mock);
-		assertEquals("Team Details are Empty",validate.validateTeam());
+		assertEquals("Team Details Are Empty",validate.validateTeam());
 		mock = new JsonMockDataDb();
 		mock.addMaximumPlayer();
 		validate = new TeamValidation(mock);
-		assertEquals("There can be only 20 Players in a Team",validate.validateTeam());
+		assertEquals("Maximum Player Limit Is 20",validate.validateTeam());
 		mock = new JsonMockDataDb();
 		mock.setSecondCaptain();
 		validate = new TeamValidation(mock);

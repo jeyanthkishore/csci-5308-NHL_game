@@ -43,7 +43,13 @@ public class OperationModelTest {
 		OperationModel  model = new OperationModel(mockData.leagueName,mockData.conferenceName,mockData.divisionOneName,mockData.teamName,dbObject);
 		assertNotNull(model.getLeagueObject());
 	}
-	
+	@Test
+	public void saveonstructorTest() {
+		DbPersistanceMock dbObject = new DbPersistanceMock();
+		JsonMockDataDb mockData = new JsonMockDataDb();
+		OperationModel  model = new OperationModel(mockData.league,dbObject);
+		assertEquals("success",model.getResult());
+	}
 	@Test
 	 public void getLeagueNameTest() {
 		OperationModel model = new OperationModel();

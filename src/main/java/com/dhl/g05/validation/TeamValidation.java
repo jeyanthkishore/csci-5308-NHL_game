@@ -45,13 +45,13 @@ public class TeamValidation {
 	
 	public String validateTeam() {
 		if(isTeamDetailsEmpty()||isTeamDetailsNull()) {
-			return "Team Details are Empty";
+			return "Team Details Are Empty";
 		}
 		if(isPlayerListEmpty()) {
-			return "Player List is empty";
+			return "Player List Is Empty";
 		}
 		if(isPlayerListMaximum()) {
-			return "There can be only 20 Players in a Team";
+			return "Maximum Player Limit Is 20";
 		}
 		if(!containOneTeamCaptain()) {
 			return "Team Must Contain Only One Captain";

@@ -66,14 +66,14 @@ public class ConferenceValidationTest {
 		mock = new JsonMockDataDb();
 		mock.setConferenceNameEmpty();
 		validate = new ConferenceValidation(mock); 
-		assertEquals("Conference name is Empty",validate.validateConference());
+		assertEquals("Conference Name Is Empty",validate.validateConference());
 		mock = new JsonMockDataDb();
 		mock.removeDivision();
 		validate = new ConferenceValidation(mock); 
-		assertEquals("Division List is Empty",validate.validateConference());
+		assertEquals("Division List Is Empty",validate.validateConference());
 		mock = new JsonMockDataDb();
 		mock.removeOneDivision();
 		validate = new ConferenceValidation(mock); 
-		assertEquals("Division must be even",validate.validateConference());
+		assertEquals("Division Count Must Be Even",validate.validateConference());
 	}
 }

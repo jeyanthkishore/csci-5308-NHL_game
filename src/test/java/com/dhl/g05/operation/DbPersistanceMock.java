@@ -20,7 +20,9 @@ public class DbPersistanceMock implements IDataBasePersistence{
 
 	@Override
 	public void saveModel(OperationModel operationModel) {
-		
+		if(operationModel!=null) {
+			operationModel.setResult("success");
+		}
 	}
 
 	@Override
