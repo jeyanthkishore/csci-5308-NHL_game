@@ -3,21 +3,31 @@ package com.dhl.g05.leaguemodel;
 public class PlayerObject {
 
 	private String playerName;
-	private String postition;
+	private String position;
 	private Boolean captain;
+	private String result;
 	
 	public PlayerObject() {
 		setCaptain(null);
 		setPlayerName(null);
-		setPostition(null);
+		setPosition(null);
 	}
 	
 	public PlayerObject(String playerName, String position, Boolean captain) {
 		this.playerName = playerName;
-		this.postition = position;
+		this.position = position;
 		this.captain = captain;
+		result = validate();
 	}
 	
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
 	public String getPlayerName() {
 		return playerName;
 	}
@@ -26,12 +36,12 @@ public class PlayerObject {
 		this.playerName = playerName;
 	}
 
-	public String getPostition() {
-		return postition;
+	public String getPosition() {
+		return position;
 	}
 
-	public void setPostition(String postition) {
-		this.postition = postition;
+	public void setPosition(String postition) {
+		this.position = postition;
 	}
 
 	public Boolean getCaptain() {
@@ -46,4 +56,37 @@ public class PlayerObject {
 		player.loadPlayerModelData(this);
 	}
 	
+	public String validate() {
+
+		if(isPlayerDetailsNull()||isPlayerDetailsEmpty()) {
+			return "Player Should Not have Empty Value";
+		}
+		if(!isPlayerPositionValid()) {
+			return "Player Position Is Wrong";
+		}
+		return "success";
+	
+	}
+	public boolean isPlayerDetailsNull() {
+		if(playerName == null || position ==null||captain == null) {
+			return true;
+		}
+		return false;
+		}
+		public boolean isPlayerDetailsEmpty() {
+			if(playerName == "" || position =="") {
+				return true;
+			}
+			return false;
+		}
+		
+		public boolean isPlayerPositionValid() {
+			if(position.equals("forward")
+					|| position.equals("defense")
+					|| position.equals("goalie")) {
+				return true;
+			}
+			return false;
+		}
+
 }

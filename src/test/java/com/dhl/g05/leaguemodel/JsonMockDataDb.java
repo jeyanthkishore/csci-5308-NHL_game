@@ -4,14 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.dhl.g05.validation.ConferenceValidation;
-import com.dhl.g05.validation.DivisionValidation;
-import com.dhl.g05.validation.ILeagueModelValidation;
-import com.dhl.g05.validation.LeagueValidation;
-import com.dhl.g05.validation.PlayerValidation;
-import com.dhl.g05.validation.TeamValidation;
-
-public class JsonMockDataDb implements ILeagueModel,ILeagueModelValidation{
+public class JsonMockDataDb implements ILeagueModel{
 
 	public String leagueName = "HockeyLeague";
 	public Map<String,Object> firstPlayerInfo;
@@ -38,6 +31,7 @@ public class JsonMockDataDb implements ILeagueModel,ILeagueModelValidation{
 	String playerTwoName = "";
 	String positionTwo = "";
 	Boolean captainTwo = false;
+	String result = "success";
 	
 	public LeagueObject getLeague() {
 		return league;
@@ -200,11 +194,11 @@ public class JsonMockDataDb implements ILeagueModel,ILeagueModelValidation{
 	}
 	
 	public void setFreeAgentPositionEmpty() {
-		freeAgentList.get(0).setPostition("");
+		freeAgentList.get(0).setPosition("");
 	}
 
 	public void setFreeAgentPositionNull() {
-		freeAgentList.get(0).setPostition(null);
+		freeAgentList.get(0).setPosition(null);
 	}
 	
 	public void setFreeAgentCaptainEmpty() {
@@ -216,7 +210,7 @@ public class JsonMockDataDb implements ILeagueModel,ILeagueModelValidation{
 	}
 
 	public void setFreeAgentPositionDifferent() {
-		freeAgentList.get(0).setPostition("wing");
+		freeAgentList.get(0).setPosition("wing");
 	}
 	public void setFreeAgentCaptainTrueBoolean() {
 		freeAgentList.get(0).setCaptain(true);
@@ -233,7 +227,7 @@ public class JsonMockDataDb implements ILeagueModel,ILeagueModelValidation{
 	public void loadPlayerModelData(PlayerObject playerModelObject) {
 		playerModelObject.setCaptain(captainOne);
 		playerModelObject.setPlayerName(playerOneName);
-		playerModelObject.setPostition(positionOne);
+		playerModelObject.setPosition(positionOne);
 	}
 
 	@Override
@@ -255,38 +249,4 @@ public class JsonMockDataDb implements ILeagueModel,ILeagueModelValidation{
 		conferenceModelObject.setDivisionDetails(divisionList);
 	}
 
-	@Override
-	public void loadPlayerData(PlayerValidation playerObject) {
-		playerObject.setPlayerName(playerOneName);
-		playerObject.setPosition(positionOne);
-		playerObject.setCaptain(captainOne);
-	}
-
-	@Override
-	public void loadTeamData(TeamValidation teamObject) {
-		teamObject.setTeamName(teamName);
-		teamObject.setHeadCoachName(headCoachName);
-		teamObject.setGeneralManagerName(generalManagerName);
-		teamObject.setPlayerList(playerList);
-	}
-
-	@Override
-	public void LoadDivisionData(DivisionValidation divisionObject) {
-		divisionObject.setDivisionName(divisionOneName);
-		divisionObject.setTeamDetails(teamList);
-	}
-
-	@Override
-	public void loadLeagueData(LeagueValidation leagueObject) {
-		leagueObject.setLeagueName(leagueName);
-		leagueObject.setConferenceDetails(conferenceList);
-		leagueObject.setFreeAgent(freeAgentList);
-	}
-
-	@Override
-	public void loadConferenceData(ConferenceValidation conferenceObject) {
-		conferenceObject.setConferenceName(conferenceName);
-		conferenceObject.setDivisionDetails(divisionList);
-		
-	}
 }
