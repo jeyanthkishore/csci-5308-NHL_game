@@ -6,7 +6,6 @@ import com.dhl.g05.leaguemodel.ConferenceObject;
 import com.dhl.g05.leaguemodel.PlayerObject;
 import com.dhl.g05.operation.IDataBasePersistence;
 import com.dhl.g05.operation.OperationModel;
-//import com.dhl.g05.loadOperation.LoadTeamCheck;
 
 public class LeagueValidation {
 	private String leagueName;
@@ -75,9 +74,6 @@ public class LeagueValidation {
     	if(isAgentCaptainTrue()) {
     		return "Free Agent Cannot Be Captain";
     	}
-    	if(isCaptainNotFalseBoolean()) {
-    		return "Captain Should Be False Boolean For Free Agent";
-    	}
     	return "success";
     }
     
@@ -100,26 +96,22 @@ public class LeagueValidation {
 	}
 	
 	public boolean isFreeAgentPositionWrong() {
-		Boolean position = freeAgent.stream().anyMatch(v -> !(v.getPlayerDetails().get("position").equals("forward")
-				|| v.getPlayerDetails().get("position").equals("defense") || v.getPlayerDetails().get("position").equals("goalie")));
+		Boolean position = freeAgent.stream().anyMatch(v ->!(v.getPostition().equals("forward")
+				|| v.getPostition().equals("defense") ||v.getPostition().equals("goalie")));
 		return position;
 	}
 	public boolean isFreeAgentListEmpty() {
 		return freeAgent.isEmpty();
 	}
 	public boolean isFreeAgentDetailsEmptyOrNull() {
-		Boolean emptyOrNull = freeAgent.stream().anyMatch(v -> v.getPlayerDetails().get("playerName")==""
-				||v.getPlayerDetails().get("position")==""||v.getPlayerDetails().get("captain")==""
-				||v.getPlayerDetails().get("playerName")==null||v.getPlayerDetails().get("position")==null||v.getPlayerDetails().get("captain")==null);
+		Boolean emptyOrNull = freeAgent.stream().anyMatch(v -> v.getPlayerName() ==""
+				||v.getPostition() ==""||v.getPlayerName()==null||v.getPostition()==null
+				||v.getCaptain()==null);
 		return emptyOrNull;
-	}
-	public boolean isCaptainNotFalseBoolean() {
-		Boolean captainBoolean = freeAgent.stream().anyMatch(v -> !(v.getPlayerDetails().get("captain").equals(false)));
-		return captainBoolean;
 	}
 	
 	public boolean isAgentCaptainTrue() {
-		Boolean captainBoolean = freeAgent.stream().anyMatch(v -> (v.getPlayerDetails().get("captain").equals(true)));
+		Boolean captainBoolean = freeAgent.stream().anyMatch(v -> v.getCaptain().equals(true));
 		return captainBoolean;
 	}
 	

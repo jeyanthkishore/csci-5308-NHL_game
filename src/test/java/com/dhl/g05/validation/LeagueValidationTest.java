@@ -158,19 +158,6 @@ public class LeagueValidationTest {
 		assertTrue(valid.isFreeAgentPositionWrong());
 	}
 	@Test
-	public void isAgentCaptainNonBooleanTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		LeagueValidation valid = new LeagueValidation(mock);
-		assertFalse(valid.isCaptainNotFalseBoolean());
-	}
-	@Test
-	public void agentCaptainNonBooleanTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setFreeAgentCaptainNonBoolean();
-		LeagueValidation valid = new LeagueValidation(mock);
-		assertTrue(valid.isCaptainNotFalseBoolean());
-	}
-	@Test
 	public void agentCaptainTrueTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setFreeAgentCaptainTrueBoolean();
@@ -209,9 +196,5 @@ public class LeagueValidationTest {
 		mock.setFreeAgentCaptainTrueBoolean();
 		valid = new LeagueValidation(mock);
 		assertEquals("Free Agent Cannot Be Captain",valid.validateLeague());
-		mock = new JsonMockDataDb();
-		mock.setFreeAgentCaptainNonBoolean();
-		valid = new LeagueValidation(mock);
-		assertEquals("Captain Should Be False Boolean For Free Agent",valid.validateLeague());
 	}
 }
