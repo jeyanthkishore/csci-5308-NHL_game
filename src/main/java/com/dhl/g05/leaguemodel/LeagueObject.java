@@ -9,6 +9,7 @@ public class LeagueObject {
 	private String leagueName;
 	private List<ConferenceObject> conferenceDetails;
 	private List<PlayerObject> freeAgent;
+	private IDataBasePersistence object;
 	private String result;
 	
 	public LeagueObject() {
@@ -21,10 +22,11 @@ public class LeagueObject {
 		leagueObject.loadLeagueModelData(this);
 	}
 	
-	public LeagueObject(String league, List<ConferenceObject> conferencedetail,List<PlayerObject> agent) {
+	public LeagueObject(String league, List<ConferenceObject> conferencedetail,List<PlayerObject> agent,IDataBasePersistence dbObject) {
 		setLeagueName(league);
 		setConferenceDetails(conferencedetail);
 		setFreeAgent(agent);
+		this.object = dbObject;
 		result = validate();
 	}
 
@@ -122,7 +124,7 @@ public class LeagueObject {
 		return captainBoolean;
 	}
 	
-	public Boolean checkLeaguePresent(IDataBasePersistence object) {
+	public Boolean checkLeaguePresent() {
 		OperationModel check = new OperationModel(leagueName, object);
 		return check.isLeagueCheck();
 	}
