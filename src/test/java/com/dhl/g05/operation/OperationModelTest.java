@@ -45,6 +45,7 @@ public class OperationModelTest {
 	}
 	@Test
 	public void saveonstructorTest() {
+		
 		DbPersistanceMock dbObject = new DbPersistanceMock();
 		JsonMockDataDb mockData = new JsonMockDataDb();
 		OperationModel  model = new OperationModel(mockData.league,dbObject);
