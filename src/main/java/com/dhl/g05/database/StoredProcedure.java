@@ -34,13 +34,13 @@ public class StoredProcedure {
 		return list;
 	}
 	
-	public ArrayList<HashMap<String, Object>> fetchAllConferences(String league_name) 
+	public ArrayList<HashMap<String, Object>> fetchAllConferences(int league_id) 
 	{
 		try {
 			conn = db.createNewDBconnection();
 			String query = "{CALL fetchAllConferences(?)}";
 			java.sql.CallableStatement stmt = conn.prepareCall(query);
-			stmt.setString(1, league_name);
+			stmt.setInt(1, league_id);
 			rs = stmt.executeQuery();
 			list = rsToList.resultSetToArrayList(rs);
 		}
@@ -55,14 +55,13 @@ public class StoredProcedure {
 		return list;
 	}
 
-	public ArrayList<HashMap<String, Object>> fetchAllDivisions(String league_name, String conference_name) 
+	public ArrayList<HashMap<String, Object>> fetchAllDivisions(int conference_id) 
 	{
 		try {
 			conn = db.createNewDBconnection();
-			String query = "{CALL fetchAllDivisions(?,?)}";
+			String query = "{CALL fetchAllDivisions(?)}";
 			java.sql.CallableStatement stmt = conn.prepareCall(query);
-			stmt.setString(1, league_name);
-			stmt.setString(2, conference_name);
+			stmt.setInt(1, conference_id);
 			rs = stmt.executeQuery();
 			list = rsToList.resultSetToArrayList(rs);
 		}
@@ -77,15 +76,13 @@ public class StoredProcedure {
 		return list;
 	}
 	
-	public ArrayList<HashMap<String, Object>> fetchAllTeams(String league_name, String conference_name, String division_name) 
+	public ArrayList<HashMap<String, Object>> fetchAllTeams(int conference_id) 
 	{
 		try {
 			conn = db.createNewDBconnection();
-			String query = "{CALL fetchAllTeams(?,?,?)}";
+			String query = "{CALL fetchAllTeams(?)}";
 			java.sql.CallableStatement stmt = conn.prepareCall(query);
-			stmt.setString(1, league_name);
-			stmt.setString(2, conference_name);
-			stmt.setString(3, division_name);
+			stmt.setInt(1,conference_id);
 			rs = stmt.executeQuery();
 			list = rsToList.resultSetToArrayList(rs);
 		}
@@ -121,25 +118,6 @@ public class StoredProcedure {
 		return list;
 	}
 
-	public ArrayList<HashMap<String, Object>> fetchAllTeams(String division_name) 
-	{
-		try {
-			conn = db.createNewDBconnection();
-			String query = "{CALL fetchAllTeams(?)}";
-			java.sql.CallableStatement stmt = conn.prepareCall(query);
-			stmt.setString(1, division_name);
-			rs = stmt.executeQuery();
-			list = rsToList.resultSetToArrayList(rs);
-		}
-		catch (SQLException e) {
-
-			e.printStackTrace();
-
-		} finally {
-			db.closeDbConnection(conn);
-		}
-		return list;
-	}
 
 	public ArrayList<HashMap<String, Object>> fetchAllPlayers(int team_id) {
 		try {
@@ -337,6 +315,57 @@ public class StoredProcedure {
 		}
 		return result;	
 	}
+	public int saveManager(String manager_name )
+	{
+		int result=0;
+		try {
+			conn = db.createNewDBconnection();
+			String query = "{CALL saveManager(?)}";
+			java.sql.CallableStatement stmt = conn.prepareCall(query);
+			stmt.setString(1, manager_name);
+			rs = stmt.executeQuery();
+			while(rs.next())
+			{
+				result=rs.getInt("LAST_INSERT_ID()");
+			}
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+
+		} finally 
+		{
+			db.closeDbConnection(conn);
+
+		}
+		return result;
+	}
+	public int saveCoach(String coach_name )
+	{
+		int result=0;
+		try {
+			conn = db.createNewDBconnection();
+			String query = "{CALL saveCoach(?)}";
+			java.sql.CallableStatement stmt = conn.prepareCall(query);
+			stmt.setString(1, coach_name);
+			rs = stmt.executeQuery();
+			while(rs.next())
+			{
+				result=rs.getInt("LAST_INSERT_ID()");
+			}
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+
+		} finally 
+		{
+			db.closeDbConnection(conn);
+
+		}
+		return result;
+	}
+	
 	
 	public int getDivisionID(String division_name , int conference_id)
 	{
@@ -395,6 +424,32 @@ public class StoredProcedure {
 			java.sql.CallableStatement stmt = conn.prepareCall(query);
 			stmt.setString(1, team_name);
 			stmt.setInt(2, division_id);
+			rs = stmt.executeQuery();
+			while(rs.next())
+			{
+				result=rs.getInt("team_id");
+			}
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+
+		} 
+		finally 
+		{
+			db.closeDbConnection(conn);
+		}
+		return result;
+	}
+	
+	public int getPositionID(String position_name)
+	{
+		int result=0;
+		try {
+			conn = db.createNewDBconnection();
+			String query = "{CALL getPositionID(?)}";
+			java.sql.CallableStatement stmt = conn.prepareCall(query);
+			stmt.setString(1, position_name);
 			rs = stmt.executeQuery();
 			while(rs.next())
 			{
