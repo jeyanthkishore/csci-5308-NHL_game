@@ -85,6 +85,7 @@
           <configuration>
             <archive>
               <manifest>
+                <addClsspath>true</addClsspath>
                 <mainClass>com.dhl.g05.App</mainClass>
               </manifest>
             </archive>
