@@ -16,45 +16,38 @@ public class LeagueModel implements ILeagueModel{
 	
 	@Override
 	public LeagueObject getLeague() {
-		// TODO Auto-generated method stub
-		return null;
+		return league;
 	}
 	
 	@Override
 	public void setLeague(LeagueObject league) {
-		// TODO Auto-generated method stub
-		
+		this.league = league;
 	}
 
 	@Override
 	public LeagueObject createLeague(String league, ArrayList<ConferenceObject> conferencedetail,
 			ArrayList<PlayerObject> agent) {
-		// TODO Auto-generated method stub
-		return null;
+		return new LeagueObject(league, conferencedetail, agent);
 	}
 
 	@Override
 	public ConferenceObject createConference(String conference, List<DivisionObject> divisiondetail) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ConferenceObject(conference, divisiondetail);
 	}
 
 	@Override
 	public DivisionObject createDivision(String division, ArrayList<TeamObject> teamdetail) {
-		// TODO Auto-generated method stub
-		return null;
+		return new DivisionObject(division, teamdetail);
 	}
 
 	@Override
 	public TeamObject createTeam(String team, String coach, String manager, ArrayList<PlayerObject> players) {
-		// TODO Auto-generated method stub
-		return null;
+		return new TeamObject(team, coach, manager, players);
 	}
 
 	@Override
 	public PlayerObject createPlayer(Map<String, Object> players) {
-		// TODO Auto-generated method stub
-		return null;
+		return new PlayerObject(players);
 	}
 
 	@Override
