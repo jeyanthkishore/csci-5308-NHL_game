@@ -44,7 +44,7 @@ deploy_dev:
     - zip -r ${CI_COMMIT_SHORT_SHA}.zip target
     - scp -r -o StrictHostKeyChecking=no ${CI_COMMIT_SHORT_SHA}.zip "${DEPLOY_USER_DEV}@${DEPLOY_HOST}:${DEPLOY_DIR}/${CI_COMMIT_SHORT_SHA}.zip"
     - dbConfigFile="application.properties"
-    - echo "Driver:$DB_DRIVER" > $dbConfigFile
+    - echo "$DB_DRIVER" > $dbConfigFile
     - echo "$DB_URL_DEV" >> $dbConfigFile
     - echo "$DB_USERNAME_DEV" >> $dbConfigFile
     - echo "$DB_PASSWORD_DEV" >> $dbConfigFile
