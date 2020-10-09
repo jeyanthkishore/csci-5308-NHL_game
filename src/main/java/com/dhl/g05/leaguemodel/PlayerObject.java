@@ -1,29 +1,49 @@
 package com.dhl.g05.leaguemodel;
 
-import java.util.Map;
-
 public class PlayerObject {
 
-	
-	private Map<String,Object> playerDetails;
+	private String playerName;
+	private String postition;
+	private Boolean captain;
 	
 	public PlayerObject() {
-		setPlayerDetails(null);
+		setCaptain(null);
+		setPlayerName(null);
+		setPostition(null);
+	}
+	
+	public PlayerObject(String playerName, String position, Boolean captain) {
+		this.playerName = playerName;
+		this.postition = position;
+		this.captain = captain;
+	}
+	
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+
+	public String getPostition() {
+		return postition;
+	}
+
+	public void setPostition(String postition) {
+		this.postition = postition;
+	}
+
+	public Boolean getCaptain() {
+		return captain;
+	}
+
+	public void setCaptain(Boolean captain) {
+		this.captain = captain;
 	}
 
 	public PlayerObject(ILeagueModel player) {
 		player.loadPlayerModelData(this);
 	}
 	
-	public PlayerObject(Map<String, Object> players) {
-		this.playerDetails = players;
-	}
-	
-	public void setPlayerDetails(Map<String, Object> player) {
-		this.playerDetails = player;
-	}
-	
-	public Map<String, Object> getPlayerDetails() {
-		return playerDetails;
-	}
 }
