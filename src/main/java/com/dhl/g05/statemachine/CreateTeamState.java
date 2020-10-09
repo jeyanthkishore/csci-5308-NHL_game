@@ -38,15 +38,14 @@ public class CreateTeamState extends AbstractState {
 	@Override
 	public boolean performStateTask() {
 		team = this.getOuterStateMachine().getLeagueModel().createTeam((String)teamDetails.get("teamName"), (String)teamDetails.get("teamManager"), (String)teamDetails.get("teamCoach"), new ArrayList<PlayerObject>());
-		String validationResult = this.getOuterStateMachine().getLeagueModel().validateTeam(team);
-		if (validationResult.equalsIgnoreCase("Success") 
-			&& this.getOuterStateMachine().getLeagueModel().addTeam(conferenceName,divisionName,team)) {
+		
+		if (teamDetails.get("teamName") == null ||teamDetails.get("teamManager") == null||teamDetails.get("teamCoach") == null ){
+			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Missing information, team not created");
+			return false;
+		}
+			this.getOuterStateMachine().getLeagueModel().addTeam(conferenceName,divisionName,team);
 			
 			return true;
-		}
-	
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage(validationResult);
-		return false;
 	}
 
 	@Override

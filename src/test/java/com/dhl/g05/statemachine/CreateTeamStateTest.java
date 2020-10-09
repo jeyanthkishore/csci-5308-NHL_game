@@ -29,9 +29,9 @@ public class CreateTeamStateTest {
 	}
 
 	@Test
-	public void testPerformStateTask() {
+	public void testPerformStateTaskFails() {
 		state.setTeamDetails(new HashMap<String,Object>());
-		assertTrue(state.performStateTask());
+		assertFalse(state.performStateTask());
 		assertNotNull(state.getTeam());
 	}
 	
