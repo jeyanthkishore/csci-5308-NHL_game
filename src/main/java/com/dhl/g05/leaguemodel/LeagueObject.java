@@ -125,7 +125,7 @@ public class LeagueObject {
 	}
 	
 	public Boolean checkLeaguePresent() {
-		OperationModel check = new OperationModel(leagueName,false, object);
+		OperationModel check = new OperationModel(leagueName, object);
 		return check.isLeagueCheck();
 	}
 }

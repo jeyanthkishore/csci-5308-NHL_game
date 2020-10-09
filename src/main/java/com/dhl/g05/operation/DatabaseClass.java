@@ -3,7 +3,6 @@ package com.dhl.g05.operation;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.dhl.g05.db.StoredProcedure;
 import com.dhl.g05.leaguemodel.ConferenceObject;
@@ -23,33 +22,31 @@ public class DatabaseClass implements IDataBasePersistence{
 	@Override
 	public void loadModel(OperationModel operationModel) {
 		StoredProcedure sp= new StoredProcedure();
-		List<HashMap<String, Object>> value = new ArrayList<HashMap<String,Object>>();
-		value = sp.loadTeam(operationModel.getTeamName());
-		int leagueId = Integer.parseInt(value.get(0).get("league_id").toString());
-		String league = operationModel.getLeagueName();
+		List<HashMap<String, Object>> LeagueValue = new ArrayList<HashMap<String,Object>>();
+		LeagueValue = sp.loadTeam(operationModel.getTeamName());
+		int league_id = Integer.parseInt(LeagueValue.get(0).get("league_id").toString());
 		String conferenceName,divisionName,teamName,coachName,managerName;
 		String playerName,position;
 		Boolean captain;
-		int conferenceId;
-		int divisionId;
+		int conferenceID,divisonId;
 		List<HashMap<String, Object>> conferenceValue = new ArrayList<HashMap<String,Object>>();
 		List<HashMap<String,Object>> divisionValue ;
 		List<HashMap<String,Object>> teamValue;
 		List<HashMap<String,Object>> teamDetailValue;
 		List<HashMap<String,Object>> playerValue;
-		conferenceValue = sp.fetchAllConferences(leagueId);
+		conferenceValue = sp.fetchAllConferences(league_id);
 		for(int conSet =0; conSet < conferenceValue.size(); conSet++) {
 			conferenceName = conferenceValue.get(conSet).get("conference_name").toString();
-			conferenceId = Integer.parseInt(conferenceValue.get(conSet).get("conference_id").toString());
+			conferenceID = Integer.parseInt(conferenceValue.get(conSet).get("conference_id").toString());
 			divisionList = new ArrayList<DivisionObject>();
 			divisionValue = new ArrayList<HashMap<String,Object>>();
-			divisionValue = sp.fetchAllDivisions(conferenceId);
+			divisionValue = sp.fetchAllDivisions(conferenceID);
 			for(int divSet =0; divSet < divisionValue.size(); divSet++) {
 				divisionName = divisionValue.get(divSet).get("division_name").toString();
-				divisionId = Integer.parseInt(divisionValue.get(divSet).get("division_id").toString());
+				divisonId = Integer.parseInt(divisionValue.get(divSet).get("division_id").toString());
 				teamList = new ArrayList<TeamObject>();
 				teamValue = new ArrayList<HashMap<String,Object>>();
-				teamValue = sp.fetchAllTeams(divisionId);
+				teamValue = sp.fetchAllTeams(divisonId);
 				for(int teamSet = 0; teamSet < teamValue.size();teamSet++) {
 					teamName = teamValue.get(teamSet).get("team_name").toString();
 					int teamid = Integer.parseInt(teamValue.get(teamSet).get("team_id").toString());
@@ -59,9 +56,9 @@ public class DatabaseClass implements IDataBasePersistence{
 					playerValue = new ArrayList<HashMap<String,Object>>();
 					playerValue = sp.fetchAllPlayers(teamid);
 					for(int playerSet = 0;playerSet<playerValue.size();playerSet++) {
-						playerName = playerValue.get(playerSet).get("player_name").toString();
-						position = playerValue.get(playerSet).get("position_name").toString();
-						captain = Boolean.parseBoolean(playerValue.get(playerSet).get("player_is_captain").toString());
+						playerName = playerValue.get(playerSet).get("agent_name").toString();
+						position = playerValue.get(playerSet).get("position").toString();
+						captain = Boolean.parseBoolean(playerValue.get(playerSet).get("agent_is_captain").toString());
 						playerList.add(new PlayerObject(playerName,position,captain));
 					}
 					coachName = teamDetailValue.get(0).get("coach_name").toString();
@@ -74,7 +71,7 @@ public class DatabaseClass implements IDataBasePersistence{
 		}
 		leagueObject.setConferenceDetails(conferenceList);
 		List<HashMap<String,Object>> agentValue = new ArrayList<HashMap<String,Object>>();
-		//agentValue = sp.fetchAllFreeAgents(league);
+//		agentValue = sp.fetchAllFreeAgents(league);
 		for(int agentSet =0;agentSet < agentValue.size();agentSet++) {
 			playerName = agentValue.get(agentSet).get("agent_name").toString();
 			position = agentValue.get(agentSet).get("position_name").toString();
@@ -90,18 +87,19 @@ public class DatabaseClass implements IDataBasePersistence{
 		LeagueObject league = operationModel.getLeagueObject();
 		StoredProcedure sp= new StoredProcedure();
 		String leagueName = league.getLeagueName();
-		String newTeam = operationModel.getTeamName();
-		String newConference = operationModel.getConferenceName();
-		String newDivision = operationModel.getDivisionName();
-		int newTeamId;int teamId = 0;
+		String newTeamName = operationModel.getTeamName();
+		String newConferenceName = operationModel.getConferenceName();
+		String newDivisionName = operationModel.getDivisionName();
+		String newLeaguName = operationModel.getLeagueName();
 		String conferenceName = "";
 		String divisionName = "";
 		String teamName = "";
 		String managerName = "";
 		String coachName ="";
 		String playerName = "";
-		String position = ""; 
+		String position = "";
 		Boolean captain = null;
+		int newCon,newDiv,teamid=0;
 		int leagueId = sp.saveLeague(leagueName);
 		conferenceList = league.getConferenceDetails();
 		for(int conSet = 0; conSet < conferenceList.size();conSet++) {
@@ -116,16 +114,16 @@ public class DatabaseClass implements IDataBasePersistence{
 					teamName = teamList.get(teamSet).getTeamName();
 					managerName = teamList.get(teamSet).getGeneralManagerName();
 					coachName = teamList.get(teamSet).getHeadCoachName();
-					teamId = sp.saveTeam(teamName,managerName,divId,coachName);
-					if(newConference.equals(conferenceName)&&newDivision.equals(divisionName)
-							&&newTeam.equals(teamName)) {
-						 newTeamId = teamId;
+					int teamId = sp.saveTeam(teamName,managerName,divId,coachName);
+					if(divisionName.equals(newDivisionName)&& conferenceName.equals(newConferenceName)
+							&& teamName.equals(newTeamName)) {
+						teamid = teamId;
 					}
 					playerList = teamList.get(teamSet).getPlayerList();
 					for(int playerSet = 0; playerSet< playerList.size();playerSet++) {
 						playerName = playerList.get(playerSet).getPlayerName();
 						position = playerList.get(playerSet).getPosition();
-						int positionId = sp.getPositionID(position);
+						int positionId = 1;
 						captain = playerList.get(playerSet).getCaptain();
 						int captainID = (captain) ? 1 : 0;
 						int playerId = sp.savePlayer(teamId,positionId,playerName,captainID);
@@ -133,7 +131,7 @@ public class DatabaseClass implements IDataBasePersistence{
 				}
 			}
 		}
-		int newTeamID = sp.loadTeamStateByUser(teamName, teamId, newDivision,leagueId, newConference);
+		int finalId = sp.loadTeamStateByUser(newTeamName, teamid, newDivisionName, leagueId, newConferenceName);
 	}
 
 	@Override
@@ -149,10 +147,11 @@ public class DatabaseClass implements IDataBasePersistence{
 
 	@Override
 	public void loadNewTeams(OperationModel operationModel) {
-		List<HashMap<String,Object>> teamValue = new ArrayList<HashMap<String,Object>>();
+		ArrayList<HashMap<String,Object>> leagueValue = new ArrayList<HashMap<String,Object>>();
 		StoredProcedure sp= new StoredProcedure();
-		teamValue = sp.getAllUserStateTeams();
-		operationModel.setNewTeamList(teamValue);
+		leagueValue = sp.getAllUserStateTeams();
+		operationModel.setNewTeam(leagueValue);
+		
 	}
 
 }

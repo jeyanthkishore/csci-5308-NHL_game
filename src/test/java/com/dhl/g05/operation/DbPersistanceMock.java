@@ -39,12 +39,12 @@ public class DbPersistanceMock implements IDataBasePersistence{
 
 	@Override
 	public void loadNewTeams(OperationModel operationModel) {
-		List<HashMap<String,Object>> teamNames = new ArrayList<HashMap<String,Object>>();
+		ArrayList<HashMap<String,Object>> teamNames = new ArrayList<HashMap<String,Object>>();
 		HashMap<String,Object> team = new HashMap<String,Object>();
 		team.put("team_name","Dog");
 		teamNames.add(team);
 		team.put("team_name","Cat");
 		teamNames.add(team);
-		operationModel.setNewTeamList(teamNames);
+		operationModel.setNewTeam(teamNames);
 	}
 }
