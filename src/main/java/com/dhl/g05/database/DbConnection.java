@@ -27,7 +27,6 @@ public class DbConnection {
 		Properties properties = new Properties();
 		String fileName = "application.properties";
 		boolean isNotLocalEnv = false;
-		//inputStream = getClass().getClassLoader().getResourceAsStream(fileName);
 		try {
 			inputStream = new FileInputStream( dbDirPath.substring(0,  dbDirPath.lastIndexOf("target"))+fileName);
 		}
@@ -40,11 +39,13 @@ public class DbConnection {
 		}
 		if (inputStream != null && isNotLocalEnv) {
 
-			try {
+			try 
+			{
 				property.load(inputStream);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-
+			} 
+			catch (IOException e)
+			{
+				e.printStackTrace();
 			}
 
 			System.setProperty("Jdbc.drivers", 		property.getProperty("datasource.driver-class-name"));
