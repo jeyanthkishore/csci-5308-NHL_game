@@ -1,10 +1,11 @@
-package com.dhl.g05;
+package com.dhl.g05.statemachine;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.dhl.g05.leaguemodel.*;
+import com.dhl.g05.operation.DbPersistanceMock;
 
 public class MockLeagueModel implements ILeagueModel{
 	private LeagueObject league;
@@ -22,7 +23,7 @@ public class MockLeagueModel implements ILeagueModel{
 	@Override
 	public LeagueObject createLeague(String league, ArrayList<ConferenceObject> conferencedetail,
 			ArrayList<PlayerObject> agent) {
-		return new LeagueObject(league, conferencedetail, agent);
+		return new LeagueObject(league, conferencedetail, agent, new DbPersistanceMock());
 	}
 
 	@Override
@@ -81,7 +82,7 @@ public class MockLeagueModel implements ILeagueModel{
 	}
 
 	@Override
-	public boolean loadTeam(Map<String, Object> teamDetails) {
+	public boolean loadTeam(String leagueName, String conference,String division,String team) {
 		return true;
 	}
 

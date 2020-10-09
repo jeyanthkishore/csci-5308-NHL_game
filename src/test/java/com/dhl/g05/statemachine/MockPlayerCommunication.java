@@ -1,4 +1,4 @@
-package com.dhl.g05;
+package com.dhl.g05.statemachine;
 
 public class MockPlayerCommunication implements IPlayerCommunication{
 

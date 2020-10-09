@@ -5,9 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dhl.g05.MockLeagueModel;
-import com.dhl.g05.MockPlayerCommunication;
-
 public class SimulateStateTest {
 	public SimulateState state1;
 	public StateMock state2;

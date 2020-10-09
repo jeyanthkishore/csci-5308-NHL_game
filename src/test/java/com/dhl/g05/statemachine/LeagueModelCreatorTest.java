@@ -1,4 +1,4 @@
-package com.dhl.g05;
+package com.dhl.g05.statemachine;
 
 import static org.junit.Assert.*;
 
@@ -8,6 +8,8 @@ import java.io.IOException;
 import org.json.simple.parser.ParseException;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.dhl.g05.statemachine.LeagueModelCreator;
 
 
 

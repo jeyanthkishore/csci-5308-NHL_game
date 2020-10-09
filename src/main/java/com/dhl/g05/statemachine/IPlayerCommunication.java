@@ -1,4 +1,4 @@
-package com.dhl.g05;
+package com.dhl.g05.statemachine;
 
 public interface IPlayerCommunication {
 	public void sendMessage(String message);

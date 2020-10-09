@@ -5,8 +5,6 @@ import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
 
-import com.dhl.g05.LeagueModelCreator;
-
 public class ImportState extends AbstractState{
 	private LeagueModelCreator creator;
 	private String fileName;

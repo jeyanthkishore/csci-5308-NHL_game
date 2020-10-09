@@ -1,15 +1,22 @@
-package com.dhl.g05;
+package com.dhl.g05.statemachine;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.dhl.g05.leaguemodel.*;
+import com.dhl.g05.operation.IDataBasePersistence;
 import com.dhl.g05.operation.OperationModel;
 
 public class LeagueModel implements ILeagueModel{
 	public LeagueObject league;
+	public IDataBasePersistence database;
+	public OperationModel operation;
 
+	public LeagueModel(IDataBasePersistence database) {
+		this.database = database;
+	}
 	
 	@Override
 	public LeagueObject getLeague() {
@@ -24,7 +31,7 @@ public class LeagueModel implements ILeagueModel{
 	@Override
 	public LeagueObject createLeague(String league, ArrayList<ConferenceObject> conferencedetail,
 			ArrayList<PlayerObject> agent) {
-		return new LeagueObject(league, conferencedetail, agent);
+		return new LeagueObject(league, conferencedetail, agent, database);
 	}
 
 	@Override
@@ -74,24 +81,46 @@ public class LeagueModel implements ILeagueModel{
 
 	@Override
 	public boolean persistLeague() {
-		//TODO:
-		return false;
+		operation = new OperationModel(league,database);
+		String result = operation.getResult();
+		return result.equalsIgnoreCase("Success"); //TODO: change to boolean
 	}
 
 	@Override
 	public boolean addTeam(String conferenceName, String divisionName, TeamObject team) {
-		//TODO:
+		List<ConferenceObject> conferences = league.getConferenceDetails();
+		for (ConferenceObject c: conferences) {
+			if (c.getConferenceName().equalsIgnoreCase(conferenceName)) {
+				List<DivisionObject> divisions = c.getDivisionDetails();
+				for (DivisionObject d: divisions) {
+					if (d.getDivisionName().equalsIgnoreCase(divisionName)) {
+						d.getTeamDetails().add(team);
+						return true;
+					}
+				}
+			}
+		}
 		return false;
 	}
+	/*
+	public void loadNewTeam() {
+		operation = new OperationModel(database);
+		ArrayList<HashMap<String,Object>> teams = new ArrayList<HashMap<String,Object>>();
+		teams = operation.getNewListTeam();
+	}*/
 
 	@Override
-	public boolean loadTeam(Map<String, Object> teamDetails) {
+	public boolean loadTeam(String leagueName,String conference,String division,String team) {
 		
-
-		//load league object and save to variable
-		return false;
+		operation = new OperationModel(leagueName, conference, division, team, database);
+		league = operation.getLeagueObject();
+		if (league.checkLeaguePresent()) {
+			return true;
+		} else {
+			league = null;
+			return false;
+		}
 	}
 
-	
 
 }

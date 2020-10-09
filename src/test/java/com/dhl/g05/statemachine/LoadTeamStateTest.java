@@ -8,9 +8,8 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dhl.g05.MockLeagueModel;
-import com.dhl.g05.MockPlayerCommunication;
 import com.dhl.g05.leaguemodel.LeagueObject;
+import com.dhl.g05.operation.DbPersistanceMock;
 
 public class LoadTeamStateTest {
 	private LoadTeamState state;
@@ -24,7 +23,7 @@ public class LoadTeamStateTest {
 		stateMachine.setCurrentState(state);
 		stateMachine.setPlayerCommunication(new MockPlayerCommunication());
 		stateMachine.setLeagueModel(new MockLeagueModel());
-		stateMachine.setLeague(new LeagueObject(null, null, null));
+		stateMachine.setLeague(new LeagueObject(null, null, null, new DbPersistanceMock()));
 	}
 	
 	@Test

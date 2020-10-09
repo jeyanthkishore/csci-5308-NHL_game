@@ -1,4 +1,4 @@
-package com.dhl.g05;
+package com.dhl.g05.statemachine;
 
 import java.io.File;
 import java.io.FileNotFoundException;

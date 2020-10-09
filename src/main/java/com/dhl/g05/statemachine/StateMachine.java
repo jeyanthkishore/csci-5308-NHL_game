@@ -1,21 +1,21 @@
 package com.dhl.g05.statemachine;
 
-import com.dhl.g05.ILeagueModel;
-import com.dhl.g05.IPlayerCommunication;
-import com.dhl.g05.LeagueModel;
-import com.dhl.g05.PlayerCommunication;
 import com.dhl.g05.leaguemodel.*;
+import com.dhl.g05.operation.DatabaseClass;
+import com.dhl.g05.operation.IDataBasePersistence;
 
 public class StateMachine {
 	
 	private AbstractState currentState;   
 	private IPlayerCommunication playerCommunication;
 	private ILeagueModel leagueModel;
-
+	private IDataBasePersistence database;
+	
 	public StateMachine() {
 		currentState = new ImportState(this);  
 		playerCommunication = new PlayerCommunication();
-		leagueModel = new LeagueModel();
+		database = new DatabaseClass();
+		leagueModel = new LeagueModel(database);
 	}
 	
 	public AbstractState getCurrentState() {

@@ -7,9 +7,6 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dhl.g05.MockLeagueModel;
-import com.dhl.g05.MockPlayerCommunication;
-
 public class CreateTeamStateTest {
 	private CreateTeamState state;
 	private StateMachine stateMachine;

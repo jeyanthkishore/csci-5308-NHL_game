@@ -9,6 +9,8 @@ public class LoadTeamState extends AbstractState{
 
 	private Map<String,Object> teamDetails;
 	private TeamObject team;
+	private String teamName;
+	private String leagueName;
 	private String conferenceName;
 	private String divisionName;
 	
@@ -19,24 +21,17 @@ public class LoadTeamState extends AbstractState{
 	@Override
 	public boolean enter() {
 		
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Load a saved team");
 		teamDetails = new HashMap<String,Object>();
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter conference name:");
-		conferenceName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter division name:");
-		divisionName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team name:");
-		teamDetails.put("teamName", this.getOuterStateMachine().getPlayerCommunication().getResponse());
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team manager:");
-		teamDetails.put("teamManager", this.getOuterStateMachine().getPlayerCommunication().getResponse());
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team coach:");
-		teamDetails.put("teamCoach", this.getOuterStateMachine().getPlayerCommunication().getResponse());
+		teamName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
+		teamDetails.put("teamName", teamName);
+	
 		return true;
 	}
 
 	@Override
 	public boolean performStateTask() {
-		if (this.getOuterStateMachine().getLeagueModel().loadTeam(teamDetails)) {
+		if (this.getOuterStateMachine().getLeagueModel().loadTeam(leagueName, conferenceName, divisionName, teamName)) {
 			return true;
 		} else {
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Team does not exist");

@@ -1,4 +1,4 @@
-package com.dhl.g05;
+package com.dhl.g05.statemachine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +81,7 @@ private LeagueObject league;
 	}
 
 	@Override
-	public boolean loadTeam(Map<String, Object> teamDetails) {
+	public boolean loadTeam(String leagueName, String conference,String division,String team) {
 		return false;
 	}
 

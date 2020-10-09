@@ -1,4 +1,4 @@
-package com.dhl.g05;
+package com.dhl.g05.statemachine;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -22,6 +22,6 @@ public interface ILeagueModel {
 	public String validatePlayer(PlayerObject player);
 	public boolean persistLeague();
 	public boolean addTeam(String conferenceName, String divisionName, TeamObject team);
-	public boolean loadTeam(Map<String, Object> teamDetails);
+	public boolean loadTeam(String league, String conference,String division,String team);
 
 }
