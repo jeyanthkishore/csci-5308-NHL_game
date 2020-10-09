@@ -46,8 +46,8 @@ public class LeagueModel implements ILeagueModel{
 	}
 
 	@Override
-	public PlayerObject createPlayer(Map<String, Object> players) {
-		return new PlayerObject(players);
+	public PlayerObject createPlayer(String name,String position, Boolean captain) {
+		return new PlayerObject(name,position,captain);
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class LeagueModel implements ILeagueModel{
 	public boolean loadTeam(Map<String, Object> teamDetails) {
 		// TODO Auto-generated method stub
 		
-		//load team and league object
+		//load league object
 		return false;
 	}
 

@@ -45,8 +45,8 @@ private LeagueObject league;
 	}
 
 	@Override
-	public PlayerObject createPlayer(Map<String, Object> players) {
-		return  new PlayerObject(players);
+	public PlayerObject createPlayer(String name, String position, Boolean captain) {
+		return  new PlayerObject(name, name, captain);
 	}
 
 	@Override

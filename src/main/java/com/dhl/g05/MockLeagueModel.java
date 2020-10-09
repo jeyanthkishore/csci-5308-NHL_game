@@ -46,8 +46,8 @@ public class MockLeagueModel implements ILeagueModel{
 	}
 
 	@Override
-	public PlayerObject createPlayer(Map<String, Object> players) {
-		return  new PlayerObject(players);
+	public PlayerObject createPlayer(String name, String position, Boolean captain) {
+		return new PlayerObject(name,position,captain);
 	}
 
 	@Override

@@ -41,7 +41,7 @@ public class LoadTeamState extends AbstractState{
 			return true;
 		} else {
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Could not load team");
-			return true; //TODO: change to false
+			return false;
 		}
 	}
 

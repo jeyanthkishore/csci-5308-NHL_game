@@ -163,15 +163,15 @@ public class LeagueModelCreator {
 		
 		for (Object p: jsonPlayers) {
 			
-			HashMap<String,Object> playerDetails = new HashMap<>();
+			
 			
 			String playerName = (String)((JSONObject) p).get("playerName");
 			
-			playerDetails.put("playerName",playerName);
-			playerDetails.put("position",(String)((JSONObject) p).get("position"));
-			playerDetails.put("captain",(Boolean)((JSONObject) p).get("captain"));
 			
-			PlayerObject newPlayer = leagueModel.createPlayer(playerDetails);
+			String position = (String)((JSONObject) p).get("position");
+			Boolean captain = (Boolean)((JSONObject) p).get("captain");
+			
+			PlayerObject newPlayer = leagueModel.createPlayer(playerName, position, captain);
 			
 			if (leagueModel.validatePlayer(newPlayer)) {
 				

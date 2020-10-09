@@ -18,7 +18,7 @@ public interface ILeagueModel {
 	public ConferenceObject createConference(String conference, List<DivisionObject> divisiondetail);
 	public DivisionObject createDivision(String division, ArrayList<TeamObject> teamdetail);
 	public TeamObject createTeam(String team, String coach, String manager, ArrayList<PlayerObject> players);
-	public PlayerObject createPlayer(Map<String, Object> players);
+	public PlayerObject createPlayer(String name, String position, Boolean captain);
 	public boolean validateLeague(LeagueObject league);
 	public boolean validateConference(ConferenceObject conference);
 	public boolean validateDivision(DivisionObject division);
