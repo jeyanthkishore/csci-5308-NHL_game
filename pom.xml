@@ -85,10 +85,8 @@
           <configuration>
             <archive>
               <manifest>
-<!--                <mainClass>com.dhl.g05.App</mainClass>-->
-<!--                <addClsspath>true</addClsspath>-->
-                <addClasspath>true</addClasspath>
                 <mainClass>com.dhl.g05.App</mainClass>
+                <addClasspath>true</addClasspath>
               </manifest>
             </archive>
           </configuration>
