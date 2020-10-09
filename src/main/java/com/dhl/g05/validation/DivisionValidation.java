@@ -36,10 +36,10 @@ public class DivisionValidation {
 	
 	public String validateDivision() {
 		if(isDivisionNameEmptyorNull()) {
-			return "DivisionName Cannot be empty";
+			return "DivisionName Cannot Be Empty";
 		}
 		if(isTeamListEmpty()) {
-			return "TeamList is empty";
+			return "TeamList Is Empty";
 		}
 		return "success";
 	}

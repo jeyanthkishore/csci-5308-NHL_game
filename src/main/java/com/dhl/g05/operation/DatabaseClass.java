@@ -27,13 +27,12 @@ public class DatabaseClass implements IDataBasePersistence{
 		String team = operationModel.getTeamName();
 		String conferenceName,divisionName,teamName,coachName,managerName;
 		String playerName,position;
-		Object captain;
+		Boolean captain;
 		List<HashMap<String,String>> conferenceValue = new ArrayList<HashMap<String,String>>();
 		List<HashMap<String,String>> divisionValue = new ArrayList<HashMap<String,String>>();
 		List<HashMap<String,String>> teamValue = new ArrayList<HashMap<String,String>>();
 		List<HashMap<String,String>> teamDetailValue = new ArrayList<HashMap<String,String>>();
 		List<HashMap<String,String>> playerValue = new ArrayList<HashMap<String,String>>();
-		Map<String,Object> playerMap;
 		//queryValue = fetchAllConferences(leaguName);
 		for(int conSet =0; conSet < conferenceValue.size(); conSet++) {
 			conferenceName = conferenceValue.get(conSet).get("conference_name");
@@ -47,14 +46,10 @@ public class DatabaseClass implements IDataBasePersistence{
 					//teamDetailValue = fetchManager(id)
 					//playerValue = getPlayerDetails(teamid)
 					for(int playerSet = 0;playerSet<playerValue.size();playerSet++) {
-						playerMap = new HashMap<String,Object>();
 						playerName = playerValue.get(playerSet).get("agent_name").toString();
 						position = playerValue.get(playerSet).get("position").toString();
-						captain = playerValue.get(playerSet).get("agent_is_captain");
-						playerMap.put("playerName", playerName);
-						playerMap.put("position", position);
-						playerMap.put("captain", captain);
-						playerList.add(new PlayerObject(playerMap));
+						captain = Boolean.parseBoolean(playerValue.get(playerSet).get("agent_is_captain"));
+						playerList.add(new PlayerObject(playerName,position,captain));
 					}
 					coachName = teamDetailValue.get(teamSet).get("coach_name");
 					managerName = teamDetailValue.get(teamSet).get("manager_name");
@@ -68,14 +63,10 @@ public class DatabaseClass implements IDataBasePersistence{
 		List<HashMap<String,Object>> agentValue = new ArrayList<HashMap<String,Object>>();
 		//queryValue = fetchAllFreeAgents(leaguName);
 		for(int agentSet =0;agentSet < agentValue.size();agentSet++) {
-			playerMap = new HashMap<String,Object>();
 			playerName = agentValue.get(agentSet).get("agent_name").toString();
 			position = agentValue.get(agentSet).get("position").toString();
-			captain = agentValue.get(agentSet).get("agent_is_captain");
-			playerMap.put("playerName", playerName);
-			playerMap.put("position", position);
-			playerMap.put("captain", captain);
-			freeAgent.add(new PlayerObject(playerMap));
+			captain = Boolean.parseBoolean(agentValue.get(agentSet).get("agent_is_captain").toString());
+			freeAgent.add(new PlayerObject(playerName,position,captain));
 		}
 		leagueObject.setFreeAgent(freeAgent);
 	operationModel.setLeagueObject(leagueObject);
@@ -83,7 +74,42 @@ public class DatabaseClass implements IDataBasePersistence{
 
 	@Override
 	public void saveModel(OperationModel operationModel) {
-		// TODO Auto-generated method stub
+		LeagueObject league = new LeagueObject();
+		String leagueName = league.getLeagueName();
+		String conferenceName = "";
+		String divisionName = "";
+		String teamName = "";
+		String managerName = "";
+		String coachName ="";
+		String playerName = "";
+		String position = "";
+		Object captain = null;
+		//int leagueId = saveLeague(leagueName);
+		conferenceList = league.getConferenceDetails();
+		for(int conSet = 0; conSet < conferenceList.size();conSet++) {
+			conferenceName = conferenceList.get(conSet).getConferenceName();
+		//	int conferenceId = saveConference(leagueId,conferenceName) ;
+			divisionList = conferenceList.get(conSet).getDivisionDetails();
+			for(int divSet = 0; divSet < divisionList.size();divSet++) {
+				divisionName = divisionList.get(divSet).getDivisionName();
+				//int divId = saveDivision(divisionName.conferenceId);
+				teamList = divisionList.get(divSet).getTeamDetails();
+				for(int teamSet = 0; teamSet < teamList.size();teamSet++) {
+					teamName = teamList.get(teamSet).getTeamName();
+					managerName = teamList.get(teamSet).getGeneralManagerName();
+					coachName = teamList.get(teamSet).getHeadCoachName();
+					//int teamId = saveTeam(teamName,managerName,divId,coachName);
+					playerList = teamList.get(teamSet).getPlayerList();
+					for(int playerSet = 0; playerSet< playerList.size();playerSet++) {
+						playerName = playerList.get(playerSet).getPlayerName();
+						position = playerList.get(playerSet).getPostition();
+						//int positionId = getPositionId(position);
+						captain = playerList.get(playerSet).getCaptain();
+						//int playerId = savePlayer(teamId,positionId,player_name,captain);
+					}
+				}
+			}
+		}
 		
 	}
 

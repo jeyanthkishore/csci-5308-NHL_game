@@ -1,7 +1,6 @@
 package com.dhl.g05.leaguemodel;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +32,12 @@ public class JsonMockDataDb implements ILeagueModel,ILeagueModelValidation{
 	public String conferenceName = "Western Conference";
 	public String conferenceTwoName = "Eastern Conference";
 	public LeagueObject league;
+	String playerOneName = "";
+	String positionOne = "";
+	Boolean captainOne = true;
+	String playerTwoName = "";
+	String positionTwo = "";
+	Boolean captainTwo = false;
 	
 	public LeagueObject getLeague() {
 		return league;
@@ -49,26 +54,24 @@ public class JsonMockDataDb implements ILeagueModel,ILeagueModelValidation{
 	private void setJsonValues() {
 		divisionList = new ArrayList<DivisionObject>();
 		playerList = new ArrayList<PlayerObject>();
-		firstPlayerInfo = new HashMap<String,Object>();
 		teamList = new ArrayList<TeamObject>();
 		freeAgentList = new ArrayList<PlayerObject>();
 		conferenceList = new ArrayList<ConferenceObject>();
 		league = new LeagueObject();
-		firstPlayerInfo.put("playerName", "Cristiano Ronaldo");
-		firstPlayerInfo.put("position", "forward");
-		firstPlayerInfo.put("captain", true);
-		playerList.add(new PlayerObject(firstPlayerInfo));
-		secondPlayerInfo = new HashMap<String,Object>();
-		secondPlayerInfo.put("playerName", "Messi");
-		secondPlayerInfo.put("position", "goalie");
-		secondPlayerInfo.put("captain", false);
-		playerList.add(new PlayerObject(secondPlayerInfo));
+		playerOneName =  "Cristiano Ronaldo";
+		positionOne = "forward";
+		captainOne = true;
+		playerList.add(new PlayerObject(playerOneName,positionOne,captainOne));
+		playerTwoName= "Messi";
+		positionTwo =  "goalie";
+		captainTwo = false;
+		playerList.add(new PlayerObject(playerTwoName,positionTwo,captainTwo));
 		teamList.add(new TeamObject(teamName,headCoachName,generalManagerName,playerList));
 		teamList.add(new TeamObject(teamTwoName,headCoachName,generalManagerTwoName,playerList));
 		divisionList.add(new DivisionObject(divisionOneName,teamList));
 		divisionList.add(new DivisionObject(divisionTwoName,teamList));
-		freeAgentList.add(new PlayerObject(secondPlayerInfo));
-		freeAgentList.add(new PlayerObject(secondPlayerInfo));
+		freeAgentList.add(new PlayerObject(playerTwoName,positionTwo,captainTwo));
+		freeAgentList.add(new PlayerObject(playerTwoName,positionTwo,captainTwo));
 		conferenceList.add(new ConferenceObject(conferenceName,divisionList));
 		conferenceList.add(new ConferenceObject(conferenceTwoName,divisionList));
 		league.setLeagueName(leagueName);
@@ -85,53 +88,40 @@ public class JsonMockDataDb implements ILeagueModel,ILeagueModelValidation{
 	}
 	
 	public void setPlayerDetailsEmpty() {
-		firstPlayerInfo.clear();
+		playerOneName = "";
+		positionOne = "";
 	}
 
 	public void setPlayerNameEmpty() {
-		firstPlayerInfo.replace("playerName", "");
+		playerOneName = "";
 	}
 
 	public void setPlayerNameNull() {
-		firstPlayerInfo.replace("playerName", null);
+		playerOneName= null;
 	}
 	
 	public void setPlayerPositionEmpty() {
-		firstPlayerInfo.replace("position", "");
+		positionOne = "";
 	}
 
 	public void setPlayerPostitionNull() {
-		firstPlayerInfo.replace("position", null);
-	}
-	
-	public void setCaptainEmpty() {
-		firstPlayerInfo.replace("captain", "");
+		positionOne =  null;
 	}
 
 	public void setCaptainNull() {
-		firstPlayerInfo.replace("captain", null);
+		captainOne = null;
 	}
 
 	public void setPositionDifferent() {
-		firstPlayerInfo.replace("position", "wing");
-	}
-
-	public void setCaptainNonBoolean() {
-		firstPlayerInfo.replace("captain", "true");
+		positionOne = "wing";
 	}
 	
-	public void addMoreAttribute() {
-		firstPlayerInfo.put("Awards", "10");
-	}
-	public void removeAttribute() {
-		firstPlayerInfo.remove("position");
-	}
 	public void setPlayerListEmpty() {
 		playerList.clear();
 	}
 	public void addMaximumPlayer() {
 		for(int count = 0; count<22; count++) {
-			playerList.add(new PlayerObject(secondPlayerInfo));
+			playerList.add(new PlayerObject(playerTwoName,positionTwo,captainTwo));
 		}
 	}
 	public void setTeamNameEmpty() {
@@ -159,11 +149,11 @@ public class JsonMockDataDb implements ILeagueModel,ILeagueModelValidation{
 	}
 	
 	public void setSecondCaptain() {
-		secondPlayerInfo.put("captain",true) ;
+		playerList.get(1).setCaptain(true);
 	}
 	
 	public void removeCaptain() {
-		firstPlayerInfo.put("captain",false) ;
+		playerList.get(0).setCaptain(false);
 	}
 	
 	public void setDivisionNameEmpty() {
@@ -202,46 +192,34 @@ public class JsonMockDataDb implements ILeagueModel,ILeagueModelValidation{
 		freeAgentList.clear();
 	}
 	public void setFreeAgentNameEmpty() {
-		firstPlayerInfo.replace("playerName", "");
-		freeAgentList.add(new PlayerObject(firstPlayerInfo));
+		freeAgentList.get(0).setPlayerName("");
 	}
 
 	public void setFreeAgentNameNull() {
-		firstPlayerInfo.replace("playerName", null);
-		freeAgentList.add(new PlayerObject(firstPlayerInfo));
+		freeAgentList.get(0).setPlayerName(null);
 	}
 	
 	public void setFreeAgentPositionEmpty() {
-		firstPlayerInfo.replace("position", "");
-		freeAgentList.add(new PlayerObject(firstPlayerInfo));
+		freeAgentList.get(0).setPostition("");
 	}
 
 	public void setFreeAgentPositionNull() {
-		firstPlayerInfo.replace("position", null);
-		freeAgentList.add(new PlayerObject(firstPlayerInfo));
+		freeAgentList.get(0).setPostition(null);
 	}
 	
 	public void setFreeAgentCaptainEmpty() {
-		firstPlayerInfo.replace("captain", "");
-		freeAgentList.add(new PlayerObject(firstPlayerInfo));
+		freeAgentList.get(0).setCaptain(null);
 	}
 
 	public void setFreeAgentCaptainNull() {
-		firstPlayerInfo.replace("captain", null);
-		freeAgentList.add(new PlayerObject(firstPlayerInfo));
+		freeAgentList.get(0).setCaptain(null);
 	}
 
 	public void setFreeAgentPositionDifferent() {
-		firstPlayerInfo.replace("position", "wing");
-		freeAgentList.add(new PlayerObject(firstPlayerInfo));
-	}
-	public void setFreeAgentCaptainNonBoolean() {
-		firstPlayerInfo.replace("captain", "false");
-		freeAgentList.add(new PlayerObject(firstPlayerInfo));
+		freeAgentList.get(0).setPostition("wing");
 	}
 	public void setFreeAgentCaptainTrueBoolean() {
-		firstPlayerInfo.replace("captain", true);
-		freeAgentList.add(new PlayerObject(firstPlayerInfo));
+		freeAgentList.get(0).setCaptain(true);
 	}
 	@Override
 	public void loadTeamModelData(TeamObject teamObject) {
@@ -253,7 +231,9 @@ public class JsonMockDataDb implements ILeagueModel,ILeagueModelValidation{
 
 	@Override
 	public void loadPlayerModelData(PlayerObject playerModelObject) {
-		playerModelObject.setPlayerDetails(firstPlayerInfo);
+		playerModelObject.setCaptain(captainOne);
+		playerModelObject.setPlayerName(playerOneName);
+		playerModelObject.setPostition(positionOne);
 	}
 
 	@Override
@@ -277,8 +257,9 @@ public class JsonMockDataDb implements ILeagueModel,ILeagueModelValidation{
 
 	@Override
 	public void loadPlayerData(PlayerValidation playerObject) {
-		playerObject.setPlayerDetails(firstPlayerInfo);
-		
+		playerObject.setPlayerName(playerOneName);
+		playerObject.setPosition(positionOne);
+		playerObject.setCaptain(captainOne);
 	}
 
 	@Override

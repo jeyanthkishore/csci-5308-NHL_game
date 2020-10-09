@@ -53,10 +53,10 @@ public class DivisionValidationTest {
 		mock = new JsonMockDataDb();
 		mock.setDivisionNameEmpty();
 		validate = new DivisionValidation(mock);
-		assertEquals("DivisionName Cannot be empty",validate.validateDivision());
+		assertEquals("DivisionName Cannot Be Empty",validate.validateDivision());
 		mock = new JsonMockDataDb();
 		mock.removeTeams();
 		validate = new DivisionValidation(mock); 
-		assertEquals("TeamList is empty",validate.validateDivision());
+		assertEquals("TeamList Is Empty",validate.validateDivision());
 	}
 }
