@@ -8,6 +8,7 @@ public class TeamObject {
 	private String headCoachName;
 	private String generalManagerName;
 	private List<PlayerObject> playerList;
+	private String result;
 	
 	public TeamObject() {
 		setHeadCoachName(null);
@@ -25,6 +26,15 @@ public class TeamObject {
 		this.headCoachName = coach;
 		this.generalManagerName = manager;
 		this.playerList = players;
+		result = validate();
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 	
 	public String getTeamName() {
@@ -56,5 +66,50 @@ public class TeamObject {
 
 	public void setPlayerList(List<PlayerObject> playerList) {
 		this.playerList = playerList;
+	}
+	public String validate() {
+		if(isTeamDetailsEmpty()||isTeamDetailsNull()) {
+			return "Team Details Are Empty";
+		}
+		if(isPlayerListEmpty()) {
+			return "Player List Is Empty";
+		}
+		if(isPlayerListMaximum()) {
+			return "Maximum Player Limit Is 20";
+		}
+		if(containOneTeamCaptain()==0) {
+			return "Team Must Contain Atleast One Captain";
+		}
+		if(containOneTeamCaptain()>1) {
+			return "Team Must Contain Only One Captain";
+		}
+		return "success";
+	}
+	public boolean isTeamDetailsEmpty() {
+		if(teamName == "" || headCoachName ==""
+				|| generalManagerName =="") {
+			return true;
+		}
+		return false;
+	}
+	public boolean isTeamDetailsNull() {
+		if(teamName == null || headCoachName ==null
+				|| generalManagerName ==null) {
+			return true;
+		}
+		return false;
+	}
+	public boolean isPlayerListEmpty() {
+		return (playerList.isEmpty());
+	}
+	public boolean isPlayerListMaximum() {
+		if(playerList.size() > 20) {
+			return true;
+		}
+		return false;
+	}
+	public long containOneTeamCaptain() {
+		long captainCount = playerList.stream().filter(p -> p.getCaptain().equals(true)).count();
+		return captainCount;
 	}
 }

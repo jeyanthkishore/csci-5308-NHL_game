@@ -1,7 +1,10 @@
 package com.dhl.g05.leaguemodel;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -24,6 +27,18 @@ public class DivisionObjectTest {
 		DivisionObject object = new DivisionObject();
 		object.setDivisionName("Division");
 		assertSame("Division",object.getDivisionName());
+	}
+	@Test
+	public void getResultTest() {
+		DivisionObject object = new DivisionObject();
+		object.setResult("success");
+		assertEquals("success",object.getResult());
+	}
+	@Test
+	public void setResultTest() {
+		ConferenceObject object = new ConferenceObject();
+		object.setResult("success");
+		assertEquals("success",object.getResult());
 	}
 	@Test
 	public void setTeamListTest() {
@@ -52,5 +67,55 @@ public class DivisionObjectTest {
 		DivisionObject object = new DivisionObject(data);
 		assertSame(data.divisionOneName,object.getDivisionName());
 		assertSame(data.teamList,object.getTeamDetails());
+	}
+	@Test
+	public void checkDivisionNameEmpty() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DivisionObject validate = new DivisionObject(mock); 
+		assertFalse(validate.isDivisionNameEmptyorNull());
+	}
+	
+	@Test
+	public void checkDivisionNameEmptyTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		mock.setDivisionNameEmpty();
+		DivisionObject validate = new DivisionObject(mock); 
+		assertTrue(validate.isDivisionNameEmptyorNull());
+	}
+	
+	@Test
+	public void checkDivisionNameNullTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		mock.setDivisionNameNull();
+		DivisionObject validate = new DivisionObject(mock); 
+		assertTrue(validate.isDivisionNameEmptyorNull());
+	}
+	
+	@Test
+	public void isTeamListEmptyTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DivisionObject validate = new DivisionObject(mock); 
+		assertFalse(validate.isTeamListEmpty());
+	}
+	@Test
+	public void teamListEmptyTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		mock.removeTeams();
+		DivisionObject validate = new DivisionObject(mock); 
+		assertTrue(validate.isTeamListEmpty());
+	}
+	@Test
+	public void validateDivisionTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DivisionObject validate = new DivisionObject(mock); 
+		assertEquals("success",validate.validate());
+		mock = new JsonMockDataDb();
+		mock.setDivisionNameEmpty();
+		validate = new DivisionObject(mock);
+		assertEquals("DivisionName Cannot Be Empty",validate.validate());
+		mock = new JsonMockDataDb();
+		mock.removeTeams();
+		validate = new DivisionObject(mock); 
+		assertEquals("TeamList Is Empty",validate.validate());
 	}
 }
