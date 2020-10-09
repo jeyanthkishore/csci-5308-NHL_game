@@ -1,4 +1,10 @@
 package com.dhl.g05.database;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,12 +20,41 @@ public class DbConnection {
 
 
 	public Connection createNewDBconnection() throws SQLException {
-		System.setProperty("Jdbc.drivers", "com.mysql.jdbc.Driver");
+		InputStream inputStream = null;
+		Path currentRelativePath = Paths.get("");
+		String dbDirPath = currentRelativePath.toAbsolutePath().toString();
+		Properties property = new Properties();
 		Properties properties = new Properties();
-		properties.put("user", username);
-		properties.put("password", password);
+		String fileName = "application.properties";
+		boolean isNotLocalEnv = false;
+		//inputStream = getClass().getClassLoader().getResourceAsStream(fileName);
 		try {
-			conn = DriverManager.getConnection(dbhost, properties);
+			inputStream = new FileInputStream( dbDirPath.substring(0,  dbDirPath.lastIndexOf("target"))+fileName);
+		}
+		catch (Exception f) {
+			System.setProperty("Jdbc.drivers", "com.mysql.jdbc.Driver");
+			properties.put("user", username);
+			properties.put("password", password);
+			properties.put("url", dbhost);
+			isNotLocalEnv = true;
+		}
+		if (inputStream != null && isNotLocalEnv) {
+
+			try {
+				property.load(inputStream);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+			System.setProperty("Jdbc.drivers", 		property.getProperty("datasource.driver-class-name"));
+			properties.put("user", property.getProperty("datasource.username"));
+			properties.put("password", property.getProperty("datasource.password"));
+			properties.put("url", property.getProperty("datasource.url"));
+		} 
+
+		try {
+			conn = DriverManager.getConnection(properties.getProperty("url"), properties);
 			System.out.println("Connection established: "+ conn);
 
 		} 
