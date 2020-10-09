@@ -55,6 +55,7 @@ public class StateMachine {
 			} else {
 				this.exit();
 			}
+			return true;
 		}
 		return false;
 	}
