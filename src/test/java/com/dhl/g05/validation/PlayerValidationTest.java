@@ -13,25 +13,8 @@ public class PlayerValidationTest {
 	@Test
 	public void playerListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setPlayerDetailsEmpty();
 		PlayerValidation validate = new PlayerValidation(mock);
-		assertTrue(validate.isPlayerDetailListEmpty());
-	}
-	
-	@Test
-	public void checkPlayerDetailHighSize() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.addMoreAttribute();
-		PlayerValidation validate = new PlayerValidation(mock);
-		assertTrue(validate.isPlayerDetailNotInRange());
-	}
-	
-	@Test
-	public void checkPlayerDetailLessSize() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.removeAttribute();
-		PlayerValidation validate = new PlayerValidation(mock);
-		assertTrue(validate.isPlayerDetailNotInRange());
+		assertFalse(validate.isPlayerDetailsEmpty());
 	}
 	
 	@Test
@@ -89,27 +72,11 @@ public class PlayerValidationTest {
 	}
 	
 	@Test
-	public void captainEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setCaptainEmpty();
-		PlayerValidation validate = new PlayerValidation(mock);
-		assertTrue(validate.isPlayerDetailsEmpty());
-	}
-	
-	@Test
 	public void captainNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setCaptainNull();
 		PlayerValidation validate = new PlayerValidation(mock);
 		assertTrue(validate.isPlayerDetailsNull());
-	}
-	
-	@Test
-	public void captainBooleanTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setCaptainNonBoolean();
-		PlayerValidation validate = new PlayerValidation(mock);
-		assertTrue(validate.isCaptainNotBoolean());
 	}
 	@Test
 	public void validatePlayerTest() {
@@ -119,14 +86,6 @@ public class PlayerValidationTest {
 		mock.setPlayerPositionEmpty();
 		validate = new PlayerValidation(mock);
 		assertEquals("Player Should Not have Empty Value",validate.validatePlayer());
-		mock = new JsonMockDataDb();
-		mock.setPlayerDetailsEmpty();
-		validate = new PlayerValidation(mock);
-		assertEquals("Player Must Have 3 Attributes",validate.validatePlayer());
-		mock = new JsonMockDataDb();
-		mock.setCaptainNonBoolean();
-		validate = new PlayerValidation(mock);
-		assertEquals("Captain Attribute Must Be Boolean",validate.validatePlayer());
 		mock = new JsonMockDataDb();
 		mock.setPositionDifferent();
 		validate = new PlayerValidation(mock);

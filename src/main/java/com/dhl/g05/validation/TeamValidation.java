@@ -53,7 +53,10 @@ public class TeamValidation {
 		if(isPlayerListMaximum()) {
 			return "Maximum Player Limit Is 20";
 		}
-		if(!containOneTeamCaptain()) {
+		if(containOneTeamCaptain()==0) {
+			return "Team Must Contain Atleast One Captain";
+		}
+		if(containOneTeamCaptain()>1) {
 			return "Team Must Contain Only One Captain";
 		}
 		return "success";
@@ -81,12 +84,9 @@ public class TeamValidation {
 		}
 		return false;
 	}
-	public boolean containOneTeamCaptain() {
-		long captainCount = playerList.stream().filter(p -> p.getPlayerDetails().get("captain").equals(true)).count();
-		if(captainCount > 1 ||captainCount ==0) {
-			return false;
-		}
-		return true;
+	public long containOneTeamCaptain() {
+		long captainCount = playerList.stream().filter(p -> p.getCaptain().equals(true)).count();
+		return captainCount;
 	}
 	
 }

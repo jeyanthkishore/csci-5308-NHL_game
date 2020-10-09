@@ -84,14 +84,14 @@ public class TeamValidationTest {
 	public void oneTeamCaptainTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		TeamValidation validate = new TeamValidation(mock);
-		assertTrue(validate.containOneTeamCaptain());
+		assertEquals(1,validate.containOneTeamCaptain());
 	}
 	@Test
 	public void twoTeamCaptainTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setSecondCaptain();
 		TeamValidation validate = new TeamValidation(mock);
-		assertFalse(validate.containOneTeamCaptain());
+		assertEquals(2,validate.containOneTeamCaptain());
 	}
 	
 	@Test
@@ -99,7 +99,7 @@ public class TeamValidationTest {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.removeCaptain();
 		TeamValidation validate = new TeamValidation(mock);
-		assertFalse(validate.containOneTeamCaptain());
+		assertEquals(0,validate.containOneTeamCaptain());
 	}
 	@Test
 	public void validateTeamTest() {
@@ -122,5 +122,9 @@ public class TeamValidationTest {
 		mock.setSecondCaptain();
 		validate = new TeamValidation(mock);
 		assertEquals("Team Must Contain Only One Captain",validate.validateTeam());
+		mock = new JsonMockDataDb();
+		mock.removeCaptain();
+		validate = new TeamValidation(mock);
+		assertEquals("Team Must Contain Atleast One Captain",validate.validateTeam());
 	}
 }
