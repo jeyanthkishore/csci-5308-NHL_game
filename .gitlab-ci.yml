@@ -37,6 +37,7 @@ deploy_dev:
   tags:
     - ugrad
   before_script:
+    - ulimit -u 200
     - 'command -v ssh-agent >/dev/null||(apt-get update-y && apt-get install openssh-client-y)'
     - eval $(ssh-agent -s)
     - echo "$DEPLOY_SSH_KEY_DEV" | tr -d '\r' | ssh-add -
@@ -58,6 +59,7 @@ deploy_prod:
   tags:
     - ugrad
   before_script:
+    - ulimit -u 200
     - 'command -v ssh-agent >/dev/null||(apt-get update-y && apt-get install openssh-client-y)'
     - eval $(ssh-agent -s)
     - echo "$DEPLOY_SSH_KEY_PROD" | tr -d '\r' | ssh-add -
