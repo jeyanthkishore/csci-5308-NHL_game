@@ -100,7 +100,7 @@ public class TeamObject {
 		return false;
 	}
 	public boolean isPlayerListEmpty() {
-		return (playerList.isEmpty());
+		return (playerList == null || playerList.isEmpty());
 	}
 	public boolean isPlayerListMaximum() {
 		if(playerList.size() > 20) {

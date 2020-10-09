@@ -63,13 +63,16 @@ public class LeagueModelCreator {
 		String leagueName = (String)leagueData.get("leagueName");
 		
 		LeagueObject league = leagueModel.createLeague(leagueName,conferences,freeAgents); 
+		
+		if (league != null) {
 		String validationResult  = leagueModel.validateLeague(league);
 		if (validationResult.equalsIgnoreCase("Success")) {
-			
 			return league;
-		}
-		
-		playerCommunication.sendMessage(validationResult);
+			} else {
+				playerCommunication.sendMessage(validationResult);
+				return null;
+			}
+		} 
 		return null;
 	}
 	
@@ -85,16 +88,18 @@ public class LeagueModelCreator {
 			String conferenceName = (String)((JSONObject) c).get("conferenceName");
 			ConferenceObject newConference = leagueModel.createConference(conferenceName, divisions);
 			
-			String validationResult  = leagueModel.validateConference(newConference);
-			
-			if (validationResult.equalsIgnoreCase("Success")) {
-				conferences.add(newConference);
+			if (newConference != null) {
+				String validationResult  = leagueModel.validateConference(newConference);
 				
+				if (validationResult.equalsIgnoreCase("Success")) {
+					conferences.add(newConference);
+					
+				} else {
+					playerCommunication.sendMessage(validationResult);
+					return null;
+				}
 			} else {
-				
-				playerCommunication.sendMessage(validationResult);
 				return null;
-				
 			}
 		}
 		
@@ -113,19 +118,21 @@ public class LeagueModelCreator {
 			String divisionName = (String)((JSONObject) d).get("divisionName");
 			DivisionObject newDivision = leagueModel.createDivision(divisionName,teams);
 			
+			if (newDivision != null) {
 			String validationResult  = leagueModel.validateDivision(newDivision);
 			if (validationResult.equalsIgnoreCase("Success")) {
+					
+					divisions.add(newDivision);
+					
+				} else {
+					playerCommunication.sendMessage(validationResult);
+					return null;
 				
-				divisions.add(newDivision);
-				
+				}
 			} else {
-				
-				playerCommunication.sendMessage(validationResult);
 				return null;
-				
 			}
 		}
-		
 		return divisions;
 	}
 	
@@ -144,18 +151,19 @@ public class LeagueModelCreator {
 			String coachName = (String)((JSONObject) t).get("headCoach");
 			
 			TeamObject newTeam = leagueModel.createTeam(teamName, managerName, coachName, players);
-			
-			String validationResult  = leagueModel.validateTeam(newTeam);
-			if (validationResult.equalsIgnoreCase("Success")) {
-				
-				teams.add(newTeam);
-				
-			} else {
-
-				playerCommunication.sendMessage(validationResult);
+			if (newTeam != null) {
+				String validationResult  = leagueModel.validateTeam(newTeam);
+				if (validationResult.equalsIgnoreCase("Success")) {
+					
+					teams.add(newTeam);
+					
+				}  else {
+					playerCommunication.sendMessage(validationResult);
+					return null;
+				}
+			} else
 				return null;
 			
-			}
 		}
 		
 		return teams;
@@ -173,24 +181,26 @@ public class LeagueModelCreator {
 			
 			
 			String playerName = (String)((JSONObject) p).get("playerName");
-			
-			
 			String position = (String)((JSONObject) p).get("position");
 			Boolean captain = (Boolean)((JSONObject) p).get("captain");
 			
 			PlayerObject newPlayer = leagueModel.createPlayer(playerName, position, captain);
-			
-			String validationResult  = leagueModel.validatePlayer(newPlayer);
-			
-			if (validationResult.equalsIgnoreCase("Success")) {
+			if (newPlayer != null ) {
 				
-				players.add(newPlayer);
-				
+				String validationResult  = leagueModel.validatePlayer(newPlayer);
+	
+				if (validationResult.equalsIgnoreCase("Success")) {
+					
+					players.add(newPlayer);
+					
+				} else {
+					
+					playerCommunication.sendMessage(validationResult);
+					return null;
+					
+				}
 			} else {
-				
-				playerCommunication.sendMessage(validationResult);
 				return null;
-				
 			}
 		}
 		
