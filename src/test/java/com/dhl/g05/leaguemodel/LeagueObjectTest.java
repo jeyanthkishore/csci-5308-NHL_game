@@ -75,7 +75,8 @@ public class LeagueObjectTest {
 	@Test
 	public void leagueParameterConstructor() {
 		JsonMockDataDb data = new JsonMockDataDb();
-		LeagueObject object = new LeagueObject(data.leagueName,data.conferenceList,data.freeAgentList);
+		DbPersistanceMock db = new DbPersistanceMock();
+		LeagueObject object = new LeagueObject(data.leagueName,data.conferenceList,data.freeAgentList,db);
 		assertSame(data.leagueName,object.getLeagueName());
 		assertSame(data.freeAgentList,object.getFreeAgent());
 		assertSame(data.conferenceList,object.getConferenceDetails());
@@ -114,8 +115,8 @@ public class LeagueObjectTest {
 	public void checkLeagueExistenceTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		DbPersistanceMock dbMock = new DbPersistanceMock();
-		LeagueObject valid = new LeagueObject(mock);
-		assertTrue(valid.checkLeaguePresent(dbMock));
+		LeagueObject valid = new LeagueObject(mock.leagueName,mock.conferenceList,mock.freeAgentList,dbMock);
+		assertTrue(valid.checkLeaguePresent());
 	}
 	
 	@Test

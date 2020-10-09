@@ -8,4 +8,5 @@ public interface IDataBasePersistence {
 
 	public boolean checkLeagueExistence(OperationModel operationModel);
 
+
 }
