@@ -1,5 +1,9 @@
 package com.dhl.g05.operation;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import com.dhl.g05.leaguemodel.JsonMockDataDb;
 
 public class DbPersistanceMock implements IDataBasePersistence{
@@ -31,5 +35,16 @@ public class DbPersistanceMock implements IDataBasePersistence{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void loadNewTeams(OperationModel operationModel) {
+		List<HashMap<String,Object>> teamNames = new ArrayList<HashMap<String,Object>>();
+		HashMap<String,Object> team = new HashMap<String,Object>();
+		team.put("team_name","Dog");
+		teamNames.add(team);
+		team.put("team_name","Cat");
+		teamNames.add(team);
+		operationModel.setNewTeamList(teamNames);
 	}
 }

@@ -1,7 +1,7 @@
 package com.dhl.g05.leaguemodel;
 
 public class PlayerObject {
-
+	
 	private String playerName;
 	private String position;
 	private Boolean captain;

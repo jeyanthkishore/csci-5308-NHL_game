@@ -1,5 +1,8 @@
 package com.dhl.g05.operation;
 
+import java.util.HashMap;
+import java.util.List;
+
 import com.dhl.g05.leaguemodel.LeagueObject;
 
 public class OperationModel {
@@ -10,6 +13,7 @@ public class OperationModel {
 	private LeagueObject leagueObject;
 	private String result;
 	private boolean leagueCheck;
+	private List<HashMap<String, Object>> newTeamList;
 	
 	public OperationModel() {
 		leagueName = null;
@@ -20,21 +24,24 @@ public class OperationModel {
 		result = null;
 		leagueCheck = false;
 	}
+	public OperationModel(IDataBasePersistence object) {
+		object.loadNewTeams(this);
+	}
 	
-	public OperationModel(String league,String conference,String division,String team,IDataBasePersistence object) {
-		this.leagueName = league;
-		this.conferenceName = conference;
-		this.divisionName = division;
+	public OperationModel(String team,IDataBasePersistence object) {
 		this.teamName = team;
 		object.loadModel(this);
 	}
 	
-	public OperationModel(LeagueObject league,IDataBasePersistence Object) {
+	public OperationModel(LeagueObject league,String divisionName,String conferenceName,String teamName,IDataBasePersistence Object) {
 		this.leagueObject = league;
+		this.conferenceName = divisionName;
+		this.divisionName = conferenceName;
+		this.teamName = teamName;
 		Object.saveModel(this);
 	}
 	
-	public OperationModel(String league,IDataBasePersistence Object) {
+	public OperationModel(String league,Boolean leaguePresence, IDataBasePersistence Object) {
 		this.leagueName = league;
 		leagueCheck = Object.checkLeagueExistence(this);
 	}
@@ -82,6 +89,12 @@ public class OperationModel {
 	}
 	public void setResult(String result) {
 		this.result = result;
+	}
+	public List<HashMap<String, Object>> getNewTeamList () {
+		return newTeamList;
+	}
+	public void setNewTeamList(List<HashMap<String, Object>> teamValue) {
+		this.newTeamList = teamValue;
 	}
 	
 }

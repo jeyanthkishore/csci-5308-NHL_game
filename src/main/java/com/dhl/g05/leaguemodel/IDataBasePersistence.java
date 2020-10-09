@@ -1,4 +1,6 @@
-package com.dhl.g05.operation;
+package com.dhl.g05.leaguemodel;
+
+import com.dhl.g05.operation.OperationModel;
 
 public interface IDataBasePersistence {
 
@@ -8,7 +10,7 @@ public interface IDataBasePersistence {
 
 	public boolean checkLeagueExistence(OperationModel operationModel);
 
-	void loadNewTeams(OperationModel operationModel);
+	public void loadNewTeams(OperationModel operationModel);
 
 
 }

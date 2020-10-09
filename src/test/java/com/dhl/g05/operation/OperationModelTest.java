@@ -26,30 +26,38 @@ public class OperationModelTest {
 	@Test
 	public void leagueConstructorTest() {
 		DbPersistanceMock object = new DbPersistanceMock();
-		OperationModel model = new OperationModel("HockeyLeague",object);
+		OperationModel model = new OperationModel("HockeyLeague",false,object);
 		assertTrue(model.isLeagueCheck());
 	}
 	
 	@Test
 	public void leagueConstructorFailTest() {
 		DbPersistanceMock object = new DbPersistanceMock();
-		OperationModel model = new OperationModel("Canada League",object);
+		OperationModel model = new OperationModel("Canada League",false,object);
 		assertFalse(model.isLeagueCheck());
 	}
+//	@Test
+//	public void loadConstructorTest() {
+//		DbPersistanceMock dbObject = new DbPersistanceMock();
+//		DatabaseClass dbObject = new DatabaseClass();
+//		JsonMockDataDb mockData = new JsonMockDataDb();
+//		OperationModel  model = new OperationModel(mockData.teamName,dbObject);
+//		assertNotNull(model.getLeagueObject());
+//	}
 	@Test
-	public void loadConstructorTest() {
+	public void loadNewConstructorTest() {
 		DbPersistanceMock dbObject = new DbPersistanceMock();
-		JsonMockDataDb mockData = new JsonMockDataDb();
-		OperationModel  model = new OperationModel(mockData.leagueName,mockData.conferenceName,mockData.divisionOneName,mockData.teamName,dbObject);
-		assertNotNull(model.getLeagueObject());
+//		DatabaseClass dbObject = new DatabaseClass();
+		OperationModel  model = new OperationModel(dbObject);
+		assertNotNull(model.getNewTeamList());
 	}
 	@Test
 	public void saveonstructorTest() {
-		
 		DbPersistanceMock dbObject = new DbPersistanceMock();
+//		DatabaseClass dbObject = new DatabaseClass();
 		JsonMockDataDb mockData = new JsonMockDataDb();
-		OperationModel  model = new OperationModel(mockData.league,dbObject);
-		assertEquals("success",model.getResult());
+//		OperationModel  model = new OperationModel(mockData.league,dbObject);
+//		assertEquals("success",model.getResult());
 	}
 	@Test
 	 public void getLeagueNameTest() {
