@@ -10,7 +10,7 @@ public class ConferenceObject {
 		setDivisionDetails(null);
 		setConferenceName(null);
 	}
-	public ConferenceObject(ILeagueValidation conferenceObject) {
+	public ConferenceObject(ILeagueModel conferenceObject) {
 		conferenceObject.loadConferenceModelData(this);
 	}
 	

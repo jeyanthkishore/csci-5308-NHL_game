@@ -9,7 +9,6 @@ public class CreateNewTeam {
 	public CreateNewTeam() {
 		setLeagueObject(null);
 	}
-
 	public void setLeagueObject(LeagueObject leagueObject) {
 		this.leagueObject = leagueObject;
 	}

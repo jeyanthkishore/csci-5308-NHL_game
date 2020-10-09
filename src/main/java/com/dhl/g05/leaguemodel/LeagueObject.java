@@ -13,7 +13,7 @@ public class LeagueObject {
 		setFreeAgent(null);
 	}
 	
-	public LeagueObject(ILeagueValidation leagueObject) {
+	public LeagueObject(ILeagueModel leagueObject) {
 		leagueObject.loadLeagueModelData(this);
 	}
 	

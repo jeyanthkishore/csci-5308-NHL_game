@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.dhl.g05.leaguemodel.ConferenceObject;
 import com.dhl.g05.leaguemodel.PlayerObject;
+import com.dhl.g05.operation.IDataBasePersistence;
+import com.dhl.g05.operation.OperationModel;
+//import com.dhl.g05.loadOperation.LoadTeamCheck;
 
 public class LeagueValidation {
 	private String leagueName;
@@ -120,8 +123,9 @@ public class LeagueValidation {
 		return captainBoolean;
 	}
 	
-	public int checkLeaguePresent() {
-		return 1;
+	public Boolean checkLeaguePresent(IDataBasePersistence object) {
+		OperationModel check = new OperationModel(leagueName, object);
+		return check.isLeagueCheck();
 	}
 
 }
