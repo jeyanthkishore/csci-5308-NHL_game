@@ -1,4 +1,4 @@
-package com.dhl.g05.database;
+package com.dhl.g05.db;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -156,6 +156,73 @@ public class StoredProcedure {
 		}
 
 		return list;
+	}
+	public ArrayList<HashMap<String, Object>> getAllUserStateTeams() 
+	{
+		try {
+			conn = db.createNewDBconnection();
+			String query = "{CALL getAllUserStateTeams()}";
+			java.sql.CallableStatement stmt = conn.prepareCall(query);
+			rs = stmt.executeQuery();
+			list = rsToList.resultSetToArrayList(rs);
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		} 
+		finally 
+		{
+			db.closeDbConnection(conn);
+		}
+
+		return list;
+	}
+	public ArrayList<HashMap<String, Object>> loadTeam(String team_name) 
+	{
+		try {
+			conn = db.createNewDBconnection();
+			String query = "{CALL loadTeam(?)}";
+			java.sql.CallableStatement stmt = conn.prepareCall(query);
+			stmt.setString(1, team_name);
+			rs = stmt.executeQuery();
+			list = rsToList.resultSetToArrayList(rs);
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		} 
+		finally 
+		{
+			db.closeDbConnection(conn);
+		}
+
+		return list;
+	}
+	public int loadTeamStateByUser(String team_name, int team_id, String division_name, int league_id , String conference_name)
+	{
+		int result=0;
+		try {
+			conn = db.createNewDBconnection();
+			String query = "{CALL loadTeamStateByUser(?,?,?,?,?)}";
+			java.sql.CallableStatement stmt = conn.prepareCall(query);
+			stmt.setString(1, team_name);
+			stmt.setInt(2, team_id);
+			stmt.setString(3, division_name);
+			stmt.setInt(4, league_id);
+			stmt.setString(5, conference_name);
+			rs = stmt.executeQuery();
+			while(rs.next())
+			{
+				result=rs.getInt("LAST_INSERT_ID()");
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			db.closeDbConnection(conn);
+		}
+		return result;	
 	}
 
 	public int saveLeague(String league_name) 
