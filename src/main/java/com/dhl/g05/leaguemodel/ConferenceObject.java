@@ -2,11 +2,11 @@ package com.dhl.g05.leaguemodel;
 import java.util.List;
 
 public class ConferenceObject {
-	
+
 	private String conferenceName;
 	private List<DivisionObject> divisionDetails;
 	private String result;
-	
+
 	public ConferenceObject() {
 		setDivisionDetails(null);
 		setConferenceName(null);
@@ -14,13 +14,13 @@ public class ConferenceObject {
 	public ConferenceObject(ILeagueModel conferenceObject) {
 		conferenceObject.loadConferenceModelData(this);
 	}
-	
+
 	public ConferenceObject(String conference, List<DivisionObject> divisiondetail) {
 		conferenceName = conference;
 		divisionDetails = divisiondetail;
 		result = validate();
 	}
-	
+
 	public String getResult() {
 		return result;
 	}
@@ -56,18 +56,18 @@ public class ConferenceObject {
 	}
 	public boolean hasEvenNumberDivision() {
 		if(divisionDetails.size()%2 == 0) {
-			return true;	
+			return true;
 		}
 		return false;
 	}
-	
+
 	public boolean isNameEmptyOrNull() {
 		if(conferenceName == "" || conferenceName == null) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public boolean isDivisionListEmpty() {
 		return divisionDetails.isEmpty();
 	}

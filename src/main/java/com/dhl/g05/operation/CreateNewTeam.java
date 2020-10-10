@@ -5,14 +5,14 @@ import com.dhl.g05.leaguemodel.LeagueObject;
 public class CreateNewTeam {
 
 	private LeagueObject leagueObject;
-	
+
 	public CreateNewTeam() {
 		setLeagueObject(null);
 	}
 	public void setLeagueObject(LeagueObject leagueObject) {
 		this.leagueObject = leagueObject;
 	}
-	
+
 	public LeagueObject getLeagueObject() {
 		return leagueObject;
 	}
@@ -29,13 +29,13 @@ public class CreateNewTeam {
 	}
 	public boolean isConferenceExist(String conferenceName) {
 		Boolean conferencePresent = leagueObject.getConferenceDetails().stream().anyMatch
-		(p->p.getConferenceName().equalsIgnoreCase(conferenceName));
+				(p->p.getConferenceName().equalsIgnoreCase(conferenceName));
 		return conferencePresent;
 	}
 	public boolean isDivisionExist(String divisionName) {
-		 Boolean divisionPresent= leagueObject.getConferenceDetails().parallelStream().anyMatch(v->v.getDivisionDetails().stream().anyMatch
-				 (p->p.getDivisionName().equalsIgnoreCase(divisionName)));
-		 return divisionPresent;
+		Boolean divisionPresent= leagueObject.getConferenceDetails().parallelStream().anyMatch(v->v.getDivisionDetails().stream().anyMatch
+				(p->p.getDivisionName().equalsIgnoreCase(divisionName)));
+		return divisionPresent;
 	}
-	
+
 }

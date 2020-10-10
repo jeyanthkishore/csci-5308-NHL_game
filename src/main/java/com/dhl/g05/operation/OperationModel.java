@@ -1,5 +1,8 @@
 package com.dhl.g05.operation;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.dhl.g05.leaguemodel.LeagueObject;
 
 public class OperationModel {
@@ -10,7 +13,16 @@ public class OperationModel {
 	private LeagueObject leagueObject;
 	private String result;
 	private boolean leagueCheck;
-	
+	private ArrayList<HashMap<String,Object>> newTeam;
+
+	public ArrayList<HashMap<String, Object>> getNewTeam() {
+		return newTeam;
+	}
+
+	public void setNewTeam(ArrayList<HashMap<String, Object>> newTeam) {
+		this.newTeam = newTeam;
+	}
+
 	public OperationModel() {
 		leagueName = null;
 		conferenceName = null;
@@ -20,7 +32,7 @@ public class OperationModel {
 		result = null;
 		leagueCheck = false;
 	}
-	
+
 	public OperationModel(String league,String conference,String division,String team,IDataBasePersistence object) {
 		this.leagueName = league;
 		this.conferenceName = conference;
@@ -28,17 +40,17 @@ public class OperationModel {
 		this.teamName = team;
 		object.loadModel(this);
 	}
-	
+
 	public OperationModel(LeagueObject league,IDataBasePersistence Object) {
 		this.leagueObject = league;
 		Object.saveModel(this);
 	}
-	
+
 	public OperationModel(String league,IDataBasePersistence Object) {
 		this.leagueName = league;
 		leagueCheck = Object.checkLeagueExistence(this);
 	}
-	
+
 	public boolean isLeagueCheck() {
 		return leagueCheck;
 	}
@@ -83,5 +95,5 @@ public class OperationModel {
 	public void setResult(String result) {
 		this.result = result;
 	}
-	
+
 }

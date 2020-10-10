@@ -11,17 +11,17 @@ public class LeagueObject {
 	private List<PlayerObject> freeAgent;
 	private IDataBasePersistence object;
 	private String result;
-	
+
 	public LeagueObject() {
 		setLeagueName(null);
 		setConferenceDetails(null);
 		setFreeAgent(null);
 	}
-	
+
 	public LeagueObject(ILeagueModel leagueObject) {
 		leagueObject.loadLeagueModelData(this);
 	}
-	
+
 	public LeagueObject(String league, List<ConferenceObject> conferencedetail,List<PlayerObject> agent,IDataBasePersistence dbObject) {
 		setLeagueName(league);
 		setConferenceDetails(conferencedetail);
@@ -53,7 +53,7 @@ public class LeagueObject {
 	public void setFreeAgent(List<PlayerObject> agent) {
 		this.freeAgent = agent;
 	}
-	
+
 	public String getResult() {
 		return result;
 	}
@@ -61,30 +61,30 @@ public class LeagueObject {
 	public void setResult(String result) {
 		this.result = result;
 	}
-	
+
 	public String validate() {
-    	if(isLeagueNameEmptyOrNull()) {
-    		return "League Name Is Empty";
-    	}
-    	if(isConferenceListEmpty()) {
-    		return "Conference List Is Empty";
-    	}
-    	if(!hasEvenNumberConference()) {
-    		return "Conference Count Must Be Even";
-    	}
-    	if(isFreeAgentListEmpty()) {
-    		return "Free Agent List Is Empty";
-    	}
-    	if(isFreeAgentDetailsEmptyOrNull()) {
-    		return "Free Agent Attribue Is Empty";
-    	}
-    	if(isFreeAgentPositionWrong()) {
-    		return "Position Of The Player Cannot Be Different";
-    	}
-    	if(isAgentCaptainTrue()) {
-    		return "Free Agent Cannot Be Captain";
-    	}
-    	return "success";
+		if(isLeagueNameEmptyOrNull()) {
+			return "League Name Is Empty";
+		}
+		if(isConferenceListEmpty()) {
+			return "Conference List Is Empty";
+		}
+		if(!hasEvenNumberConference()) {
+			return "Conference Count Must Be Even";
+		}
+		if(isFreeAgentListEmpty()) {
+			return "Free Agent List Is Empty";
+		}
+		if(isFreeAgentDetailsEmptyOrNull()) {
+			return "Free Agent Attribue Is Empty";
+		}
+		if(isFreeAgentPositionWrong()) {
+			return "Position Of The Player Cannot Be Different";
+		}
+		if(isAgentCaptainTrue()) {
+			return "Free Agent Cannot Be Captain";
+		}
+		return "success";
 	}
 	public boolean isLeagueNameEmptyOrNull() {
 		if(leagueName == "" || leagueName== null) {
@@ -92,18 +92,18 @@ public class LeagueObject {
 		}
 		return false;
 	}
-	
+
 	public boolean isConferenceListEmpty() {
 		return conferenceDetails.isEmpty();
 	}
-	
+
 	public boolean hasEvenNumberConference() {
 		if(conferenceDetails.size()%2 ==0) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public boolean isFreeAgentPositionWrong() {
 		Boolean position = freeAgent.stream().anyMatch(v ->!(v.getPosition().equals("forward")
 				|| v.getPosition().equals("defense") ||v.getPosition().equals("goalie")));
@@ -118,12 +118,12 @@ public class LeagueObject {
 				||v.getCaptain()==null);
 		return emptyOrNull;
 	}
-	
+
 	public boolean isAgentCaptainTrue() {
 		Boolean captainBoolean = freeAgent.stream().anyMatch(v -> v.getCaptain().equals(true));
 		return captainBoolean;
 	}
-	
+
 	public Boolean checkLeaguePresent() {
 		OperationModel check = new OperationModel(leagueName, object);
 		return check.isLeagueCheck();
