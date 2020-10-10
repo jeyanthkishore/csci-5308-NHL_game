@@ -35,6 +35,7 @@ public class DatabaseClass implements IDataBasePersistence{
 		List<HashMap<String,Object>> teamDetailValue;
 		List<HashMap<String,Object>> playerValue;
 		conferenceValue = sp.fetchAllConferences(league_id);
+		String league = sp.getLeagueName(league_id);
 		for(int conSet =0; conSet < conferenceValue.size(); conSet++) {
 			conferenceName = conferenceValue.get(conSet).get("conference_name").toString();
 			conferenceID = Integer.parseInt(conferenceValue.get(conSet).get("conference_id").toString());
@@ -71,7 +72,7 @@ public class DatabaseClass implements IDataBasePersistence{
 		}
 		leagueObject.setConferenceDetails(conferenceList);
 		List<HashMap<String,Object>> agentValue = new ArrayList<HashMap<String,Object>>();
-//		agentValue = sp.fetchAllFreeAgents(league);
+		agentValue = sp.fetchAllFreeAgents(league);
 		for(int agentSet =0;agentSet < agentValue.size();agentSet++) {
 			playerName = agentValue.get(agentSet).get("agent_name").toString();
 			position = agentValue.get(agentSet).get("position_name").toString();
@@ -79,6 +80,7 @@ public class DatabaseClass implements IDataBasePersistence{
 			freeAgent.add(new PlayerObject(playerName,position,captain));
 		}
 		leagueObject.setFreeAgent(freeAgent);
+		leagueObject.setLeagueName(league);
 	operationModel.setLeagueObject(leagueObject);
 	}
 
@@ -123,7 +125,7 @@ public class DatabaseClass implements IDataBasePersistence{
 					for(int playerSet = 0; playerSet< playerList.size();playerSet++) {
 						playerName = playerList.get(playerSet).getPlayerName();
 						position = playerList.get(playerSet).getPosition();
-						int positionId = 1;
+						int positionId = sp.getPositionID(position);
 						captain = playerList.get(playerSet).getCaptain();
 						int captainID = (captain) ? 1 : 0;
 						int playerId = sp.savePlayer(teamId,positionId,playerName,captainID);

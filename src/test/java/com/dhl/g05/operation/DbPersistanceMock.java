@@ -10,10 +10,7 @@ public class DbPersistanceMock implements IDataBasePersistence{
 
 	@Override
 	public void loadModel(OperationModel operationModel) {
-		if(operationModel.getLeagueName().equals("HockeyLeague")
-				&& operationModel.getConferenceName().equals("Western Conference")
-				&&operationModel.getDivisionName().equals("Atlantic")
-				&& operationModel.getTeamName().equals("Striker Six")) {
+		if(operationModel.getTeamName().equals("HockeyLeague")) {
 			JsonMockDataDb mockData = new JsonMockDataDb();
 			operationModel.setLeagueObject(mockData.getLeague());
 		}else {

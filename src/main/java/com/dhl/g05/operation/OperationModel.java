@@ -33,20 +33,20 @@ public class OperationModel {
 		leagueCheck = false;
 	}
 	
-	public OperationModel(String league,String conference,String division,String team,IDataBasePersistence object) {
-		this.leagueName = league;
-		this.conferenceName = conference;
-		this.divisionName = division;
+	public OperationModel(String team,IDataBasePersistence object) {
 		this.teamName = team;
 		object.loadModel(this);
 	}
 	
-	public OperationModel(LeagueObject league,IDataBasePersistence Object) {
+	public OperationModel(LeagueObject league,String divisionName,String teamName,String conferenceName,IDataBasePersistence Object) {
 		this.leagueObject = league;
+		this.divisionName = divisionName;
+		this.teamName = teamName;
+		this.conferenceName = conferenceName;
 		Object.saveModel(this);
 	}
 	
-	public OperationModel(String league,IDataBasePersistence Object) {
+	public OperationModel(String league,Boolean save,IDataBasePersistence Object) {
 		this.leagueName = league;
 		leagueCheck = Object.checkLeagueExistence(this);
 	}

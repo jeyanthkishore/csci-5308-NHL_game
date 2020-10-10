@@ -26,21 +26,21 @@ public class OperationModelTest {
 	@Test
 	public void leagueConstructorTest() {
 		DbPersistanceMock object = new DbPersistanceMock();
-		OperationModel model = new OperationModel("HockeyLeague",object);
+		OperationModel model = new OperationModel("HockeyLeague",false,object);
 		assertTrue(model.isLeagueCheck());
 	}
 	
 	@Test
 	public void leagueConstructorFailTest() {
 		DbPersistanceMock object = new DbPersistanceMock();
-		OperationModel model = new OperationModel("Canada League",object);
+		OperationModel model = new OperationModel("Canada League",false,object);
 		assertFalse(model.isLeagueCheck());
 	}
 	@Test
 	public void loadConstructorTest() {
 		DbPersistanceMock dbObject = new DbPersistanceMock();
 		JsonMockDataDb mockData = new JsonMockDataDb();
-		OperationModel  model = new OperationModel(mockData.leagueName,mockData.conferenceName,mockData.divisionOneName,mockData.teamName,dbObject);
+		OperationModel  model = new OperationModel("HockeyLeague",dbObject);
 		assertNotNull(model.getLeagueObject());
 	}
 	@Test
@@ -48,7 +48,7 @@ public class OperationModelTest {
 		
 		DbPersistanceMock dbObject = new DbPersistanceMock();
 		JsonMockDataDb mockData = new JsonMockDataDb();
-		OperationModel  model = new OperationModel(mockData.league,dbObject);
+		OperationModel  model = new OperationModel(mockData.league,mockData.conferenceName,mockData.divisionOneName,mockData.teamName,dbObject);
 		assertEquals("success",model.getResult());
 	}
 	@Test
