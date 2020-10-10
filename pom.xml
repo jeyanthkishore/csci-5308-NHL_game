@@ -96,7 +96,7 @@
           <configuration>
             <archive>
               <manifest>
-                <mainClass>com.dhl.g05.App</mainClass>
+                <mainClass>com.dhl.g05.Driver</mainClass>
                 <addClasspath>true</addClasspath>
               </manifest>
             </archive>
