@@ -560,6 +560,30 @@ public class StoredProcedure {
 		}
 		return result;
 	}
+	public String getLeagueName(int league_id)
+	{
+		String result="";
+		try {
+			conn = db.createNewDBconnection();
+			String query = "{CALL getConferenceID(?)}";
+			java.sql.CallableStatement stmt = conn.prepareCall(query);
+			stmt.setInt(1, league_id);
+			rs = stmt.executeQuery();
+			while(rs.next())
+			{
+				result=rs.getString("league_name");
+			}
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+
+		} finally 
+		{
+			db.closeDbConnection(conn);
+		}
+		return result;
+	}
 
 }
 
