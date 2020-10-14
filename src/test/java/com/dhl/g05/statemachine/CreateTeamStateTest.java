@@ -7,6 +7,9 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dhl.g05.statemachine.mocks.MockLeagueModel;
+import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
+
 public class CreateTeamStateTest {
 	private CreateTeamState state;
 	private StateMachine stateMachine;
@@ -14,11 +17,10 @@ public class CreateTeamStateTest {
 	
 	@Before
 	public void init() {
-		stateMachine = new StateMachine();
+		stateMachine = new StateMachine(new MockPlayerCommunication(),new MockLeagueModel());
 		state = new CreateTeamState(stateMachine);
 		stateMachine.setCurrentState(state);
-		stateMachine.setPlayerCommunication(new MockPlayerCommunication());
-		stateMachine.setLeagueModel(new MockLeagueModel());
+
 	}
 
 	@Test

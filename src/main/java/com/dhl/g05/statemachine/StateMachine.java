@@ -1,21 +1,15 @@
 package com.dhl.g05.statemachine;
 
-import com.dhl.g05.leaguemodel.*;
-import com.dhl.g05.operation.DatabaseClass;
-import com.dhl.g05.operation.IDataBasePersistence;
-
 public class StateMachine {
 	
 	private AbstractState currentState;   
 	private IPlayerCommunication playerCommunication;
 	private ILeagueModel leagueModel;
-	private IDataBasePersistence database;
 	
-	public StateMachine() {
+	public StateMachine(IPlayerCommunication playerCommunication, ILeagueModel leagueModel) {
 		currentState = new ImportState(this);  
-		playerCommunication = new PlayerCommunication();
-		database = new DatabaseClass();
-		leagueModel = new LeagueModel(database);
+		this.playerCommunication = playerCommunication;
+		this.leagueModel = leagueModel;
 	}
 	
 	public AbstractState getCurrentState() {
@@ -64,13 +58,6 @@ public class StateMachine {
 		if(leagueModel.getLeague()!=null) {
 			leagueModel.persistLeague();
 		}
-	}
-	public void setLeague(LeagueObject league) {
-		leagueModel.setLeague(league);
-	}
-	
-	public LeagueObject getLeague() {
-		return leagueModel.getLeague();
 	}
 	
 	public void setPlayerCommunication(IPlayerCommunication playerCommunication) {

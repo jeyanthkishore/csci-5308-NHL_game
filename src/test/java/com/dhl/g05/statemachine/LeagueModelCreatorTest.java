@@ -9,7 +9,10 @@ import org.json.simple.parser.ParseException;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dhl.g05.statemachine.LeagueModelCreator;
+
+import com.dhl.g05.statemachine.mocks.MockLeagueModel;
+import com.dhl.g05.statemachine.mocks.MockLeagueModelValidationFails;
+import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
 
 
 

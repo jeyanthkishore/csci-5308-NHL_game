@@ -3,12 +3,9 @@ package com.dhl.g05.statemachine;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.dhl.g05.leaguemodel.*;
-
 public class LoadTeamState extends AbstractState{
 
 	private Map<String,Object> teamDetails;
-	private TeamObject team;
 	private String teamName;
 	private String leagueName;
 	private String conferenceName;
@@ -31,7 +28,7 @@ public class LoadTeamState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
-		if (this.getOuterStateMachine().getLeagueModel().loadTeam(leagueName, conferenceName, divisionName, teamName)) {
+		if (this.getOuterStateMachine().getLeagueModel().loadTeam(teamName)) {
 			return true;
 		} else {
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Team does not exist");

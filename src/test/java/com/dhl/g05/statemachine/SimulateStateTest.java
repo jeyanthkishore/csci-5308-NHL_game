@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dhl.g05.statemachine.mocks.MockLeagueModel;
+import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
+
 public class SimulateStateTest {
 	public SimulateState state1;
 	public StateMock state2;
@@ -13,20 +16,14 @@ public class SimulateStateTest {
 	
 	@Before
 	public void init() {
-		outerStateMachine = new StateMachine();
-		innerStateMachine = new StateMachine();
+		outerStateMachine = new StateMachine(new MockPlayerCommunication(), new MockLeagueModel());
+		innerStateMachine = new StateMachine(new MockPlayerCommunication(), new MockLeagueModel());
 		state1 = new SimulateState(outerStateMachine);
 		state2 = new StateMock(innerStateMachine);
-		
 		outerStateMachine.setCurrentState(state1);
-		outerStateMachine.setPlayerCommunication(new MockPlayerCommunication());
-		outerStateMachine.setLeagueModel(new MockLeagueModel());
-		
+
 		state1.setInnerStateMachine(innerStateMachine);
 		innerStateMachine.setCurrentState(state2);
-		innerStateMachine.setPlayerCommunication(new MockPlayerCommunication());
-		innerStateMachine.setLeagueModel(new MockLeagueModel());
-		
 		state1.setPlayerInput("3");
 
 	}

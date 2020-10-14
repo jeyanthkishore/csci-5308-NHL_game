@@ -32,7 +32,7 @@ public class ImportState extends AbstractState{
 			
 			creator.createLeagueFromFile(fileName);
 			
-			if (this.getOuterStateMachine().getLeague() == null) {
+			if (this.getOuterStateMachine().getLeagueModel().getLeague() == null) {
 				this.getOuterStateMachine().getPlayerCommunication().sendMessage("Issue creating league, try again");
 			} else {
 				return true;

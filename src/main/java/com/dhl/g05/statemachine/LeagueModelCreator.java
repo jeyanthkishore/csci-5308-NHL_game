@@ -48,9 +48,12 @@ public class LeagueModelCreator {
 	}
 	
 	public boolean createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException {
+		
 		File file = new File(fileName);
 		reader = new FileReader(file);
+		
 		LeagueObject league = createLeague((JSONObject)parser.parse(reader));
+		
 		leagueModel.setLeague(league);
 		return (leagueModel.getLeague() != null);
 	}
@@ -60,17 +63,18 @@ public class LeagueModelCreator {
 		
 		ArrayList<ConferenceObject> conferences = createConferences((JSONArray)leagueData.get("conferences"));
 		ArrayList<PlayerObject> freeAgents = createFreeAgents((JSONArray)leagueData.get("freeAgents"));
+		
 		String leagueName = (String)leagueData.get("leagueName");
 		
-		LeagueObject league = leagueModel.createLeague(leagueName,conferences,freeAgents); 
 		
-		if (league != null) {
-		String validationResult  = leagueModel.validateLeague(league);
-		if (validationResult.equalsIgnoreCase("Success")) {
-			return league;
+		if (conferences != null && freeAgents != null) {
+			LeagueObject league = leagueModel.createLeague(leagueName,conferences,freeAgents); 
+			String validationResult  =  leagueModel.validateLeague(league);
+			
+			if (validationResult.equalsIgnoreCase("Success")) {
+				return league;
 			} else {
 				playerCommunication.sendMessage(validationResult);
-				return null;
 			}
 		} 
 		return null;
@@ -86,9 +90,10 @@ public class LeagueModelCreator {
 			
 			ArrayList<DivisionObject> divisions = createDivisions((JSONArray)((JSONObject) c).get("divisions"));
 			String conferenceName = (String)((JSONObject) c).get("conferenceName");
-			ConferenceObject newConference = leagueModel.createConference(conferenceName, divisions);
 			
-			if (newConference != null) {
+			
+			if (divisions != null) {
+				ConferenceObject newConference = new ConferenceObject(conferenceName, divisions);
 				String validationResult  = leagueModel.validateConference(newConference);
 				
 				if (validationResult.equalsIgnoreCase("Success")) {
@@ -115,12 +120,15 @@ public class LeagueModelCreator {
 		for (Object d: jsonDivisions) {
 			
 			ArrayList<TeamObject> teams = createTeams((JSONArray)((JSONObject) d).get("teams"));
-			String divisionName = (String)((JSONObject) d).get("divisionName");
-			DivisionObject newDivision = leagueModel.createDivision(divisionName,teams);
 			
-			if (newDivision != null) {
-			String validationResult  = leagueModel.validateDivision(newDivision);
-			if (validationResult.equalsIgnoreCase("Success")) {
+			String divisionName = (String)((JSONObject) d).get("divisionName");
+			
+			
+			if (teams != null) {
+				DivisionObject newDivision = new DivisionObject(divisionName,teams);
+				String validationResult  = leagueModel.validateDivision(newDivision);
+				
+				if (validationResult.equalsIgnoreCase("Success")) {
 					
 					divisions.add(newDivision);
 					
@@ -150,8 +158,10 @@ public class LeagueModelCreator {
 			String managerName = (String)((JSONObject) t).get("generalManager");
 			String coachName = (String)((JSONObject) t).get("headCoach");
 			
-			TeamObject newTeam = leagueModel.createTeam(teamName, managerName, coachName, players);
-			if (newTeam != null) {
+			
+			if (players != null) {
+				TeamObject newTeam = new TeamObject(teamName, managerName, coachName, players);
+				
 				String validationResult  = leagueModel.validateTeam(newTeam);
 				if (validationResult.equalsIgnoreCase("Success")) {
 					
@@ -184,24 +194,28 @@ public class LeagueModelCreator {
 			String position = (String)((JSONObject) p).get("position");
 			Boolean captain = (Boolean)((JSONObject) p).get("captain");
 			
-			PlayerObject newPlayer = leagueModel.createPlayer(playerName, position, captain);
-			if (newPlayer != null ) {
-				
-				String validationResult  = leagueModel.validatePlayer(newPlayer);
-	
-				if (validationResult.equalsIgnoreCase("Success")) {
-					
-					players.add(newPlayer);
-					
-				} else {
-					
-					playerCommunication.sendMessage(validationResult);
-					return null;
-					
-				}
-			} else {
+			if (playerName == null ||position == null || captain == null) {
+				playerCommunication.sendMessage("player missing field");
 				return null;
+				
 			}
+			
+			PlayerObject newPlayer = new PlayerObject(playerName, position, captain);
+			
+				
+			String validationResult  = leagueModel.validatePlayer(newPlayer);
+
+			if (validationResult.equalsIgnoreCase("Success")) {
+				
+				players.add(newPlayer);
+				
+			} else {
+				
+				playerCommunication.sendMessage(validationResult);
+				return null;
+				
+			}
+				
 		}
 		
 		return players;
