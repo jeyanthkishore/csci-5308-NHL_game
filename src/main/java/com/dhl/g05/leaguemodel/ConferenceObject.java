@@ -69,6 +69,9 @@ public class ConferenceObject {
 	}
 	
 	public boolean isDivisionListEmpty() {
-		return divisionDetails.isEmpty();
+		if(divisionDetails == null || divisionDetails.isEmpty()) {
+			return true;
+		}
+		return false;
 	}
 }

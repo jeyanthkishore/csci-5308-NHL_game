@@ -1,11 +1,9 @@
 package com.dhl.g05.operation;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -20,32 +18,25 @@ public class OperationModelTest {
 		assertNull(model.getLeagueName());
 		assertNull(model.getLeagueName());
 		assertNull(model.getDivisionName());
-		assertFalse(model.isLeagueCheck());
+		assertNull(model.getLeagueCheck());
 	}
 	
 	@Test
 	public void leagueConstructorTest() {
 		DbPersistanceMock object = new DbPersistanceMock();
-		OperationModel model = new OperationModel("HockeyLeague",object);
-		assertTrue(model.isLeagueCheck());
+		OperationModel model = new OperationModel(object);
+		assertNotNull(model.getLeagueCheck());
 	}
 	
-	@Test
-	public void leagueConstructorFailTest() {
-		DbPersistanceMock object = new DbPersistanceMock();
-		OperationModel model = new OperationModel("Canada League",object);
-		assertFalse(model.isLeagueCheck());
-	}
 	@Test
 	public void loadConstructorTest() {
 		DbPersistanceMock dbObject = new DbPersistanceMock();
 		JsonMockDataDb mockData = new JsonMockDataDb();
-		OperationModel  model = new OperationModel(mockData.leagueName,mockData.conferenceName,mockData.divisionOneName,mockData.teamName,dbObject);
+		OperationModel  model = new OperationModel(mockData.leagueName,dbObject);
 		assertNotNull(model.getLeagueObject());
 	}
 	@Test
 	public void saveonstructorTest() {
-		
 		DbPersistanceMock dbObject = new DbPersistanceMock();
 		JsonMockDataDb mockData = new JsonMockDataDb();
 		OperationModel  model = new OperationModel(mockData.league,dbObject);
@@ -91,29 +82,18 @@ public class OperationModelTest {
 		assertEquals("Eastern",model.getConferenceName());
 	 }
 	@Test
-	 public void getTeamNameTest() {
+	public void getleagueCheckTest() {
+		JsonMockDataDb object = new JsonMockDataDb();
 		OperationModel model = new OperationModel();
-		model.setTeamName("Striker XI");
-		assertEquals("Striker XI",model.getTeamName());
-	 }
-	
-	@Test
-	 public void setTeamNameTest() {
-		OperationModel model = new OperationModel();
-		model.setTeamName("Striker XI");
-		assertEquals("Striker XI",model.getTeamName());
-	 }
-	@Test
-	public void isleagueCheckTest() {
-		OperationModel model = new OperationModel();
-		model.setLeagueCheck(false);
-		assertFalse(model.isLeagueCheck());
+		model.setLeagueCheck(object.leagueList);
+		assertEquals(object.leagueList,model.getLeagueCheck());
 	}
 	@Test
 	public void setleagueCheckTest() {
+		JsonMockDataDb object = new JsonMockDataDb();
 		OperationModel model = new OperationModel();
-		model.setLeagueCheck(true);
-		assertTrue(model.isLeagueCheck());
+		model.setLeagueCheck(object.leagueList);
+		assertEquals(object.leagueList,model.getLeagueCheck());
 	}
 	@Test
 	public void getLeagueObjectTest() {

@@ -520,7 +520,7 @@ public class StoredProcedure {
 			rs = stmt.executeQuery();
 			while(rs.next())
 			{
-				result=rs.getInt("team_id");
+				result=rs.getInt("position_id");
 			}
 		}
 		catch (SQLException e) 
@@ -565,7 +565,7 @@ public class StoredProcedure {
 		String result="";
 		try {
 			conn = db.createNewDBconnection();
-			String query = "{CALL getConferenceID(?)}";
+			String query = "{CALL getLeagueName(?)}";
 			java.sql.CallableStatement stmt = conn.prepareCall(query);
 			stmt.setInt(1, league_id);
 			rs = stmt.executeQuery();

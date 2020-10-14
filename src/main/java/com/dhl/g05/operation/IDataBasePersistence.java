@@ -6,9 +6,6 @@ public interface IDataBasePersistence {
 
 	public void saveModel(OperationModel operationModel);
 
-	public boolean checkLeagueExistence(OperationModel operationModel);
-
-	void loadNewTeams(OperationModel operationModel);
-
+	public void loadDetails(OperationModel operationModel);
 
 }

@@ -1,4 +1,6 @@
 package com.dhl.g05.leaguemodel;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.operation.IDataBasePersistence;
@@ -94,12 +96,15 @@ public class LeagueObject {
 	}
 	
 	public boolean isConferenceListEmpty() {
-		return conferenceDetails.isEmpty();
+		if(conferenceDetails != null) {
+			return (conferenceDetails.size()<=0);
+		}
+		 return true;
 	}
 	
 	public boolean hasEvenNumberConference() {
-		if(conferenceDetails.size()%2 ==0) {
-			return true;
+		if(conferenceDetails != null) {
+			return (conferenceDetails.size()%2 ==0);
 		}
 		return false;
 	}
@@ -110,7 +115,10 @@ public class LeagueObject {
 		return position;
 	}
 	public boolean isFreeAgentListEmpty() {
-		return freeAgent.isEmpty();
+		if(freeAgent != null) {
+			return (freeAgent.size()<=0);
+		}
+		return true;
 	}
 	public boolean isFreeAgentDetailsEmptyOrNull() {
 		Boolean emptyOrNull = freeAgent.stream().anyMatch(v -> v.getPlayerName() ==""
@@ -125,7 +133,9 @@ public class LeagueObject {
 	}
 	
 	public Boolean checkLeaguePresent() {
-		OperationModel check = new OperationModel(leagueName, object);
-		return check.isLeagueCheck();
+		OperationModel check = new OperationModel(object);
+		ArrayList<HashMap<String,Object>> allLeague = check.getLeagueCheck();
+		Boolean leaguePresent = allLeague.stream().anyMatch(v->v.get("league_name").equals(leagueName));
+		return leaguePresent;
 	}
 }

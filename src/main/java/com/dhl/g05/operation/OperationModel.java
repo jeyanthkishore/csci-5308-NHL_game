@@ -9,35 +9,25 @@ public class OperationModel {
 	private String leagueName;
 	private String conferenceName;
 	private String divisionName;
-	private String teamName;
 	private LeagueObject leagueObject;
 	private String result;
-	private boolean leagueCheck;
+	private ArrayList<HashMap<String,Object>> leagueCheck;
 	private ArrayList<HashMap<String,Object>> newTeam;
 	
-	public ArrayList<HashMap<String, Object>> getNewTeam() {
-		return newTeam;
-	}
-
-	public void setNewTeam(ArrayList<HashMap<String, Object>> newTeam) {
-		this.newTeam = newTeam;
-	}
 
 	public OperationModel() {
 		leagueName = null;
 		conferenceName = null;
 		divisionName = null;
-		teamName = null;
 		leagueObject = null;
 		result = null;
-		leagueCheck = false;
+		leagueCheck = null;
 	}
-	
-	public OperationModel(String league,String conference,String division,String team,IDataBasePersistence object) {
+	public OperationModel(IDataBasePersistence object) {
+		object.loadDetails(this);
+	}
+	public OperationModel(String league,IDataBasePersistence object) {
 		this.leagueName = league;
-		this.conferenceName = conference;
-		this.divisionName = division;
-		this.teamName = team;
 		object.loadModel(this);
 	}
 	
@@ -46,16 +36,19 @@ public class OperationModel {
 		Object.saveModel(this);
 	}
 	
-	public OperationModel(String league,IDataBasePersistence Object) {
-		this.leagueName = league;
-		leagueCheck = Object.checkLeagueExistence(this);
+	public ArrayList<HashMap<String, Object>> getNewTeam() {
+		return newTeam;
 	}
 	
-	public boolean isLeagueCheck() {
+	public void setNewTeam(ArrayList<HashMap<String, Object>> newTeam) {
+		this.newTeam = newTeam;
+	}
+	
+	public ArrayList<HashMap<String,Object>> getLeagueCheck() {
 		return leagueCheck;
 	}
 
-	public void setLeagueCheck(boolean leagueCheck) {
+	public void setLeagueCheck(ArrayList<HashMap<String,Object>> leagueCheck) {
 		this.leagueCheck = leagueCheck;
 	}
 
@@ -76,12 +69,6 @@ public class OperationModel {
 	}
 	public void setDivisionName(String divisionName) {
 		this.divisionName = divisionName;
-	}
-	public String getTeamName() {
-		return teamName;
-	}
-	public void setTeamName(String teamName) {
-		this.teamName = teamName;
 	}
 	public LeagueObject getLeagueObject() {
 		return leagueObject;
