@@ -22,9 +22,8 @@ public class DatabaseClass implements IDataBasePersistence{
 	@Override
 	public void loadModel(OperationModel operationModel) {
 		StoredProcedure sp= new StoredProcedure();
-		List<HashMap<String, Object>> LeagueValue = new ArrayList<HashMap<String,Object>>();
-		LeagueValue = sp.loadTeam(operationModel.getTeamName());
-		int league_id = Integer.parseInt(LeagueValue.get(0).get("league_id").toString());
+		String league_name = operationModel.getLeagueName();
+		int league_id = sp.getLeagueID(league_name);
 		String conferenceName,divisionName,teamName,coachName,managerName;
 		String playerName,position;
 		Boolean captain;
@@ -71,7 +70,7 @@ public class DatabaseClass implements IDataBasePersistence{
 		}
 		leagueObject.setConferenceDetails(conferenceList);
 		List<HashMap<String,Object>> agentValue = new ArrayList<HashMap<String,Object>>();
-//		agentValue = sp.fetchAllFreeAgents(league);
+		agentValue = sp.fetchAllFreeAgents(league_name);
 		for(int agentSet =0;agentSet < agentValue.size();agentSet++) {
 			playerName = agentValue.get(agentSet).get("agent_name").toString();
 			position = agentValue.get(agentSet).get("position_name").toString();
@@ -79,6 +78,7 @@ public class DatabaseClass implements IDataBasePersistence{
 			freeAgent.add(new PlayerObject(playerName,position,captain));
 		}
 		leagueObject.setFreeAgent(freeAgent);
+		leagueObject.setLeagueName(league_name);
 	operationModel.setLeagueObject(leagueObject);
 	}
 
@@ -87,10 +87,6 @@ public class DatabaseClass implements IDataBasePersistence{
 		LeagueObject league = operationModel.getLeagueObject();
 		StoredProcedure sp= new StoredProcedure();
 		String leagueName = league.getLeagueName();
-		String newTeamName = operationModel.getTeamName();
-		String newConferenceName = operationModel.getConferenceName();
-		String newDivisionName = operationModel.getDivisionName();
-		String newLeaguName = operationModel.getLeagueName();
 		String conferenceName = "";
 		String divisionName = "";
 		String teamName = "";
@@ -99,7 +95,6 @@ public class DatabaseClass implements IDataBasePersistence{
 		String playerName = "";
 		String position = "";
 		Boolean captain = null;
-		int newCon,newDiv,teamid=0;
 		int leagueId = sp.saveLeague(leagueName);
 		conferenceList = league.getConferenceDetails();
 		for(int conSet = 0; conSet < conferenceList.size();conSet++) {
@@ -115,15 +110,11 @@ public class DatabaseClass implements IDataBasePersistence{
 					managerName = teamList.get(teamSet).getGeneralManagerName();
 					coachName = teamList.get(teamSet).getHeadCoachName();
 					int teamId = sp.saveTeam(teamName,managerName,divId,coachName);
-					if(divisionName.equals(newDivisionName)&& conferenceName.equals(newConferenceName)
-							&& teamName.equals(newTeamName)) {
-						teamid = teamId;
-					}
 					playerList = teamList.get(teamSet).getPlayerList();
 					for(int playerSet = 0; playerSet< playerList.size();playerSet++) {
 						playerName = playerList.get(playerSet).getPlayerName();
 						position = playerList.get(playerSet).getPosition();
-						int positionId = 1;
+						int positionId = sp.getPositionID(position);
 						captain = playerList.get(playerSet).getCaptain();
 						int captainID = (captain) ? 1 : 0;
 						int playerId = sp.savePlayer(teamId,positionId,playerName,captainID);
@@ -131,27 +122,14 @@ public class DatabaseClass implements IDataBasePersistence{
 				}
 			}
 		}
-		int finalId = sp.loadTeamStateByUser(newTeamName, teamid, newDivisionName, leagueId, newConferenceName);
 	}
 
 	@Override
-	public boolean checkLeagueExistence(OperationModel operationModel) {
-		List<HashMap<String,Object>> leagueValue = new ArrayList<HashMap<String,Object>>();
+	public void loadDetails(OperationModel operationModel) {
 		StoredProcedure sp= new StoredProcedure();
-		int leagueId = sp.getLeagueID(operationModel.getLeagueName());
-		if(leagueValue.isEmpty()) {
-			return false;
-		}
-		return true;
-	}
-
-	@Override
-	public void loadNewTeams(OperationModel operationModel) {
 		ArrayList<HashMap<String,Object>> leagueValue = new ArrayList<HashMap<String,Object>>();
-		StoredProcedure sp= new StoredProcedure();
-		leagueValue = sp.getAllUserStateTeams();
-		operationModel.setNewTeam(leagueValue);
-		
+		leagueValue = sp.fetchAllLeagues();
+		operationModel.setLeagueCheck(leagueValue);
 	}
 
 }

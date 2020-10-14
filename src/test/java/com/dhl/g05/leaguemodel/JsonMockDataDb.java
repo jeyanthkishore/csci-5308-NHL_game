@@ -1,6 +1,7 @@
 package com.dhl.g05.leaguemodel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,8 @@ public class JsonMockDataDb implements ILeagueModel{
 	public List<DivisionObject> divisionList;
 	public List<PlayerObject> freeAgentList;
 	public List<ConferenceObject> conferenceList;
+	public ArrayList<HashMap<String,Object>> leagueList;
+	public HashMap<String,Object> leagueMap;
 	public String teamName = "Striker Six";
 	public String teamTwoName = "Thunder Rockers";
 	public String generalManagerName = "Zidanie Zidane";
@@ -51,6 +54,8 @@ public class JsonMockDataDb implements ILeagueModel{
 		teamList = new ArrayList<TeamObject>();
 		freeAgentList = new ArrayList<PlayerObject>();
 		conferenceList = new ArrayList<ConferenceObject>();
+		leagueList = new ArrayList<HashMap<String,Object>>();
+		leagueMap = new HashMap<String,Object>();
 		league = new LeagueObject();
 		playerOneName =  "Cristiano Ronaldo";
 		positionOne = "forward";
@@ -71,6 +76,10 @@ public class JsonMockDataDb implements ILeagueModel{
 		league.setLeagueName(leagueName);
 		league.setConferenceDetails(conferenceList);
 		league.setFreeAgent(freeAgentList);
+		leagueMap.put("league_name","HockeyLeague");
+		leagueList.add(leagueMap);
+		leagueMap.put("league_name","CanadaLeague");
+		leagueList.add(leagueMap);
 	}
 	
 	public void setLeagueEmpty() {

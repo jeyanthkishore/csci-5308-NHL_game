@@ -2,7 +2,6 @@ package com.dhl.g05.operation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import com.dhl.g05.leaguemodel.JsonMockDataDb;
 
@@ -10,10 +9,7 @@ public class DbPersistanceMock implements IDataBasePersistence{
 
 	@Override
 	public void loadModel(OperationModel operationModel) {
-		if(operationModel.getLeagueName().equals("HockeyLeague")
-				&& operationModel.getConferenceName().equals("Western Conference")
-				&&operationModel.getDivisionName().equals("Atlantic")
-				&& operationModel.getTeamName().equals("Striker Six")) {
+		if(operationModel.getLeagueName().equals("HockeyLeague")) {
 			JsonMockDataDb mockData = new JsonMockDataDb();
 			operationModel.setLeagueObject(mockData.getLeague());
 		}else {
@@ -29,7 +25,7 @@ public class DbPersistanceMock implements IDataBasePersistence{
 		}
 	}
 
-	@Override
+	
 	public boolean checkLeagueExistence(OperationModel operationModel) {
 		if(operationModel.getLeagueName().equalsIgnoreCase("HockeyLeague")) {
 			return true;
@@ -37,7 +33,7 @@ public class DbPersistanceMock implements IDataBasePersistence{
 		return false;
 	}
 
-	@Override
+	
 	public void loadNewTeams(OperationModel operationModel) {
 		ArrayList<HashMap<String,Object>> teamNames = new ArrayList<HashMap<String,Object>>();
 		HashMap<String,Object> team = new HashMap<String,Object>();
@@ -46,5 +42,17 @@ public class DbPersistanceMock implements IDataBasePersistence{
 		team.put("team_name","Cat");
 		teamNames.add(team);
 		operationModel.setNewTeam(teamNames);
+	}
+
+	@Override
+	public void loadDetails(OperationModel operationModel) {
+		ArrayList<HashMap<String,Object>> leagueNames = new ArrayList<HashMap<String,Object>>();
+		HashMap<String,Object> league = new HashMap<String,Object>();
+		league.put("league_name","HockeyLeague");
+		leagueNames.add(league);
+		league = new HashMap<String,Object>();
+		league.put("league_name","CanadaLeague");
+		leagueNames.add(league);
+		operationModel.setLeagueCheck(leagueNames);
 	}
 }

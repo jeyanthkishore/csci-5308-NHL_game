@@ -154,6 +154,7 @@ public class LeagueObjectTest {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setFreeAgentListEmpty();
 		LeagueObject valid = new LeagueObject(mock);
+		valid.setFreeAgent(null);
 		assertTrue(valid.isFreeAgentListEmpty());
 	}
 	@Test

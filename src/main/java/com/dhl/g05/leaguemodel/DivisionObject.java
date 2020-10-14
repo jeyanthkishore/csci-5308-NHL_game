@@ -63,6 +63,9 @@ public class DivisionObject {
 	}
 	
 	public boolean isTeamListEmpty() {
-		return teamDetails.isEmpty();
+		if(teamDetails == null || teamDetails.isEmpty()) {
+			return true;
+		}
+		return false;
 	}
 }
