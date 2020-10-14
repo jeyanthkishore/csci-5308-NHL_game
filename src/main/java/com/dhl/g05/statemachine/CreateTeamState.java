@@ -37,15 +37,20 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean performStateTask() {
-		team = this.getOuterStateMachine().getLeagueModel().createTeam((String)teamDetails.get("teamName"), (String)teamDetails.get("teamManager"), (String)teamDetails.get("teamCoach"), new ArrayList<PlayerObject>());
+		team = new TeamObject((String)teamDetails.get("teamName"), (String)teamDetails.get("teamManager"), (String)teamDetails.get("teamCoach"), new ArrayList<PlayerObject>());
 		
-		if (teamDetails.get("teamName") == null ||teamDetails.get("teamManager") == null||teamDetails.get("teamCoach") == null ){
-			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Missing information, team not created");
+		if (teamDetails.get("teamName") == null || teamDetails.get("teamManager") == null||teamDetails.get("teamCoach") == null ){
+			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Missing feild, team not created");
 			return false;
 		}
-			this.getOuterStateMachine().getLeagueModel().addTeam(conferenceName,divisionName,team);
-			
+	
+		if  (this.getOuterStateMachine().getLeagueModel().addTeamToCurrentLeague(conferenceName,divisionName,team)) {
 			return true;
+		} else {
+			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Conference/Division combo does not exist in current league ");
+			return false;
+		}
+			
 	}
 
 	@Override
@@ -54,7 +59,7 @@ public class CreateTeamState extends AbstractState {
 			this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(), "Enter number of seasons to simulate", new SimulateState(this.getOuterStateMachine())));
 			return true;
 		}
-		//TODO: error reporting
+		
 		 return false;
 	}
 

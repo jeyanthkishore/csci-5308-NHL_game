@@ -1,10 +1,11 @@
-package com.dhl.g05.statemachine;
+package com.dhl.g05.statemachine.mocks;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.dhl.g05.leaguemodel.*;
+import com.dhl.g05.statemachine.ILeagueModel;
 
 public class MockLeagueModelValidationFails implements ILeagueModel{
 private LeagueObject league;
@@ -20,28 +21,8 @@ private LeagueObject league;
 	}
 
 	@Override
-	public LeagueObject createLeague(String league, ArrayList<ConferenceObject> conferencedetail,
-			ArrayList<PlayerObject> agent) {
-		return null;
-	}
-
-	@Override
-	public ConferenceObject createConference(String conference, List<DivisionObject> divisiondetail) {
-		return null;
-	}
-
-	@Override
-	public DivisionObject createDivision(String division, ArrayList<TeamObject> teamdetail) {
-		return null;
-	}
-
-	@Override
-	public TeamObject createTeam(String team, String coach, String manager, ArrayList<PlayerObject> players) {
-		return null;
-	}
-
-	@Override
-	public PlayerObject createPlayer(String name, String position, Boolean captain) {
+	public LeagueObject createLeague(String league, List<ConferenceObject> conferencedetail,
+			List<PlayerObject> agent) {
 		return null;
 	}
 
@@ -76,13 +57,18 @@ private LeagueObject league;
 	}
 	
 	@Override
-	public boolean addTeam(String conferenceName, String divisionName, TeamObject team) {
+	public boolean addTeamToCurrentLeague(String conferenceName, String divisionName, TeamObject team) {
 		return false;
 	}
 
 	@Override
-	public boolean loadTeam(String leagueName, String conference,String division,String team) {
+	public boolean loadTeam(String team) {
 		return false;
+	}
+
+	@Override
+	public TeamObject getCurrentTeam() {
+		return null;
 	}
 
 }

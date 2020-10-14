@@ -5,17 +5,18 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dhl.g05.statemachine.mocks.MockLeagueModel;
+import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
+
 public class StateMachineTest {
 	StateMachine stateMachine;
 	StateMock state;
 
 	@Before
 	public void init() {
-		stateMachine = new StateMachine();
+		stateMachine = new StateMachine(new MockPlayerCommunication(),new MockLeagueModel());
 		state = new StateMock(stateMachine);
 		stateMachine.setCurrentState(state);
-		stateMachine.setLeagueModel(new MockLeagueModel());
-		stateMachine.setPlayerCommunication(new MockPlayerCommunication());
 		state.setNextState(null);
 	}
 

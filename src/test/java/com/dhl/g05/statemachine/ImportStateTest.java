@@ -5,18 +5,18 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dhl.g05.statemachine.mocks.MockLeagueModel;
+import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
+
 public class ImportStateTest {
 	private ImportState state;
 	private StateMachine stateMachine;
 	
 	@Before
 	public void init() {
-		stateMachine = new StateMachine();
+		stateMachine = new StateMachine(new MockPlayerCommunication(),new MockLeagueModel());
 		state = new ImportState(stateMachine);
 		stateMachine.setCurrentState(state);
-		stateMachine.setPlayerCommunication(new MockPlayerCommunication());
-		stateMachine.setLeagueModel(new MockLeagueModel());
-
 	}
 
 	@Test
@@ -30,7 +30,7 @@ public class ImportStateTest {
 		state.setFileName("src/test/java/com/dhl/g05/jsontestfiles/jsonGoodInfo.json");
 		assertTrue(state.performStateTask());
 		assertNotNull(state.getOuterStateMachine());
-		assertNotNull(state.getOuterStateMachine().getLeague());
+		assertNotNull(state.getOuterStateMachine().getLeagueModel().getLeague());
 	}
 
 	@Test

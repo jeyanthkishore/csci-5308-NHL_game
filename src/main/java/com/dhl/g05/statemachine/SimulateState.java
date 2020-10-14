@@ -5,7 +5,7 @@ public class SimulateState extends AbstractState {
 	
 	public SimulateState(StateMachine stateMachine) {
 		super(stateMachine);
-		this.setInnerStateMachine(new StateMachine());
+		this.setInnerStateMachine(new StateMachine(this.getOuterStateMachine().getPlayerCommunication(), this.getOuterStateMachine().getLeagueModel()));
 	}
 
 	@Override
