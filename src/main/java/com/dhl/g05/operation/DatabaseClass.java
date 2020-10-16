@@ -109,7 +109,9 @@ public class DatabaseClass implements IDataBasePersistence{
 					teamName = teamList.get(teamSet).getTeamName();
 					managerName = teamList.get(teamSet).getGeneralManagerName();
 					coachName = teamList.get(teamSet).getHeadCoachName();
-					int teamId = sp.saveTeam(teamName,managerName,divId,coachName);
+					int managerId = sp.saveManager(managerName);
+					int coachId = sp.saveCoach(coachName);
+					int teamId = sp.saveTeam(teamName,managerId,divId,coachId);
 					playerList = teamList.get(teamSet).getPlayerList();
 					for(int playerSet = 0; playerSet< playerList.size();playerSet++) {
 						playerName = playerList.get(playerSet).getPlayerName();
@@ -126,10 +128,9 @@ public class DatabaseClass implements IDataBasePersistence{
 		for(int playerSet = 0; playerSet< freeAgent.size();playerSet++) {
 			playerName = playerList.get(playerSet).getPlayerName();
 			position = playerList.get(playerSet).getPosition();
-			int positionId = sp.getPositionID(position);
-			int captainId = 1;
-			int playerId = sp.saveFreeAgent(playerName,position,captainId,leagueName);
+			int playerId = sp.saveFreeAgent(playerName,position,leagueName);
 		}
+		operationModel.setResult("success");
 	}
 
 	@Override
