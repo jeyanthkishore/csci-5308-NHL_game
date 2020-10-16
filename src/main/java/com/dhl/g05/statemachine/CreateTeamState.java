@@ -37,6 +37,8 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean performStateTask() {
+		this.setNextState(new CreateTeamState(this.getOuterStateMachine()));
+		
 		team = new TeamObject((String)teamDetails.get("teamName"), (String)teamDetails.get("teamManager"), (String)teamDetails.get("teamCoach"), new ArrayList<PlayerObject>());
 		
 		if (teamDetails.get("teamName") == null || teamDetails.get("teamManager") == null||teamDetails.get("teamCoach") == null ){
@@ -46,7 +48,9 @@ public class CreateTeamState extends AbstractState {
 	
 		if  (this.getOuterStateMachine().getLeagueModel().addTeamToCurrentLeague(conferenceName,divisionName,team)) {
 			return true;
+			
 		} else {
+		
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Conference/Division combo does not exist in current league ");
 			return false;
 		}
@@ -59,8 +63,8 @@ public class CreateTeamState extends AbstractState {
 			this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(), "Enter number of seasons to simulate", new SimulateState(this.getOuterStateMachine())));
 			return true;
 		}
-		
-		 return false;
+
+		return false;
 	}
 
 	public Map<String,Object> getTeamDetails() {

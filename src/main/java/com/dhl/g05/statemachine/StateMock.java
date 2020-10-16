@@ -13,7 +13,7 @@ public class StateMock extends AbstractState {
 
 	@Override
 	public boolean performStateTask() {
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Simulating season for team: "+ this.getOuterStateMachine().getLeagueModel().getCurrentTeam());
+		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Simulating season for team: "+ this.getOuterStateMachine().getLeagueModel().getCurrentTeam().getTeamName());
 		return true;
 	}
 

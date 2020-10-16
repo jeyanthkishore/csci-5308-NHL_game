@@ -28,11 +28,10 @@ public class LeagueModel implements ILeagueModel{
 	public void setLeague(LeagueObject league) {
 		this.league = league;
 	}
-
+	
 	@Override
 	public boolean persistLeague() { 
 		try {
-			//TODO: change when operation model updated, currently saves league to db
 			OperationModel operation = new OperationModel(league,database);
 			return true;
 		} catch (Exception e) {
@@ -54,6 +53,7 @@ public class LeagueModel implements ILeagueModel{
 				for (DivisionObject d: divisions) {
 					if (d.getDivisionName().equalsIgnoreCase(divisionName)) {
 						d.getTeamDetails().add(team);
+						currentTeam = team;
 						return true;
 					}
 				}
@@ -63,24 +63,32 @@ public class LeagueModel implements ILeagueModel{
 		return false;
 	}
 
+	
 	@Override
-	public boolean loadTeam(String team) {
+	public boolean loadTeam(String leagueName, String conferenceName, String divisionName, String teamName) {
 		try {
-			//TODO: change when operation model updated // currently does not load a team
-			OperationModel operation = new OperationModel(team, database);
+			
+			OperationModel operation = new OperationModel(leagueName, database);
 			this.league = operation.getLeagueObject();
-			this.currentTeam = this.getTeamFromLeagueObject(this.league, team);
-			return true;
+			this.currentTeam = this.getTeamFromLeagueObject(this.league, teamName);
+			return (currentTeam!=null);
+			
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 			return false;
+			
 		}
 	}
 	
 
-	
 	public TeamObject getTeamFromLeagueObject(LeagueObject leagueObject, String teamName) {
+		if (league == null) {
+			return null;
+		}
+		
 		TeamObject team = null;
+		
 		List<ConferenceObject> conferences = league.getConferenceDetails();
 		for (ConferenceObject c: conferences) {
 			List<DivisionObject> divisions = c.getDivisionDetails();
