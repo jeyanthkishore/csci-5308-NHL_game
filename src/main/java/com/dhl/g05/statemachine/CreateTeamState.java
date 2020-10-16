@@ -63,8 +63,8 @@ public class CreateTeamState extends AbstractState {
 			this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(), "Enter number of seasons to simulate", new SimulateState(this.getOuterStateMachine())));
 			return true;
 		}
-		
-		 return false;
+
+		return false;
 	}
 
 	public Map<String,Object> getTeamDetails() {

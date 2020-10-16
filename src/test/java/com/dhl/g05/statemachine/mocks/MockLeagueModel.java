@@ -36,7 +36,7 @@ public class MockLeagueModel implements ILeagueModel{
 	}
 
 	@Override
-	public boolean loadTeam(String team) {
+	public boolean loadTeam(String leagueName, String conferenceName, String divisionName, String teamName) {
 		return true;
 	}
 

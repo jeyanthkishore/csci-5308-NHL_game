@@ -1,11 +1,8 @@
 package com.dhl.g05.statemachine;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class LoadTeamState extends AbstractState{
 
-	private Map<String,Object> teamDetails;
 	private String teamName;
 	private String leagueName;
 	private String conferenceName;
@@ -18,17 +15,24 @@ public class LoadTeamState extends AbstractState{
 	@Override
 	public boolean enter() {
 		
-		teamDetails = new HashMap<String,Object>();
+		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter league name:");
+		leagueName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
+		
+		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter conference name:");
+		conferenceName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
+
+		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter division name:");
+		divisionName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
+
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team name:");
 		teamName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
-		teamDetails.put("teamName", teamName);
 	
 		return true;
 	}
 
 	@Override
 	public boolean performStateTask() {
-		if (this.getOuterStateMachine().getLeagueModel().loadTeam(teamName)) {
+		if (this.getOuterStateMachine().getLeagueModel().loadTeam(leagueName, conferenceName, divisionName, teamName)) {
 			return true;
 		} else {
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Team does not exist");
@@ -42,14 +46,14 @@ public class LoadTeamState extends AbstractState{
 		return true;
 	}
 	
+	public String getTeamName() {
+		return teamName;
+	}
 	
-	public Map<String,Object> getTeamDetails() {
-		return teamDetails;
+	public void setTeamName(String name) {
+		this.teamName = name;
 	}
-
-	public void setTeamDetails(Map<String,Object> teamDetails) {
-		this.teamDetails = teamDetails;
-		
-	}
+	
+	
 
 }
