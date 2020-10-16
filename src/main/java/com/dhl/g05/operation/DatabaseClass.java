@@ -7,6 +7,7 @@ import java.util.List;
 import com.dhl.g05.db.StoredProcedure;
 import com.dhl.g05.leaguemodel.ConferenceObject;
 import com.dhl.g05.leaguemodel.DivisionObject;
+import com.dhl.g05.leaguemodel.FreeAgentObject;
 import com.dhl.g05.leaguemodel.LeagueObject;
 import com.dhl.g05.leaguemodel.PlayerObject;
 import com.dhl.g05.leaguemodel.TeamObject;
@@ -14,7 +15,7 @@ import com.dhl.g05.leaguemodel.TeamObject;
 public class DatabaseClass implements IDataBasePersistence{
 	private LeagueObject leagueObject = new LeagueObject();
 	private List<ConferenceObject> conferenceList = new ArrayList<ConferenceObject>();
-	private List<PlayerObject> freeAgent = new ArrayList<PlayerObject>();
+	private List<FreeAgentObject> freeAgent = new ArrayList<FreeAgentObject>();
 	private List<PlayerObject> playerList = new ArrayList<PlayerObject>();
 	private List<TeamObject> teamList = new ArrayList<TeamObject>();
 	private List<DivisionObject> divisionList = new ArrayList<DivisionObject>();
@@ -74,8 +75,7 @@ public class DatabaseClass implements IDataBasePersistence{
 		for(int agentSet =0;agentSet < agentValue.size();agentSet++) {
 			playerName = agentValue.get(agentSet).get("agent_name").toString();
 			position = agentValue.get(agentSet).get("position_name").toString();
-			captain = Boolean.parseBoolean(agentValue.get(agentSet).get("agent_is_captain").toString());
-			freeAgent.add(new PlayerObject(playerName,position,captain));
+			freeAgent.add(new FreeAgentObject(playerName,position));
 		}
 		leagueObject.setFreeAgent(freeAgent);
 		leagueObject.setLeagueName(league_name);
@@ -121,6 +121,14 @@ public class DatabaseClass implements IDataBasePersistence{
 					}
 				}
 			}
+		}
+		freeAgent = league.getFreeAgent();
+		for(int playerSet = 0; playerSet< freeAgent.size();playerSet++) {
+			playerName = playerList.get(playerSet).getPlayerName();
+			position = playerList.get(playerSet).getPosition();
+			int positionId = sp.getPositionID(position);
+			int captainId = 1;
+			int playerId = sp.saveFreeAgent(playerName,position,captainId,leagueName);
 		}
 	}
 

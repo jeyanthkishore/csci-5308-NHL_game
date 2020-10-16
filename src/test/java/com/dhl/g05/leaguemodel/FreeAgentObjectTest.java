@@ -8,74 +8,61 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-public class PlayerObjectTest {
+public class FreeAgentObjectTest {
 	
 	@Test
 	public void constructorTest() {
-		PlayerObject object = new PlayerObject();
+		FreeAgentObject object = new FreeAgentObject();
 		assertNull(object.getPlayerName());
 		assertNull(object.getPosition());
-		assertNull(object.getCaptain());
 	}
 	@Test
 	public void setPlayerNameTest() {
-		PlayerObject object = new PlayerObject();
+		FreeAgentObject object = new FreeAgentObject();
 		object.setPlayerName("Ronaldo");
 		assertSame(object.getPlayerName(),"Ronaldo");
 	}
 	@Test
 	public void getPlayerNameTest() {
-		PlayerObject object = new PlayerObject();
+		FreeAgentObject object = new FreeAgentObject();
 		object.setPlayerName("Ronaldo");
 		assertSame(object.getPlayerName(),"Ronaldo");
 	}
 	@Test
 	public void setPositionTest() {
-		PlayerObject object = new PlayerObject();
+		FreeAgentObject object = new FreeAgentObject();
 		object.setPosition("forward");
 		assertSame(object.getPosition(),"forward");
 	}
 	@Test
 	public void getPositionTest() {
-		PlayerObject object = new PlayerObject();
+		FreeAgentObject object = new FreeAgentObject();
 		object.setPosition("forward");
 		assertSame(object.getPosition(),"forward");
 	}
 	@Test
 	public void getResultTest() {
-		PlayerObject object = new PlayerObject();
+		FreeAgentObject object = new FreeAgentObject();
 		object.setResult("success");
 		assertEquals("success",object.getResult());
 	}
 	@Test
 	public void setResultTest() {
-		PlayerObject object = new PlayerObject();
+		FreeAgentObject object = new FreeAgentObject();
 		object.setResult("success");
 		assertEquals("success",object.getResult());
 	}
 	@Test
-	public void setCaptainTest() {
-		PlayerObject object = new PlayerObject();
-		object.setCaptain(true);
-		assertTrue(object.getCaptain());
-	}
-	@Test
-	public void getCaptainTest() {
-		PlayerObject object = new PlayerObject();
-		object.setCaptain(true);
-		assertTrue(object.getCaptain());
-	}
-	@Test
 	public void playerListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		PlayerObject validate = new PlayerObject(mock);
+		FreeAgentObject validate = new FreeAgentObject(mock);
 		assertFalse(validate.isPlayerDetailsEmpty());
 	}
 	
 	@Test
 	public void checkPlayerDetailsEmpty() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		PlayerObject validate = new PlayerObject(mock);
+		FreeAgentObject validate = new FreeAgentObject(mock);
 		assertFalse(validate.isPlayerDetailsEmpty());
 	}
 	
@@ -83,7 +70,7 @@ public class PlayerObjectTest {
 	public void playerNameEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPlayerNameEmpty();
-		PlayerObject validate = new PlayerObject(mock);
+		FreeAgentObject validate = new FreeAgentObject(mock);
 		assertTrue(validate.isPlayerDetailsEmpty());
 	}
 	
@@ -91,7 +78,7 @@ public class PlayerObjectTest {
 	public void playerNameNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPlayerNameNull();
-		PlayerObject validate = new PlayerObject(mock);
+		FreeAgentObject validate = new FreeAgentObject(mock);
 		assertTrue(validate.isPlayerDetailsNull());
 	}
 
@@ -99,7 +86,7 @@ public class PlayerObjectTest {
 	public void playerPositionEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPlayerPositionEmpty();
-		PlayerObject validate = new PlayerObject(mock);
+		FreeAgentObject validate = new FreeAgentObject(mock);
 		assertTrue(validate.isPlayerDetailsEmpty());
 	}
 	
@@ -107,14 +94,14 @@ public class PlayerObjectTest {
 	public void playerPositionNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPlayerPostitionNull();
-		PlayerObject validate = new PlayerObject(mock);
+		FreeAgentObject validate = new FreeAgentObject(mock);
 		assertTrue(validate.isPlayerDetailsNull());
 	}
 	
 	@Test
 	public void playerPositionValidTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		PlayerObject validate = new PlayerObject(mock);
+		FreeAgentObject validate = new FreeAgentObject(mock);
 		assertTrue(validate.isPlayerPositionValid());
 	}
 	
@@ -122,32 +109,23 @@ public class PlayerObjectTest {
 	public void playerPositionCheckTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPositionDifferent();
-		PlayerObject validate = new PlayerObject(mock);
+		FreeAgentObject validate = new FreeAgentObject(mock);
 		assertFalse(validate.isPlayerPositionValid());
 	}
 	
 	@Test
-	public void captainNullTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setCaptainNull();
-		PlayerObject validate = new PlayerObject(mock);
-		assertTrue(validate.isCaptainNull());
-	}
-	@Test
 	public void validatePlayerTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		PlayerObject validate = new PlayerObject(mock);
+		FreeAgentObject validate = new FreeAgentObject(mock);
 		assertEquals("success",validate.validate());
 		mock.setPlayerPositionEmpty();
-		validate = new PlayerObject(mock);
+		validate = new FreeAgentObject(mock);
 		assertEquals("Player Should Not have Empty Value",validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setPositionDifferent();
-		validate = new PlayerObject(mock);
+		validate = new FreeAgentObject(mock);
 		assertEquals("Player Position Is Wrong",validate.validate());
-		mock = new JsonMockDataDb();
-		mock.setCaptainNull();
-		validate = new PlayerObject(mock);
-		assertEquals("Captain Cannot be Null",validate.validate());
 	}
+
+
 }

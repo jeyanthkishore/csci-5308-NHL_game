@@ -22,7 +22,7 @@ private LeagueObject league;
 
 	@Override
 	public LeagueObject createLeague(String league, List<ConferenceObject> conferencedetail,
-			List<PlayerObject> agent) {
+			List<FreeAgentObject> agent) {
 		return null;
 	}
 
