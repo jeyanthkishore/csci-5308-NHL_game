@@ -62,7 +62,7 @@ public class LeagueModelCreator {
 		if (leagueData == null) return null;
 		
 		ArrayList<ConferenceObject> conferences = createConferences((JSONArray)leagueData.get("conferences"));
-		ArrayList<PlayerObject> freeAgents = createFreeAgents((JSONArray)leagueData.get("freeAgents"));
+		ArrayList<FreeAgentObject> freeAgents = createFreeAgents((JSONArray)leagueData.get("freeAgents"));
 		
 		String leagueName = (String)leagueData.get("leagueName");
 		
@@ -221,10 +221,43 @@ public class LeagueModelCreator {
 		return players;
 	}
 	
-	private ArrayList<PlayerObject> createFreeAgents(JSONArray freeAgents) {
-		
-		return createPlayers(freeAgents);	
+	private ArrayList<FreeAgentObject> createFreeAgents(JSONArray jsonPlayers) { 
+		if (jsonPlayers == null) return null;
 	
+		ArrayList<FreeAgentObject> players = new ArrayList<>();
+		
+		for (Object p: jsonPlayers) {
+			
+			
+			
+			String playerName = (String)((JSONObject) p).get("playerName");
+			String position = (String)((JSONObject) p).get("position");
+			
+			if (playerName == null ||position == null) {
+				playerCommunication.sendMessage("player missing field");
+				return null;
+				
+			}
+			
+			FreeAgentObject newPlayer = new FreeAgentObject(playerName, position);
+			
+				
+			String validationResult  = newPlayer.getResult();
+
+			if (validationResult.equalsIgnoreCase("Success")) {
+				
+				players.add(newPlayer);
+				
+			} else {
+				
+				playerCommunication.sendMessage(validationResult);
+				return null;
+				
+			}
+				
+		}
+		
+		return players;
 	}
 	
 }

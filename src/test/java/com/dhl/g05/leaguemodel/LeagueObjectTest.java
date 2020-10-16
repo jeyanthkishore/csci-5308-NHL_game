@@ -197,21 +197,6 @@ public class LeagueObjectTest {
 	}
 	
 	@Test
-	public void checkFreeAgentCaptainEmpty() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setFreeAgentCaptainEmpty();
-		LeagueObject valid = new LeagueObject(mock);
-		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
-	}
-	
-	@Test
-	public void checkFreeAgentCaptainNull() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setFreeAgentCaptainNull();
-		LeagueObject valid = new LeagueObject(mock);
-		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
-	}
-	@Test
 	public void checkFreeAgentWrongPositionTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		LeagueObject valid = new LeagueObject(mock);
@@ -223,13 +208,6 @@ public class LeagueObjectTest {
 		mock.setFreeAgentPositionDifferent();
 		LeagueObject valid = new LeagueObject(mock);
 		assertTrue(valid.isFreeAgentPositionWrong());
-	}
-	@Test
-	public void agentCaptainTrueTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setFreeAgentCaptainTrueBoolean();
-		LeagueObject valid = new LeagueObject(mock);
-		assertTrue(valid.isAgentCaptainTrue());
 	}
 	@Test
 	public void validateLeagueTest() {
@@ -259,9 +237,5 @@ public class LeagueObjectTest {
 		mock.setFreeAgentPositionDifferent();
 		valid = new LeagueObject(mock);
 		assertEquals("Position Of The Player Cannot Be Different",valid.validate());
-		mock = new JsonMockDataDb();
-		mock.setFreeAgentCaptainTrueBoolean();
-		valid = new LeagueObject(mock);
-		assertEquals("Free Agent Cannot Be Captain",valid.validate());
 	}
 }

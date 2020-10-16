@@ -15,7 +15,7 @@ public class LeagueModel implements ILeagueModel{
 		this.database = database;
 	}
 	
-	public LeagueObject createLeague(String leagueName, List<ConferenceObject> conferences, List<PlayerObject> freeAgents) {
+	public LeagueObject createLeague(String leagueName, List<ConferenceObject> conferences, List<FreeAgentObject> freeAgents) {
 		return new LeagueObject(leagueName, conferences, freeAgents, database);
 	}
 	
