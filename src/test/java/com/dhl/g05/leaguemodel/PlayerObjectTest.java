@@ -8,6 +8,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.dhl.g05.operation.DbPersistanceMock;
+
 public class PlayerObjectTest {
 	
 	@Test
@@ -149,5 +151,20 @@ public class PlayerObjectTest {
 		mock.setCaptainNull();
 		validate = new PlayerObject(mock);
 		assertEquals("Captain Cannot be Null",validate.validate());
+	}
+	
+	@Test
+	public void savePlayerObjectTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock data = new DbPersistanceMock();
+		PlayerObject valid = new PlayerObject(mock);
+		assertEquals(1,valid.savePlayerObject(1,data));
+	}
+	@Test
+	public void loadPlayerObjectTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock data = new DbPersistanceMock();
+		PlayerObject valid = new PlayerObject(mock);
+		assertEquals(1,valid.loadPlayerObject(1,data));
 	}
 }

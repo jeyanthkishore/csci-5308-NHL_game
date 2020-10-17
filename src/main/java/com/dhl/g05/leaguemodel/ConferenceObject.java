@@ -1,6 +1,8 @@
 package com.dhl.g05.leaguemodel;
 import java.util.List;
 
+import com.dhl.g05.operation.IDataBasePersistence;
+
 public class ConferenceObject {
 	
 	private String conferenceName;
@@ -21,6 +23,12 @@ public class ConferenceObject {
 		result = validate();
 	}
 	
+	public int saveConferenceObject(int leagueId,IDataBasePersistence database) {
+		return database.saveConferenceObject(leagueId,this);
+	}
+	public int loadConferenceObject(int leagueId,IDataBasePersistence database) {
+		return database.loadConferenceObject(leagueId,this);
+	}
 	public String getResult() {
 		return result;
 	}
