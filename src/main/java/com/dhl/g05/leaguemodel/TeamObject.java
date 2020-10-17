@@ -2,6 +2,8 @@ package com.dhl.g05.leaguemodel;
 
 import java.util.List;
 
+import com.dhl.g05.operation.IDataBasePersistence;
+
 public class TeamObject {
 	
 	private String teamName;
@@ -29,6 +31,12 @@ public class TeamObject {
 		result = validate();
 	}
 
+	public int saveTeamObject(int divisionId,IDataBasePersistence database) {
+		return database.saveTeamObject(divisionId,this);
+	}
+	public int loadTeamObject(int divisionId,IDataBasePersistence database) {
+		return database.loadTeamObject(divisionId,this);
+	}
 	public String getResult() {
 		return result;
 	}

@@ -1,5 +1,7 @@
 package com.dhl.g05.leaguemodel;
 
+import com.dhl.g05.operation.IDataBasePersistence;
+
 public class PlayerObject extends FreeAgentObject{
 	
 	private Boolean captain;
@@ -17,6 +19,12 @@ public class PlayerObject extends FreeAgentObject{
 		result = validate();
 	}
 	
+	public int savePlayerObject(int teamId,IDataBasePersistence database) {
+		return database.savePlayerObject(teamId,this);
+	}
+	public int loadPlayerObject(int teamId,IDataBasePersistence database) {
+		return database.loadPlayerObject(teamId,this);
+	}
 
 	public String getResult() {
 		return result;

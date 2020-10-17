@@ -8,6 +8,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.dhl.g05.operation.DbPersistanceMock;
+
 public class TeamObjectTest{
 	@Test
 	public void TeamObjectConstructorTest() {
@@ -231,5 +233,21 @@ public class TeamObjectTest{
 		mock.removeCaptain();
 		validate = new TeamObject(mock);
 		assertEquals("Team Must Contain Atleast One Captain",validate.validate());
+	}
+	
+	@Test
+	public void saveTeamObjectTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock data = new DbPersistanceMock();
+		TeamObject valid = new TeamObject(mock);
+		assertEquals(1,valid.saveTeamObject(1,data));
+	}
+	
+	@Test
+	public void loadTeamObjectTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock data = new DbPersistanceMock();
+		TeamObject valid = new TeamObject(mock);
+		assertEquals(1,valid.loadTeamObject(1,data));
 	}
 }

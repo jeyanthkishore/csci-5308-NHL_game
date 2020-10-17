@@ -64,6 +64,12 @@ public class LeagueObject {
 		this.result = result;
 	}
 	
+	public int saveLeagueObject(IDataBasePersistence database) {
+		return database.saveLeagueObject(this);
+	}
+	public int loadLeagueObject(String leagueName,IDataBasePersistence database) {
+		return database.loadLeagueObject(leagueName,this);
+	}
 	public String validate() {
     	if(isLeagueNameEmptyOrNull()) {
     		return "League Name Is Empty";
@@ -82,6 +88,9 @@ public class LeagueObject {
     	}
     	if(isFreeAgentPositionWrong()) {
     		return "Position Of The Player Cannot Be Different";
+    	}
+    	if(checkLeaguePresent()) {
+    		return "League Already Present";
     	}
     	return "success";
 	}
