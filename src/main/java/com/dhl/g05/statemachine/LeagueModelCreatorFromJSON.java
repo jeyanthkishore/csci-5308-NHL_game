@@ -65,20 +65,28 @@ public class LeagueModelCreatorFromJSON {
 		
 			JSONObject gamePlayConfigs = (JSONObject) leagueData.get("gameplayConfig");
 			
-			JSONObject training = (JSONObject)gamePlayConfigs.get("training");
-			
-			JSONObject aging = (JSONObject)gamePlayConfigs.get("aging");
-			
-			JSONObject gameResolver = (JSONObject)gamePlayConfigs.get("gameResolver");
-			
-			JSONObject injuries = (JSONObject)gamePlayConfigs.get("injuries");
-			
-			JSONObject trading = (JSONObject)gamePlayConfigs.get("trading");
-			
-			if (setTrainingConfig(training) == false) {
+			if (gamePlayConfigs == null) {
 				
 				return false;
 				
+			} else {
+			
+				JSONObject training = (JSONObject)gamePlayConfigs.get("training");
+				
+				JSONObject aging = (JSONObject)gamePlayConfigs.get("aging");
+				
+				JSONObject gameResolver = (JSONObject)gamePlayConfigs.get("gameResolver");
+				
+				JSONObject injuries = (JSONObject)gamePlayConfigs.get("injuries");
+				
+				JSONObject trading = (JSONObject)gamePlayConfigs.get("trading");
+				
+				if (setTrainingConfig(training) == false) {
+					
+					return false;
+					
+				}
+			
 			}
 		
 		}
@@ -107,6 +115,8 @@ public class LeagueModelCreatorFromJSON {
 	
 	
 	public boolean createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException {
+		
+		setGamePlayConfigsFromFile(fileName);
 		
 		File file = new File(fileName);
 		reader = new FileReader(file);

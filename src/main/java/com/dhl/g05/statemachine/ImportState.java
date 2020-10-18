@@ -42,8 +42,6 @@ public class ImportState extends AbstractState{
 			
 			creator.createLeagueFromFile(fileName);
 			
-			//creator.setGamePlayConfigsFromFile(fileName);
-			
 			if (this.getOuterStateMachine().getLeagueModel().getLeague() == null) {
 				
 				this.getOuterStateMachine().getPlayerCommunication().sendMessage("Could not create league from file, try again");
