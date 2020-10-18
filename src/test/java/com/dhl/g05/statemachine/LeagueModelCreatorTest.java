@@ -9,7 +9,7 @@ import org.json.simple.parser.ParseException;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dhl.g05.simulation.Date;
+
 import com.dhl.g05.statemachine.mocks.MockLeagueModel;
 import com.dhl.g05.statemachine.mocks.MockLeagueModelValidationFails;
 import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
@@ -17,13 +17,13 @@ import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
 
 
 
-public class LeagueModelCreatorFromJSONTest {
-	LeagueModelCreatorFromJSON leagueModelCreator;
+public class LeagueModelCreatorTest {
+	LeagueModelCreator leagueModelCreator;
 	Exception exception;
 	
 	@Before
 	public void init() {
-		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModel(), new MockPlayerCommunication());
+		leagueModelCreator = new LeagueModelCreator(new MockLeagueModel(), new MockPlayerCommunication());
 		exception = new Exception();
 	}
 	
@@ -38,17 +38,6 @@ public class LeagueModelCreatorFromJSONTest {
 	}
 	
 
-	@Test
-	public void testDateObjectHasDaysUntilStatIncreaseCheck() {
-		try {
-			leagueModelCreator.setGamePlayConfigsFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonM2Format.json");
-		} catch (IOException | ParseException e) {
-			e.printStackTrace();
-		}
-		
-		assertEquals(Date.getInstance().getDaysUntilStatIncreaseCheck(),100);
-	}
-	
 	@Test
 	public void testCreateLeagueFromFileNoFile() {
 		try {
@@ -93,7 +82,7 @@ public class LeagueModelCreatorFromJSONTest {
 	
 	@Test
 	public void testCreateLeagueFromFilePlayersBad() {
-		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
+		leagueModelCreator = new LeagueModelCreator(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
 		boolean result = true;
 		try {
 			result  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadPlayerInfo.json");
@@ -107,7 +96,7 @@ public class LeagueModelCreatorFromJSONTest {
 
 	@Test
 	public void testCreateLeagueFromFileTeamsBad() {
-		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
+		leagueModelCreator = new LeagueModelCreator(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
 		boolean result = true;
 		try {
 			result  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadTeamInfo.json");
@@ -120,7 +109,7 @@ public class LeagueModelCreatorFromJSONTest {
 	
 	@Test
 	public void testCreateLeagueFromFileDivisionsBad() {
-		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
+		leagueModelCreator = new LeagueModelCreator(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
 		boolean result = true;
 		try {
 			result  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadDivisionInfo.json");
@@ -134,7 +123,7 @@ public class LeagueModelCreatorFromJSONTest {
 	
 	@Test
 	public void testCreateLeagueFromFileConferencesBad() {
-		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
+		leagueModelCreator = new LeagueModelCreator(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
 		boolean result = true;
 		try {
 			result = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadConferenceInfo.json");
@@ -147,7 +136,7 @@ public class LeagueModelCreatorFromJSONTest {
 	
 	@Test
 	public void testCreateLeagueFromFileFreeAgentsBad() {
-		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
+		leagueModelCreator = new LeagueModelCreator(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
 		boolean result = true;
 		try {
 			result  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadFreeAngentInfo.json");

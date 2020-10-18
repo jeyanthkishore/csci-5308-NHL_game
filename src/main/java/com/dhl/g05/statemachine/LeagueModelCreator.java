@@ -5,8 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -14,16 +13,15 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import com.dhl.g05.leaguemodel.*;
-import com.dhl.g05.simulation.Date;
 
-public class LeagueModelCreatorFromJSON {
+public class LeagueModelCreator {
 	
 	private FileReader reader;
 	private JSONParser parser;
 	private ILeagueModel leagueModel;
 	private IPlayerCommunication playerCommunication;
 
-	public LeagueModelCreatorFromJSON(ILeagueModel leagueModel, IPlayerCommunication playerCommunication) {
+	public LeagueModelCreator(ILeagueModel leagueModel, IPlayerCommunication playerCommunication) {
 		parser = new JSONParser();
 		this.leagueModel = leagueModel;
 		this.playerCommunication = playerCommunication;
@@ -49,74 +47,7 @@ public class LeagueModelCreatorFromJSON {
 		return false;
 	}
 	
-	public boolean setGamePlayConfigsFromFile(String fileName) throws IOException, ParseException {
-		
-		File file = new File(fileName);
-		
-		reader = new FileReader(file);
-		
-		JSONObject leagueData = (JSONObject)parser.parse(reader);
-		
-		if (leagueData == null) {
-			
-			return false;
-			
-		} else {
-		
-			JSONObject gamePlayConfigs = (JSONObject) leagueData.get("gameplayConfig");
-			
-			if (gamePlayConfigs == null) {
-				
-				return false;
-				
-			} else {
-			
-				JSONObject training = (JSONObject)gamePlayConfigs.get("training");
-				
-				JSONObject aging = (JSONObject)gamePlayConfigs.get("aging");
-				
-				JSONObject gameResolver = (JSONObject)gamePlayConfigs.get("gameResolver");
-				
-				JSONObject injuries = (JSONObject)gamePlayConfigs.get("injuries");
-				
-				JSONObject trading = (JSONObject)gamePlayConfigs.get("trading");
-				
-				if (setTrainingConfig(training) == false) {
-					
-					return false;
-					
-				}
-			
-			}
-		
-		}
-		
-		return true;
-	
-	}
-	
-	private boolean setTrainingConfig(JSONObject training) {
-		
-		if (training == null) {
-			
-			return false;
-			
-		} else {
-			
-			Number daysUntilStatIncreaseCheck =  (Number) training.get("daysUntilStatIncreaseCheck");
-			
-			Date.getInstance().setDaysUntilStatIncreaseCheck(daysUntilStatIncreaseCheck.intValue());
-			
-			return true;
-			
-		}
-		
-	}
-	
-	
 	public boolean createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException {
-		
-		setGamePlayConfigsFromFile(fileName);
 		
 		File file = new File(fileName);
 		reader = new FileReader(file);
