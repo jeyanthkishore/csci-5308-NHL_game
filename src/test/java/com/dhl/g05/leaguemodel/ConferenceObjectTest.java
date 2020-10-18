@@ -8,6 +8,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.dhl.g05.operation.DbPersistanceMock;
+
 public class ConferenceObjectTest {
 	@Test
 	public void conferenceConstructorTest() {
@@ -134,5 +136,20 @@ public class ConferenceObjectTest {
 		mock.removeOneDivision();
 		validate = new ConferenceObject(mock); 
 		assertEquals("Division Count Must Be Even",validate.validate());
+	}
+	
+	@Test
+	public void saveConferenceObjectTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock data = new DbPersistanceMock();
+		ConferenceObject valid = new ConferenceObject(mock);
+		assertEquals(1,valid.saveConferenceObject(1,data));
+	}
+	@Test
+	public void loadConferenceObjectTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock data = new DbPersistanceMock();
+		ConferenceObject valid = new ConferenceObject(mock);
+		assertEquals(1,valid.loadConferenceObject(1,data));
 	}
 }
