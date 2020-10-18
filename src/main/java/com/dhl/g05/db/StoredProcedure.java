@@ -278,7 +278,7 @@ public class StoredProcedure {
 		return result;
 	}
 	
-	public int saveTeam(String team_name , String manager_name , int division_id , String coach_name )
+	public int saveTeam(String team_name , int manager_id , int division_id , int coach_id )
 	{
 		int result=0;
 		try {
@@ -286,9 +286,9 @@ public class StoredProcedure {
 			String query = "{CALL saveTeam(?,?,?,?)}";
 			java.sql.CallableStatement stmt = conn.prepareCall(query);
 			stmt.setString(1,team_name);
-			stmt.setString(2,manager_name);
+			stmt.setInt(2,manager_id);
 			stmt.setInt(3,division_id);
-			stmt.setString(4,coach_name);
+			stmt.setInt(4,coach_id);
 			rs = stmt.executeQuery();
 			while(rs.next())
 			{
@@ -357,17 +357,16 @@ public class StoredProcedure {
 		return result;
 	}
 	
-	public int saveFreeAgent(String agent_name, String position_name, int agent_is_captain , String league_name)
+	public int saveFreeAgent(String agent_name, String position_name , String league_name)
 	{
 		int result=0;
 		try {
 			conn = db.createNewDBconnection();
-			String query = "{CALL saveFreeAgent(?,?,?,?)}";
+			String query = "{CALL saveFreeAgent(?,?,?)}";
 			java.sql.CallableStatement stmt = conn.prepareCall(query);
 			stmt.setString(1, agent_name);
 			stmt.setString(2, position_name);
-			stmt.setInt(3, agent_is_captain);
-			stmt.setString(4, league_name);
+			stmt.setString(3, league_name);
 			rs = stmt.executeQuery();
 			while(rs.next())
 			{

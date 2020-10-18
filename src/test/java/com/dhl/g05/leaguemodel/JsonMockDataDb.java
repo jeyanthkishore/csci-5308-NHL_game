@@ -13,7 +13,7 @@ public class JsonMockDataDb implements ILeagueModel{
 	public List<PlayerObject> playerList;
 	public List<TeamObject> teamList;
 	public List<DivisionObject> divisionList;
-	public List<PlayerObject> freeAgentList;
+	public List<FreeAgentObject> freeAgentList;
 	public List<ConferenceObject> conferenceList;
 	public ArrayList<HashMap<String,Object>> leagueList;
 	public HashMap<String,Object> leagueMap;
@@ -52,7 +52,7 @@ public class JsonMockDataDb implements ILeagueModel{
 		divisionList = new ArrayList<DivisionObject>();
 		playerList = new ArrayList<PlayerObject>();
 		teamList = new ArrayList<TeamObject>();
-		freeAgentList = new ArrayList<PlayerObject>();
+		freeAgentList = new ArrayList<FreeAgentObject>();
 		conferenceList = new ArrayList<ConferenceObject>();
 		leagueList = new ArrayList<HashMap<String,Object>>();
 		leagueMap = new HashMap<String,Object>();
@@ -69,8 +69,8 @@ public class JsonMockDataDb implements ILeagueModel{
 		teamList.add(new TeamObject(teamTwoName,headCoachName,generalManagerTwoName,playerList));
 		divisionList.add(new DivisionObject(divisionOneName,teamList));
 		divisionList.add(new DivisionObject(divisionTwoName,teamList));
-		freeAgentList.add(new PlayerObject(playerTwoName,positionTwo,captainTwo));
-		freeAgentList.add(new PlayerObject(playerTwoName,positionTwo,captainTwo));
+		freeAgentList.add(new FreeAgentObject(playerTwoName,positionTwo));
+		freeAgentList.add(new FreeAgentObject(playerTwoName,positionTwo));
 		conferenceList.add(new ConferenceObject(conferenceName,divisionList));
 		conferenceList.add(new ConferenceObject(conferenceTwoName,divisionList));
 		league.setLeagueName(leagueName);
@@ -209,20 +209,9 @@ public class JsonMockDataDb implements ILeagueModel{
 	public void setFreeAgentPositionNull() {
 		freeAgentList.get(0).setPosition(null);
 	}
-	
-	public void setFreeAgentCaptainEmpty() {
-		freeAgentList.get(0).setCaptain(null);
-	}
-
-	public void setFreeAgentCaptainNull() {
-		freeAgentList.get(0).setCaptain(null);
-	}
 
 	public void setFreeAgentPositionDifferent() {
 		freeAgentList.get(0).setPosition("wing");
-	}
-	public void setFreeAgentCaptainTrueBoolean() {
-		freeAgentList.get(0).setCaptain(true);
 	}
 	@Override
 	public void loadTeamModelData(TeamObject teamObject) {
@@ -256,6 +245,12 @@ public class JsonMockDataDb implements ILeagueModel{
 	public void loadConferenceModelData(ConferenceObject conferenceModelObject) {
 		conferenceModelObject.setConferenceName(conferenceName);
 		conferenceModelObject.setDivisionDetails(divisionList);
+	}
+
+	@Override
+	public void loadPlayerModelData(FreeAgentObject freeAgentObject) {
+		freeAgentObject.setPlayerName(playerOneName);
+		freeAgentObject.setPosition(positionOne);
 	}
 
 }

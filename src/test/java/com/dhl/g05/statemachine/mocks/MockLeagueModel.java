@@ -20,7 +20,7 @@ public class MockLeagueModel implements ILeagueModel{
 	}
 
 	@Override
-	public LeagueObject createLeague(String league, List<ConferenceObject> conferencedetail,List<PlayerObject> agent) {
+	public LeagueObject createLeague(String league, List<ConferenceObject> conferencedetail,List<FreeAgentObject> agent) {
 		return new LeagueObject(league, conferencedetail, agent, new DbPersistanceMock());
 	}
 
@@ -36,7 +36,7 @@ public class MockLeagueModel implements ILeagueModel{
 	}
 
 	@Override
-	public boolean loadTeam(String team) {
+	public boolean loadTeam(String leagueName, String conferenceName, String divisionName, String teamName) {
 		return true;
 	}
 

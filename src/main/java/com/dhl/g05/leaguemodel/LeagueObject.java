@@ -10,7 +10,7 @@ public class LeagueObject {
 
 	private String leagueName;
 	private List<ConferenceObject> conferenceDetails;
-	private List<PlayerObject> freeAgent;
+	private List<FreeAgentObject> freeAgent;
 	private IDataBasePersistence object;
 	private String result;
 	
@@ -24,7 +24,7 @@ public class LeagueObject {
 		leagueObject.loadLeagueModelData(this);
 	}
 	
-	public LeagueObject(String league, List<ConferenceObject> conferencedetail,List<PlayerObject> agent,IDataBasePersistence dbObject) {
+	public LeagueObject(String league, List<ConferenceObject> conferencedetail,List<FreeAgentObject> agent,IDataBasePersistence dbObject) {
 		setLeagueName(league);
 		setConferenceDetails(conferencedetail);
 		setFreeAgent(agent);
@@ -48,11 +48,11 @@ public class LeagueObject {
 		this.conferenceDetails = conferencedetail;
 	}
 
-	public List<PlayerObject> getFreeAgent() {
+	public List<FreeAgentObject> getFreeAgent() {
 		return freeAgent;
 	}
 
-	public void setFreeAgent(List<PlayerObject> agent) {
+	public void setFreeAgent(List<FreeAgentObject> agent) {
 		this.freeAgent = agent;
 	}
 	
@@ -82,9 +82,6 @@ public class LeagueObject {
     	}
     	if(isFreeAgentPositionWrong()) {
     		return "Position Of The Player Cannot Be Different";
-    	}
-    	if(isAgentCaptainTrue()) {
-    		return "Free Agent Cannot Be Captain";
     	}
     	return "success";
 	}
@@ -122,15 +119,10 @@ public class LeagueObject {
 	}
 	public boolean isFreeAgentDetailsEmptyOrNull() {
 		Boolean emptyOrNull = freeAgent.stream().anyMatch(v -> v.getPlayerName() ==""
-				||v.getPosition() ==""||v.getPlayerName()==null||v.getPosition()==null
-				||v.getCaptain()==null);
+				||v.getPosition() ==""||v.getPlayerName()==null||v.getPosition()==null);
 		return emptyOrNull;
 	}
 	
-	public boolean isAgentCaptainTrue() {
-		Boolean captainBoolean = freeAgent.stream().anyMatch(v -> v.getCaptain().equals(true));
-		return captainBoolean;
-	}
 	
 	public Boolean checkLeaguePresent() {
 		OperationModel check = new OperationModel(object);
