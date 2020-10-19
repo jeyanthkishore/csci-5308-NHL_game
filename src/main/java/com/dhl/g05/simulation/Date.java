@@ -5,6 +5,7 @@ import java.time.MonthDay;
 import java.time.Year;
 
 import com.dhl.g05.leaguemodel.IDataBasePersistence;
+import com.dhl.g05.leaguemodel.LeagueObject;
 
 public class Date {
 	private static Date instance;
@@ -15,6 +16,7 @@ public class Date {
 	private Date() {
 		Year year = Year.now();
 		currentDate = year.atMonthDay(MonthDay.of(9, 30));
+		daysSinceStatIncreaseCheck = 0;
 	}
 
 	public static Date getInstance() {
@@ -24,13 +26,18 @@ public class Date {
 		return instance;
 	}
 	
-	public boolean saveDate(IDataBasePersistence db) {
+	public boolean saveDate(LeagueObject league, IDataBasePersistence db) {
+		//current day/month/year, daysSinceStatIncreadCheck, days until
+	//	db.saveDate(this);
 		return false;
 	}
 	
-	public boolean loadDate(IDataBasePersistence db) {
+	public boolean loadDate(LeagueObject league, IDataBasePersistence db) {
+		//current date, daysSinceStatIncreadCheck
+	//	db.loadDate(this);
 		return false;
 	}
+	
 	
 	public boolean ShouldTrainingOccur(){
 		return false;
@@ -49,11 +56,11 @@ public class Date {
 		
 	}
 	
-	public int getDayOfMonth() {
+	public int getDay() {
 		return -1;
 	}
 	
-	public int getMonthOfYear() {
+	public int getMonth() {
 		return -1;
 	}
 	
@@ -63,6 +70,18 @@ public class Date {
 	
 	public LocalDate getDate() {
 		return null;
+	}
+	
+	public void setDay(int day) {
+		currentDate = currentDate.withDayOfMonth(day);
+	}
+	
+	public void setMonth(int month) {
+		
+	}
+	
+	public void setYear(int month) {
+		
 	}
 	
 	public void setDaysUntilStatIncreaseCheck(int days) {
