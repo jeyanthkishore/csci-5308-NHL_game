@@ -117,7 +117,13 @@ public class LeagueObjectTest {
 		LeagueObject valid = new LeagueObject(mock.leagueName,mock.conferenceList,mock.freeAgentList,dbMock);
 		assertTrue(valid.checkLeaguePresent());
 	}
-	
+	@Test
+	public void checkLeagueNotExistenceTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock dbMock = new DbPersistanceMock();
+		LeagueObject valid = new LeagueObject("dummyData",mock.conferenceList,mock.freeAgentList,dbMock);
+		assertFalse(valid.checkLeaguePresent());
+	}
 	@Test
 	public void checkEmptyConference() {
 		JsonMockDataDb mock = new JsonMockDataDb();

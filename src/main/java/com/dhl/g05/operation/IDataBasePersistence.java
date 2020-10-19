@@ -1,5 +1,8 @@
 package com.dhl.g05.operation;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.dhl.g05.leaguemodel.ConferenceObject;
 import com.dhl.g05.leaguemodel.DivisionObject;
 import com.dhl.g05.leaguemodel.LeagueObject;
@@ -7,12 +10,6 @@ import com.dhl.g05.leaguemodel.PlayerObject;
 import com.dhl.g05.leaguemodel.TeamObject;
 
 public interface IDataBasePersistence {
-
-	public void loadModel(OperationModel operationModel);
-
-	public void saveModel(OperationModel operationModel);
-
-	public void loadDetails(OperationModel operationModel);
 
 	public int saveLeagueObject(LeagueObject leagueObject);
 
@@ -33,5 +30,7 @@ public interface IDataBasePersistence {
 	public int loadTeamObject(int divisionId, TeamObject teamObject);
 
 	public int loadPlayerObject(int teamId, PlayerObject playerObject);
+
+	public ArrayList<HashMap<String, Object>> loadDetails();
 
 }

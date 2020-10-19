@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.operation.IDataBasePersistence;
-import com.dhl.g05.operation.OperationModel;
 
 public class LeagueObject {
 
@@ -134,8 +133,7 @@ public class LeagueObject {
 	
 	
 	public Boolean checkLeaguePresent() {
-		OperationModel check = new OperationModel(object);
-		ArrayList<HashMap<String,Object>> allLeague = check.getLeagueCheck();
+		ArrayList<HashMap<String,Object>> allLeague = object.loadDetails();
 		Boolean leaguePresent = allLeague.stream().anyMatch(v->v.get("league_name").equals(leagueName));
 		return leaguePresent;
 	}
