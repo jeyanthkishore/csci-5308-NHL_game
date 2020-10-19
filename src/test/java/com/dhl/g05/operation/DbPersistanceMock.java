@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import com.dhl.g05.leaguemodel.ConferenceObject;
 import com.dhl.g05.leaguemodel.DivisionObject;
-import com.dhl.g05.leaguemodel.JsonMockDataDb;
 import com.dhl.g05.leaguemodel.LeagueObject;
 import com.dhl.g05.leaguemodel.PlayerObject;
 import com.dhl.g05.leaguemodel.TeamObject;
@@ -13,44 +12,7 @@ import com.dhl.g05.leaguemodel.TeamObject;
 public class DbPersistanceMock implements IDataBasePersistence{
 
 	@Override
-	public void loadModel(OperationModel operationModel) {
-		if(operationModel.getLeagueName().equals("HockeyLeague")) {
-			JsonMockDataDb mockData = new JsonMockDataDb();
-			operationModel.setLeagueObject(mockData.getLeague());
-		}else {
-			operationModel.setLeagueObject(null);
-		}
-		
-	}
-
-	@Override
-	public void saveModel(OperationModel operationModel) {
-		if(operationModel!=null) {
-			operationModel.setResult("success");
-		}
-	}
-
-	
-	public boolean checkLeagueExistence(OperationModel operationModel) {
-		if(operationModel.getLeagueName().equalsIgnoreCase("HockeyLeague")) {
-			return true;
-		}
-		return false;
-	}
-
-	
-	public void loadNewTeams(OperationModel operationModel) {
-		ArrayList<HashMap<String,Object>> teamNames = new ArrayList<HashMap<String,Object>>();
-		HashMap<String,Object> team = new HashMap<String,Object>();
-		team.put("team_name","Dog");
-		teamNames.add(team);
-		team.put("team_name","Cat");
-		teamNames.add(team);
-		operationModel.setNewTeam(teamNames);
-	}
-
-	@Override
-	public void loadDetails(OperationModel operationModel) {
+	public ArrayList<HashMap<String, Object>> loadDetails() {
 		ArrayList<HashMap<String,Object>> leagueNames = new ArrayList<HashMap<String,Object>>();
 		HashMap<String,Object> league = new HashMap<String,Object>();
 		league.put("league_name","HockeyLeague");
@@ -58,8 +20,9 @@ public class DbPersistanceMock implements IDataBasePersistence{
 		league = new HashMap<String,Object>();
 		league.put("league_name","CanadaLeague");
 		leagueNames.add(league);
-		operationModel.setLeagueCheck(leagueNames);
+		return leagueNames;
 	}
+	
 
 	@Override
 	public int saveLeagueObject(LeagueObject leagueObject) {
@@ -148,6 +111,5 @@ public class DbPersistanceMock implements IDataBasePersistence{
 		}
 		return 0;
 	}
-	
 	
 }
