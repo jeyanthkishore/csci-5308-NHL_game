@@ -8,6 +8,7 @@ import com.dhl.g05.leaguemodel.DivisionObject;
 import com.dhl.g05.leaguemodel.LeagueObject;
 import com.dhl.g05.leaguemodel.PlayerObject;
 import com.dhl.g05.leaguemodel.TeamObject;
+import com.dhl.g05.simulation.Date;
 
 public class DbPersistanceMock implements IDataBasePersistence{
 
@@ -63,6 +64,7 @@ public class DbPersistanceMock implements IDataBasePersistence{
 	@Override
 	public int loadLeagueObject(String leagueName,LeagueObject leagueObject) {
 		if(leagueName.equalsIgnoreCase("HockeyLeague")) {
+			leagueObject.setLeagueName(leagueName);
 			ArrayList<ConferenceObject> conferences = new ArrayList<>();
 			conferences.add(new ConferenceObject("Western Conference",null));
 			leagueObject.setConferenceDetails(conferences);;
@@ -110,6 +112,26 @@ public class DbPersistanceMock implements IDataBasePersistence{
 			return 1;
 		}
 		return 0;
+	}
+
+
+	@Override
+	public void loadDate(LeagueObject league, Date date) {
+		if (league.getLeagueName().equalsIgnoreCase("HockeyLeague")){
+			Date.getInstance().setMonth(1);
+			Date.getInstance().setYear(1);
+			Date.getInstance().setDaysSinceStatIncreaseCheck(1);
+			Date.getInstance().setDaysUntilStatIncreaseCheck(1);
+		}
+	}
+
+
+	@Override
+	public void saveDate(LeagueObject league, Date date) {
+		if (league.getLeagueName().equalsIgnoreCase("HockeyLeague")){
+			
+		}
+		
 	}
 	
 }
