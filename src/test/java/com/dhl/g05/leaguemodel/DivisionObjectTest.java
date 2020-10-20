@@ -8,6 +8,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.dhl.g05.operation.DbPersistanceMock;
+
 public class DivisionObjectTest {
 	
 	@Test
@@ -117,5 +119,20 @@ public class DivisionObjectTest {
 		mock.removeTeams();
 		validate = new DivisionObject(mock); 
 		assertEquals("TeamList Is Empty",validate.validate());
+	}
+	
+	@Test
+	public void saveDivisionObjectTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock data = new DbPersistanceMock();
+		DivisionObject valid = new DivisionObject(mock);
+		assertEquals(1,valid.saveDivisionObject(1,data));
+	}
+	@Test
+	public void loadDivisionObjectTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock data = new DbPersistanceMock();
+		DivisionObject valid = new DivisionObject(mock);
+		assertEquals(1,valid.loadDivisionObject(1,data));
 	}
 }

@@ -80,7 +80,6 @@ public class LeagueObjectTest {
 		assertSame(data.leagueName,object.getLeagueName());
 		assertSame(data.freeAgentList,object.getFreeAgent());
 		assertSame(data.conferenceList,object.getConferenceDetails());
-		assertSame(data.result,object.getResult());
 	}
 	@Test
 	public void leagueReferenceConstructor() {
@@ -118,7 +117,13 @@ public class LeagueObjectTest {
 		LeagueObject valid = new LeagueObject(mock.leagueName,mock.conferenceList,mock.freeAgentList,dbMock);
 		assertTrue(valid.checkLeaguePresent());
 	}
-	
+	@Test
+	public void checkLeagueNotExistenceTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock dbMock = new DbPersistanceMock();
+		LeagueObject valid = new LeagueObject("dummyData",mock.conferenceList,mock.freeAgentList,dbMock);
+		assertFalse(valid.checkLeaguePresent());
+	}
 	@Test
 	public void checkEmptyConference() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -212,8 +217,11 @@ public class LeagueObjectTest {
 	@Test
 	public void validateLeagueTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock data = new DbPersistanceMock();
+		LeagueObject league = new LeagueObject(mock.leagueName,mock.conferenceList,mock.freeAgentList,data);
+		league.setLeagueName("DummyLEague");
+		assertEquals("success",league.validate());
 		LeagueObject valid = new LeagueObject(mock);
-		assertEquals("success",valid.validate());
 		mock.setLeagueEmpty();
 		valid = new LeagueObject(mock);
 		assertEquals("League Name Is Empty",valid.validate());
@@ -237,5 +245,19 @@ public class LeagueObjectTest {
 		mock.setFreeAgentPositionDifferent();
 		valid = new LeagueObject(mock);
 		assertEquals("Position Of The Player Cannot Be Different",valid.validate());
+	}
+	@Test
+	public void saveLeagueObjectTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock data = new DbPersistanceMock();
+		LeagueObject valid = new LeagueObject(mock);
+		assertEquals(1,valid.saveLeagueObject(data));
+	}
+	@Test
+	public void loadLeagueObjectTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock data = new DbPersistanceMock();
+		LeagueObject valid = new LeagueObject();
+		assertEquals(1,valid.loadLeagueObject(mock.leagueName,data));
 	}
 }

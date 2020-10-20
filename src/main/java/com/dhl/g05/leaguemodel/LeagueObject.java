@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.operation.IDataBasePersistence;
-import com.dhl.g05.operation.OperationModel;
 
 public class LeagueObject {
 
@@ -64,6 +63,12 @@ public class LeagueObject {
 		this.result = result;
 	}
 	
+	public int saveLeagueObject(IDataBasePersistence database) {
+		return database.saveLeagueObject(this);
+	}
+	public int loadLeagueObject(String leagueName,IDataBasePersistence database) {
+		return database.loadLeagueObject(leagueName,this);
+	}
 	public String validate() {
     	if(isLeagueNameEmptyOrNull()) {
     		return "League Name Is Empty";
@@ -82,6 +87,9 @@ public class LeagueObject {
     	}
     	if(isFreeAgentPositionWrong()) {
     		return "Position Of The Player Cannot Be Different";
+    	}
+    	if(checkLeaguePresent()) {
+    		return "League Already Present";
     	}
     	return "success";
 	}
@@ -125,8 +133,7 @@ public class LeagueObject {
 	
 	
 	public Boolean checkLeaguePresent() {
-		OperationModel check = new OperationModel(object);
-		ArrayList<HashMap<String,Object>> allLeague = check.getLeagueCheck();
+		ArrayList<HashMap<String,Object>> allLeague = object.loadDetails();
 		Boolean leaguePresent = allLeague.stream().anyMatch(v->v.get("league_name").equals(leagueName));
 		return leaguePresent;
 	}

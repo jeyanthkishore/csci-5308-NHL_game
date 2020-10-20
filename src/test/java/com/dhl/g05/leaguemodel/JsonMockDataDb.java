@@ -66,7 +66,7 @@ public class JsonMockDataDb implements ILeagueModel{
 		captainTwo = false;
 		playerList.add(new PlayerObject(playerTwoName,positionTwo,captainTwo));
 		teamList.add(new TeamObject(teamName,headCoachName,generalManagerName,playerList));
-		teamList.add(new TeamObject(teamTwoName,headCoachName,generalManagerTwoName,playerList));
+		teamList.add(new TeamObject(teamTwoName,headCoachTwoName,generalManagerTwoName,playerList));
 		divisionList.add(new DivisionObject(divisionOneName,teamList));
 		divisionList.add(new DivisionObject(divisionTwoName,teamList));
 		freeAgentList.add(new FreeAgentObject(playerTwoName,positionTwo));
