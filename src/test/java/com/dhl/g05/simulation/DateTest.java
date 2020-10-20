@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+
 public class DateTest {
 	public Date date1;
 	public Date date2;
@@ -23,79 +24,101 @@ public class DateTest {
 		assertEquals(date1,date2);
 	}
 
+
 	@Test
-	public void testSaveDate() {
-		fail("Not yet implemented");
+	public void testShouldTrainingOccurTrue() {
+		date1.setDaysSinceStatIncreaseCheck(101);
+		date1.setDaysUntilStatIncreaseCheck(100);
+		assertTrue(date1.ShouldTrainingOccur());
 	}
 
 	@Test
-	public void testLoadDate() {
-		fail("Not yet implemented");
+	public void testShouldTrainingOccurFalse() {
+		date1.setDaysSinceStatIncreaseCheck(50);
+		date1.setDaysUntilStatIncreaseCheck(100);
+		assertFalse(date1.ShouldTrainingOccur());
 	}
 
+	
 	@Test
-	public void testShouldTrainingOccur() {
-		fail("Not yet implemented");
+	public void testIsTrainingDeadlinePassedTrue() {
+		date1.setDaysSinceStatIncreaseCheck(101);
+		date1.setDaysUntilStatIncreaseCheck(100);
+		assertTrue(date1.IsTrainingDeadlinePassed());
 	}
-
+	
 	@Test
-	public void testIsTrainingDeadlinePassed() {
-		fail("Not yet implemented");
+	public void testIsTrainingDeadlinePassedFalse() {
+		date1.setDaysSinceStatIncreaseCheck(50);
+		date1.setDaysUntilStatIncreaseCheck(100);
+		assertFalse(date1.IsTrainingDeadlinePassed());
 	}
 
 	@Test
 	public void testProgressDays() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testProgressWeeks() {
-		fail("Not yet implemented");
+		date1.setDay(5);
+		date1.progressDays(10);
+		assertEquals(15,date1.getDay());
 	}
 
 	@Test
 	public void testGetDay() {
-		fail("Not yet implemented");
+		date1.setDay(10);
+		assertEquals(10,date1.getDay());
 	}
 
 	@Test
 	public void testGetMonth() {
-		fail("Not yet implemented");
+		date1.setMonth(9);
+		assertEquals(date1.getMonth(),9);
 	}
 
 	@Test
 	public void testGetYear() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetDate() {
-		fail("Not yet implemented");
+		date1.setYear(2020);
+		assertEquals(date1.getYear(),2020);
 	}
 
 	@Test
 	public void testSetDay() {
-		fail("Not yet implemented");
+		date1.setDay(10);
+		assertEquals(10,date1.getDay());
 	}
 
 	@Test
 	public void testSetMonth() {
-		fail("Not yet implemented");
+		date1.setMonth(9);
+		assertEquals(date1.getMonth(),9);
 	}
 
 	@Test
 	public void testSetYear() {
-		fail("Not yet implemented");
+		date1.setYear(2020);
+		assertEquals(date1.getYear(),2020);
 	}
 
 	@Test
 	public void testSetDaysUntilStatIncreaseCheck() {
-		fail("Not yet implemented");
+		date1.setDaysUntilStatIncreaseCheck(10);
+		assertEquals(date1.getDaysUntilStatIncreaseCheck(),10);
 	}
 
 	@Test
 	public void testGetDaysUntilStatIncreaseCheck() {
-		fail("Not yet implemented");
+		date1.setDaysUntilStatIncreaseCheck(10);
+		assertEquals(date1.getDaysUntilStatIncreaseCheck(),10);
+	}
+	
+	@Test
+	public void testSetDaysSinceStatIncreaseCheck() {
+		date1.setDaysSinceStatIncreaseCheck(10);
+		assertEquals(date1.getDaysSinceStatIncreaseCheck(),10);
 	}
 
+	@Test
+	public void testGetDaysSinceStatIncreaseCheck() {
+		date1.setDaysSinceStatIncreaseCheck(10);
+		assertEquals(date1.getDaysSinceStatIncreaseCheck(),10);
+	}
+	
 }

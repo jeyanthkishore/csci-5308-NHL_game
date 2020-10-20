@@ -71,14 +71,6 @@ public class LeagueModelCreatorFromJSON {
 			
 				JSONObject training = (JSONObject)gamePlayConfigs.get("training");
 				
-				JSONObject aging = (JSONObject)gamePlayConfigs.get("aging");
-				
-				JSONObject gameResolver = (JSONObject)gamePlayConfigs.get("gameResolver");
-				
-				JSONObject injuries = (JSONObject)gamePlayConfigs.get("injuries");
-				
-				JSONObject trading = (JSONObject)gamePlayConfigs.get("trading");
-				
 				if (setTrainingConfig(training) == false) {
 					
 					return false;

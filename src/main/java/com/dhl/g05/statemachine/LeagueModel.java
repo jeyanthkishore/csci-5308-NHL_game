@@ -18,6 +18,7 @@ public class LeagueModel implements ILeagueModel{
 		return new LeagueObject(leagueName, conferences, freeAgents, database);
 	}
 	
+	
 	@Override
 	public LeagueObject getLeague() {
 		return league;

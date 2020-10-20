@@ -1,5 +1,8 @@
 package com.dhl.g05.statemachine;
 
+import com.dhl.g05.operation.DatePersistence;
+import com.dhl.g05.simulation.Date;
+
 public class StateMachine {
 	
 	private AbstractState currentState;   
@@ -57,6 +60,7 @@ public class StateMachine {
 	public void exit() {
 		if(leagueModel.getLeague()!=null) {
 			leagueModel.persistLeague();
+			Date.getInstance().saveDate(leagueModel.getLeague(), new DatePersistence());
 		}
 	}
 	

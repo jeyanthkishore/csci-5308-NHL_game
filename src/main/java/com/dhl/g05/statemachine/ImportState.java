@@ -6,7 +6,7 @@ import java.io.IOException;
 import org.json.simple.parser.ParseException;
 
 public class ImportState extends AbstractState{
-	private LeagueModelCreator creator;
+	private LeagueModelCreatorFromJSON creator;
 	private String fileName;
 	
 	public ImportState(StateMachine stateMachine) {
@@ -26,7 +26,7 @@ public class ImportState extends AbstractState{
 			return true;
 		} 
 		
-		creator = new LeagueModelCreator(this.getOuterStateMachine().getLeagueModel(),this.getOuterStateMachine().getPlayerCommunication());
+		creator = new LeagueModelCreatorFromJSON(this.getOuterStateMachine().getLeagueModel(),this.getOuterStateMachine().getPlayerCommunication());
 		
 		try {
 			

@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.time.MonthDay;
 import java.time.Year;
 
-import com.dhl.g05.leaguemodel.IDataBasePersistence;
+import com.dhl.g05.operation.IDataBasePersistence;
+import com.dhl.g05.operation.IDatePersistence;
 import com.dhl.g05.leaguemodel.LeagueObject;
 
 public class Date {
@@ -26,62 +27,51 @@ public class Date {
 		return instance;
 	}
 	
-	public boolean saveDate(LeagueObject league, IDataBasePersistence db) {
-		//current day/month/year, daysSinceStatIncreadCheck, days until
-	//	db.saveDate(this);
-		return false;
+	public void saveDate(LeagueObject league, IDatePersistence db) {
+		db.saveDate(league,this);
 	}
 	
-	public boolean loadDate(LeagueObject league, IDataBasePersistence db) {
-		//current date, daysSinceStatIncreadCheck
-	//	db.loadDate(this);
-		return false;
+	public void loadDate(LeagueObject league, IDatePersistence db) {
+		db.loadDate(league,this);
 	}
 	
 	
 	public boolean ShouldTrainingOccur(){
-		return false;
+		return IsTrainingDeadlinePassed();
 	}
 	
 	
 	public boolean IsTrainingDeadlinePassed(){
-		return false;
+		return (daysSinceStatIncreaseCheck > daysUntilStatIncreaseCheck);
 	}
 
 	public void progressDays(int numberOfDays) {
-		
-	}
-	
-	public void progressWeeks(int numberOfWeeks) {
-		
+		currentDate = currentDate.plusDays(numberOfDays);
 	}
 	
 	public int getDay() {
-		return -1;
+		return currentDate.getDayOfMonth();
 	}
 	
 	public int getMonth() {
-		return -1;
+		return currentDate.getMonthValue();
 	}
 	
 	public int getYear() {
-		return -1;
+		return currentDate.getYear();
 	}
 	
-	public LocalDate getDate() {
-		return null;
-	}
 	
 	public void setDay(int day) {
 		currentDate = currentDate.withDayOfMonth(day);
 	}
 	
 	public void setMonth(int month) {
-		
+		currentDate = currentDate.withMonth(month);
 	}
 	
-	public void setYear(int month) {
-		
+	public void setYear(int year) {
+		currentDate = currentDate.withYear(year);
 	}
 	
 	public void setDaysUntilStatIncreaseCheck(int days) {
@@ -92,6 +82,14 @@ public class Date {
 		return daysUntilStatIncreaseCheck;
 	}
 	
+	
+	public void setDaysSinceStatIncreaseCheck(int days) {
+		daysSinceStatIncreaseCheck = days;
+	}
+	
+	public int getDaysSinceStatIncreaseCheck() {
+		return daysSinceStatIncreaseCheck;
+	}
 
 	
 }
