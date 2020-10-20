@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.dhl.g05.db.DateStoredProcedure;
 import com.dhl.g05.db.StoredProcedure;
 import com.dhl.g05.leaguemodel.ConferenceObject;
 import com.dhl.g05.leaguemodel.DivisionObject;
@@ -11,6 +12,7 @@ import com.dhl.g05.leaguemodel.FreeAgentObject;
 import com.dhl.g05.leaguemodel.LeagueObject;
 import com.dhl.g05.leaguemodel.PlayerObject;
 import com.dhl.g05.leaguemodel.TeamObject;
+import com.dhl.g05.simulation.Date;
 
 public class DatabaseClass implements IDataBasePersistence{
 	private List<ConferenceObject> conferenceList = new ArrayList<ConferenceObject>();
@@ -168,5 +170,43 @@ public class DatabaseClass implements IDataBasePersistence{
 		ArrayList<HashMap<String,Object>> leagueValue = new ArrayList<HashMap<String,Object>>();
 		leagueValue = sp.fetchAllLeagues();
 		return leagueValue;
+	}
+	
+	@Override
+	public void saveDate(LeagueObject league, Date date) {
+		
+		StoredProcedure sp = new StoredProcedure();
+		
+		int leagueID = sp.getLeagueID(league.getLeagueName());
+		
+		int day = date.getDay();
+		int month = date.getMonth();
+		int year = date.getYear();
+		int daysSinceStatIncreaseCheck = date.getDaysSinceStatIncreaseCheck();
+		int daysUntilStatIncreaseCheck = date.getDaysUntilStatIncreaseCheck();
+		
+		DateStoredProcedure dsp = new DateStoredProcedure();
+		dsp.saveDate(leagueID,day,month,year,daysSinceStatIncreaseCheck,daysUntilStatIncreaseCheck);
+	}
+	
+	
+
+	@Override
+	public void loadDate(LeagueObject league,Date date) {
+		
+		StoredProcedure sp = new StoredProcedure();
+		
+		int leagueID = sp.getLeagueID(league.getLeagueName());
+		
+		DateStoredProcedure dsp = new DateStoredProcedure();
+		
+		List<Integer> result = dsp.loadDate(leagueID);
+		
+		date.setDay(result.get(0));
+		date.setMonth(result.get(1));
+		date.setYear(result.get(2));
+		date.setDaysSinceStatIncreaseCheck(result.get(3));
+		date.setDaysUntilStatIncreaseCheck(result.get(4));
+	
 	}
 }

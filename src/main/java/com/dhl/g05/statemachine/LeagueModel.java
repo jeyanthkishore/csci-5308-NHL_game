@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dhl.g05.leaguemodel.*;
 import com.dhl.g05.operation.IDataBasePersistence;
+import com.dhl.g05.simulation.Date;
 
 public class LeagueModel implements ILeagueModel{
 	private LeagueObject league;
@@ -31,6 +32,9 @@ public class LeagueModel implements ILeagueModel{
 	
 	@Override
 	public boolean persistLeague() { 
+		
+		Date.getInstance().saveDate(getLeague(), database);
+		
 		int leagueId = this.league.saveLeagueObject(database);
 		if (leagueId == 0) {
 			return false;
@@ -87,6 +91,7 @@ public class LeagueModel implements ILeagueModel{
 	
 	@Override
 	public boolean loadTeam(String leagueName, String conferenceName, String divisionName, String teamName) {
+		
 		TeamObject teamToLoad = null;
 		LeagueObject newLeague = new LeagueObject();
 		int leagueId = newLeague.loadLeagueObject(leagueName, database);
@@ -155,6 +160,7 @@ public class LeagueModel implements ILeagueModel{
 		if (teamToLoad != null) {
 			currentTeam = teamToLoad;
 			this.league = newLeague;
+			Date.getInstance().loadDate(newLeague, database);
 			return true;
 		}
 

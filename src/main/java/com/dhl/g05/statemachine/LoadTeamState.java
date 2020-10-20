@@ -1,7 +1,5 @@
 package com.dhl.g05.statemachine;
 
-import com.dhl.g05.operation.DatePersistence;
-import com.dhl.g05.simulation.Date;
 
 public class LoadTeamState extends AbstractState{
 
@@ -36,7 +34,6 @@ public class LoadTeamState extends AbstractState{
 	public boolean performStateTask() {
 		ILeagueModel leagueModel = this.getOuterStateMachine().getLeagueModel();
 		if (leagueModel.loadTeam(leagueName, conferenceName, divisionName, teamName)) {
-			
 			return true;
 		} else {
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Team does not exist");
