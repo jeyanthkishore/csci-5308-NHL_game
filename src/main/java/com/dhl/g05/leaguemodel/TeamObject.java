@@ -11,6 +11,8 @@ public class TeamObject {
 	private String generalManagerName;
 	private List<PlayerObject> playerList;
 	private String result;
+	private int winCount;
+	private int lossCount;
 	
 	public TeamObject() {
 		setHeadCoachName(null);
@@ -120,4 +122,22 @@ public class TeamObject {
 		long captainCount = playerList.stream().filter(p -> p.getCaptain().equals(true)).count();
 		return captainCount;
 	}
+	
+	public int getWinCount() {
+		return winCount;
+	}
+	
+	public void setWinCount(int winCount) {
+		this.winCount = winCount;
+	}
+	
+	public int getLossCount() {
+		return lossCount;
+	}
+	
+	public void setLossCount(int lossCount) {
+		this.lossCount = lossCount;
+	}
+	
+	
 }
