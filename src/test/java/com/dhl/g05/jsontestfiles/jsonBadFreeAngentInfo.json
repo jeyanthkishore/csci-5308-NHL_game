@@ -7,45 +7,45 @@
                         {
                             "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true
+                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Two", "position":"defense", "captain":false
+                                {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Three", "position":"goalie", "captain":false
+                                {   "playerName":"Player Three", "position":"goalie", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Four", "position":"defense", "captain":false
+                                {   "playerName":"Player Four", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Five", "position":"defense", "captain":false
+                                {   "playerName":"Player Five", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Six", "position":"defense", "captain":false
+                                {   "playerName":"Player Six", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Seven", "position":"defense", "captain":false
+                                {   "playerName":"Player Seven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Eight", "position":"defense", "captain":false
+                                {   "playerName":"Player Eight", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Nine", "position":"defense", "captain":false
+                                {   "playerName":"Player Nine", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Ten", "position":"defense", "captain":false
+                                {   "playerName":"Player Ten", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Eleven", "position":"defense", "captain":false
+                                {   "playerName":"Player Eleven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Twelve", "position":"defense", "captain":false
+                                {   "playerName":"Player Twelve", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false
+                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player twenty", "position":"defense", "captain":false
+                                {   "playerName":"Player twenty", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 }
                             ]
                         }
@@ -56,46 +56,46 @@
                         {
                             "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true
+                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Two", "position":"defense", "captain":false
+                                {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Three", "position":"goalie", "captain":false
+                                {   "playerName":"Player Three", "position":"goalie", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                         
                                 },
-                                {   "playerName":"Player Four", "position":"defense", "captain":false
+                                {   "playerName":"Player Four", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Five", "position":"defense", "captain":false
+                                {   "playerName":"Player Five", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Six", "position":"defense", "captain":false
+                                {   "playerName":"Player Six", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Seven", "position":"defense", "captain":false
+                                {   "playerName":"Player Seven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Eight", "position":"defense", "captain":false
+                                {   "playerName":"Player Eight", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Nine", "position":"defense", "captain":false
+                                {   "playerName":"Player Nine", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Ten", "position":"defense", "captain":false
+                                {   "playerName":"Player Ten", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Eleven", "position":"defense", "captain":false
+                                {   "playerName":"Player Eleven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Twelve", "position":"defense", "captain":false
+                                {   "playerName":"Player Twelve", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false
+                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player twenty", "position":"defense", "captain":false
+                                {   "playerName":"Player twenty", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 }
                             ]
                         }
@@ -110,45 +110,45 @@
                         {
                             "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true
+                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Two", "position":"defense", "captain":false
+                                {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Three", "position":"goalie", "captain":false
+                                {   "playerName":"Player Three", "position":"goalie", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Four", "position":"defense", "captain":false
+                                {   "playerName":"Player Four", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Five", "position":"defense", "captain":false
+                                {   "playerName":"Player Five", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Six", "position":"defense", "captain":false
+                                {   "playerName":"Player Six", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Seven", "position":"defense", "captain":false
+                                {   "playerName":"Player Seven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Eight", "position":"defense", "captain":false
+                                {   "playerName":"Player Eight", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Nine", "position":"defense", "captain":false
+                                {   "playerName":"Player Nine", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Ten", "position":"defense", "captain":false
+                                {   "playerName":"Player Ten", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Eleven", "position":"defense", "captain":false
+                                {   "playerName":"Player Eleven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Twelve", "position":"defense", "captain":false
+                                {   "playerName":"Player Twelve", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false
+                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player twenty", "position":"defense", "captain":false
+                                {   "playerName":"Player twenty", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 }
                             ]
                         }
@@ -159,46 +159,46 @@
                         {
                             "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true
+                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Two", "position":"defense", "captain":false
+                                {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Three", "position":"goalie", "captain":false
+                                {   "playerName":"Player Three", "position":"goalie", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                         
                                 },
-                                {   "playerName":"Player Four", "position":"defense", "captain":false
+                                {   "playerName":"Player Four", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Five", "position":"defense", "captain":false
+                                {   "playerName":"Player Five", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Six", "position":"defense", "captain":false
+                                {   "playerName":"Player Six", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Seven", "position":"defense", "captain":false
+                                {   "playerName":"Player Seven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Eight", "position":"defense", "captain":false
+                                {   "playerName":"Player Eight", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Nine", "position":"defense", "captain":false
+                                {   "playerName":"Player Nine", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Ten", "position":"defense", "captain":false
+                                {   "playerName":"Player Ten", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Eleven", "position":"defense", "captain":false
+                                {   "playerName":"Player Eleven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Twelve", "position":"defense", "captain":false
+                                {   "playerName":"Player Twelve", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false
+                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false
+                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
-                                {   "playerName":"Player twenty", "position":"defense", "captain":false
+                                {   "playerName":"Player twenty", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 }
                             ]
                         }
@@ -209,12 +209,12 @@
     ],
         "agents":[
             {
-                "playerName":"Agent One", "captain":false
+                "playerName":"Agent One", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
             },
-            {   "playerName":"Agent Two", "position":"defense", "captain":false
+            {   "playerName":"Agent Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                 
             },
-            {   "playerName":"Agent Three", "position":"goalie", "captain":false
+            {   "playerName":"Agent Three", "position":"goalie", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
             }
         ]
 }

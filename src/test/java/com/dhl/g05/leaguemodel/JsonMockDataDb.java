@@ -27,6 +27,11 @@ public class JsonMockDataDb implements ILeagueModel{
 	public String divisionTwoName = "Pacific";
 	public String conferenceName = "Western Conference";
 	public String conferenceTwoName = "Eastern Conference";
+	public int age = 10;
+	public int skating = 10;
+	public int shooting = 15;
+	public int checking = 10;
+	public int saving = 5;
 	public LeagueObject league;
 	String playerOneName = "";
 	String positionOne = "";
@@ -60,17 +65,17 @@ public class JsonMockDataDb implements ILeagueModel{
 		playerOneName =  "Cristiano Ronaldo";
 		positionOne = "forward";
 		captainOne = true;
-		playerList.add(new PlayerObject(playerOneName,positionOne,captainOne));
+		playerList.add(new PlayerObject(playerOneName,positionOne,captainOne,age,skating,shooting,checking,saving));
 		playerTwoName= "Messi";
 		positionTwo =  "goalie";
 		captainTwo = false;
-		playerList.add(new PlayerObject(playerTwoName,positionTwo,captainTwo));
+		playerList.add(new PlayerObject(playerTwoName,positionTwo,captainTwo,age,skating,shooting,checking,saving));
 		teamList.add(new TeamObject(teamName,headCoachName,generalManagerName,playerList));
 		teamList.add(new TeamObject(teamTwoName,headCoachTwoName,generalManagerTwoName,playerList));
 		divisionList.add(new DivisionObject(divisionOneName,teamList));
 		divisionList.add(new DivisionObject(divisionTwoName,teamList));
-		freeAgentList.add(new FreeAgentObject(playerTwoName,positionTwo));
-		freeAgentList.add(new FreeAgentObject(playerTwoName,positionTwo));
+		freeAgentList.add(new FreeAgentObject(playerTwoName,positionTwo,age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentObject(playerTwoName,positionTwo,age,skating,shooting,checking,saving));
 		conferenceList.add(new ConferenceObject(conferenceName,divisionList));
 		conferenceList.add(new ConferenceObject(conferenceTwoName,divisionList));
 		league.setLeagueName(leagueName);
@@ -124,7 +129,7 @@ public class JsonMockDataDb implements ILeagueModel{
 	}
 	public void addMaximumPlayer() {
 		for(int count = 0; count<22; count++) {
-			playerList.add(new PlayerObject(playerTwoName,positionTwo,captainTwo));
+			playerList.add(new PlayerObject(playerTwoName,positionTwo,captainTwo,age,skating,shooting,checking,saving));
 		}
 	}
 	public void setTeamNameEmpty() {
@@ -226,6 +231,11 @@ public class JsonMockDataDb implements ILeagueModel{
 		playerModelObject.setCaptain(captainOne);
 		playerModelObject.setPlayerName(playerOneName);
 		playerModelObject.setPosition(positionOne);
+		playerModelObject.setAge(age);
+		playerModelObject.setSkating(skating);
+		playerModelObject.setShooting(shooting);
+		playerModelObject.setChecking(checking);
+		playerModelObject.setSaving(saving);
 	}
 
 	@Override
@@ -251,6 +261,11 @@ public class JsonMockDataDb implements ILeagueModel{
 	public void loadPlayerModelData(FreeAgentObject freeAgentObject) {
 		freeAgentObject.setPlayerName(playerOneName);
 		freeAgentObject.setPosition(positionOne);
+		freeAgentObject.setAge(age);
+		freeAgentObject.setSkating(skating);
+		freeAgentObject.setShooting(shooting);
+		freeAgentObject.setChecking(checking);
+		freeAgentObject.setSaving(saving);
 	}
 
 }

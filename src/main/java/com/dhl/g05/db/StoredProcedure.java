@@ -251,17 +251,24 @@ public class StoredProcedure {
 		return result;
 	}
 
-	public int savePlayer(int team_id,int position_id,String player_name , int player_is_captain)
+	public int savePlayer(int team_id,int position_id,String player_name , int player_is_captain, int age, int skating, int shooting, int checking, int saving)
+	//public int savePlayer(int team_id,int position_id,String player_name , int player_is_captain)
 	{
 		int result=0;
 		try {
 			conn = db.createNewDBconnection();
-			String query = "{CALL savePlayer(?,?,?,?)}";
+			//String query = "{CALL savePlayer(?,?,?,?)}";
+			String query = "{CALL savePlayer(?,?,?,?,?,?,?,?,?)}";
 			java.sql.CallableStatement stmt = conn.prepareCall(query);
 			stmt.setInt(1,team_id);
 			stmt.setInt(2,position_id);
 			stmt.setString(3,player_name);
 			stmt.setInt(4,player_is_captain);
+			stmt.setInt(5,age);
+			stmt.setInt(6,skating);
+			stmt.setInt(7,shooting);
+			stmt.setInt(8,checking);
+			stmt.setInt(9,saving);
 			rs = stmt.executeQuery();
 			while(rs.next())
 			{
@@ -357,17 +364,25 @@ public class StoredProcedure {
 		}
 		return result;
 	}
-	
-	public int saveFreeAgent(String agent_name, String position_name , String league_name)
+
+	public int saveFreeAgent(String agent_name, String position_name , String league_name, int age, int skating, int shooting, int checking, int saving)
+	//public int saveFreeAgent(String agent_name, String position_name , String league_name)
 	{
 		int result=0;
 		try {
 			conn = db.createNewDBconnection();
-			String query = "{CALL saveFreeAgent(?,?,?)}";
+			//String query = "{CALL saveFreeAgent(?,?,?)}";
+			String query = "{CALL saveFreeAgent(?,?,?,?,?,?,?,?)}";
 			java.sql.CallableStatement stmt = conn.prepareCall(query);
 			stmt.setString(1, agent_name);
 			stmt.setString(2, position_name);
 			stmt.setString(3, league_name);
+			stmt.setInt(4,age);
+			stmt.setInt(5,skating);
+			stmt.setInt(6,shooting);
+			stmt.setInt(7,checking);
+			stmt.setInt(8,saving);
+
 			rs = stmt.executeQuery();
 			while(rs.next())
 			{

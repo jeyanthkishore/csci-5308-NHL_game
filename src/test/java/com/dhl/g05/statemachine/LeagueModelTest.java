@@ -25,7 +25,7 @@ public class LeagueModelTest {
 	public void init() {
 		leagueModel = new LeagueModel(new DbPersistanceMock());
 		
-		PlayerObject player = new PlayerObject("Cristiano Ronaldo",null,null);
+		PlayerObject player = new PlayerObject("Cristiano Ronaldo",null,null,10,15,1,20,15);
 		ArrayList<PlayerObject> players = new ArrayList<>();
 		players.add(player);
 		
