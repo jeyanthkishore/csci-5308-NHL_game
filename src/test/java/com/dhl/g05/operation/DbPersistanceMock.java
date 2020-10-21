@@ -99,7 +99,7 @@ public class DbPersistanceMock implements IDataBasePersistence{
 	public int loadTeamObject(int divisionId, TeamObject teamObject) {
 		if(divisionId==1 && teamObject.getTeamName().equals("Striker Six")) {
 			ArrayList<PlayerObject> players = new ArrayList<>();
-			players.add(new PlayerObject("Cristiano Ronaldo",null,null));
+			players.add(new PlayerObject("Cristiano Ronaldo",null,null,10,10,10,10,10));
 			teamObject.setPlayerList(players);
 			return 1;
 		}
