@@ -209,12 +209,72 @@
     ],
     "freeAgents":[
             {
-                "playerName":"Agent One", "position":"forward", "captain":false, "age": 10.0, "skating": 11.0, "shooting": 12.1, "checking": 12.2 , "saving": 13.3
+                "playerName":"Agent One", "position":"forward",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
             },
-            {   "playerName":"Agent Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+            {   "playerName":"Agent Two", "position":"defense",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                 
             },
-            {   "playerName":"Agent Three", "position":"goalie", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+            {   "playerName":"Agent Three", "position":"goalie",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+            },
+            {   "playerName":"SuperMan", "position":"defense",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"SpiderMan", "position":"forward",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Sachin Tendulkar", "position":"forward",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Virat Kohli", "position":"defense",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Vin Disel", "position":"goalie",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"John Cena", "position":"defense",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Dwyane Johnson", "position":"goalie",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Rajini Khanth", "position":"forward",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Adam Paul", "position":"defense",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Aamir Khan", "position":"defense",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Salman Khan", "position":"forward",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Silambarasan", "position":"forward",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Triple HHH", "position":"forward",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Undertaker", "position":"defense",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Lebron James", "position":"defense",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Tiger Woods", "position":"forward",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Michael Bryan", "position":"goalie",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Shawn Micheals", "position":"forward",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Jackie Chan", "position":"forward",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
+            },
+            {   "playerName":"Tom Bruce", "position":"forward",  "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                
             }
     ],
     "coaches":[
