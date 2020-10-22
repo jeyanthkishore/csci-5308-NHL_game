@@ -10,15 +10,15 @@ public class FreeAgentObject {
 
 	// Added Player Stat
 
-	private int age;
+	private double age;
 
-	private int skating;
+	private double skating;
 
-	private int shooting;
+	private double shooting;
 
-	private int checking;
+	private double checking;
 
-	private int saving;
+	private double saving;
 
 	public FreeAgentObject() {
 
@@ -28,7 +28,7 @@ public class FreeAgentObject {
 
 	}
 
-	public FreeAgentObject(String playerName, String position, int age, int skating, int shooting, int checking, int saving) {
+	public FreeAgentObject(String playerName, String position, double age, double skating, double shooting, double checking, double saving) {
 
 		this.playerName = playerName;
 
@@ -90,61 +90,61 @@ public class FreeAgentObject {
 
 	}
 
-	public int getAge() {
+	public double getAge() {
 
 		return age;
 
 	}
 
-	public void setAge(int age) {
+	public void setAge(double age) {
 
 		this.age = age;
 
 	}
 
-	public int getSkating() {
+	public double getSkating() {
 
 		return skating;
 
 	}
 
-	public void setSkating(int skating) {
+	public void setSkating(double skating) {
 
 		this.skating = skating;
 
 	}
 
-	public int getShooting() {
+	public double getShooting() {
 
 		return shooting;
 
 	}
 
-	public void setShooting(int shooting) {
+	public void setShooting(double shooting) {
 
 		this.shooting = shooting;
 
 	}
 
-	public int getChecking() {
+	public double getChecking() {
 
 		return checking;
 
 	}
 
-	public void setChecking(int checking) {
+	public void setChecking(double checking) {
 
 		this.checking = checking;
 
 	}
 
-	public int getSaving() {
+	public double getSaving() {
 
 		return saving;
 
 	}
 
-	public void setSaving(int saving) {
+	public void setSaving(double saving) {
 
 		this.saving = saving;
 
@@ -240,7 +240,7 @@ public class FreeAgentObject {
 
 	}
 
-	public boolean validateStat(int stat) {
+	public boolean validateStat(double stat) {
 
 		if (stat >= 0 && stat <= 20) {
 

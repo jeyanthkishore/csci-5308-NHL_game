@@ -27,7 +27,7 @@ public class Date {
 	}
 	
 	public void saveDate(LeagueObject league, IDataBasePersistence db) {
-		db.saveDate(league,this);
+		//db.saveDate(league,this);
 	}
 	
 	public void loadDate(LeagueObject league, IDataBasePersistence db) {

@@ -134,12 +134,16 @@ public class LeagueModelCreatorFromJSON {
 		ArrayList<ConferenceObject> conferences = createConferences((JSONArray)leagueData.get("conferences"));
 
 		ArrayList<FreeAgentObject> freeAgents = createFreeAgents((JSONArray)leagueData.get("freeAgents"));
-		
-		String leagueName = (String)leagueData.get("leagueName");
 
+		//Coach - Team ID and League ID
+		//ArrayList<CoachObject> freeCoaches = createFreeCoaches((JSONArray)leagueData.get("coaches"));
+
+		String leagueName = (String)leagueData.get("leagueName");
+		//if (conferences != null && freeAgents != null && freeCoaches != null) {
 		if (conferences != null && freeAgents != null) {
 
 			LeagueObject league = leagueModel.createLeague(leagueName,conferences,freeAgents);
+			//LeagueObject league = leagueModel.createLeague(leagueName,conferences,freeAgents, freeCoaches);
 
 			String validationResult  =  leagueModel.validateLeague(league);
 			
@@ -301,15 +305,16 @@ public class LeagueModelCreatorFromJSON {
 
 			Boolean captain = (Boolean)((JSONObject) p).get("captain");
 
-			int age = Integer.parseInt(((JSONObject) p).get("age").toString());
+			double age = Double.parseDouble(((JSONObject) p).get("age").toString());
 
-			int skating = Integer.parseInt(((JSONObject) p).get("skating").toString());
+			double skating = Double.parseDouble(((JSONObject) p).get("skating").toString());
 
-			int shooting = Integer.parseInt(((JSONObject) p).get("shooting").toString());
+			double shooting = Double.parseDouble(((JSONObject) p).get("shooting").toString());
 
-			int checking = Integer.parseInt(((JSONObject) p).get("checking").toString());
+			double checking = Double.parseDouble(((JSONObject) p).get("checking").toString());
 
-			int saving = Integer.parseInt(((JSONObject) p).get("saving").toString());
+			double saving = Double.parseDouble(((JSONObject) p).get("saving").toString());
+
 
 			if (playerName == null ||position == null || captain == null || age < 0 || skating < 0 || shooting < 0 || checking < 0 || saving < 0) {
 
@@ -353,15 +358,16 @@ public class LeagueModelCreatorFromJSON {
 
 			String position = (String)((JSONObject) p).get("position");
 
-			int age = Integer.parseInt(((JSONObject) p).get("age").toString());
+			double age = Double.parseDouble(((JSONObject) p).get("age").toString());
 
-			int skating = Integer.parseInt(((JSONObject) p).get("skating").toString());
+			double skating = Double.parseDouble(((JSONObject) p).get("skating").toString());
 
-			int shooting = Integer.parseInt(((JSONObject) p).get("shooting").toString());
+			double shooting = Double.parseDouble(((JSONObject) p).get("shooting").toString());
 
-			int checking = Integer.parseInt(((JSONObject) p).get("checking").toString());
+			double checking = Double.parseDouble(((JSONObject) p).get("checking").toString());
 
-			int saving = Integer.parseInt(((JSONObject) p).get("saving").toString());
+			double saving = Double.parseDouble(((JSONObject) p).get("saving").toString());
+
 
 			if (playerName == null ||position == null || age < 0 || skating < 0 || shooting < 0 || checking < 0 || saving < 0) {
 
@@ -390,6 +396,54 @@ public class LeagueModelCreatorFromJSON {
 		}
 		
 		return players;
+
+	}
+
+	private ArrayList<CoachObject> createFreeCoaches(JSONArray jsonCoaches) {
+
+		if (jsonCoaches == null) return null;
+
+		ArrayList<CoachObject> coaches = new ArrayList<>();
+
+		for (Object p: jsonCoaches) {
+
+			String coachName = (String)((JSONObject) p).get("name");
+
+			float skating = Float.parseFloat(((JSONObject) p).get("skating").toString());
+
+			float shooting = Float.parseFloat(((JSONObject) p).get("shooting").toString());
+
+			float checking = Float.parseFloat(((JSONObject) p).get("checking").toString());
+
+			float saving = Float.parseFloat(((JSONObject) p).get("saving").toString());
+
+			if (coachName == null || skating < 0 || shooting < 0 || checking < 0 || saving < 0) {
+
+				playerCommunication.sendMessage("player missing field");
+
+				return null;
+
+			}
+
+			CoachObject newCoach = new CoachObject(coachName,skating,shooting,checking,saving);
+
+			String validationResult  = newCoach.getResult();
+
+			if (validationResult.equalsIgnoreCase("Success")) {
+
+				coaches.add(newCoach);
+
+			} else {
+
+				playerCommunication.sendMessage(validationResult);
+
+				return null;
+
+			}
+
+		}
+
+		return coaches;
 
 	}
 	

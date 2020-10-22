@@ -27,11 +27,11 @@ public class JsonMockDataDb implements ILeagueModel{
 	public String divisionTwoName = "Pacific";
 	public String conferenceName = "Western Conference";
 	public String conferenceTwoName = "Eastern Conference";
-	public int age = 10;
-	public int skating = 10;
-	public int shooting = 15;
-	public int checking = 10;
-	public int saving = 5;
+	public double age = 10;
+	public double skating = 10;
+	public double shooting = 15;
+	public double checking = 10;
+	public double saving = 5;
 	public LeagueObject league;
 	String playerOneName = "";
 	String positionOne = "";

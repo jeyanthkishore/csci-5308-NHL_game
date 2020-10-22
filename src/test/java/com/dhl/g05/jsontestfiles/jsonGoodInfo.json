@@ -1,5 +1,5 @@
 {
-    "leagueName":"Dalhousie Hockey League02", "conferences":[
+    "leagueName":"Dalhousie Hockey League04", "conferences":[
         {
             "conferenceName":"Eastern Conference", "divisions":[
                 {
@@ -7,7 +7,7 @@
                         {
                             "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10.0, "skating": 11.1, "shooting": 12.1, "checking": 12.1 , "saving": 13.1
                                 },
                                 {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
@@ -56,7 +56,7 @@
                         {
                             "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10.1, "skating": 11.2, "shooting": 12.3, "checking": 12.4 , "saving": 13.5
                                 },
                                 {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
@@ -110,7 +110,7 @@
                         {
                             "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10.1, "skating": 11.2, "shooting": 12.3, "checking": 12.4 , "saving": 13.5
                                 },
                                 {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
@@ -159,7 +159,7 @@
                         {
                             "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10.1, "skating": 11.2, "shooting": 12.3, "checking": 12.4 , "saving": 13.5
                                 },
                                 {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
@@ -209,7 +209,7 @@
     ],
         "freeAgents":[
             {
-                "playerName":"Agent One", "position":"forward", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                "playerName":"Agent One", "position":"forward", "captain":false, "age": 10.0, "skating": 11.0, "shooting": 12.1, "checking": 12.2 , "saving": 13.3
             },
             {   "playerName":"Agent Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                 

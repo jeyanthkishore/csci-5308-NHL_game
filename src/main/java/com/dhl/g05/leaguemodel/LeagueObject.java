@@ -10,6 +10,7 @@ public class LeagueObject {
 	private String leagueName;
 	private List<ConferenceObject> conferenceDetails;
 	private List<FreeAgentObject> freeAgent;
+	private List<CoachObject> freeCoach;
 	private IDataBasePersistence object;
 	private String result;
 	
@@ -27,48 +28,87 @@ public class LeagueObject {
 		setLeagueName(league);
 		setConferenceDetails(conferencedetail);
 		setFreeAgent(agent);
+		//setFreeCoach(coach);
 		this.object = dbObject;
 		result = validate();
 	}
 
 	public String getLeagueName() {
+
 		return leagueName;
+
 	}
 
 	public void setLeagueName(String league) {
+
 		this.leagueName = league;
+
 	}
 
 	public List<ConferenceObject> getConferenceDetails() {
+
 		return conferenceDetails;
+
 	}
 
 	public void setConferenceDetails(List<ConferenceObject> conferencedetail) {
+
 		this.conferenceDetails = conferencedetail;
+
 	}
 
 	public List<FreeAgentObject> getFreeAgent() {
+
 		return freeAgent;
+
 	}
 
 	public void setFreeAgent(List<FreeAgentObject> agent) {
+
 		this.freeAgent = agent;
+
 	}
-	
+
+	public List<CoachObject> getFreeCoach() {
+		return freeCoach;
+	}
+
+	public void setFreeCoach(List<CoachObject> freeCoach) {
+		this.freeCoach = freeCoach;
+	}
+
+	public IDataBasePersistence getObject() {
+		return object;
+	}
+
+	public void setObject(IDataBasePersistence object) {
+		this.object = object;
+	}
+
 	public String getResult() {
+
 		return result;
+
 	}
 
 	public void setResult(String result) {
+
 		this.result = result;
+
 	}
 	
 	public int saveLeagueObject(IDataBasePersistence database) {
+
 		return database.saveLeagueObject(this);
+
 	}
+
 	public int loadLeagueObject(String leagueName,IDataBasePersistence database) {
+
 		return database.loadLeagueObject(leagueName,this);
+
 	}
+
 	public String validate() {
     	if(isLeagueNameEmptyOrNull()) {
     		return "League Name Is Empty";

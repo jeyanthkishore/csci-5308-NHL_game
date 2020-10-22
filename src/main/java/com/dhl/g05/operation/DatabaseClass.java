@@ -50,7 +50,7 @@ public class DatabaseClass implements IDataBasePersistence{
 		agentValue = sp.fetchAllFreeAgents(leagueName);
 
 		String playerName,position;
-		int age, skating, shooting, checking, saving;
+		double age, skating, shooting, checking, saving;
 
 		for(HashMap<String, Object> agent : agentValue) {
 
@@ -58,14 +58,12 @@ public class DatabaseClass implements IDataBasePersistence{
 
 			position = agent.get("position_name").toString();
 
-			// Add values to DB in agent table
-			age = Integer.parseInt(agent.get("age").toString());
-			skating = Integer.parseInt(agent.get("skating").toString());
-			shooting = Integer.parseInt(agent.get("shooting").toString());
-			checking = Integer.parseInt(agent.get("checking").toString());
-			saving = Integer.parseInt(agent.get("saving").toString());
+			age = Double.parseDouble(agent.get("age").toString());
+			skating = Double.parseDouble(agent.get("skating").toString());
+			shooting = Double.parseDouble(agent.get("shooting").toString());
+			checking = Double.parseDouble(agent.get("checking").toString());
+			saving = Double.parseDouble(agent.get("saving").toString());
 
-			// Remove Comment --> Add 5 stat
 			freeAgent.add(new FreeAgentObject(playerName,position, age, skating, shooting, checking, saving));
 		}
 		league.setFreeAgent(freeAgent);
@@ -121,13 +119,12 @@ public class DatabaseClass implements IDataBasePersistence{
 
 			String playerName = player.get("player_name").toString();
 
-			// Add values to DB in player table
-			int age = Integer.parseInt(player.get("age").toString());
-			int skating = Integer.parseInt(player.get("skating").toString());
-			int shooting = Integer.parseInt(player.get("shooting").toString());
-			int checking = Integer.parseInt(player.get("checking").toString());
-			int saving = Integer.parseInt(player.get("saving").toString());
-			//Remove Comment
+			double age = Double.parseDouble(player.get("age").toString());
+			double skating = Double.parseDouble(player.get("skating").toString());
+			double shooting = Double.parseDouble(player.get("shooting").toString());
+			double checking = Double.parseDouble(player.get("checking").toString());
+			double saving = Double.parseDouble(player.get("saving").toString());
+
 			playerList.add(new PlayerObject(playerName,null,null,age,skating,shooting,checking,saving));
 		}
 
@@ -146,17 +143,14 @@ public class DatabaseClass implements IDataBasePersistence{
 		String position = playerDetail.get(0).get("position_name").toString();
 		Boolean captain = Boolean.parseBoolean(playerDetail.get(0).get("player_is_captain").toString());
 
-		//Get stat from db
-		int age = Integer.parseInt(playerDetail.get(0).get("age").toString());
-		int skating = Integer.parseInt(playerDetail.get(0).get("skating").toString());
-		int shooting = Integer.parseInt(playerDetail.get(0).get("shooting").toString());
-		int checking = Integer.parseInt(playerDetail.get(0).get("checking").toString());
-		int saving = Integer.parseInt(playerDetail.get(0).get("saving").toString());
+		double age = Double.parseDouble(playerDetail.get(0).get("age").toString());
+		double skating = Double.parseDouble(playerDetail.get(0).get("skating").toString());
+		double shooting = Double.parseDouble(playerDetail.get(0).get("shooting").toString());
+		double checking = Double.parseDouble(playerDetail.get(0).get("checking").toString());
+		double saving = Double.parseDouble(playerDetail.get(0).get("saving").toString());
 
 		playerObject.setPosition(position);
 		playerObject.setCaptain(captain);
-
-		//Set 5 stat
 		playerObject.setAge(age);
 		playerObject.setSkating(skating);
 		playerObject.setShooting(shooting);
@@ -178,11 +172,11 @@ public class DatabaseClass implements IDataBasePersistence{
 		for(FreeAgentObject free : freeAgent) {
 			playerName = free.getPlayerName();
 			position = free.getPosition();
-			int age = free.getAge();
-			int skating = free.getSkating();
-			int shooting = free.getShooting();
-			int checking = free.getChecking();
-			int saving = free.getSaving();
+			double age = free.getAge();
+			double skating = free.getSkating();
+			double shooting = free.getShooting();
+			double checking = free.getChecking();
+			double saving = free.getSaving();
 
 			//int playerId = sp.saveFreeAgent(playerName,position,leagueName);
 			int playerId = sp.saveFreeAgent(playerName,position,leagueName,age,skating,shooting,checking,saving);
@@ -225,11 +219,11 @@ public class DatabaseClass implements IDataBasePersistence{
 		String position = playerObject.getPosition();
 		int positionId = sp.getPositionID(position);
 		Boolean captain = playerObject.getCaptain();
-		int age = playerObject.getAge();
-		int skating = playerObject.getSkating();
-		int shooting = playerObject.getShooting();
-		int checking = playerObject.getChecking();
-		int saving = playerObject.getSaving();
+		double age = playerObject.getAge();
+		double skating = playerObject.getSkating();
+		double shooting = playerObject.getShooting();
+		double checking = playerObject.getChecking();
+		double saving = playerObject.getSaving();
 
 		int captainID = (captain) ? 1 : 0;
 		//int playerId = sp.savePlayer(teamId,positionId,playerName,captainID);

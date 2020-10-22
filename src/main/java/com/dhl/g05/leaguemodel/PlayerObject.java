@@ -14,7 +14,7 @@ public class PlayerObject extends FreeAgentObject{
 		setPosition(null);
 	}
 
-	public PlayerObject(String playerName, String position, Boolean captain, int age, int skating, int shooting, int checking, int saving) {
+	public PlayerObject(String playerName, String position, Boolean captain, double age, double skating, double shooting, double checking, double saving) {
 
 		super(playerName,position, age, skating, shooting, checking, saving);
 
