@@ -155,8 +155,8 @@ public class LeagueObject {
 	}
 	
 	public boolean isFreeAgentPositionWrong() {
-		Boolean position = freeAgent.stream().anyMatch(v ->!(v.getPosition().equals("forward")
-				|| v.getPosition().equals("defense") ||v.getPosition().equals("goalie")));
+		Boolean position = freeAgent.stream().anyMatch(v ->!(v.getPosition().equalsIgnoreCase("forward")
+				|| v.getPosition().equalsIgnoreCase("defense") ||v.getPosition().equalsIgnoreCase("goalie")));
 		return position;
 	}
 	public boolean isFreeAgentListEmpty() {
