@@ -62,6 +62,7 @@ public class TeamObject {
 
 	}
 
+	//Calculate Team Strength
 	public double calculateTeamStrength(List<PlayerObject> playerList){
 
 		for (IFreeAgent player: playerList) {
