@@ -3,20 +3,20 @@ package com.dhl.g05.leaguemodel;
 public class CoachObject {
     private String name;
     private String result;
-    private float skating;
-    private float shooting;
-    private float checking;
-    private float saving;
+    private double skating;
+    private double shooting;
+    private double checking;
+    private double saving;
 
     public CoachObject(){
         setName(null);
-        setSkating(0);
-        setSkating(0);
-        setChecking(0);
-        setSaving(0);
+        setSkating(0.0);
+        setSkating(0.0);
+        setChecking(0.0);
+        setSaving(0.0);
     }
 
-    public CoachObject(String name, float skating, float shooting, float checking, float saving){
+    public CoachObject(String name, double skating, double shooting, double checking, double saving){
 
         this.name = name;
 
@@ -33,42 +33,44 @@ public class CoachObject {
     }
 
     public String getName() {
+
         return name;
+
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public float getSkating() {
+    public double getSkating() {
         return skating;
     }
 
-    public void setSkating(float skating) {
+    public void setSkating(double skating) {
         this.skating = skating;
     }
 
-    public float getShooting() {
+    public double getShooting() {
         return shooting;
     }
 
-    public void setShooting(float shooting) {
+    public void setShooting(double shooting) {
         this.shooting = shooting;
     }
 
-    public float getChecking() {
+    public double getChecking() {
         return checking;
     }
 
-    public void setChecking(float checking) {
+    public void setChecking(double checking) {
         this.checking = checking;
     }
 
-    public float getSaving() {
+    public double getSaving() {
         return saving;
     }
 
-    public void setSaving(float saving) {
+    public void setSaving(double saving) {
         this.saving = saving;
     }
 
@@ -133,9 +135,9 @@ public class CoachObject {
 
     }
 
-    public boolean validateStat(float stat) {
+    public boolean validateStat(double stat) {
 
-        if (stat >= 0 && stat <= 1) {
+        if (stat >= 0.0 && stat <= 1.0) {
 
             return true;
         }

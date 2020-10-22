@@ -136,14 +136,12 @@ public class LeagueModelCreatorFromJSON {
 		ArrayList<FreeAgentObject> freeAgents = createFreeAgents((JSONArray)leagueData.get("freeAgents"));
 
 		//Coach - Team ID and League ID
-		//ArrayList<CoachObject> freeCoaches = createFreeCoaches((JSONArray)leagueData.get("coaches"));
+		ArrayList<CoachObject> freeCoaches = createFreeCoaches((JSONArray)leagueData.get("coaches"));
 
 		String leagueName = (String)leagueData.get("leagueName");
-		//if (conferences != null && freeAgents != null && freeCoaches != null) {
-		if (conferences != null && freeAgents != null) {
+		if (conferences != null && freeAgents != null && freeCoaches != null) {
 
-			LeagueObject league = leagueModel.createLeague(leagueName,conferences,freeAgents);
-			//LeagueObject league = leagueModel.createLeague(leagueName,conferences,freeAgents, freeCoaches);
+			LeagueObject league = leagueModel.createLeague(leagueName,conferences,freeAgents, freeCoaches);
 
 			String validationResult  =  leagueModel.validateLeague(league);
 			
@@ -409,13 +407,13 @@ public class LeagueModelCreatorFromJSON {
 
 			String coachName = (String)((JSONObject) p).get("name");
 
-			float skating = Float.parseFloat(((JSONObject) p).get("skating").toString());
+			double skating = Double.parseDouble(((JSONObject) p).get("skating").toString());
 
-			float shooting = Float.parseFloat(((JSONObject) p).get("shooting").toString());
+			double shooting = Double.parseDouble(((JSONObject) p).get("shooting").toString());
 
-			float checking = Float.parseFloat(((JSONObject) p).get("checking").toString());
+			double checking = Double.parseDouble(((JSONObject) p).get("checking").toString());
 
-			float saving = Float.parseFloat(((JSONObject) p).get("saving").toString());
+			double saving = Double.parseDouble(((JSONObject) p).get("saving").toString());
 
 			if (coachName == null || skating < 0 || shooting < 0 || checking < 0 || saving < 0) {
 

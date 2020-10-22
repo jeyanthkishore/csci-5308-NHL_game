@@ -8,8 +8,7 @@ import com.dhl.g05.leaguemodel.*;
 public interface ILeagueModel {
 	public LeagueObject getLeague();
 	public TeamObject getCurrentTeam();
-	public LeagueObject createLeague(String leagueName, List<ConferenceObject> conferences, List<FreeAgentObject> freeAgents);
-//	public LeagueObject createLeague(String leagueName, List<ConferenceObject> conferences, List<FreeAgentObject> freeAgents, List<CoachObject> coaches);
+	public LeagueObject createLeague(String leagueName, List<ConferenceObject> conferences, List<FreeAgentObject> freeAgents, List<CoachObject> coaches);
 	public void setLeague(LeagueObject league);
 	public boolean persistLeague();
 	public boolean addTeamToCurrentLeague(String conferenceName, String divisionName, TeamObject team);

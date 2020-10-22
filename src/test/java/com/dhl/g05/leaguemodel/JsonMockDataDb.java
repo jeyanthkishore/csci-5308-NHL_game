@@ -15,6 +15,7 @@ public class JsonMockDataDb implements ILeagueModel{
 	public List<DivisionObject> divisionList;
 	public List<FreeAgentObject> freeAgentList;
 	public List<ConferenceObject> conferenceList;
+	public List<CoachObject> coachList;
 	public ArrayList<HashMap<String,Object>> leagueList;
 	public HashMap<String,Object> leagueMap;
 	public String teamName = "Striker Six";
@@ -32,6 +33,10 @@ public class JsonMockDataDb implements ILeagueModel{
 	public double shooting = 15;
 	public double checking = 10;
 	public double saving = 5;
+	public double coachSkating = 0.5;
+	public double coachShooting = 0.5;
+	public double coachChecking = 0.5;
+	public double coachSaving = 0.5;
 	public LeagueObject league;
 	String playerOneName = "";
 	String positionOne = "";
@@ -58,6 +63,7 @@ public class JsonMockDataDb implements ILeagueModel{
 		playerList = new ArrayList<PlayerObject>();
 		teamList = new ArrayList<TeamObject>();
 		freeAgentList = new ArrayList<FreeAgentObject>();
+		coachList = new ArrayList<CoachObject>();
 		conferenceList = new ArrayList<ConferenceObject>();
 		leagueList = new ArrayList<HashMap<String,Object>>();
 		leagueMap = new HashMap<String,Object>();
@@ -78,9 +84,12 @@ public class JsonMockDataDb implements ILeagueModel{
 		freeAgentList.add(new FreeAgentObject(playerTwoName,positionTwo,age,skating,shooting,checking,saving));
 		conferenceList.add(new ConferenceObject(conferenceName,divisionList));
 		conferenceList.add(new ConferenceObject(conferenceTwoName,divisionList));
+		coachList.add(new CoachObject(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving));
+		coachList.add(new CoachObject(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving));
 		league.setLeagueName(leagueName);
 		league.setConferenceDetails(conferenceList);
 		league.setFreeAgent(freeAgentList);
+		league.setFreeCoach(coachList);
 		leagueMap.put("league_name","HockeyLeague");
 		leagueList.add(leagueMap);
 		leagueMap.put("league_name","CanadaLeague");
@@ -127,6 +136,7 @@ public class JsonMockDataDb implements ILeagueModel{
 	public void setPlayerListEmpty() {
 		playerList.clear();
 	}
+
 	public void addMaximumPlayer() {
 		for(int count = 0; count<22; count++) {
 			playerList.add(new PlayerObject(playerTwoName,positionTwo,captainTwo,age,skating,shooting,checking,saving));

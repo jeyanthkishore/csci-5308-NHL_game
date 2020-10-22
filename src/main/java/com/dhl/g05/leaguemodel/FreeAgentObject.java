@@ -1,14 +1,12 @@
 package com.dhl.g05.leaguemodel;
 
-public class FreeAgentObject {
+public class FreeAgentObject implements IFreeAgent{
 	
 	private String playerName;
 
 	private String position;
 
 	private String result;
-
-	// Added Player Stat
 
 	private double age;
 
@@ -20,11 +18,17 @@ public class FreeAgentObject {
 
 	private double saving;
 
+	private double playerStrength;
+
+	private boolean hasInjured;
+
 	public FreeAgentObject() {
 
 		setPlayerName(null);
 
 		setPosition(null);
+
+		setHasInjured(false);
 
 	}
 
@@ -147,6 +151,54 @@ public class FreeAgentObject {
 	public void setSaving(double saving) {
 
 		this.saving = saving;
+
+	}
+
+	public boolean getHasInjured() {
+
+		return hasInjured;
+
+	}
+
+	public void setHasInjured(boolean hasInjured) {
+
+		this.hasInjured = hasInjured;
+
+	}
+
+	public double getPlayerStrength() {
+
+		return playerStrength;
+
+	}
+
+	public void setPlayerStrength(double playerStrength) {
+
+		this.playerStrength = playerStrength;
+
+	}
+
+	public double calculatePlayerStrength(){
+
+		if(position.equalsIgnoreCase("forward")){
+
+			playerStrength = skating + shooting + (checking/2);
+
+		}
+
+		if(position.equalsIgnoreCase("defense")){
+
+			playerStrength = skating + checking + (shooting/2);
+
+		}
+
+		if(position.equalsIgnoreCase("goalie")){
+
+			playerStrength = skating + saving;
+
+		}
+
+		return playerStrength;
 
 	}
 

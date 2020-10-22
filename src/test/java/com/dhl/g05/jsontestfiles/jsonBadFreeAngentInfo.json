@@ -207,7 +207,7 @@
             ]
         }
     ],
-        "agents":[
+    "agents":[
             {
                 "playerName":"Agent One", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
             },
@@ -216,6 +216,29 @@
             },
             {   "playerName":"Agent Three", "position":"goalie", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
             }
-        ]
+    ],
+    "coaches":[
+        {
+            "name":"Joe Smith",
+            "skating":0.5,
+            "shooting":0.8,
+            "checking":0.3,
+            "saving":1.0
+        },
+        {
+            "name":"Frank Smith",
+            "skating":0.5,
+            "shooting":0.8,
+            "checking":0.3,
+            "saving":0.5
+        },
+        {
+            "name":"Samantha Smith",
+            "skating":1.0,
+            "shooting":0.5,
+            "checking":0.5,
+            "saving":0.0
+        }
+    ]
 }
 

@@ -16,6 +16,7 @@ public class FreeAgentObjectTest {
 		assertNull(object.getPlayerName());
 		assertNull(object.getPosition());
 	}
+
 	@Test
 	public void setPlayerNameTest() {
 		FreeAgentObject object = new FreeAgentObject();
@@ -128,6 +129,8 @@ public class FreeAgentObjectTest {
 		object.setResult("success");
 		assertEquals("success",object.getResult());
 	}
+
+
 	@Test
 	public void playerListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
