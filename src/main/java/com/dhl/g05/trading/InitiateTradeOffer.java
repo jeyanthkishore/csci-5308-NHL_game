@@ -1,5 +1,6 @@
 package com.dhl.g05.trading;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import com.dhl.g05.gamePlayConfig.TradingModel;
@@ -9,48 +10,93 @@ import com.dhl.g05.leaguemodel.LeagueObject;
 import com.dhl.g05.leaguemodel.TeamObject;
 
 
-public class InitiateTradeOffer implements ITrading{
+public class InitiateTradeOffer {
 
-	LeagueObject league =  new LeagueObject();
-
-	public boolean generateTradeOffer(LeagueObject league, TradingModel trade){
-		boolean initiateTrade = false;
-		if (checkLossPoint(league, trade) == true)
-		{
-			if(checkTradeValue(generateRandomValue(), trade) == true);
-			 initiateTrade = true;
-		}
-		return initiateTrade;
+	private Object TradeAlgorithm;
+	private LeagueObject league;
+	private ConferenceObject conference;
+	private DivisionObject division;
+	private TeamObject team;
+	public ConferenceObject getConference() {
+		return conference;
 	}
 
-	private boolean checkLossPoint(LeagueObject league, TradingModel trade) {
-		int lossPoint=trade.getLossPoint();
-		int teamLossCount=10;
-		boolean flag = false;
-		for (ConferenceObject c: league.getConferenceDetails()) {
-			for (DivisionObject d: c.getDivisionDetails()) {
-				for (TeamObject t: d.getTeamDetails()) {
-					//int teamLossCount=t.getTeamLossCount() ----- waiting for this value
-					if (teamLossCount >= lossPoint)
-						flag = true;
+	public void setConference(ConferenceObject conference) {
+		this.conference = conference;
+	}
+
+	public DivisionObject getDivision() {
+		return division;
+	}
+
+	public void setDivision(DivisionObject division) {
+		this.division = division;
+	}
+
+	public TeamObject getTeam() {
+		return team;
+	}
+
+	public void setTeam(TeamObject team) {
+		this.team = team;
+	}
+
+	private TradingModel trade;
+
+	public Object getTradeAlgorithm() {
+		return TradeAlgorithm;
+	}
+
+	public void setTradeAlgorithm(Object tradeAlgorithm) {
+		TradeAlgorithm = tradeAlgorithm;
+	}
+
+	public LeagueObject getLeague() {
+		return league;
+	}
+
+	public void setLeague(LeagueObject league) {
+		this.league = league;
+	}
+
+	public TradingModel getTrade() {
+		return trade;
+	}
+
+	public void setTrade(TradingModel trade) {
+		this.trade = trade;
+	}
+
+	public ArrayList<String> initiateTradeOffer()
+	{
+		ArrayList <String> teamReadyToTrade= new ArrayList<String>();
+		boolean checkLossPointResult=false;
+		boolean CheckTradeValueResult=false;
+		Random loss = new Random();
+		CheckLossPoint lossPoint= new CheckLossPoint();
+		lossPoint.setLossPoint(trade.getLossPoint());
+
+		for (ConferenceObject c: league.getConferenceDetails()) 
+		{
+			for (DivisionObject d: c.getDivisionDetails()) 
+			{
+				for (TeamObject t: d.getTeamDetails())
+				{ 
+					lossPoint.setLossCount(10);
+					checkLossPointResult=lossPoint.checkLossPoint();
+					CheckTradeValue checkTradeValue= new CheckTradeValue(trade);
+					CheckTradeValueResult=checkTradeValue.checkTradeValue();
+					if(checkLossPointResult== true && CheckTradeValueResult==true)
+					{
+						teamReadyToTrade.add(t.getTeamName());
+
+						 //call TradeAlgorithm
+					}
+
 				}
 			}
 		}
-		return flag;
-	}
-
-	private double generateRandomValue(){
-		Random randomTrade = new Random();
-		double ramdomeTradeValue= randomTrade.nextDouble();
-		System.out.println(ramdomeTradeValue);
-		return ramdomeTradeValue;
-	}
-
-	private boolean checkTradeValue(double ramdomeTradeValue, TradingModel trade ){
-		if (ramdomeTradeValue<= trade.getRandomTradeOfferChance())
-			return true;
-		else 
-			return false;
+		return teamReadyToTrade;
 	}
 
 }

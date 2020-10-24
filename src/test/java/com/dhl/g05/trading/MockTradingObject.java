@@ -9,7 +9,7 @@ public class MockTradingObject{
 		TradingModel trading = new TradingModel() ;
 		trading.setLossPoint(8);
 		trading.setMaxPlayersPerTrade(2);
-		trading.setRandomTradeOfferChance(0.05);
+		trading.setRandomTradeOfferChance(1.00);
 		trading.setRandomAcceptanceChance(0.05);
 		return trading;
 	}
