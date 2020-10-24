@@ -8,6 +8,7 @@ import com.dhl.g05.leaguemodel.DivisionObject;
 import com.dhl.g05.leaguemodel.LeagueObject;
 import com.dhl.g05.leaguemodel.PlayerObject;
 import com.dhl.g05.leaguemodel.TeamObject;
+import com.dhl.g05.simulation.Date;
 
 public interface IDataBasePersistence {
 
@@ -32,5 +33,9 @@ public interface IDataBasePersistence {
 	public int loadPlayerObject(int teamId, PlayerObject playerObject);
 
 	public ArrayList<HashMap<String, Object>> loadDetails();
+
+	void loadDate(LeagueObject league, Date date);
+
+	void saveDate(LeagueObject league, Date date);
 
 }

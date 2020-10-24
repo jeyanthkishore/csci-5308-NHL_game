@@ -1,5 +1,6 @@
 package com.dhl.g05.statemachine;
 
+
 public class StateMachine {
 	
 	private AbstractState currentState;   

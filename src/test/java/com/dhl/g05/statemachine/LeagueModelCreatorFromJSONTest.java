@@ -17,13 +17,13 @@ import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
 
 
 
-public class LeagueModelCreatorTest {
-	LeagueModelCreator leagueModelCreator;
+public class LeagueModelCreatorFromJSONTest {
+	LeagueModelCreatorFromJSON leagueModelCreator;
 	Exception exception;
 	
 	@Before
 	public void init() {
-		leagueModelCreator = new LeagueModelCreator(new MockLeagueModel(), new MockPlayerCommunication());
+		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModel(), new MockPlayerCommunication());
 		exception = new Exception();
 	}
 	
@@ -82,7 +82,7 @@ public class LeagueModelCreatorTest {
 	
 	@Test
 	public void testCreateLeagueFromFilePlayersBad() {
-		leagueModelCreator = new LeagueModelCreator(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
+		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
 		boolean result = true;
 		try {
 			result  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadPlayerInfo.json");
@@ -96,7 +96,7 @@ public class LeagueModelCreatorTest {
 
 	@Test
 	public void testCreateLeagueFromFileTeamsBad() {
-		leagueModelCreator = new LeagueModelCreator(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
+		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
 		boolean result = true;
 		try {
 			result  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadTeamInfo.json");
@@ -109,7 +109,7 @@ public class LeagueModelCreatorTest {
 	
 	@Test
 	public void testCreateLeagueFromFileDivisionsBad() {
-		leagueModelCreator = new LeagueModelCreator(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
+		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
 		boolean result = true;
 		try {
 			result  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadDivisionInfo.json");
@@ -123,7 +123,7 @@ public class LeagueModelCreatorTest {
 	
 	@Test
 	public void testCreateLeagueFromFileConferencesBad() {
-		leagueModelCreator = new LeagueModelCreator(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
+		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
 		boolean result = true;
 		try {
 			result = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadConferenceInfo.json");
@@ -136,7 +136,7 @@ public class LeagueModelCreatorTest {
 	
 	@Test
 	public void testCreateLeagueFromFileFreeAgentsBad() {
-		leagueModelCreator = new LeagueModelCreator(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
+		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
 		boolean result = true;
 		try {
 			result  = leagueModelCreator.createLeagueFromFile("src/test/java/com/dhl/g05/jsontestfiles/jsonBadFreeAngentInfo.json");
