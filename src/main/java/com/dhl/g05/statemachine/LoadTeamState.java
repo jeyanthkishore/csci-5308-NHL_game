@@ -32,7 +32,8 @@ public class LoadTeamState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
-		if (this.getOuterStateMachine().getLeagueModel().loadTeam(leagueName, conferenceName, divisionName, teamName)) {
+		ILeagueModel leagueModel = this.getOuterStateMachine().getLeagueModel();
+		if (leagueModel.loadTeam(leagueName, conferenceName, divisionName, teamName)) {
 			return true;
 		} else {
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Team does not exist");

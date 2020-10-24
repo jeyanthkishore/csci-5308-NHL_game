@@ -19,6 +19,7 @@ public class PlayerObjectTest {
 		assertNull(object.getPosition());
 		assertNull(object.getCaptain());
 	}
+
 	@Test
 	public void setPlayerNameTest() {
 		PlayerObject object = new PlayerObject();

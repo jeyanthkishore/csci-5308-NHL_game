@@ -21,7 +21,7 @@ public class LoadTeamStateTest {
 		stateMachine = new StateMachine(new MockPlayerCommunication(),new MockLeagueModel());
 		state = new LoadTeamState(stateMachine);
 		stateMachine.setCurrentState(state);
-		stateMachine.getLeagueModel().setLeague(new LeagueObject(null, null, null, new DbPersistanceMock()));
+		stateMachine.getLeagueModel().setLeague(new LeagueObject(null, null, null,null, new DbPersistanceMock()));
 	}
 	
 	@Test

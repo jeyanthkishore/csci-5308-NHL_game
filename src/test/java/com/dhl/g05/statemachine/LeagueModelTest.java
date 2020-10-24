@@ -4,15 +4,10 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import com.dhl.g05.leaguemodel.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dhl.g05.leaguemodel.ConferenceObject;
-import com.dhl.g05.leaguemodel.DivisionObject;
-import com.dhl.g05.leaguemodel.FreeAgentObject;
-import com.dhl.g05.leaguemodel.LeagueObject;
-import com.dhl.g05.leaguemodel.PlayerObject;
-import com.dhl.g05.leaguemodel.TeamObject;
 import com.dhl.g05.operation.DbPersistanceMock;
 
 public class LeagueModelTest {
@@ -25,7 +20,7 @@ public class LeagueModelTest {
 	public void init() {
 		leagueModel = new LeagueModel(new DbPersistanceMock());
 		
-		PlayerObject player = new PlayerObject("Cristiano Ronaldo",null,null);
+		PlayerObject player = new PlayerObject("Cristiano Ronaldo",null,null,10,15,1,20,15);
 		ArrayList<PlayerObject> players = new ArrayList<>();
 		players.add(player);
 		
@@ -42,13 +37,17 @@ public class LeagueModelTest {
 		ArrayList<ConferenceObject> conferences = new ArrayList<>();
 		conferences.add(conference);
 
-		league = new LeagueObject("HockeyLeague",conferences,null,new DbPersistanceMock());
+		CoachObject coach = new CoachObject("Smith",0.5,0.6,0.7,0.8);
+		ArrayList<CoachObject> coachList = new ArrayList<>();
+		coachList.add(coach);
+
+		league = new LeagueObject("HockeyLeague",conferences,null,coachList,new DbPersistanceMock());
 		
 	}
 
 	@Test
 	public void testCreateLeague() {
-		LeagueObject newleague = leagueModel.createLeague("testLeague", new ArrayList<ConferenceObject>(), new ArrayList<FreeAgentObject>());   
+		LeagueObject newleague = leagueModel.createLeague("testLeague", new ArrayList<ConferenceObject>(), new ArrayList<FreeAgentObject>(), new ArrayList<CoachObject>());
 		assertNotNull(newleague);
 		assertTrue(newleague.getLeagueName().equals("testLeague"));
 	}

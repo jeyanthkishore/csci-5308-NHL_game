@@ -16,18 +16,95 @@ public class FreeAgentObjectTest {
 		assertNull(object.getPlayerName());
 		assertNull(object.getPosition());
 	}
+
 	@Test
 	public void setPlayerNameTest() {
 		FreeAgentObject object = new FreeAgentObject();
 		object.setPlayerName("Ronaldo");
 		assertSame(object.getPlayerName(),"Ronaldo");
 	}
+
 	@Test
 	public void getPlayerNameTest() {
 		FreeAgentObject object = new FreeAgentObject();
 		object.setPlayerName("Ronaldo");
 		assertSame(object.getPlayerName(),"Ronaldo");
 	}
+
+
+	@Test
+	public void setAgeTest() {
+		FreeAgentObject object = new FreeAgentObject();
+		object.setAge(10.0);
+		assertEquals(object.getAge(),10.0,0);
+	}
+
+	@Test
+	public void getAgeTest() {
+		FreeAgentObject object = new FreeAgentObject();
+		object.setAge(10.0);
+		assertEquals(object.getAge(),10.0,0);
+	}
+
+	@Test
+	public void setSkatingTest() {
+		FreeAgentObject object = new FreeAgentObject();
+		object.setSkating(10.0);
+		assertEquals(object.getSkating(),10.0,0);
+	}
+
+	@Test
+	public void getSkatingTest() {
+		FreeAgentObject object = new FreeAgentObject();
+		object.setSkating(10.0);
+		assertEquals(object.getSkating(),10.0,0);
+	}
+
+	@Test
+	public void setShootingTest() {
+		FreeAgentObject object = new FreeAgentObject();
+		object.setShooting(10.0);
+		assertEquals(object.getShooting(),10.0,0);
+	}
+
+	@Test
+	public void getShootingTest() {
+		FreeAgentObject object = new FreeAgentObject();
+		object.setShooting(10.0);
+		assertEquals(object.getShooting(),10.0,0);
+	}
+
+	@Test
+	public void setCheckingTest() {
+		FreeAgentObject object = new FreeAgentObject();
+		object.setChecking(10.0);
+		assertEquals(object.getChecking(),10.0,0);
+	}
+
+	@Test
+	public void getCheckingTest() {
+		FreeAgentObject object = new FreeAgentObject();
+		object.setChecking(10.0);
+		assertEquals(object.getChecking(),10.0,0);
+	}
+
+	@Test
+	public void setSavingTest() {
+		FreeAgentObject object = new FreeAgentObject();
+		object.setSaving(10.0);
+		assertEquals(object.getSaving(),10.0,0);
+	}
+
+	@Test
+	public void getSavingTest() {
+		FreeAgentObject object = new FreeAgentObject();
+		object.setSaving(10.0);
+		assertEquals(object.getSaving(),10.0,0);
+	}
+
+
+
+
 	@Test
 	public void setPositionTest() {
 		FreeAgentObject object = new FreeAgentObject();
@@ -52,6 +129,8 @@ public class FreeAgentObjectTest {
 		object.setResult("success");
 		assertEquals("success",object.getResult());
 	}
+
+
 	@Test
 	public void playerListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
