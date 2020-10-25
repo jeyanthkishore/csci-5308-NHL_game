@@ -83,13 +83,13 @@ public class CoachObjectTest {
         assertEquals(object.getSaving(),0.5,0);
     }
 
-
     @Test
     public void getResultTest() {
         CoachObject object = new CoachObject();
         object.setResult("success");
         assertEquals("success",object.getResult());
     }
+
     @Test
     public void setResultTest() {
         CoachObject object = new CoachObject();
@@ -97,6 +97,67 @@ public class CoachObjectTest {
         assertEquals("success",object.getResult());
     }
 
+    @Test
+    public void isCoachNameNullTest() {
+        JsonMockDataDb data = new JsonMockDataDb();
+        data.setCoachNameNull();
+        CoachObject object = new CoachObject(data);
+        assertTrue(object.isCoachNameNull());
+    }
+
+    @Test
+    public void isCoachNameEmptyTest() {
+        JsonMockDataDb data = new JsonMockDataDb();
+        data.setCoachNameEmpty();
+        CoachObject object = new CoachObject(data);
+        assertTrue(object.isCoachNameEmpty());
+    }
+
+    @Test
+    public void validateStatsTest() {
+        CoachObject validate = new CoachObject();
+        validate.setSkating(0.7);
+        assertEquals(validate.validateStat(0.7),true);
+    }
+
+    @Test
+    public void validateStatsInverseTest() {
+        FreeAgentObject validate = new FreeAgentObject();
+        validate.setSkating(-1);
+        assertEquals(validate.validateStat(-1),false);
+    }
+
+    @Test
+    public void isCoachStatValidTest() {
+        CoachObject validate = new CoachObject();
+        validate.setSkating(0.5);
+        validate.setShooting(0.3);
+        validate.setChecking(0.5);
+        validate.setSaving(0.6);
+        assertEquals(validate.isCoachStatValid(),true);
+    }
+
+    @Test
+    public void isCoachStatInValidTest() {
+        CoachObject validate = new CoachObject();
+        validate.setSkating(1.5);
+        validate.setShooting(0.3);
+        validate.setChecking(0.5);
+        validate.setSaving(0.6);
+        assertEquals(validate.isCoachStatValid(),false);
+    }
+
+    @Test
+    public void validateTest() {
+        JsonMockDataDb mock = new JsonMockDataDb();
+        mock.setCoachNameEmpty();
+        CoachObject validate = new CoachObject(mock);
+        assertEquals("Coach Name Should Not have Empty Value",validate.validate());
+        mock = new JsonMockDataDb();
+        validate = new CoachObject(mock);
+        validate.setSkating(-1);
+        assertEquals("Invalid state of coach",validate.validate());
+    }
 
 }
 

@@ -3,11 +3,7 @@ package com.dhl.g05.operation;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.dhl.g05.leaguemodel.ConferenceObject;
-import com.dhl.g05.leaguemodel.DivisionObject;
-import com.dhl.g05.leaguemodel.LeagueObject;
-import com.dhl.g05.leaguemodel.PlayerObject;
-import com.dhl.g05.leaguemodel.TeamObject;
+import com.dhl.g05.leaguemodel.*;
 import com.dhl.g05.simulation.Date;
 
 public interface IDataBasePersistence {
@@ -18,7 +14,7 @@ public interface IDataBasePersistence {
 
 	public int saveDivisionObject(int conferenceId, DivisionObject divisionObject);
 
-	public int saveTeamObject(int divisionId, TeamObject teamObject);
+	public int saveTeamObject(int divisionId, TeamObject teamObject, CoachObject coachDetails);
 
 	public int savePlayerObject(int teamId, PlayerObject playerObject);
 

@@ -16,6 +16,7 @@ public class JsonMockDataDb implements ILeagueModel{
 	public List<FreeAgentObject> freeAgentList;
 	public List<ConferenceObject> conferenceList;
 	public List<CoachObject> coachList;
+	public CoachObject coachDetails;
 	public ArrayList<HashMap<String,Object>> leagueList;
 	public HashMap<String,Object> leagueMap;
 	public String teamName = "Striker Six";
@@ -37,9 +38,14 @@ public class JsonMockDataDb implements ILeagueModel{
 	public double coachShooting = 0.5;
 	public double coachChecking = 0.5;
 	public double coachSaving = 0.5;
+	public double playerStrength = 0;
+	public double teamStrength = 0;
 	public LeagueObject league;
 	String playerOneName = "";
 	String positionOne = "";
+	String positionForward = "forward";
+	String positionDefense = "defense";
+	String positionGoalie = "goalie";
 	Boolean captainOne = true;
 	String playerTwoName = "";
 	String positionTwo = "";
@@ -75,9 +81,10 @@ public class JsonMockDataDb implements ILeagueModel{
 		playerTwoName= "Messi";
 		positionTwo =  "goalie";
 		captainTwo = false;
+		coachDetails = new CoachObject(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving);
 		playerList.add(new PlayerObject(playerTwoName,positionTwo,captainTwo,age,skating,shooting,checking,saving));
-		teamList.add(new TeamObject(teamName,headCoachName,generalManagerName,playerList));
-		teamList.add(new TeamObject(teamTwoName,headCoachTwoName,generalManagerTwoName,playerList));
+		teamList.add(new TeamObject(teamName,coachDetails,generalManagerName,playerList));
+		teamList.add(new TeamObject(teamTwoName,coachDetails,generalManagerTwoName,playerList));
 		divisionList.add(new DivisionObject(divisionOneName,teamList));
 		divisionList.add(new DivisionObject(divisionTwoName,teamList));
 		freeAgentList.add(new FreeAgentObject(playerOneName,positionOne,age,skating,shooting,checking,saving));
@@ -111,7 +118,6 @@ public class JsonMockDataDb implements ILeagueModel{
 		freeAgentList.add(new FreeAgentObject("Kajol","defense",age,skating,shooting,checking,saving));
 		conferenceList.add(new ConferenceObject(conferenceName,divisionList));
 		conferenceList.add(new ConferenceObject(conferenceTwoName,divisionList));
-		coachList.add(new CoachObject(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving));
 		coachList.add(new CoachObject(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving));
 		league.setLeagueName(leagueName);
 		league.setConferenceDetails(conferenceList);
@@ -255,10 +261,44 @@ public class JsonMockDataDb implements ILeagueModel{
 	public void setFreeAgentPositionDifferent() {
 		freeAgentList.get(0).setPosition("wing");
 	}
+
+	public void setCoachListEmpty() {
+		coachList.clear();
+	}
+
+	public void setCoachDetailsNull() {
+		coachDetails = null;
+	}
+
+	public double calculatePlayerStrength(String position){
+		if(position.equalsIgnoreCase("forward")){
+			playerStrength = skating + shooting + (checking/2);
+		}
+		if(position.equalsIgnoreCase("defense")){
+			playerStrength = skating + checking + (shooting/2);
+		}
+		if(position.equalsIgnoreCase("goalie")){
+			playerStrength = skating + saving;
+		}
+		return playerStrength;
+	}
+
+	public double calculateTeamStrength(List<PlayerObject> playerList){
+		for (IFreeAgent player: playerList) {
+			if(player.getHasInjured()){
+				teamStrength +=	player.calculatePlayerStrength()/2;
+			}
+			else{
+				teamStrength += player.calculatePlayerStrength();
+			}
+		}
+		return  teamStrength;
+	}
+
 	@Override
 	public void loadTeamModelData(TeamObject teamObject) {
 		teamObject.setTeamName(teamName);
-		teamObject.setHeadCoachName(headCoachName);
+		teamObject.setCoachDetails(coachDetails);
 		teamObject.setGeneralManagerName(generalManagerName);
 		teamObject.setPlayerList(playerList);
 	}
@@ -286,6 +326,7 @@ public class JsonMockDataDb implements ILeagueModel{
 		leagueModelObject.setLeagueName(leagueName);
 		leagueModelObject.setConferenceDetails(conferenceList);
 		leagueModelObject.setFreeAgent(freeAgentList);
+		leagueModelObject.setFreeCoach(coachList);
 	}
 
 	@Override
@@ -303,6 +344,16 @@ public class JsonMockDataDb implements ILeagueModel{
 		freeAgentObject.setShooting(shooting);
 		freeAgentObject.setChecking(checking);
 		freeAgentObject.setSaving(saving);
+	}
+
+	@Override
+	public void loadCoachModelData(CoachObject coachObject){
+		coachObject.setName(headCoachName);
+		coachObject.setSkating(coachSkating);
+		coachObject.setShooting(coachShooting);
+		coachObject.setChecking(coachChecking);
+		coachObject.setSaving(coachSaving);
+
 	}
 
 }

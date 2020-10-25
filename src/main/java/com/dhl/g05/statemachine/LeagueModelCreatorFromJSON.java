@@ -139,6 +139,7 @@ public class LeagueModelCreatorFromJSON {
 		ArrayList<CoachObject> freeCoaches = createFreeCoaches((JSONArray)leagueData.get("coaches"));
 
 		String leagueName = (String)leagueData.get("leagueName");
+
 		if (conferences != null && freeAgents != null && freeCoaches != null) {
 
 			LeagueObject league = leagueModel.createLeague(leagueName,conferences,freeAgents, freeCoaches);
@@ -172,7 +173,6 @@ public class LeagueModelCreatorFromJSON {
 			ArrayList<DivisionObject> divisions = createDivisions((JSONArray)((JSONObject) c).get("divisions"));
 
 			String conferenceName = (String)((JSONObject) c).get("conferenceName");
-
 			if (divisions != null) {
 
 				ConferenceObject newConference = new ConferenceObject(conferenceName, divisions);
@@ -214,7 +214,6 @@ public class LeagueModelCreatorFromJSON {
 			ArrayList<TeamObject> teams = createTeams((JSONArray)((JSONObject) d).get("teams"));
 			
 			String divisionName = (String)((JSONObject) d).get("divisionName");
-
 			if (teams != null) {
 
 				DivisionObject newDivision = new DivisionObject(divisionName,teams);
@@ -259,11 +258,13 @@ public class LeagueModelCreatorFromJSON {
 
 			String managerName = (String)((JSONObject) t).get("generalManager");
 
-			String coachName = (String)((JSONObject) t).get("headCoach");
+			JSONObject coach = (JSONObject) ((JSONObject) t).get("headCoach");
 
-			if (players != null) {
+			CoachObject coachDetails = createCoach(coach);
 
-				TeamObject newTeam = new TeamObject(teamName, managerName, coachName, players);
+			if (players != null && teamName != null && managerName != null && coachDetails != null) {
+
+				TeamObject newTeam = new TeamObject(teamName, coachDetails, managerName, players);
 				
 				String validationResult  = leagueModel.validateTeam(newTeam);
 
@@ -312,7 +313,6 @@ public class LeagueModelCreatorFromJSON {
 			double checking = Double.parseDouble(((JSONObject) p).get("checking").toString());
 
 			double saving = Double.parseDouble(((JSONObject) p).get("saving").toString());
-
 
 			if (playerName == null ||position == null || captain == null || age < 0 || skating < 0 || shooting < 0 || checking < 0 || saving < 0) {
 
@@ -366,7 +366,6 @@ public class LeagueModelCreatorFromJSON {
 
 			double saving = Double.parseDouble(((JSONObject) p).get("saving").toString());
 
-
 			if (playerName == null ||position == null || age < 0 || skating < 0 || shooting < 0 || checking < 0 || saving < 0) {
 
 				playerCommunication.sendMessage("player missing field");
@@ -397,52 +396,42 @@ public class LeagueModelCreatorFromJSON {
 
 	}
 
-	private ArrayList<CoachObject> createFreeCoaches(JSONArray jsonCoaches) {
-
-		if (jsonCoaches == null) return null;
-
-		ArrayList<CoachObject> coaches = new ArrayList<>();
-
-		for (Object p: jsonCoaches) {
-
-			String coachName = (String)((JSONObject) p).get("name");
-
-			double skating = Double.parseDouble(((JSONObject) p).get("skating").toString());
-
-			double shooting = Double.parseDouble(((JSONObject) p).get("shooting").toString());
-
-			double checking = Double.parseDouble(((JSONObject) p).get("checking").toString());
-
-			double saving = Double.parseDouble(((JSONObject) p).get("saving").toString());
-
-			if (coachName == null || skating < 0 || shooting < 0 || checking < 0 || saving < 0) {
-
-				playerCommunication.sendMessage("player missing field");
-
-				return null;
-
-			}
-
-			CoachObject newCoach = new CoachObject(coachName,skating,shooting,checking,saving);
-
-			String validationResult  = newCoach.getResult();
-
-			if (validationResult.equalsIgnoreCase("Success")) {
-
-				coaches.add(newCoach);
-
-			} else {
-
-				playerCommunication.sendMessage(validationResult);
-
-				return null;
-
-			}
-
+	private CoachObject createCoach(JSONObject jsonCoachDetails) {
+		if (jsonCoachDetails == null){
+			return null;
 		}
-
-		return coaches;
-
+		String coachName = (String) jsonCoachDetails.get("name");
+		double skating = Double.parseDouble(jsonCoachDetails.get("skating").toString());
+		double shooting = Double.parseDouble(jsonCoachDetails.get("shooting").toString());
+		double checking = Double.parseDouble(jsonCoachDetails.get("checking").toString());
+		double saving = Double.parseDouble(jsonCoachDetails.get("saving").toString());
+		return new CoachObject(coachName,skating,shooting,checking,saving);
 	}
-	
+
+	private ArrayList<CoachObject> createFreeCoaches(JSONArray jsonCoaches) {
+		if (jsonCoaches == null){
+			return null;
+		}
+		ArrayList<CoachObject> coaches = new ArrayList<>();
+		for (Object p: jsonCoaches) {
+			String coachName = (String)((JSONObject) p).get("name");
+			double skating = Double.parseDouble(((JSONObject) p).get("skating").toString());
+			double shooting = Double.parseDouble(((JSONObject) p).get("shooting").toString());
+			double checking = Double.parseDouble(((JSONObject) p).get("checking").toString());
+			double saving = Double.parseDouble(((JSONObject) p).get("saving").toString());
+			if (coachName == null || skating < 0 || shooting < 0 || checking < 0 || saving < 0) {
+				playerCommunication.sendMessage("player missing field");
+				return null;
+			}
+			CoachObject newCoach = new CoachObject(coachName,skating,shooting,checking,saving);
+			String validationResult  = newCoach.getResult();
+			if (validationResult.equalsIgnoreCase("Success")) {
+				coaches.add(newCoach);
+			} else {
+				playerCommunication.sendMessage(validationResult);
+				return null;
+			}
+		}
+		return coaches;
+	}
 }

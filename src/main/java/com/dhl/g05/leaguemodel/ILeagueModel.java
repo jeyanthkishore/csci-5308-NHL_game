@@ -13,5 +13,6 @@ public interface ILeagueModel {
 	public void loadConferenceModelData(ConferenceObject conferenceObject);
 
 	public void loadPlayerModelData(FreeAgentObject freeAgentObject);
-	
+
+	public void loadCoachModelData(CoachObject coachObject);
 }

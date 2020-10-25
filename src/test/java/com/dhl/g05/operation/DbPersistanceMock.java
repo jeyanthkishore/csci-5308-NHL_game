@@ -3,11 +3,7 @@ package com.dhl.g05.operation;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.dhl.g05.leaguemodel.ConferenceObject;
-import com.dhl.g05.leaguemodel.DivisionObject;
-import com.dhl.g05.leaguemodel.LeagueObject;
-import com.dhl.g05.leaguemodel.PlayerObject;
-import com.dhl.g05.leaguemodel.TeamObject;
+import com.dhl.g05.leaguemodel.*;
 import com.dhl.g05.simulation.Date;
 
 public class DbPersistanceMock implements IDataBasePersistence{
@@ -47,7 +43,7 @@ public class DbPersistanceMock implements IDataBasePersistence{
 		return 0;
 	}
 	@Override
-	public int saveTeamObject(int divisionId,TeamObject object) {
+	public int saveTeamObject(int divisionId, TeamObject object, CoachObject coachObject) {
 		if(divisionId==1 && object.getTeamName().equals("Striker Six")) {
 			return 1;
 		}

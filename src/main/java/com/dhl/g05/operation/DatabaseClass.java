@@ -6,12 +6,7 @@ import java.util.List;
 
 import com.dhl.g05.db.DateStoredProcedure;
 import com.dhl.g05.db.StoredProcedure;
-import com.dhl.g05.leaguemodel.ConferenceObject;
-import com.dhl.g05.leaguemodel.DivisionObject;
-import com.dhl.g05.leaguemodel.FreeAgentObject;
-import com.dhl.g05.leaguemodel.LeagueObject;
-import com.dhl.g05.leaguemodel.PlayerObject;
-import com.dhl.g05.leaguemodel.TeamObject;
+import com.dhl.g05.leaguemodel.*;
 import com.dhl.g05.simulation.Date;
 
 public class DatabaseClass implements IDataBasePersistence{
@@ -24,13 +19,9 @@ public class DatabaseClass implements IDataBasePersistence{
 
 	@Override
 	public int loadLeagueObject(String leagueName, LeagueObject league) {
-
 		StoredProcedure sp= new StoredProcedure();
-
 		int league_id = sp.getLeagueID(leagueName);
-
 		List<HashMap<String, Object>> conferenceValue = new ArrayList<HashMap<String,Object>>();
-
 		conferenceList = new ArrayList<ConferenceObject>();
 
 		conferenceValue = sp.fetchAllConferences(league_id);
@@ -98,7 +89,11 @@ public class DatabaseClass implements IDataBasePersistence{
 			teamName = team.get("team_name").toString();
 			coachName = team.get("coach_name").toString();
 			managerName = team.get("manager_name").toString();
-			teamList.add(new TeamObject(teamName,coachName,managerName,null));
+			double skating = Double.parseDouble(team.get("skating").toString());
+			double shooting = Double.parseDouble(team.get("shooting").toString());
+			double checking = Double.parseDouble(team.get("checking").toString());
+			double saving = Double.parseDouble(team.get("saving").toString());
+			teamList.add(new TeamObject(teamName,new CoachObject(coachName,skating,shooting,checking,saving),managerName,null));
 		}
 		divisionObject.setTeamDetails(teamList);
 		return divisonId;
@@ -115,6 +110,7 @@ public class DatabaseClass implements IDataBasePersistence{
 
 		playerValue = sp.fetchAllPlayers(teamId);
 
+		//Create Store Procedure for fetchTeamCoach using teamID
 		for(HashMap<String, Object> player : playerValue) {
 
 			String playerName = player.get("player_name").toString();
@@ -177,8 +173,6 @@ public class DatabaseClass implements IDataBasePersistence{
 			double shooting = free.getShooting();
 			double checking = free.getChecking();
 			double saving = free.getSaving();
-
-			//int playerId = sp.saveFreeAgent(playerName,position,leagueName);
 			int playerId = sp.saveFreeAgent(playerName,position,leagueName,age,skating,shooting,checking,saving);
 		}
 		return leagueId;
@@ -201,13 +195,17 @@ public class DatabaseClass implements IDataBasePersistence{
 	}
 	
 	@Override
-	public int saveTeamObject(int divisionId, TeamObject teamObject) {
+	public int saveTeamObject(int divisionId, TeamObject teamObject, CoachObject coachDetails) {
 		StoredProcedure sp= new StoredProcedure();
 		String teamName = teamObject.getTeamName();
 		String managerName = teamObject.getGeneralManagerName();
-		String coachName = teamObject.getHeadCoachName();
+		String coachName = coachDetails.getName();
+		double skating = coachDetails.getSkating();
+		double shooting = coachDetails.getShooting();
+		double checking = coachDetails.getChecking();
+		double saving = coachDetails.getSaving();
 		int managerId = sp.saveManager(managerName);
-		int coachId = sp.saveCoach(coachName);
+		int coachId = sp.saveCoach(coachName,skating,shooting,checking,saving);
 		int teamId = sp.saveTeam(teamName,managerId,divisionId,coachId);
 		return teamId;
 	}
@@ -224,9 +222,7 @@ public class DatabaseClass implements IDataBasePersistence{
 		double shooting = playerObject.getShooting();
 		double checking = playerObject.getChecking();
 		double saving = playerObject.getSaving();
-
 		int captainID = (captain) ? 1 : 0;
-		//int playerId = sp.savePlayer(teamId,positionId,playerName,captainID);
 		int playerId = sp.savePlayer(teamId,positionId,playerName,captainID,age,skating,shooting,checking,saving);
 		return playerId;
 	}

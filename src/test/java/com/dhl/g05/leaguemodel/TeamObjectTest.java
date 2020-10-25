@@ -15,7 +15,7 @@ public class TeamObjectTest{
 	public void TeamObjectConstructorTest() {
 		JsonMockDataDb data= new JsonMockDataDb();
 		TeamObject object = new TeamObject();
-		assertNull(object.getHeadCoachName());
+		assertNull(object.getCoachDetails());
 		object.setGeneralManagerName("");
 		assertTrue(object.getGeneralManagerName().isEmpty());
 		assertNull(object.getTeamName());
@@ -23,6 +23,28 @@ public class TeamObjectTest{
 		object.setPlayerList(data.playerList);
 		assertFalse(object.getPlayerList().isEmpty());
 	}
+
+	@Test
+	public void teamObjectParameterConstructorTest() {
+		JsonMockDataDb data = new JsonMockDataDb();
+		DbPersistanceMock db = new DbPersistanceMock();
+		TeamObject object = new TeamObject(data.teamName,data.coachDetails,data.generalManagerName,data.playerList);
+		assertSame(data.teamName,object.getTeamName());
+		assertSame(data.coachDetails,object.getCoachDetails());
+		assertSame(data.generalManagerName,object.getGeneralManagerName());
+		assertSame(data.playerList, object.getPlayerList());
+	}
+
+	@Test
+	public void teamReferenceConstructorTest() {
+		JsonMockDataDb data = new JsonMockDataDb();
+		TeamObject object = new TeamObject(data);
+		assertSame(data.teamName,object.getTeamName());
+		assertSame(data.coachDetails,object.getCoachDetails());
+		assertSame(data.generalManagerName,object.getGeneralManagerName());
+		assertSame(data.playerList, object.getPlayerList());
+	}
+
 	@Test
 	public void setTeamNameTest()
 	{
@@ -38,21 +60,7 @@ public class TeamObjectTest{
 		object.setTeamName("Strikers");
 		assertTrue(object.getTeamName().equals("Strikers"));
 	}
-	@Test
-	public void setCoachNameTest()
-	{
-		TeamObject object = new TeamObject();
-		object.setHeadCoachName("Pele");
-		assertTrue(object.getHeadCoachName().equals("Pele"));
-	}
-	
-	@Test
-	public void getCoachNameTest()
-	{
-		TeamObject object = new TeamObject();
-		object.setHeadCoachName("Pele");
-		assertTrue(object.getHeadCoachName().equals("Pele"));
-	}
+
 	@Test
 	public void getResultTest() {
 		TeamObject object = new TeamObject();
@@ -65,6 +73,7 @@ public class TeamObjectTest{
 		object.setResult("success");
 		assertEquals("success",object.getResult());
 	}
+
 	@Test
 	public void setManagerNameTest()
 	{
@@ -80,6 +89,7 @@ public class TeamObjectTest{
 		object.setGeneralManagerName("Rubinho");
 		assertTrue(object.getGeneralManagerName().equals("Rubinho"));
 	}
+
 	@Test
 	public void setPlayerListTest()
 	{
@@ -97,25 +107,55 @@ public class TeamObjectTest{
 		object.setPlayerList(data.playerList);
 		assertSame(data.playerList,object.getPlayerList());
 	}
-	
+
 	@Test
-	public void ConstructorWithParamerterTest() {
+	public void setCoachDetailsTest()
+	{
 		JsonMockDataDb data= new JsonMockDataDb();
-		TeamObject object = new TeamObject(data.teamName,data.headCoachName,data.generalManagerName,data.playerList);
-		assertSame(data.playerList,object.getPlayerList());
-		assertSame(data.teamName,object.getTeamName());
-		assertSame(data.headCoachName,object.getHeadCoachName());
-		assertSame(data.generalManagerName,object.getGeneralManagerName());
+		TeamObject object = new TeamObject();
+		object.setCoachDetails(data.coachDetails);
+		assertSame(data.coachDetails, object.getCoachDetails());
 	}
+
 	@Test
-	public void ConstructorWithReferenceTest() {
+	public void getCoachDetailsTest()
+	{
 		JsonMockDataDb data= new JsonMockDataDb();
-		TeamObject object = new TeamObject(data);
-		assertSame(data.playerList,object.getPlayerList());
-		assertSame(data.teamName,object.getTeamName());
-		assertSame(data.headCoachName,object.getHeadCoachName());
-		assertSame(data.generalManagerName,object.getGeneralManagerName());
+		TeamObject object = new TeamObject();
+		object.setCoachDetails(data.coachDetails);
+		assertSame(data.coachDetails, object.getCoachDetails());
 	}
+
+	@Test
+	public void setTeamStrengthTest() {
+		TeamObject object = new TeamObject();
+		object.setTeamStrength(25);
+		assertEquals(object.getTeamStrength(),25,0);
+	}
+
+	@Test
+	public void getTeamStrengthTest() {
+		TeamObject object = new TeamObject();
+		object.setTeamStrength(25);
+		assertEquals(object.getTeamStrength(),25,0);
+	}
+
+	@Test
+	public void isCoachDetailsEmpty() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		mock.setCoachDetailsNull();
+		TeamObject object = new TeamObject(mock);
+		assertTrue(object.isCoachDetailsEmptyOrNull());
+	}
+
+	@Test
+	public void isCoachDetailsNull() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		mock.setCoachDetailsNull();
+		TeamObject object = new TeamObject(mock);
+		assertTrue(object.isCoachDetailsEmptyOrNull());
+	}
+
 	@Test
 	public void checkPlayerListTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -154,22 +194,6 @@ public class TeamObjectTest{
 		TeamObject validate = new TeamObject(mock);
 		assertTrue(validate.isTeamDetailsNull());
 	}
-	
-	@Test
-	public void coachNameEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setCoachNameEmpty();
-		TeamObject validate = new TeamObject(mock);
-		assertTrue(validate.isTeamDetailsEmpty());
-	}
-	
-	@Test
-	public void coachNameNullTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setCoachNameNull();
-		TeamObject validate = new TeamObject(mock);
-		assertTrue(validate.isTeamDetailsNull());
-	}
 
 	@Test
 	public void managerNameEmptyTest() {
@@ -200,7 +224,13 @@ public class TeamObjectTest{
 		TeamObject validate = new TeamObject(mock);
 		assertEquals(2,validate.containOneTeamCaptain());
 	}
-	
+
+	@Test
+	public void calculateTeamStrengthTest(){
+		JsonMockDataDb mock = new JsonMockDataDb();
+		TeamObject object = new TeamObject(mock);
+		assertEquals(object.calculateTeamStrength(mock.playerList),mock.calculateTeamStrength(mock.playerList),0);
+	}
 	@Test
 	public void noTeamCaptainTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -208,6 +238,9 @@ public class TeamObjectTest{
 		TeamObject validate = new TeamObject(mock);
 		assertEquals(0,validate.containOneTeamCaptain());
 	}
+
+
+
 	@Test
 	public void validateTeamTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -233,6 +266,10 @@ public class TeamObjectTest{
 		mock.removeCaptain();
 		validate = new TeamObject(mock);
 		assertEquals("Team Must Contain Atleast One Captain",validate.validate());
+		mock = new JsonMockDataDb();
+		mock.setCoachDetailsNull();
+		validate = new TeamObject(mock);
+		assertEquals("Coach has missing values",validate.validate());
 	}
 	
 	@Test
