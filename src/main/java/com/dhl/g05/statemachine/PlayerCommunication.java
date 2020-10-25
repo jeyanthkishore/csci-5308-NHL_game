@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
+import com.dhl.g05.leaguemodel.CoachObject;
 import com.dhl.g05.leaguemodel.FreeAgentObject;
 
 public class PlayerCommunication implements IPlayerCommunication{
@@ -17,12 +18,14 @@ public class PlayerCommunication implements IPlayerCommunication{
 	
 	
 	public String getResponse() {
+		scanner = new Scanner(System.in);
 		String response =  scanner.nextLine();
 		System.out.println();
 		return response;
 	}
 	
 	public int getResponseNumber() {
+		scanner = new Scanner(System.in);
 		int response =  scanner.nextInt();
 		System.out.println();
 		return response;
@@ -52,6 +55,27 @@ public class PlayerCommunication implements IPlayerCommunication{
 		System.out.println("--------------------------------------------------------------"
 				+ "-------------------------------------------------------");
 		System.out.println("Please Enter an number to add player");
+	}
+
+
+	@Override
+	public void sendCoachMessage(List<CoachObject> coachList) {
+		System.out.printf("%1s %-12s %9s %31s %11s %13s %10s ","","Number","Name",
+				"Checking","Skating","Shooting","Saving");
+		System.out.println();
+		System.out.println("--------------------------------------------------------------"
+				+ "-------------------------------------------------------");
+		IntStream.range(0, coachList.size()).forEach(index->{
+			System.out.printf("%2s %-15s %-16s %19s %11s %11s %11s",
+					"",index+1,coachList.get(index).getName(),coachList.get(index).getChecking(),
+					coachList.get(index).getSkating(),coachList.get(index).getShooting(),
+					coachList.get(index).getSaving());
+			System.out.println();
+		});
+		System.out.println("--------------------------------------------------------------"
+				+ "-------------------------------------------------------");
+		System.out.println("Please Enter an number to Coach");
+		
 	}
 
 }
