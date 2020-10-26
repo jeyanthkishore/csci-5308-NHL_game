@@ -48,6 +48,9 @@ public class CreateTeamState extends AbstractState {
 		divisionName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team name:");
 		teamName =  this.getOuterStateMachine().getPlayerCommunication().getResponse();
+		
+		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team manager:");
+
 		return true; 
 	}
 

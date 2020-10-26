@@ -1,11 +1,21 @@
 {
-    "leagueName":"Dalhousie Hockey League04", "conferences":[
+    "leagueName":"Dalhousie Hockey League05", "conferences":[
         {
             "conferenceName":"Eastern Conference", "divisions":[
                 {
                     "divisionName":"Atlantic", "teams":[
                         {
-                            "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
+                            "teamName":"Boston", "generalManager":"Mister Fred",
+
+                            "headCoach":{
+                                "name":"Mary Smith",
+                                "skating":0.5,
+                                "shooting":0.8,
+                                "checking":0.3,
+                                "saving":0.5
+                            },
+
+                            "players":[
                                 {
                                     "playerName":"Player One", "position":"forward", "captain":true, "age": 10.0, "skating": 11.1, "shooting": 12.1, "checking": 12.1 , "saving": 13.1
                                 },
@@ -54,7 +64,18 @@
                 {
                     "divisionName":"Pacific", "teams":[
                         {
-                            "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
+                            "teamName":"Boston", "generalManager":"Mister Fred",
+
+                            "headCoach":{
+                            "name":"Mary Smith",
+                            "skating":0.5,
+                            "shooting":0.8,
+                            "checking":0.3,
+                            "saving":0.5
+                        },
+
+
+                            "players":[
                                 {
                                     "playerName":"Player One", "position":"forward", "captain":true, "age": 10.1, "skating": 11.2, "shooting": 12.3, "checking": 12.4 , "saving": 13.5
                                 },
@@ -108,7 +129,16 @@
                 {
                     "divisionName":"Atlantic", "teams":[
                         {
-                            "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
+                            "teamName":"Boston", "generalManager":"Mister Fred",
+                            "headCoach":{
+                                "name":"Mary Smith",
+                                "skating":0.5,
+                                "shooting":0.8,
+                                "checking":0.3,
+                                "saving":0.5
+                            },
+
+                            "players":[
                                 {
                                     "playerName":"Player One", "position":"forward", "captain":true, "age": 10.1, "skating": 11.2, "shooting": 12.3, "checking": 12.4 , "saving": 13.5
                                 },
@@ -157,7 +187,17 @@
                 {
                     "divisionName":"Pacific", "teams":[
                         {
-                            "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
+                            "teamName":"Boston", "generalManager":"Mister Fred",
+
+                            "headCoach":{
+                                "name":"Mary Smith",
+                                "skating":0.5,
+                                "shooting":0.8,
+                                "checking":0.3,
+                                "saving":0.5
+                            },
+
+                            "players":[
                                 {
                                     "playerName":"Player One", "position":"forward", "captain":true, "age": 10.1, "skating": 11.2, "shooting": 12.3, "checking": 12.4 , "saving": 13.5
                                 },

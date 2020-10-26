@@ -5,7 +5,6 @@ import com.dhl.g05.operation.IDataBasePersistence;
 public class PlayerObject extends FreeAgentObject{
 	
 	private Boolean captain;
-
 	private String result;
 	
 	public PlayerObject() {
@@ -15,11 +14,8 @@ public class PlayerObject extends FreeAgentObject{
 	}
 
 	public PlayerObject(String playerName, String position, Boolean captain, double age, double skating, double shooting, double checking, double saving) {
-
 		super(playerName,position, age, skating, shooting, checking, saving);
-
 		this.captain = captain;
-
 		result = validate();
 	}
 	

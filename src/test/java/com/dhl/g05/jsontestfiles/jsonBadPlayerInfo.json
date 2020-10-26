@@ -5,7 +5,15 @@
                 {
                     "divisionName":"Atlantic", "teams":[
                         {
-                            "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
+                            "teamName":"Boston", "generalManager":"Mister Fred",
+                            "headCoach":{
+                                "name":"Mary Smith",
+                                "skating":0.5,
+                                "shooting":0.8,
+                                "checking":0.3,
+                                "saving":0.5
+                            },
+                            "players":[
                                 {
                                     "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
@@ -54,7 +62,15 @@
                 {
                     "divisionName":"Pacific", "teams":[
                         {
-                            "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
+                            "teamName":"Boston", "generalManager":"Mister Fred",
+                            "headCoach":{
+                                "name":"Mary Smith",
+                                "skating":0.5,
+                                "shooting":0.8,
+                                "checking":0.3,
+                                "saving":0.5
+                            },
+                            "players":[
                                 {
                                     "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
@@ -108,7 +124,15 @@
                 {
                     "divisionName":"Atlantic", "teams":[
                         {
-                            "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
+                            "teamName":"Boston", "generalManager":"Mister Fred",
+                            "headCoach":{
+                                "name":"Mary Smith",
+                                "skating":0.5,
+                                "shooting":0.8,
+                                "checking":0.3,
+                                "saving":0.5
+                            },
+                            "players":[
                                 {
                                     "playerName":"Player One", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
@@ -157,7 +181,15 @@
                 {
                     "divisionName":"Pacific", "teams":[
                         {
-                            "teamName":"Boston", "generalManager":"Mister Fred", "headCoach":"Mary Smith", "players":[
+                            "teamName":"Boston", "generalManager":"Mister Fred",
+                            "headCoach":{
+                                "name":"Mary Smith",
+                                "skating":0.5,
+                                "shooting":0.8,
+                                "checking":0.3,
+                                "saving":0.5
+                            },
+                            "players":[
                                 {
                                     "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },

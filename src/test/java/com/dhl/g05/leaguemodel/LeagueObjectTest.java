@@ -19,45 +19,52 @@ public class LeagueObjectTest {
 		assertNull(object.getLeagueName());
 		assertNull(object.getConferenceDetails());
 		assertNull(object.getFreeAgent());
+		assertNull(object.getFreeCoach());
 	}
+
+	@Test
+	public void leagueParameterConstructorTest() {
+		JsonMockDataDb data = new JsonMockDataDb();
+		DbPersistanceMock db = new DbPersistanceMock();
+		LeagueObject object = new LeagueObject(data.leagueName,data.conferenceList,data.freeAgentList,data.coachList,db);
+		assertSame(data.leagueName,object.getLeagueName());
+		assertSame(data.freeAgentList,object.getFreeAgent());
+		assertSame(data.conferenceList,object.getConferenceDetails());
+		assertSame(data.coachList, object.getFreeCoach());
+	}
+
+	@Test
+	public void leagueReferenceConstructor() {
+		JsonMockDataDb data = new JsonMockDataDb();
+		LeagueObject object = new LeagueObject(data);
+		assertSame(data.leagueName,object.getLeagueName());
+		assertSame(data.freeAgentList,object.getFreeAgent());
+		assertSame(data.conferenceList,object.getConferenceDetails());
+		assertSame(data.coachList, object.getFreeCoach());
+	}
+
+	@Test
+	public void getLeagueNameTest() {
+		LeagueObject object = new LeagueObject();
+		object.setLeagueName("League");
+		assertSame("League",object.getLeagueName());
+	}
+
 	@Test
 	public void setLeagueNameTest() {
 		LeagueObject object = new LeagueObject();
 		object.setLeagueName("League");
 		assertSame("League",object.getLeagueName());
 	}
+
 	@Test
-	public void getLeagueNameTestt() {
-		LeagueObject object = new LeagueObject();
-		object.setLeagueName("League");
-		assertSame("League",object.getLeagueName());
-	}
-	@Test
-	public void getResultTest() {
-		LeagueObject object = new LeagueObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-	@Test
-	public void setResultTest() {
-		LeagueObject object = new LeagueObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-	@Test
-	public void setFreeAgentTest() {
+	public void getConferenceDetailsTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
 		LeagueObject object = new LeagueObject();
-		object.setFreeAgent(data.freeAgentList);
-		assertSame(data.freeAgentList,object.getFreeAgent());
+		object.setConferenceDetails(data.conferenceList);
+		assertSame(data.conferenceList,object.getConferenceDetails());
 	}
-	@Test
-	public void getFreeAgentTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		LeagueObject object = new LeagueObject();
-		object.setFreeAgent(data.freeAgentList);
-		assertSame(data.freeAgentList,object.getFreeAgent());
-	}
+
 	@Test
 	public void setConferenceDetailsTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
@@ -65,12 +72,21 @@ public class LeagueObjectTest {
 		object.setConferenceDetails(data.conferenceList);
 		assertSame(data.conferenceList,object.getConferenceDetails());
 	}
+
 	@Test
-	public void getConferenceDetailsTest() {
+	public void getFreeAgentTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
 		LeagueObject object = new LeagueObject();
-		object.setConferenceDetails(data.conferenceList);
-		assertSame(data.conferenceList,object.getConferenceDetails());
+		object.setFreeAgent(data.freeAgentList);
+		assertSame(data.freeAgentList,object.getFreeAgent());
+	}
+
+	@Test
+	public void setFreeAgentTest() {
+		JsonMockDataDb data = new JsonMockDataDb();
+		LeagueObject object = new LeagueObject();
+		object.setFreeAgent(data.freeAgentList);
+		assertSame(data.freeAgentList,object.getFreeAgent());
 	}
 
 	@Test
@@ -90,29 +106,35 @@ public class LeagueObjectTest {
 	}
 
 	@Test
-	public void leagueParameterConstructor() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		DbPersistanceMock db = new DbPersistanceMock();
-		LeagueObject object = new LeagueObject(data.leagueName,data.conferenceList,data.freeAgentList,data.coachList,db);
-		assertSame(data.leagueName,object.getLeagueName());
-		assertSame(data.freeAgentList,object.getFreeAgent());
-		assertSame(data.conferenceList,object.getConferenceDetails());
+	public void getResultTest() {
+		LeagueObject object = new LeagueObject();
+		object.setResult("success");
+		assertEquals("success",object.getResult());
 	}
+
 	@Test
-	public void leagueReferenceConstructor() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		LeagueObject object = new LeagueObject(data);
-		assertSame(data.leagueName,object.getLeagueName());
-		assertSame(data.freeAgentList,object.getFreeAgent());
-		assertSame(data.conferenceList,object.getConferenceDetails());
+	public void setResultTest() {
+		LeagueObject object = new LeagueObject();
+		object.setResult("success");
+		assertEquals("success",object.getResult());
 	}
+
 	@Test
-	public void checkLeagueName() {
+	public void saveLeagueObjectTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock data = new DbPersistanceMock();
 		LeagueObject valid = new LeagueObject(mock);
-		assertEquals("HockeyLeague", valid.getLeagueName());
+		assertEquals(1,valid.saveLeagueObject(data));
 	}
-	
+
+	@Test
+	public void loadLeagueObjectTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock data = new DbPersistanceMock();
+		LeagueObject valid = new LeagueObject();
+		assertEquals(1,valid.loadLeagueObject(mock.leagueName,data));
+	}
+
 	@Test
 	public void isLeagueNameEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -120,6 +142,7 @@ public class LeagueObjectTest {
 		LeagueObject valid = new LeagueObject(mock);
 		assertTrue(valid.isLeagueNameEmptyOrNull());
 	}
+
 	@Test
 	public void isLeagueNameNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -127,20 +150,14 @@ public class LeagueObjectTest {
 		LeagueObject valid = new LeagueObject(mock);
 		assertTrue(valid.isLeagueNameEmptyOrNull());
 	}
+
 	@Test
-	public void checkLeagueExistenceTest() {
+	public void checkLeagueName() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		DbPersistanceMock dbMock = new DbPersistanceMock();
-		LeagueObject valid = new LeagueObject(mock.leagueName,mock.conferenceList,mock.freeAgentList,mock.coachList,dbMock);
-		assertTrue(valid.checkLeaguePresent());
+		LeagueObject valid = new LeagueObject(mock);
+		assertEquals("HockeyLeague", valid.getLeagueName());
 	}
-	@Test
-	public void checkLeagueNotExistenceTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		DbPersistanceMock dbMock = new DbPersistanceMock();
-		LeagueObject valid = new LeagueObject("dummyData",mock.conferenceList,mock.freeAgentList,mock.coachList,dbMock);
-		assertFalse(valid.checkLeaguePresent());
-	}
+
 	@Test
 	public void checkEmptyConference() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -148,14 +165,14 @@ public class LeagueObjectTest {
 		LeagueObject valid = new LeagueObject(mock);
 		assertTrue(valid.isConferenceListEmpty());
 	}
-	
+
 	@Test
 	public void checkEvenConference() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		LeagueObject valid = new LeagueObject(mock);
 		assertTrue(valid.hasEvenNumberConference());
 	}
-	
+
 	@Test
 	public void checkOddConference() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -163,67 +180,31 @@ public class LeagueObjectTest {
 		LeagueObject valid = new LeagueObject(mock);
 		assertFalse(valid.hasEvenNumberConference());
 	}
-	
+
 	@Test
-	public void isFreeAgentListEmptyTest() {
+	public void checkLeagueExistenceTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		LeagueObject valid = new LeagueObject(mock);
-		assertFalse(valid.isFreeAgentDetailsEmptyOrNull());
+		DbPersistanceMock dbMock = new DbPersistanceMock();
+		LeagueObject valid = new LeagueObject(mock.leagueName,mock.conferenceList,mock.freeAgentList,mock.coachList,dbMock);
+		assertTrue(valid.checkLeaguePresent());
 	}
-	
+
 	@Test
-	public void freeAgentListEmptyTest() {
+	public void checkLeagueNotExistenceTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setFreeAgentListEmpty();
-		LeagueObject valid = new LeagueObject(mock);
-		valid.setFreeAgent(null);
-		assertTrue(valid.isFreeAgentListEmpty());
+		DbPersistanceMock dbMock = new DbPersistanceMock();
+		LeagueObject valid = new LeagueObject("dummyData",mock.conferenceList,mock.freeAgentList,mock.coachList,dbMock);
+		assertFalse(valid.checkLeaguePresent());
 	}
-	@Test
-	public void isFreeAgentAttributeEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		LeagueObject valid = new LeagueObject(mock);
-		assertFalse(valid.isFreeAgentDetailsEmptyOrNull());
-	}
-	
-	@Test
-	public void isFreeAgentNameEmpty() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setFreeAgentNameEmpty();
-		LeagueObject valid = new LeagueObject(mock);
-		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
-	}
-	
-	@Test
-	public void checkFreeAgentNameeNull() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setFreeAgentNameNull();
-		LeagueObject valid = new LeagueObject(mock);
-		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
-	}
-	
-	@Test
-	public void checkFreeAgentPositionEmpty() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setFreeAgentPositionEmpty();
-		LeagueObject valid = new LeagueObject(mock);
-		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
-	}
-	
-	@Test
-	public void checkFreeAgentPositionNull() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setFreeAgentPositionNull();
-		LeagueObject valid = new LeagueObject(mock);
-		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
-	}
-	
+
 	@Test
 	public void checkFreeAgentWrongPositionTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		LeagueObject valid = new LeagueObject(mock);
 		assertFalse(valid.isFreeAgentPositionWrong());
 	}
+
+
 	@Test
 	public void checkFreeAgentWrongPositionChange() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -231,6 +212,54 @@ public class LeagueObjectTest {
 		LeagueObject valid = new LeagueObject(mock);
 		assertTrue(valid.isFreeAgentPositionWrong());
 	}
+
+	@Test
+	public void isFreeAgentAttributeEmptyTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		LeagueObject valid = new LeagueObject(mock);
+		assertFalse(valid.isFreeAgentDetailsEmptyOrNull());
+	}
+
+	@Test
+	public void isFreeAgentNameEmpty() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		mock.setFreeAgentNameEmpty();
+		LeagueObject valid = new LeagueObject(mock);
+		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
+	}
+
+	@Test
+	public void checkFreeAgentNameeNull() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		mock.setFreeAgentNameNull();
+		LeagueObject valid = new LeagueObject(mock);
+		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
+	}
+
+	@Test
+	public void checkFreeAgentPositionEmpty() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		mock.setFreeAgentPositionEmpty();
+		LeagueObject valid = new LeagueObject(mock);
+		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
+	}
+
+	@Test
+	public void checkFreeAgentPositionNull() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		mock.setFreeAgentPositionNull();
+		LeagueObject valid = new LeagueObject(mock);
+		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
+	}
+
+	@Test
+	public void isCoachListEmptyTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		mock.setCoachListEmpty();
+		LeagueObject valid = new LeagueObject(mock);
+		assertTrue(valid.isCoachListEmpty());
+	}
+
 	@Test
 	public void validateLeagueTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -263,18 +292,5 @@ public class LeagueObjectTest {
 		valid = new LeagueObject(mock);
 		assertEquals("Position Of The Player Cannot Be Different",valid.validate());
 	}
-	@Test
-	public void saveLeagueObjectTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		DbPersistanceMock data = new DbPersistanceMock();
-		LeagueObject valid = new LeagueObject(mock);
-		assertEquals(1,valid.saveLeagueObject(data));
-	}
-	@Test
-	public void loadLeagueObjectTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		DbPersistanceMock data = new DbPersistanceMock();
-		LeagueObject valid = new LeagueObject();
-		assertEquals(1,valid.loadLeagueObject(mock.leagueName,data));
-	}
+
 }

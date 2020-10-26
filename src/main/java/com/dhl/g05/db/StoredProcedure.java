@@ -422,14 +422,18 @@ public class StoredProcedure {
 		}
 		return result;
 	}
-	public int saveCoach(String coach_name )
+	public int saveCoach(String coach_name, double skating, double shooting, double checking, double saving )
 	{
 		int result=0;
 		try {
 			conn = db.createNewDBconnection();
-			String query = "{CALL saveCoach(?)}";
+			String query = "{CALL saveCoach(?,?,?,?,?)}";
 			java.sql.CallableStatement stmt = conn.prepareCall(query);
 			stmt.setString(1, coach_name);
+			stmt.setDouble(2, skating);
+			stmt.setDouble(3, shooting);
+			stmt.setDouble(4, checking);
+			stmt.setDouble(5, saving);
 			rs = stmt.executeQuery();
 			while(rs.next())
 			{
