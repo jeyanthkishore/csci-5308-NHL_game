@@ -7,15 +7,15 @@ import java.util.Map;
 import com.dhl.g05.leaguemodel.*;
 
 public class CreateTeamState extends AbstractState {
-	
+
 	private Map<String,Object> teamDetails;
 	private TeamObject team;
 	private String conferenceName;
 	private String divisionName;
 	private String teamName;
 	private LeagueObject league;
-	
-	
+
+
 	public LeagueObject getLeague() {
 		return league;
 	}
@@ -31,7 +31,7 @@ public class CreateTeamState extends AbstractState {
 	public void setDivisionName(String divisionName) {
 		this.divisionName = divisionName;
 	}
-	
+
 	public CreateTeamState(StateMachine stateMachine) {
 		super(stateMachine);
 		league = this.getOuterStateMachine().getLeagueModel().getLeague();
@@ -39,7 +39,7 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean enter() {
-		
+
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Create a new team:");
 		teamDetails = new HashMap<String, Object>();
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter conference name:");
@@ -48,6 +48,7 @@ public class CreateTeamState extends AbstractState {
 		divisionName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team name:");
 		teamName =  this.getOuterStateMachine().getPlayerCommunication().getResponse();
+		
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team manager:");
 
 		return true; 
@@ -56,21 +57,21 @@ public class CreateTeamState extends AbstractState {
 	@Override
 	public boolean performStateTask() {
 		this.setNextState(new CreateTeamState(this.getOuterStateMachine()));
-		
-		
+
+
 		if (teamName== null || divisionName == null||conferenceName == null ){
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Missing feild, team not created");
 			return false;
 		}
-	
+
 		if  (isDivisionConferenceNotExists()) {
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Conference/Division combo does not exist in current league ");
 			return false;
 		}else {
-			pickPlayers();
+			pickCoach();
 			return true;
 		}
-			
+
 	}
 
 	private boolean isDivisionConferenceNotExists() {
@@ -90,10 +91,10 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-//		if(getOuterStateMachine().getLeagueModel().persistLeague()) {
-//			this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(), "Enter number of seasons to simulate", new SimulateState(this.getOuterStateMachine())));
-//			return true;
-//		}
+		//		if(getOuterStateMachine().getLeagueModel().persistLeague()) {
+		//			this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(), "Enter number of seasons to simulate", new SimulateState(this.getOuterStateMachine())));
+		//			return true;
+		//		}
 
 		return true;
 	}
@@ -101,15 +102,39 @@ public class CreateTeamState extends AbstractState {
 	public Map<String,Object> getTeamDetails() {
 		return teamDetails;
 	}
-	
+
 	public void setTeamDetails(Map<String,Object> details) {
 		teamDetails = details;
 	}
-	
+
 	public TeamObject getTeam() {
 		return team;
 	}
-	
+
+	public String pickCoach() {
+		List<CoachObject> coachList = new ArrayList<CoachObject>();
+		CoachObject selectedCoach = new CoachObject();
+		coachList = league.getFreeCoach();
+		String wait = "";
+		Boolean coachNotSelected = true;
+		while(coachNotSelected) {
+			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Select a Coach from the below list --");
+			this.getOuterStateMachine().getPlayerCommunication().sendCoachMessage(coachList);
+			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter a Number to add player");
+			int number = this.getOuterStateMachine().getPlayerCommunication().getResponseNumber();
+			if(number ==0 || number>coachList.size()) {
+				this.getOuterStateMachine().getPlayerCommunication().sendMessage("Invalid Number.......");
+				this.getOuterStateMachine().getPlayerCommunication().sendMessage("Press Enter to Continue");
+				wait = this.getOuterStateMachine().getPlayerCommunication().getResponse();
+				continue;
+			}
+			selectedCoach = coachList.get(number-1);
+			coachList.remove(number-1);
+			coachNotSelected = false;
+		}
+		return "success";
+	}
+
 	public String pickPlayers() {
 		List<PlayerObject> playerList = new ArrayList<PlayerObject>();
 		List<FreeAgentObject> free = new ArrayList<FreeAgentObject>();
