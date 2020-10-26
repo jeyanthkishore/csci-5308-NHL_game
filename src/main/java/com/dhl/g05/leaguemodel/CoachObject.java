@@ -17,25 +17,20 @@ public class CoachObject {
     }
 
     public CoachObject(String name, double skating, double shooting, double checking, double saving){
-
         this.name = name;
-
         this.skating = skating;
-
         this.shooting = shooting;
-
         this.checking = checking;
-
         this.saving = saving;
-
         this.result = validate();
+    }
 
+    public CoachObject(ILeagueModel coach) {
+        coach.loadCoachModelData(this);
     }
 
     public String getName() {
-
         return name;
-
     }
 
     public void setName(String name) {
@@ -83,66 +78,40 @@ public class CoachObject {
     }
 
     public String validate() {
-
         if(isCoachNameNull() || isCoachNameEmpty()) {
-
             return "Coach Name Should Not have Empty Value";
-
         }
-
         if(!isCoachStatValid()) {
-
             return "Invalid state of coach";
-
         }
-
         return "success";
-
     }
 
     public boolean isCoachNameNull() {
-
         if(name == null) {
-
             return true;
-
         }
-
         return false;
-
     }
 
     public boolean isCoachNameEmpty() {
-
         if(name.isEmpty()) {
-
             return true;
         }
-
         return false;
-
     }
 
     public boolean isCoachStatValid() {
-
         if (validateStat(skating) && validateStat(shooting) && validateStat(checking) && validateStat(saving)) {
-
             return true;
-
         }
-
         return false;
-
     }
 
     public boolean validateStat(double stat) {
-
         if (stat >= 0.0 && stat <= 1.0) {
-
             return true;
         }
-
         return false;
-
     }
 }
