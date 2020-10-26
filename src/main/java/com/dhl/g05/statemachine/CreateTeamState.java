@@ -88,6 +88,7 @@ public class CreateTeamState extends AbstractState {
 			return false;
 		}
 		newTeam.setPlayerList(playerList);
+		newTeam.setUserTeam(true);
 		return true;
 	}
 
@@ -112,7 +113,6 @@ public class CreateTeamState extends AbstractState {
 		//			this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(), "Enter number of seasons to simulate", new SimulateState(this.getOuterStateMachine())));
 		//			return true;
 		//		}
-
 		return true;
 	}
 
@@ -120,102 +120,4 @@ public class CreateTeamState extends AbstractState {
 		return newTeam;
 	}
 
-	public String pickCoach() {
-		List<CoachObject> coachList = new ArrayList<CoachObject>();
-		CoachObject selectedCoach = new CoachObject();
-		coachList = league.getFreeCoach();
-		String wait = "";
-		Boolean coachNotSelected = true;
-		while(coachNotSelected) {
-			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Select a Coach from the below list --");
-			this.getOuterStateMachine().getPlayerCommunication().sendCoachMessage(coachList);
-			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter a Number to add player");
-			int number = this.getOuterStateMachine().getPlayerCommunication().getResponseNumber();
-			if(number ==0 || number>coachList.size()) {
-				this.getOuterStateMachine().getPlayerCommunication().sendMessage("Invalid Number.......");
-				this.getOuterStateMachine().getPlayerCommunication().sendMessage("Press Enter to Continue");
-				wait = this.getOuterStateMachine().getPlayerCommunication().getResponse();
-				continue;
-			}
-			selectedCoach = coachList.get(number-1);
-			coachList.remove(number-1);
-			coachNotSelected = false;
-		}
-		return "success";
-	}
-
-	public String pickPlayers() {
-		List<PlayerObject> playerList = new ArrayList<PlayerObject>();
-		List<FreeAgentObject> free = new ArrayList<FreeAgentObject>();
-		Boolean captainNotAssigned = true;
-		String captainResponse ="";
-		Boolean captain = false;
-		int goalie = 0;
-		int skaters = 0;
-		double age = 0;
-		double skating = 0;
-		double shooting = 0;
-		double checking = 0;
-		double saving = 0;
-		String name ="";
-		String position="";
-		String wait="";
-		free = league.getFreeAgent();
-		while(playerList.size()<20) {
-			String teamCount = "Total Team Strength = " + playerList.size();
-			String skaterscount = "Number of Skaters = " +skaters;
-			String gaoliecount = "Number of Goalies = " +goalie;
-			this.getOuterStateMachine().getPlayerCommunication().sendMessage(teamCount);
-			this.getOuterStateMachine().getPlayerCommunication().sendMessage(skaterscount);
-			this.getOuterStateMachine().getPlayerCommunication().sendMessage(gaoliecount);
-			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Select a Free Agent from the below list --");
-			this.getOuterStateMachine().getPlayerCommunication().sendMessage(free);
-			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter a Number to add player");
-			int number = this.getOuterStateMachine().getPlayerCommunication().getResponseNumber();
-			if(number ==0 || number>free.size()) {
-				this.getOuterStateMachine().getPlayerCommunication().sendMessage("Invalid Number.......");
-				this.getOuterStateMachine().getPlayerCommunication().sendMessage("Press Enter to Continue");
-				wait = this.getOuterStateMachine().getPlayerCommunication().getResponse();
-				continue;
-			}
-			if(captainNotAssigned) {
-				this.getOuterStateMachine().getPlayerCommunication().sendMessage("Do Want him to be captain (Yes/No) : ");
-				captainResponse = this.getOuterStateMachine().getPlayerCommunication().getResponse();
-				if(captainResponse.equalsIgnoreCase("yes")) {
-					captain = true;
-					captainNotAssigned = false;
-				}
-			}
-			if(free.get(number-1).getPosition().equalsIgnoreCase("goalie")) {
-				goalie++;
-				if(goalie > 2) {
-					goalie--;
-					this.getOuterStateMachine().getPlayerCommunication().sendMessage("Maximum Two Goalie per Team");
-					this.getOuterStateMachine().getPlayerCommunication().sendMessage("Press Enter to Continue");
-					wait = this.getOuterStateMachine().getPlayerCommunication().getResponse();
-					continue;
-				}
-			}else {
-				skaters++;
-				if(skaters > 18) {
-					skaters--;
-					this.getOuterStateMachine().getPlayerCommunication().sendMessage("Maximum Skater Count Reached,Pls Select Goalie");
-					this.getOuterStateMachine().getPlayerCommunication().sendMessage("Press Enter to Continue");
-					wait = this.getOuterStateMachine().getPlayerCommunication().getResponse();
-					continue;
-				}
-			}
-			name = free.get(number-1).getPlayerName();
-			position = free.get(number-1).getPosition();
-			age = free.get(number-1).getAge();
-			checking = free.get(number-1).getChecking();
-			skating = free.get(number-1).getSkating();
-			shooting = free.get(number-1).getShooting();
-			saving = free.get(number-1).getSaving();
-			playerList.add(new PlayerObject(name,position,captain,age,checking,skating,shooting,saving));
-			captain = false;
-			free.remove(number-1);
-		}
-		return "success";
-	}
 }
