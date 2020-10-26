@@ -14,17 +14,21 @@ public interface IDataBasePersistence {
 
 	public int saveDivisionObject(int conferenceId, DivisionObject divisionObject);
 
-	public int saveTeamObject(int divisionId, TeamObject teamObject, CoachObject coachDetails);
+	public int saveTeamObject(int divisionId, TeamObject teamObject, CoachObject coachObject);
 
 	public int savePlayerObject(int teamId, PlayerObject playerObject);
 
+	public int saveLeagueCoachObject(int league_id, LeagueObject leagueObject);
+
 	public int loadLeagueObject(String leagueName, LeagueObject leagueObject);
+
+	public int loadLeagueCoachObject(String leagueName, LeagueObject league);
 
 	public int loadConferenceObject(int leagueId, ConferenceObject conferenceObject);
 
 	public int loadDivisionObject(int conferenceId, DivisionObject divisionObject);
 
-	public int loadTeamObject(int divisionId, TeamObject teamObject);
+	public int loadTeamObject(int divisionId, TeamObject teamObject, CoachObject coachObject);
 
 	public int loadPlayerObject(int teamId, PlayerObject playerObject);
 

@@ -15,6 +15,7 @@ public class DatabaseClass implements IDataBasePersistence{
 	private List<PlayerObject> playerList = new ArrayList<PlayerObject>();
 	private List<TeamObject> teamList = new ArrayList<TeamObject>();
 	private List<DivisionObject> divisionList = new ArrayList<DivisionObject>();
+	private List<CoachObject> coachList = new ArrayList<CoachObject>();
 
 
 	@Override
@@ -23,42 +24,46 @@ public class DatabaseClass implements IDataBasePersistence{
 		int league_id = sp.getLeagueID(leagueName);
 		List<HashMap<String, Object>> conferenceValue = new ArrayList<HashMap<String,Object>>();
 		conferenceList = new ArrayList<ConferenceObject>();
-
 		conferenceValue = sp.fetchAllConferences(league_id);
-
 		for(HashMap<String, Object> con : conferenceValue) {
-
 			String conferenceName = con.get("conference_name").toString();
-
 			conferenceList.add(new ConferenceObject(conferenceName,null));
-
 		}
-
 		league.setConferenceDetails(conferenceList);
-
 		List<HashMap<String,Object>> agentValue = new ArrayList<HashMap<String,Object>>();
-
 		agentValue = sp.fetchAllFreeAgents(leagueName);
-
 		String playerName,position;
 		double age, skating, shooting, checking, saving;
-
 		for(HashMap<String, Object> agent : agentValue) {
-
 			playerName = agent.get("agent_name").toString();
-
 			position = agent.get("position_name").toString();
-
 			age = Double.parseDouble(agent.get("age").toString());
 			skating = Double.parseDouble(agent.get("skating").toString());
 			shooting = Double.parseDouble(agent.get("shooting").toString());
 			checking = Double.parseDouble(agent.get("checking").toString());
 			saving = Double.parseDouble(agent.get("saving").toString());
-
 			freeAgent.add(new FreeAgentObject(playerName,position, age, skating, shooting, checking, saving));
 		}
 		league.setFreeAgent(freeAgent);
 		league.setLeagueName(leagueName);
+		return league_id;
+	}
+
+	@Override
+	public int loadLeagueCoachObject(String leagueName, LeagueObject league) {
+		StoredProcedure sp= new StoredProcedure();
+		int league_id = sp.getLeagueID(leagueName);
+		List<HashMap<String,Object>> coaches = new ArrayList<HashMap<String,Object>>();
+		coaches = sp.fetchAllFreeCoach(league_id);
+		for(HashMap<String, Object> coach : coaches) {
+			String name = coach.get("name").toString();
+			double skating = Double.parseDouble(coach.get("skating").toString());
+			double shooting = Double.parseDouble(coach.get("shooting").toString());
+			double checking = Double.parseDouble(coach.get("checking").toString());
+			double saving = Double.parseDouble(coach.get("saving").toString());
+			coachList.add(new CoachObject(name, skating, shooting, checking, saving));
+		}
+		league.setFreeCoach(coachList);
 		return league_id;
 	}
 	
@@ -98,34 +103,37 @@ public class DatabaseClass implements IDataBasePersistence{
 		divisionObject.setTeamDetails(teamList);
 		return divisonId;
 	}
+
 	@Override
-	public int loadTeamObject(int divisionId, TeamObject teamObject) {
+	public int loadTeamObject(int divisionId, TeamObject teamObject, CoachObject coachObject) {
 		String teamName = teamObject.getTeamName();
-
 		StoredProcedure sp= new StoredProcedure();
-
 		int teamId = sp.getTeamID(teamName, divisionId);
-
 		List<HashMap<String, Object>> playerValue = new ArrayList<HashMap<String,Object>>();
-
 		playerValue = sp.fetchAllPlayers(teamId);
-
-		//Create Store Procedure for fetchTeamCoach using teamID
 		for(HashMap<String, Object> player : playerValue) {
-
 			String playerName = player.get("player_name").toString();
-
 			double age = Double.parseDouble(player.get("age").toString());
 			double skating = Double.parseDouble(player.get("skating").toString());
 			double shooting = Double.parseDouble(player.get("shooting").toString());
 			double checking = Double.parseDouble(player.get("checking").toString());
 			double saving = Double.parseDouble(player.get("saving").toString());
-
 			playerList.add(new PlayerObject(playerName,null,null,age,skating,shooting,checking,saving));
 		}
-
 		teamObject.setPlayerList(playerList);
-
+		List<HashMap<String, Object>> coachValue = new ArrayList<HashMap<String,Object>>();
+		coachValue = sp.fetchTeamCoach(teamId);
+		for(HashMap<String, Object> coach : coachValue) {
+			String name = coach.get("name").toString();
+			double coachSkating = Double.parseDouble(coach.get("skating").toString());
+			double coachShooting = Double.parseDouble(coach.get("shooting").toString());
+			double coachChecking = Double.parseDouble(coach.get("checking").toString());
+			double coachSaving = Double.parseDouble(coach.get("saving").toString());
+			coachObject.setName(name);
+			coachObject.setSkating(coachSkating);
+			coachObject.setChecking(coachChecking);
+			coachObject.setSaving(coachSaving);
+		}
 		return teamId;
 	}
 
@@ -138,13 +146,11 @@ public class DatabaseClass implements IDataBasePersistence{
 		playerDetail = sp.fetchPlayerDetails(playerId);
 		String position = playerDetail.get(0).get("position_name").toString();
 		Boolean captain = Boolean.parseBoolean(playerDetail.get(0).get("player_is_captain").toString());
-
 		double age = Double.parseDouble(playerDetail.get(0).get("age").toString());
 		double skating = Double.parseDouble(playerDetail.get(0).get("skating").toString());
 		double shooting = Double.parseDouble(playerDetail.get(0).get("shooting").toString());
 		double checking = Double.parseDouble(playerDetail.get(0).get("checking").toString());
 		double saving = Double.parseDouble(playerDetail.get(0).get("saving").toString());
-
 		playerObject.setPosition(position);
 		playerObject.setCaptain(captain);
 		playerObject.setAge(age);
@@ -177,7 +183,7 @@ public class DatabaseClass implements IDataBasePersistence{
 		}
 		return leagueId;
 	}
-	
+
 	@Override
 	public int saveConferenceObject(int leagueId, ConferenceObject conferenceObject) {
 		StoredProcedure sp= new StoredProcedure();
@@ -226,7 +232,22 @@ public class DatabaseClass implements IDataBasePersistence{
 		int playerId = sp.savePlayer(teamId,positionId,playerName,captainID,age,skating,shooting,checking,saving);
 		return playerId;
 	}
-	
+
+	@Override
+	public int saveLeagueCoachObject(int league_id, LeagueObject leagueObject) {
+		StoredProcedure sp= new StoredProcedure();
+		coachList = leagueObject.getFreeCoach();
+		for(CoachObject coach: coachList) {
+			String name = coach.getName();
+			double skating = coach.getSkating();
+			double shooting = coach.getShooting();
+			double checking = coach.getChecking();
+			double saving = coach.getSaving();
+			int coachId = sp.saveFreeCoach(league_id, name, skating, shooting, checking, saving);
+		}
+		return league_id;
+	}
+
 	@Override
 	public ArrayList<HashMap<String, Object>> loadDetails() {
 		StoredProcedure sp= new StoredProcedure();

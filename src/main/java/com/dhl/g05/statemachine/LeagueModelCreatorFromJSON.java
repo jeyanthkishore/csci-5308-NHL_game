@@ -135,7 +135,6 @@ public class LeagueModelCreatorFromJSON {
 
 		ArrayList<FreeAgentObject> freeAgents = createFreeAgents((JSONArray)leagueData.get("freeAgents"));
 
-		//Coach - Team ID and League ID
 		ArrayList<CoachObject> freeCoaches = createFreeCoaches((JSONArray)leagueData.get("coaches"));
 
 		String leagueName = (String)leagueData.get("leagueName");
