@@ -11,13 +11,16 @@ public class TeamObject {
 	private List<PlayerObject> playerList;
 	private String result;
 	private double teamStrength;
+	private Boolean userTeam;
 	
 	public TeamObject() {
 		setGeneralManagerName(null);
 		setTeamName(null);
 		setPlayerList(null);
 		setCoachDetails(null);
+		setUserTeam(false);
 	}
+
 
 	public TeamObject(ILeagueModel teamObject) {
 		teamObject.loadTeamModelData(this);
@@ -57,6 +60,14 @@ public class TeamObject {
 
 	public void setResult(String result) {
 		this.result = result;
+	}
+	
+	public Boolean getUserTeam() {
+		return userTeam;
+	}
+	
+	public void setUserTeam(Boolean userTeam) {
+		this.userTeam = userTeam;
 	}
 	
 	public String getTeamName() {

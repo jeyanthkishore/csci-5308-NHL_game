@@ -27,7 +27,6 @@ public class TeamObjectTest{
 	@Test
 	public void teamObjectParameterConstructorTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
-		DbPersistanceMock db = new DbPersistanceMock();
 		TeamObject object = new TeamObject(data.teamName,data.coachDetails,data.generalManagerName,data.playerList);
 		assertSame(data.teamName,object.getTeamName());
 		assertSame(data.coachDetails,object.getCoachDetails());
@@ -89,7 +88,23 @@ public class TeamObjectTest{
 		object.setGeneralManagerName("Rubinho");
 		assertTrue(object.getGeneralManagerName().equals("Rubinho"));
 	}
-
+	
+	@Test
+	public void setUserTeamTest()
+	{
+		TeamObject object = new TeamObject();
+		object.setUserTeam(false);
+		assertFalse(object.getUserTeam());
+	}
+	
+	@Test
+	public void getUserTeamTest()
+	{
+		TeamObject object = new TeamObject();
+		object.setUserTeam(true);
+		assertTrue(object.getUserTeam());
+	}
+	
 	@Test
 	public void setPlayerListTest()
 	{
