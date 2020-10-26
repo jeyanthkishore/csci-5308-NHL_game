@@ -1,8 +1,7 @@
 package com.dhl.g05.statemachine;
 
-import static org.junit.Assert.*;
-
-import java.util.HashMap;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +14,6 @@ import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
 public class CreateTeamStateTest {
 	private CreateTeamState state;
 	private StateMachine stateMachine;
-	private HashMap<String,Object> teamDetails;
 	
 	
 	@Before
@@ -32,7 +30,6 @@ public class CreateTeamStateTest {
 	
 	@Test
 	public void testPerformStateTask() {
-		state.setTeamDetails(teamDetails);
 		state.getOuterStateMachine().setLeagueModel(new MockLeagueModel());
 		state.enter();
 		JsonMockDataDb data = new JsonMockDataDb();
@@ -64,11 +61,4 @@ public class CreateTeamStateTest {
 //		assertTrue(state.getNextState() instanceof CreateTeamState);
 //	}
 	
-	@Test
-	public void pickPlayersTest() {
-		state.getOuterStateMachine().setLeagueModel(new MockLeagueModelValidationFails());
-		JsonMockDataDb data = new JsonMockDataDb();
-		state.setLeague(data.league);
-		assertNotNull(state.pickPlayers());
-	}
 }
