@@ -8,13 +8,13 @@ import com.dhl.g05.leaguemodel.*;
 
 public class CreateTeamState extends AbstractState {
 
-	private Map<String,Object> teamDetails;
-	private TeamObject team;
+	private TeamObject newTeam;
 	private String conferenceName;
 	private String divisionName;
 	private String teamName;
 	private LeagueObject league;
-
+	private IPlayerCommunication communicate;
+	private EnchancedTeamCreation newTeamObject;
 
 	public LeagueObject getLeague() {
 		return league;
@@ -35,22 +35,19 @@ public class CreateTeamState extends AbstractState {
 	public CreateTeamState(StateMachine stateMachine) {
 		super(stateMachine);
 		league = this.getOuterStateMachine().getLeagueModel().getLeague();
+		communicate = this.getOuterStateMachine().getPlayerCommunication();
 	}
 
 	@Override
 	public boolean enter() {
 
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Create a new team:");
-		teamDetails = new HashMap<String, Object>();
+		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Creating a New Team");
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter conference name:");
 		conferenceName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter division name:");
 		divisionName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team name:");
 		teamName =  this.getOuterStateMachine().getPlayerCommunication().getResponse();
-		
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team manager:");
-
 		return true; 
 	}
 
@@ -58,7 +55,7 @@ public class CreateTeamState extends AbstractState {
 	public boolean performStateTask() {
 		this.setNextState(new CreateTeamState(this.getOuterStateMachine()));
 
-
+		newTeamObject = new EnchancedTeamCreation(league,communicate);
 		if (teamName== null || divisionName == null||conferenceName == null ){
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Missing feild, team not created");
 			return false;
@@ -67,11 +64,31 @@ public class CreateTeamState extends AbstractState {
 		if  (isDivisionConferenceNotExists()) {
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Conference/Division combo does not exist in current league ");
 			return false;
-		}else {
-			pickCoach();
+		}
+		if(performOperation()){
 			return true;
 		}
+		return false;
+	}
 
+	private boolean performOperation() {
+		CoachObject coach = new CoachObject();
+		List<PlayerObject> playerList = new ArrayList<PlayerObject>();
+		newTeam = new TeamObject();
+		newTeam.setTeamName(teamName);
+		coach = newTeamObject.pickCoach();
+		if(!coach.validate().equalsIgnoreCase("success")) {
+			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Error Creating Coach for the team");
+			return false;
+		}
+		newTeam.setCoachDetails(coach);
+		playerList = newTeamObject.pickPlayers();
+		if(playerList.size()<20 && playerList.size()>20) {
+			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Error Creating players for the team");
+			return false;
+		}
+		newTeam.setPlayerList(playerList);
+		return true;
 	}
 
 	private boolean isDivisionConferenceNotExists() {
@@ -99,16 +116,8 @@ public class CreateTeamState extends AbstractState {
 		return true;
 	}
 
-	public Map<String,Object> getTeamDetails() {
-		return teamDetails;
-	}
-
-	public void setTeamDetails(Map<String,Object> details) {
-		teamDetails = details;
-	}
-
 	public TeamObject getTeam() {
-		return team;
+		return newTeam;
 	}
 
 	public String pickCoach() {
