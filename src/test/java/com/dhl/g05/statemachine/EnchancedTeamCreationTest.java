@@ -20,7 +20,7 @@ public class EnchancedTeamCreationTest {
 	}
 	
 	@Test
-	public void setLeagueObejctTest() {
+	public void setLeagueObjectTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
 		EnchancedTeamCreation team = new EnchancedTeamCreation();
 		team.setLeagueObject(data.league);
@@ -28,7 +28,7 @@ public class EnchancedTeamCreationTest {
 	}
 	
 	@Test
-	public void getLeagueObejctTest() {
+	public void getLeagueObjectTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
 		EnchancedTeamCreation team = new EnchancedTeamCreation();
 		team.setLeagueObject(data.league);
