@@ -43,17 +43,17 @@ public class ConferenceObject {
 	public void setDivisionDetails(List<DivisionObject> divisionDetails) {
 		this.divisions = divisionDetails;
 	}
-	public String validate() {
+	public ValidateEnumModel validate() {
 		if(isNameEmptyOrNull()) {
-			return "Conference Name Is Empty";
+			return ValidateEnumModel.ConferenceNameEmpty;
 		}
 		if(isDivisionListEmpty()) {
-			return "Division List Is Empty";
+			return ValidateEnumModel.DivisionListEmpty;
 		}
 		if(!hasEvenNumberDivision()) {
-			return "Division Count Must Be Even";
+			return ValidateEnumModel.NoEvenDivisionCount;
 		}
-		return "success";
+		return ValidateEnumModel.Success;
 	}
 	public boolean hasEvenNumberDivision() {
 		if(divisions.size()%2 == 0) {

@@ -36,11 +36,11 @@ public class PlayerObject extends FreeAgentObject{
 		player.loadPlayerModelData(this);
 	}
 	
-	public String validate() {
-		String result = super.validate();
-		if(result.equals("success")) {
+	public ValidateEnumModel validate() {
+		ValidateEnumModel result = super.validate();
+		if(result.equals(ValidateEnumModel.Success)) {
 			if(isCaptainNull()) {
-				return "Captain Cannot be Null"; 
+				return ValidateEnumModel.CaptainNull; 
 			}
 		}
 		return result;

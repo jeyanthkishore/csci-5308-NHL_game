@@ -36,7 +36,7 @@ public interface IFreeAgent {
 
     public double calculatePlayerStrength();
 
-    public String validate();
+    public ValidateEnumModel validate();
 
     public boolean isPlayerDetailsNull();
 

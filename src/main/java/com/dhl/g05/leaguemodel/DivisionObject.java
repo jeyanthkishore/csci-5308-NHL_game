@@ -45,14 +45,14 @@ public class DivisionObject {
 	public void setTeamDetails(List<TeamObject> teamDetails) {
 		this.teams = teamDetails;
 	}
-	public String validate() {
+	public ValidateEnumModel validate() {
 		if(isDivisionNameEmptyorNull()) {
-			return "DivisionName Cannot Be Empty";
+			return ValidateEnumModel.DivisionNameEmpty;
 		}
 		if(isTeamListEmpty()) {
-			return "TeamList Is Empty";
+			return ValidateEnumModel.TeamListEmpty;
 		}
-		return "success";
+		return ValidateEnumModel.Success;
 	}
 	public boolean isDivisionNameEmptyorNull() {
 		if(divisionName == "" || divisionName == null) {

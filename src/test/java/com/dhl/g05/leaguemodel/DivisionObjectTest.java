@@ -98,15 +98,15 @@ public class DivisionObjectTest {
 	public void validateDivisionTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		DivisionObject validate = new DivisionObject(mock); 
-		assertEquals("success",validate.validate());
+		assertSame(ValidateEnumModel.Success,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setDivisionNameEmpty();
 		validate = new DivisionObject(mock);
-		assertEquals("DivisionName Cannot Be Empty",validate.validate());
+		assertSame(ValidateEnumModel.DivisionNameEmpty,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.removeTeams();
 		validate = new DivisionObject(mock); 
-		assertEquals("TeamList Is Empty",validate.validate());
+		assertSame(ValidateEnumModel.TeamListEmpty,validate.validate());
 	}
 	
 	@Test

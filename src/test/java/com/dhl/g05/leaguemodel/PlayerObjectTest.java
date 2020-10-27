@@ -128,18 +128,18 @@ public class PlayerObjectTest {
 	public void validatePlayerTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		PlayerObject validate = new PlayerObject(mock);
-		assertEquals("success",validate.validate());
+		assertSame(ValidateEnumModel.Success,validate.validate());
 		mock.setPlayerPositionEmpty();
 		validate = new PlayerObject(mock);
-		assertEquals("Player Should Not have Empty Value",validate.validate());
+		assertSame(ValidateEnumModel.PlayerValueEmpty,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setPositionDifferent();
 		validate = new PlayerObject(mock);
-		assertEquals("Player Position Is Wrong",validate.validate());
+		assertSame(ValidateEnumModel.PlayerPositionWrong,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setCaptainNull();
 		validate = new PlayerObject(mock);
-		assertEquals("Captain Cannot be Null",validate.validate());
+		assertSame(ValidateEnumModel.CaptainNull,validate.validate());
 	}
 	
 	@Test

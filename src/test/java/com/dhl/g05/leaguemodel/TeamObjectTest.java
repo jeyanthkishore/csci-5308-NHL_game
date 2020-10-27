@@ -247,31 +247,31 @@ public class TeamObjectTest{
 	public void validateTeamTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		TeamObject validate = new TeamObject(mock);
-		assertEquals("success",validate.validate());
+		assertSame(ValidateEnumModel.Success,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setPlayerListEmpty();
 		validate = new TeamObject(mock);
-		assertEquals("Player List Is Empty",validate.validate());
+		assertSame(ValidateEnumModel.PlayerListEmpty,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setTeamNameNull();
 		validate = new TeamObject(mock);
-		assertEquals("Team Details Are Empty",validate.validate());
+		assertSame(ValidateEnumModel.TeamDetailsEmpty,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.addMaximumPlayer();
 		validate = new TeamObject(mock);
-		assertEquals("Maximum Player Limit Is 20",validate.validate());
+		assertSame(ValidateEnumModel.MaxPlayerCountExceed,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setSecondCaptain();
 		validate = new TeamObject(mock);
-		assertEquals("Team Must Contain Only One Captain",validate.validate());
+		assertSame(ValidateEnumModel.MoreTeamCaptain,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.removeCaptain();
 		validate = new TeamObject(mock);
-		assertEquals("Team Must Contain Atleast One Captain",validate.validate());
+		assertSame(ValidateEnumModel.NoTeamCaptain,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setCoachDetailsNull();
 		validate = new TeamObject(mock);
-		assertEquals("Coach has missing values",validate.validate());
+		assertSame(ValidateEnumModel.CoachDetailsEmpty,validate.validate());
 	}
 	
 	@Test

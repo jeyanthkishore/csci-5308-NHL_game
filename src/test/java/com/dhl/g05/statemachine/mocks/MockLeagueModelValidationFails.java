@@ -27,28 +27,28 @@ private LeagueObject league;
 	}
 
 	@Override
-	public String validateLeague(LeagueObject league) {
-		return "fail";
+	public ValidateEnumModel validateLeague(LeagueObject league) {
+		return ValidateEnumModel.Failure;
 	}
 
 	@Override
-	public String validateConference(ConferenceObject conference) {
-		return "fail";
+	public ValidateEnumModel validateConference(ConferenceObject conference) {
+		return ValidateEnumModel.Failure;
 	}
 
 	@Override
-	public String validateDivision(DivisionObject division) {
-		return "fail";
+	public ValidateEnumModel validateDivision(DivisionObject division) {
+		return ValidateEnumModel.Failure;
 	}
 
 	@Override
-	public String validateTeam(TeamObject team) {
-		return "fail";
+	public ValidateEnumModel validateTeam(TeamObject team) {
+		return ValidateEnumModel.Failure;
 	}
 
 	@Override
-	public String validatePlayer(PlayerObject player) {
-		return "fail";
+	public ValidateEnumModel validatePlayer(PlayerObject player) {
+		return ValidateEnumModel.Failure;
 	}
 
 	@Override

@@ -13,11 +13,11 @@ public interface ILeagueModel {
 	public boolean persistLeague();
 	public boolean addTeamToCurrentLeague(String conferenceName, String divisionName, TeamObject team);
 	public boolean loadTeam(String leagueName, String conferenceName, String divisionName, String teamName);
-	public String validateLeague(LeagueObject league);
-	public String validateConference(ConferenceObject conference);
-	public String validateDivision(DivisionObject division);
-	public String validateTeam(TeamObject team);
-	public String validatePlayer(PlayerObject player);
+	public ValidateEnumModel validateLeague(LeagueObject league);
+	public ValidateEnumModel validateConference(ConferenceObject conference);
+	public ValidateEnumModel validateDivision(DivisionObject division);
+	public ValidateEnumModel validateTeam(TeamObject team);
+	public ValidateEnumModel validatePlayer(PlayerObject player);
 	public String validateManager(ManagerObject managerObject);
 
 }

@@ -46,28 +46,28 @@ public class MockLeagueModel implements ILeagueModel{
 	}
 
 	@Override
-	public String validateLeague(LeagueObject league) {
-		return "Success";
+	public ValidateEnumModel validateLeague(LeagueObject league) {
+		return ValidateEnumModel.Success;
 	}
 
 	@Override
-	public String validateConference(ConferenceObject conference) {
-		return "Success";
+	public ValidateEnumModel validateConference(ConferenceObject conference) {
+		return ValidateEnumModel.Success;
 	}
 
 	@Override
-	public String validateDivision(DivisionObject division) {
-		return "Success";
+	public ValidateEnumModel validateDivision(DivisionObject division) {
+		return ValidateEnumModel.Success;
 	}
 
 	@Override
-	public String validateTeam(TeamObject team) {
-		return "Success";
+	public ValidateEnumModel validateTeam(TeamObject team) {
+		return ValidateEnumModel.Success;
 	}
 
 	@Override
-	public String validatePlayer(PlayerObject player) {
-		return "Success";
+	public ValidateEnumModel validatePlayer(PlayerObject player) {
+		return ValidateEnumModel.Success;
 	}
 
 	@Override

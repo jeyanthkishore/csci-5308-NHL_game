@@ -88,36 +88,36 @@ public class LeagueObject {
 		return database.loadLeagueCoachObject(leagueName, this);
 	}
 
-	public String validate() {
+	public ValidateEnumModel validate() {
     	if(isLeagueNameEmptyOrNull()) {
-    		return "League Name Is Empty";
+    		return ValidateEnumModel.LeagueNameEmpty;
     	}
     	if(isConferenceListEmpty()) {
-    		return "Conference List Is Empty";
+    		return ValidateEnumModel.ConferenceListEmpty;
     	}
     	if(!hasEvenNumberConference()) {
-    		return "Conference Count Must Be Even";
+    		return ValidateEnumModel.NoEvenConferenceCount;
     	}
     	if(isFreeAgentListEmpty()) {
-    		return "Free Agent List Is Empty";
+    		return ValidateEnumModel.FreeAgentsEmpty;
     	}
     	if(isFreeAgentDetailsEmptyOrNull()) {
-    		return "Free Agent Attribue Is Empty";
+    		return ValidateEnumModel.FreeAgentAttributeEmpty;
     	}
     	if(isFreeAgentPositionWrong()) {
-    		return "Position Of The Player Cannot Be Different";
+    		return ValidateEnumModel.ImproperPlayerPosition;
     	}
     	if(checkLeaguePresent()) {
-    		return "League Already Present";
+    		return ValidateEnumModel.LeagueExists;
     	}
     	if(isCoachListEmpty()){
-    		return "Coach List is Empty";
+    		return ValidateEnumModel.CoachListEmpty;
     	}
-    	return "success";
+    	return ValidateEnumModel.Success;
 	}
 
 	public boolean isLeagueNameEmptyOrNull() {
-		if(leagueName == "" || leagueName== null) {
+		if(leagueName==""|| leagueName == null) {
 			return true;
 		}
 		return false;

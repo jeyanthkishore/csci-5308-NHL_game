@@ -89,8 +89,8 @@ public class LeagueModelCreatorFromJSON {
 		String leagueName = (String)leagueData.get("leagueName");
 		if (conferences != null && freeAgents != null && freeCoaches != null) {
 			LeagueObject league = leagueModel.createLeague(leagueName,conferences,freeAgents, freeCoaches);
-			String validationResult  =  leagueModel.validateLeague(league);
-			if (validationResult.equalsIgnoreCase("Success")) {
+			ValidateEnumModel validationResult  =  leagueModel.validateLeague(league);
+			if (validationResult.equals(ValidateEnumModel.Success)) {
 				System.out.println("before");
 				if ( managers != null){
 					System.out.println(managers);
@@ -108,7 +108,7 @@ public class LeagueModelCreatorFromJSON {
 				//System.out.println(managerList.get(0));
 				return league;
 			} else {
-				playerCommunication.sendMessage(validationResult);
+				playerCommunication.sendMessage(validationResult.getValue());
 			}
 		}
 		return null;
@@ -124,11 +124,11 @@ public class LeagueModelCreatorFromJSON {
 			String conferenceName = (String)((JSONObject) c).get("conferenceName");
 			if (divisions != null) {
 				ConferenceObject newConference = new ConferenceObject(conferenceName, divisions);
-				String validationResult  = leagueModel.validateConference(newConference);
-				if (validationResult.equalsIgnoreCase("Success")) {
+				ValidateEnumModel validationResult  = leagueModel.validateConference(newConference);
+				if (validationResult.equals(ValidateEnumModel.Success)) {
 					conferences.add(newConference);
 				} else {
-					playerCommunication.sendMessage(validationResult);
+					playerCommunication.sendMessage(validationResult.getValue());
 					return null;
 				}
 			} else {
@@ -148,11 +148,11 @@ public class LeagueModelCreatorFromJSON {
 			String divisionName = (String)((JSONObject) d).get("divisionName");
 			if (teams != null) {
 				DivisionObject newDivision = new DivisionObject(divisionName,teams);
-				String validationResult  = leagueModel.validateDivision(newDivision);
-				if (validationResult.equalsIgnoreCase("Success")) {
+				ValidateEnumModel validationResult  = leagueModel.validateDivision(newDivision);
+				if (validationResult.equals(ValidateEnumModel.Success)) {
 					divisions.add(newDivision);
 				} else {
-					playerCommunication.sendMessage(validationResult);
+					playerCommunication.sendMessage(validationResult.getValue());
 					return null;
 				}
 			} else {
@@ -175,11 +175,11 @@ public class LeagueModelCreatorFromJSON {
 			CoachObject coachDetails = createCoach(coach);
 			if (players != null && teamName != null && managerName != null && coachDetails != null) {
 				TeamObject newTeam = new TeamObject(teamName, coachDetails, managerName, players);
-				String validationResult  = leagueModel.validateTeam(newTeam);
-				if (validationResult.equalsIgnoreCase("Success")) {
+				ValidateEnumModel validationResult  = leagueModel.validateTeam(newTeam);
+				if (validationResult.equals(ValidateEnumModel.Success)) {
 					teams.add(newTeam);
 				}  else {
-					playerCommunication.sendMessage(validationResult);
+					playerCommunication.sendMessage(validationResult.getValue());
 					return null;
 				}
 			} else
@@ -207,11 +207,11 @@ public class LeagueModelCreatorFromJSON {
 				return null;
 			}
 			PlayerObject newPlayer = new PlayerObject(playerName, position, captain, age, skating, shooting, checking, saving);
-			String validationResult  = leagueModel.validatePlayer(newPlayer);
-			if (validationResult.equalsIgnoreCase("Success")) {
+			ValidateEnumModel validationResult  = leagueModel.validatePlayer(newPlayer);
+			if (validationResult.equals(ValidateEnumModel.Success)) {
 				players.add(newPlayer);
 			} else {
-				playerCommunication.sendMessage(validationResult);
+				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
 		}
@@ -236,11 +236,11 @@ public class LeagueModelCreatorFromJSON {
 				return null;
 			}
 			FreeAgentObject newPlayer = new FreeAgentObject(playerName, position, age, skating, shooting, checking, saving);
-			String validationResult  = newPlayer.validate();
-			if (validationResult.equalsIgnoreCase("Success")) {
+			ValidateEnumModel validationResult  = newPlayer.validate();
+			if (validationResult.equals(ValidateEnumModel.Success)) {
 				players.add(newPlayer);
 			} else {
-				playerCommunication.sendMessage(validationResult);
+				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
 		}

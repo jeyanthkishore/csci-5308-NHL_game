@@ -116,20 +116,20 @@ public class FreeAgentObject implements IFreeAgent{
 		return playerStrength;
 	}
 
-	public String validate() {
+	public ValidateEnumModel validate() {
 		if(isPlayerDetailsNull()||isPlayerDetailsEmpty()) {
-			return "Player Should Not have Empty Value";
+			return ValidateEnumModel.PlayerValueEmpty;
 		}
 		if(!isPlayerPositionValid()) {
-			return "Player Position Is Wrong";
+			return ValidateEnumModel.PlayerPositionWrong;
 		}
 		if(!isPlayerAgeValid()) {
-			return "Player age is invalid";
+			return ValidateEnumModel.PlayerAgeInvalid;
 		}
 		if(!isPlayerStatValid()) {
-			return "Invalid state of player";
+			return ValidateEnumModel.PlayerStateInvalid;
 		}
-		return "success";
+		return ValidateEnumModel.Success;
 	}
 
 	public boolean isPlayerDetailsNull() {

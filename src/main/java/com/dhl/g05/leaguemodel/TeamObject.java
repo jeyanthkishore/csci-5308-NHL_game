@@ -30,6 +30,7 @@ public class TeamObject {
 		this.headCoach = coachDetails;
 		this.generalManager = manager;
 		this.players = players;
+		this.userTeam = false;
 	}
 
 	public int saveTeamObject(int divisionId,IDataBasePersistence database) {
@@ -100,26 +101,26 @@ public class TeamObject {
 		this.teamStrength = teamStrength;
 	}
 
-	public String validate() {
+	public ValidateEnumModel validate() {
 		if(isTeamDetailsEmpty()||isTeamDetailsNull()) {
-			return "Team Details Are Empty";
+			return ValidateEnumModel.TeamDetailsEmpty;
 		}
 		if(isPlayerListEmpty()) {
-			return "Player List Is Empty";
+			return ValidateEnumModel.PlayerListEmpty;
 		}
 		if(isPlayerListMaximum()) {
-			return "Maximum Player Limit Is 20";
+			return ValidateEnumModel.MaxPlayerCountExceed;
 		}
 		if(containOneTeamCaptain()==0) {
-			return "Team Must Contain Atleast One Captain";
+			return ValidateEnumModel.NoTeamCaptain;
 		}
 		if(containOneTeamCaptain()>1) {
-			return "Team Must Contain Only One Captain";
+			return ValidateEnumModel.MoreTeamCaptain;
 		}
 		if(isCoachDetailsEmptyOrNull()){
-			return "Coach has missing values";
+			return ValidateEnumModel.CoachDetailsEmpty;
 		}
-		return "success";
+		return ValidateEnumModel.Success;
 	}
 
 	public boolean isTeamDetailsEmpty() {
