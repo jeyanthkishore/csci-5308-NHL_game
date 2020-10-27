@@ -46,10 +46,16 @@ public class LeagueModelCreatorFromJSON {
 			return false;
 		} else {
 			JSONObject gamePlayConfigs = (JSONObject) leagueData.get("gameplayConfig");
+
+			System.out.println(gamePlayConfigs);
 			if (gamePlayConfigs == null) {
 				return false;
 			} else {
 				JSONObject training = (JSONObject)gamePlayConfigs.get("training");
+				JSONObject aging = (JSONObject)gamePlayConfigs.get("aging");
+				JSONObject injuries = (JSONObject)gamePlayConfigs.get("injuries");
+				System.out.println("Aging"+aging);
+				System.out.println("Injuries"+injuries);
 				if (setTrainingConfig(training) == false) {
 					return false;
 				}
