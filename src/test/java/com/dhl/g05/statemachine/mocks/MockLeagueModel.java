@@ -70,4 +70,9 @@ public class MockLeagueModel implements ILeagueModel{
 		return "Success";
 	}
 
+	@Override
+	public String validateManager(ManagerObject managerObject) {
+		return "Success";
+	}
+
 }

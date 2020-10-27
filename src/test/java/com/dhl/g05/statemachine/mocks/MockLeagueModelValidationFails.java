@@ -52,6 +52,11 @@ private LeagueObject league;
 	}
 
 	@Override
+	public String validateManager(ManagerObject managerObject) {
+		return "fail";
+	}
+
+	@Override
 	public boolean persistLeague() {
 		return false;
 	}
