@@ -86,8 +86,16 @@ public class LeagueObject {
 		return database.saveLeagueObject(this);
 	}
 
+	public int saveLeagueCoachObject(int leagueId, IDataBasePersistence database) {
+		return database.saveLeagueCoachObject(leagueId, this);
+	}
+
 	public int loadLeagueObject(String leagueName,IDataBasePersistence database) {
 		return database.loadLeagueObject(leagueName,this);
+	}
+
+	public int loadLeagueCoachObject(String leagueName, IDataBasePersistence database) {
+		return database.loadLeagueCoachObject(leagueName, this);
 	}
 
 	public String validate() {

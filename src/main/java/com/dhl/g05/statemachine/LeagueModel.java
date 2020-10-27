@@ -211,6 +211,11 @@ public class LeagueModel implements ILeagueModel{
 	}
 
 	@Override
+	public  String validateManager(ManagerObject managerObject) {
+			return managerObject.validate();
+	}
+
+	@Override
 	public String validateDivision(DivisionObject division) {
 		return division.validate();
 	}

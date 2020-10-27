@@ -39,7 +39,7 @@ public class TeamObject {
 	}
 
 	public int loadTeamObject(int divisionId,IDataBasePersistence database) {
-		return database.loadTeamObject(divisionId,this);
+		return database.loadTeamObject(divisionId,this, coachDetails);
 	}
 
 	public double calculateTeamStrength(List<PlayerObject> playerList){

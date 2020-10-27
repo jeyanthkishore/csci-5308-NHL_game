@@ -58,6 +58,11 @@ public class DbPersistanceMock implements IDataBasePersistence{
 	}
 
 	@Override
+	public int saveLeagueCoachObject(int league_id, LeagueObject leagueObject) {
+		return 1;
+	}
+
+	@Override
 	public int loadLeagueObject(String leagueName,LeagueObject leagueObject) {
 		if(leagueName.equalsIgnoreCase("HockeyLeague")) {
 			leagueObject.setLeagueName(leagueName);
@@ -67,6 +72,11 @@ public class DbPersistanceMock implements IDataBasePersistence{
 			return 1;
 		}
 		return 0;
+	}
+
+	@Override
+	public int loadLeagueCoachObject(String leagueName, LeagueObject league) {
+		return 1;
 	}
 
 	@Override
@@ -92,7 +102,7 @@ public class DbPersistanceMock implements IDataBasePersistence{
 	}
 
 	@Override
-	public int loadTeamObject(int divisionId, TeamObject teamObject) {
+	public int loadTeamObject(int divisionId, TeamObject teamObject, CoachObject coachObject) {
 		if(divisionId==1 && teamObject.getTeamName().equals("Striker Six")) {
 			ArrayList<PlayerObject> players = new ArrayList<>();
 			players.add(new PlayerObject("Cristiano Ronaldo",null,null,10,10,10,10,10));

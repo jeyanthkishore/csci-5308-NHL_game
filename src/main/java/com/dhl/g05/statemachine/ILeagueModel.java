@@ -18,5 +18,6 @@ public interface ILeagueModel {
 	public String validateDivision(DivisionObject division);
 	public String validateTeam(TeamObject team);
 	public String validatePlayer(PlayerObject player);
+	public String validateManager(ManagerObject managerObject);
 
 }
