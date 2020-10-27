@@ -1,5 +1,7 @@
 package com.dhl.g05.leaguemodel;
 
+import com.dhl.g05.operation.IDataBasePersistence;
+
 import java.util.List;
 
 public class ManagerObject {
@@ -7,7 +9,7 @@ public class ManagerObject {
     private List<ManagerObject> managerList;
 
     public  ManagerObject() {
-      //  setName(null);
+       setName(null);
     }
 
     public ManagerObject(List<ManagerObject> managerList) {
@@ -50,5 +52,13 @@ public class ManagerObject {
             return true;
         }
         return false;
+    }
+
+    public int saveLeagueManagerObject(int leagueId, IDataBasePersistence database) {
+        return database.saveLeagueManagerObject(leagueId, this);
+    }
+
+    public int loadLeagueManagerObject(String leagueName,IDataBasePersistence database) {
+        return database.loadLeagueManagerObject(leagueName,this);
     }
 }

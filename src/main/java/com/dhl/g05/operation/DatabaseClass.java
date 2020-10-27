@@ -16,6 +16,7 @@ public class DatabaseClass implements IDataBasePersistence{
 	private List<TeamObject> teamList = new ArrayList<TeamObject>();
 	private List<DivisionObject> divisionList = new ArrayList<DivisionObject>();
 	private List<CoachObject> coachList = new ArrayList<CoachObject>();
+	private List<ManagerObject> managerList = new ArrayList<ManagerObject>();
 
 
 	@Override
@@ -66,7 +67,23 @@ public class DatabaseClass implements IDataBasePersistence{
 		league.setFreeCoach(coachList);
 		return league_id;
 	}
-	
+
+	@Override
+	public int loadLeagueManagerObject(String leagueName, ManagerObject managerObject) {
+		StoredProcedure sp= new StoredProcedure();
+		int league_id = sp.getLeagueID(leagueName);
+		List<HashMap<String,Object>> managers = new ArrayList<HashMap<String,Object>>();
+		managers = sp.fetchAllFreeManager(league_id);
+		for(HashMap<String, Object> manager : managers) {
+			String name = manager.get("name").toString();
+			ManagerObject managerNameObject = new ManagerObject();
+			managerNameObject.setName(name);
+			managerList.add(managerNameObject);
+		}
+		managerObject.setManagerList(managerList);
+		return league_id;
+	}
+
 	@Override
 	public int loadConferenceObject(int leagueId, ConferenceObject conferenceObject) {
 		String conferenceName = conferenceObject.getConferenceName();
@@ -244,6 +261,17 @@ public class DatabaseClass implements IDataBasePersistence{
 			double checking = coach.getChecking();
 			double saving = coach.getSaving();
 			int coachId = sp.saveFreeCoach(league_id, name, skating, shooting, checking, saving);
+		}
+		return league_id;
+	}
+
+	@Override
+	public int saveLeagueManagerObject(int league_id, ManagerObject managerObject) {
+		StoredProcedure sp= new StoredProcedure();
+		managerList = managerObject.getManagerList();
+		for(ManagerObject manager: managerList) {
+			String name = manager.getName();
+			int managerId = sp.saveFreeManager(league_id, name);
 		}
 		return league_id;
 	}

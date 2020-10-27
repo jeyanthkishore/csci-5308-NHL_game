@@ -180,6 +180,27 @@ public class StoredProcedure {
 		return list;
 	}
 
+	public ArrayList<HashMap<String, Object>> fetchAllFreeManager(int league_id)
+	{
+		try {
+			conn = db.createNewDBconnection();
+			String query = "{CALL fetchAllFreeManager(?)}";
+			java.sql.CallableStatement stmt = conn.prepareCall(query);
+			stmt.setInt(1,league_id);
+			rs = stmt.executeQuery();
+			list = rsToList.resultSetToArrayList(rs);
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			db.closeDbConnection(conn);
+		}
+		return list;
+	}
+
 	public ArrayList<HashMap<String, Object>> getAllUserStateTeams() 
 	{
 		try {
@@ -399,6 +420,33 @@ public class StoredProcedure {
 			stmt.setDouble(4, shooting);
 			stmt.setDouble(5, checking);
 			stmt.setDouble(6, saving);
+			rs = stmt.executeQuery();
+			while(rs.next())
+			{
+				result=rs.getInt("LAST_INSERT_ID()");
+			}
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+
+		} finally
+		{
+			db.closeDbConnection(conn);
+
+		}
+		return result;
+	}
+
+	public int saveFreeManager(int league_id, String name)
+	{
+		int result=0;
+		try {
+			conn = db.createNewDBconnection();
+			String query = "{CALL saveFreeManager(?,?)}";
+			java.sql.CallableStatement stmt = conn.prepareCall(query);
+			stmt.setInt(1, league_id);
+			stmt.setString(2, name);
 			rs = stmt.executeQuery();
 			while(rs.next())
 			{

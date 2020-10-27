@@ -91,21 +91,11 @@ public class LeagueModelCreatorFromJSON {
 			LeagueObject league = leagueModel.createLeague(leagueName,conferences,freeAgents, freeCoaches);
 			ValidateEnumModel validationResult  =  leagueModel.validateLeague(league);
 			if (validationResult.equals(ValidateEnumModel.Success)) {
-				System.out.println("before");
 				if ( managers != null){
 					System.out.println(managers);
 					ManagerObject managerObject = new ManagerObject(managers);
-					System.out.println("List:"+managerObject.getManagerList());
-					String validation  = leagueModel.validateManager(managerObject);
 					managerList.add(managerObject);
-//					if (validation.equalsIgnoreCase("Success")) {
-//						managerList.add(managerObject);
-//					} else {
-//						playerCommunication.sendMessage(validation);
-//						return null;
-//					}
 				}
-				//System.out.println(managerList.get(0));
 				return league;
 			} else {
 				playerCommunication.sendMessage(validationResult.getValue());
@@ -293,7 +283,6 @@ public class LeagueModelCreatorFromJSON {
 		ArrayList<ManagerObject> managers = new ArrayList<>();
 		for (int i=0; i<jsonManagers.size(); i++){
 			String name = (String) jsonManagers.get(i);
-			System.out.println(name);
 			if (name.isEmpty()) {
 				playerCommunication.sendMessage(("Manager name is empty"));
 			}
