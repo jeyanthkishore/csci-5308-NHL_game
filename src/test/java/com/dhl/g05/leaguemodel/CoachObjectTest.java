@@ -84,20 +84,6 @@ public class CoachObjectTest {
     }
 
     @Test
-    public void getResultTest() {
-        CoachObject object = new CoachObject();
-        object.setResult("success");
-        assertEquals("success",object.getResult());
-    }
-
-    @Test
-    public void setResultTest() {
-        CoachObject object = new CoachObject();
-        object.setResult("success");
-        assertEquals("success",object.getResult());
-    }
-
-    @Test
     public void isCoachNameNullTest() {
         JsonMockDataDb data = new JsonMockDataDb();
         data.setCoachNameNull();

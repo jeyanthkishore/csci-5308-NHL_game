@@ -3,7 +3,6 @@ package com.dhl.g05.leaguemodel;
 public class FreeAgentObject implements IFreeAgent{
 	private String playerName;
 	private String position;
-	private String result;
 	private double age;
 	private double skating;
 	private double shooting;
@@ -26,19 +25,10 @@ public class FreeAgentObject implements IFreeAgent{
 		this.shooting = shooting;
 		this.checking = checking;
 		this.saving = saving;
-		result = validate();
 	}
 
 	public FreeAgentObject(ILeagueModel player) {
 		player.loadPlayerModelData(this);
-	}
-
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
 	}
 
 	public String getPlayerName() {
@@ -126,20 +116,20 @@ public class FreeAgentObject implements IFreeAgent{
 		return playerStrength;
 	}
 
-	public String validate() {
+	public ValidateEnumModel validate() {
 		if(isPlayerDetailsNull()||isPlayerDetailsEmpty()) {
-			return "Player Should Not have Empty Value";
+			return ValidateEnumModel.PlayerValueEmpty;
 		}
 		if(!isPlayerPositionValid()) {
-			return "Player Position Is Wrong";
+			return ValidateEnumModel.PlayerPositionWrong;
 		}
 		if(!isPlayerAgeValid()) {
-			return "Player age is invalid";
+			return ValidateEnumModel.PlayerAgeInvalid;
 		}
 		if(!isPlayerStatValid()) {
-			return "Invalid state of player";
+			return ValidateEnumModel.PlayerStateInvalid;
 		}
-		return "success";
+		return ValidateEnumModel.Success;
 	}
 
 	public boolean isPlayerDetailsNull() {

@@ -6,10 +6,9 @@ import com.dhl.g05.operation.IDataBasePersistence;
 public class TeamObject {
 	
 	private String teamName;
-	private CoachObject coachDetails;
-	private String generalManagerName;
-	private List<PlayerObject> playerList;
-	private String result;
+	private CoachObject headCoach;
+	private String generalManager;
+	private List<PlayerObject> players;
 	private double teamStrength;
 	private Boolean userTeam;
 	
@@ -28,18 +27,18 @@ public class TeamObject {
 	
 	public TeamObject(String team, CoachObject coachDetails, String manager, List<PlayerObject> players) {
 		this.teamName = team;
-		this.coachDetails = coachDetails;
-		this.generalManagerName = manager;
-		this.playerList = players;
-		result = validate();
+		this.headCoach = coachDetails;
+		this.generalManager = manager;
+		this.players = players;
+		this.userTeam = false;
 	}
 
 	public int saveTeamObject(int divisionId,IDataBasePersistence database) {
-		return database.saveTeamObject(divisionId,this, coachDetails);
+		return database.saveTeamObject(divisionId,this, headCoach);
 	}
 
 	public int loadTeamObject(int divisionId,IDataBasePersistence database) {
-		return database.loadTeamObject(divisionId,this, coachDetails);
+		return database.loadTeamObject(divisionId,this, headCoach);
 	}
 
 	public double calculateTeamStrength(List<PlayerObject> playerList){
@@ -54,14 +53,6 @@ public class TeamObject {
 		return  teamStrength;
 	}
 
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
-	}
-	
 	public Boolean getUserTeam() {
 		return userTeam;
 	}
@@ -79,27 +70,27 @@ public class TeamObject {
 	}
 
 	public String getGeneralManagerName() {
-		return generalManagerName;
+		return generalManager;
 	}
 
 	public void setGeneralManagerName(String managerName) {
-		this.generalManagerName = managerName;
+		this.generalManager = managerName;
 	}
 
 	public List<PlayerObject> getPlayerList() {
-		return playerList;
+		return players;
 	}
 
 	public void setPlayerList(List<PlayerObject> playerList) {
-		this.playerList = playerList;
+		this.players = playerList;
 	}
 
 	public CoachObject getCoachDetails() {
-		return coachDetails;
+		return headCoach;
 	}
 
 	public void setCoachDetails(CoachObject coachDetails) {
-		this.coachDetails = coachDetails;
+		this.headCoach = coachDetails;
 	}
 
 	public double getTeamStrength() {
@@ -110,60 +101,60 @@ public class TeamObject {
 		this.teamStrength = teamStrength;
 	}
 
-	public String validate() {
+	public ValidateEnumModel validate() {
 		if(isTeamDetailsEmpty()||isTeamDetailsNull()) {
-			return "Team Details Are Empty";
+			return ValidateEnumModel.TeamDetailsEmpty;
 		}
 		if(isPlayerListEmpty()) {
-			return "Player List Is Empty";
+			return ValidateEnumModel.PlayerListEmpty;
 		}
 		if(isPlayerListMaximum()) {
-			return "Maximum Player Limit Is 20";
+			return ValidateEnumModel.MaxPlayerCountExceed;
 		}
 		if(containOneTeamCaptain()==0) {
-			return "Team Must Contain Atleast One Captain";
+			return ValidateEnumModel.NoTeamCaptain;
 		}
 		if(containOneTeamCaptain()>1) {
-			return "Team Must Contain Only One Captain";
+			return ValidateEnumModel.MoreTeamCaptain;
 		}
 		if(isCoachDetailsEmptyOrNull()){
-			return "Coach has missing values";
+			return ValidateEnumModel.CoachDetailsEmpty;
 		}
-		return "success";
+		return ValidateEnumModel.Success;
 	}
 
 	public boolean isTeamDetailsEmpty() {
-		if(teamName == "" || generalManagerName =="") {
+		if(teamName == "" || generalManager =="") {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean isTeamDetailsNull() {
-		if(teamName == null || generalManagerName ==null) {
+		if(teamName == null || generalManager ==null) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean isPlayerListEmpty() {
-		return (playerList == null || playerList.isEmpty());
+		return (players == null || players.isEmpty());
 	}
 
 	public boolean isPlayerListMaximum() {
-		if(playerList.size() > 20) {
+		if(players.size() > 20) {
 			return true;
 		}
 		return false;
 	}
 
 	public long containOneTeamCaptain() {
-		long captainCount = playerList.stream().filter(p -> p.getCaptain().equals(true)).count();
+		long captainCount = players.stream().filter(p -> p.getCaptain().equals(true)).count();
 		return captainCount;
 	}
 
 	public boolean isCoachDetailsEmptyOrNull() {
-		if(coachDetails == null){
+		if(headCoach == null){
 			return true;
 		}
 		return false;

@@ -106,20 +106,6 @@ public class LeagueObjectTest {
 	}
 
 	@Test
-	public void getResultTest() {
-		LeagueObject object = new LeagueObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-
-	@Test
-	public void setResultTest() {
-		LeagueObject object = new LeagueObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-
-	@Test
 	public void saveLeagueObjectTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		DbPersistanceMock data = new DbPersistanceMock();
@@ -266,31 +252,31 @@ public class LeagueObjectTest {
 		DbPersistanceMock data = new DbPersistanceMock();
 		LeagueObject league = new LeagueObject(mock.leagueName,mock.conferenceList,mock.freeAgentList, mock.coachList ,data);
 		league.setLeagueName("DummyLEague");
-		assertEquals("success",league.validate());
-		LeagueObject valid = new LeagueObject(mock);
+		assertSame(ValidateEnumModel.Success,league.validate());
+		league = new LeagueObject(mock);
 		mock.setLeagueEmpty();
-		valid = new LeagueObject(mock);
-		assertEquals("League Name Is Empty",valid.validate());
+		league = new LeagueObject(mock);
+		assertSame(ValidateEnumModel.LeagueNameEmpty,league.validate());
 		mock = new JsonMockDataDb();
 		mock.removeConference();
-		valid = new LeagueObject(mock);
-		assertEquals("Conference List Is Empty",valid.validate());
+		league = new LeagueObject(mock);
+		assertSame(ValidateEnumModel.ConferenceListEmpty,league.validate());
 		mock = new JsonMockDataDb();
 		mock.removeOneConference();
-		valid = new LeagueObject(mock);
-		assertEquals("Conference Count Must Be Even",valid.validate());
+		league = new LeagueObject(mock);
+		assertSame(ValidateEnumModel.NoEvenConferenceCount,league.validate());
 		mock = new JsonMockDataDb();
 		mock.setFreeAgentListEmpty();
-		valid = new LeagueObject(mock);
-		assertEquals("Free Agent List Is Empty",valid.validate());
+		league = new LeagueObject(mock);
+		assertSame(ValidateEnumModel.FreeAgentsEmpty,league.validate());
 		mock = new JsonMockDataDb();
 		mock.setFreeAgentNameEmpty();
-		valid = new LeagueObject(mock);
-		assertEquals("Free Agent Attribue Is Empty",valid.validate());
+		league = new LeagueObject(mock);
+		assertSame(ValidateEnumModel.FreeAgentAttributeEmpty,league.validate());
 		mock = new JsonMockDataDb();
 		mock.setFreeAgentPositionDifferent();
-		valid = new LeagueObject(mock);
-		assertEquals("Position Of The Player Cannot Be Different",valid.validate());
+		league = new LeagueObject(mock);
+		assertSame(ValidateEnumModel.ImproperPlayerPosition,league.validate());
 	}
 
 }

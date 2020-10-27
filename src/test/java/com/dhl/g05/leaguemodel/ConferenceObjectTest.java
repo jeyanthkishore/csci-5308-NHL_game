@@ -24,18 +24,6 @@ public class ConferenceObjectTest {
 		assertSame("conference",object.getConferenceName());
 	}
 	@Test
-	public void getResultTest() {
-		ConferenceObject object = new ConferenceObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-	@Test
-	public void setResultTest() {
-		ConferenceObject object = new ConferenceObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-	@Test
 	public void getDivisionTest() {
 		ConferenceObject object = new ConferenceObject();
 		object.setConferenceName("conference");
@@ -61,7 +49,6 @@ public class ConferenceObjectTest {
 		ConferenceObject object = new ConferenceObject(data.conferenceName,data.divisionList);
 		assertSame(data.conferenceName,object.getConferenceName());
 		assertSame(data.divisionList,object.getDivisionDetails());
-		assertSame("success",object.getResult());
 	}
 	@Test
 	public void divisionReferenceConstructor() {
@@ -123,19 +110,19 @@ public class ConferenceObjectTest {
 	public void validateConferenceTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		ConferenceObject validate = new ConferenceObject(mock); 
-		assertEquals("success",validate.validate());
+		assertSame(ValidateEnumModel.Success,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setConferenceNameEmpty();
 		validate = new ConferenceObject(mock); 
-		assertEquals("Conference Name Is Empty",validate.validate());
+		assertSame(ValidateEnumModel.ConferenceNameEmpty,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.removeDivision();
 		validate = new ConferenceObject(mock); 
-		assertEquals("Division List Is Empty",validate.validate());
+		assertSame(ValidateEnumModel.DivisionListEmpty,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.removeOneDivision();
 		validate = new ConferenceObject(mock); 
-		assertEquals("Division Count Must Be Even",validate.validate());
+		assertSame(ValidateEnumModel.NoEvenDivisionCount,validate.validate());
 	}
 	
 	@Test

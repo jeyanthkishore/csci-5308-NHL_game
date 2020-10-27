@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import com.dhl.g05.operation.DbPersistanceMock;
 import org.junit.Test;
 
 public class FreeAgentObjectTest {
@@ -22,7 +21,6 @@ public class FreeAgentObjectTest {
 	@Test
 	public void parameterConstructorTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
-		DbPersistanceMock db = new DbPersistanceMock();
 		CoachObject object = new CoachObject(data.headCoachName, data.coachSkating, data.coachShooting, data.coachChecking, data.coachSaving);
 		assertSame(data.headCoachName,object.getName());
 		assertEquals(data.coachSkating, object.getSkating(),0);
@@ -34,7 +32,6 @@ public class FreeAgentObjectTest {
 	@Test
 	public void coachObjectReferenceConstructorTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
-		DbPersistanceMock db = new DbPersistanceMock();
 		CoachObject object = new CoachObject(data.headCoachName, data.coachSkating, data.coachShooting, data.coachChecking, data.coachSaving);
 		assertSame(data.headCoachName,object.getName());
 		assertEquals(data.coachSkating, object.getSkating(),0);
@@ -172,20 +169,6 @@ public class FreeAgentObjectTest {
 	}
 
 	@Test
-	public void getResultTest() {
-		FreeAgentObject object = new FreeAgentObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-
-	@Test
-	public void setResultTest() {
-		FreeAgentObject object = new FreeAgentObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-
-	@Test
 	public void playerListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		FreeAgentObject validate = new FreeAgentObject(mock);
@@ -302,22 +285,22 @@ public class FreeAgentObjectTest {
 	public void validatePlayerTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		FreeAgentObject validate = new FreeAgentObject(mock);
-		assertEquals("success",validate.validate());
+		assertSame(ValidateEnumModel.Success,validate.validate());
 		mock.setPlayerPositionEmpty();
 		validate = new FreeAgentObject(mock);
-		assertEquals("Player Should Not have Empty Value",validate.validate());
+		assertSame(ValidateEnumModel.PlayerValueEmpty,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setPositionDifferent();
 		validate = new FreeAgentObject(mock);
-		assertEquals("Player Position Is Wrong",validate.validate());
+		assertSame(ValidateEnumModel.PlayerPositionWrong,validate.validate());
 		mock = new JsonMockDataDb();
 		validate = new FreeAgentObject(mock);
 		validate.setAge(-1);
-		assertEquals("Player age is invalid",validate.validate());
+		assertSame(ValidateEnumModel.PlayerAgeInvalid,validate.validate());
 		mock = new JsonMockDataDb();
 		validate = new FreeAgentObject(mock);
 		validate.setSkating(-1);
-		assertEquals("Invalid state of player",validate.validate());
+		assertSame(ValidateEnumModel.PlayerStateInvalid,validate.validate());
 	}
 
 

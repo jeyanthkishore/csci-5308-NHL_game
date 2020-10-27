@@ -8,11 +8,10 @@ import com.dhl.g05.operation.IDataBasePersistence;
 public class LeagueObject {
 
 	private String leagueName;
-	private List<ConferenceObject> conferenceDetails;
-	private List<FreeAgentObject> freeAgent;
-	private List<CoachObject> freeCoach;
+	private List<ConferenceObject> conferences;
+	private List<FreeAgentObject> freeAgents;
+	private List<CoachObject> coaches;
 	private IDataBasePersistence object;
-	private String result;
 	
 	public LeagueObject() {
 		setLeagueName(null);
@@ -27,7 +26,6 @@ public class LeagueObject {
 		setFreeAgent(agent);
 		setFreeCoach(coach);
 		this.object = dbObject;
-		result = validate();
 	}
 
 	public LeagueObject(ILeagueModel leagueObject) {
@@ -43,27 +41,27 @@ public class LeagueObject {
 	}
 
 	public List<ConferenceObject> getConferenceDetails() {
-		return conferenceDetails;
+		return conferences;
 	}
 
 	public void setConferenceDetails(List<ConferenceObject> conferencedetail) {
-		this.conferenceDetails = conferencedetail;
+		this.conferences = conferencedetail;
 	}
 
 	public List<FreeAgentObject> getFreeAgent() {
-		return freeAgent;
+		return freeAgents;
 	}
 
 	public void setFreeAgent(List<FreeAgentObject> agent) {
-		this.freeAgent = agent;
+		this.freeAgents = agent;
 	}
 
 	public List<CoachObject> getFreeCoach() {
-		return freeCoach;
+		return coaches;
 	}
 
 	public void setFreeCoach(List<CoachObject> freeCoach) {
-		this.freeCoach = freeCoach;
+		this.coaches = freeCoach;
 	}
 
 	public IDataBasePersistence getObject() {
@@ -74,14 +72,6 @@ public class LeagueObject {
 		this.object = object;
 	}
 
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
-	}
-	
 	public int saveLeagueObject(IDataBasePersistence database) {
 		return database.saveLeagueObject(this);
 	}
@@ -98,70 +88,70 @@ public class LeagueObject {
 		return database.loadLeagueCoachObject(leagueName, this);
 	}
 
-	public String validate() {
+	public ValidateEnumModel validate() {
     	if(isLeagueNameEmptyOrNull()) {
-    		return "League Name Is Empty";
+    		return ValidateEnumModel.LeagueNameEmpty;
     	}
     	if(isConferenceListEmpty()) {
-    		return "Conference List Is Empty";
+    		return ValidateEnumModel.ConferenceListEmpty;
     	}
     	if(!hasEvenNumberConference()) {
-    		return "Conference Count Must Be Even";
+    		return ValidateEnumModel.NoEvenConferenceCount;
     	}
     	if(isFreeAgentListEmpty()) {
-    		return "Free Agent List Is Empty";
+    		return ValidateEnumModel.FreeAgentsEmpty;
     	}
     	if(isFreeAgentDetailsEmptyOrNull()) {
-    		return "Free Agent Attribue Is Empty";
+    		return ValidateEnumModel.FreeAgentAttributeEmpty;
     	}
     	if(isFreeAgentPositionWrong()) {
-    		return "Position Of The Player Cannot Be Different";
+    		return ValidateEnumModel.ImproperPlayerPosition;
     	}
     	if(checkLeaguePresent()) {
-    		return "League Already Present";
+    		return ValidateEnumModel.LeagueExists;
     	}
     	if(isCoachListEmpty()){
-    		return "Coach List is Empty";
+    		return ValidateEnumModel.CoachListEmpty;
     	}
-    	return "success";
+    	return ValidateEnumModel.Success;
 	}
 
 	public boolean isLeagueNameEmptyOrNull() {
-		if(leagueName == "" || leagueName== null) {
+		if(leagueName==""|| leagueName == null) {
 			return true;
 		}
 		return false;
 	}
 	
 	public boolean isConferenceListEmpty() {
-		if(conferenceDetails != null) {
-			return (conferenceDetails.size()<=0);
+		if(conferences != null) {
+			return (conferences.size()<=0);
 		}
 		 return true;
 	}
 	
 	public boolean hasEvenNumberConference() {
-		if(conferenceDetails != null) {
-			return (conferenceDetails.size()%2 ==0);
+		if(conferences != null) {
+			return (conferences.size()%2 ==0);
 		}
 		return false;
 	}
 	
 	public boolean isFreeAgentPositionWrong() {
-		Boolean position = freeAgent.stream().anyMatch(v ->!(v.getPosition().equalsIgnoreCase("forward")
+		Boolean position = freeAgents.stream().anyMatch(v ->!(v.getPosition().equalsIgnoreCase("forward")
 				|| v.getPosition().equalsIgnoreCase("defense") ||v.getPosition().equalsIgnoreCase("goalie")));
 		return position;
 	}
 
 	public boolean isFreeAgentListEmpty() {
-		if(freeAgent != null) {
-			return (freeAgent.size()<=0);
+		if(freeAgents != null) {
+			return (freeAgents.size()<=0);
 		}
 		return true;
 	}
 
 	public boolean isFreeAgentDetailsEmptyOrNull() {
-		Boolean emptyOrNull = freeAgent.stream().anyMatch(v -> v.getPlayerName() ==""
+		Boolean emptyOrNull = freeAgents.stream().anyMatch(v -> v.getPlayerName() ==""
 				||v.getPosition() ==""||v.getPlayerName()==null||v.getPosition()==null);
 		return emptyOrNull;
 	}
@@ -173,7 +163,7 @@ public class LeagueObject {
 	}
 
 	public boolean isCoachListEmpty() {
-		if(freeCoach.isEmpty()) {
+		if(coaches.isEmpty()) {
 			return true;
 		}
 		return false;

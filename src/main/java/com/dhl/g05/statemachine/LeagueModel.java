@@ -201,12 +201,12 @@ public class LeagueModel implements ILeagueModel{
 	}
 
 	@Override
-	public String validateLeague(LeagueObject league) {
+	public ValidateEnumModel validateLeague(LeagueObject league) {
 		return league.validate();
 	}
 
 	@Override
-	public String validateConference(ConferenceObject conference) {
+	public ValidateEnumModel validateConference(ConferenceObject conference) {
 		return conference.validate();
 	}
 
@@ -216,17 +216,17 @@ public class LeagueModel implements ILeagueModel{
 	}
 
 	@Override
-	public String validateDivision(DivisionObject division) {
+	public ValidateEnumModel validateDivision(DivisionObject division) {
 		return division.validate();
 	}
 
 	@Override
-	public String validateTeam(TeamObject team) {
+	public ValidateEnumModel validateTeam(TeamObject team) {
 		return team.validate();
 	}
 
 	@Override
-	public String validatePlayer(PlayerObject player) {
+	public ValidateEnumModel validatePlayer(PlayerObject player) {
 		return player.validate();
 	}
 

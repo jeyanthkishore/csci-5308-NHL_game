@@ -2,7 +2,6 @@ package com.dhl.g05.leaguemodel;
 
 public class CoachObject {
     private String name;
-    private String result;
     private double skating;
     private double shooting;
     private double checking;
@@ -22,7 +21,6 @@ public class CoachObject {
         this.shooting = shooting;
         this.checking = checking;
         this.saving = saving;
-        this.result = validate();
     }
 
     public CoachObject(ILeagueModel coach) {
@@ -67,14 +65,6 @@ public class CoachObject {
 
     public void setSaving(double saving) {
         this.saving = saving;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
     }
 
     public String validate() {
