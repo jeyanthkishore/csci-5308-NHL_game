@@ -67,14 +67,14 @@ public class CoachObject {
         this.saving = saving;
     }
 
-    public String validate() {
+    public ValidateEnumModel validate() {
         if(isCoachNameNull() || isCoachNameEmpty()) {
-            return "Coach Name Should Not have Empty Value";
+            return ValidateEnumModel.CoachNameEmpty;
         }
         if(!isCoachStatValid()) {
-            return "Invalid state of coach";
+            return ValidateEnumModel.InvalidStateOfCoach;
         }
-        return "success";
+        return ValidateEnumModel.Success;
     }
 
     public boolean isCoachNameNull() {

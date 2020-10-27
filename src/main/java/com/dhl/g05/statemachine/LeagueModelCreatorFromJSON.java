@@ -265,11 +265,11 @@ public class LeagueModelCreatorFromJSON {
 				return null;
 			}
 			CoachObject newCoach = new CoachObject(coachName,skating,shooting,checking,saving);
-			String validationResult  = newCoach.validate();
-			if (validationResult.equalsIgnoreCase("Success")) {
+			ValidateEnumModel validationResult  = newCoach.validate();
+			if (validationResult.equals(ValidateEnumModel.Success)) {
 				coaches.add(newCoach);
 			} else {
-				playerCommunication.sendMessage(validationResult);
+				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
 		}
@@ -288,11 +288,11 @@ public class LeagueModelCreatorFromJSON {
 			}
 			ManagerObject managerObject = new ManagerObject();
 			managerObject.setName(name);
-			String validationResult  = managerObject.validate();
-			if (validationResult.equalsIgnoreCase("Success")) {
+			ValidateEnumModel validationResult  = managerObject.validate();
+			if (validationResult.equals(ValidateEnumModel.Success)) {
 				managers.add(managerObject);
 			} else {
-				playerCommunication.sendMessage(validationResult);
+				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
 		}

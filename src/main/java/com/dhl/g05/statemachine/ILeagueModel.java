@@ -18,6 +18,6 @@ public interface ILeagueModel {
 	public ValidateEnumModel validateDivision(DivisionObject division);
 	public ValidateEnumModel validateTeam(TeamObject team);
 	public ValidateEnumModel validatePlayer(PlayerObject player);
-	public String validateManager(ManagerObject managerObject);
+	public ValidateEnumModel validateManager(ManagerObject managerObject);
 
 }

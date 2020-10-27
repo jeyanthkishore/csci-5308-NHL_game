@@ -52,8 +52,8 @@ private LeagueObject league;
 	}
 
 	@Override
-	public String validateManager(ManagerObject managerObject) {
-		return "fail";
+	public ValidateEnumModel validateManager(ManagerObject managerObject) {
+		return ValidateEnumModel.Failure;
 	}
 
 	@Override

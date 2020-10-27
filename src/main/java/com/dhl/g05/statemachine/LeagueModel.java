@@ -211,7 +211,7 @@ public class LeagueModel implements ILeagueModel{
 	}
 
 	@Override
-	public  String validateManager(ManagerObject managerObject) {
+	public  ValidateEnumModel validateManager(ManagerObject managerObject) {
 			return managerObject.validate();
 	}
 

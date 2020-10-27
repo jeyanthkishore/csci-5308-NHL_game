@@ -71,8 +71,8 @@ public class MockLeagueModel implements ILeagueModel{
 	}
 
 	@Override
-	public String validateManager(ManagerObject managerObject) {
-		return "Success";
+	public ValidateEnumModel validateManager(ManagerObject managerObject) {
+		return ValidateEnumModel.Success;
 	}
 
 }

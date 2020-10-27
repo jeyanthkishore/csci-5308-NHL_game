@@ -33,11 +33,11 @@ public class ManagerObject {
         this.name = name;
     }
 
-    public String validate() {
+    public ValidateEnumModel validate() {
         if(isManagerNameNull() || isManagerNameEmpty()) {
-            return "Manager Name Should Not have Empty Value";
+            return ValidateEnumModel.ManagerNameEmpty;
         }
-        return "success";
+        return ValidateEnumModel.Success;
     }
 
     public boolean isManagerNameNull() {

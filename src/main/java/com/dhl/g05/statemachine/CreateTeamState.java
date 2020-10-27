@@ -77,7 +77,7 @@ public class CreateTeamState extends AbstractState {
 		newTeam = new TeamObject();
 		newTeam.setTeamName(teamName);
 		coach = newTeamObject.pickCoach();
-		if(!coach.validate().equalsIgnoreCase("success")) {
+		if(!coach.validate().equals(ValidateEnumModel.Success)) {
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Error Creating Coach for the team");
 			return false;
 		}

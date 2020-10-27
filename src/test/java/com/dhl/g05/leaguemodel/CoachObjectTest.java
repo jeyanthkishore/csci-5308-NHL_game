@@ -138,11 +138,11 @@ public class CoachObjectTest {
         JsonMockDataDb mock = new JsonMockDataDb();
         mock.setCoachNameEmpty();
         CoachObject validate = new CoachObject(mock);
-        assertEquals("Coach Name Should Not have Empty Value",validate.validate());
+        assertEquals(ValidateEnumModel.CoachNameEmpty,validate.validate());
         mock = new JsonMockDataDb();
         validate = new CoachObject(mock);
         validate.setSkating(-1);
-        assertEquals("Invalid state of coach",validate.validate());
+        assertEquals(ValidateEnumModel.InvalidStateOfCoach,validate.validate());
     }
 
 }

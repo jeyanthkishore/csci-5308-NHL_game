@@ -27,7 +27,12 @@ public enum ValidateEnumModel {
 	MaxPlayerCountExceed("Maximum Player Limit Is 20"),
 	NoTeamCaptain("Team Must Contain Atleast One Captain"),
 	MoreTeamCaptain("Team Must Contain Only One Captain"),
-	CoachDetailsEmpty("Coach has missing values");
+	CoachDetailsEmpty("Coach has missing values"),
+	InvalidStateOfCoach("Invalid state of coach"),
+	CoachNameEmpty("Coach Name Should Not have Empty Value"),
+	ManagerNameEmpty("Manager Name Should Not have Empty Value");
+
+
 
 	private String value; 
 	
