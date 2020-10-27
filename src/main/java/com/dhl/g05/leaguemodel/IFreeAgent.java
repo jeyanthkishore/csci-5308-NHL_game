@@ -1,9 +1,6 @@
 package com.dhl.g05.leaguemodel;
 
 public interface IFreeAgent {
-    public String getResult();
-
-    public void setResult(String result);
 
     public String getPlayerName();
 

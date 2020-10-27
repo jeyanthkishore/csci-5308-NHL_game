@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import com.dhl.g05.operation.DbPersistanceMock;
 import org.junit.Test;
 
 public class FreeAgentObjectTest {
@@ -22,7 +21,6 @@ public class FreeAgentObjectTest {
 	@Test
 	public void parameterConstructorTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
-		DbPersistanceMock db = new DbPersistanceMock();
 		CoachObject object = new CoachObject(data.headCoachName, data.coachSkating, data.coachShooting, data.coachChecking, data.coachSaving);
 		assertSame(data.headCoachName,object.getName());
 		assertEquals(data.coachSkating, object.getSkating(),0);
@@ -34,7 +32,6 @@ public class FreeAgentObjectTest {
 	@Test
 	public void coachObjectReferenceConstructorTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
-		DbPersistanceMock db = new DbPersistanceMock();
 		CoachObject object = new CoachObject(data.headCoachName, data.coachSkating, data.coachShooting, data.coachChecking, data.coachSaving);
 		assertSame(data.headCoachName,object.getName());
 		assertEquals(data.coachSkating, object.getSkating(),0);
@@ -169,20 +166,6 @@ public class FreeAgentObjectTest {
 		FreeAgentObject object = new FreeAgentObject();
 		object.setPosition("forward");
 		assertSame(object.getPosition(),"forward");
-	}
-
-	@Test
-	public void getResultTest() {
-		FreeAgentObject object = new FreeAgentObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-
-	@Test
-	public void setResultTest() {
-		FreeAgentObject object = new FreeAgentObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
 	}
 
 	@Test

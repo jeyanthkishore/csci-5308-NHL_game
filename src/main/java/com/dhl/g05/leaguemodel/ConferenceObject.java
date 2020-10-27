@@ -6,8 +6,7 @@ import com.dhl.g05.operation.IDataBasePersistence;
 public class ConferenceObject {
 	
 	private String conferenceName;
-	private List<DivisionObject> divisionDetails;
-	private String result;
+	private List<DivisionObject> divisions;
 	
 	public ConferenceObject() {
 		setDivisionDetails(null);
@@ -19,8 +18,7 @@ public class ConferenceObject {
 	
 	public ConferenceObject(String conference, List<DivisionObject> divisiondetail) {
 		conferenceName = conference;
-		divisionDetails = divisiondetail;
-		result = validate();
+		divisions = divisiondetail;
 	}
 	
 	public int saveConferenceObject(int leagueId,IDataBasePersistence database) {
@@ -29,12 +27,7 @@ public class ConferenceObject {
 	public int loadConferenceObject(int leagueId,IDataBasePersistence database) {
 		return database.loadConferenceObject(leagueId,this);
 	}
-	public String getResult() {
-		return result;
-	}
-	public void setResult(String result) {
-		this.result = result;
-	}
+	
 	public String getConferenceName() {
 		return conferenceName;
 	}
@@ -44,11 +37,11 @@ public class ConferenceObject {
 	}
 
 	public List<DivisionObject> getDivisionDetails() {
-		return divisionDetails;
+		return divisions;
 	}
 
 	public void setDivisionDetails(List<DivisionObject> divisionDetails) {
-		this.divisionDetails = divisionDetails;
+		this.divisions = divisionDetails;
 	}
 	public String validate() {
 		if(isNameEmptyOrNull()) {
@@ -63,7 +56,7 @@ public class ConferenceObject {
 		return "success";
 	}
 	public boolean hasEvenNumberDivision() {
-		if(divisionDetails.size()%2 == 0) {
+		if(divisions.size()%2 == 0) {
 			return true;	
 		}
 		return false;
@@ -77,7 +70,7 @@ public class ConferenceObject {
 	}
 	
 	public boolean isDivisionListEmpty() {
-		if(divisionDetails == null || divisionDetails.isEmpty()) {
+		if(divisions == null || divisions.isEmpty()) {
 			return true;
 		}
 		return false;

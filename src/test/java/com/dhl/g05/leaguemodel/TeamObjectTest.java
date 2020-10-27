@@ -61,19 +61,6 @@ public class TeamObjectTest{
 	}
 
 	@Test
-	public void getResultTest() {
-		TeamObject object = new TeamObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-	@Test
-	public void setResultTest() {
-		TeamObject object = new TeamObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-
-	@Test
 	public void setManagerNameTest()
 	{
 		TeamObject object = new TeamObject();

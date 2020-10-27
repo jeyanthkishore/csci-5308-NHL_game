@@ -31,18 +31,6 @@ public class DivisionObjectTest {
 		assertSame("Division",object.getDivisionName());
 	}
 	@Test
-	public void getResultTest() {
-		DivisionObject object = new DivisionObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-	@Test
-	public void setResultTest() {
-		ConferenceObject object = new ConferenceObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-	@Test
 	public void setTeamListTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
 		DivisionObject object = new DivisionObject();

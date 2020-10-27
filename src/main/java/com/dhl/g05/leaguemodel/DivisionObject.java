@@ -7,8 +7,7 @@ import com.dhl.g05.operation.IDataBasePersistence;
 public class DivisionObject {
 
 	private String divisionName;
-	private List<TeamObject> teamDetails;
-	private String result;
+	private List<TeamObject> teams;
 	
 	public DivisionObject() {
 		setDivisionName(null);
@@ -21,8 +20,7 @@ public class DivisionObject {
 	
 	public DivisionObject(String division, List<TeamObject> teamdetail) {
 		this.divisionName = division;
-		this.teamDetails = teamdetail;
-		result = validate();
+		this.teams = teamdetail;
 	}
 	
 	public int saveDivisionObject(int conferenceId,IDataBasePersistence database) {
@@ -30,13 +28,6 @@ public class DivisionObject {
 	}
 	public int loadDivisionObject(int conferenceId,IDataBasePersistence database) {
 		return database.loadDivisionObject(conferenceId,this);
-	}
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
 	}
 
 	public String getDivisionName() {
@@ -48,11 +39,11 @@ public class DivisionObject {
 	}
 
 	public List<TeamObject> getTeamDetails() {
-		return teamDetails;
+		return teams;
 	}
 
 	public void setTeamDetails(List<TeamObject> teamDetails) {
-		this.teamDetails = teamDetails;
+		this.teams = teamDetails;
 	}
 	public String validate() {
 		if(isDivisionNameEmptyorNull()) {
@@ -71,7 +62,7 @@ public class DivisionObject {
 	}
 	
 	public boolean isTeamListEmpty() {
-		if(teamDetails == null || teamDetails.isEmpty()) {
+		if(teams == null || teams.isEmpty()) {
 			return true;
 		}
 		return false;

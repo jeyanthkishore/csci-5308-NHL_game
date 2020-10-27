@@ -45,18 +45,6 @@ public class PlayerObjectTest {
 		assertSame(object.getPosition(),"forward");
 	}
 	@Test
-	public void getResultTest() {
-		PlayerObject object = new PlayerObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-	@Test
-	public void setResultTest() {
-		PlayerObject object = new PlayerObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-	@Test
 	public void setCaptainTest() {
 		PlayerObject object = new PlayerObject();
 		object.setCaptain(true);

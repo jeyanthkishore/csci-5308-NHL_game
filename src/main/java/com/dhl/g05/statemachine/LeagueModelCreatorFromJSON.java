@@ -236,7 +236,7 @@ public class LeagueModelCreatorFromJSON {
 				return null;
 			}
 			FreeAgentObject newPlayer = new FreeAgentObject(playerName, position, age, skating, shooting, checking, saving);
-			String validationResult  = newPlayer.getResult();
+			String validationResult  = newPlayer.validate();
 			if (validationResult.equalsIgnoreCase("Success")) {
 				players.add(newPlayer);
 			} else {
@@ -275,7 +275,7 @@ public class LeagueModelCreatorFromJSON {
 				return null;
 			}
 			CoachObject newCoach = new CoachObject(coachName,skating,shooting,checking,saving);
-			String validationResult  = newCoach.getResult();
+			String validationResult  = newCoach.validate();
 			if (validationResult.equalsIgnoreCase("Success")) {
 				coaches.add(newCoach);
 			} else {

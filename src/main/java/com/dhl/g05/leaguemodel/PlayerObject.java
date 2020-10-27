@@ -5,7 +5,6 @@ import com.dhl.g05.operation.IDataBasePersistence;
 public class PlayerObject extends FreeAgentObject{
 	
 	private Boolean captain;
-	private String result;
 	
 	public PlayerObject() {
 		setCaptain(null);
@@ -16,7 +15,6 @@ public class PlayerObject extends FreeAgentObject{
 	public PlayerObject(String playerName, String position, Boolean captain, double age, double skating, double shooting, double checking, double saving) {
 		super(playerName,position, age, skating, shooting, checking, saving);
 		this.captain = captain;
-		result = validate();
 	}
 	
 	public int savePlayerObject(int teamId,IDataBasePersistence database) {
@@ -24,14 +22,6 @@ public class PlayerObject extends FreeAgentObject{
 	}
 	public int loadPlayerObject(int teamId,IDataBasePersistence database) {
 		return database.loadPlayerObject(teamId,this);
-	}
-
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
 	}
 
 	public Boolean getCaptain() {
@@ -47,7 +37,7 @@ public class PlayerObject extends FreeAgentObject{
 	}
 	
 	public String validate() {
-		result = super.validate();
+		String result = super.validate();
 		if(result.equals("success")) {
 			if(isCaptainNull()) {
 				return "Captain Cannot be Null"; 

@@ -24,18 +24,6 @@ public class ConferenceObjectTest {
 		assertSame("conference",object.getConferenceName());
 	}
 	@Test
-	public void getResultTest() {
-		ConferenceObject object = new ConferenceObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-	@Test
-	public void setResultTest() {
-		ConferenceObject object = new ConferenceObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-	@Test
 	public void getDivisionTest() {
 		ConferenceObject object = new ConferenceObject();
 		object.setConferenceName("conference");
@@ -61,7 +49,6 @@ public class ConferenceObjectTest {
 		ConferenceObject object = new ConferenceObject(data.conferenceName,data.divisionList);
 		assertSame(data.conferenceName,object.getConferenceName());
 		assertSame(data.divisionList,object.getDivisionDetails());
-		assertSame("success",object.getResult());
 	}
 	@Test
 	public void divisionReferenceConstructor() {

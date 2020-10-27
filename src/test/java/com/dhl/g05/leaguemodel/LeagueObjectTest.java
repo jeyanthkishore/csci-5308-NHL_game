@@ -106,20 +106,6 @@ public class LeagueObjectTest {
 	}
 
 	@Test
-	public void getResultTest() {
-		LeagueObject object = new LeagueObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-
-	@Test
-	public void setResultTest() {
-		LeagueObject object = new LeagueObject();
-		object.setResult("success");
-		assertEquals("success",object.getResult());
-	}
-
-	@Test
 	public void saveLeagueObjectTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		DbPersistanceMock data = new DbPersistanceMock();

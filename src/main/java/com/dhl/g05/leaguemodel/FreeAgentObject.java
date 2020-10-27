@@ -3,7 +3,6 @@ package com.dhl.g05.leaguemodel;
 public class FreeAgentObject implements IFreeAgent{
 	private String playerName;
 	private String position;
-	private String result;
 	private double age;
 	private double skating;
 	private double shooting;
@@ -26,19 +25,10 @@ public class FreeAgentObject implements IFreeAgent{
 		this.shooting = shooting;
 		this.checking = checking;
 		this.saving = saving;
-		result = validate();
 	}
 
 	public FreeAgentObject(ILeagueModel player) {
 		player.loadPlayerModelData(this);
-	}
-
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
 	}
 
 	public String getPlayerName() {
