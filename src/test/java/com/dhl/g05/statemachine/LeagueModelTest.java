@@ -15,6 +15,12 @@ import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.Aging;
+import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.GameResolverConfig;
+import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
+import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.TrainingConfig;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.TeamModel;
@@ -60,14 +66,21 @@ public class LeagueModelTest {
 		ManagerModel manager = new ManagerModel("Smith");
 		ArrayList<ManagerModel> managerList = new ArrayList<>();
 		managerList.add(manager);
+		
+		TradingModel trade = new TradingModel(8, 0.05, 2, 0.07);
+		TrainingConfig train = new TrainingConfig(100);
+		GameResolverConfig resolver = new GameResolverConfig(0.2);
+		Injury injury = new Injury(2, 1, 260);
+		Aging age = new Aging(28, 60);
+		GamePlayConfigModel game = new GamePlayConfigModel(trade, age, injury, resolver, train);
 
-		league = new LeagueModel("HockeyLeague",conferences,null,coachList, managerList, new DbPersistanceMock());
+		league = new LeagueModel("HockeyLeague",conferences,null,coachList, managerList,game,new DbPersistanceMock());
 
 	}
 
 	@Test
 	public void testCreateLeague() {
-		LeagueModel newleague = leagueModel.createLeague("testLeague", new ArrayList<ConferenceModel>(), new ArrayList<FreeAgentModel>(), new ArrayList<CoachModel>(), new ArrayList<ManagerModel>());
+		LeagueModel newleague = leagueModel.createLeague("testLeague", new ArrayList<ConferenceModel>(), new ArrayList<FreeAgentModel>(), new ArrayList<CoachModel>(), new ArrayList<ManagerModel>(),new GamePlayConfigModel(null,null,null,null,null));
 		assertNotNull(newleague);
 		assertTrue(newleague.getLeagueName().equals("testLeague"));
 	}

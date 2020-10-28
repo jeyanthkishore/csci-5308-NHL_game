@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.coach.ICoachModel;
@@ -14,6 +15,12 @@ import com.dhl.g05.leaguemodel.division.IDivisionModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.freeagent.IFreeAgent;
 import com.dhl.g05.leaguemodel.freeagent.IFreeAgentModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.Aging;
+import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.GameResolverConfig;
+import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
+import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.TrainingConfig;
 import com.dhl.g05.leaguemodel.league.ILeagueModel;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.leaguemodel.manager.IManagerModel;
@@ -24,7 +31,7 @@ import com.dhl.g05.leaguemodel.team.ITeamModel;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 
 public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionModel,ITeamModel,IPlayerModel,IFreeAgentModel,ICoachModel,IManagerModel{
-
+	Random randomNumber = new Random();
 	public String leagueName = "HockeyLeague";
 	public Map<String,Object> firstPlayerInfo;
 	public Map<String,Object> secondPlayerInfo;
@@ -39,6 +46,12 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public ManagerModel managerDetails;
 	public ArrayList<HashMap<String,Object>> leagueList;
 	public HashMap<String,Object> leagueMap;
+	public GamePlayConfigModel gamePlayConfig;
+	public TradingModel tradeConfig;
+	public TrainingConfig training;
+	public GameResolverConfig gameResolver;
+	public Injury injury;
+	public Aging aging;
 	public String teamName = "Striker Six";
 	public String teamTwoName = "Thunder Rockers";
 	public String generalManagerName = "Zidanie Zidane";
@@ -60,6 +73,17 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public double coachSaving = 0.5;
 	public double playerStrength = 0;
 	public double teamStrength = 0;
+	public int averageRetirementAge = 35;
+	public int maximumAge = 60;
+	public double randownWinChance = 0.1;
+	public double randomInjuryChance = 0.05;
+	public int injuryDaysLow = 1;
+	public int injuryDaysHigh = 269;
+	public int daysUntilTraining = 100;
+	public int lossPoint = 8;
+	public double randomTradeOffer = 0.05;
+	public double randomAcceptanceChance = 0.05;
+	public int maxPlayerPerTrade = 2;
 	public LeagueModel league;
 	String playerOneName = "";
 	String positionOne = "";
@@ -150,6 +174,12 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		leagueList.add(leagueMap);
 		leagueMap.put("league_name","CanadaLeague");
 		leagueList.add(leagueMap);
+		tradeConfig = new TradingModel(lossPoint, randomTradeOffer, maxPlayerPerTrade, randomAcceptanceChance);
+		training = new TrainingConfig(daysUntilTraining);
+		gameResolver = new GameResolverConfig(randownWinChance);
+		injury = new Injury(randomInjuryChance, injuryDaysLow, injuryDaysHigh);
+		aging = new Aging(averageRetirementAge, maximumAge);
+		gamePlayConfig = new GamePlayConfigModel(tradeConfig, aging, injury, gameResolver, training);
 	}
 	
 	public void setLeagueEmpty() {

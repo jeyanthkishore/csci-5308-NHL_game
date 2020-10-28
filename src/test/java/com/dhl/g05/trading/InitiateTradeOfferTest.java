@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import com.dhl.g05.gamePlayConfig.TradingModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
 
 public class InitiateTradeOfferTest{

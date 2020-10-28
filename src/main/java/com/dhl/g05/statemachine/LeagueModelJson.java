@@ -11,6 +11,7 @@ import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.leaguemodel.division.IDivisionModelPersistence;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.leaguemodel.league.ILeagueModelPersistence;
 import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
@@ -73,8 +74,8 @@ public class LeagueModelJson implements ILeagueModelJson{
 		this.playerDatabase = playerDatabase;
 	}
 
-	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches, List<ManagerModel> managers) {
-		return new LeagueModel(leagueName, conferences, freeAgents, coaches, managers, leagueDatabase);
+	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches, List<ManagerModel> managers,GamePlayConfigModel gamePlay) {
+		return new LeagueModel(leagueName, conferences, freeAgents, coaches, managers, gamePlay,leagueDatabase);
 	}
 
 	@Override

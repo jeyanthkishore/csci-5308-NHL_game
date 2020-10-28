@@ -9,6 +9,7 @@ import com.dhl.g05.leaguemodel.division.DivisionConstant;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.leaguemodel.manager.ManagerConstant;
@@ -33,7 +34,7 @@ private LeagueModel league;
 
 	@Override
 	public LeagueModel createLeague(String league, List<ConferenceModel> conferencedetail,
-			List<FreeAgentModel> agent, List<CoachModel> coach, List<ManagerModel> managers) {
+			List<FreeAgentModel> agent, List<CoachModel> coach, List<ManagerModel> managers,GamePlayConfigModel gamePlay) {
 		return null;
 	}
 

@@ -7,6 +7,7 @@ import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.coach.ICoachModelPersistence;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.leaguemodel.manager.IManagerPersistence;
 import com.dhl.g05.leaguemodel.manager.ManagerModel;
 
@@ -18,6 +19,7 @@ public class LeagueModel {
 	private List<CoachModel> coaches;
 	private List<ManagerModel> managerList;
 	private ILeagueModelPersistence object;
+	private GamePlayConfigModel gamePlayConfig;
 
 	public LeagueModel() {
 		setLeagueName(null);
@@ -25,14 +27,16 @@ public class LeagueModel {
 		setFreeAgent(null);
 		setFreeCoach(null);
 		setManagerList(null);
+		setGamePlayConfig(null);
 	}
 
-	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<ManagerModel> managers, ILeagueModelPersistence dbObject) {
+	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<ManagerModel> managers,GamePlayConfigModel gamePlay ,ILeagueModelPersistence dbObject) {
 		setLeagueName(league);
 		setConferenceDetails(conferencedetail);
 		setFreeAgent(agent);
 		setFreeCoach(coach);
 		setManagerList(managers);
+		setGamePlayConfig(gamePlay);
 		this.object = dbObject;
 	}
 
@@ -201,6 +205,14 @@ public class LeagueModel {
 			return true;
 		}
 		return false;
+	}
+
+	public GamePlayConfigModel getGamePlayConfig() {
+		return gamePlayConfig;
+	}
+
+	public void setGamePlayConfig(GamePlayConfigModel gamePlayConfig) {
+		this.gamePlayConfig = gamePlayConfig;
 	}
 
 }

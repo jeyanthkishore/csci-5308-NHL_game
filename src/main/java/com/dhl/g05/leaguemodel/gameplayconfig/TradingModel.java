@@ -1,4 +1,4 @@
-package com.dhl.g05.gamePlayConfig;
+package com.dhl.g05.leaguemodel.gameplayconfig;
 
 public class TradingModel implements ITradingModel{
 
@@ -6,8 +6,18 @@ public class TradingModel implements ITradingModel{
     private double randomTradeOfferChance;
     private int maxPlayersPerTrade;
     private double randomAcceptanceChance;
+    
+    public TradingModel(int loss,double tradeOffer,int maxPlayer,double accept) {
+    	this.lossPoint = loss;
+    	this.randomTradeOfferChance = tradeOffer;
+    	this.maxPlayersPerTrade = maxPlayer;
+    	this.randomAcceptanceChance = accept;
+    }
 
-    public int getLossPoint() {
+    public TradingModel() {
+	}
+
+	public int getLossPoint() {
         return lossPoint;
     }
 

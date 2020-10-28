@@ -3,9 +3,9 @@ package com.dhl.g05.trading;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.dhl.g05.gamePlayConfig.TradingModel;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 

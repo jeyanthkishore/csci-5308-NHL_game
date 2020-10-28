@@ -9,6 +9,7 @@ import com.dhl.g05.leaguemodel.division.DivisionConstant;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.leaguemodel.manager.ManagerConstant;
@@ -33,8 +34,8 @@ public class MockLeagueModel implements ILeagueModelJson{
 	}
 
 	@Override
-	public LeagueModel createLeague(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<ManagerModel> managers) {
-		return new LeagueModel(league, conferencedetail, agent, coach, managers,new DbPersistanceMock());
+	public LeagueModel createLeague(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<ManagerModel> managers,GamePlayConfigModel playConfig) {
+		return new LeagueModel(league, conferencedetail, agent, coach, managers,playConfig,new DbPersistanceMock());
 	}
 
 	@Override

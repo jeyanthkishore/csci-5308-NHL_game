@@ -5,12 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import com.dhl.g05.leaguemodel.Aging;
-import com.dhl.g05.leaguemodel.Injury;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 import com.dhl.g05.leaguemodel.coach.CoachConstant;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.conference.ConferenceConstant;
@@ -19,6 +19,12 @@ import com.dhl.g05.leaguemodel.division.DivisionConstant;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.Aging;
+import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.GameResolverConfig;
+import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
+import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.TrainingConfig;
 import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.leaguemodel.manager.ManagerConstant;
@@ -27,8 +33,6 @@ import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.TeamConstant;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.simulation.Date;
-
-import javax.print.DocFlavor;
 
 public class LeagueModelCreatorFromJSON {
 
@@ -55,30 +59,6 @@ public class LeagueModelCreatorFromJSON {
 		return false;
 	}
 
-	public boolean setGamePlayConfigsFromFile(String fileName) throws IOException, ParseException {
-		File file = new File(fileName);
-		reader = new FileReader(file);
-		JSONObject leagueData = (JSONObject)parser.parse(reader);
-		if (leagueData == null) {
-			return false;
-		} else {
-			JSONObject gamePlayConfigs = (JSONObject) leagueData.get("gameplayConfig");
-			if (gamePlayConfigs == null) {
-				return false;
-			} else {
-				JSONObject training = (JSONObject)gamePlayConfigs.get("training");
-				JSONObject aging = (JSONObject)gamePlayConfigs.get("aging");
-				Aging agingObject = createAging(aging);
-				JSONObject injuries = (JSONObject)gamePlayConfigs.get("injuries");
-				Injury injuryObject = createInjury(injuries);
-				if (setTrainingConfig(training) == false) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
-
 	private Aging createAging(JSONObject jsonAging) {
 		if (jsonAging == null){
 			return null;
@@ -98,25 +78,24 @@ public class LeagueModelCreatorFromJSON {
 		return new Injury(randomInjuryChance, injuryDaysLow, injuryDaysHigh);
 	}
 
-	private boolean setTrainingConfig(JSONObject training) {
+	private TrainingConfig createTrainingConfig(JSONObject training) {
 		if (training == null) {
-			return false;
+			return null;
 		} else {
 			Number daysUntilStatIncreaseCheck =  (Number) training.get("daysUntilStatIncreaseCheck");
 			Date.getInstance().setDaysUntilStatIncreaseCheck(daysUntilStatIncreaseCheck.intValue());
-			return true;
+			return new TrainingConfig(daysUntilStatIncreaseCheck.intValue());
 		}
 	}
 
 	public boolean createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException {
-		setGamePlayConfigsFromFile(fileName);
 		File file = new File(fileName);
 		reader = new FileReader(file);
 		LeagueModel league = createLeague((JSONObject)parser.parse(reader));
 		leagueModel.setLeague(league);
 		return (leagueModel.getLeague() != null);
 	}
-
+	
 	private LeagueModel createLeague(JSONObject leagueData) {
 		if (leagueData == null) {
 			return null;
@@ -126,10 +105,10 @@ public class LeagueModelCreatorFromJSON {
 		ArrayList<CoachModel> freeCoaches = createFreeCoaches((JSONArray)leagueData.get("coaches"));
 		ArrayList<ManagerModel> managers = createFreeManagers((JSONArray)leagueData.get("generalManagers"));
 		ArrayList<ManagerModel> managerList = new ArrayList<>();
-		
+		GamePlayConfigModel gamePlayConfig = setGamePlayConfigsFromFile((JSONObject) leagueData.get("gameplayConfig"));
 		String leagueName = (String)leagueData.get("leagueName");
-		if (conferences != null && freeAgents != null && freeCoaches != null && managers != null) {
-			LeagueModel league = leagueModel.createLeague(leagueName, conferences, freeAgents, freeCoaches, managers);
+		if (conferences != null && freeAgents != null && freeCoaches != null && managers != null && gamePlayConfig!=null) {
+			LeagueModel league = leagueModel.createLeague(leagueName, conferences, freeAgents, freeCoaches, managers,gamePlayConfig);
 			LeagueConstant validationResult  =  leagueModel.validateLeague(league);
 			if (validationResult.equals(LeagueConstant.Success)) {
 //				if ( managers != null){
@@ -144,6 +123,40 @@ public class LeagueModelCreatorFromJSON {
 		}
 		
 		return null;
+	}
+	
+	public GamePlayConfigModel setGamePlayConfigsFromFile(JSONObject gamePlayConfigs){
+		if (gamePlayConfigs == null) {
+			return null;
+		} else {
+			Aging agingObject = createAging((JSONObject)gamePlayConfigs.get("aging"));
+			Injury injuryObject = createInjury((JSONObject)gamePlayConfigs.get("injuries"));
+			TrainingConfig trainingObject = createTrainingConfig((JSONObject)gamePlayConfigs.get("training"));
+			TradingModel tradingObject = createTradingConfig((JSONObject)gamePlayConfigs.get("trading"));
+			GameResolverConfig gameResolver = createGameResolver((JSONObject)gamePlayConfigs.get("gameResolver"));
+			return new GamePlayConfigModel(tradingObject, agingObject, injuryObject, gameResolver, trainingObject);
+		}
+}
+	
+	private GameResolverConfig createGameResolver(JSONObject gameResolver) {
+		if (gameResolver == null) {
+			return null;
+		} else {
+			double randomWin = Double.parseDouble(gameResolver.get("randomWinChance").toString());
+			return new GameResolverConfig(randomWin);
+		}
+	}
+
+	private TradingModel createTradingConfig(JSONObject tradingObject) {
+		if (tradingObject == null) {
+			return null;
+		} else {
+			double randomTradeOfferChance = Double.parseDouble(tradingObject.get("randomTradeOfferChance").toString());
+			int lossPoint = Integer.parseInt(tradingObject.get("lossPoint").toString());
+			int maxPlayersPerTrade = Integer.parseInt(tradingObject.get("maxPlayersPerTrade").toString());
+			double randomAcceptance =  Double.parseDouble(tradingObject.get("randomAcceptanceChance").toString());
+			return new TradingModel(lossPoint,randomTradeOfferChance,maxPlayersPerTrade,randomAcceptance);
+		}
 	}
 
 	private ArrayList<ConferenceModel> createConferences(JSONArray jsonConferences) {

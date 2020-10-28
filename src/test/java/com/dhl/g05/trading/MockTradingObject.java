@@ -1,6 +1,6 @@
 package com.dhl.g05.trading;
 
-import com.dhl.g05.gamePlayConfig.TradingModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
 
 
 public class MockTradingObject{

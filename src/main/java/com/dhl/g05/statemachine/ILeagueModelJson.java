@@ -9,6 +9,7 @@ import com.dhl.g05.leaguemodel.division.DivisionConstant;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.leaguemodel.manager.ManagerConstant;
@@ -22,7 +23,7 @@ public interface ILeagueModelJson {
 	
 	public LeagueModel getLeague();
 	public TeamModel getCurrentTeam();
-	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches, List<ManagerModel> managers);
+	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches, List<ManagerModel> managers,GamePlayConfigModel gamePlayConfig);
 	public void setLeague(LeagueModel league);
 	public boolean persistLeague();
 	public boolean addTeamToCurrentLeague(String conferenceName, String divisionName, TeamModel team);

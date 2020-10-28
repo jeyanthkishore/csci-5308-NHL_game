@@ -28,11 +28,12 @@ public class LeagueModelTest {
 	public void leagueParameterConstructorTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
 		DbPersistanceMock db = new DbPersistanceMock();
-		LeagueModel object = new LeagueModel(data.leagueName,data.conferenceList,data.freeAgentList,data.coachList, data.managerList, db);
+		LeagueModel object = new LeagueModel(data.leagueName,data.conferenceList,data.freeAgentList,data.coachList, data.managerList, data.gamePlayConfig,db);
 		assertSame(data.leagueName,object.getLeagueName());
 		assertSame(data.freeAgentList,object.getFreeAgent());
 		assertSame(data.conferenceList,object.getConferenceDetails());
 		assertSame(data.coachList, object.getFreeCoach());
+		assertSame(data.gamePlayConfig,object.getGamePlayConfig());
 	}
 
 	@Test
@@ -173,7 +174,7 @@ public class LeagueModelTest {
 	public void checkLeagueExistenceTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		DbPersistanceMock dbMock = new DbPersistanceMock();
-		LeagueModel valid = new LeagueModel(mock.leagueName,mock.conferenceList,mock.freeAgentList,mock.coachList, mock.managerList, dbMock);
+		LeagueModel valid = new LeagueModel(mock.leagueName,mock.conferenceList,mock.freeAgentList,mock.coachList, mock.managerList,mock.gamePlayConfig,dbMock);
 		assertTrue(valid.checkLeaguePresent());
 	}
 
@@ -181,7 +182,7 @@ public class LeagueModelTest {
 	public void checkLeagueNotExistenceTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		DbPersistanceMock dbMock = new DbPersistanceMock();
-		LeagueModel valid = new LeagueModel("dummyData",mock.conferenceList,mock.freeAgentList,mock.coachList, mock.managerList, dbMock);
+		LeagueModel valid = new LeagueModel("dummyData",mock.conferenceList,mock.freeAgentList,mock.coachList, mock.managerList,mock.gamePlayConfig, dbMock);
 		assertFalse(valid.checkLeaguePresent());
 	}
 
@@ -252,7 +253,7 @@ public class LeagueModelTest {
 	public void validateLeagueTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		DbPersistanceMock data = new DbPersistanceMock();
-		LeagueModel league = new LeagueModel(mock.leagueName,mock.conferenceList,mock.freeAgentList, mock.coachList, mock.managerList, data);
+		LeagueModel league = new LeagueModel(mock.leagueName,mock.conferenceList,mock.freeAgentList, mock.coachList, mock.managerList, mock.gamePlayConfig,data);
 		league.setLeagueName("DummyLEague");
 		assertSame(LeagueConstant.Success,league.validate());
 		league = new LeagueModel(mock);

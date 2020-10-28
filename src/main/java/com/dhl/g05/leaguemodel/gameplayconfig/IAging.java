@@ -1,6 +1,7 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.leaguemodel.gameplayconfig;
 
 public interface IAging {
+	
     public int getAverageRetirementAge();
 
     public void setAverageRetirementAge(int averageRetirementAge);

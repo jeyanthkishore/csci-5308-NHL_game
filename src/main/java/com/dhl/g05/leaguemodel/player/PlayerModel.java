@@ -1,10 +1,10 @@
 package com.dhl.g05.leaguemodel.player;
 
-import com.dhl.g05.leaguemodel.Injury;
+import java.util.Random;
+
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
-
-import java.util.Random;
+import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
 
 public class PlayerModel extends FreeAgentModel{
 

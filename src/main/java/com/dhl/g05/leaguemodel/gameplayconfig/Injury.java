@@ -1,4 +1,4 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.leaguemodel.gameplayconfig;
 
 public class Injury implements IInjury {
     private double randomInjuryChance;
