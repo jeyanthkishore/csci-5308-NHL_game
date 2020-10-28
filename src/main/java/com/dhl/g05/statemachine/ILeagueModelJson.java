@@ -2,18 +2,23 @@ package com.dhl.g05.statemachine;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.ValidateEnumModel;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.conference.ConferenceConstant;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.division.DivisionConstant;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.manager.ManagerConstant;
 import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.team.TeamConstant;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 
 
-public interface ILeagueModel {
+public interface ILeagueModelJson {
 	public LeagueModel getLeague();
 	public TeamModel getCurrentTeam();
 	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches);
@@ -21,11 +26,11 @@ public interface ILeagueModel {
 	public boolean persistLeague();
 	public boolean addTeamToCurrentLeague(String conferenceName, String divisionName, TeamModel team);
 	public boolean loadTeam(String leagueName, String conferenceName, String divisionName, String teamName);
-	public ValidateEnumModel validateLeague(LeagueModel league);
-	public ValidateEnumModel validateConference(ConferenceModel conference);
-	public ValidateEnumModel validateDivision(DivisionModel division);
-	public ValidateEnumModel validateTeam(TeamModel team);
-	public ValidateEnumModel validatePlayer(PlayerModel player);
-	public ValidateEnumModel validateManager(ManagerModel managerObject);
+	public LeagueConstant validateLeague(LeagueModel league);
+	public ConferenceConstant validateConference(ConferenceModel conference);
+	public DivisionConstant validateDivision(DivisionModel division);
+	public TeamConstant validateTeam(TeamModel team);
+	public FreeAgentConstant validatePlayer(PlayerModel player);
+	public ManagerConstant validateManager(ManagerModel managerObject);
 
 }

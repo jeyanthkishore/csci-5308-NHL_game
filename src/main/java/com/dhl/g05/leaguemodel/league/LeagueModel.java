@@ -3,8 +3,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.ILeagueModelComplete;
-import com.dhl.g05.leaguemodel.ValidateEnumModel;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.coach.ICoachModelPersistence;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
@@ -33,7 +31,7 @@ public class LeagueModel {
 		this.object = dbObject;
 	}
 
-	public LeagueModel(ILeagueModelComplete leagueObject) {
+	public LeagueModel(ILeagueModel leagueObject) {
 		leagueObject.loadLeagueModelData(this);
 	}
 
@@ -93,32 +91,32 @@ public class LeagueModel {
 		return database.loadLeagueCoachObject(leagueName, this);
 	}
 
-	public ValidateEnumModel validate() {
+	public LeagueConstant validate() {
     	if(isLeagueNameEmptyOrNull()) {
-    		return ValidateEnumModel.LeagueNameEmpty;
+    		return LeagueConstant.LeagueNameEmpty;
     	}
     	if(isConferenceListEmpty()) {
-    		return ValidateEnumModel.ConferenceListEmpty;
+    		return LeagueConstant.ConferenceListEmpty;
     	}
     	if(!hasEvenNumberConference()) {
-    		return ValidateEnumModel.NoEvenConferenceCount;
+    		return LeagueConstant.NoEvenConferenceCount;
     	}
     	if(isFreeAgentListEmpty()) {
-    		return ValidateEnumModel.FreeAgentsEmpty;
+    		return LeagueConstant.FreeAgentsEmpty;
     	}
     	if(isFreeAgentDetailsEmptyOrNull()) {
-    		return ValidateEnumModel.FreeAgentAttributeEmpty;
+    		return LeagueConstant.FreeAgentAttributeEmpty;
     	}
     	if(isFreeAgentPositionWrong()) {
-    		return ValidateEnumModel.ImproperPlayerPosition;
+    		return LeagueConstant.ImproperPlayerPosition;
     	}
     	if(checkLeaguePresent()) {
-    		return ValidateEnumModel.LeagueExists;
+    		return LeagueConstant.LeagueExists;
     	}
     	if(isCoachListEmpty()){
-    		return ValidateEnumModel.CoachListEmpty;
+    		return LeagueConstant.CoachListEmpty;
     	}
-    	return ValidateEnumModel.Success;
+    	return LeagueConstant.Success;
 	}
 
 	public boolean isLeagueNameEmptyOrNull() {

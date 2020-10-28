@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.operation.DbPersistanceMock;
 
@@ -129,18 +130,18 @@ public class PlayerObjectTest {
 	public void validatePlayerTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		PlayerModel validate = new PlayerModel(mock);
-		assertSame(ValidateEnumModel.Success,validate.validate());
+		assertSame(FreeAgentConstant.Success,validate.validate());
 		mock.setPlayerPositionEmpty();
 		validate = new PlayerModel(mock);
-		assertSame(ValidateEnumModel.PlayerValueEmpty,validate.validate());
+		assertSame(FreeAgentConstant.PlayerValueEmpty,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setPositionDifferent();
 		validate = new PlayerModel(mock);
-		assertSame(ValidateEnumModel.PlayerPositionWrong,validate.validate());
+		assertSame(FreeAgentConstant.PlayerPositionWrong,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setCaptainNull();
 		validate = new PlayerModel(mock);
-		assertSame(ValidateEnumModel.CaptainNull,validate.validate());
+		assertSame(FreeAgentConstant.CaptainNull,validate.validate());
 	}
 	
 	@Test

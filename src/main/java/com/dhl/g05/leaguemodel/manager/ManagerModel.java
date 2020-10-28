@@ -2,8 +2,6 @@ package com.dhl.g05.leaguemodel.manager;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.ValidateEnumModel;
-
 public class ManagerModel {
     private String name;
     private List<ManagerModel> managerList;
@@ -33,11 +31,11 @@ public class ManagerModel {
         this.name = name;
     }
 
-    public ValidateEnumModel validate() {
+    public ManagerConstant validate() {
         if(isManagerNameNull() || isManagerNameEmpty()) {
-            return ValidateEnumModel.ManagerNameEmpty;
+            return ManagerConstant.ManagerNameEmpty;
         }
-        return ValidateEnumModel.Success;
+        return ManagerConstant.Success;
     }
 
     public boolean isManagerNameNull() {

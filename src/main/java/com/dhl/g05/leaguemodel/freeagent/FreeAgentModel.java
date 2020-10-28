@@ -1,8 +1,5 @@
 package com.dhl.g05.leaguemodel.freeagent;
 
-import com.dhl.g05.leaguemodel.ILeagueModelComplete;
-import com.dhl.g05.leaguemodel.ValidateEnumModel;
-
 public class FreeAgentModel implements IFreeAgent{
 	private String playerName;
 	private String position;
@@ -30,7 +27,7 @@ public class FreeAgentModel implements IFreeAgent{
 		this.saving = saving;
 	}
 
-	public FreeAgentModel(ILeagueModelComplete player) {
+	public FreeAgentModel(IFreeAgentModel player) {
 		player.loadPlayerModelData(this);
 	}
 
@@ -119,20 +116,20 @@ public class FreeAgentModel implements IFreeAgent{
 		return playerStrength;
 	}
 
-	public ValidateEnumModel validate() {
+	public FreeAgentConstant validate() {
 		if(isPlayerDetailsNull()||isPlayerDetailsEmpty()) {
-			return ValidateEnumModel.PlayerValueEmpty;
+			return FreeAgentConstant.PlayerValueEmpty;
 		}
 		if(!isPlayerPositionValid()) {
-			return ValidateEnumModel.PlayerPositionWrong;
+			return FreeAgentConstant.PlayerPositionWrong;
 		}
 		if(!isPlayerAgeValid()) {
-			return ValidateEnumModel.PlayerAgeInvalid;
+			return FreeAgentConstant.PlayerAgeInvalid;
 		}
 		if(!isPlayerStatValid()) {
-			return ValidateEnumModel.PlayerStateInvalid;
+			return FreeAgentConstant.PlayerStateInvalid;
 		}
-		return ValidateEnumModel.Success;
+		return FreeAgentConstant.Success;
 	}
 
 	public boolean isPlayerDetailsNull() {

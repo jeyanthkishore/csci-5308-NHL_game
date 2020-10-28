@@ -3,7 +3,7 @@ package com.dhl.g05.statemachine;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.ValidateEnumModel;
+import com.dhl.g05.leaguemodel.coach.CoachConstant;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
@@ -82,7 +82,7 @@ public class CreateTeamState extends AbstractState {
 		newTeam = new TeamModel();
 		newTeam.setTeamName(teamName);
 		coach = newTeamObject.pickCoach();
-		if(!coach.validate().equals(ValidateEnumModel.Success)) {
+		if(!coach.validate().equals(CoachConstant.Success)) {
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Error Creating Coach for the team");
 			return false;
 		}

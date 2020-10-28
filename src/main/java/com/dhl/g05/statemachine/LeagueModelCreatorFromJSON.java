@@ -11,14 +11,20 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.dhl.g05.leaguemodel.ValidateEnumModel;
+import com.dhl.g05.leaguemodel.coach.CoachConstant;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.conference.ConferenceConstant;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.division.DivisionConstant;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.manager.ManagerConstant;
 import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.team.TeamConstant;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.simulation.Date;
 
@@ -26,10 +32,10 @@ public class LeagueModelCreatorFromJSON {
 	
 	private FileReader reader;
 	private JSONParser parser;
-	private ILeagueModel leagueModel;
+	private ILeagueModelJson leagueModel;
 	private IPlayerCommunication playerCommunication;
 
-	public LeagueModelCreatorFromJSON(ILeagueModel leagueModel, IPlayerCommunication playerCommunication) {
+	public LeagueModelCreatorFromJSON(ILeagueModelJson leagueModel, IPlayerCommunication playerCommunication) {
 		parser = new JSONParser();
 		this.leagueModel = leagueModel;
 		this.playerCommunication = playerCommunication;
@@ -104,8 +110,8 @@ public class LeagueModelCreatorFromJSON {
 		String leagueName = (String)leagueData.get("leagueName");
 		if (conferences != null && freeAgents != null && freeCoaches != null) {
 			LeagueModel league = leagueModel.createLeague(leagueName,conferences,freeAgents, freeCoaches);
-			ValidateEnumModel validationResult  =  leagueModel.validateLeague(league);
-			if (validationResult.equals(ValidateEnumModel.Success)) {
+			LeagueConstant validationResult  =  leagueModel.validateLeague(league);
+			if (validationResult.equals(LeagueConstant.Success)) {
 				if ( managers != null){
 					System.out.println(managers);
 					ManagerModel managerObject = new ManagerModel(managers);
@@ -129,8 +135,8 @@ public class LeagueModelCreatorFromJSON {
 			String conferenceName = (String)((JSONObject) c).get("conferenceName");
 			if (divisions != null) {
 				ConferenceModel newConference = new ConferenceModel(conferenceName, divisions);
-				ValidateEnumModel validationResult  = leagueModel.validateConference(newConference);
-				if (validationResult.equals(ValidateEnumModel.Success)) {
+				ConferenceConstant validationResult  = leagueModel.validateConference(newConference);
+				if (validationResult.equals(ConferenceConstant.Success)) {
 					conferences.add(newConference);
 				} else {
 					playerCommunication.sendMessage(validationResult.getValue());
@@ -153,8 +159,8 @@ public class LeagueModelCreatorFromJSON {
 			String divisionName = (String)((JSONObject) d).get("divisionName");
 			if (teams != null) {
 				DivisionModel newDivision = new DivisionModel(divisionName,teams);
-				ValidateEnumModel validationResult  = leagueModel.validateDivision(newDivision);
-				if (validationResult.equals(ValidateEnumModel.Success)) {
+				DivisionConstant validationResult  = leagueModel.validateDivision(newDivision);
+				if (validationResult.equals(DivisionConstant.Success)) {
 					divisions.add(newDivision);
 				} else {
 					playerCommunication.sendMessage(validationResult.getValue());
@@ -180,8 +186,8 @@ public class LeagueModelCreatorFromJSON {
 			CoachModel coachDetails = createCoach(coach);
 			if (players != null && teamName != null && managerName != null && coachDetails != null) {
 				TeamModel newTeam = new TeamModel(teamName, coachDetails, managerName, players);
-				ValidateEnumModel validationResult  = leagueModel.validateTeam(newTeam);
-				if (validationResult.equals(ValidateEnumModel.Success)) {
+				TeamConstant validationResult  = leagueModel.validateTeam(newTeam);
+				if (validationResult.equals(TeamConstant.Success)) {
 					teams.add(newTeam);
 				}  else {
 					playerCommunication.sendMessage(validationResult.getValue());
@@ -212,8 +218,8 @@ public class LeagueModelCreatorFromJSON {
 				return null;
 			}
 			PlayerModel newPlayer = new PlayerModel(playerName, position, captain, age, skating, shooting, checking, saving);
-			ValidateEnumModel validationResult  = leagueModel.validatePlayer(newPlayer);
-			if (validationResult.equals(ValidateEnumModel.Success)) {
+			FreeAgentConstant validationResult  = leagueModel.validatePlayer(newPlayer);
+			if (validationResult.equals(FreeAgentConstant.Success)) {
 				players.add(newPlayer);
 			} else {
 				playerCommunication.sendMessage(validationResult.getValue());
@@ -241,8 +247,8 @@ public class LeagueModelCreatorFromJSON {
 				return null;
 			}
 			FreeAgentModel newPlayer = new FreeAgentModel(playerName, position, age, skating, shooting, checking, saving);
-			ValidateEnumModel validationResult  = newPlayer.validate();
-			if (validationResult.equals(ValidateEnumModel.Success)) {
+			FreeAgentConstant validationResult  = newPlayer.validate();
+			if (validationResult.equals(FreeAgentConstant.Success)) {
 				players.add(newPlayer);
 			} else {
 				playerCommunication.sendMessage(validationResult.getValue());
@@ -280,8 +286,8 @@ public class LeagueModelCreatorFromJSON {
 				return null;
 			}
 			CoachModel newCoach = new CoachModel(coachName,skating,shooting,checking,saving);
-			ValidateEnumModel validationResult  = newCoach.validate();
-			if (validationResult.equals(ValidateEnumModel.Success)) {
+			CoachConstant validationResult  = newCoach.validate();
+			if (validationResult.equals(CoachConstant.Success)) {
 				coaches.add(newCoach);
 			} else {
 				playerCommunication.sendMessage(validationResult.getValue());
@@ -303,8 +309,8 @@ public class LeagueModelCreatorFromJSON {
 			}
 			ManagerModel managerObject = new ManagerModel();
 			managerObject.setName(name);
-			ValidateEnumModel validationResult  = managerObject.validate();
-			if (validationResult.equals(ValidateEnumModel.Success)) {
+			ManagerConstant validationResult  = managerObject.validate();
+			if (validationResult.equals(ManagerConstant.Success)) {
 				managers.add(managerObject);
 			} else {
 				playerCommunication.sendMessage(validationResult.getValue());

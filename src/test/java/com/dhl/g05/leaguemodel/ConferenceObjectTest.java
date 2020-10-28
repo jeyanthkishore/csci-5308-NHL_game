@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.dhl.g05.leaguemodel.conference.ConferenceConstant;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.operation.DbPersistanceMock;
 
@@ -111,19 +112,19 @@ public class ConferenceObjectTest {
 	public void validateConferenceTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		ConferenceModel validate = new ConferenceModel(mock); 
-		assertSame(ValidateEnumModel.Success,validate.validate());
+		assertSame(ConferenceConstant.Success,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setConferenceNameEmpty();
 		validate = new ConferenceModel(mock); 
-		assertSame(ValidateEnumModel.ConferenceNameEmpty,validate.validate());
+		assertSame(ConferenceConstant.ConferenceNameEmpty,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.removeDivision();
 		validate = new ConferenceModel(mock); 
-		assertSame(ValidateEnumModel.DivisionListEmpty,validate.validate());
+		assertSame(ConferenceConstant.DivisionListEmpty,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.removeOneDivision();
 		validate = new ConferenceModel(mock); 
-		assertSame(ValidateEnumModel.NoEvenDivisionCount,validate.validate());
+		assertSame(ConferenceConstant.NoEvenDivisionCount,validate.validate());
 	}
 	
 	@Test

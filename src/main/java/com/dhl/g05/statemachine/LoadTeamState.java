@@ -32,7 +32,7 @@ public class LoadTeamState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
-		ILeagueModel leagueModel = this.getOuterStateMachine().getLeagueModel();
+		ILeagueModelJson leagueModel = this.getOuterStateMachine().getLeagueModel();
 		if (leagueModel.loadTeam(leagueName, conferenceName, divisionName, teamName)) {
 			return true;
 		} else {

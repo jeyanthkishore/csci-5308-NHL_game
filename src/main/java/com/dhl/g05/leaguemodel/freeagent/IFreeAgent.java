@@ -1,7 +1,5 @@
 package com.dhl.g05.leaguemodel.freeagent;
 
-import com.dhl.g05.leaguemodel.ValidateEnumModel;
-
 public interface IFreeAgent {
 
     public String getPlayerName();
@@ -38,7 +36,7 @@ public interface IFreeAgent {
 
     public double calculatePlayerStrength();
 
-    public ValidateEnumModel validate();
+    public FreeAgentConstant validate();
 
     public boolean isPlayerDetailsNull();
 

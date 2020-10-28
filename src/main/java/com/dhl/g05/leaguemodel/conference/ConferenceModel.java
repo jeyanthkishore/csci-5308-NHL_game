@@ -1,8 +1,6 @@
 package com.dhl.g05.leaguemodel.conference;
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.ILeagueModelComplete;
-import com.dhl.g05.leaguemodel.ValidateEnumModel;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
 
 public class ConferenceModel {
@@ -14,7 +12,7 @@ public class ConferenceModel {
 		setDivisionDetails(null);
 		setConferenceName(null);
 	}
-	public ConferenceModel(ILeagueModelComplete conferenceObject) {
+	public ConferenceModel(IConferenceModel conferenceObject) {
 		conferenceObject.loadConferenceModelData(this);
 	}
 	
@@ -45,17 +43,17 @@ public class ConferenceModel {
 	public void setDivisionDetails(List<DivisionModel> divisionDetails) {
 		this.divisions = divisionDetails;
 	}
-	public ValidateEnumModel validate() {
+	public ConferenceConstant validate() {
 		if(isNameEmptyOrNull()) {
-			return ValidateEnumModel.ConferenceNameEmpty;
+			return ConferenceConstant.ConferenceNameEmpty;
 		}
 		if(isDivisionListEmpty()) {
-			return ValidateEnumModel.DivisionListEmpty;
+			return ConferenceConstant.DivisionListEmpty;
 		}
 		if(!hasEvenNumberDivision()) {
-			return ValidateEnumModel.NoEvenDivisionCount;
+			return ConferenceConstant.NoEvenDivisionCount;
 		}
-		return ValidateEnumModel.Success;
+		return ConferenceConstant.Success;
 	}
 	public boolean hasEvenNumberDivision() {
 		if(divisions.size()%2 == 0) {

@@ -9,6 +9,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 
 public class FreeAgentObjectTest {
@@ -288,22 +289,22 @@ public class FreeAgentObjectTest {
 	public void validatePlayerTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertSame(ValidateEnumModel.Success,validate.validate());
+		assertSame(FreeAgentConstant.Success,validate.validate());
 		mock.setPlayerPositionEmpty();
 		validate = new FreeAgentModel(mock);
-		assertSame(ValidateEnumModel.PlayerValueEmpty,validate.validate());
+		assertSame(FreeAgentConstant.PlayerValueEmpty,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setPositionDifferent();
 		validate = new FreeAgentModel(mock);
-		assertSame(ValidateEnumModel.PlayerPositionWrong,validate.validate());
+		assertSame(FreeAgentConstant.PlayerPositionWrong,validate.validate());
 		mock = new JsonMockDataDb();
 		validate = new FreeAgentModel(mock);
 		validate.setAge(-1);
-		assertSame(ValidateEnumModel.PlayerAgeInvalid,validate.validate());
+		assertSame(FreeAgentConstant.PlayerAgeInvalid,validate.validate());
 		mock = new JsonMockDataDb();
 		validate = new FreeAgentModel(mock);
 		validate.setSkating(-1);
-		assertSame(ValidateEnumModel.PlayerStateInvalid,validate.validate());
+		assertSame(FreeAgentConstant.PlayerStateInvalid,validate.validate());
 	}
 
 

@@ -6,15 +6,23 @@ import java.util.List;
 import java.util.Map;
 
 import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.coach.ICoachModel;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.conference.IConferenceModel;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.division.IDivisionModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.freeagent.IFreeAgent;
+import com.dhl.g05.leaguemodel.freeagent.IFreeAgentModel;
+import com.dhl.g05.leaguemodel.league.ILeagueModel;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.manager.IManagerModel;
+import com.dhl.g05.leaguemodel.player.IPlayerModel;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.team.ITeamModel;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 
-public class JsonMockDataDb implements ILeagueModelComplete{
+public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionModel,ITeamModel,IPlayerModel,IFreeAgentModel,ICoachModel,IManagerModel{
 
 	public String leagueName = "HockeyLeague";
 	public Map<String,Object> firstPlayerInfo;
