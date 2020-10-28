@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.MonthDay;
 import java.time.Year;
 
-import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.operation.IDatePersistence;
 
 public class Date {
@@ -26,11 +26,11 @@ public class Date {
 		return instance;
 	}
 	
-	public void saveDate(LeagueObject league, IDatePersistence db) {
+	public void saveDate(LeagueModel league, IDatePersistence db) {
 		//db.saveDate(league,this);
 	}
 	
-	public void loadDate(LeagueObject league, IDatePersistence db) {
+	public void loadDate(LeagueModel league, IDatePersistence db) {
 		db.loadDate(league,this);
 	}
 	

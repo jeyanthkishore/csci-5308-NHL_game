@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import com.dhl.g05.gamePlayConfig.TradingModel;
-import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
 
 public class InitiateTradeOfferTest{
 
 	@Test
 	public void generateTradeOfferTest() {
 		LeagueModelTest mockLeague = new LeagueModelTest();
-		LeagueObject league = mockLeague.leagueMock();
+		LeagueModel league = mockLeague.leagueMock();
 
 		MockTradingObject tradeMock= new MockTradingObject();
 		

@@ -3,22 +3,22 @@ import java.util.List;
 
 import com.dhl.g05.leaguemodel.ILeagueModelComplete;
 import com.dhl.g05.leaguemodel.ValidateEnumModel;
-import com.dhl.g05.leaguemodel.division.DivisionObject;
+import com.dhl.g05.leaguemodel.division.DivisionModel;
 
-public class ConferenceObject {
+public class ConferenceModel {
 	
 	private String conferenceName;
-	private List<DivisionObject> divisions;
+	private List<DivisionModel> divisions;
 	
-	public ConferenceObject() {
+	public ConferenceModel() {
 		setDivisionDetails(null);
 		setConferenceName(null);
 	}
-	public ConferenceObject(ILeagueModelComplete conferenceObject) {
+	public ConferenceModel(ILeagueModelComplete conferenceObject) {
 		conferenceObject.loadConferenceModelData(this);
 	}
 	
-	public ConferenceObject(String conference, List<DivisionObject> divisiondetail) {
+	public ConferenceModel(String conference, List<DivisionModel> divisiondetail) {
 		conferenceName = conference;
 		divisions = divisiondetail;
 	}
@@ -38,11 +38,11 @@ public class ConferenceObject {
 		this.conferenceName = conference;
 	}
 
-	public List<DivisionObject> getDivisionDetails() {
+	public List<DivisionModel> getDivisionDetails() {
 		return divisions;
 	}
 
-	public void setDivisionDetails(List<DivisionObject> divisionDetails) {
+	public void setDivisionDetails(List<DivisionModel> divisionDetails) {
 		this.divisions = divisionDetails;
 	}
 	public ValidateEnumModel validate() {

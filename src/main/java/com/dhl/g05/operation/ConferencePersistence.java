@@ -5,16 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.db.StoredProcedure;
-import com.dhl.g05.leaguemodel.conference.ConferenceObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.conference.IConferenceModelPersistence;
-import com.dhl.g05.leaguemodel.division.DivisionObject;
+import com.dhl.g05.leaguemodel.division.DivisionModel;
 
 public class ConferencePersistence implements IConferenceModelPersistence{
 	
-	private List<DivisionObject> divisionList = new ArrayList<DivisionObject>();
+	private List<DivisionModel> divisionList = new ArrayList<DivisionModel>();
 
 	@Override
-	public int saveConferenceObject(int leagueId, ConferenceObject conferenceObject) {
+	public int saveConferenceObject(int leagueId, ConferenceModel conferenceObject) {
 		StoredProcedure sp= new StoredProcedure();
 		String conferenceName = conferenceObject.getConferenceName();
 		int conferenceId = sp.saveConference(leagueId,conferenceName) ;
@@ -22,7 +22,7 @@ public class ConferencePersistence implements IConferenceModelPersistence{
 	}
 
 	@Override
-	public int loadConferenceObject(int leagueId, ConferenceObject conferenceObject) {
+	public int loadConferenceObject(int leagueId, ConferenceModel conferenceObject) {
 		String conferenceName = conferenceObject.getConferenceName();
 		List<HashMap<String, Object>> divisionValue = new ArrayList<HashMap<String,Object>>();
 		StoredProcedure sp= new StoredProcedure();
@@ -30,7 +30,7 @@ public class ConferencePersistence implements IConferenceModelPersistence{
 		divisionValue = sp.fetchAllDivisions(conferenceId);
 		for(HashMap<String, Object> div : divisionValue) {
 			String divisionName = div.get("division_name").toString();
-			divisionList.add(new DivisionObject(divisionName,null));
+			divisionList.add(new DivisionModel(divisionName,null));
 		}
 		conferenceObject.setDivisionDetails(divisionList);
 		return conferenceId;

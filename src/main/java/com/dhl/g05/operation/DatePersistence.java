@@ -4,13 +4,13 @@ import java.util.List;
 
 import com.dhl.g05.db.DateStoredProcedure;
 import com.dhl.g05.db.StoredProcedure;
-import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.simulation.Date;
 
 public class DatePersistence implements IDatePersistence{
 
 	@Override
-	public void loadDate(LeagueObject league, Date date) {
+	public void loadDate(LeagueModel league, Date date) {
 		
 		StoredProcedure sp = new StoredProcedure();
 		int leagueID = sp.getLeagueID(league.getLeagueName());
@@ -26,7 +26,7 @@ public class DatePersistence implements IDatePersistence{
 	}
 
 	@Override
-	public void saveDate(LeagueObject league, Date date) {
+	public void saveDate(LeagueModel league, Date date) {
 		StoredProcedure sp = new StoredProcedure();
 		int leagueID = sp.getLeagueID(league.getLeagueName());
 		int day = date.getDay();

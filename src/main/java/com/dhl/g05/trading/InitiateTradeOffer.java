@@ -4,40 +4,40 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.dhl.g05.gamePlayConfig.TradingModel;
-import com.dhl.g05.leaguemodel.conference.ConferenceObject;
-import com.dhl.g05.leaguemodel.division.DivisionObject;
-import com.dhl.g05.leaguemodel.league.LeagueObject;
-import com.dhl.g05.leaguemodel.team.TeamObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.team.TeamModel;
 
 
 public class InitiateTradeOffer {
 
 	private Object TradeAlgorithm;
-	private LeagueObject league;
-	private ConferenceObject conference;
-	private DivisionObject division;
-	private TeamObject team;
-	public ConferenceObject getConference() {
+	private LeagueModel league;
+	private ConferenceModel conference;
+	private DivisionModel division;
+	private TeamModel team;
+	public ConferenceModel getConference() {
 		return conference;
 	}
 
-	public void setConference(ConferenceObject conference) {
+	public void setConference(ConferenceModel conference) {
 		this.conference = conference;
 	}
 
-	public DivisionObject getDivision() {
+	public DivisionModel getDivision() {
 		return division;
 	}
 
-	public void setDivision(DivisionObject division) {
+	public void setDivision(DivisionModel division) {
 		this.division = division;
 	}
 
-	public TeamObject getTeam() {
+	public TeamModel getTeam() {
 		return team;
 	}
 
-	public void setTeam(TeamObject team) {
+	public void setTeam(TeamModel team) {
 		this.team = team;
 	}
 
@@ -51,11 +51,11 @@ public class InitiateTradeOffer {
 		TradeAlgorithm = tradeAlgorithm;
 	}
 
-	public LeagueObject getLeague() {
+	public LeagueModel getLeague() {
 		return league;
 	}
 
-	public void setLeague(LeagueObject league) {
+	public void setLeague(LeagueModel league) {
 		this.league = league;
 	}
 
@@ -76,11 +76,11 @@ public class InitiateTradeOffer {
 		CheckLossPoint lossPoint= new CheckLossPoint();
 		lossPoint.setLossPoint(trade.getLossPoint());
 
-		for (ConferenceObject c: league.getConferenceDetails()) 
+		for (ConferenceModel c: league.getConferenceDetails()) 
 		{
-			for (DivisionObject d: c.getDivisionDetails()) 
+			for (DivisionModel d: c.getDivisionDetails()) 
 			{
-				for (TeamObject t: d.getTeamDetails())
+				for (TeamModel t: d.getTeamDetails())
 				{ 
 					lossPoint.setLossCount(10);
 					checkLossPointResult=lossPoint.checkLossPoint();

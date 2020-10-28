@@ -4,23 +4,23 @@ import java.util.List;
 
 import com.dhl.g05.leaguemodel.ILeagueModelComplete;
 import com.dhl.g05.leaguemodel.ValidateEnumModel;
-import com.dhl.g05.leaguemodel.team.TeamObject;
+import com.dhl.g05.leaguemodel.team.TeamModel;
 
-public class DivisionObject {
+public class DivisionModel {
 
 	private String divisionName;
-	private List<TeamObject> teams;
+	private List<TeamModel> teams;
 	
-	public DivisionObject() {
+	public DivisionModel() {
 		setDivisionName(null);
 		setTeamDetails(null);
 	}
 	
-	public DivisionObject(ILeagueModelComplete divisionObject) {
+	public DivisionModel(ILeagueModelComplete divisionObject) {
 		divisionObject.LoadDivisionModelData(this);
 	}
 	
-	public DivisionObject(String division, List<TeamObject> teamdetail) {
+	public DivisionModel(String division, List<TeamModel> teamdetail) {
 		this.divisionName = division;
 		this.teams = teamdetail;
 	}
@@ -40,11 +40,11 @@ public class DivisionObject {
 		this.divisionName = divisionName;
 	}
 
-	public List<TeamObject> getTeamDetails() {
+	public List<TeamModel> getTeamDetails() {
 		return teams;
 	}
 
-	public void setTeamDetails(List<TeamObject> teamDetails) {
+	public void setTeamDetails(List<TeamModel> teamDetails) {
 		this.teams = teamDetails;
 	}
 	public ValidateEnumModel validate() {

@@ -4,28 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dhl.g05.leaguemodel.ValidateEnumModel;
-import com.dhl.g05.leaguemodel.coach.CoachObject;
-import com.dhl.g05.leaguemodel.conference.ConferenceObject;
-import com.dhl.g05.leaguemodel.division.DivisionObject;
-import com.dhl.g05.leaguemodel.league.LeagueObject;
-import com.dhl.g05.leaguemodel.player.PlayerObject;
-import com.dhl.g05.leaguemodel.team.TeamObject;
+import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.team.TeamModel;
 
 public class CreateTeamState extends AbstractState {
 
-	private TeamObject newTeam;
+	private TeamModel newTeam;
 	private String conferenceName;
 	private String divisionName;
 	private String teamName;
-	private LeagueObject league;
+	private LeagueModel league;
 	private IPlayerCommunication communicate;
 	private EnchancedTeamCreation newTeamObject;
 
-	public LeagueObject getLeague() {
+	public LeagueModel getLeague() {
 		return league;
 	}
 
-	public void setLeague(LeagueObject league) {
+	public void setLeague(LeagueModel league) {
 		this.league = league;
 	}
 
@@ -77,9 +77,9 @@ public class CreateTeamState extends AbstractState {
 	}
 
 	private boolean performOperation() {
-		CoachObject coach = new CoachObject();
-		List<PlayerObject> playerList = new ArrayList<PlayerObject>();
-		newTeam = new TeamObject();
+		CoachModel coach = new CoachModel();
+		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
+		newTeam = new TeamModel();
 		newTeam.setTeamName(teamName);
 		coach = newTeamObject.pickCoach();
 		if(!coach.validate().equals(ValidateEnumModel.Success)) {
@@ -98,11 +98,11 @@ public class CreateTeamState extends AbstractState {
 	}
 
 	private boolean isDivisionConferenceNotExists() {
-		List<ConferenceObject> conferences = league.getConferenceDetails();
-		for (ConferenceObject c: conferences) {
+		List<ConferenceModel> conferences = league.getConferenceDetails();
+		for (ConferenceModel c: conferences) {
 			if (c.getConferenceName().equalsIgnoreCase(conferenceName)) {
-				List<DivisionObject> divisions = c.getDivisionDetails();
-				for (DivisionObject d: divisions) {
+				List<DivisionModel> divisions = c.getDivisionDetails();
+				for (DivisionModel d: divisions) {
 					if (d.getDivisionName().equalsIgnoreCase(divisionName)) {
 						return false;
 					}
@@ -121,7 +121,7 @@ public class CreateTeamState extends AbstractState {
 		return true;
 	}
 
-	public TeamObject getTeam() {
+	public TeamModel getTeam() {
 		return newTeam;
 	}
 

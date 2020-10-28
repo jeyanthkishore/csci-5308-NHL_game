@@ -4,24 +4,24 @@ import java.util.List;
 
 import com.dhl.g05.leaguemodel.ValidateEnumModel;
 
-public class ManagerObject {
+public class ManagerModel {
     private String name;
-    private List<ManagerObject> managerList;
+    private List<ManagerModel> managerList;
 
-    public  ManagerObject() {
+    public  ManagerModel() {
        setName(null);
     }
 
-    public ManagerObject(List<ManagerObject> managerList) {
+    public ManagerModel(List<ManagerModel> managerList) {
         this.managerList = managerList;
 
     }
 
-    public List<ManagerObject> getManagerList() {
+    public List<ManagerModel> getManagerList() {
         return managerList;
     }
 
-    public void setManagerList(List<ManagerObject> managerList) {
+    public void setManagerList(List<ManagerModel> managerList) {
         this.managerList = managerList;
     }
 

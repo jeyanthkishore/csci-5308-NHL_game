@@ -2,29 +2,29 @@ package com.dhl.g05.Training;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.coach.CoachObject;
-import com.dhl.g05.leaguemodel.conference.ConferenceObject;
-import com.dhl.g05.leaguemodel.division.DivisionObject;
-import com.dhl.g05.leaguemodel.league.LeagueObject;
-import com.dhl.g05.leaguemodel.player.PlayerObject;
-import com.dhl.g05.leaguemodel.team.TeamObject;
+import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.team.TeamModel;
 
 public class PlayerTraining implements IPlayerTraining {
 
-	private LeagueObject leagueObject;
+	private LeagueModel leagueObject;
 
 
-	public LeagueObject implementTraining(LeagueObject league) {
+	public LeagueModel implementTraining(LeagueModel league) {
 		this.leagueObject = league;
-		List<ConferenceObject> conferences = leagueObject.getConferenceDetails();
-		for (ConferenceObject c: conferences) {
-			List<DivisionObject> divisions = c.getDivisionDetails();
-			for (DivisionObject d: divisions) {
-				List<TeamObject> teams = d.getTeamDetails();
-				for(TeamObject t: teams) {
-					List<PlayerObject> players = t.getPlayerList();
-					CoachObject headCoach = t.getCoachDetails();
-					for(PlayerObject p: players) {
+		List<ConferenceModel> conferences = leagueObject.getConferenceDetails();
+		for (ConferenceModel c: conferences) {
+			List<DivisionModel> divisions = c.getDivisionDetails();
+			for (DivisionModel d: divisions) {
+				List<TeamModel> teams = d.getTeamDetails();
+				for(TeamModel t: teams) {
+					List<PlayerModel> players = t.getPlayerList();
+					CoachModel headCoach = t.getCoachDetails();
+					for(PlayerModel p: players) {
 						p = performTrainingForPlayer(p,headCoach);
 					}
 				}
@@ -33,7 +33,7 @@ public class PlayerTraining implements IPlayerTraining {
 		return leagueObject;
 	}
 
-	public PlayerObject performTrainingForPlayer(PlayerObject player, CoachObject headCoach) {
+	public PlayerModel performTrainingForPlayer(PlayerModel player, CoachModel headCoach) {
 
 		if(trainingAlgorithm(player.getChecking(), headCoach.getChecking())) {
 			player.setChecking((player.getChecking()+1));

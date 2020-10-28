@@ -5,27 +5,27 @@ import java.util.List;
 
 import com.dhl.g05.leaguemodel.ILeagueModelComplete;
 import com.dhl.g05.leaguemodel.ValidateEnumModel;
-import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.coach.ICoachModelPersistence;
-import com.dhl.g05.leaguemodel.conference.ConferenceObject;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 
-public class LeagueObject {
+public class LeagueModel {
 
 	private String leagueName;
-	private List<ConferenceObject> conferences;
-	private List<FreeAgentObject> freeAgents;
-	private List<CoachObject> coaches;
+	private List<ConferenceModel> conferences;
+	private List<FreeAgentModel> freeAgents;
+	private List<CoachModel> coaches;
 	private ILeagueModelPersistence object;
 	
-	public LeagueObject() {
+	public LeagueModel() {
 		setLeagueName(null);
 		setConferenceDetails(null);
 		setFreeAgent(null);
 		setFreeCoach(null);
 	}
 
-	public LeagueObject(String league, List<ConferenceObject> conferencedetail,List<FreeAgentObject> agent, List<CoachObject> coach,ILeagueModelPersistence dbObject) {
+	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach,ILeagueModelPersistence dbObject) {
 		setLeagueName(league);
 		setConferenceDetails(conferencedetail);
 		setFreeAgent(agent);
@@ -33,7 +33,7 @@ public class LeagueObject {
 		this.object = dbObject;
 	}
 
-	public LeagueObject(ILeagueModelComplete leagueObject) {
+	public LeagueModel(ILeagueModelComplete leagueObject) {
 		leagueObject.loadLeagueModelData(this);
 	}
 
@@ -45,27 +45,27 @@ public class LeagueObject {
 		this.leagueName = league;
 	}
 
-	public List<ConferenceObject> getConferenceDetails() {
+	public List<ConferenceModel> getConferenceDetails() {
 		return conferences;
 	}
 
-	public void setConferenceDetails(List<ConferenceObject> conferencedetail) {
+	public void setConferenceDetails(List<ConferenceModel> conferencedetail) {
 		this.conferences = conferencedetail;
 	}
 
-	public List<FreeAgentObject> getFreeAgent() {
+	public List<FreeAgentModel> getFreeAgent() {
 		return freeAgents;
 	}
 
-	public void setFreeAgent(List<FreeAgentObject> agent) {
+	public void setFreeAgent(List<FreeAgentModel> agent) {
 		this.freeAgents = agent;
 	}
 
-	public List<CoachObject> getFreeCoach() {
+	public List<CoachModel> getFreeCoach() {
 		return coaches;
 	}
 
-	public void setFreeCoach(List<CoachObject> freeCoach) {
+	public void setFreeCoach(List<CoachModel> freeCoach) {
 		this.coaches = freeCoach;
 	}
 

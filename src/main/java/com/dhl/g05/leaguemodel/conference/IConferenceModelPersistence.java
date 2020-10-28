@@ -2,8 +2,8 @@ package com.dhl.g05.leaguemodel.conference;
 
 public interface IConferenceModelPersistence {
 	
-	public int saveConferenceObject(int leagueId, ConferenceObject conferenceObject);
+	public int saveConferenceObject(int leagueId, ConferenceModel conferenceObject);
 	
-	public int loadConferenceObject(int leagueId, ConferenceObject conferenceObject);
+	public int loadConferenceObject(int leagueId, ConferenceModel conferenceObject);
 
 }

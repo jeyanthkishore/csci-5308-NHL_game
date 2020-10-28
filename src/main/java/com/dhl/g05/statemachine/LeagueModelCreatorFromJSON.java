@@ -12,14 +12,14 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import com.dhl.g05.leaguemodel.ValidateEnumModel;
-import com.dhl.g05.leaguemodel.coach.CoachObject;
-import com.dhl.g05.leaguemodel.conference.ConferenceObject;
-import com.dhl.g05.leaguemodel.division.DivisionObject;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
-import com.dhl.g05.leaguemodel.league.LeagueObject;
-import com.dhl.g05.leaguemodel.manager.ManagerObject;
-import com.dhl.g05.leaguemodel.player.PlayerObject;
-import com.dhl.g05.leaguemodel.team.TeamObject;
+import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.manager.ManagerModel;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.simulation.Date;
 
 public class LeagueModelCreatorFromJSON {
@@ -87,28 +87,28 @@ public class LeagueModelCreatorFromJSON {
 		setGamePlayConfigsFromFile(fileName);
 		File file = new File(fileName);
 		reader = new FileReader(file);
-		LeagueObject league = createLeague((JSONObject)parser.parse(reader));
+		LeagueModel league = createLeague((JSONObject)parser.parse(reader));
 		leagueModel.setLeague(league);
 		return (leagueModel.getLeague() != null);
 	}
 	
-	private LeagueObject createLeague(JSONObject leagueData) {
+	private LeagueModel createLeague(JSONObject leagueData) {
 		if (leagueData == null) {
 			return null;
 		}
-		ArrayList<ConferenceObject> conferences = createConferences((JSONArray)leagueData.get("conferences"));
-		ArrayList<FreeAgentObject> freeAgents = createFreeAgents((JSONArray)leagueData.get("freeAgents"));
-		ArrayList<CoachObject> freeCoaches = createFreeCoaches((JSONArray)leagueData.get("coaches"));
-		ArrayList<ManagerObject> managers = createFreeManagers((JSONArray)leagueData.get("generalManagers"));
-		ArrayList<ManagerObject> managerList = new ArrayList<>();
+		ArrayList<ConferenceModel> conferences = createConferences((JSONArray)leagueData.get("conferences"));
+		ArrayList<FreeAgentModel> freeAgents = createFreeAgents((JSONArray)leagueData.get("freeAgents"));
+		ArrayList<CoachModel> freeCoaches = createFreeCoaches((JSONArray)leagueData.get("coaches"));
+		ArrayList<ManagerModel> managers = createFreeManagers((JSONArray)leagueData.get("generalManagers"));
+		ArrayList<ManagerModel> managerList = new ArrayList<>();
 		String leagueName = (String)leagueData.get("leagueName");
 		if (conferences != null && freeAgents != null && freeCoaches != null) {
-			LeagueObject league = leagueModel.createLeague(leagueName,conferences,freeAgents, freeCoaches);
+			LeagueModel league = leagueModel.createLeague(leagueName,conferences,freeAgents, freeCoaches);
 			ValidateEnumModel validationResult  =  leagueModel.validateLeague(league);
 			if (validationResult.equals(ValidateEnumModel.Success)) {
 				if ( managers != null){
 					System.out.println(managers);
-					ManagerObject managerObject = new ManagerObject(managers);
+					ManagerModel managerObject = new ManagerModel(managers);
 					managerList.add(managerObject);
 				}
 				return league;
@@ -119,16 +119,16 @@ public class LeagueModelCreatorFromJSON {
 		return null;
 	}
 
-	private ArrayList<ConferenceObject> createConferences(JSONArray jsonConferences) {
+	private ArrayList<ConferenceModel> createConferences(JSONArray jsonConferences) {
 		if (jsonConferences == null) {
 			return null;
 		}
-		ArrayList<ConferenceObject> conferences = new ArrayList<>();
+		ArrayList<ConferenceModel> conferences = new ArrayList<>();
 		for (Object c: jsonConferences) {
-			ArrayList<DivisionObject> divisions = createDivisions((JSONArray)((JSONObject) c).get("divisions"));
+			ArrayList<DivisionModel> divisions = createDivisions((JSONArray)((JSONObject) c).get("divisions"));
 			String conferenceName = (String)((JSONObject) c).get("conferenceName");
 			if (divisions != null) {
-				ConferenceObject newConference = new ConferenceObject(conferenceName, divisions);
+				ConferenceModel newConference = new ConferenceModel(conferenceName, divisions);
 				ValidateEnumModel validationResult  = leagueModel.validateConference(newConference);
 				if (validationResult.equals(ValidateEnumModel.Success)) {
 					conferences.add(newConference);
@@ -143,16 +143,16 @@ public class LeagueModelCreatorFromJSON {
 		return conferences;
 	}
 
-	private ArrayList<DivisionObject> createDivisions(JSONArray jsonDivisions) {
+	private ArrayList<DivisionModel> createDivisions(JSONArray jsonDivisions) {
 		if (jsonDivisions == null) {
 			return null;
 		}
-		ArrayList<DivisionObject> divisions = new ArrayList<>();
+		ArrayList<DivisionModel> divisions = new ArrayList<>();
 		for (Object d: jsonDivisions) {
-			ArrayList<TeamObject> teams = createTeams((JSONArray)((JSONObject) d).get("teams"));
+			ArrayList<TeamModel> teams = createTeams((JSONArray)((JSONObject) d).get("teams"));
 			String divisionName = (String)((JSONObject) d).get("divisionName");
 			if (teams != null) {
-				DivisionObject newDivision = new DivisionObject(divisionName,teams);
+				DivisionModel newDivision = new DivisionModel(divisionName,teams);
 				ValidateEnumModel validationResult  = leagueModel.validateDivision(newDivision);
 				if (validationResult.equals(ValidateEnumModel.Success)) {
 					divisions.add(newDivision);
@@ -167,19 +167,19 @@ public class LeagueModelCreatorFromJSON {
 		return divisions;
 	}
 
-	private ArrayList<TeamObject> createTeams(JSONArray jsonTeams) {
+	private ArrayList<TeamModel> createTeams(JSONArray jsonTeams) {
 		if (jsonTeams == null) {
 			return null;
 		}
-		ArrayList<TeamObject> teams = new ArrayList<>();
+		ArrayList<TeamModel> teams = new ArrayList<>();
 		for (Object t: jsonTeams) {
-			ArrayList<PlayerObject> players = createPlayers((JSONArray)((JSONObject) t).get("players"));
+			ArrayList<PlayerModel> players = createPlayers((JSONArray)((JSONObject) t).get("players"));
 			String teamName = (String)((JSONObject) t).get("teamName");
 			String managerName = (String)((JSONObject) t).get("generalManager");
 			JSONObject coach = (JSONObject) ((JSONObject) t).get("headCoach");
-			CoachObject coachDetails = createCoach(coach);
+			CoachModel coachDetails = createCoach(coach);
 			if (players != null && teamName != null && managerName != null && coachDetails != null) {
-				TeamObject newTeam = new TeamObject(teamName, coachDetails, managerName, players);
+				TeamModel newTeam = new TeamModel(teamName, coachDetails, managerName, players);
 				ValidateEnumModel validationResult  = leagueModel.validateTeam(newTeam);
 				if (validationResult.equals(ValidateEnumModel.Success)) {
 					teams.add(newTeam);
@@ -193,11 +193,11 @@ public class LeagueModelCreatorFromJSON {
 		return teams;
 	}
 
-	private ArrayList<PlayerObject> createPlayers(JSONArray jsonPlayers) {
+	private ArrayList<PlayerModel> createPlayers(JSONArray jsonPlayers) {
 		if (jsonPlayers == null) {
 			return null;
 		}
-		ArrayList<PlayerObject> players = new ArrayList<>();
+		ArrayList<PlayerModel> players = new ArrayList<>();
 		for (Object p: jsonPlayers) {
 			String playerName = (String)((JSONObject) p).get("playerName");
 			String position = (String)((JSONObject) p).get("position");
@@ -211,7 +211,7 @@ public class LeagueModelCreatorFromJSON {
 				playerCommunication.sendMessage("player missing field");
 				return null;
 			}
-			PlayerObject newPlayer = new PlayerObject(playerName, position, captain, age, skating, shooting, checking, saving);
+			PlayerModel newPlayer = new PlayerModel(playerName, position, captain, age, skating, shooting, checking, saving);
 			ValidateEnumModel validationResult  = leagueModel.validatePlayer(newPlayer);
 			if (validationResult.equals(ValidateEnumModel.Success)) {
 				players.add(newPlayer);
@@ -223,11 +223,11 @@ public class LeagueModelCreatorFromJSON {
 		return players;
 	}
 
-	private ArrayList<FreeAgentObject> createFreeAgents(JSONArray jsonPlayers) {
+	private ArrayList<FreeAgentModel> createFreeAgents(JSONArray jsonPlayers) {
 		if (jsonPlayers == null) {
 			return null;
 		}
-		ArrayList<FreeAgentObject> players = new ArrayList<>();
+		ArrayList<FreeAgentModel> players = new ArrayList<>();
 		for (Object p: jsonPlayers) {
 			String playerName = (String)((JSONObject) p).get("playerName");
 			String position = (String)((JSONObject) p).get("position");
@@ -240,7 +240,7 @@ public class LeagueModelCreatorFromJSON {
 				playerCommunication.sendMessage("player missing field");
 				return null;
 			}
-			FreeAgentObject newPlayer = new FreeAgentObject(playerName, position, age, skating, shooting, checking, saving);
+			FreeAgentModel newPlayer = new FreeAgentModel(playerName, position, age, skating, shooting, checking, saving);
 			ValidateEnumModel validationResult  = newPlayer.validate();
 			if (validationResult.equals(ValidateEnumModel.Success)) {
 				players.add(newPlayer);
@@ -252,7 +252,7 @@ public class LeagueModelCreatorFromJSON {
 		return players;
 	}
 
-	private CoachObject createCoach(JSONObject jsonCoachDetails) {
+	private CoachModel createCoach(JSONObject jsonCoachDetails) {
 		if (jsonCoachDetails == null){
 			return null;
 		}
@@ -261,14 +261,14 @@ public class LeagueModelCreatorFromJSON {
 		double shooting = Double.parseDouble(jsonCoachDetails.get("shooting").toString());
 		double checking = Double.parseDouble(jsonCoachDetails.get("checking").toString());
 		double saving = Double.parseDouble(jsonCoachDetails.get("saving").toString());
-		return new CoachObject(coachName,skating,shooting,checking,saving);
+		return new CoachModel(coachName,skating,shooting,checking,saving);
 	}
 
-	private ArrayList<CoachObject> createFreeCoaches(JSONArray jsonCoaches) {
+	private ArrayList<CoachModel> createFreeCoaches(JSONArray jsonCoaches) {
 		if (jsonCoaches == null){
 			return null;
 		}
-		ArrayList<CoachObject> coaches = new ArrayList<>();
+		ArrayList<CoachModel> coaches = new ArrayList<>();
 		for (Object p: jsonCoaches) {
 			String coachName = (String)((JSONObject) p).get("name");
 			double skating = Double.parseDouble(((JSONObject) p).get("skating").toString());
@@ -279,7 +279,7 @@ public class LeagueModelCreatorFromJSON {
 				playerCommunication.sendMessage("player missing field");
 				return null;
 			}
-			CoachObject newCoach = new CoachObject(coachName,skating,shooting,checking,saving);
+			CoachModel newCoach = new CoachModel(coachName,skating,shooting,checking,saving);
 			ValidateEnumModel validationResult  = newCoach.validate();
 			if (validationResult.equals(ValidateEnumModel.Success)) {
 				coaches.add(newCoach);
@@ -291,17 +291,17 @@ public class LeagueModelCreatorFromJSON {
 		return coaches;
 	}
 
-	private ArrayList<ManagerObject> createFreeManagers(JSONArray jsonManagers) {
+	private ArrayList<ManagerModel> createFreeManagers(JSONArray jsonManagers) {
 		if (jsonManagers == null){
 			return null;
 		}
-		ArrayList<ManagerObject> managers = new ArrayList<>();
+		ArrayList<ManagerModel> managers = new ArrayList<>();
 		for (int i=0; i<jsonManagers.size(); i++){
 			String name = (String) jsonManagers.get(i);
 			if (name.isEmpty()) {
 				playerCommunication.sendMessage(("Manager name is empty"));
 			}
-			ManagerObject managerObject = new ManagerObject();
+			ManagerModel managerObject = new ManagerModel();
 			managerObject.setName(name);
 			ValidateEnumModel validationResult  = managerObject.validate();
 			if (validationResult.equals(ValidateEnumModel.Success)) {

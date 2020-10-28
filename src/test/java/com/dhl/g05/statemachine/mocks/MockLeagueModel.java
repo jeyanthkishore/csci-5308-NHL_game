@@ -3,33 +3,33 @@ package com.dhl.g05.statemachine.mocks;
 import java.util.List;
 
 import com.dhl.g05.leaguemodel.ValidateEnumModel;
-import com.dhl.g05.leaguemodel.coach.CoachObject;
-import com.dhl.g05.leaguemodel.conference.ConferenceObject;
-import com.dhl.g05.leaguemodel.division.DivisionObject;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
-import com.dhl.g05.leaguemodel.league.LeagueObject;
-import com.dhl.g05.leaguemodel.manager.ManagerObject;
-import com.dhl.g05.leaguemodel.player.PlayerObject;
-import com.dhl.g05.leaguemodel.team.TeamObject;
+import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.manager.ManagerModel;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.operation.DbPersistanceMock;
 import com.dhl.g05.statemachine.ILeagueModel;
 
 public class MockLeagueModel implements ILeagueModel{
-	private LeagueObject league;
+	private LeagueModel league;
 	
 	@Override
-	public LeagueObject getLeague() {
+	public LeagueModel getLeague() {
 		return league;
 	}
 	
 	@Override
-	public void setLeague(LeagueObject league) {
+	public void setLeague(LeagueModel league) {
 		this.league = league;
 	}
 
 	@Override
-	public LeagueObject createLeague(String league, List<ConferenceObject> conferencedetail,List<FreeAgentObject> agent, List<CoachObject> coach) {
-		return new LeagueObject(league, conferencedetail, agent, coach,new DbPersistanceMock());
+	public LeagueModel createLeague(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach) {
+		return new LeagueModel(league, conferencedetail, agent, coach,new DbPersistanceMock());
 	}
 
 
@@ -39,7 +39,7 @@ public class MockLeagueModel implements ILeagueModel{
 	}
 	
 	@Override
-	public boolean addTeamToCurrentLeague(String conferenceName, String divisionName, TeamObject team) {
+	public boolean addTeamToCurrentLeague(String conferenceName, String divisionName, TeamModel team) {
 		return true;
 	}
 
@@ -49,37 +49,37 @@ public class MockLeagueModel implements ILeagueModel{
 	}
 
 	@Override
-	public TeamObject getCurrentTeam() {
-		return new TeamObject();
+	public TeamModel getCurrentTeam() {
+		return new TeamModel();
 	}
 
 	@Override
-	public ValidateEnumModel validateLeague(LeagueObject league) {
+	public ValidateEnumModel validateLeague(LeagueModel league) {
 		return ValidateEnumModel.Success;
 	}
 
 	@Override
-	public ValidateEnumModel validateConference(ConferenceObject conference) {
+	public ValidateEnumModel validateConference(ConferenceModel conference) {
 		return ValidateEnumModel.Success;
 	}
 
 	@Override
-	public ValidateEnumModel validateDivision(DivisionObject division) {
+	public ValidateEnumModel validateDivision(DivisionModel division) {
 		return ValidateEnumModel.Success;
 	}
 
 	@Override
-	public ValidateEnumModel validateTeam(TeamObject team) {
+	public ValidateEnumModel validateTeam(TeamModel team) {
 		return ValidateEnumModel.Success;
 	}
 
 	@Override
-	public ValidateEnumModel validatePlayer(PlayerObject player) {
+	public ValidateEnumModel validatePlayer(PlayerModel player) {
 		return ValidateEnumModel.Success;
 	}
 
 	@Override
-	public ValidateEnumModel validateManager(ManagerObject managerObject) {
+	public ValidateEnumModel validateManager(ManagerModel managerObject) {
 		return ValidateEnumModel.Success;
 	}
 

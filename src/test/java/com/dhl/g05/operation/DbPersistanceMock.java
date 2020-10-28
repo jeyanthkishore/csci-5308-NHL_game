@@ -3,20 +3,20 @@ package com.dhl.g05.operation;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.coach.ICoachModelPersistence;
-import com.dhl.g05.leaguemodel.conference.ConferenceObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.conference.IConferenceModelPersistence;
-import com.dhl.g05.leaguemodel.division.DivisionObject;
+import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.leaguemodel.division.IDivisionModelPersistence;
 import com.dhl.g05.leaguemodel.league.ILeagueModelPersistence;
-import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.leaguemodel.manager.IManagerPersistence;
-import com.dhl.g05.leaguemodel.manager.ManagerObject;
+import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.IPlayerModelPersistence;
-import com.dhl.g05.leaguemodel.player.PlayerObject;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.ITeamModelPersistence;
-import com.dhl.g05.leaguemodel.team.TeamObject;
+import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.simulation.Date;
 
 public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,IConferenceModelPersistence,IPlayerModelPersistence,IDivisionModelPersistence,ILeagueModelPersistence,ITeamModelPersistence,ICoachModelPersistence{
@@ -35,35 +35,35 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 	
 
 	@Override
-	public int saveLeagueObject(LeagueObject leagueObject) {
+	public int saveLeagueObject(LeagueModel leagueObject) {
 		if(leagueObject.getLeagueName().equals("HockeyLeague")) {
 			return 1;
 		}
 		return 0;
 	}
 	@Override
-	public int saveConferenceObject(int leagueId,ConferenceObject object) {
+	public int saveConferenceObject(int leagueId,ConferenceModel object) {
 		if(leagueId==1 && object.getConferenceName().equals("Western Conference")) {
 			return 1;
 		}
 		return 0;
 	}
 	@Override
-	public int saveDivisionObject(int conferenceId,DivisionObject object) {
+	public int saveDivisionObject(int conferenceId,DivisionModel object) {
 		if(conferenceId==1 && object.getDivisionName().equals("Atlantic")) {
 			return 1;
 		}
 		return 0;
 	}
 	@Override
-	public int saveTeamObject(int divisionId, TeamObject object, CoachObject coachObject) {
+	public int saveTeamObject(int divisionId, TeamModel object, CoachModel coachObject) {
 		if(divisionId==1 && object.getTeamName().equals("Striker Six")) {
 			return 1;
 		}
 		return 0;
 	}
 	@Override
-	public int savePlayerObject(int teamId,PlayerObject object) {
+	public int savePlayerObject(int teamId,PlayerModel object) {
 		if(teamId==1 && object.getPlayerName().equals("Cristiano Ronaldo")) {
 			return 1;
 		}
@@ -71,12 +71,12 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 	}
 
 	@Override
-	public int saveLeagueCoachObject(int league_id, LeagueObject leagueObject) {
+	public int saveLeagueCoachObject(int league_id, LeagueModel leagueObject) {
 		return 1;
 	}
 
 	@Override
-	public int saveLeagueManagerObject(int league_id, ManagerObject manager) {
+	public int saveLeagueManagerObject(int league_id, ManagerModel manager) {
 		if(league_id==1 && manager.getName().equals("Smith")) {
 			return 1;
 		}
@@ -84,11 +84,11 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 	}
 
 	@Override
-	public int loadLeagueObject(String leagueName,LeagueObject leagueObject) {
+	public int loadLeagueObject(String leagueName,LeagueModel leagueObject) {
 		if(leagueName.equalsIgnoreCase("HockeyLeague")) {
 			leagueObject.setLeagueName(leagueName);
-			ArrayList<ConferenceObject> conferences = new ArrayList<>();
-			conferences.add(new ConferenceObject("Western Conference",null));
+			ArrayList<ConferenceModel> conferences = new ArrayList<>();
+			conferences.add(new ConferenceModel("Western Conference",null));
 			leagueObject.setConferenceDetails(conferences);;
 			return 1;
 		}
@@ -96,12 +96,12 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 	}
 
 	@Override
-	public int loadLeagueCoachObject(String leagueName, LeagueObject league) {
+	public int loadLeagueCoachObject(String leagueName, LeagueModel league) {
 		return 1;
 	}
 
 	@Override
-	public int loadLeagueManagerObject(String leagueName, ManagerObject manager) {
+	public int loadLeagueManagerObject(String leagueName, ManagerModel manager) {
 		if(leagueName.equalsIgnoreCase("HockeyLeague")) {
 			manager.setName("Smith");
 			if(manager.getName().equalsIgnoreCase("Smith"))
@@ -111,10 +111,10 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 	}
 
 	@Override
-	public int loadConferenceObject(int leagueId, ConferenceObject conferenceObject) {
+	public int loadConferenceObject(int leagueId, ConferenceModel conferenceObject) {
 		if(leagueId==1 && conferenceObject.getConferenceName().equals("Western Conference")) {
-			ArrayList<DivisionObject> divisions = new ArrayList<>();
-			divisions.add(new DivisionObject("Atlantic",null));
+			ArrayList<DivisionModel> divisions = new ArrayList<>();
+			divisions.add(new DivisionModel("Atlantic",null));
 			conferenceObject.setDivisionDetails(divisions);
 			return 1;
 		}
@@ -122,10 +122,10 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 	}
 
 	@Override
-	public int loadDivisionObject(int conferenceId, DivisionObject divisionObject) {
+	public int loadDivisionObject(int conferenceId, DivisionModel divisionObject) {
 		if(conferenceId==1 && divisionObject.getDivisionName().equals("Atlantic")) {
-			ArrayList<TeamObject> teams = new ArrayList<>();
-			teams.add(new TeamObject("Striker Six",null,null,null));
+			ArrayList<TeamModel> teams = new ArrayList<>();
+			teams.add(new TeamModel("Striker Six",null,null,null));
 			divisionObject.setTeamDetails(teams);
 			return 1;
 		}
@@ -133,10 +133,10 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 	}
 
 	@Override
-	public int loadTeamObject(int divisionId, TeamObject teamObject, CoachObject coachObject) {
+	public int loadTeamObject(int divisionId, TeamModel teamObject, CoachModel coachObject) {
 		if(divisionId==1 && teamObject.getTeamName().equals("Striker Six")) {
-			ArrayList<PlayerObject> players = new ArrayList<>();
-			players.add(new PlayerObject("Cristiano Ronaldo",null,null,10,10,10,10,10));
+			ArrayList<PlayerModel> players = new ArrayList<>();
+			players.add(new PlayerModel("Cristiano Ronaldo",null,null,10,10,10,10,10));
 			teamObject.setPlayerList(players);
 			return 1;
 		}
@@ -145,7 +145,7 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 
 
 	@Override
-	public int loadPlayerObject(int teamId, PlayerObject playerObject) {
+	public int loadPlayerObject(int teamId, PlayerModel playerObject) {
 		if(teamId==1 && playerObject.getPlayerName().equals("Cristiano Ronaldo")) {
 			return 1;
 		}
@@ -154,7 +154,7 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 
 
 	@Override
-	public void loadDate(LeagueObject league, Date date) {
+	public void loadDate(LeagueModel league, Date date) {
 		if (league.getLeagueName().equalsIgnoreCase("HockeyLeague")){
 			Date.getInstance().setMonth(1);
 			Date.getInstance().setYear(1);
@@ -165,7 +165,7 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 
 
 	@Override
-	public void saveDate(LeagueObject league, Date date) {
+	public void saveDate(LeagueModel league, Date date) {
 		if (league.getLeagueName().equalsIgnoreCase("HockeyLeague")){
 			
 		}
