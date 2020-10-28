@@ -10,11 +10,13 @@ public class FreeAgentObject implements IFreeAgent{
 	private double saving;
 	private double playerStrength;
 	private boolean hasInjured;
+	private boolean isRetired;
 
 	public FreeAgentObject() {
 		setPlayerName(null);
 		setPosition(null);
 		setHasInjured(false);
+		setIsRetired(false);
 	}
 
 	public FreeAgentObject(String playerName, String position, double age, double skating, double shooting, double checking, double saving) {
@@ -93,6 +95,14 @@ public class FreeAgentObject implements IFreeAgent{
 
 	public void setHasInjured(boolean hasInjured) {
 		this.hasInjured = hasInjured;
+	}
+
+	public boolean getIsRetired() {
+		return isRetired;
+	}
+
+	public void setIsRetired(boolean retired) {
+		isRetired = retired;
 	}
 
 	public double getPlayerStrength() {
