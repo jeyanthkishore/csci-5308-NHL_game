@@ -11,7 +11,7 @@ import com.dhl.g05.leaguemodel.division.IDivisionModelPersistence;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 
 public class DivisionPersistence implements IDivisionModelPersistence{
-	
+
 	private List<TeamModel> teamList = new ArrayList<TeamModel>();
 
 	@Override
@@ -28,6 +28,7 @@ public class DivisionPersistence implements IDivisionModelPersistence{
 		StoredProcedure sp= new StoredProcedure();
 		String teamName,coachName,managerName;
 		List<HashMap<String, Object>> teamValue = new ArrayList<HashMap<String,Object>>();
+		
 		int divisonId = sp.getDivisionID(divisionName, conferenceId);
 		teamValue = sp.fetchAllTeams(divisonId);
 		for(HashMap<String, Object> team : teamValue) {

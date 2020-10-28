@@ -59,7 +59,7 @@ public class PlayerTraining implements IPlayerTraining {
 			//call injury check
 		}
 		player.setPlayerStrength(player.calculatePlayerStrength());
-		
+
 		return player;
 	}
 

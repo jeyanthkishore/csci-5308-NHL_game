@@ -32,7 +32,6 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 		leagueNames.add(league);
 		return leagueNames;
 	}
-	
 
 	@Override
 	public int saveLeagueObject(LeagueModel leagueObject) {
@@ -41,6 +40,7 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 		}
 		return 0;
 	}
+
 	@Override
 	public int saveConferenceObject(int leagueId,ConferenceModel object) {
 		if(leagueId==1 && object.getConferenceName().equals("Western Conference")) {
@@ -48,6 +48,7 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 		}
 		return 0;
 	}
+
 	@Override
 	public int saveDivisionObject(int conferenceId,DivisionModel object) {
 		if(conferenceId==1 && object.getDivisionName().equals("Atlantic")) {
@@ -55,6 +56,7 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 		}
 		return 0;
 	}
+
 	@Override
 	public int saveTeamObject(int divisionId, TeamModel object, CoachModel coachObject) {
 		if(divisionId==1 && object.getTeamName().equals("Striker Six")) {
@@ -62,6 +64,7 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 		}
 		return 0;
 	}
+
 	@Override
 	public int savePlayerObject(int teamId,PlayerModel object) {
 		if(teamId==1 && object.getPlayerName().equals("Cristiano Ronaldo")) {
@@ -143,7 +146,6 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 		return 0;
 	}
 
-
 	@Override
 	public int loadPlayerObject(int teamId, PlayerModel playerObject) {
 		if(teamId==1 && playerObject.getPlayerName().equals("Cristiano Ronaldo")) {
@@ -151,7 +153,6 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 		}
 		return 0;
 	}
-
 
 	@Override
 	public void loadDate(LeagueModel league, Date date) {
@@ -163,13 +164,11 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 		}
 	}
 
-
 	@Override
 	public void saveDate(LeagueModel league, Date date) {
 		if (league.getLeagueName().equalsIgnoreCase("HockeyLeague")){
-			
+
 		}
-		
 	}
-	
+
 }

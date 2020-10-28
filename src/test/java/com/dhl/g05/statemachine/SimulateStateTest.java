@@ -13,7 +13,7 @@ public class SimulateStateTest {
 	public StateMock state2;
 	private StateMachine outerStateMachine;
 	private StateMachine innerStateMachine;
-	
+
 	@Before
 	public void init() {
 		outerStateMachine = new StateMachine(new MockPlayerCommunication(), new MockLeagueModel());
@@ -27,7 +27,7 @@ public class SimulateStateTest {
 		state1.setPlayerInput("3");
 
 	}
-	
+
 	@Test
 	public void testEnter() {
 		assertTrue(state1.enter());
@@ -37,7 +37,7 @@ public class SimulateStateTest {
 
 	@Test
 	public void testPerformStateTask() {
-	    state1.getInnerStateMachine().setCurrentState(state2);
+		state1.getInnerStateMachine().setCurrentState(state2);
 		assertTrue(state1.performStateTask());
 	}
 
@@ -46,12 +46,12 @@ public class SimulateStateTest {
 		assertTrue(state1.exit());
 		assertTrue(state1.getNextState() == null);
 	}
-	
+
 	@Test
 	public void testValidateInputGoodInput() {
 		assertTrue(state1.validateInput());
 	}
-	
+
 	@Test
 	public void testValidateInputBadInput() {
 		state1.setPlayerInput("not an int");

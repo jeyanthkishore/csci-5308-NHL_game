@@ -17,8 +17,8 @@ import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
 public class LoadTeamStateTest {
 	private LoadTeamState state;
 	private StateMachine stateMachine;
-	
-	
+
+
 	@Before
 	public void init() {
 		stateMachine = new StateMachine(new MockPlayerCommunication(),new MockLeagueModel());
@@ -26,20 +26,19 @@ public class LoadTeamStateTest {
 		stateMachine.setCurrentState(state);
 		stateMachine.getLeagueModel().setLeague(new LeagueModel(null, null, null,null, new DbPersistanceMock()));
 	}
-	
+
 	@Test
 	public void testEnter() {
 		assertTrue(state.enter());
 		assertNotNull(state.getTeamName());
 	}
-	
 
 	@Test
 	public void testPerformStateTaskSucceeds() {
 		assertTrue(state.performStateTask());
 		assertNotNull(state.getOuterStateMachine().getLeagueModel().getLeague());
 	}
-	
+
 	@Test
 	public void testPerformStateTaskFails() {
 		state.getOuterStateMachine().setLeagueModel(new MockLeagueModelValidationFails());
@@ -47,7 +46,6 @@ public class LoadTeamStateTest {
 		assertFalse(state.performStateTask());
 		assertNull(state.getNextState());
 	}
-	
 
 	@Test
 	public void testExit() {

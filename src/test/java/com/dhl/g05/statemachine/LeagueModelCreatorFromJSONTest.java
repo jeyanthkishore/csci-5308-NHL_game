@@ -20,23 +20,22 @@ import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
 public class LeagueModelCreatorFromJSONTest {
 	LeagueModelCreatorFromJSON leagueModelCreator;
 	Exception exception;
-	
+
 	@Before
 	public void init() {
 		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModel(), new MockPlayerCommunication());
 		exception = new Exception();
 	}
-	
+
 	@Test
 	public void testisFileValidJsonInvalid() {
 		assertFalse(leagueModelCreator.isFileValidJson("src/test/java/com/dhl/g05/jsontestfiles/jsonInvalidFile.json"));
 	}
-	
+
 	@Test
 	public void testisFileValidJsonValid() {
 		assertTrue(leagueModelCreator.isFileValidJson("src/test/java/com/dhl/g05/jsontestfiles/jsonGoodInfo.json"));
 	}
-	
 
 	@Test
 	public void testCreateLeagueFromFileNoFile() {
@@ -50,7 +49,7 @@ public class LeagueModelCreatorFromJSONTest {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
- 
+
 		assertTrue(exception instanceof FileNotFoundException);
 	}
 
@@ -64,10 +63,10 @@ public class LeagueModelCreatorFromJSONTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
-		
+
 		assertTrue(exception instanceof ParseException);
 	}
-	
+
 	@Test
 	public void testCreateLeagueFromFileGoodFile() {
 		boolean result = false;
@@ -78,8 +77,8 @@ public class LeagueModelCreatorFromJSONTest {
 		}	
 		assertTrue(result);
 	}
-	
-	
+
+
 	@Test
 	public void testCreateLeagueFromFilePlayersBad() {
 		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
@@ -89,7 +88,7 @@ public class LeagueModelCreatorFromJSONTest {
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		assertFalse(result);
 
 	}
@@ -103,10 +102,10 @@ public class LeagueModelCreatorFromJSONTest {
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		assertFalse(result);
 	}
-	
+
 	@Test
 	public void testCreateLeagueFromFileDivisionsBad() {
 		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
@@ -116,11 +115,11 @@ public class LeagueModelCreatorFromJSONTest {
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		assertFalse(result);
-		
+
 	}
-	
+
 	@Test
 	public void testCreateLeagueFromFileConferencesBad() {
 		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
@@ -130,10 +129,10 @@ public class LeagueModelCreatorFromJSONTest {
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		assertFalse(result);
 	}
-	
+
 	@Test
 	public void testCreateLeagueFromFileFreeAgentsBad() {
 		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockLeagueModelValidationFails(),new MockPlayerCommunication());
@@ -143,7 +142,7 @@ public class LeagueModelCreatorFromJSONTest {
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		assertFalse(result);
 	}
 

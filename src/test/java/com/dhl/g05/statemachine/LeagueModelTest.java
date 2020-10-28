@@ -34,21 +34,20 @@ public class LeagueModelTest {
 		leagueModel.setTeamDatabase(new DbPersistanceMock());
 		leagueModel.setPlayerDatabase(new DbPersistanceMock());
 		leagueModel.setDateDatabase(new DbPersistanceMock());
-		
-		
+
 		PlayerModel player = new PlayerModel("Cristiano Ronaldo",null,null,10,15,1,20,15);
 		ArrayList<PlayerModel> players = new ArrayList<>();
 		players.add(player);
-		
+
 		team = new TeamModel("Striker Six",null,null,players);
 		team2 = new TeamModel("t",null,null,players);
 		ArrayList<TeamModel> teams = new ArrayList<>();
 		teams.add(team);
-		
+
 		DivisionModel division = new DivisionModel("Atlantic",teams);
 		ArrayList<DivisionModel> divisions = new ArrayList<>();
 		divisions.add(division);
-		
+
 		ConferenceModel conference = new ConferenceModel("Western Conference",divisions);
 		ArrayList<ConferenceModel> conferences = new ArrayList<>();
 		conferences.add(conference);
@@ -58,7 +57,7 @@ public class LeagueModelTest {
 		coachList.add(coach);
 
 		league = new LeagueModel("HockeyLeague",conferences,null,coachList,new DbPersistanceMock());
-		
+
 	}
 
 	@Test
@@ -86,7 +85,7 @@ public class LeagueModelTest {
 	public void testPersistLeague() {
 		leagueModel.setLeague(league);
 		assertTrue(leagueModel.persistLeague());
-		
+
 	}
 
 	@Test
@@ -95,7 +94,7 @@ public class LeagueModelTest {
 		leagueModel.addTeamToCurrentLeague("Western Conference", "Atlantic", team2);
 		assertEquals(team2, leagueModel.getTeamFromLeagueObject(league, "Western Conference", "Atlantic", "t"));
 	}
-	
+
 	@Test
 	public void testAddTeamToCurrentLeagueFails() {
 		TeamModel team = new TeamModel("t",null,null,null);
@@ -110,13 +109,13 @@ public class LeagueModelTest {
 		assertNotNull(leagueModel.getCurrentTeam());
 		assertNotNull(leagueModel.getLeague());
 	}
-	
+
 	@Test
 	public void testLoadTeamFails() {
 		leagueModel.loadTeam("HockeyLeague", "", "", "");
 		assertNull(leagueModel.getCurrentTeam());
 	}
-	
+
 	@Test
 	public void testGetCurrentTeam() {
 		assertNull(leagueModel.getCurrentTeam());

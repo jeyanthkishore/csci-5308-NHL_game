@@ -9,21 +9,21 @@ import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 
 public class PlayerCommunication implements IPlayerCommunication{
 	private static Scanner scanner = new Scanner(System.in);
-	
-	
+
+
 	public void sendMessage(String message) {
 		System.out.println(message);
 		System.out.println();
 	}
-	
-	
+
+
 	public String getResponse() {
 		scanner = new Scanner(System.in);
 		String response =  scanner.nextLine();
 		System.out.println();
 		return response;
 	}
-	
+
 	public int getResponseNumber() {
 		scanner = new Scanner(System.in);
 		int response =  scanner.nextInt();
@@ -75,7 +75,7 @@ public class PlayerCommunication implements IPlayerCommunication{
 		System.out.println("--------------------------------------------------------------"
 				+ "-------------------------------------------------------");
 		System.out.println("Please Enter an number to Coach");
-		
+
 	}
 
 }

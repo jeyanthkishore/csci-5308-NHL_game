@@ -8,5 +8,5 @@ public interface IDatePersistence {
 	void loadDate(LeagueModel league, Date date);
 
 	void saveDate(LeagueModel league, Date date);
-	
+
 }

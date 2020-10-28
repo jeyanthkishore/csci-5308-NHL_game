@@ -20,14 +20,14 @@ public class SerialiseLeagueModel implements ISerializeModel{
 		String serailizeObject = gson.toJson(leagueObject);
 		System.out.println(serailizeObject);
 		try {
-			  File file = new File("src/test/java/com/dhl/g05/jsontestfiles/OutputModel.json");
-		      FileWriter myWriter = new FileWriter(file);
-		      myWriter.write(serailizeObject);
-		      myWriter.close();
-		      return true;
-		    } catch (IOException e) {
-		      e.printStackTrace();
-		    }
+			File file = new File("src/test/java/com/dhl/g05/jsontestfiles/OutputModel.json");
+			FileWriter myWriter = new FileWriter(file);
+			myWriter.write(serailizeObject);
+			myWriter.close();
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 }

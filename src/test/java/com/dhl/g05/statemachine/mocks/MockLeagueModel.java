@@ -21,12 +21,12 @@ import com.dhl.g05.statemachine.ILeagueModelJson;
 
 public class MockLeagueModel implements ILeagueModelJson{
 	private LeagueModel league;
-	
+
 	@Override
 	public LeagueModel getLeague() {
 		return league;
 	}
-	
+
 	@Override
 	public void setLeague(LeagueModel league) {
 		this.league = league;
@@ -37,12 +37,11 @@ public class MockLeagueModel implements ILeagueModelJson{
 		return new LeagueModel(league, conferencedetail, agent, coach,new DbPersistanceMock());
 	}
 
-
 	@Override
 	public boolean persistLeague() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean addTeamToCurrentLeague(String conferenceName, String divisionName, TeamModel team) {
 		return true;

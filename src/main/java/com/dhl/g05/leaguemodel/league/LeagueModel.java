@@ -15,7 +15,7 @@ public class LeagueModel {
 	private List<FreeAgentModel> freeAgents;
 	private List<CoachModel> coaches;
 	private ILeagueModelPersistence object;
-	
+
 	public LeagueModel() {
 		setLeagueName(null);
 		setConferenceDetails(null);
@@ -92,31 +92,31 @@ public class LeagueModel {
 	}
 
 	public LeagueConstant validate() {
-    	if(isLeagueNameEmptyOrNull()) {
-    		return LeagueConstant.LeagueNameEmpty;
-    	}
-    	if(isConferenceListEmpty()) {
-    		return LeagueConstant.ConferenceListEmpty;
-    	}
-    	if(!hasEvenNumberConference()) {
-    		return LeagueConstant.NoEvenConferenceCount;
-    	}
-    	if(isFreeAgentListEmpty()) {
-    		return LeagueConstant.FreeAgentsEmpty;
-    	}
-    	if(isFreeAgentDetailsEmptyOrNull()) {
-    		return LeagueConstant.FreeAgentAttributeEmpty;
-    	}
-    	if(isFreeAgentPositionWrong()) {
-    		return LeagueConstant.ImproperPlayerPosition;
-    	}
-    	if(checkLeaguePresent()) {
-    		return LeagueConstant.LeagueExists;
-    	}
-    	if(isCoachListEmpty()){
-    		return LeagueConstant.CoachListEmpty;
-    	}
-    	return LeagueConstant.Success;
+		if(isLeagueNameEmptyOrNull()) {
+			return LeagueConstant.LeagueNameEmpty;
+		}
+		if(isConferenceListEmpty()) {
+			return LeagueConstant.ConferenceListEmpty;
+		}
+		if(!hasEvenNumberConference()) {
+			return LeagueConstant.NoEvenConferenceCount;
+		}
+		if(isFreeAgentListEmpty()) {
+			return LeagueConstant.FreeAgentsEmpty;
+		}
+		if(isFreeAgentDetailsEmptyOrNull()) {
+			return LeagueConstant.FreeAgentAttributeEmpty;
+		}
+		if(isFreeAgentPositionWrong()) {
+			return LeagueConstant.ImproperPlayerPosition;
+		}
+		if(checkLeaguePresent()) {
+			return LeagueConstant.LeagueExists;
+		}
+		if(isCoachListEmpty()){
+			return LeagueConstant.CoachListEmpty;
+		}
+		return LeagueConstant.Success;
 	}
 
 	public boolean isLeagueNameEmptyOrNull() {
@@ -125,21 +125,21 @@ public class LeagueModel {
 		}
 		return false;
 	}
-	
+
 	public boolean isConferenceListEmpty() {
 		if(conferences != null) {
 			return (conferences.size()<=0);
 		}
-		 return true;
+		return true;
 	}
-	
+
 	public boolean hasEvenNumberConference() {
 		if(conferences != null) {
 			return (conferences.size()%2 ==0);
 		}
 		return false;
 	}
-	
+
 	public boolean isFreeAgentPositionWrong() {
 		Boolean position = freeAgents.stream().anyMatch(v ->!(v.getPosition().equalsIgnoreCase("forward")
 				|| v.getPosition().equalsIgnoreCase("defense") ||v.getPosition().equalsIgnoreCase("goalie")));

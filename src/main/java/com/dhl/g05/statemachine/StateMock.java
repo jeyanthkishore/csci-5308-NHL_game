@@ -5,7 +5,7 @@ public class StateMock extends AbstractState {
 	public StateMock(StateMachine stateMachine) {
 		super(stateMachine);
 	}
-	
+
 	@Override
 	public boolean enter() {
 		return true;

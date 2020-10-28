@@ -9,12 +9,13 @@ import com.dhl.g05.leaguemodel.manager.IManagerPersistence;
 import com.dhl.g05.leaguemodel.manager.ManagerModel;
 
 public class ManagerPersistence implements IManagerPersistence{
-	
+
 	private List<ManagerModel> managerList = new ArrayList<ManagerModel>();
 
 	@Override
 	public int saveLeagueManagerObject(int league_id, ManagerModel managerObject) {
 		StoredProcedure sp= new StoredProcedure();
+		
 		managerList = managerObject.getManagerList();
 		for(ManagerModel manager: managerList) {
 			String name = manager.getName();
@@ -28,6 +29,7 @@ public class ManagerPersistence implements IManagerPersistence{
 		StoredProcedure sp= new StoredProcedure();
 		int league_id = sp.getLeagueID(leagueName);
 		List<HashMap<String,Object>> managers = new ArrayList<HashMap<String,Object>>();
+		
 		managers = sp.fetchAllFreeManager(league_id);
 		for(HashMap<String, Object> manager : managers) {
 			String name = manager.get("name").toString();

@@ -7,17 +7,17 @@ public class LoadTeamState extends AbstractState{
 	private String leagueName;
 	private String conferenceName;
 	private String divisionName;
-	
+
 	public LoadTeamState(StateMachine stateMachine) {
 		super(stateMachine);
 	}
-	
+
 	@Override
 	public boolean enter() {
-		
+
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter league name:");
 		leagueName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
-		
+
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter conference name:");
 		conferenceName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
 
@@ -26,7 +26,7 @@ public class LoadTeamState extends AbstractState{
 
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team name:");
 		teamName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
-	
+
 		return true;
 	}
 
@@ -46,15 +46,15 @@ public class LoadTeamState extends AbstractState{
 		this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(),"Enter number of seasons to simulate", new SimulateState(this.getOuterStateMachine())));
 		return true;
 	}
-	
+
 	public String getTeamName() {
 		return teamName;
 	}
-	
+
 	public void setTeamName(String name) {
 		this.teamName = name;
 	}
-	
-	
+
+
 
 }
