@@ -31,6 +31,5 @@ public class AbstractStateTest {
 		assertNotEquals(state.getInnerStateMachine().getCurrentState(),state);
 		assertEquals(state.getInnerStateMachine().getCurrentState(),null);
 	}
-	
 
 }

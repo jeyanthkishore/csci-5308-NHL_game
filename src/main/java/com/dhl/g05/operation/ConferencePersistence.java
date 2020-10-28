@@ -10,7 +10,7 @@ import com.dhl.g05.leaguemodel.conference.IConferenceModelPersistence;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
 
 public class ConferencePersistence implements IConferenceModelPersistence{
-	
+
 	private List<DivisionModel> divisionList = new ArrayList<DivisionModel>();
 
 	@Override
@@ -25,6 +25,7 @@ public class ConferencePersistence implements IConferenceModelPersistence{
 	public int loadConferenceObject(int leagueId, ConferenceModel conferenceObject) {
 		String conferenceName = conferenceObject.getConferenceName();
 		List<HashMap<String, Object>> divisionValue = new ArrayList<HashMap<String,Object>>();
+		
 		StoredProcedure sp= new StoredProcedure();
 		int conferenceId = sp.getConferenceID(conferenceName, leagueId);
 		divisionValue = sp.fetchAllDivisions(conferenceId);

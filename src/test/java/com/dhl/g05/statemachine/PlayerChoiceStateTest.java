@@ -11,15 +11,14 @@ import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
 public class PlayerChoiceStateTest {
 	public PlayerChoiceState state;
 	private StateMachine stateMachine;
-	
+
 	@Before
 	public void init() {
 		stateMachine = new StateMachine(new MockPlayerCommunication(), new MockLeagueModel());
 		state = new PlayerChoiceState(stateMachine, "message");
 		stateMachine.setCurrentState(state);
-
 	}
-	
+
 	@Test
 	public void testPerformStateTask() {
 		assertTrue(state.performStateTask());
@@ -32,14 +31,14 @@ public class PlayerChoiceStateTest {
 		assertTrue(state.exit());
 		assertTrue(state.getNextState() instanceof CreateTeamState);
 	}
-	
+
 	@Test
 	public void testExitToLoad() {
 		state.setChoice("load");
 		assertTrue(state.exit());
 		assertTrue(state.getNextState() instanceof LoadTeamState);
 	}
-	
+
 	@Test
 	public void testExitToSimulate() {
 		state = new PlayerChoiceState(stateMachine, "message", new SimulateState(stateMachine));

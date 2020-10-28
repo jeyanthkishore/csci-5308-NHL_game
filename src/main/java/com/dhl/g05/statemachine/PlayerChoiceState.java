@@ -4,12 +4,12 @@ public class PlayerChoiceState extends AbstractState{
 
 	private String choice;
 	private String message;
-	
+
 	public PlayerChoiceState(StateMachine stateMachine, String message) {
 		super(stateMachine);
 		this.message = message;
 	}
-	
+
 	public PlayerChoiceState(StateMachine stateMachine, String message, AbstractState state) {
 		super(stateMachine);
 		this.setNextState(state);
@@ -30,7 +30,7 @@ public class PlayerChoiceState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		
+
 		if (choice.equalsIgnoreCase("create")){
 			this.setNextState(new CreateTeamState(this.getOuterStateMachine()));
 		} else if (choice.equalsIgnoreCase("load")) {
@@ -41,26 +41,26 @@ public class PlayerChoiceState extends AbstractState{
 				return true;
 			} else {
 				this.getOuterStateMachine().getPlayerCommunication().sendMessage("Invalid input");
-				
+
 				return false;
-			
+
 			}
 		}
 		return true;
 	}
-	
+
 	public String getChoice() {
 		return choice;
 	}
-	
+
 	public void setChoice(String choice) {
 		this.choice = choice;
 	}
-	
+
 	public String getMessage() {
 		return choice;
 	}
-	
+
 	public void setMessage(String message) {
 		this.message = message;
 	}

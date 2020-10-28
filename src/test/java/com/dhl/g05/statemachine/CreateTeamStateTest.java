@@ -14,8 +14,8 @@ import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
 public class CreateTeamStateTest {
 	private CreateTeamState state;
 	private StateMachine stateMachine;
-	
-	
+
+
 	@Before
 	public void init() {
 		stateMachine = new StateMachine(new MockPlayerCommunication(),new MockLeagueModel());
@@ -27,7 +27,7 @@ public class CreateTeamStateTest {
 	public void testEnter() {
 		assertTrue(state.enter());
 	}
-	
+
 	@Test
 	public void testPerformStateTask() {
 		state.getOuterStateMachine().setLeagueModel(new MockLeagueModel());
@@ -45,20 +45,20 @@ public class CreateTeamStateTest {
 		assertFalse(state.performStateTask());
 		assertTrue(state.getNextState() instanceof CreateTeamState);
 	}
-	
+
 	@Test
 	public void testExit() {
 		assertTrue(state.exit());
-//		assertTrue(state.getNextState() instanceof PlayerChoiceState);
+		//		assertTrue(state.getNextState() instanceof PlayerChoiceState);
 	}
 
-	
-//	@Test
-//	public void testExitFails() {
-//		state.getOuterStateMachine().setLeagueModel(new MockLeagueModelValidationFails());
-//		state.performStateTask();
-//		assertFalse(state.exit());
-//		assertTrue(state.getNextState() instanceof CreateTeamState);
-//	}
-	
+
+	//	@Test
+	//	public void testExitFails() {
+	//		state.getOuterStateMachine().setLeagueModel(new MockLeagueModelValidationFails());
+	//		state.performStateTask();
+	//		assertFalse(state.exit());
+	//		assertTrue(state.getNextState() instanceof CreateTeamState);
+	//	}
+
 }

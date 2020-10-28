@@ -11,7 +11,7 @@ import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
 public class ImportStateTest {
 	private ImportState state;
 	private StateMachine stateMachine;
-	
+
 	@Before
 	public void init() {
 		stateMachine = new StateMachine(new MockPlayerCommunication(),new MockLeagueModel());
@@ -39,7 +39,7 @@ public class ImportStateTest {
 		assertTrue(state.exit());
 		assertTrue(state.getNextState() instanceof CreateTeamState);
 	}
-	
+
 	@Test
 	public void testExitNoFile() {
 		state.setFileName("");

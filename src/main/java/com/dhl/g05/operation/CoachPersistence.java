@@ -10,7 +10,7 @@ import com.dhl.g05.leaguemodel.coach.ICoachModelPersistence;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
 
 public class CoachPersistence implements ICoachModelPersistence{
-	
+
 	private List<CoachModel> coachList = new ArrayList<CoachModel>();
 
 	@Override
@@ -18,13 +18,16 @@ public class CoachPersistence implements ICoachModelPersistence{
 		StoredProcedure sp= new StoredProcedure();
 		int league_id = sp.getLeagueID(leagueName);
 		List<HashMap<String,Object>> coaches = new ArrayList<HashMap<String,Object>>();
+		double skating, shooting, checking, saving;
+		String name;
+
 		coaches = sp.fetchAllFreeCoach(league_id);
 		for(HashMap<String, Object> coach : coaches) {
-			String name = coach.get("name").toString();
-			double skating = Double.parseDouble(coach.get("skating").toString());
-			double shooting = Double.parseDouble(coach.get("shooting").toString());
-			double checking = Double.parseDouble(coach.get("checking").toString());
-			double saving = Double.parseDouble(coach.get("saving").toString());
+			name = coach.get("name").toString();
+			skating = Double.parseDouble(coach.get("skating").toString());
+			shooting = Double.parseDouble(coach.get("shooting").toString());
+			checking = Double.parseDouble(coach.get("checking").toString());
+			saving = Double.parseDouble(coach.get("saving").toString());
 			coachList.add(new CoachModel(name, skating, shooting, checking, saving));
 		}
 		league.setFreeCoach(coachList);
@@ -34,17 +37,19 @@ public class CoachPersistence implements ICoachModelPersistence{
 	@Override
 	public int saveLeagueCoachObject(int league_id, LeagueModel leagueObject) {
 		StoredProcedure sp= new StoredProcedure();
+		double skating, shooting, checking, saving;
+		String name;
+
 		coachList = leagueObject.getFreeCoach();
 		for(CoachModel coach: coachList) {
-			String name = coach.getName();
-			double skating = coach.getSkating();
-			double shooting = coach.getShooting();
-			double checking = coach.getChecking();
-			double saving = coach.getSaving();
+			name = coach.getName();
+			skating = coach.getSkating();
+			shooting = coach.getShooting();
+			checking = coach.getChecking();
+			saving = coach.getSaving();
 			int coachId = sp.saveFreeCoach(league_id, name, skating, shooting, checking, saving);
 		}
 		return league_id;
 	}
-
 
 }

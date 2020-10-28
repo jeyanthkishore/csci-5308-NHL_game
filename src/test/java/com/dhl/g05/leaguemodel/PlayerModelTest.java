@@ -12,8 +12,8 @@ import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.operation.DbPersistanceMock;
 
-public class PlayerObjectTest {
-	
+public class PlayerModelTest {
+
 	@Test
 	public void constructorTest() {
 		PlayerModel object = new PlayerModel();
@@ -28,50 +28,56 @@ public class PlayerObjectTest {
 		object.setPlayerName("Ronaldo");
 		assertSame(object.getPlayerName(),"Ronaldo");
 	}
+
 	@Test
 	public void getPlayerNameTest() {
 		PlayerModel object = new PlayerModel();
 		object.setPlayerName("Ronaldo");
 		assertSame(object.getPlayerName(),"Ronaldo");
 	}
+
 	@Test
 	public void setPositionTest() {
 		PlayerModel object = new PlayerModel();
 		object.setPosition("forward");
 		assertSame(object.getPosition(),"forward");
 	}
+
 	@Test
 	public void getPositionTest() {
 		PlayerModel object = new PlayerModel();
 		object.setPosition("forward");
 		assertSame(object.getPosition(),"forward");
 	}
+
 	@Test
 	public void setCaptainTest() {
 		PlayerModel object = new PlayerModel();
 		object.setCaptain(true);
 		assertTrue(object.getCaptain());
 	}
+
 	@Test
 	public void getCaptainTest() {
 		PlayerModel object = new PlayerModel();
 		object.setCaptain(true);
 		assertTrue(object.getCaptain());
 	}
+
 	@Test
 	public void playerListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		PlayerModel validate = new PlayerModel(mock);
 		assertFalse(validate.isPlayerDetailsEmpty());
 	}
-	
+
 	@Test
 	public void checkPlayerDetailsEmpty() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		PlayerModel validate = new PlayerModel(mock);
 		assertFalse(validate.isPlayerDetailsEmpty());
 	}
-	
+
 	@Test
 	public void playerNameEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -79,7 +85,7 @@ public class PlayerObjectTest {
 		PlayerModel validate = new PlayerModel(mock);
 		assertTrue(validate.isPlayerDetailsEmpty());
 	}
-	
+
 	@Test
 	public void playerNameNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -95,7 +101,7 @@ public class PlayerObjectTest {
 		PlayerModel validate = new PlayerModel(mock);
 		assertTrue(validate.isPlayerDetailsEmpty());
 	}
-	
+
 	@Test
 	public void playerPositionNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -103,14 +109,14 @@ public class PlayerObjectTest {
 		PlayerModel validate = new PlayerModel(mock);
 		assertTrue(validate.isPlayerDetailsNull());
 	}
-	
+
 	@Test
 	public void playerPositionValidTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		PlayerModel validate = new PlayerModel(mock);
 		assertTrue(validate.isPlayerPositionValid());
 	}
-	
+
 	@Test
 	public void playerPositionCheckTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -118,7 +124,7 @@ public class PlayerObjectTest {
 		PlayerModel validate = new PlayerModel(mock);
 		assertFalse(validate.isPlayerPositionValid());
 	}
-	
+
 	@Test
 	public void captainNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -143,7 +149,7 @@ public class PlayerObjectTest {
 		validate = new PlayerModel(mock);
 		assertSame(FreeAgentConstant.CaptainNull,validate.validate());
 	}
-	
+
 	@Test
 	public void savePlayerObjectTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -151,6 +157,7 @@ public class PlayerObjectTest {
 		PlayerModel valid = new PlayerModel(mock);
 		assertEquals(1,valid.savePlayerObject(1,data));
 	}
+
 	@Test
 	public void loadPlayerObjectTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();

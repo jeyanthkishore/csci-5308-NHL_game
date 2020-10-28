@@ -18,7 +18,7 @@ public class EnchancedTeamCreationTest {
 		assertNotNull(team.getLeagueObject());
 		assertNotNull(team.getCommunicate());
 	}
-	
+
 	@Test
 	public void setLeagueObjectTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
@@ -26,7 +26,7 @@ public class EnchancedTeamCreationTest {
 		team.setLeagueObject(data.league);
 		assertSame(team.getLeagueObject(),data.league);
 	}
-	
+
 	@Test
 	public void getLeagueObjectTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
@@ -34,7 +34,7 @@ public class EnchancedTeamCreationTest {
 		team.setLeagueObject(data.league);
 		assertSame(team.getLeagueObject(),data.league);
 	}
-	
+
 	@Test
 	public void setCommunicateTest() {
 		MockPlayerCommunication communicate = new MockPlayerCommunication();
@@ -42,7 +42,7 @@ public class EnchancedTeamCreationTest {
 		team.setCommunicate(communicate);
 		assertSame(team.getCommunicate(),communicate);
 	}
-	
+
 	@Test
 	public void getCommunicateTest() {
 		MockPlayerCommunication communicate = new MockPlayerCommunication();
@@ -50,9 +50,9 @@ public class EnchancedTeamCreationTest {
 		team.setCommunicate(communicate);
 		assertSame(team.getCommunicate(),communicate);
 	}
-	
-	
-	
+
+
+
 	@Test
 	public void pickPlayersTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
@@ -60,13 +60,13 @@ public class EnchancedTeamCreationTest {
 		EnchancedTeamCreation team = new EnchancedTeamCreation(data.league,communicate);
 		assertNotNull(team.pickPlayers());
 	}
-	
-//	@Test
-//	public void pickCoachTest() {
-//		JsonMockDataDb data = new JsonMockDataDb();
-//		MockPlayerCommunication communicate = new MockPlayerCommunication();
-//		EnchancedTeamCreation team = new EnchancedTeamCreation(data.league,communicate);
-//		assertNotNull(team.pickPlayers());
-//	}
-	
+
+	@Test
+	public void pickCoachTest() {
+		JsonMockDataDb data = new JsonMockDataDb();
+		MockPlayerCommunication communicate = new MockPlayerCommunication();
+		EnchancedTeamCreation team = new EnchancedTeamCreation(data.league,communicate);
+		assertNotNull(team.pickPlayers());
+	}
+
 }

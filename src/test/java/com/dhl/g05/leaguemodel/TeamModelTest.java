@@ -12,7 +12,8 @@ import com.dhl.g05.leaguemodel.team.TeamConstant;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.operation.DbPersistanceMock;
 
-public class TeamObjectTest{
+public class TeamModelTest{
+
 	@Test
 	public void TeamObjectConstructorTest() {
 		JsonMockDataDb data= new JsonMockDataDb();
@@ -53,7 +54,7 @@ public class TeamObjectTest{
 		object.setTeamName("Strikers");
 		assertTrue(object.getTeamName().equals("Strikers"));
 	}
-	
+
 	@Test
 	public void getTeamNameTest()
 	{
@@ -69,7 +70,7 @@ public class TeamObjectTest{
 		object.setGeneralManagerName("Rubinho");
 		assertTrue(object.getGeneralManagerName().equals("Rubinho"));
 	}
-	
+
 	@Test
 	public void getManagerNameTest()
 	{
@@ -77,7 +78,7 @@ public class TeamObjectTest{
 		object.setGeneralManagerName("Rubinho");
 		assertTrue(object.getGeneralManagerName().equals("Rubinho"));
 	}
-	
+
 	@Test
 	public void setUserTeamTest()
 	{
@@ -85,7 +86,7 @@ public class TeamObjectTest{
 		object.setUserTeam(false);
 		assertFalse(object.getUserTeam());
 	}
-	
+
 	@Test
 	public void getUserTeamTest()
 	{
@@ -93,7 +94,7 @@ public class TeamObjectTest{
 		object.setUserTeam(true);
 		assertTrue(object.getUserTeam());
 	}
-	
+
 	@Test
 	public void setPlayerListTest()
 	{
@@ -102,7 +103,7 @@ public class TeamObjectTest{
 		object.setPlayerList(data.playerList);
 		assertSame(data.playerList,object.getPlayerList());
 	}
-	
+
 	@Test
 	public void getPlayerListTest()
 	{
@@ -166,7 +167,7 @@ public class TeamObjectTest{
 		TeamModel validate = new TeamModel(mock);
 		assertFalse(validate.isPlayerListEmpty());
 	}
-	
+
 	@Test
 	public void checkPlayerListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -174,7 +175,7 @@ public class TeamObjectTest{
 		TeamModel validate = new TeamModel(mock);
 		assertTrue(validate.isPlayerListEmpty());
 	}
-	
+
 	@Test
 	public void checkPlayerListMaxTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -182,7 +183,7 @@ public class TeamObjectTest{
 		TeamModel validate = new TeamModel(mock);
 		assertTrue(validate.isPlayerListMaximum());
 	}
-	
+
 	@Test
 	public void teamNameEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -190,7 +191,7 @@ public class TeamObjectTest{
 		TeamModel validate = new TeamModel(mock);
 		assertTrue(validate.isTeamDetailsEmpty());
 	}
-	
+
 	@Test
 	public void teamNameNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -206,7 +207,7 @@ public class TeamObjectTest{
 		TeamModel validate = new TeamModel(mock);
 		assertTrue(validate.isTeamDetailsEmpty());
 	}
-	
+
 	@Test
 	public void managerNameNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -214,7 +215,7 @@ public class TeamObjectTest{
 		TeamModel validate = new TeamModel(mock);
 		assertTrue(validate.isTeamDetailsNull());
 	}
-	
+
 	@Test
 	public void oneTeamCaptainTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -242,8 +243,6 @@ public class TeamObjectTest{
 		TeamModel validate = new TeamModel(mock);
 		assertEquals(0,validate.containOneTeamCaptain());
 	}
-
-
 
 	@Test
 	public void validateTeamTest() {
@@ -275,7 +274,7 @@ public class TeamObjectTest{
 		validate = new TeamModel(mock);
 		assertSame(TeamConstant.CoachDetailsEmpty,validate.validate());
 	}
-	
+
 	@Test
 	public void saveTeamObjectTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -283,7 +282,7 @@ public class TeamObjectTest{
 		TeamModel valid = new TeamModel(mock);
 		assertEquals(1,valid.saveTeamObject(1,data));
 	}
-	
+
 	@Test
 	public void loadTeamObjectTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();

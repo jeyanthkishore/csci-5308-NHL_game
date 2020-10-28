@@ -13,8 +13,7 @@ public class EnchancedTeamCreation {
 	private LeagueModel leagueObject;
 	private IPlayerCommunication communicate;
 	List<FreeAgentModel> freeAgentList = new ArrayList<FreeAgentModel>();
-	
-	
+
 	public EnchancedTeamCreation() {
 		this.leagueObject = null;
 		this.communicate = null;
@@ -88,6 +87,7 @@ public class EnchancedTeamCreation {
 		String name ="";
 		String position="";
 		String wait="";
+		
 		freeAgentList = leagueObject.getFreeAgent();
 		while(playerList.size()<20) {
 			String teamCount = "Total Team Strength = " + playerList.size();
@@ -144,6 +144,7 @@ public class EnchancedTeamCreation {
 			captain = false;
 			freeAgentList.remove(number-1);
 		}
+		
 		return playerList;
 	}
 

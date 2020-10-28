@@ -1,7 +1,7 @@
 package com.dhl.g05.leaguemodel.league;
 
 public enum LeagueConstant {
-	
+
 	Success("success"),
 	Failure("fails"),
 	LeagueNameEmpty("League Name Is Empty"),
@@ -12,13 +12,13 @@ public enum LeagueConstant {
 	ImproperPlayerPosition("Position Of The Player Cannot Be Different"),
 	LeagueExists("League Already Present"),
 	CoachListEmpty("Coach List is Empty");
-	
+
 	private String value; 
-	
+
 	LeagueConstant(String value) {
 		this.value = value;
 	}
-	
+
 	public String getValue() {
 		return value;
 	}

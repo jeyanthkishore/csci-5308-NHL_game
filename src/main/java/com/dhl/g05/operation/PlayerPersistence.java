@@ -23,6 +23,7 @@ public class PlayerPersistence implements IPlayerModelPersistence{
 		double checking = playerObject.getChecking();
 		double saving = playerObject.getSaving();
 		int captainID = (captain) ? 1 : 0;
+		
 		int playerId = sp.savePlayer(teamId,positionId,playerName,captainID,age,skating,shooting,checking,saving);
 		return playerId;
 	}

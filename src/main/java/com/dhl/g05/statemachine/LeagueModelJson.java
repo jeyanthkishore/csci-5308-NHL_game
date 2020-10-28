@@ -76,23 +76,22 @@ public class LeagueModelJson implements ILeagueModelJson{
 	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches) {
 		return new LeagueModel(leagueName, conferences, freeAgents, coaches , leagueDatabase);
 	}
-	
-	
+
 	@Override
 	public LeagueModel getLeague() {
 		return league;
 	}
-	
+
 	@Override
 	public void setLeague(LeagueModel league) {
 		this.league = league;
 	}
-	
+
 	@Override
 	public boolean persistLeague() { 
-		
+
 		Date.getInstance().saveDate(getLeague(), dateDatabase);
-		
+
 		int leagueId = this.league.saveLeagueObject(leagueDatabase);
 		if (leagueId == 0) {
 			return false;
@@ -123,7 +122,7 @@ public class LeagueModelJson implements ILeagueModelJson{
 		}
 		return true;
 	}
-		
+
 	@Override
 	public boolean addTeamToCurrentLeague(String conferenceName, String divisionName, TeamModel team) {
 		if (league == null) {
@@ -146,75 +145,75 @@ public class LeagueModelJson implements ILeagueModelJson{
 		return false;
 	}
 
-	
+
 	@Override
 	public boolean loadTeam(String leagueName, String conferenceName, String divisionName, String teamName) {
-		
+
 		TeamModel teamToLoad = null;
 		LeagueModel newLeague = new LeagueModel();
 		int leagueId = newLeague.loadLeagueObject(leagueName, leagueDatabase);
 		if (leagueId == 0) {
 			return false;
 		}
-		
+
 		List<ConferenceModel> conferences = newLeague.getConferenceDetails();
 		if (conferences == null) {
 			return false;
 		}
-		
+
 		for (ConferenceModel c: conferences) {
 			int conferenceId = c.loadConferenceObject(leagueId, conferenceDatabase);
 			String cName = c.getConferenceName();
-			
+
 			if (conferenceId == 0) {
 				return false;
 			}
-			
+
 			List<DivisionModel> divisions = c.getDivisionDetails();
 			if (divisions == null) {
 				return false;
 			}
-			
+
 			for (DivisionModel d: divisions) {
 				int divisionId = d.loadDivisionObject(conferenceId, divisionDatabase);
 				String dName = d.getDivisionName();
-				
+
 				if (divisionId == 0) {
 					return false;
 				}
-				
+
 				List<TeamModel> teams = d.getTeamDetails();
 				if (teams == null) {
 					return false;
 				}
-				
+
 				for (TeamModel t: teams) {
 					int teamId = t.loadTeamObject(divisionId, teamDatabase);
 					String tName = t.getTeamName();
-					
+
 					if (teamId == 0) {
 						return false;
 					}
-					
+
 					List<PlayerModel> players = t.getPlayerList();
 					if (players == null) {
 						return false;
 					}
-					
+
 					for (PlayerModel p: players) {
 						int playerId = p.loadPlayerObject(teamId, playerDatabase);
 						if (playerId == 0) {
 							return false;
 						}
 					}
-					
+
 					if (tName.equalsIgnoreCase(teamName) && dName.equalsIgnoreCase(divisionName) && cName.equalsIgnoreCase(conferenceName)) {
 						teamToLoad = t;
 					}
 				}
 			}
 		}
-		
+
 		if (teamToLoad != null) {
 			currentTeam = teamToLoad;
 			this.league = newLeague;
@@ -224,15 +223,15 @@ public class LeagueModelJson implements ILeagueModelJson{
 
 		return false;
 	}
-	
+
 
 	public TeamModel getTeamFromLeagueObject(LeagueModel leagueObject, String conferenceName, String divisionName, String teamName) {
 		if (league == null) {
 			return null;
 		}
-		
+
 		TeamModel team = null;
-		
+
 		List<ConferenceModel> conferences = league.getConferenceDetails();
 		for (ConferenceModel c: conferences) {
 			if (c.getConferenceName().equalsIgnoreCase(conferenceName)) {
@@ -249,7 +248,7 @@ public class LeagueModelJson implements ILeagueModelJson{
 				}
 			}
 		}
-		
+
 		return team;
 	}
 
@@ -270,7 +269,7 @@ public class LeagueModelJson implements ILeagueModelJson{
 
 	@Override
 	public ManagerConstant validateManager(ManagerModel managerObject) {
-			return managerObject.validate();
+		return managerObject.validate();
 	}
 
 	@Override

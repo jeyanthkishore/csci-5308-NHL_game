@@ -12,25 +12,29 @@ import com.dhl.g05.leaguemodel.conference.ConferenceConstant;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.operation.DbPersistanceMock;
 
-public class ConferenceObjectTest {
+public class ConferenceModelTest {
+
 	@Test
 	public void conferenceConstructorTest() {
 		ConferenceModel object = new ConferenceModel();
 		assertNull(object.getConferenceName());
 		assertNull(object.getDivisionDetails());
 	}
+
 	@Test
 	public void setDivisionTest() {
 		ConferenceModel object = new ConferenceModel();
 		object.setConferenceName("conference");
 		assertSame("conference",object.getConferenceName());
 	}
+
 	@Test
 	public void getDivisionTest() {
 		ConferenceModel object = new ConferenceModel();
 		object.setConferenceName("conference");
 		assertSame("conference",object.getConferenceName());
 	}
+
 	@Test
 	public void setTeamListTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
@@ -38,6 +42,7 @@ public class ConferenceObjectTest {
 		object.setDivisionDetails(data.divisionList);
 		assertSame(data.divisionList,object.getDivisionDetails());
 	}
+
 	@Test
 	public void getTeamListTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
@@ -45,6 +50,7 @@ public class ConferenceObjectTest {
 		object.setDivisionDetails(data.divisionList);
 		assertSame(data.divisionList,object.getDivisionDetails());
 	}
+
 	@Test
 	public void divisionParameterConstructor() {
 		JsonMockDataDb data = new JsonMockDataDb();
@@ -52,6 +58,7 @@ public class ConferenceObjectTest {
 		assertSame(data.conferenceName,object.getConferenceName());
 		assertSame(data.divisionList,object.getDivisionDetails());
 	}
+
 	@Test
 	public void divisionReferenceConstructor() {
 		JsonMockDataDb data = new JsonMockDataDb();
@@ -59,13 +66,14 @@ public class ConferenceObjectTest {
 		assertSame(data.conferenceName,object.getConferenceName());
 		assertSame(data.divisionList,object.getDivisionDetails());
 	}
+
 	@Test
 	public void checkConferenceNameEmpty() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		ConferenceModel validate = new ConferenceModel(mock); 
 		assertFalse(validate.isNameEmptyOrNull());
 	}
-	
+
 	@Test
 	public void checkConferenceNameEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -73,7 +81,7 @@ public class ConferenceObjectTest {
 		ConferenceModel validate = new ConferenceModel(mock);
 		assertTrue(validate.isNameEmptyOrNull());
 	}
-	
+
 	@Test
 	public void checkConferenceNameNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -81,13 +89,14 @@ public class ConferenceObjectTest {
 		ConferenceModel validate = new ConferenceModel(mock); 
 		assertTrue(validate.isNameEmptyOrNull());
 	}
-	
+
 	@Test
 	public void isDivisonListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		ConferenceModel validate = new ConferenceModel(mock); 
 		assertFalse(validate.isDivisionListEmpty());
 	}
+
 	@Test
 	public void divisonListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -95,12 +104,14 @@ public class ConferenceObjectTest {
 		ConferenceModel validate = new ConferenceModel(mock); 
 		assertTrue(validate.hasEvenNumberDivision());
 	}
+
 	@Test
 	public void hasEvenDivsionTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		ConferenceModel validate = new ConferenceModel(mock); 
 		assertTrue(validate.hasEvenNumberDivision());
 	}
+
 	@Test
 	public void hasOddDivsionTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -108,6 +119,7 @@ public class ConferenceObjectTest {
 		ConferenceModel validate = new ConferenceModel(mock); 
 		assertFalse(validate.hasEvenNumberDivision());
 	}
+
 	@Test
 	public void validateConferenceTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -126,7 +138,7 @@ public class ConferenceObjectTest {
 		validate = new ConferenceModel(mock); 
 		assertSame(ConferenceConstant.NoEvenDivisionCount,validate.validate());
 	}
-	
+
 	@Test
 	public void saveConferenceObjectTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -134,6 +146,7 @@ public class ConferenceObjectTest {
 		ConferenceModel valid = new ConferenceModel(mock);
 		assertEquals(1,valid.saveConferenceObject(1,data));
 	}
+
 	@Test
 	public void loadConferenceObjectTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();

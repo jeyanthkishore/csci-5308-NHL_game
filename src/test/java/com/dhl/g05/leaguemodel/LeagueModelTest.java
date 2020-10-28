@@ -13,7 +13,7 @@ import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.operation.DbPersistanceMock;
 
 
-public class LeagueObjectTest {
+public class LeagueModelTest {
 
 	@Test
 	public void leagueConstructorTest() {

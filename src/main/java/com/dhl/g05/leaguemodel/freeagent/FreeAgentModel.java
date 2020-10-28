@@ -141,16 +141,16 @@ public class FreeAgentModel implements IFreeAgent{
 
 	public boolean isPlayerDetailsEmpty() {
 		if(playerName == "" || position =="") {
-				return true;
+			return true;
 		}
 		return false;
 	}
-		
+
 	public boolean isPlayerPositionValid() {
-			if(position.equals("forward") || position.equals("defense") || position.equals("goalie")) {
-				return true;
-			}
-			return false;
+		if(position.equals("forward") || position.equals("defense") || position.equals("goalie")) {
+			return true;
+		}
+		return false;
 	}
 
 	public boolean isPlayerAgeValid() {

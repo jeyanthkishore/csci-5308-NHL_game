@@ -7,14 +7,14 @@ import com.dhl.g05.leaguemodel.freeagent.IFreeAgent;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 
 public class TeamModel {
-	
+
 	private String teamName;
 	private CoachModel headCoach;
 	private String generalManager;
 	private List<PlayerModel> players;
 	private double teamStrength;
 	private Boolean userTeam;
-	
+
 	public TeamModel() {
 		setGeneralManagerName(null);
 		setTeamName(null);
@@ -27,7 +27,7 @@ public class TeamModel {
 	public TeamModel(ITeamModel teamObject) {
 		teamObject.loadTeamModelData(this);
 	}
-	
+
 	public TeamModel(String team, CoachModel coachDetails, String manager, List<PlayerModel> players) {
 		this.teamName = team;
 		this.headCoach = coachDetails;
@@ -36,34 +36,14 @@ public class TeamModel {
 		this.userTeam = false;
 	}
 
-	public int saveTeamObject(int divisionId,ITeamModelPersistence database) {
-		return database.saveTeamObject(divisionId,this, headCoach);
-	}
-
-	public int loadTeamObject(int divisionId,ITeamModelPersistence database) {
-		return database.loadTeamObject(divisionId,this, headCoach);
-	}
-
-	public double calculateTeamStrength(List<PlayerModel> playerList){
-		for (IFreeAgent player: playerList) {
-			if(player.getHasInjured()){
-				teamStrength +=	player.calculatePlayerStrength()/2;
-			}
-			else{
-				teamStrength += player.calculatePlayerStrength();
-			}
-		}
-		return  teamStrength;
-	}
-
 	public Boolean getUserTeam() {
 		return userTeam;
 	}
-	
+
 	public void setUserTeam(Boolean userTeam) {
 		this.userTeam = userTeam;
 	}
-	
+
 	public String getTeamName() {
 		return teamName;
 	}
@@ -102,6 +82,26 @@ public class TeamModel {
 
 	public void setTeamStrength(double teamStrength) {
 		this.teamStrength = teamStrength;
+	}
+
+	public int saveTeamObject(int divisionId,ITeamModelPersistence database) {
+		return database.saveTeamObject(divisionId,this, headCoach);
+	}
+
+	public int loadTeamObject(int divisionId,ITeamModelPersistence database) {
+		return database.loadTeamObject(divisionId,this, headCoach);
+	}
+
+	public double calculateTeamStrength(List<PlayerModel> playerList){
+		for (IFreeAgent player: playerList) {
+			if(player.getHasInjured()){
+				teamStrength +=	player.calculatePlayerStrength()/2;
+			}
+			else{
+				teamStrength += player.calculatePlayerStrength();
+			}
+		}
+		return  teamStrength;
 	}
 
 	public TeamConstant validate() {

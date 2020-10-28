@@ -29,7 +29,7 @@ import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.simulation.Date;
 
 public class LeagueModelCreatorFromJSON {
-	
+
 	private FileReader reader;
 	private JSONParser parser;
 	private ILeagueModelJson leagueModel;
@@ -42,17 +42,17 @@ public class LeagueModelCreatorFromJSON {
 	}
 
 	public boolean isFileValidJson(String fileName) {
-			try {
-				reader = new FileReader(new File(fileName));
-				parser.parse(reader);
-				reader.close();
-				return true;
-			} catch (ParseException | IOException e) {
-				e.printStackTrace();
-			}
+		try {
+			reader = new FileReader(new File(fileName));
+			parser.parse(reader);
+			reader.close();
+			return true;
+		} catch (ParseException | IOException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
-	
+
 	public boolean setGamePlayConfigsFromFile(String fileName) throws IOException, ParseException {
 		File file = new File(fileName);
 		reader = new FileReader(file);
@@ -78,7 +78,7 @@ public class LeagueModelCreatorFromJSON {
 		}
 		return true;
 	}
-	
+
 	private boolean setTrainingConfig(JSONObject training) {
 		if (training == null) {
 			return false;
@@ -97,7 +97,7 @@ public class LeagueModelCreatorFromJSON {
 		leagueModel.setLeague(league);
 		return (leagueModel.getLeague() != null);
 	}
-	
+
 	private LeagueModel createLeague(JSONObject leagueData) {
 		if (leagueData == null) {
 			return null;
@@ -107,6 +107,7 @@ public class LeagueModelCreatorFromJSON {
 		ArrayList<CoachModel> freeCoaches = createFreeCoaches((JSONArray)leagueData.get("coaches"));
 		ArrayList<ManagerModel> managers = createFreeManagers((JSONArray)leagueData.get("generalManagers"));
 		ArrayList<ManagerModel> managerList = new ArrayList<>();
+		
 		String leagueName = (String)leagueData.get("leagueName");
 		if (conferences != null && freeAgents != null && freeCoaches != null) {
 			LeagueModel league = leagueModel.createLeague(leagueName,conferences,freeAgents, freeCoaches);
@@ -122,6 +123,7 @@ public class LeagueModelCreatorFromJSON {
 				playerCommunication.sendMessage(validationResult.getValue());
 			}
 		}
+		
 		return null;
 	}
 
@@ -153,6 +155,7 @@ public class LeagueModelCreatorFromJSON {
 		if (jsonDivisions == null) {
 			return null;
 		}
+		
 		ArrayList<DivisionModel> divisions = new ArrayList<>();
 		for (Object d: jsonDivisions) {
 			ArrayList<TeamModel> teams = createTeams((JSONArray)((JSONObject) d).get("teams"));

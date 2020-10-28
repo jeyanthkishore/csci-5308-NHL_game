@@ -19,6 +19,7 @@ import com.dhl.g05.leaguemodel.team.TeamModel;
 
 
 public interface ILeagueModelJson {
+	
 	public LeagueModel getLeague();
 	public TeamModel getCurrentTeam();
 	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches);
