@@ -2,7 +2,15 @@ package com.dhl.g05.statemachine.mocks;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.*;
+import com.dhl.g05.leaguemodel.ValidateEnumModel;
+import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceObject;
+import com.dhl.g05.leaguemodel.division.DivisionObject;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
+import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.manager.ManagerObject;
+import com.dhl.g05.leaguemodel.player.PlayerObject;
+import com.dhl.g05.leaguemodel.team.TeamObject;
 import com.dhl.g05.operation.DbPersistanceMock;
 import com.dhl.g05.statemachine.ILeagueModel;
 

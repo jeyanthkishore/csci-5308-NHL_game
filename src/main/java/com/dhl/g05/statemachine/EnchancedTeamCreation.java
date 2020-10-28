@@ -3,10 +3,10 @@ package com.dhl.g05.statemachine;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.CoachObject;
-import com.dhl.g05.leaguemodel.FreeAgentObject;
-import com.dhl.g05.leaguemodel.LeagueObject;
-import com.dhl.g05.leaguemodel.PlayerObject;
+import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
+import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.player.PlayerObject;
 
 public class EnchancedTeamCreation {
 

@@ -1,8 +1,10 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.leaguemodel.division;
 
 import java.util.List;
 
-import com.dhl.g05.operation.IDataBasePersistence;
+import com.dhl.g05.leaguemodel.ILeagueModelComplete;
+import com.dhl.g05.leaguemodel.ValidateEnumModel;
+import com.dhl.g05.leaguemodel.team.TeamObject;
 
 public class DivisionObject {
 
@@ -14,7 +16,7 @@ public class DivisionObject {
 		setTeamDetails(null);
 	}
 	
-	public DivisionObject(ILeagueModel divisionObject) {
+	public DivisionObject(ILeagueModelComplete divisionObject) {
 		divisionObject.LoadDivisionModelData(this);
 	}
 	
@@ -23,10 +25,10 @@ public class DivisionObject {
 		this.teams = teamdetail;
 	}
 	
-	public int saveDivisionObject(int conferenceId,IDataBasePersistence database) {
+	public int saveDivisionObject(int conferenceId,IDivisionModelPersistence database) {
 		return database.saveDivisionObject(conferenceId,this);
 	}
-	public int loadDivisionObject(int conferenceId,IDataBasePersistence database) {
+	public int loadDivisionObject(int conferenceId,IDivisionModelPersistence database) {
 		return database.loadDivisionObject(conferenceId,this);
 	}
 

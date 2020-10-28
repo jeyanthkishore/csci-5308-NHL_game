@@ -1,4 +1,7 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.leaguemodel.coach;
+
+import com.dhl.g05.leaguemodel.ILeagueModelComplete;
+import com.dhl.g05.leaguemodel.ValidateEnumModel;
 
 public class CoachObject {
     private String name;
@@ -23,7 +26,7 @@ public class CoachObject {
         this.saving = saving;
     }
 
-    public CoachObject(ILeagueModel coach) {
+    public CoachObject(ILeagueModelComplete coach) {
         coach.loadCoachModelData(this);
     }
 

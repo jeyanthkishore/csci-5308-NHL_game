@@ -1,8 +1,8 @@
-package com.dhl.g05.leaguemodel;
-
-import com.dhl.g05.operation.IDataBasePersistence;
+package com.dhl.g05.leaguemodel.manager;
 
 import java.util.List;
+
+import com.dhl.g05.leaguemodel.ValidateEnumModel;
 
 public class ManagerObject {
     private String name;
@@ -54,11 +54,11 @@ public class ManagerObject {
         return false;
     }
 
-    public int saveLeagueManagerObject(int leagueId, IDataBasePersistence database) {
+    public int saveLeagueManagerObject(int leagueId, IManagerPersistence database) {
         return database.saveLeagueManagerObject(leagueId, this);
     }
 
-    public int loadLeagueManagerObject(String leagueName,IDataBasePersistence database) {
+    public int loadLeagueManagerObject(String leagueName,IManagerPersistence database) {
         return database.loadLeagueManagerObject(leagueName,this);
     }
 }

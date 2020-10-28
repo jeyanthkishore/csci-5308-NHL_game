@@ -2,10 +2,9 @@ package com.dhl.g05.statemachine.mocks;
 
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 
-import com.dhl.g05.leaguemodel.CoachObject;
-import com.dhl.g05.leaguemodel.FreeAgentObject;
+import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
 import com.dhl.g05.statemachine.IPlayerCommunication;
 
 public class MockPlayerCommunication implements IPlayerCommunication{

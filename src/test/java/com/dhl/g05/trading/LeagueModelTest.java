@@ -1,14 +1,13 @@
 package com.dhl.g05.trading;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.dhl.g05.leaguemodel.ConferenceObject;
-import com.dhl.g05.leaguemodel.DivisionObject;
-import com.dhl.g05.leaguemodel.LeagueObject;
-import com.dhl.g05.leaguemodel.PlayerObject;
-import com.dhl.g05.leaguemodel.TeamObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceObject;
+import com.dhl.g05.leaguemodel.division.DivisionObject;
+import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.player.PlayerObject;
+import com.dhl.g05.leaguemodel.team.TeamObject;
 
 
 public class LeagueModelTest {

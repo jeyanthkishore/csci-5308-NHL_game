@@ -1,9 +1,14 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.leaguemodel.league;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.dhl.g05.operation.IDataBasePersistence;
+import com.dhl.g05.leaguemodel.ILeagueModelComplete;
+import com.dhl.g05.leaguemodel.ValidateEnumModel;
+import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.coach.ICoachModelPersistence;
+import com.dhl.g05.leaguemodel.conference.ConferenceObject;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
 
 public class LeagueObject {
 
@@ -11,7 +16,7 @@ public class LeagueObject {
 	private List<ConferenceObject> conferences;
 	private List<FreeAgentObject> freeAgents;
 	private List<CoachObject> coaches;
-	private IDataBasePersistence object;
+	private ILeagueModelPersistence object;
 	
 	public LeagueObject() {
 		setLeagueName(null);
@@ -20,7 +25,7 @@ public class LeagueObject {
 		setFreeCoach(null);
 	}
 
-	public LeagueObject(String league, List<ConferenceObject> conferencedetail,List<FreeAgentObject> agent, List<CoachObject> coach,IDataBasePersistence dbObject) {
+	public LeagueObject(String league, List<ConferenceObject> conferencedetail,List<FreeAgentObject> agent, List<CoachObject> coach,ILeagueModelPersistence dbObject) {
 		setLeagueName(league);
 		setConferenceDetails(conferencedetail);
 		setFreeAgent(agent);
@@ -28,7 +33,7 @@ public class LeagueObject {
 		this.object = dbObject;
 	}
 
-	public LeagueObject(ILeagueModel leagueObject) {
+	public LeagueObject(ILeagueModelComplete leagueObject) {
 		leagueObject.loadLeagueModelData(this);
 	}
 
@@ -64,27 +69,27 @@ public class LeagueObject {
 		this.coaches = freeCoach;
 	}
 
-	public IDataBasePersistence getObject() {
+	public ILeagueModelPersistence getObject() {
 		return object;
 	}
 
-	public void setObject(IDataBasePersistence object) {
+	public void setObject(ILeagueModelPersistence object) {
 		this.object = object;
 	}
 
-	public int saveLeagueObject(IDataBasePersistence database) {
+	public int saveLeagueObject(ILeagueModelPersistence database) {
 		return database.saveLeagueObject(this);
 	}
 
-	public int saveLeagueCoachObject(int leagueId, IDataBasePersistence database) {
+	public int saveLeagueCoachObject(int leagueId, ICoachModelPersistence database) {
 		return database.saveLeagueCoachObject(leagueId, this);
 	}
 
-	public int loadLeagueObject(String leagueName,IDataBasePersistence database) {
+	public int loadLeagueObject(String leagueName,ILeagueModelPersistence database) {
 		return database.loadLeagueObject(leagueName,this);
 	}
 
-	public int loadLeagueCoachObject(String leagueName, IDataBasePersistence database) {
+	public int loadLeagueCoachObject(String leagueName, ICoachModelPersistence database) {
 		return database.loadLeagueCoachObject(leagueName, this);
 	}
 

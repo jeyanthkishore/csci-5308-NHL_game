@@ -2,12 +2,12 @@ package com.dhl.g05.Training;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.CoachObject;
-import com.dhl.g05.leaguemodel.ConferenceObject;
-import com.dhl.g05.leaguemodel.DivisionObject;
-import com.dhl.g05.leaguemodel.LeagueObject;
-import com.dhl.g05.leaguemodel.PlayerObject;
-import com.dhl.g05.leaguemodel.TeamObject;
+import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceObject;
+import com.dhl.g05.leaguemodel.division.DivisionObject;
+import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.player.PlayerObject;
+import com.dhl.g05.leaguemodel.team.TeamObject;
 
 public class PlayerTraining implements IPlayerTraining {
 

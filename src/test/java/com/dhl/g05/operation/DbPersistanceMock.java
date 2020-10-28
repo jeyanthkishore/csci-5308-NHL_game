@@ -3,10 +3,23 @@ package com.dhl.g05.operation;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.dhl.g05.leaguemodel.*;
+import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.coach.ICoachModelPersistence;
+import com.dhl.g05.leaguemodel.conference.ConferenceObject;
+import com.dhl.g05.leaguemodel.conference.IConferenceModelPersistence;
+import com.dhl.g05.leaguemodel.division.DivisionObject;
+import com.dhl.g05.leaguemodel.division.IDivisionModelPersistence;
+import com.dhl.g05.leaguemodel.league.ILeagueModelPersistence;
+import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.manager.IManagerPersistence;
+import com.dhl.g05.leaguemodel.manager.ManagerObject;
+import com.dhl.g05.leaguemodel.player.IPlayerModelPersistence;
+import com.dhl.g05.leaguemodel.player.PlayerObject;
+import com.dhl.g05.leaguemodel.team.ITeamModelPersistence;
+import com.dhl.g05.leaguemodel.team.TeamObject;
 import com.dhl.g05.simulation.Date;
 
-public class DbPersistanceMock implements IDataBasePersistence{
+public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,IConferenceModelPersistence,IPlayerModelPersistence,IDivisionModelPersistence,ILeagueModelPersistence,ITeamModelPersistence,ICoachModelPersistence{
 
 	@Override
 	public ArrayList<HashMap<String, Object>> loadDetails() {

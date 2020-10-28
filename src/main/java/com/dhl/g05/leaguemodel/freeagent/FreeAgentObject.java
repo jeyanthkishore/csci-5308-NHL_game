@@ -1,4 +1,7 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.leaguemodel.freeagent;
+
+import com.dhl.g05.leaguemodel.ILeagueModelComplete;
+import com.dhl.g05.leaguemodel.ValidateEnumModel;
 
 public class FreeAgentObject implements IFreeAgent{
 	private String playerName;
@@ -27,7 +30,7 @@ public class FreeAgentObject implements IFreeAgent{
 		this.saving = saving;
 	}
 
-	public FreeAgentObject(ILeagueModel player) {
+	public FreeAgentObject(ILeagueModelComplete player) {
 		player.loadPlayerModelData(this);
 	}
 
