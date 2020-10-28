@@ -1,11 +1,15 @@
 package com.dhl.g05.leaguemodel.player;
 
+import com.dhl.g05.leaguemodel.Injury;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+
+import java.util.Random;
 
 public class PlayerModel extends FreeAgentModel{
 
 	private Boolean captain;
+	private int injuredForNumberOfDays;
 
 	public PlayerModel() {
 		setCaptain(null);
@@ -25,7 +29,15 @@ public class PlayerModel extends FreeAgentModel{
 	public void setCaptain(Boolean captain) {
 		this.captain = captain;
 	}
-	
+
+	public int getInjuredForNumberOfDays() {
+		return injuredForNumberOfDays;
+	}
+
+	public void setInjuredForNumberOfDays(int injuredForNumberOfDays) {
+		this.injuredForNumberOfDays = injuredForNumberOfDays;
+	}
+
 	public int savePlayerObject(int teamId,IPlayerModelPersistence database) {
 		return database.savePlayerObject(teamId,this);
 	}
@@ -55,5 +67,33 @@ public class PlayerModel extends FreeAgentModel{
 		}
 		return false;
 	}
-	
+
+	public boolean checkPlayerInjury(PlayerModel playerObject){
+		Injury injury = new Injury();
+		if (playerObject.getHasInjured()){
+			return true;
+		}
+		else {
+			double randomDecimal = randomDecimalNumberGenerator();
+			if (randomDecimal < injury.getRandomInjuryChance()){
+				injuredForNumberOfDays = randomIntegerNumberGenerator(injury.getInjuryDaysLow(),injury.getInjuryDaysHigh());
+				playerObject.setInjuredForNumberOfDays(injuredForNumberOfDays);
+				playerObject.setHasInjured(true);
+				return true;
+			}
+			return false;
+		}
+	}
+
+	public double randomDecimalNumberGenerator(){
+		Random random = new Random();
+		double randomNumber = random.nextDouble();
+		String formatNumber = String.format("%1.2f", randomNumber);
+		return Double.valueOf(formatNumber);
+	}
+
+	public int randomIntegerNumberGenerator(int min, int max) {
+		Random random = new Random();
+		return random.nextInt(max - min) + max;
+	}
 }

@@ -5,6 +5,10 @@ public class Injury implements IInjury {
     private int injuryDaysLow;
     private int injuryDaysHigh;
 
+    public Injury() {
+
+    }
+
     public Injury(double randomInjuryChance, int injuryDaysLow, int injuryDaysHigh) {
         this.randomInjuryChance = randomInjuryChance;
         this.injuryDaysLow = injuryDaysLow;

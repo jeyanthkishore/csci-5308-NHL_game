@@ -5,12 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import com.dhl.g05.leaguemodel.Aging;
+import com.dhl.g05.leaguemodel.Injury;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import com.dhl.g05.leaguemodel.coach.CoachConstant;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.conference.ConferenceConstant;
@@ -27,6 +27,8 @@ import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.TeamConstant;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.simulation.Date;
+
+import javax.print.DocFlavor;
 
 public class LeagueModelCreatorFromJSON {
 
@@ -61,22 +63,39 @@ public class LeagueModelCreatorFromJSON {
 			return false;
 		} else {
 			JSONObject gamePlayConfigs = (JSONObject) leagueData.get("gameplayConfig");
-
-			System.out.println(gamePlayConfigs);
 			if (gamePlayConfigs == null) {
 				return false;
 			} else {
 				JSONObject training = (JSONObject)gamePlayConfigs.get("training");
 				JSONObject aging = (JSONObject)gamePlayConfigs.get("aging");
+				Aging agingObject = createAging(aging);
 				JSONObject injuries = (JSONObject)gamePlayConfigs.get("injuries");
-				System.out.println("Aging"+aging);
-				System.out.println("Injuries"+injuries);
+				Injury injuryObject = createInjury(injuries);
 				if (setTrainingConfig(training) == false) {
 					return false;
 				}
 			}
 		}
 		return true;
+	}
+
+	private Aging createAging(JSONObject jsonAging) {
+		if (jsonAging == null){
+			return null;
+		}
+		int averageRetirementAge = Integer.parseInt(jsonAging.get("averageRetirementAge").toString());
+		int maximumAge = Integer.parseInt( jsonAging.get("maximumAge").toString());
+		return new Aging(averageRetirementAge, maximumAge);
+	}
+
+	private Injury createInjury(JSONObject jsonInjury) {
+		if (jsonInjury == null){
+			return null;
+		}
+		double randomInjuryChance = Double.parseDouble(jsonInjury.get("randomInjuryChance").toString());
+		int injuryDaysLow = Integer.parseInt(jsonInjury.get("injuryDaysLow").toString());
+		int injuryDaysHigh = Integer.parseInt(jsonInjury.get("injuryDaysHigh").toString());
+		return new Injury(randomInjuryChance, injuryDaysLow, injuryDaysHigh);
 	}
 
 	private boolean setTrainingConfig(JSONObject training) {
