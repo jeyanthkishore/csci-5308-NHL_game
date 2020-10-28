@@ -1,4 +1,6 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.leaguemodel.freeagent;
+
+import com.dhl.g05.leaguemodel.ValidateEnumModel;
 
 public interface IFreeAgent {
 

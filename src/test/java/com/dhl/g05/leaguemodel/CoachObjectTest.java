@@ -1,9 +1,14 @@
 package com.dhl.g05.leaguemodel;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertSame;
+import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
 
 public class CoachObjectTest {
 

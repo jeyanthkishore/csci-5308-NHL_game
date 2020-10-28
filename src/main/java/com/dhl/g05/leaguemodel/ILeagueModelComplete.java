@@ -1,6 +1,14 @@
 package com.dhl.g05.leaguemodel;
 
-public interface ILeagueModel {
+import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceObject;
+import com.dhl.g05.leaguemodel.division.DivisionObject;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
+import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.player.PlayerObject;
+import com.dhl.g05.leaguemodel.team.TeamObject;
+
+public interface ILeagueModelComplete {
 
 	public void loadTeamModelData(TeamObject teamObject);
 	

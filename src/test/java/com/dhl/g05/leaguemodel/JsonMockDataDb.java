@@ -5,7 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JsonMockDataDb implements ILeagueModel{
+import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceObject;
+import com.dhl.g05.leaguemodel.division.DivisionObject;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
+import com.dhl.g05.leaguemodel.freeagent.IFreeAgent;
+import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.player.PlayerObject;
+import com.dhl.g05.leaguemodel.team.TeamObject;
+
+public class JsonMockDataDb implements ILeagueModelComplete{
 
 	public String leagueName = "HockeyLeague";
 	public Map<String,Object> firstPlayerInfo;

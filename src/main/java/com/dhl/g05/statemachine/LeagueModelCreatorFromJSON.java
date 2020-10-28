@@ -5,12 +5,21 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.dhl.g05.leaguemodel.*;
+import com.dhl.g05.leaguemodel.ValidateEnumModel;
+import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceObject;
+import com.dhl.g05.leaguemodel.division.DivisionObject;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
+import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.manager.ManagerObject;
+import com.dhl.g05.leaguemodel.player.PlayerObject;
+import com.dhl.g05.leaguemodel.team.TeamObject;
 import com.dhl.g05.simulation.Date;
 
 public class LeagueModelCreatorFromJSON {

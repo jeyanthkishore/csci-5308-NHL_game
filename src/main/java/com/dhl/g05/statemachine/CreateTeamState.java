@@ -1,10 +1,15 @@
 package com.dhl.g05.statemachine;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import com.dhl.g05.leaguemodel.*;
+
+import com.dhl.g05.leaguemodel.ValidateEnumModel;
+import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceObject;
+import com.dhl.g05.leaguemodel.division.DivisionObject;
+import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.player.PlayerObject;
+import com.dhl.g05.leaguemodel.team.TeamObject;
 
 public class CreateTeamState extends AbstractState {
 

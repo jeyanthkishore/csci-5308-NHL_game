@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.dhl.g05.leaguemodel.division.DivisionObject;
 import com.dhl.g05.operation.DbPersistanceMock;
 
 public class DivisionObjectTest {

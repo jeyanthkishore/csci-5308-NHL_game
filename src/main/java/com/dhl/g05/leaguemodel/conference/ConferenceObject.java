@@ -1,7 +1,9 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.leaguemodel.conference;
 import java.util.List;
 
-import com.dhl.g05.operation.IDataBasePersistence;
+import com.dhl.g05.leaguemodel.ILeagueModelComplete;
+import com.dhl.g05.leaguemodel.ValidateEnumModel;
+import com.dhl.g05.leaguemodel.division.DivisionObject;
 
 public class ConferenceObject {
 	
@@ -12,7 +14,7 @@ public class ConferenceObject {
 		setDivisionDetails(null);
 		setConferenceName(null);
 	}
-	public ConferenceObject(ILeagueModel conferenceObject) {
+	public ConferenceObject(ILeagueModelComplete conferenceObject) {
 		conferenceObject.loadConferenceModelData(this);
 	}
 	
@@ -21,10 +23,10 @@ public class ConferenceObject {
 		divisions = divisiondetail;
 	}
 	
-	public int saveConferenceObject(int leagueId,IDataBasePersistence database) {
+	public int saveConferenceObject(int leagueId,IConferenceModelPersistence database) {
 		return database.saveConferenceObject(leagueId,this);
 	}
-	public int loadConferenceObject(int leagueId,IDataBasePersistence database) {
+	public int loadConferenceObject(int leagueId,IConferenceModelPersistence database) {
 		return database.loadConferenceObject(leagueId,this);
 	}
 	

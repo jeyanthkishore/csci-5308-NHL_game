@@ -1,7 +1,12 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.leaguemodel.team;
 
 import java.util.List;
-import com.dhl.g05.operation.IDataBasePersistence;
+
+import com.dhl.g05.leaguemodel.ILeagueModelComplete;
+import com.dhl.g05.leaguemodel.ValidateEnumModel;
+import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.freeagent.IFreeAgent;
+import com.dhl.g05.leaguemodel.player.PlayerObject;
 
 public class TeamObject {
 	
@@ -21,7 +26,7 @@ public class TeamObject {
 	}
 
 
-	public TeamObject(ILeagueModel teamObject) {
+	public TeamObject(ILeagueModelComplete teamObject) {
 		teamObject.loadTeamModelData(this);
 	}
 	
@@ -33,11 +38,11 @@ public class TeamObject {
 		this.userTeam = false;
 	}
 
-	public int saveTeamObject(int divisionId,IDataBasePersistence database) {
+	public int saveTeamObject(int divisionId,ITeamModelPersistence database) {
 		return database.saveTeamObject(divisionId,this, headCoach);
 	}
 
-	public int loadTeamObject(int divisionId,IDataBasePersistence database) {
+	public int loadTeamObject(int divisionId,ITeamModelPersistence database) {
 		return database.loadTeamObject(divisionId,this, headCoach);
 	}
 

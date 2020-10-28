@@ -1,6 +1,8 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.leaguemodel.player;
 
-import com.dhl.g05.operation.IDataBasePersistence;
+import com.dhl.g05.leaguemodel.ILeagueModelComplete;
+import com.dhl.g05.leaguemodel.ValidateEnumModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
 
 public class PlayerObject extends FreeAgentObject{
 	
@@ -17,10 +19,10 @@ public class PlayerObject extends FreeAgentObject{
 		this.captain = captain;
 	}
 	
-	public int savePlayerObject(int teamId,IDataBasePersistence database) {
+	public int savePlayerObject(int teamId,IPlayerModelPersistence database) {
 		return database.savePlayerObject(teamId,this);
 	}
-	public int loadPlayerObject(int teamId,IDataBasePersistence database) {
+	public int loadPlayerObject(int teamId,IPlayerModelPersistence database) {
 		return database.loadPlayerObject(teamId,this);
 	}
 
@@ -32,7 +34,7 @@ public class PlayerObject extends FreeAgentObject{
 		this.captain = captain;
 	}
 
-	public PlayerObject(ILeagueModel player) {
+	public PlayerObject(ILeagueModelComplete player) {
 		player.loadPlayerModelData(this);
 	}
 	

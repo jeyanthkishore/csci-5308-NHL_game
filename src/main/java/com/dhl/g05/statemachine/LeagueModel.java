@@ -2,21 +2,74 @@ package com.dhl.g05.statemachine;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.*;
-import com.dhl.g05.operation.IDataBasePersistence;
+import com.dhl.g05.leaguemodel.ValidateEnumModel;
+import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceObject;
+import com.dhl.g05.leaguemodel.conference.IConferenceModelPersistence;
+import com.dhl.g05.leaguemodel.division.DivisionObject;
+import com.dhl.g05.leaguemodel.division.IDivisionModelPersistence;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
+import com.dhl.g05.leaguemodel.league.ILeagueModelPersistence;
+import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.manager.ManagerObject;
+import com.dhl.g05.leaguemodel.player.IPlayerModelPersistence;
+import com.dhl.g05.leaguemodel.player.PlayerObject;
+import com.dhl.g05.leaguemodel.team.ITeamModelPersistence;
+import com.dhl.g05.leaguemodel.team.TeamObject;
+import com.dhl.g05.operation.ConferencePersistence;
+import com.dhl.g05.operation.DatePersistence;
+import com.dhl.g05.operation.DivisionPersistence;
+import com.dhl.g05.operation.IDatePersistence;
+import com.dhl.g05.operation.LeaguePersistence;
+import com.dhl.g05.operation.PlayerPersistence;
+import com.dhl.g05.operation.TeamPersistence;
 import com.dhl.g05.simulation.Date;
 
 public class LeagueModel implements ILeagueModel{
 	private LeagueObject league;
 	private TeamObject currentTeam;
-	private IDataBasePersistence database;
+	private ILeagueModelPersistence leagueDatabase;
+	private IConferenceModelPersistence conferenceDatabase;
+	private IDivisionModelPersistence divisionDatabase;
+	private ITeamModelPersistence teamDatabase;
+	private IPlayerModelPersistence playerDatabase;
+	private IDatePersistence dateDatabase;
 
-	public LeagueModel(IDataBasePersistence database) {
-		this.database = database;
+	public LeagueModel() {
+		this.leagueDatabase = new LeaguePersistence();
+		this.conferenceDatabase = new ConferencePersistence();
+		this.divisionDatabase = new DivisionPersistence();
+		this.teamDatabase = new TeamPersistence();
+		this.playerDatabase = new PlayerPersistence();
+		this.dateDatabase = new DatePersistence();
+	}
+
+	public void setDateDatabase(IDatePersistence dateDatabase) {
+		this.dateDatabase = dateDatabase;
+	}
+
+	public void setLeagueDatabase(ILeagueModelPersistence leagueDatabase) {
+		this.leagueDatabase = leagueDatabase;
+	}
+
+	public void setConferenceDatabase(IConferenceModelPersistence conferenceDatabase) {
+		this.conferenceDatabase = conferenceDatabase;
+	}
+
+	public void setDivisionDatabase(IDivisionModelPersistence divisionDatabase) {
+		this.divisionDatabase = divisionDatabase;
+	}
+
+	public void setTeamDatabase(ITeamModelPersistence teamDatabase) {
+		this.teamDatabase = teamDatabase;
+	}
+
+	public void setPlayerDatabase(IPlayerModelPersistence playerDatabase) {
+		this.playerDatabase = playerDatabase;
 	}
 
 	public LeagueObject createLeague(String leagueName, List<ConferenceObject> conferences, List<FreeAgentObject> freeAgents, List<CoachObject> coaches) {
-		return new LeagueObject(leagueName, conferences, freeAgents, coaches , database);
+		return new LeagueObject(leagueName, conferences, freeAgents, coaches , leagueDatabase);
 	}
 	
 	
@@ -33,29 +86,29 @@ public class LeagueModel implements ILeagueModel{
 	@Override
 	public boolean persistLeague() { 
 		
-		Date.getInstance().saveDate(getLeague(), database);
+		Date.getInstance().saveDate(getLeague(), dateDatabase);
 		
-		int leagueId = this.league.saveLeagueObject(database);
+		int leagueId = this.league.saveLeagueObject(leagueDatabase);
 		if (leagueId == 0) {
 			return false;
 		}
 		for (ConferenceObject c: league.getConferenceDetails()) {
-			int conferenceId = c.saveConferenceObject(leagueId, database);
+			int conferenceId = c.saveConferenceObject(leagueId, conferenceDatabase);
 			if (conferenceId == 0) {
 				return false;
 			}
 			for (DivisionObject d: c.getDivisionDetails()) {
-				int divisionId = d.saveDivisionObject(conferenceId, database);
+				int divisionId = d.saveDivisionObject(conferenceId, divisionDatabase);
 				if (divisionId == 0) {
 					return false;
 				}
 				for (TeamObject t: d.getTeamDetails()) {
-					int teamId = t.saveTeamObject(divisionId, database);
+					int teamId = t.saveTeamObject(divisionId, teamDatabase);
 					if (teamId == 0) {
 						return false;
 					}
 					for (PlayerObject p: t.getPlayerList()) {
-						int playerId = p.savePlayerObject(teamId, database);
+						int playerId = p.savePlayerObject(teamId, playerDatabase);
 						if (playerId == 0) {
 							return false;
 						}
@@ -94,7 +147,7 @@ public class LeagueModel implements ILeagueModel{
 		
 		TeamObject teamToLoad = null;
 		LeagueObject newLeague = new LeagueObject();
-		int leagueId = newLeague.loadLeagueObject(leagueName, database);
+		int leagueId = newLeague.loadLeagueObject(leagueName, leagueDatabase);
 		if (leagueId == 0) {
 			return false;
 		}
@@ -105,7 +158,7 @@ public class LeagueModel implements ILeagueModel{
 		}
 		
 		for (ConferenceObject c: conferences) {
-			int conferenceId = c.loadConferenceObject(leagueId, database);
+			int conferenceId = c.loadConferenceObject(leagueId, conferenceDatabase);
 			String cName = c.getConferenceName();
 			
 			if (conferenceId == 0) {
@@ -118,7 +171,7 @@ public class LeagueModel implements ILeagueModel{
 			}
 			
 			for (DivisionObject d: divisions) {
-				int divisionId = d.loadDivisionObject(conferenceId, database);
+				int divisionId = d.loadDivisionObject(conferenceId, divisionDatabase);
 				String dName = d.getDivisionName();
 				
 				if (divisionId == 0) {
@@ -131,7 +184,7 @@ public class LeagueModel implements ILeagueModel{
 				}
 				
 				for (TeamObject t: teams) {
-					int teamId = t.loadTeamObject(divisionId, database);
+					int teamId = t.loadTeamObject(divisionId, teamDatabase);
 					String tName = t.getTeamName();
 					
 					if (teamId == 0) {
@@ -144,7 +197,7 @@ public class LeagueModel implements ILeagueModel{
 					}
 					
 					for (PlayerObject p: players) {
-						int playerId = p.loadPlayerObject(teamId, database);
+						int playerId = p.loadPlayerObject(teamId, playerDatabase);
 						if (playerId == 0) {
 							return false;
 						}
@@ -160,7 +213,7 @@ public class LeagueModel implements ILeagueModel{
 		if (teamToLoad != null) {
 			currentTeam = teamToLoad;
 			this.league = newLeague;
-			Date.getInstance().loadDate(newLeague, database);
+			Date.getInstance().loadDate(newLeague, dateDatabase);
 			return true;
 		}
 

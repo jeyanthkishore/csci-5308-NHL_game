@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.dhl.g05.gamePlayConfig.TradingModel;
-import com.dhl.g05.leaguemodel.ConferenceObject;
-import com.dhl.g05.leaguemodel.DivisionObject;
-import com.dhl.g05.leaguemodel.LeagueObject;
-import com.dhl.g05.leaguemodel.TeamObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceObject;
+import com.dhl.g05.leaguemodel.division.DivisionObject;
+import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.team.TeamObject;
 
 
 public class InitiateTradeOffer {

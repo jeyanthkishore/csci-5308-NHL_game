@@ -1,13 +1,22 @@
 package com.dhl.g05.statemachine;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
-import com.dhl.g05.leaguemodel.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceObject;
+import com.dhl.g05.leaguemodel.division.DivisionObject;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
+import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.player.PlayerObject;
+import com.dhl.g05.leaguemodel.team.TeamObject;
 import com.dhl.g05.operation.DbPersistanceMock;
 
 public class LeagueModelTest {
@@ -18,7 +27,14 @@ public class LeagueModelTest {
 
 	@Before
 	public void init() {
-		leagueModel = new LeagueModel(new DbPersistanceMock());
+		leagueModel = new LeagueModel();
+		leagueModel.setConferenceDatabase(new DbPersistanceMock());
+		leagueModel.setLeagueDatabase(new DbPersistanceMock());
+		leagueModel.setDivisionDatabase(new DbPersistanceMock());
+		leagueModel.setTeamDatabase(new DbPersistanceMock());
+		leagueModel.setPlayerDatabase(new DbPersistanceMock());
+		leagueModel.setDateDatabase(new DbPersistanceMock());
+		
 		
 		PlayerObject player = new PlayerObject("Cristiano Ronaldo",null,null,10,15,1,20,15);
 		ArrayList<PlayerObject> players = new ArrayList<>();

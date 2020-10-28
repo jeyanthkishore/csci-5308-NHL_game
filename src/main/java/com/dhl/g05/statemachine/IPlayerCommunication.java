@@ -2,8 +2,8 @@ package com.dhl.g05.statemachine;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.CoachObject;
-import com.dhl.g05.leaguemodel.FreeAgentObject;
+import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
 
 public interface IPlayerCommunication {
 	public void sendMessage(String message);
