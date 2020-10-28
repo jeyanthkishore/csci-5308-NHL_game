@@ -73,8 +73,8 @@ public class LeagueModelJson implements ILeagueModelJson{
 		this.playerDatabase = playerDatabase;
 	}
 
-	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches) {
-		return new LeagueModel(leagueName, conferences, freeAgents, coaches , leagueDatabase);
+	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches, List<ManagerModel> managers) {
+		return new LeagueModel(leagueName, conferences, freeAgents, coaches, managers, leagueDatabase);
 	}
 
 	@Override

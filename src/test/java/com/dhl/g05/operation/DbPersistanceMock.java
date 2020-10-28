@@ -79,8 +79,8 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 	}
 
 	@Override
-	public int saveLeagueManagerObject(int league_id, ManagerModel manager) {
-		if(league_id==1 && manager.getName().equals("Smith")) {
+	public int saveLeagueManagerObject(int league_id, LeagueModel manager) {
+		if(league_id==1) {
 			return 1;
 		}
 		return 0;
@@ -104,10 +104,8 @@ public class DbPersistanceMock implements IManagerPersistence,IDatePersistence,I
 	}
 
 	@Override
-	public int loadLeagueManagerObject(String leagueName, ManagerModel manager) {
+	public int loadLeagueManagerObject(String leagueName, LeagueModel manager) {
 		if(leagueName.equalsIgnoreCase("HockeyLeague")) {
-			manager.setName("Smith");
-			if(manager.getName().equalsIgnoreCase("Smith"))
 				return 1;
 		}
 		return 0;

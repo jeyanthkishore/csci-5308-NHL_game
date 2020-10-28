@@ -1,8 +1,11 @@
 package com.dhl.g05.leaguemodel.manager;
 
+import com.dhl.g05.leaguemodel.coach.ICoachModel;
+
 import java.util.List;
 
 public class ManagerModel {
+
 	private String name;
 	private List<ManagerModel> managerList;
 
@@ -10,9 +13,16 @@ public class ManagerModel {
 		setName(null);
 	}
 
-	public ManagerModel(List<ManagerModel> managerList) {
-		this.managerList = managerList;
+//	public ManagerModel(List<ManagerModel> managerList) {
+//		this.managerList = managerList;
+//	}
 
+	public ManagerModel(String name) {
+		this.name = name;
+	}
+
+	public ManagerModel(IManagerModel manager) {
+		manager.loadManagerModelData(this);
 	}
 
 	public List<ManagerModel> getManagerList() {
@@ -52,11 +62,12 @@ public class ManagerModel {
 		return false;
 	}
 
-	public int saveLeagueManagerObject(int leagueId, IManagerPersistence database) {
-		return database.saveLeagueManagerObject(leagueId, this);
-	}
+//	public int saveLeagueManagerObject(int leagueId, IManagerPersistence database) {
+//		return database.saveLeagueManagerObject(leagueId, this);
+//	}
+//
+//	public int loadLeagueManagerObject(String leagueName,IManagerPersistence database) {
+//		return database.loadLeagueManagerObject(leagueName,this);
+//	}
 
-	public int loadLeagueManagerObject(String leagueName,IManagerPersistence database) {
-		return database.loadLeagueManagerObject(leagueName,this);
-	}
 }

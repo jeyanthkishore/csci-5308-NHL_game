@@ -22,7 +22,7 @@ public interface ILeagueModelJson {
 	
 	public LeagueModel getLeague();
 	public TeamModel getCurrentTeam();
-	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches);
+	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches, List<ManagerModel> managers);
 	public void setLeague(LeagueModel league);
 	public boolean persistLeague();
 	public boolean addTeamToCurrentLeague(String conferenceName, String divisionName, TeamModel team);

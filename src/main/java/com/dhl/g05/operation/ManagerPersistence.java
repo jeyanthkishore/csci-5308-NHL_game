@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.db.StoredProcedure;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.leaguemodel.manager.IManagerPersistence;
 import com.dhl.g05.leaguemodel.manager.ManagerModel;
 
@@ -13,10 +14,9 @@ public class ManagerPersistence implements IManagerPersistence{
 	private List<ManagerModel> managerList = new ArrayList<ManagerModel>();
 
 	@Override
-	public int saveLeagueManagerObject(int league_id, ManagerModel managerObject) {
+	public int saveLeagueManagerObject(int league_id, LeagueModel leagueObject) {
 		StoredProcedure sp= new StoredProcedure();
-		
-		managerList = managerObject.getManagerList();
+		managerList = leagueObject.getManagerList();
 		for(ManagerModel manager: managerList) {
 			String name = manager.getName();
 			int managerId = sp.saveFreeManager(league_id, name);
@@ -25,7 +25,7 @@ public class ManagerPersistence implements IManagerPersistence{
 	}
 
 	@Override
-	public int loadLeagueManagerObject(String leagueName, ManagerModel managerObject) {
+	public int loadLeagueManagerObject(String leagueName, LeagueModel leagueObject) {
 		StoredProcedure sp= new StoredProcedure();
 		int league_id = sp.getLeagueID(leagueName);
 		List<HashMap<String,Object>> managers = new ArrayList<HashMap<String,Object>>();
@@ -37,7 +37,7 @@ public class ManagerPersistence implements IManagerPersistence{
 			managerNameObject.setName(name);
 			managerList.add(managerNameObject);
 		}
-		managerObject.setManagerList(managerList);
+		leagueObject.setManagerList(managerList);
 		return league_id;
 	}
 

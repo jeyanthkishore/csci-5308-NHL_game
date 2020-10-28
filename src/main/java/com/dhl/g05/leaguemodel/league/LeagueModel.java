@@ -7,6 +7,8 @@ import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.coach.ICoachModelPersistence;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.manager.IManagerPersistence;
+import com.dhl.g05.leaguemodel.manager.ManagerModel;
 
 public class LeagueModel {
 
@@ -14,6 +16,7 @@ public class LeagueModel {
 	private List<ConferenceModel> conferences;
 	private List<FreeAgentModel> freeAgents;
 	private List<CoachModel> coaches;
+	private List<ManagerModel> managerList;
 	private ILeagueModelPersistence object;
 
 	public LeagueModel() {
@@ -21,13 +24,15 @@ public class LeagueModel {
 		setConferenceDetails(null);
 		setFreeAgent(null);
 		setFreeCoach(null);
+		setManagerList(null);
 	}
 
-	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach,ILeagueModelPersistence dbObject) {
+	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<ManagerModel> managers, ILeagueModelPersistence dbObject) {
 		setLeagueName(league);
 		setConferenceDetails(conferencedetail);
 		setFreeAgent(agent);
 		setFreeCoach(coach);
+		setManagerList(managers);
 		this.object = dbObject;
 	}
 
@@ -67,6 +72,14 @@ public class LeagueModel {
 		this.coaches = freeCoach;
 	}
 
+	public List<ManagerModel> getManagerList() {
+		return managerList;
+	}
+
+	public void setManagerList(List<ManagerModel> managerList) {
+		this.managerList = managerList;
+	}
+
 	public ILeagueModelPersistence getObject() {
 		return object;
 	}
@@ -89,6 +102,14 @@ public class LeagueModel {
 
 	public int loadLeagueCoachObject(String leagueName, ICoachModelPersistence database) {
 		return database.loadLeagueCoachObject(leagueName, this);
+	}
+
+	public int saveLeagueManagerObject(int leagueId, IManagerPersistence database) {
+		return database.saveLeagueManagerObject(leagueId, this);
+	}
+
+	public int loadLeagueManagerObject(String leagueName,IManagerPersistence database) {
+		return database.loadLeagueManagerObject(leagueName,this);
 	}
 
 	public LeagueConstant validate() {
@@ -115,6 +136,9 @@ public class LeagueModel {
 		}
 		if(isCoachListEmpty()){
 			return LeagueConstant.CoachListEmpty;
+		}
+		if(isManagerListEmpty()){
+			return LeagueConstant.ManagerListEmpty;
 		}
 		return LeagueConstant.Success;
 	}
@@ -167,6 +191,13 @@ public class LeagueModel {
 
 	public boolean isCoachListEmpty() {
 		if(coaches.isEmpty()) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isManagerListEmpty() {
+		if(managerList.isEmpty()) {
 			return true;
 		}
 		return false;

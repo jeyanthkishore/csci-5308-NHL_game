@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
+import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -56,13 +57,17 @@ public class LeagueModelTest {
 		ArrayList<CoachModel> coachList = new ArrayList<>();
 		coachList.add(coach);
 
-		league = new LeagueModel("HockeyLeague",conferences,null,coachList,new DbPersistanceMock());
+		ManagerModel manager = new ManagerModel("Smith");
+		ArrayList<ManagerModel> managerList = new ArrayList<>();
+		managerList.add(manager);
+
+		league = new LeagueModel("HockeyLeague",conferences,null,coachList, managerList, new DbPersistanceMock());
 
 	}
 
 	@Test
 	public void testCreateLeague() {
-		LeagueModel newleague = leagueModel.createLeague("testLeague", new ArrayList<ConferenceModel>(), new ArrayList<FreeAgentModel>(), new ArrayList<CoachModel>());
+		LeagueModel newleague = leagueModel.createLeague("testLeague", new ArrayList<ConferenceModel>(), new ArrayList<FreeAgentModel>(), new ArrayList<CoachModel>(), new ArrayList<ManagerModel>());
 		assertNotNull(newleague);
 		assertTrue(newleague.getLeagueName().equals("testLeague"));
 	}

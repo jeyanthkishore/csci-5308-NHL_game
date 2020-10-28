@@ -734,5 +734,10 @@
       "checking": 0.5,
       "saving": 0.5
     }
+  ],
+  "managerList": [
+    {
+      "name": "Zidanie Zidane"
+    }
   ]
 }

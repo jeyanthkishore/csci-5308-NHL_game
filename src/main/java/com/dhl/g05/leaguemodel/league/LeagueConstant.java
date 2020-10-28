@@ -11,7 +11,8 @@ public enum LeagueConstant {
 	FreeAgentAttributeEmpty("Free Agent Attribue Is Empty"),
 	ImproperPlayerPosition("Position Of The Player Cannot Be Different"),
 	LeagueExists("League Already Present"),
-	CoachListEmpty("Coach List is Empty");
+	CoachListEmpty("Coach List is Empty"),
+	ManagerListEmpty("Manager List is Empty");
 
 	private String value; 
 

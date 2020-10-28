@@ -33,8 +33,8 @@ public class MockLeagueModel implements ILeagueModelJson{
 	}
 
 	@Override
-	public LeagueModel createLeague(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach) {
-		return new LeagueModel(league, conferencedetail, agent, coach,new DbPersistanceMock());
+	public LeagueModel createLeague(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<ManagerModel> managers) {
+		return new LeagueModel(league, conferencedetail, agent, coach, managers,new DbPersistanceMock());
 	}
 
 	@Override

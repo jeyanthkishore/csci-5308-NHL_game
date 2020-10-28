@@ -128,15 +128,15 @@ public class LeagueModelCreatorFromJSON {
 		ArrayList<ManagerModel> managerList = new ArrayList<>();
 		
 		String leagueName = (String)leagueData.get("leagueName");
-		if (conferences != null && freeAgents != null && freeCoaches != null) {
-			LeagueModel league = leagueModel.createLeague(leagueName,conferences,freeAgents, freeCoaches);
+		if (conferences != null && freeAgents != null && freeCoaches != null && managers != null) {
+			LeagueModel league = leagueModel.createLeague(leagueName, conferences, freeAgents, freeCoaches, managers);
 			LeagueConstant validationResult  =  leagueModel.validateLeague(league);
 			if (validationResult.equals(LeagueConstant.Success)) {
-				if ( managers != null){
-					System.out.println(managers);
-					ManagerModel managerObject = new ManagerModel(managers);
-					managerList.add(managerObject);
-				}
+//				if ( managers != null){
+//					System.out.println(managers);
+//					ManagerModel managerObject = new ManagerModel(managers);
+//					managerList.add(managerObject);
+//				}
 				return league;
 			} else {
 				playerCommunication.sendMessage(validationResult.getValue());
@@ -329,8 +329,7 @@ public class LeagueModelCreatorFromJSON {
 			if (name.isEmpty()) {
 				playerCommunication.sendMessage(("Manager name is empty"));
 			}
-			ManagerModel managerObject = new ManagerModel();
-			managerObject.setName(name);
+			ManagerModel managerObject = new ManagerModel(name);
 			ManagerConstant validationResult  = managerObject.validate();
 			if (validationResult.equals(ManagerConstant.Success)) {
 				managers.add(managerObject);

@@ -17,6 +17,7 @@ import com.dhl.g05.leaguemodel.freeagent.IFreeAgentModel;
 import com.dhl.g05.leaguemodel.league.ILeagueModel;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.leaguemodel.manager.IManagerModel;
+import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.IPlayerModel;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.ITeamModel;
@@ -33,7 +34,9 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public List<FreeAgentModel> freeAgentList;
 	public List<ConferenceModel> conferenceList;
 	public List<CoachModel> coachList;
+	public List<ManagerModel> managerList;
 	public CoachModel coachDetails;
+	public ManagerModel managerDetails;
 	public ArrayList<HashMap<String,Object>> leagueList;
 	public HashMap<String,Object> leagueMap;
 	public String teamName = "Striker Six";
@@ -87,6 +90,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		teamList = new ArrayList<TeamModel>();
 		freeAgentList = new ArrayList<FreeAgentModel>();
 		coachList = new ArrayList<CoachModel>();
+		managerList = new ArrayList<ManagerModel>();
 		conferenceList = new ArrayList<ConferenceModel>();
 		leagueList = new ArrayList<HashMap<String,Object>>();
 		leagueMap = new HashMap<String,Object>();
@@ -136,10 +140,12 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		conferenceList.add(new ConferenceModel(conferenceName,divisionList));
 		conferenceList.add(new ConferenceModel(conferenceTwoName,divisionList));
 		coachList.add(new CoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving));
+		managerList.add(new ManagerModel(generalManagerName));
 		league.setLeagueName(leagueName);
 		league.setConferenceDetails(conferenceList);
 		league.setFreeAgent(freeAgentList);
 		league.setFreeCoach(coachList);
+		league.setManagerList(managerList);
 		leagueMap.put("league_name","HockeyLeague");
 		leagueList.add(leagueMap);
 		leagueMap.put("league_name","CanadaLeague");
@@ -371,6 +377,11 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		coachObject.setChecking(coachChecking);
 		coachObject.setSaving(coachSaving);
 
+	}
+
+	@Override
+	public void loadManagerModelData(ManagerModel managerObject){
+		managerObject.setName(generalManagerName);
 	}
 
 }
