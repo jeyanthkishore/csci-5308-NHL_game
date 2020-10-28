@@ -46,7 +46,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public String divisionTwoName = "Pacific";
 	public String conferenceName = "Western Conference";
 	public String conferenceTwoName = "Eastern Conference";
-	public double age = 10;
+	public int age = 10;
 	public double skating = 10;
 	public double shooting = 15;
 	public double checking = 10;

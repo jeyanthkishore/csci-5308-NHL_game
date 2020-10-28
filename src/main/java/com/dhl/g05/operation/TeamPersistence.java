@@ -40,7 +40,7 @@ public class TeamPersistence implements ITeamModelPersistence{
 		playerValue = sp.fetchAllPlayers(teamId);
 		for(HashMap<String, Object> player : playerValue) {
 			String playerName = player.get("player_name").toString();
-			double age = Double.parseDouble(player.get("age").toString());
+			int age = Integer.parseInt(player.get("age").toString());
 			double skating = Double.parseDouble(player.get("skating").toString());
 			double shooting = Double.parseDouble(player.get("shooting").toString());
 			double checking = Double.parseDouble(player.get("checking").toString());

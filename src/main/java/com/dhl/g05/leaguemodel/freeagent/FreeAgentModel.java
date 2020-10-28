@@ -3,7 +3,7 @@ package com.dhl.g05.leaguemodel.freeagent;
 public class FreeAgentModel implements IFreeAgent{
 	private String playerName;
 	private String position;
-	private double age;
+	private int age;
 	private double skating;
 	private double shooting;
 	private double checking;
@@ -19,7 +19,7 @@ public class FreeAgentModel implements IFreeAgent{
 		setIsRetired(false);
 	}
 
-	public FreeAgentModel(String playerName, String position, double age, double skating, double shooting, double checking, double saving) {
+	public FreeAgentModel(String playerName, String position, int age, double skating, double shooting, double checking, double saving) {
 		this.playerName = playerName;
 		this.position = position;
 		this.age = age;
@@ -49,11 +49,11 @@ public class FreeAgentModel implements IFreeAgent{
 		this.position = postition;
 	}
 
-	public double getAge() {
+	public int getAge() {
 		return age;
 	}
 
-	public void setAge(double age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 

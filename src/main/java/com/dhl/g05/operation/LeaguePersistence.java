@@ -29,8 +29,8 @@ public class LeaguePersistence implements ILeagueModelPersistence{
 		String leagueName = leagueObject.getLeagueName();
 		String playerName;
 		String position;
-		double age,skating,shooting,checking,saving;
-
+		double skating,shooting,checking,saving;
+		int age;
 		int leagueId = sp.saveLeague(leagueName);
 		freeAgent = leagueObject.getFreeAgent();
 		for(FreeAgentModel free : freeAgent) {
@@ -53,7 +53,8 @@ public class LeaguePersistence implements ILeagueModelPersistence{
 		List<HashMap<String, Object>> conferenceValue = new ArrayList<HashMap<String,Object>>();
 		conferenceList = new ArrayList<ConferenceModel>();
 		String playerName,position;
-		double age, skating, shooting, checking, saving;
+		int age;
+		double skating, shooting, checking, saving;
 		List<HashMap<String,Object>> agentValue = new ArrayList<HashMap<String,Object>>();
 
 		conferenceValue = sp.fetchAllConferences(league_id);
@@ -67,7 +68,7 @@ public class LeaguePersistence implements ILeagueModelPersistence{
 		for(HashMap<String, Object> agent : agentValue) {
 			playerName = agent.get("agent_name").toString();
 			position = agent.get("position_name").toString();
-			age = Double.parseDouble(agent.get("age").toString());
+			age = Integer.parseInt(agent.get("age").toString());
 			skating = Double.parseDouble(agent.get("skating").toString());
 			shooting = Double.parseDouble(agent.get("shooting").toString());
 			checking = Double.parseDouble(agent.get("checking").toString());

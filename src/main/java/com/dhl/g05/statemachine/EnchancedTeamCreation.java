@@ -79,7 +79,7 @@ public class EnchancedTeamCreation {
 		Boolean captain = false;
 		int goalie = 0;
 		int skaters = 0;
-		double age = 0;
+		int age = 0;
 		double skating = 0;
 		double shooting = 0;
 		double checking = 0;

@@ -17,7 +17,7 @@ public class PlayerModel extends FreeAgentModel{
 		setPosition(null);
 	}
 
-	public PlayerModel(String playerName, String position, Boolean captain, double age, double skating, double shooting, double checking, double saving) {
+	public PlayerModel(String playerName, String position, Boolean captain, int age, double skating, double shooting, double checking, double saving) {
 		super(playerName,position, age, skating, shooting, checking, saving);
 		this.captain = captain;
 	}

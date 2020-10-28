@@ -294,7 +294,7 @@ public class StoredProcedure {
 		return result;
 	}
 
-	public int savePlayer(int team_id,int position_id,String player_name , int player_is_captain, double age, double skating, double shooting, double checking, double saving)
+	public int savePlayer(int team_id,int position_id,String player_name , int player_is_captain, int age, double skating, double shooting, double checking, double saving)
 	{
 		int result=0;
 		try {
@@ -306,7 +306,7 @@ public class StoredProcedure {
 			stmt.setInt(2,position_id);
 			stmt.setString(3,player_name);
 			stmt.setInt(4,player_is_captain);
-			stmt.setDouble(5,age);
+			stmt.setInt(5,age);
 			stmt.setDouble(6,skating);
 			stmt.setDouble(7,shooting);
 			stmt.setDouble(8,checking);
@@ -465,7 +465,7 @@ public class StoredProcedure {
 		return result;
 	}
 
-	public int saveFreeAgent(String agent_name, String position_name , String league_name, double age, double skating, double shooting, double checking, double saving)
+	public int saveFreeAgent(String agent_name, String position_name , String league_name, int age, double skating, double shooting, double checking, double saving)
 	{
 		int result=0;
 		try {
@@ -476,7 +476,7 @@ public class StoredProcedure {
 			stmt.setString(1, agent_name);
 			stmt.setString(2, position_name);
 			stmt.setString(3, league_name);
-			stmt.setDouble(4,age);
+			stmt.setInt(4,age);
 			stmt.setDouble(5,skating);
 			stmt.setDouble(6,shooting);
 			stmt.setDouble(7,checking);

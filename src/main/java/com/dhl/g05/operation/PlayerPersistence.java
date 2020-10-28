@@ -17,14 +17,14 @@ public class PlayerPersistence implements IPlayerModelPersistence{
 		String position = playerObject.getPosition();
 		int positionId = sp.getPositionID(position);
 		Boolean captain = playerObject.getCaptain();
-		double age = playerObject.getAge();
+		int age = playerObject.getAge();
 		double skating = playerObject.getSkating();
 		double shooting = playerObject.getShooting();
 		double checking = playerObject.getChecking();
 		double saving = playerObject.getSaving();
 		int captainID = (captain) ? 1 : 0;
-		
 		int playerId = sp.savePlayer(teamId,positionId,playerName,captainID,age,skating,shooting,checking,saving);
+
 		return playerId;
 	}
 
@@ -37,7 +37,7 @@ public class PlayerPersistence implements IPlayerModelPersistence{
 		playerDetail = sp.fetchPlayerDetails(playerId);
 		String position = playerDetail.get(0).get("position_name").toString();
 		Boolean captain = Boolean.parseBoolean(playerDetail.get(0).get("player_is_captain").toString());
-		double age = Double.parseDouble(playerDetail.get(0).get("age").toString());
+		int age = Integer.parseInt(playerDetail.get(0).get("age").toString());
 		double skating = Double.parseDouble(playerDetail.get(0).get("skating").toString());
 		double shooting = Double.parseDouble(playerDetail.get(0).get("shooting").toString());
 		double checking = Double.parseDouble(playerDetail.get(0).get("checking").toString());

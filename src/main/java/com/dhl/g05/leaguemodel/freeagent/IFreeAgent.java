@@ -10,9 +10,9 @@ public interface IFreeAgent {
 
 	public void setPosition(String postition);
 
-	public double getAge();
+	public int getAge();
 
-	public void setAge(double age);
+	public void setAge(int age);
 
 	public double getSkating();
 

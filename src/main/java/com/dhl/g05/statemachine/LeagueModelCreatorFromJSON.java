@@ -230,7 +230,7 @@ public class LeagueModelCreatorFromJSON {
 			String playerName = (String)((JSONObject) p).get("playerName");
 			String position = (String)((JSONObject) p).get("position");
 			Boolean captain = (Boolean)((JSONObject) p).get("captain");
-			double age = Double.parseDouble(((JSONObject) p).get("age").toString());
+			int age = Integer.parseInt(((JSONObject) p).get("age").toString());
 			double skating = Double.parseDouble(((JSONObject) p).get("skating").toString());
 			double shooting = Double.parseDouble(((JSONObject) p).get("shooting").toString());
 			double checking = Double.parseDouble(((JSONObject) p).get("checking").toString());
@@ -259,7 +259,7 @@ public class LeagueModelCreatorFromJSON {
 		for (Object p: jsonPlayers) {
 			String playerName = (String)((JSONObject) p).get("playerName");
 			String position = (String)((JSONObject) p).get("position");
-			double age = Double.parseDouble(((JSONObject) p).get("age").toString());
+			int age = Integer.parseInt(((JSONObject) p).get("age").toString());
 			double skating = Double.parseDouble(((JSONObject) p).get("skating").toString());
 			double shooting = Double.parseDouble(((JSONObject) p).get("shooting").toString());
 			double checking = Double.parseDouble(((JSONObject) p).get("checking").toString());

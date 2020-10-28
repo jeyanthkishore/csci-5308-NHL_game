@@ -41,7 +41,7 @@
 
                             "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10.0, "skating": 11.1, "shooting": 12.1, "checking": 12.1 , "saving": 13.1
+                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11.1, "shooting": 12.1, "checking": 12.1 , "saving": 13.1
                                 },
                                 {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
@@ -101,7 +101,7 @@
 
                             "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10.1, "skating": 11.2, "shooting": 12.3, "checking": 12.4 , "saving": 13.5
+                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11.2, "shooting": 12.3, "checking": 12.4 , "saving": 13.5
                                 },
                                 {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
@@ -164,7 +164,7 @@
 
                             "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10.1, "skating": 11.2, "shooting": 12.3, "checking": 12.4 , "saving": 13.5
+                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11.2, "shooting": 12.3, "checking": 12.4 , "saving": 13.5
                                 },
                                 {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },
@@ -223,7 +223,7 @@
 
                             "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10.1, "skating": 11.2, "shooting": 12.3, "checking": 12.4 , "saving": 13.5
+                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11.2, "shooting": 12.3, "checking": 12.4 , "saving": 13.5
                                 },
                                 {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
                                 },

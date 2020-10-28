@@ -63,15 +63,15 @@ public class FreeAgentModelTest {
 	@Test
 	public void setAgeTest() {
 		FreeAgentModel object = new FreeAgentModel();
-		object.setAge(10.0);
-		assertEquals(object.getAge(),10.0,0);
+		object.setAge(10);
+		assertSame(object.getAge(),10);
 	}
 
 	@Test
 	public void getAgeTest() {
 		FreeAgentModel object = new FreeAgentModel();
-		object.setAge(10.0);
-		assertEquals(object.getAge(),10.0,0);
+		object.setAge(10);
+		assertSame(object.getAge(),10);
 	}
 
 	@Test
