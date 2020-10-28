@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.dhl.g05.leaguemodel.team.TeamConstant;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.operation.DbPersistanceMock;
 
@@ -248,31 +249,31 @@ public class TeamObjectTest{
 	public void validateTeamTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		TeamModel validate = new TeamModel(mock);
-		assertSame(ValidateEnumModel.Success,validate.validate());
+		assertSame(TeamConstant.Success,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setPlayerListEmpty();
 		validate = new TeamModel(mock);
-		assertSame(ValidateEnumModel.PlayerListEmpty,validate.validate());
+		assertSame(TeamConstant.PlayerListEmpty,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setTeamNameNull();
 		validate = new TeamModel(mock);
-		assertSame(ValidateEnumModel.TeamDetailsEmpty,validate.validate());
+		assertSame(TeamConstant.TeamDetailsEmpty,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.addMaximumPlayer();
 		validate = new TeamModel(mock);
-		assertSame(ValidateEnumModel.MaxPlayerCountExceed,validate.validate());
+		assertSame(TeamConstant.MaxPlayerCountExceed,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setSecondCaptain();
 		validate = new TeamModel(mock);
-		assertSame(ValidateEnumModel.MoreTeamCaptain,validate.validate());
+		assertSame(TeamConstant.MoreTeamCaptain,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.removeCaptain();
 		validate = new TeamModel(mock);
-		assertSame(ValidateEnumModel.NoTeamCaptain,validate.validate());
+		assertSame(TeamConstant.NoTeamCaptain,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setCoachDetailsNull();
 		validate = new TeamModel(mock);
-		assertSame(ValidateEnumModel.CoachDetailsEmpty,validate.validate());
+		assertSame(TeamConstant.CoachDetailsEmpty,validate.validate());
 	}
 	
 	@Test

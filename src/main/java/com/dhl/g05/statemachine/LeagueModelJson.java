@@ -2,19 +2,24 @@ package com.dhl.g05.statemachine;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.ValidateEnumModel;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.conference.ConferenceConstant;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.conference.IConferenceModelPersistence;
+import com.dhl.g05.leaguemodel.division.DivisionConstant;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.leaguemodel.division.IDivisionModelPersistence;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.league.ILeagueModelPersistence;
+import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.manager.ManagerConstant;
 import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.IPlayerModelPersistence;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.ITeamModelPersistence;
+import com.dhl.g05.leaguemodel.team.TeamConstant;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.operation.ConferencePersistence;
 import com.dhl.g05.operation.DatePersistence;
@@ -25,7 +30,7 @@ import com.dhl.g05.operation.PlayerPersistence;
 import com.dhl.g05.operation.TeamPersistence;
 import com.dhl.g05.simulation.Date;
 
-public class LeagueModelJson implements ILeagueModel{
+public class LeagueModelJson implements ILeagueModelJson{
 	private LeagueModel league;
 	private TeamModel currentTeam;
 	private ILeagueModelPersistence leagueDatabase;
@@ -254,32 +259,32 @@ public class LeagueModelJson implements ILeagueModel{
 	}
 
 	@Override
-	public ValidateEnumModel validateLeague(LeagueModel league) {
+	public LeagueConstant validateLeague(LeagueModel league) {
 		return league.validate();
 	}
 
 	@Override
-	public ValidateEnumModel validateConference(ConferenceModel conference) {
+	public ConferenceConstant validateConference(ConferenceModel conference) {
 		return conference.validate();
 	}
 
 	@Override
-	public  ValidateEnumModel validateManager(ManagerModel managerObject) {
+	public ManagerConstant validateManager(ManagerModel managerObject) {
 			return managerObject.validate();
 	}
 
 	@Override
-	public ValidateEnumModel validateDivision(DivisionModel division) {
+	public DivisionConstant validateDivision(DivisionModel division) {
 		return division.validate();
 	}
 
 	@Override
-	public ValidateEnumModel validateTeam(TeamModel team) {
+	public TeamConstant validateTeam(TeamModel team) {
 		return team.validate();
 	}
 
 	@Override
-	public ValidateEnumModel validatePlayer(PlayerModel player) {
+	public FreeAgentConstant validatePlayer(PlayerModel player) {
 		return player.validate();
 	}
 

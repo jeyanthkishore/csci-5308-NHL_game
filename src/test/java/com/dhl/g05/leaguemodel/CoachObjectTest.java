@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.dhl.g05.leaguemodel.coach.CoachConstant;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 
@@ -143,11 +144,11 @@ public class CoachObjectTest {
         JsonMockDataDb mock = new JsonMockDataDb();
         mock.setCoachNameEmpty();
         CoachModel validate = new CoachModel(mock);
-        assertEquals(ValidateEnumModel.CoachNameEmpty,validate.validate());
+        assertEquals(CoachConstant.CoachNameEmpty,validate.validate());
         mock = new JsonMockDataDb();
         validate = new CoachModel(mock);
         validate.setSkating(-1);
-        assertEquals(ValidateEnumModel.InvalidStateOfCoach,validate.validate());
+        assertEquals(CoachConstant.InvalidStateOfCoach,validate.validate());
     }
 
 }

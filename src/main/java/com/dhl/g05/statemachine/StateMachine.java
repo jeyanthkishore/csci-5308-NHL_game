@@ -5,9 +5,9 @@ public class StateMachine {
 	
 	private AbstractState currentState;   
 	private IPlayerCommunication playerCommunication;
-	private ILeagueModel leagueModel;
+	private ILeagueModelJson leagueModel;
 	
-	public StateMachine(IPlayerCommunication playerCommunication, ILeagueModel leagueModel) {
+	public StateMachine(IPlayerCommunication playerCommunication, ILeagueModelJson leagueModel) {
 		currentState = new ImportState(this);  
 		this.playerCommunication = playerCommunication;
 		this.leagueModel = leagueModel;
@@ -70,11 +70,11 @@ public class StateMachine {
 		return playerCommunication;
 	}
 	
-	public void setLeagueModel(ILeagueModel leagueModel) {
+	public void setLeagueModel(ILeagueModelJson leagueModel) {
 		this.leagueModel = leagueModel;
 	}
 	
-	public ILeagueModel getLeagueModel() {
+	public ILeagueModelJson getLeagueModel() {
 		return leagueModel;
 	}
 }

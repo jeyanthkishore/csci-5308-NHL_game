@@ -2,8 +2,6 @@ package com.dhl.g05.leaguemodel.team;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.ILeagueModelComplete;
-import com.dhl.g05.leaguemodel.ValidateEnumModel;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.freeagent.IFreeAgent;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
@@ -26,7 +24,7 @@ public class TeamModel {
 	}
 
 
-	public TeamModel(ILeagueModelComplete teamObject) {
+	public TeamModel(ITeamModel teamObject) {
 		teamObject.loadTeamModelData(this);
 	}
 	
@@ -106,26 +104,26 @@ public class TeamModel {
 		this.teamStrength = teamStrength;
 	}
 
-	public ValidateEnumModel validate() {
+	public TeamConstant validate() {
 		if(isTeamDetailsEmpty()||isTeamDetailsNull()) {
-			return ValidateEnumModel.TeamDetailsEmpty;
+			return TeamConstant.TeamDetailsEmpty;
 		}
 		if(isPlayerListEmpty()) {
-			return ValidateEnumModel.PlayerListEmpty;
+			return TeamConstant.PlayerListEmpty;
 		}
 		if(isPlayerListMaximum()) {
-			return ValidateEnumModel.MaxPlayerCountExceed;
+			return TeamConstant.MaxPlayerCountExceed;
 		}
 		if(containOneTeamCaptain()==0) {
-			return ValidateEnumModel.NoTeamCaptain;
+			return TeamConstant.NoTeamCaptain;
 		}
 		if(containOneTeamCaptain()>1) {
-			return ValidateEnumModel.MoreTeamCaptain;
+			return TeamConstant.MoreTeamCaptain;
 		}
 		if(isCoachDetailsEmptyOrNull()){
-			return ValidateEnumModel.CoachDetailsEmpty;
+			return TeamConstant.CoachDetailsEmpty;
 		}
-		return ValidateEnumModel.Success;
+		return TeamConstant.Success;
 	}
 
 	public boolean isTeamDetailsEmpty() {

@@ -2,18 +2,23 @@ package com.dhl.g05.statemachine.mocks;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.ValidateEnumModel;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.conference.ConferenceConstant;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.division.DivisionConstant;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.manager.ManagerConstant;
 import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.team.TeamConstant;
 import com.dhl.g05.leaguemodel.team.TeamModel;
-import com.dhl.g05.statemachine.ILeagueModel;
+import com.dhl.g05.statemachine.ILeagueModelJson;
 
-public class MockLeagueModelValidationFails implements ILeagueModel{
+public class MockLeagueModelValidationFails implements ILeagueModelJson{
 private LeagueModel league;
 	
 	@Override
@@ -33,33 +38,33 @@ private LeagueModel league;
 	}
 
 	@Override
-	public ValidateEnumModel validateLeague(LeagueModel league) {
-		return ValidateEnumModel.Failure;
+	public LeagueConstant validateLeague(LeagueModel league) {
+		return LeagueConstant.Failure;
 	}
 
 	@Override
-	public ValidateEnumModel validateConference(ConferenceModel conference) {
-		return ValidateEnumModel.Failure;
+	public ConferenceConstant validateConference(ConferenceModel conference) {
+		return ConferenceConstant.Failure;
 	}
 
 	@Override
-	public ValidateEnumModel validateDivision(DivisionModel division) {
-		return ValidateEnumModel.Failure;
+	public DivisionConstant validateDivision(DivisionModel division) {
+		return DivisionConstant.Failure;
 	}
 
 	@Override
-	public ValidateEnumModel validateTeam(TeamModel team) {
-		return ValidateEnumModel.Failure;
+	public TeamConstant validateTeam(TeamModel team) {
+		return TeamConstant.Failure;
 	}
 
 	@Override
-	public ValidateEnumModel validatePlayer(PlayerModel player) {
-		return ValidateEnumModel.Failure;
+	public FreeAgentConstant validatePlayer(PlayerModel player) {
+		return FreeAgentConstant.Failure;
 	}
 
 	@Override
-	public ValidateEnumModel validateManager(ManagerModel managerObject) {
-		return ValidateEnumModel.Failure;
+	public ManagerConstant validateManager(ManagerModel managerObject) {
+		return ManagerConstant.Failure;
 	}
 
 	@Override

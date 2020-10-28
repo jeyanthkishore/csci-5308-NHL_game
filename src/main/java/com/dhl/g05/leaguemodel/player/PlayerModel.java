@@ -1,7 +1,6 @@
 package com.dhl.g05.leaguemodel.player;
 
-import com.dhl.g05.leaguemodel.ILeagueModelComplete;
-import com.dhl.g05.leaguemodel.ValidateEnumModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 
 public class PlayerModel extends FreeAgentModel{
@@ -34,15 +33,15 @@ public class PlayerModel extends FreeAgentModel{
 		this.captain = captain;
 	}
 
-	public PlayerModel(ILeagueModelComplete player) {
+	public PlayerModel(IPlayerModel player) {
 		player.loadPlayerModelData(this);
 	}
 	
-	public ValidateEnumModel validate() {
-		ValidateEnumModel result = super.validate();
-		if(result.equals(ValidateEnumModel.Success)) {
+	public FreeAgentConstant validate() {
+		FreeAgentConstant result = super.validate();
+		if(result.equals(FreeAgentConstant.Success)) {
 			if(isCaptainNull()) {
-				return ValidateEnumModel.CaptainNull; 
+				return FreeAgentConstant.CaptainNull; 
 			}
 		}
 		return result;

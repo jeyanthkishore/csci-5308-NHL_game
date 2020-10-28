@@ -2,8 +2,6 @@ package com.dhl.g05.leaguemodel.division;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.ILeagueModelComplete;
-import com.dhl.g05.leaguemodel.ValidateEnumModel;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 
 public class DivisionModel {
@@ -16,7 +14,7 @@ public class DivisionModel {
 		setTeamDetails(null);
 	}
 	
-	public DivisionModel(ILeagueModelComplete divisionObject) {
+	public DivisionModel(IDivisionModel divisionObject) {
 		divisionObject.LoadDivisionModelData(this);
 	}
 	
@@ -47,14 +45,14 @@ public class DivisionModel {
 	public void setTeamDetails(List<TeamModel> teamDetails) {
 		this.teams = teamDetails;
 	}
-	public ValidateEnumModel validate() {
+	public DivisionConstant validate() {
 		if(isDivisionNameEmptyorNull()) {
-			return ValidateEnumModel.DivisionNameEmpty;
+			return DivisionConstant.DivisionNameEmpty;
 		}
 		if(isTeamListEmpty()) {
-			return ValidateEnumModel.TeamListEmpty;
+			return DivisionConstant.TeamListEmpty;
 		}
-		return ValidateEnumModel.Success;
+		return DivisionConstant.Success;
 	}
 	public boolean isDivisionNameEmptyorNull() {
 		if(divisionName == "" || divisionName == null) {

@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.dhl.g05.leaguemodel.division.DivisionConstant;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.operation.DbPersistanceMock;
 
@@ -99,15 +100,15 @@ public class DivisionObjectTest {
 	public void validateDivisionTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		DivisionModel validate = new DivisionModel(mock); 
-		assertSame(ValidateEnumModel.Success,validate.validate());
+		assertSame(DivisionConstant.Success,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setDivisionNameEmpty();
 		validate = new DivisionModel(mock);
-		assertSame(ValidateEnumModel.DivisionNameEmpty,validate.validate());
+		assertSame(DivisionConstant.DivisionNameEmpty,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.removeTeams();
 		validate = new DivisionModel(mock); 
-		assertSame(ValidateEnumModel.TeamListEmpty,validate.validate());
+		assertSame(DivisionConstant.TeamListEmpty,validate.validate());
 	}
 	
 	@Test

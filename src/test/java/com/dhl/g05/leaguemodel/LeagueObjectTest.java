@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.operation.DbPersistanceMock;
 
@@ -253,31 +254,31 @@ public class LeagueObjectTest {
 		DbPersistanceMock data = new DbPersistanceMock();
 		LeagueModel league = new LeagueModel(mock.leagueName,mock.conferenceList,mock.freeAgentList, mock.coachList ,data);
 		league.setLeagueName("DummyLEague");
-		assertSame(ValidateEnumModel.Success,league.validate());
+		assertSame(LeagueConstant.Success,league.validate());
 		league = new LeagueModel(mock);
 		mock.setLeagueEmpty();
 		league = new LeagueModel(mock);
-		assertSame(ValidateEnumModel.LeagueNameEmpty,league.validate());
+		assertSame(LeagueConstant.LeagueNameEmpty,league.validate());
 		mock = new JsonMockDataDb();
 		mock.removeConference();
 		league = new LeagueModel(mock);
-		assertSame(ValidateEnumModel.ConferenceListEmpty,league.validate());
+		assertSame(LeagueConstant.ConferenceListEmpty,league.validate());
 		mock = new JsonMockDataDb();
 		mock.removeOneConference();
 		league = new LeagueModel(mock);
-		assertSame(ValidateEnumModel.NoEvenConferenceCount,league.validate());
+		assertSame(LeagueConstant.NoEvenConferenceCount,league.validate());
 		mock = new JsonMockDataDb();
 		mock.setFreeAgentListEmpty();
 		league = new LeagueModel(mock);
-		assertSame(ValidateEnumModel.FreeAgentsEmpty,league.validate());
+		assertSame(LeagueConstant.FreeAgentsEmpty,league.validate());
 		mock = new JsonMockDataDb();
 		mock.setFreeAgentNameEmpty();
 		league = new LeagueModel(mock);
-		assertSame(ValidateEnumModel.FreeAgentAttributeEmpty,league.validate());
+		assertSame(LeagueConstant.FreeAgentAttributeEmpty,league.validate());
 		mock = new JsonMockDataDb();
 		mock.setFreeAgentPositionDifferent();
 		league = new LeagueModel(mock);
-		assertSame(ValidateEnumModel.ImproperPlayerPosition,league.validate());
+		assertSame(LeagueConstant.ImproperPlayerPosition,league.validate());
 	}
 
 }

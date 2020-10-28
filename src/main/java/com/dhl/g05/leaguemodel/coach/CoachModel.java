@@ -1,8 +1,5 @@
 package com.dhl.g05.leaguemodel.coach;
 
-import com.dhl.g05.leaguemodel.ILeagueModelComplete;
-import com.dhl.g05.leaguemodel.ValidateEnumModel;
-
 public class CoachModel {
     private String name;
     private double skating;
@@ -26,7 +23,7 @@ public class CoachModel {
         this.saving = saving;
     }
 
-    public CoachModel(ILeagueModelComplete coach) {
+    public CoachModel(ICoachModel coach) {
         coach.loadCoachModelData(this);
     }
 
@@ -70,14 +67,14 @@ public class CoachModel {
         this.saving = saving;
     }
 
-    public ValidateEnumModel validate() {
+    public CoachConstant validate() {
         if(isCoachNameNull() || isCoachNameEmpty()) {
-            return ValidateEnumModel.CoachNameEmpty;
+            return CoachConstant.CoachNameEmpty;
         }
         if(!isCoachStatValid()) {
-            return ValidateEnumModel.InvalidStateOfCoach;
+            return CoachConstant.InvalidStateOfCoach;
         }
-        return ValidateEnumModel.Success;
+        return CoachConstant.Success;
     }
 
     public boolean isCoachNameNull() {
