@@ -10,24 +10,24 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dhl.g05.leaguemodel.coach.CoachObject;
-import com.dhl.g05.leaguemodel.conference.ConferenceObject;
-import com.dhl.g05.leaguemodel.division.DivisionObject;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
-import com.dhl.g05.leaguemodel.league.LeagueObject;
-import com.dhl.g05.leaguemodel.player.PlayerObject;
-import com.dhl.g05.leaguemodel.team.TeamObject;
+import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.operation.DbPersistanceMock;
 
 public class LeagueModelTest {
-	LeagueModel leagueModel;
-	LeagueObject league;
-	TeamObject team;
-	TeamObject team2;
+	LeagueModelJson leagueModel;
+	LeagueModel league;
+	TeamModel team;
+	TeamModel team2;
 
 	@Before
 	public void init() {
-		leagueModel = new LeagueModel();
+		leagueModel = new LeagueModelJson();
 		leagueModel.setConferenceDatabase(new DbPersistanceMock());
 		leagueModel.setLeagueDatabase(new DbPersistanceMock());
 		leagueModel.setDivisionDatabase(new DbPersistanceMock());
@@ -36,34 +36,34 @@ public class LeagueModelTest {
 		leagueModel.setDateDatabase(new DbPersistanceMock());
 		
 		
-		PlayerObject player = new PlayerObject("Cristiano Ronaldo",null,null,10,15,1,20,15);
-		ArrayList<PlayerObject> players = new ArrayList<>();
+		PlayerModel player = new PlayerModel("Cristiano Ronaldo",null,null,10,15,1,20,15);
+		ArrayList<PlayerModel> players = new ArrayList<>();
 		players.add(player);
 		
-		team = new TeamObject("Striker Six",null,null,players);
-		team2 = new TeamObject("t",null,null,players);
-		ArrayList<TeamObject> teams = new ArrayList<>();
+		team = new TeamModel("Striker Six",null,null,players);
+		team2 = new TeamModel("t",null,null,players);
+		ArrayList<TeamModel> teams = new ArrayList<>();
 		teams.add(team);
 		
-		DivisionObject division = new DivisionObject("Atlantic",teams);
-		ArrayList<DivisionObject> divisions = new ArrayList<>();
+		DivisionModel division = new DivisionModel("Atlantic",teams);
+		ArrayList<DivisionModel> divisions = new ArrayList<>();
 		divisions.add(division);
 		
-		ConferenceObject conference = new ConferenceObject("Western Conference",divisions);
-		ArrayList<ConferenceObject> conferences = new ArrayList<>();
+		ConferenceModel conference = new ConferenceModel("Western Conference",divisions);
+		ArrayList<ConferenceModel> conferences = new ArrayList<>();
 		conferences.add(conference);
 
-		CoachObject coach = new CoachObject("Smith",0.5,0.6,0.7,0.8);
-		ArrayList<CoachObject> coachList = new ArrayList<>();
+		CoachModel coach = new CoachModel("Smith",0.5,0.6,0.7,0.8);
+		ArrayList<CoachModel> coachList = new ArrayList<>();
 		coachList.add(coach);
 
-		league = new LeagueObject("HockeyLeague",conferences,null,coachList,new DbPersistanceMock());
+		league = new LeagueModel("HockeyLeague",conferences,null,coachList,new DbPersistanceMock());
 		
 	}
 
 	@Test
 	public void testCreateLeague() {
-		LeagueObject newleague = leagueModel.createLeague("testLeague", new ArrayList<ConferenceObject>(), new ArrayList<FreeAgentObject>(), new ArrayList<CoachObject>());
+		LeagueModel newleague = leagueModel.createLeague("testLeague", new ArrayList<ConferenceModel>(), new ArrayList<FreeAgentModel>(), new ArrayList<CoachModel>());
 		assertNotNull(newleague);
 		assertTrue(newleague.getLeagueName().equals("testLeague"));
 	}
@@ -98,7 +98,7 @@ public class LeagueModelTest {
 	
 	@Test
 	public void testAddTeamToCurrentLeagueFails() {
-		TeamObject team = new TeamObject("t",null,null,null);
+		TeamModel team = new TeamModel("t",null,null,null);
 		leagueModel.setLeague(league);
 		leagueModel.addTeamToCurrentLeague("a", "b", team);
 		assertNull(leagueModel.getTeamFromLeagueObject(league, "a", "b", "t"));

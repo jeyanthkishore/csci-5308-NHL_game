@@ -5,27 +5,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.dhl.g05.leaguemodel.coach.CoachObject;
-import com.dhl.g05.leaguemodel.conference.ConferenceObject;
-import com.dhl.g05.leaguemodel.division.DivisionObject;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
+import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.freeagent.IFreeAgent;
-import com.dhl.g05.leaguemodel.league.LeagueObject;
-import com.dhl.g05.leaguemodel.player.PlayerObject;
-import com.dhl.g05.leaguemodel.team.TeamObject;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.team.TeamModel;
 
 public class JsonMockDataDb implements ILeagueModelComplete{
 
 	public String leagueName = "HockeyLeague";
 	public Map<String,Object> firstPlayerInfo;
 	public Map<String,Object> secondPlayerInfo;
-	public List<PlayerObject> playerList;
-	public List<TeamObject> teamList;
-	public List<DivisionObject> divisionList;
-	public List<FreeAgentObject> freeAgentList;
-	public List<ConferenceObject> conferenceList;
-	public List<CoachObject> coachList;
-	public CoachObject coachDetails;
+	public List<PlayerModel> playerList;
+	public List<TeamModel> teamList;
+	public List<DivisionModel> divisionList;
+	public List<FreeAgentModel> freeAgentList;
+	public List<ConferenceModel> conferenceList;
+	public List<CoachModel> coachList;
+	public CoachModel coachDetails;
 	public ArrayList<HashMap<String,Object>> leagueList;
 	public HashMap<String,Object> leagueMap;
 	public String teamName = "Striker Six";
@@ -49,7 +49,7 @@ public class JsonMockDataDb implements ILeagueModelComplete{
 	public double coachSaving = 0.5;
 	public double playerStrength = 0;
 	public double teamStrength = 0;
-	public LeagueObject league;
+	public LeagueModel league;
 	String playerOneName = "";
 	String positionOne = "";
 	String positionForward = "forward";
@@ -61,11 +61,11 @@ public class JsonMockDataDb implements ILeagueModelComplete{
 	Boolean captainTwo = false;
 	String result = "success";
 	
-	public LeagueObject getLeague() {
+	public LeagueModel getLeague() {
 		return league;
 	}
 
-	public void setLeague(LeagueObject league) {
+	public void setLeague(LeagueModel league) {
 		this.league = league;
 	}
 
@@ -74,60 +74,60 @@ public class JsonMockDataDb implements ILeagueModelComplete{
 	}
 	
 	private void setJsonValues() {
-		divisionList = new ArrayList<DivisionObject>();
-		playerList = new ArrayList<PlayerObject>();
-		teamList = new ArrayList<TeamObject>();
-		freeAgentList = new ArrayList<FreeAgentObject>();
-		coachList = new ArrayList<CoachObject>();
-		conferenceList = new ArrayList<ConferenceObject>();
+		divisionList = new ArrayList<DivisionModel>();
+		playerList = new ArrayList<PlayerModel>();
+		teamList = new ArrayList<TeamModel>();
+		freeAgentList = new ArrayList<FreeAgentModel>();
+		coachList = new ArrayList<CoachModel>();
+		conferenceList = new ArrayList<ConferenceModel>();
 		leagueList = new ArrayList<HashMap<String,Object>>();
 		leagueMap = new HashMap<String,Object>();
-		league = new LeagueObject();
+		league = new LeagueModel();
 		playerOneName =  "Cristiano Ronaldo";
 		positionOne = "forward";
 		captainOne = true;
-		playerList.add(new PlayerObject(playerOneName,positionOne,captainOne,age,skating,shooting,checking,saving));
+		playerList.add(new PlayerModel(playerOneName,positionOne,captainOne,age,skating,shooting,checking,saving));
 		playerTwoName= "Messi";
 		positionTwo =  "goalie";
 		captainTwo = false;
-		coachDetails = new CoachObject(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving);
-		playerList.add(new PlayerObject(playerTwoName,positionTwo,captainTwo,age,skating,shooting,checking,saving));
-		teamList.add(new TeamObject(teamName,coachDetails,generalManagerName,playerList));
-		teamList.add(new TeamObject(teamTwoName,coachDetails,generalManagerTwoName,playerList));
-		divisionList.add(new DivisionObject(divisionOneName,teamList));
-		divisionList.add(new DivisionObject(divisionTwoName,teamList));
-		freeAgentList.add(new FreeAgentObject(playerOneName,positionOne,age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject(playerTwoName,positionTwo,age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("SuperMan",positionOne,age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Pit Bull","defense",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("SpiderMan","goalie",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Sachin Tendulkar","defense",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Virat Kohli","defense",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Rondahino","forward",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("James Cameron","goalie",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Silambarasan","defense",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Yuvan Raj","defense",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Great Khali","goalie",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Caper Carloon","defense",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Dwayane Johnson","defense",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("John Cena","defense",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Triple HHH","forward",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Vin Diesel","forward",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Robert Junior","defense",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Mingrann Bose","defense",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Brad Pit","defense",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Kajal Agarwal","defense",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Krithick Roshan","forward",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Salman Butt","defense",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Rajni Kanth","forward",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Karthi Sivakumar","defense",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Keerthi Suresh","defense",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Vijay Joseph","forward",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Maadu Ravi","forward",age,skating,shooting,checking,saving));
-		freeAgentList.add(new FreeAgentObject("Kajol","defense",age,skating,shooting,checking,saving));
-		conferenceList.add(new ConferenceObject(conferenceName,divisionList));
-		conferenceList.add(new ConferenceObject(conferenceTwoName,divisionList));
-		coachList.add(new CoachObject(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving));
+		coachDetails = new CoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving);
+		playerList.add(new PlayerModel(playerTwoName,positionTwo,captainTwo,age,skating,shooting,checking,saving));
+		teamList.add(new TeamModel(teamName,coachDetails,generalManagerName,playerList));
+		teamList.add(new TeamModel(teamTwoName,coachDetails,generalManagerTwoName,playerList));
+		divisionList.add(new DivisionModel(divisionOneName,teamList));
+		divisionList.add(new DivisionModel(divisionTwoName,teamList));
+		freeAgentList.add(new FreeAgentModel(playerOneName,positionOne,age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel(playerTwoName,positionTwo,age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("SuperMan",positionOne,age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Pit Bull","defense",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("SpiderMan","goalie",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Sachin Tendulkar","defense",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Virat Kohli","defense",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Rondahino","forward",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("James Cameron","goalie",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Silambarasan","defense",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Yuvan Raj","defense",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Great Khali","goalie",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Caper Carloon","defense",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Dwayane Johnson","defense",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("John Cena","defense",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Triple HHH","forward",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Vin Diesel","forward",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Robert Junior","defense",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Mingrann Bose","defense",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Brad Pit","defense",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Kajal Agarwal","defense",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Krithick Roshan","forward",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Salman Butt","defense",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Rajni Kanth","forward",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Karthi Sivakumar","defense",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Keerthi Suresh","defense",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Vijay Joseph","forward",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Maadu Ravi","forward",age,skating,shooting,checking,saving));
+		freeAgentList.add(new FreeAgentModel("Kajol","defense",age,skating,shooting,checking,saving));
+		conferenceList.add(new ConferenceModel(conferenceName,divisionList));
+		conferenceList.add(new ConferenceModel(conferenceTwoName,divisionList));
+		coachList.add(new CoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving));
 		league.setLeagueName(leagueName);
 		league.setConferenceDetails(conferenceList);
 		league.setFreeAgent(freeAgentList);
@@ -181,7 +181,7 @@ public class JsonMockDataDb implements ILeagueModelComplete{
 
 	public void addMaximumPlayer() {
 		for(int count = 0; count<22; count++) {
-			playerList.add(new PlayerObject(playerTwoName,positionTwo,captainTwo,age,skating,shooting,checking,saving));
+			playerList.add(new PlayerModel(playerTwoName,positionTwo,captainTwo,age,skating,shooting,checking,saving));
 		}
 	}
 	public void setTeamNameEmpty() {
@@ -292,7 +292,7 @@ public class JsonMockDataDb implements ILeagueModelComplete{
 		return playerStrength;
 	}
 
-	public double calculateTeamStrength(List<PlayerObject> playerList){
+	public double calculateTeamStrength(List<PlayerModel> playerList){
 		for (IFreeAgent player: playerList) {
 			if(player.getHasInjured()){
 				teamStrength +=	player.calculatePlayerStrength()/2;
@@ -305,7 +305,7 @@ public class JsonMockDataDb implements ILeagueModelComplete{
 	}
 
 	@Override
-	public void loadTeamModelData(TeamObject teamObject) {
+	public void loadTeamModelData(TeamModel teamObject) {
 		teamObject.setTeamName(teamName);
 		teamObject.setCoachDetails(coachDetails);
 		teamObject.setGeneralManagerName(generalManagerName);
@@ -313,7 +313,7 @@ public class JsonMockDataDb implements ILeagueModelComplete{
 	}
 
 	@Override
-	public void loadPlayerModelData(PlayerObject playerModelObject) {
+	public void loadPlayerModelData(PlayerModel playerModelObject) {
 		playerModelObject.setCaptain(captainOne);
 		playerModelObject.setPlayerName(playerOneName);
 		playerModelObject.setPosition(positionOne);
@@ -325,13 +325,13 @@ public class JsonMockDataDb implements ILeagueModelComplete{
 	}
 
 	@Override
-	public void LoadDivisionModelData(DivisionObject divisionModelObject) {
+	public void LoadDivisionModelData(DivisionModel divisionModelObject) {
 		divisionModelObject.setDivisionName(divisionOneName);
 		divisionModelObject.setTeamDetails(teamList);
 	}
 
 	@Override
-	public void loadLeagueModelData(LeagueObject leagueModelObject) {
+	public void loadLeagueModelData(LeagueModel leagueModelObject) {
 		leagueModelObject.setLeagueName(leagueName);
 		leagueModelObject.setConferenceDetails(conferenceList);
 		leagueModelObject.setFreeAgent(freeAgentList);
@@ -339,13 +339,13 @@ public class JsonMockDataDb implements ILeagueModelComplete{
 	}
 
 	@Override
-	public void loadConferenceModelData(ConferenceObject conferenceModelObject) {
+	public void loadConferenceModelData(ConferenceModel conferenceModelObject) {
 		conferenceModelObject.setConferenceName(conferenceName);
 		conferenceModelObject.setDivisionDetails(divisionList);
 	}
 
 	@Override
-	public void loadPlayerModelData(FreeAgentObject freeAgentObject) {
+	public void loadPlayerModelData(FreeAgentModel freeAgentObject) {
 		freeAgentObject.setPlayerName(playerOneName);
 		freeAgentObject.setPosition(positionOne);
 		freeAgentObject.setAge(age);
@@ -356,7 +356,7 @@ public class JsonMockDataDb implements ILeagueModelComplete{
 	}
 
 	@Override
-	public void loadCoachModelData(CoachObject coachObject){
+	public void loadCoachModelData(CoachModel coachObject){
 		coachObject.setName(headCoachName);
 		coachObject.setSkating(coachSkating);
 		coachObject.setShooting(coachShooting);

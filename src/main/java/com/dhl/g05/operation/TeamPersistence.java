@@ -5,17 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.db.StoredProcedure;
-import com.dhl.g05.leaguemodel.coach.CoachObject;
-import com.dhl.g05.leaguemodel.player.PlayerObject;
+import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.ITeamModelPersistence;
-import com.dhl.g05.leaguemodel.team.TeamObject;
+import com.dhl.g05.leaguemodel.team.TeamModel;
 
 public class TeamPersistence implements ITeamModelPersistence{
 	
-	private List<PlayerObject> playerList = new ArrayList<PlayerObject>();
+	private List<PlayerModel> playerList = new ArrayList<PlayerModel>();
 
 	@Override
-	public int saveTeamObject(int divisionId, TeamObject teamObject, CoachObject coachDetails) {
+	public int saveTeamObject(int divisionId, TeamModel teamObject, CoachModel coachDetails) {
 		StoredProcedure sp= new StoredProcedure();
 		String teamName = teamObject.getTeamName();
 		String managerName = teamObject.getGeneralManagerName();
@@ -31,7 +31,7 @@ public class TeamPersistence implements ITeamModelPersistence{
 	}
 
 	@Override
-	public int loadTeamObject(int divisionId, TeamObject teamObject, CoachObject coachObject) {
+	public int loadTeamObject(int divisionId, TeamModel teamObject, CoachModel coachObject) {
 		String teamName = teamObject.getTeamName();
 		StoredProcedure sp= new StoredProcedure();
 		int teamId = sp.getTeamID(teamName, divisionId);
@@ -44,7 +44,7 @@ public class TeamPersistence implements ITeamModelPersistence{
 			double shooting = Double.parseDouble(player.get("shooting").toString());
 			double checking = Double.parseDouble(player.get("checking").toString());
 			double saving = Double.parseDouble(player.get("saving").toString());
-			playerList.add(new PlayerObject(playerName,null,null,age,skating,shooting,checking,saving));
+			playerList.add(new PlayerModel(playerName,null,null,age,skating,shooting,checking,saving));
 		}
 		teamObject.setPlayerList(playerList);
 		List<HashMap<String, Object>> coachValue = new ArrayList<HashMap<String,Object>>();

@@ -6,12 +6,12 @@ import java.util.List;
 
 import com.dhl.g05.db.StoredProcedure;
 import com.dhl.g05.leaguemodel.player.IPlayerModelPersistence;
-import com.dhl.g05.leaguemodel.player.PlayerObject;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
 
 public class PlayerPersistence implements IPlayerModelPersistence{
 
 	@Override
-	public int savePlayerObject(int teamId, PlayerObject playerObject) {
+	public int savePlayerObject(int teamId, PlayerModel playerObject) {
 		StoredProcedure sp= new StoredProcedure();
 		String playerName = playerObject.getPlayerName();
 		String position = playerObject.getPosition();
@@ -28,7 +28,7 @@ public class PlayerPersistence implements IPlayerModelPersistence{
 	}
 
 	@Override
-	public int loadPlayerObject(int teamId, PlayerObject playerObject) {
+	public int loadPlayerObject(int teamId, PlayerModel playerObject) {
 		String playerName = playerObject.getPlayerName();
 		StoredProcedure sp= new StoredProcedure();
 		int playerId = sp.getPlayerID(teamId,playerName);
@@ -51,6 +51,5 @@ public class PlayerPersistence implements IPlayerModelPersistence{
 
 		return playerId;
 	}
-	
 
 }

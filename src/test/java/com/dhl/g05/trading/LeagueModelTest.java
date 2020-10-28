@@ -3,103 +3,103 @@ package com.dhl.g05.trading;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.dhl.g05.leaguemodel.conference.ConferenceObject;
-import com.dhl.g05.leaguemodel.division.DivisionObject;
-import com.dhl.g05.leaguemodel.league.LeagueObject;
-import com.dhl.g05.leaguemodel.player.PlayerObject;
-import com.dhl.g05.leaguemodel.team.TeamObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.team.TeamModel;
 
 
 public class LeagueModelTest {
 	
-	public LeagueObject leagueMock() {
+	public LeagueModel leagueMock() {
 		
 		Random playerStrength = new Random();
 		Random teamStrength = new Random();
 		
-		LeagueObject leagueMock = new LeagueObject();
+		LeagueModel leagueMock = new LeagueModel();
 		leagueMock.setLeagueName("DHL");
 		
-		ConferenceObject conference1= new ConferenceObject();
+		ConferenceModel conference1= new ConferenceModel();
 		conference1.setConferenceName("Eastern");
-		ArrayList<ConferenceObject> conferenceDetails = new ArrayList<ConferenceObject>();
+		ArrayList<ConferenceModel> conferenceDetails = new ArrayList<ConferenceModel>();
 		conferenceDetails.add(conference1);
 		leagueMock.setConferenceDetails(conferenceDetails);
 		
 		
-		DivisionObject division1 = new DivisionObject();
+		DivisionModel division1 = new DivisionModel();
 		division1.setDivisionName("Atlantic");
 		
-		DivisionObject division2 = new DivisionObject();
+		DivisionModel division2 = new DivisionModel();
 		division2.setDivisionName("Pacific");
 		
-		ArrayList<DivisionObject> divisionDetails = new ArrayList<DivisionObject>();
+		ArrayList<DivisionModel> divisionDetails = new ArrayList<DivisionModel>();
 		divisionDetails.add(division1);
 		divisionDetails.add(division2);
 		conference1.setDivisionDetails(divisionDetails);
 		
-		TeamObject team1 = new TeamObject();
+		TeamModel team1 = new TeamModel();
 		team1.setTeamName("Tigers");
 		
-		TeamObject team2 = new TeamObject();
+		TeamModel team2 = new TeamModel();
 		team2.setTeamName("Rythm");
 		
-		TeamObject team3 = new TeamObject();
+		TeamModel team3 = new TeamModel();
 		team3.setTeamName("Hawkers");
 		
-		TeamObject team4 = new TeamObject();
+		TeamModel team4 = new TeamModel();
 		team4.setTeamName("Montreal");
 		
-		TeamObject team5 = new TeamObject();
+		TeamModel team5 = new TeamModel();
 		team5.setTeamName("Boston");
 		
-		ArrayList<TeamObject> teamDetails1 = new ArrayList<TeamObject>();
+		ArrayList<TeamModel> teamDetails1 = new ArrayList<TeamModel>();
 		teamDetails1.add(team1);
 		teamDetails1.add(team2);
 		teamDetails1.add(team3);
 		division1.setTeamDetails(teamDetails1);
 		
-		ArrayList<TeamObject> teamDetails2 = new ArrayList<TeamObject>();
+		ArrayList<TeamModel> teamDetails2 = new ArrayList<TeamModel>();
 		teamDetails2.add(team4);
 		teamDetails2.add(team5);
 		division2.setTeamDetails(teamDetails2);
 		
 		
-		PlayerObject player1Team1 = new PlayerObject();
-		PlayerObject player2Team1 = new PlayerObject();
-		PlayerObject player3Team1 = new PlayerObject();
-		PlayerObject player4Team1 = new PlayerObject();
-		PlayerObject player5Team1 = new PlayerObject();
+		PlayerModel player1Team1 = new PlayerModel();
+		PlayerModel player2Team1 = new PlayerModel();
+		PlayerModel player3Team1 = new PlayerModel();
+		PlayerModel player4Team1 = new PlayerModel();
+		PlayerModel player5Team1 = new PlayerModel();
 		
-		PlayerObject player1Team2 = new PlayerObject();
-		PlayerObject player2Team2 = new PlayerObject();
-		PlayerObject player3Team2 = new PlayerObject();
-		PlayerObject player4Team2 = new PlayerObject();
-		PlayerObject player5Team2 = new PlayerObject();
+		PlayerModel player1Team2 = new PlayerModel();
+		PlayerModel player2Team2 = new PlayerModel();
+		PlayerModel player3Team2 = new PlayerModel();
+		PlayerModel player4Team2 = new PlayerModel();
+		PlayerModel player5Team2 = new PlayerModel();
 
-		PlayerObject player1Team3 = new PlayerObject();
-		PlayerObject player2Team3 = new PlayerObject();
-		PlayerObject player3Team3 = new PlayerObject();
-		PlayerObject player4Team3 = new PlayerObject();
-		PlayerObject player5Team3 = new PlayerObject();
+		PlayerModel player1Team3 = new PlayerModel();
+		PlayerModel player2Team3 = new PlayerModel();
+		PlayerModel player3Team3 = new PlayerModel();
+		PlayerModel player4Team3 = new PlayerModel();
+		PlayerModel player5Team3 = new PlayerModel();
 		
-		PlayerObject player1Team4 = new PlayerObject();
-		PlayerObject player2Team4= new PlayerObject();
-		PlayerObject player3Team4 = new PlayerObject();
-		PlayerObject player4Team4 = new PlayerObject();
-		PlayerObject player5Team4 = new PlayerObject();
+		PlayerModel player1Team4 = new PlayerModel();
+		PlayerModel player2Team4= new PlayerModel();
+		PlayerModel player3Team4 = new PlayerModel();
+		PlayerModel player4Team4 = new PlayerModel();
+		PlayerModel player5Team4 = new PlayerModel();
 		
-		PlayerObject player1Team5 = new PlayerObject();
-		PlayerObject player2Team5= new PlayerObject();
-		PlayerObject player3Team5 = new PlayerObject();
-		PlayerObject player4Team5 = new PlayerObject();
-		PlayerObject player5Team5 = new PlayerObject();
+		PlayerModel player1Team5 = new PlayerModel();
+		PlayerModel player2Team5= new PlayerModel();
+		PlayerModel player3Team5 = new PlayerModel();
+		PlayerModel player4Team5 = new PlayerModel();
+		PlayerModel player5Team5 = new PlayerModel();
 
-		ArrayList<PlayerObject> playerDetailsTeam1 = new ArrayList<PlayerObject>();
-		ArrayList<PlayerObject> playerDetailsTeam2 = new ArrayList<PlayerObject>();
-		ArrayList<PlayerObject> playerDetailsTeam3 = new ArrayList<PlayerObject>();
-		ArrayList<PlayerObject> playerDetailsTeam4 = new ArrayList<PlayerObject>();
-		ArrayList<PlayerObject> playerDetailsTeam5 = new ArrayList<PlayerObject>();
+		ArrayList<PlayerModel> playerDetailsTeam1 = new ArrayList<PlayerModel>();
+		ArrayList<PlayerModel> playerDetailsTeam2 = new ArrayList<PlayerModel>();
+		ArrayList<PlayerModel> playerDetailsTeam3 = new ArrayList<PlayerModel>();
+		ArrayList<PlayerModel> playerDetailsTeam4 = new ArrayList<PlayerModel>();
+		ArrayList<PlayerModel> playerDetailsTeam5 = new ArrayList<PlayerModel>();
 		
 		player1Team1.setPlayerName("Player1Team1");
 		player1Team1.setPlayerStrength(playerStrength.nextInt(10) +1);

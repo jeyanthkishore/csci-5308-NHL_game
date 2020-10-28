@@ -5,15 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.db.StoredProcedure;
-import com.dhl.g05.leaguemodel.conference.ConferenceObject;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
+import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.league.ILeagueModelPersistence;
-import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
 
 public class LeaguePersistence implements ILeagueModelPersistence{
 	
-	private List<ConferenceObject> conferenceList = new ArrayList<ConferenceObject>();
-	private List<FreeAgentObject> freeAgent = new ArrayList<FreeAgentObject>();
+	private List<ConferenceModel> conferenceList = new ArrayList<ConferenceModel>();
+	private List<FreeAgentModel> freeAgent = new ArrayList<FreeAgentModel>();
 
 	@Override
 	public ArrayList<HashMap<String, Object>> loadDetails() {
@@ -24,14 +24,14 @@ public class LeaguePersistence implements ILeagueModelPersistence{
 	}
 
 	@Override
-	public int saveLeagueObject(LeagueObject leagueObject) {
+	public int saveLeagueObject(LeagueModel leagueObject) {
 		StoredProcedure sp= new StoredProcedure();
 		String leagueName = leagueObject.getLeagueName();
 		String playerName;
 		String position;
 		int leagueId = sp.saveLeague(leagueName);
 		freeAgent = leagueObject.getFreeAgent();
-		for(FreeAgentObject free : freeAgent) {
+		for(FreeAgentModel free : freeAgent) {
 			playerName = free.getPlayerName();
 			position = free.getPosition();
 			double age = free.getAge();
@@ -45,15 +45,15 @@ public class LeaguePersistence implements ILeagueModelPersistence{
 	}
 
 	@Override
-	public int loadLeagueObject(String leagueName, LeagueObject league) {
+	public int loadLeagueObject(String leagueName, LeagueModel league) {
 		StoredProcedure sp= new StoredProcedure();
 		int league_id = sp.getLeagueID(leagueName);
 		List<HashMap<String, Object>> conferenceValue = new ArrayList<HashMap<String,Object>>();
-		conferenceList = new ArrayList<ConferenceObject>();
+		conferenceList = new ArrayList<ConferenceModel>();
 		conferenceValue = sp.fetchAllConferences(league_id);
 		for(HashMap<String, Object> con : conferenceValue) {
 			String conferenceName = con.get("conference_name").toString();
-			conferenceList.add(new ConferenceObject(conferenceName,null));
+			conferenceList.add(new ConferenceModel(conferenceName,null));
 		}
 		league.setConferenceDetails(conferenceList);
 		List<HashMap<String,Object>> agentValue = new ArrayList<HashMap<String,Object>>();
@@ -68,7 +68,7 @@ public class LeaguePersistence implements ILeagueModelPersistence{
 			shooting = Double.parseDouble(agent.get("shooting").toString());
 			checking = Double.parseDouble(agent.get("checking").toString());
 			saving = Double.parseDouble(agent.get("saving").toString());
-			freeAgent.add(new FreeAgentObject(playerName,position, age, skating, shooting, checking, saving));
+			freeAgent.add(new FreeAgentModel(playerName,position, age, skating, shooting, checking, saving));
 		}
 		league.setFreeAgent(freeAgent);
 		league.setLeagueName(leagueName);

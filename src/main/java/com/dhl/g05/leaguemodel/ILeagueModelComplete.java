@@ -1,26 +1,26 @@
 package com.dhl.g05.leaguemodel;
 
-import com.dhl.g05.leaguemodel.coach.CoachObject;
-import com.dhl.g05.leaguemodel.conference.ConferenceObject;
-import com.dhl.g05.leaguemodel.division.DivisionObject;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
-import com.dhl.g05.leaguemodel.league.LeagueObject;
-import com.dhl.g05.leaguemodel.player.PlayerObject;
-import com.dhl.g05.leaguemodel.team.TeamObject;
+import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.team.TeamModel;
 
 public interface ILeagueModelComplete {
 
-	public void loadTeamModelData(TeamObject teamObject);
+	public void loadTeamModelData(TeamModel teamObject);
 	
-	public void loadPlayerModelData(PlayerObject playerObject);
+	public void loadPlayerModelData(PlayerModel playerObject);
 	
-	public void LoadDivisionModelData(DivisionObject divisionObject);
+	public void LoadDivisionModelData(DivisionModel divisionObject);
 	
-	public void loadLeagueModelData(LeagueObject leaguObject);
+	public void loadLeagueModelData(LeagueModel leaguObject);
 	
-	public void loadConferenceModelData(ConferenceObject conferenceObject);
+	public void loadConferenceModelData(ConferenceModel conferenceObject);
 
-	public void loadPlayerModelData(FreeAgentObject freeAgentObject);
+	public void loadPlayerModelData(FreeAgentModel freeAgentObject);
 
-	public void loadCoachModelData(CoachObject coachObject);
+	public void loadCoachModelData(CoachModel coachObject);
 }

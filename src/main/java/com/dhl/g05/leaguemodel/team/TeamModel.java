@@ -4,20 +4,20 @@ import java.util.List;
 
 import com.dhl.g05.leaguemodel.ILeagueModelComplete;
 import com.dhl.g05.leaguemodel.ValidateEnumModel;
-import com.dhl.g05.leaguemodel.coach.CoachObject;
+import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.freeagent.IFreeAgent;
-import com.dhl.g05.leaguemodel.player.PlayerObject;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
 
-public class TeamObject {
+public class TeamModel {
 	
 	private String teamName;
-	private CoachObject headCoach;
+	private CoachModel headCoach;
 	private String generalManager;
-	private List<PlayerObject> players;
+	private List<PlayerModel> players;
 	private double teamStrength;
 	private Boolean userTeam;
 	
-	public TeamObject() {
+	public TeamModel() {
 		setGeneralManagerName(null);
 		setTeamName(null);
 		setPlayerList(null);
@@ -26,11 +26,11 @@ public class TeamObject {
 	}
 
 
-	public TeamObject(ILeagueModelComplete teamObject) {
+	public TeamModel(ILeagueModelComplete teamObject) {
 		teamObject.loadTeamModelData(this);
 	}
 	
-	public TeamObject(String team, CoachObject coachDetails, String manager, List<PlayerObject> players) {
+	public TeamModel(String team, CoachModel coachDetails, String manager, List<PlayerModel> players) {
 		this.teamName = team;
 		this.headCoach = coachDetails;
 		this.generalManager = manager;
@@ -46,7 +46,7 @@ public class TeamObject {
 		return database.loadTeamObject(divisionId,this, headCoach);
 	}
 
-	public double calculateTeamStrength(List<PlayerObject> playerList){
+	public double calculateTeamStrength(List<PlayerModel> playerList){
 		for (IFreeAgent player: playerList) {
 			if(player.getHasInjured()){
 				teamStrength +=	player.calculatePlayerStrength()/2;
@@ -82,19 +82,19 @@ public class TeamObject {
 		this.generalManager = managerName;
 	}
 
-	public List<PlayerObject> getPlayerList() {
+	public List<PlayerModel> getPlayerList() {
 		return players;
 	}
 
-	public void setPlayerList(List<PlayerObject> playerList) {
+	public void setPlayerList(List<PlayerModel> playerList) {
 		this.players = playerList;
 	}
 
-	public CoachObject getCoachDetails() {
+	public CoachModel getCoachDetails() {
 		return headCoach;
 	}
 
-	public void setCoachDetails(CoachObject coachDetails) {
+	public void setCoachDetails(CoachModel coachDetails) {
 		this.headCoach = coachDetails;
 	}
 

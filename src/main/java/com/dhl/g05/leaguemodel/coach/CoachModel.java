@@ -3,14 +3,14 @@ package com.dhl.g05.leaguemodel.coach;
 import com.dhl.g05.leaguemodel.ILeagueModelComplete;
 import com.dhl.g05.leaguemodel.ValidateEnumModel;
 
-public class CoachObject {
+public class CoachModel {
     private String name;
     private double skating;
     private double shooting;
     private double checking;
     private double saving;
 
-    public CoachObject(){
+    public CoachModel(){
         setName(null);
         setSkating(0.0);
         setSkating(0.0);
@@ -18,7 +18,7 @@ public class CoachObject {
         setSaving(0.0);
     }
 
-    public CoachObject(String name, double skating, double shooting, double checking, double saving){
+    public CoachModel(String name, double skating, double shooting, double checking, double saving){
         this.name = name;
         this.skating = skating;
         this.shooting = shooting;
@@ -26,7 +26,7 @@ public class CoachObject {
         this.saving = saving;
     }
 
-    public CoachObject(ILeagueModelComplete coach) {
+    public CoachModel(ILeagueModelComplete coach) {
         coach.loadCoachModelData(this);
     }
 

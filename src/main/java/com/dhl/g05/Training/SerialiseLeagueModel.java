@@ -4,15 +4,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import com.dhl.g05.leaguemodel.league.LeagueObject;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class SerialiseLeagueModel implements ISerializeModel{
 
-	private LeagueObject leagueObject;
+	private LeagueModel leagueObject;
 
-	public Boolean serialiseObjects(LeagueObject league) {
+	public Boolean serialiseObjects(LeagueModel league) {
 		this.leagueObject = league;
 		GsonBuilder builder = new GsonBuilder(); 
 		builder.setPrettyPrinting(); 

@@ -3,62 +3,62 @@ package com.dhl.g05.statemachine.mocks;
 import java.util.List;
 
 import com.dhl.g05.leaguemodel.ValidateEnumModel;
-import com.dhl.g05.leaguemodel.coach.CoachObject;
-import com.dhl.g05.leaguemodel.conference.ConferenceObject;
-import com.dhl.g05.leaguemodel.division.DivisionObject;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
-import com.dhl.g05.leaguemodel.league.LeagueObject;
-import com.dhl.g05.leaguemodel.manager.ManagerObject;
-import com.dhl.g05.leaguemodel.player.PlayerObject;
-import com.dhl.g05.leaguemodel.team.TeamObject;
+import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.conference.ConferenceModel;
+import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.manager.ManagerModel;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.statemachine.ILeagueModel;
 
 public class MockLeagueModelValidationFails implements ILeagueModel{
-private LeagueObject league;
+private LeagueModel league;
 	
 	@Override
-	public LeagueObject getLeague() {
+	public LeagueModel getLeague() {
 		return league;
 	}
 	
 	@Override
-	public void setLeague(LeagueObject league) {
+	public void setLeague(LeagueModel league) {
 		this.league = league;
 	}
 
 	@Override
-	public LeagueObject createLeague(String league, List<ConferenceObject> conferencedetail,
-			List<FreeAgentObject> agent, List<CoachObject> coach) {
+	public LeagueModel createLeague(String league, List<ConferenceModel> conferencedetail,
+			List<FreeAgentModel> agent, List<CoachModel> coach) {
 		return null;
 	}
 
 	@Override
-	public ValidateEnumModel validateLeague(LeagueObject league) {
+	public ValidateEnumModel validateLeague(LeagueModel league) {
 		return ValidateEnumModel.Failure;
 	}
 
 	@Override
-	public ValidateEnumModel validateConference(ConferenceObject conference) {
+	public ValidateEnumModel validateConference(ConferenceModel conference) {
 		return ValidateEnumModel.Failure;
 	}
 
 	@Override
-	public ValidateEnumModel validateDivision(DivisionObject division) {
+	public ValidateEnumModel validateDivision(DivisionModel division) {
 		return ValidateEnumModel.Failure;
 	}
 
 	@Override
-	public ValidateEnumModel validateTeam(TeamObject team) {
+	public ValidateEnumModel validateTeam(TeamModel team) {
 		return ValidateEnumModel.Failure;
 	}
 
 	@Override
-	public ValidateEnumModel validatePlayer(PlayerObject player) {
+	public ValidateEnumModel validatePlayer(PlayerModel player) {
 		return ValidateEnumModel.Failure;
 	}
 
 	@Override
-	public ValidateEnumModel validateManager(ManagerObject managerObject) {
+	public ValidateEnumModel validateManager(ManagerModel managerObject) {
 		return ValidateEnumModel.Failure;
 	}
 
@@ -68,7 +68,7 @@ private LeagueObject league;
 	}
 	
 	@Override
-	public boolean addTeamToCurrentLeague(String conferenceName, String divisionName, TeamObject team) {
+	public boolean addTeamToCurrentLeague(String conferenceName, String divisionName, TeamModel team) {
 		return false;
 	}
 
@@ -78,7 +78,7 @@ private LeagueObject league;
 	}
 
 	@Override
-	public TeamObject getCurrentTeam() {
+	public TeamModel getCurrentTeam() {
 		return null;
 	}
 

@@ -2,19 +2,19 @@ package com.dhl.g05.leaguemodel.player;
 
 import com.dhl.g05.leaguemodel.ILeagueModelComplete;
 import com.dhl.g05.leaguemodel.ValidateEnumModel;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 
-public class PlayerObject extends FreeAgentObject{
+public class PlayerModel extends FreeAgentModel{
 	
 	private Boolean captain;
 	
-	public PlayerObject() {
+	public PlayerModel() {
 		setCaptain(null);
 		setPlayerName(null);
 		setPosition(null);
 	}
 
-	public PlayerObject(String playerName, String position, Boolean captain, double age, double skating, double shooting, double checking, double saving) {
+	public PlayerModel(String playerName, String position, Boolean captain, double age, double skating, double shooting, double checking, double saving) {
 		super(playerName,position, age, skating, shooting, checking, saving);
 		this.captain = captain;
 	}
@@ -34,7 +34,7 @@ public class PlayerObject extends FreeAgentObject{
 		this.captain = captain;
 	}
 
-	public PlayerObject(ILeagueModelComplete player) {
+	public PlayerModel(ILeagueModelComplete player) {
 		player.loadPlayerModelData(this);
 	}
 	

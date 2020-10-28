@@ -3,7 +3,7 @@ package com.dhl.g05.leaguemodel.freeagent;
 import com.dhl.g05.leaguemodel.ILeagueModelComplete;
 import com.dhl.g05.leaguemodel.ValidateEnumModel;
 
-public class FreeAgentObject implements IFreeAgent{
+public class FreeAgentModel implements IFreeAgent{
 	private String playerName;
 	private String position;
 	private double age;
@@ -14,13 +14,13 @@ public class FreeAgentObject implements IFreeAgent{
 	private double playerStrength;
 	private boolean hasInjured;
 
-	public FreeAgentObject() {
+	public FreeAgentModel() {
 		setPlayerName(null);
 		setPosition(null);
 		setHasInjured(false);
 	}
 
-	public FreeAgentObject(String playerName, String position, double age, double skating, double shooting, double checking, double saving) {
+	public FreeAgentModel(String playerName, String position, double age, double skating, double shooting, double checking, double saving) {
 		this.playerName = playerName;
 		this.position = position;
 		this.age = age;
@@ -30,7 +30,7 @@ public class FreeAgentObject implements IFreeAgent{
 		this.saving = saving;
 	}
 
-	public FreeAgentObject(ILeagueModelComplete player) {
+	public FreeAgentModel(ILeagueModelComplete player) {
 		player.loadPlayerModelData(this);
 	}
 

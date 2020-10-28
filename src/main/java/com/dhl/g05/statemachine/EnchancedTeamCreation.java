@@ -3,16 +3,16 @@ package com.dhl.g05.statemachine;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.coach.CoachObject;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
-import com.dhl.g05.leaguemodel.league.LeagueObject;
-import com.dhl.g05.leaguemodel.player.PlayerObject;
+import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
 
 public class EnchancedTeamCreation {
 
-	private LeagueObject leagueObject;
+	private LeagueModel leagueObject;
 	private IPlayerCommunication communicate;
-	List<FreeAgentObject> freeAgentList = new ArrayList<FreeAgentObject>();
+	List<FreeAgentModel> freeAgentList = new ArrayList<FreeAgentModel>();
 	
 	
 	public EnchancedTeamCreation() {
@@ -20,16 +20,16 @@ public class EnchancedTeamCreation {
 		this.communicate = null;
 	}
 
-	public EnchancedTeamCreation(LeagueObject league, IPlayerCommunication communicate) {
+	public EnchancedTeamCreation(LeagueModel league, IPlayerCommunication communicate) {
 		this.leagueObject = league;
 		this.communicate = communicate;
 	}
 
-	public LeagueObject getLeagueObject() {
+	public LeagueModel getLeagueObject() {
 		return leagueObject;
 	}
 
-	public void setLeagueObject(LeagueObject leagueObject) {
+	public void setLeagueObject(LeagueModel leagueObject) {
 		this.leagueObject = leagueObject;
 	}
 
@@ -41,17 +41,17 @@ public class EnchancedTeamCreation {
 		this.communicate = communicate;
 	}
 
-	public List<FreeAgentObject> getFreeAgentList() {
+	public List<FreeAgentModel> getFreeAgentList() {
 		return freeAgentList;
 	}
 
-	public void setFreeAgentList(List<FreeAgentObject> freeAgentList) {
+	public void setFreeAgentList(List<FreeAgentModel> freeAgentList) {
 		this.freeAgentList = freeAgentList;
 	}
 
-	public CoachObject pickCoach() {
-		List<CoachObject> coachList = new ArrayList<CoachObject>();
-		CoachObject selectedCoach = new CoachObject();
+	public CoachModel pickCoach() {
+		List<CoachModel> coachList = new ArrayList<CoachModel>();
+		CoachModel selectedCoach = new CoachModel();
 		coachList = leagueObject.getFreeCoach();
 		String wait = "";
 		Boolean coachNotSelected = true;
@@ -73,8 +73,8 @@ public class EnchancedTeamCreation {
 		return selectedCoach;
 	}
 
-	public List<PlayerObject> pickPlayers() {
-		List<PlayerObject> playerList = new ArrayList<PlayerObject>();
+	public List<PlayerModel> pickPlayers() {
+		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
 		Boolean captainNotAssigned = true;
 		String captainResponse ="";
 		Boolean captain = false;
@@ -140,7 +140,7 @@ public class EnchancedTeamCreation {
 			skating = freeAgentList.get(number-1).getSkating();
 			shooting = freeAgentList.get(number-1).getShooting();
 			saving = freeAgentList.get(number-1).getSaving();
-			playerList.add(new PlayerObject(name,position,captain,age,checking,skating,shooting,saving));
+			playerList.add(new PlayerModel(name,position,captain,age,checking,skating,shooting,saving));
 			captain = false;
 			freeAgentList.remove(number-1);
 		}

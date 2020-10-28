@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-import com.dhl.g05.leaguemodel.coach.CoachObject;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentObject;
+import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 
 public class PlayerCommunication implements IPlayerCommunication{
 	private static Scanner scanner = new Scanner(System.in);
@@ -38,7 +38,7 @@ public class PlayerCommunication implements IPlayerCommunication{
 
 
 	@Override
-	public void sendMessage(List<FreeAgentObject> free) {
+	public void sendMessage(List<FreeAgentModel> free) {
 		System.out.printf("%1s %-12s %9s %31s %11s %13s %10s %10s %10s","","Number","Name","Position",
 				"Age","Checking","Skating","Shooting","Saving");
 		System.out.println();
@@ -59,7 +59,7 @@ public class PlayerCommunication implements IPlayerCommunication{
 
 
 	@Override
-	public void sendCoachMessage(List<CoachObject> coachList) {
+	public void sendCoachMessage(List<CoachModel> coachList) {
 		System.out.printf("%1s %-12s %9s %31s %11s %13s %10s ","","Number","Name",
 				"Checking","Skating","Shooting","Saving");
 		System.out.println();
