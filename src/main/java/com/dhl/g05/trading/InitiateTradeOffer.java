@@ -1,63 +1,18 @@
 package com.dhl.g05.trading;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
 
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 
-
-public class InitiateTradeOffer {
-
-	private Object TradeAlgorithm;
-	private LeagueModel league;
-	private ConferenceModel conference;
-	private DivisionModel division;
-	private TeamModel team;
-	public ConferenceModel getConference() {
-		return conference;
-	}
-
-	public void setConference(ConferenceModel conference) {
-		this.conference = conference;
-	}
-
-	public DivisionModel getDivision() {
-		return division;
-	}
-
-	public void setDivision(DivisionModel division) {
-		this.division = division;
-	}
-
-	public TeamModel getTeam() {
-		return team;
-	}
-
-	public void setTeam(TeamModel team) {
-		this.team = team;
-	}
+public class InitiateTradeOffer implements IIntiateTradeOffer {
 
 	private TradingModel trade;
-
-	public Object getTradeAlgorithm() {
-		return TradeAlgorithm;
-	}
-
-	public void setTradeAlgorithm(Object tradeAlgorithm) {
-		TradeAlgorithm = tradeAlgorithm;
-	}
-
-	public LeagueModel getLeague() {
-		return league;
-	}
-
-	public void setLeague(LeagueModel league) {
-		this.league = league;
-	}
 
 	public TradingModel getTrade() {
 		return trade;
@@ -67,36 +22,49 @@ public class InitiateTradeOffer {
 		this.trade = trade;
 	}
 
-	public ArrayList<String> initiateTradeOffer()
-	{
-		ArrayList <String> teamReadyToTrade= new ArrayList<String>();
-		boolean checkLossPointResult=false;
-		boolean CheckTradeValueResult=false;
-		Random loss = new Random();
-		CheckLossPoint lossPoint= new CheckLossPoint();
+	public LeagueModel initiateTradeOffer(LeagueModel league) {
+		boolean tradeResult = false;
+		IWeakTeam teamInitiatingTrade = TradingConfig.instance().getWeakteam();
+		ICheckLossPoint lossPoint = TradingConfig.instance().getChecklosspoint();
+		IStrongTeam teamAcceptingTrade = TradingConfig.instance().getStrongteam();
+		IAcceptRejectTrade decision = TradingConfig.instance().getAcceptreject();
+		ISwapPlayers swap = TradingConfig.instance().getSwapplayers();
+		IResolveTrade resolveTrade = TradingConfig.instance().getResolvetrade();
+		TradingModel trade = getTrade();
+		CheckTradeValue checkTradeValue = new CheckTradeValue(trade);
+		List<PlayerModel> weakPlayersToTrade = new ArrayList<PlayerModel>();
+		List<PlayerModel> strongPlayersToTrade = new ArrayList<PlayerModel>();
 		lossPoint.setLossPoint(trade.getLossPoint());
 
-		for (ConferenceModel c: league.getConferenceDetails()) 
-		{
-			for (DivisionModel d: c.getDivisionDetails()) 
-			{
-				for (TeamModel t: d.getTeamDetails())
-				{ 
+		for (ConferenceModel c : league.getConferenceDetails()) {
+			for (DivisionModel d : c.getDivisionDetails()) {
+				for (TeamModel t : d.getTeamDetails()) {
+					// dont have the lossCount;
 					lossPoint.setLossCount(10);
-					checkLossPointResult=lossPoint.checkLossPoint();
-					CheckTradeValue checkTradeValue= new CheckTradeValue(trade);
-					CheckTradeValueResult=checkTradeValue.checkTradeValue();
-					if(checkLossPointResult== true && CheckTradeValueResult==true)
-					{
-						teamReadyToTrade.add(t.getTeamName());
+					if (lossPoint.checkLossPoint() == true && checkTradeValue.checkTradeValue() == true) {
+						TeamModel teamTrading = t;
+						teamInitiatingTrade.setConferenceName(c.getConferenceName());
+						teamInitiatingTrade.setDivisionName(d.getDivisionName());
+						weakPlayersToTrade = teamInitiatingTrade.callWeakPlayersAndGetPosition(teamTrading, trade);
+						strongPlayersToTrade = teamAcceptingTrade.findTeamToSwap(weakPlayersToTrade, teamTrading,
+								league);
+						tradeResult = decision.TradeResult(teamTrading, teamAcceptingTrade.getStrongTeam());
 
-						 //call TradeAlgorithm
+						if (tradeResult) {
+							swap.swapPlayers(teamTrading, teamAcceptingTrade.getStrongTeam(), weakPlayersToTrade,
+									strongPlayersToTrade);
+						} else {
+							System.out.println("trade rejected");
+						}
+
 					}
 
 				}
 			}
 		}
-		return teamReadyToTrade;
+		return league;
+
 	}
+// send the league object back to the simulation.
 
 }
