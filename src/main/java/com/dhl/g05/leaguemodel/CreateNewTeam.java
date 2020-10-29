@@ -1,42 +1,33 @@
-package com.dhl.g05.statemachine;
+package com.dhl.g05.leaguemodel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dhl.g05.leaguemodel.coach.CoachConstant;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.dhl.g05.statemachine.IPlayerCommunication;
 
-public class EnchancedTeamCreation {
+public class CreateNewTeam implements ICreateTeam {
 
+	private TeamModel newTeam;
 	private LeagueModel leagueObject;
 	private IPlayerCommunication communicate;
 	List<FreeAgentModel> freeAgentList = new ArrayList<FreeAgentModel>();
+	List<CoachModel> coachList = new ArrayList<CoachModel>();
+	List<ManagerModel> managerList = new ArrayList<ManagerModel>();
 
-	public EnchancedTeamCreation() {
+	public CreateNewTeam() {
 		this.leagueObject = null;
 		this.communicate = null;
 	}
 
-	public EnchancedTeamCreation(LeagueModel league, IPlayerCommunication communicate) {
+	public CreateNewTeam(LeagueModel league, IPlayerCommunication communicate) {
 		this.leagueObject = league;
-		this.communicate = communicate;
-	}
-
-	public LeagueModel getLeagueObject() {
-		return leagueObject;
-	}
-
-	public void setLeagueObject(LeagueModel leagueObject) {
-		this.leagueObject = leagueObject;
-	}
-
-	public IPlayerCommunication getCommunicate() {
-		return communicate;
-	}
-
-	public void setCommunicate(IPlayerCommunication communicate) {
 		this.communicate = communicate;
 	}
 
@@ -44,12 +35,60 @@ public class EnchancedTeamCreation {
 		return freeAgentList;
 	}
 
+	public LeagueModel getLeagueObject() {
+		return leagueObject;
+	}
+
+	public IPlayerCommunication getCommunicate() {
+		return communicate;
+	}
+
 	public void setFreeAgentList(List<FreeAgentModel> freeAgentList) {
 		this.freeAgentList = freeAgentList;
 	}
+	public List<CoachModel> getCoachList() {
+		return coachList;
+	}
+
+	public void setCoachList(List<CoachModel> coachList) {
+		this.coachList = coachList;
+	}
+
+	public List<ManagerModel> getManagerList() {
+		return managerList;
+	}
+
+	public void setManagerList(List<ManagerModel> managerList) {
+		this.managerList = managerList;
+	}
+	
+	public TeamModel getNewTeam() {
+		return newTeam;
+	}
+	
+	public boolean teamCreation(String TeamName) {
+		CoachModel coach = new CoachModel();
+		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
+		newTeam = new TeamModel();
+		newTeam.setTeamName(TeamName);
+		coach = pickCoach();
+		if(coach.validate().equals(CoachConstant.Success)) {
+			newTeam.setCoachDetails(coach);
+		}else {
+			communicate.sendMessage("Error Creating Coach for the team");
+			return false;
+		}
+		playerList = pickPlayers();
+		if(playerList.size()<20 && playerList.size()>20) {
+			communicate.sendMessage("Error Creating players for the team");
+			return false;
+		}
+		newTeam.setPlayerList(playerList);
+		newTeam.setUserTeam(true);
+		return true;
+	}
 
 	public CoachModel pickCoach() {
-		List<CoachModel> coachList = new ArrayList<CoachModel>();
 		CoachModel selectedCoach = new CoachModel();
 		coachList = leagueObject.getFreeCoach();
 		String wait = "";
@@ -57,7 +96,7 @@ public class EnchancedTeamCreation {
 		while(coachNotSelected) {
 			communicate.sendMessage("Select a Coach from the below list --");
 			communicate.sendCoachMessage(coachList);
-			communicate.sendMessage("Enter a Number to add player");
+			communicate.sendMessage("Enter a Number to add coach");
 			int number = communicate.getResponseNumber();
 			if(number ==0 || number>coachList.size()) {
 				communicate.sendMessage("Invalid Number.......");
@@ -70,6 +109,28 @@ public class EnchancedTeamCreation {
 			coachNotSelected = false;
 		}
 		return selectedCoach;
+	}
+
+	public ManagerModel pickManager() {
+		managerList = leagueObject.getManagerList();
+		Boolean ManagerNotSelected = true;
+		ManagerModel selectedManager = new ManagerModel();
+		String wait = "";
+		while(ManagerNotSelected) {
+			communicate.sendMessage("Select a Manager from the below lits --");
+			communicate.sendManagerMessage(managerList);
+			int number = communicate.getResponseNumber();
+			if(number ==0 || number>managerList.size()) {
+				communicate.sendMessage("Invalid Number.......");
+				communicate.sendMessage("Press Enter to Continue");
+				wait = communicate.getResponse();
+				continue;
+			}
+			selectedManager = managerList.get(number-1);
+			managerList.remove(number-1);
+			ManagerNotSelected = false;
+		}
+		return selectedManager;
 	}
 
 	public List<PlayerModel> pickPlayers() {
@@ -87,15 +148,13 @@ public class EnchancedTeamCreation {
 		String name ="";
 		String position="";
 		String wait="";
-		
+
 		freeAgentList = leagueObject.getFreeAgent();
 		while(playerList.size()<20) {
 			String teamCount = "Total Team Strength = " + playerList.size();
 			String skaterscount = "Number of Skaters = " +skaters;
 			String gaoliecount = "Number of Goalies = " +goalie;
-			communicate.sendMessage(teamCount);
-			communicate.sendMessage(skaterscount);
-			communicate.sendMessage(gaoliecount);
+			communicate.sendMessage(teamCount+" | "+skaterscount+" | "+gaoliecount);
 			communicate.sendMessage("Select a Free Agent from the below list --");
 			communicate.sendMessage(freeAgentList);
 			communicate.sendMessage("Enter a Number to add player");
@@ -144,7 +203,7 @@ public class EnchancedTeamCreation {
 			captain = false;
 			freeAgentList.remove(number-1);
 		}
-		
+
 		return playerList;
 	}
 

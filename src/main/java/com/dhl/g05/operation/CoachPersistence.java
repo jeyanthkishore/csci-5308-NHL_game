@@ -7,14 +7,13 @@ import java.util.List;
 import com.dhl.g05.db.StoredProcedure;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.coach.ICoachModelPersistence;
-import com.dhl.g05.leaguemodel.league.LeagueModel;
 
-public class CoachPersistence implements ICoachModelPersistence{
+public class CoachPersistence implements ICoachModelPersistence,ICoachLoad{
 
 	private List<CoachModel> coachList = new ArrayList<CoachModel>();
 
 	@Override
-	public int loadLeagueCoachObject(String leagueName, LeagueModel league) {
+	public List<CoachModel>  loadLeagueCoachObject(String leagueName) {
 		StoredProcedure sp= new StoredProcedure();
 		int league_id = sp.getLeagueID(leagueName);
 		List<HashMap<String,Object>> coaches = new ArrayList<HashMap<String,Object>>();
@@ -30,26 +29,22 @@ public class CoachPersistence implements ICoachModelPersistence{
 			saving = Double.parseDouble(coach.get("saving").toString());
 			coachList.add(new CoachModel(name, skating, shooting, checking, saving));
 		}
-		league.setFreeCoach(coachList);
-		return league_id;
+		return coachList;
 	}
 
 	@Override
-	public int saveLeagueCoachObject(int league_id, LeagueModel leagueObject) {
+	public int saveLeagueCoachObject(int league_id, CoachModel coach) {
 		StoredProcedure sp= new StoredProcedure();
 		double skating, shooting, checking, saving;
 		String name;
 
-		coachList = leagueObject.getFreeCoach();
-		for(CoachModel coach: coachList) {
-			name = coach.getName();
-			skating = coach.getSkating();
-			shooting = coach.getShooting();
-			checking = coach.getChecking();
-			saving = coach.getSaving();
-			int coachId = sp.saveFreeCoach(league_id, name, skating, shooting, checking, saving);
-		}
-		return league_id;
+		name = coach.getName();
+		skating = coach.getSkating();
+		shooting = coach.getShooting();
+		checking = coach.getChecking();
+		saving = coach.getSaving();
+		int coachId = sp.saveFreeCoach(league_id, name, skating, shooting, checking, saving);
+		return coachId;
 	}
 
 }

@@ -1,14 +1,12 @@
 package com.dhl.g05.statemachine;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.coach.CoachConstant;
-import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.CreateNewTeam;
+import com.dhl.g05.leaguemodel.ICreateTeam;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 
 public class CreateTeamState extends AbstractState {
@@ -19,7 +17,7 @@ public class CreateTeamState extends AbstractState {
 	private String teamName;
 	private LeagueModel league;
 	private IPlayerCommunication communicate;
-	private EnchancedTeamCreation newTeamObject;
+	private ICreateTeam createTeam;
 
 	public LeagueModel getLeague() {
 		return league;
@@ -60,7 +58,6 @@ public class CreateTeamState extends AbstractState {
 	public boolean performStateTask() {
 		this.setNextState(new CreateTeamState(this.getOuterStateMachine()));
 
-		newTeamObject = new EnchancedTeamCreation(league,communicate);
 		if (teamName== null || divisionName == null||conferenceName == null ){
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Missing feild, team not created");
 			return false;
@@ -70,31 +67,43 @@ public class CreateTeamState extends AbstractState {
 			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Conference/Division combo does not exist in current league ");
 			return false;
 		}
-		if(performOperation()){
+
+		if(createOperation()){
+			this.getOuterStateMachine().getLeagueModel().setLeague(league);
+			return true;
+		}
+
+		return false;
+	}
+
+
+	public Boolean createOperation() {
+
+		createTeam = new CreateNewTeam(league,communicate);
+		if(createTeam.teamCreation(teamName)){
+			league.setFreeAgent(createTeam.getFreeAgentList());
+			league.setFreeCoach(createTeam.getCoachList());
+			league.setManagerList(createTeam.getManagerList());
+			newTeam = createTeam.getNewTeam();
+			addNewTeamtoLeagueObject();
 			return true;
 		}
 		return false;
 	}
 
-	private boolean performOperation() {
-		CoachModel coach = new CoachModel();
-		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
-		newTeam = new TeamModel();
-		newTeam.setTeamName(teamName);
-		coach = newTeamObject.pickCoach();
-		if(!coach.validate().equals(CoachConstant.Success)) {
-			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Error Creating Coach for the team");
-			return false;
+
+	public void addNewTeamtoLeagueObject() {
+		List<ConferenceModel> conferences = league.getConferenceDetails();
+		for (ConferenceModel c: conferences) {
+			if (c.getConferenceName().equalsIgnoreCase(conferenceName)) {
+				List<DivisionModel> divisions = c.getDivisionDetails();
+				for (DivisionModel d: divisions) {
+					if (d.getDivisionName().equalsIgnoreCase(divisionName)) {
+						d.getTeamDetails().add(newTeam);
+					}
+				}
+			}
 		}
-		newTeam.setCoachDetails(coach);
-		playerList = newTeamObject.pickPlayers();
-		if(playerList.size()<20 && playerList.size()>20) {
-			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Error Creating players for the team");
-			return false;
-		}
-		newTeam.setPlayerList(playerList);
-		newTeam.setUserTeam(true);
-		return true;
 	}
 
 	private boolean isDivisionConferenceNotExists() {
@@ -114,10 +123,10 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		//		if(getOuterStateMachine().getLeagueModel().persistLeague()) {
-		//			this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(), "Enter number of seasons to simulate", new SimulateState(this.getOuterStateMachine())));
-		//			return true;
-		//		}
+		if(getOuterStateMachine().getLeagueModel().persistLeague()) {
+			this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(), "Enter number of seasons to simulate", new SimulateState(this.getOuterStateMachine())));
+			return true;
+		}
 		return true;
 	}
 

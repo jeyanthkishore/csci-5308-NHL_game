@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.statemachine.IPlayerCommunication;
 
 public class MockPlayerCommunication implements IPlayerCommunication{
@@ -43,5 +44,11 @@ public class MockPlayerCommunication implements IPlayerCommunication{
 	@Override
 	public void sendCoachMessage(List<CoachModel> coachList) {
 		System.out.println("Coach List Will be Displayed");
+	}
+
+	@Override
+	public void sendManagerMessage(List<ManagerModel> managerList) {
+		System.out.println("Manager List Will be Displayed");
+		
 	}
 }

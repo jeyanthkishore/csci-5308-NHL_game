@@ -1,21 +1,12 @@
 package com.dhl.g05.leaguemodel.manager;
 
-import com.dhl.g05.leaguemodel.coach.ICoachModel;
-
-import java.util.List;
-
 public class ManagerModel {
 
 	private String name;
-	private List<ManagerModel> managerList;
 
 	public  ManagerModel() {
 		setName(null);
 	}
-
-//	public ManagerModel(List<ManagerModel> managerList) {
-//		this.managerList = managerList;
-//	}
 
 	public ManagerModel(String name) {
 		this.name = name;
@@ -25,14 +16,6 @@ public class ManagerModel {
 		manager.loadManagerModelData(this);
 	}
 
-	public List<ManagerModel> getManagerList() {
-		return managerList;
-	}
-
-	public void setManagerList(List<ManagerModel> managerList) {
-		this.managerList = managerList;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -40,7 +23,11 @@ public class ManagerModel {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
+	public int saveLeagueManagerObject(int leagueId, IManagerPersistence database) {
+		return database.saveLeagueManagerObject(leagueId, this);
+	}
+	
 	public ManagerConstant validate() {
 		if(isManagerNameNull() || isManagerNameEmpty()) {
 			return ManagerConstant.ManagerNameEmpty;
@@ -61,13 +48,5 @@ public class ManagerModel {
 		}
 		return false;
 	}
-
-//	public int saveLeagueManagerObject(int leagueId, IManagerPersistence database) {
-//		return database.saveLeagueManagerObject(leagueId, this);
-//	}
-//
-//	public int loadLeagueManagerObject(String leagueName,IManagerPersistence database) {
-//		return database.loadLeagueManagerObject(leagueName,this);
-//	}
 
 }

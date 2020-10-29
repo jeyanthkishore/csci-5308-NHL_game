@@ -102,14 +102,14 @@ public class ConferenceModelTest {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.removeDivision();
 		ConferenceModel validate = new ConferenceModel(mock); 
-		assertTrue(validate.hasEvenNumberDivision());
+		assertFalse(validate.hasOddNumberDivision());
 	}
 
 	@Test
 	public void hasEvenDivsionTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		ConferenceModel validate = new ConferenceModel(mock); 
-		assertTrue(validate.hasEvenNumberDivision());
+		assertFalse(validate.hasOddNumberDivision());
 	}
 
 	@Test
@@ -117,7 +117,7 @@ public class ConferenceModelTest {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.removeOneDivision();
 		ConferenceModel validate = new ConferenceModel(mock); 
-		assertFalse(validate.hasEvenNumberDivision());
+		assertTrue(validate.hasOddNumberDivision());
 	}
 
 	@Test

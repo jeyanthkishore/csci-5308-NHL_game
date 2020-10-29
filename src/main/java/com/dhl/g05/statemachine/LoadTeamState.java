@@ -15,14 +15,14 @@ public class LoadTeamState extends AbstractState{
 	@Override
 	public boolean enter() {
 
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter league name:");
-		leagueName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
-
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter conference name:");
-		conferenceName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
-
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter division name:");
-		divisionName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
+//		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter league name:");
+//		leagueName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
+//
+//		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter conference name:");
+//		conferenceName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
+//
+//		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter division name:");
+//		divisionName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
 
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team name:");
 		teamName = this.getOuterStateMachine().getPlayerCommunication().getResponse();

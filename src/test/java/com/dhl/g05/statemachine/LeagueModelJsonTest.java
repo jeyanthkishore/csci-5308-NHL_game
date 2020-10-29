@@ -26,7 +26,7 @@ import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.operation.DbPersistanceMock;
 
-public class LeagueModelTest {
+public class LeagueModelJsonTest {
 	LeagueModelJson leagueModel;
 	LeagueModel league;
 	TeamModel team;
@@ -41,6 +41,9 @@ public class LeagueModelTest {
 		leagueModel.setTeamDatabase(new DbPersistanceMock());
 		leagueModel.setPlayerDatabase(new DbPersistanceMock());
 		leagueModel.setDateDatabase(new DbPersistanceMock());
+		leagueModel.setFreeAgentDatabase(new DbPersistanceMock());
+		leagueModel.setManagerDatabase(new DbPersistanceMock());
+		leagueModel.setCoachDatabase(new DbPersistanceMock());
 
 		PlayerModel player = new PlayerModel("Cristiano Ronaldo",null,null,10,15,1,20,15);
 		ArrayList<PlayerModel> players = new ArrayList<>();
@@ -58,6 +61,10 @@ public class LeagueModelTest {
 		ConferenceModel conference = new ConferenceModel("Western Conference",divisions);
 		ArrayList<ConferenceModel> conferences = new ArrayList<>();
 		conferences.add(conference);
+		
+		FreeAgentModel freeAgent = new FreeAgentModel("Kane","forward",30,0.5,0.6,0.7,0.8);
+		ArrayList<FreeAgentModel>freeAgentList = new ArrayList<FreeAgentModel>();
+		freeAgentList.add(freeAgent);
 
 		CoachModel coach = new CoachModel("Smith",0.5,0.6,0.7,0.8);
 		ArrayList<CoachModel> coachList = new ArrayList<>();
@@ -74,7 +81,7 @@ public class LeagueModelTest {
 		Aging age = new Aging(28, 60);
 		GamePlayConfigModel game = new GamePlayConfigModel(trade, age, injury, resolver, train);
 
-		league = new LeagueModel("HockeyLeague",conferences,null,coachList, managerList,game,new DbPersistanceMock());
+		league = new LeagueModel("HockeyLeague",conferences,freeAgentList,coachList, managerList,game,new DbPersistanceMock());
 
 	}
 
@@ -103,7 +110,6 @@ public class LeagueModelTest {
 	public void testPersistLeague() {
 		leagueModel.setLeague(league);
 		assertTrue(leagueModel.persistLeague());
-
 	}
 
 	@Test

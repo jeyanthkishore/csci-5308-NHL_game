@@ -3,6 +3,7 @@ package com.dhl.g05.statemachine;
 import java.util.List;
 
 import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.coach.ICoachModelPersistence;
 import com.dhl.g05.leaguemodel.conference.ConferenceConstant;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.conference.IConferenceModelPersistence;
@@ -11,10 +12,12 @@ import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.leaguemodel.division.IDivisionModelPersistence;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.freeagent.IFreeAgentPersistence;
 import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.leaguemodel.league.ILeagueModelPersistence;
 import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.manager.IManagerPersistence;
 import com.dhl.g05.leaguemodel.manager.ManagerConstant;
 import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.IPlayerModelPersistence;
@@ -22,11 +25,14 @@ import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.ITeamModelPersistence;
 import com.dhl.g05.leaguemodel.team.TeamConstant;
 import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.dhl.g05.operation.CoachPersistence;
 import com.dhl.g05.operation.ConferencePersistence;
 import com.dhl.g05.operation.DatePersistence;
 import com.dhl.g05.operation.DivisionPersistence;
+import com.dhl.g05.operation.FreeAgentPersistence;
 import com.dhl.g05.operation.IDatePersistence;
 import com.dhl.g05.operation.LeaguePersistence;
+import com.dhl.g05.operation.ManagerPersistence;
 import com.dhl.g05.operation.PlayerPersistence;
 import com.dhl.g05.operation.TeamPersistence;
 import com.dhl.g05.simulation.Date;
@@ -40,6 +46,9 @@ public class LeagueModelJson implements ILeagueModelJson{
 	private ITeamModelPersistence teamDatabase;
 	private IPlayerModelPersistence playerDatabase;
 	private IDatePersistence dateDatabase;
+	private IFreeAgentPersistence freeAgentDatabase;
+	private ICoachModelPersistence coachDataBase;
+	private IManagerPersistence managerDatabase;
 
 	public LeagueModelJson() {
 		this.leagueDatabase = new LeaguePersistence();
@@ -48,10 +57,17 @@ public class LeagueModelJson implements ILeagueModelJson{
 		this.teamDatabase = new TeamPersistence();
 		this.playerDatabase = new PlayerPersistence();
 		this.dateDatabase = new DatePersistence();
+		this.freeAgentDatabase = new FreeAgentPersistence();
+		this.coachDataBase = new CoachPersistence();
+		this.managerDatabase = new ManagerPersistence();
 	}
 
 	public void setDateDatabase(IDatePersistence dateDatabase) {
 		this.dateDatabase = dateDatabase;
+	}
+
+	public void setFreeAgentDatabase(IFreeAgentPersistence freeAgentDatabase) {
+		this.freeAgentDatabase = freeAgentDatabase;
 	}
 
 	public void setLeagueDatabase(ILeagueModelPersistence leagueDatabase) {
@@ -72,6 +88,14 @@ public class LeagueModelJson implements ILeagueModelJson{
 
 	public void setPlayerDatabase(IPlayerModelPersistence playerDatabase) {
 		this.playerDatabase = playerDatabase;
+	}
+	
+	public void setCoachDatabase(ICoachModelPersistence coachDataBase) {
+		this.coachDataBase = coachDataBase;
+	}
+	
+	public void setManagerDatabase(IManagerPersistence managerDatabase) {
+		this.managerDatabase = managerDatabase;
 	}
 
 	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches, List<ManagerModel> managers,GamePlayConfigModel gamePlay) {
@@ -119,6 +143,25 @@ public class LeagueModelJson implements ILeagueModelJson{
 						}
 					}
 				}
+			}
+		}
+		
+		for (FreeAgentModel f : league.getFreeAgent()) {
+			int freeAgentId = f.saveFreeAgentObject(leagueId, freeAgentDatabase);
+			if(freeAgentId == 0) {
+				return false;
+			}
+		}
+		for(CoachModel co : league.getFreeCoach()) {
+			int coachId = co.saveLeagueCoachObject(leagueId, coachDataBase);
+			if(coachId == 0) {
+				return false;
+			}
+		}
+		for(ManagerModel m : league.getManagerList()) {
+			int managerId = m.saveLeagueManagerObject(leagueId, managerDatabase);
+			if(managerId == 0) {
+				return false;
 			}
 		}
 		return true;

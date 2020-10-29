@@ -1,6 +1,6 @@
 package com.dhl.g05.leaguemodel.freeagent;
 
-public class FreeAgentModel implements IFreeAgent{
+public class FreeAgentModel implements IFreeAgent {
 	private String playerName;
 	private String position;
 	private int age;
@@ -111,6 +111,10 @@ public class FreeAgentModel implements IFreeAgent{
 
 	public void setPlayerStrength(double playerStrength) {
 		this.playerStrength = playerStrength;
+	}
+	
+	public int saveFreeAgentObject(int conferenceId,IFreeAgentPersistence database) {
+		return database.saveFreeAgentObject(conferenceId,this);
 	}
 
 	public double calculatePlayerStrength(){

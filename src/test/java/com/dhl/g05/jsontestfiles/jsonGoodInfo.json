@@ -88,7 +88,7 @@
                 {
                     "divisionName":"Pacific", "teams":[
                         {
-                            "teamName":"Boston", "generalManager":"Mister Fred",
+                            "teamName":"Rockers", "generalManager":"Mister Fred",
 
                             "headCoach":{
                             "name":"Mary Smith",
@@ -153,7 +153,7 @@
                 {
                     "divisionName":"Atlantic", "teams":[
                         {
-                            "teamName":"Boston", "generalManager":"Mister Fred",
+                            "teamName":"Royals Challengers", "generalManager":"Mister Fred",
                             "headCoach":{
                                 "name":"Mary Smith",
                                 "skating":0.5,
@@ -211,7 +211,7 @@
                 {
                     "divisionName":"Pacific", "teams":[
                         {
-                            "teamName":"Boston", "generalManager":"Mister Fred",
+                            "teamName":"Mumbai Indian", "generalManager":"Mister Fred",
 
                             "headCoach":{
                                 "name":"Mary Smith",

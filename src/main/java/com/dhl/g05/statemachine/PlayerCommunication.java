@@ -1,11 +1,14 @@
 package com.dhl.g05.statemachine;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.manager.ManagerModel;
 
 public class PlayerCommunication implements IPlayerCommunication{
 	private static Scanner scanner = new Scanner(System.in);
@@ -39,43 +42,99 @@ public class PlayerCommunication implements IPlayerCommunication{
 
 	@Override
 	public void sendMessage(List<FreeAgentModel> free) {
-		System.out.printf("%1s %-12s %9s %31s %11s %13s %10s %10s %10s","","Number","Name","Position",
-				"Age","Checking","Skating","Shooting","Saving");
-		System.out.println();
+		Map<Integer,Integer> columnLength = new HashMap<Integer,Integer>();
+		StringBuilder format = new StringBuilder();
+		String header [] = {"Number","Name","Position",
+				"Age","Checking","Skating","Shooting","Saving"};
+		
+		IntStream.range(0, header.length).forEach(a->{
+			if(columnLength.get(a)==null) {
+				columnLength.put(a, header[a].length());
+			}
+		});
+		IntStream.range(0, free.size()).forEach(a->{
+			String name = free.get(a).getPlayerName();
+			if(columnLength.get(1) < name.length()) {
+				columnLength.put(1, name.length());
+			}
+		});
+		columnLength.entrySet().stream().forEach(e -> format.append("| %" + "" + e.getValue() + "s "));
+		format.append("|\n");
+		System.out.printf(format.toString(),header[0],header[1],header[2],header[3],header[4],header[5]
+				,header[6],header[7]);
 		System.out.println("--------------------------------------------------------------"
-				+ "-------------------------------------------------------");
+				+ "--------------------------------");
 		IntStream.range(0, free.size()).forEach(index->{
-			System.out.printf("%2s %-15s %-17s %19s %11s %10s %11s %10s %10s",
-					"",index+1,free.get(index).getPlayerName(),free.get(index).getPosition(),
+			System.out.printf(format.toString(),
+					index+1,free.get(index).getPlayerName(),free.get(index).getPosition(),
 					free.get(index).getAge(),free.get(index).getChecking(),
-					"8.8","10",
+					free.get(index).getSkating(),free.get(index).getShooting(),
 					free.get(index).getSaving());
-			System.out.println();
 		});
 		System.out.println("--------------------------------------------------------------"
-				+ "-------------------------------------------------------");
-		System.out.println("Please Enter an number to add player");
+				+ "--------------------------------");
+		
 	}
 
 
 	@Override
 	public void sendCoachMessage(List<CoachModel> coachList) {
-		System.out.printf("%1s %-12s %9s %31s %11s %13s %10s ","","Number","Name",
-				"Checking","Skating","Shooting","Saving");
-		System.out.println();
+		Map<Integer,Integer> columnLength = new HashMap<Integer,Integer>();
+		StringBuilder format = new StringBuilder();
+		String header [] = {"Number","Name","Checking","Skating","Shooting","Saving"};
+		IntStream.range(0, header.length).forEach(a->{
+			if(columnLength.get(a)==null) {
+				columnLength.put(a, header[a].length());
+			}
+		});
+		IntStream.range(0, coachList.size()).forEach(a->{
+			String name = coachList.get(a).getName();
+			if(columnLength.get(1) < name.length()) {
+				columnLength.put(1, name.length());
+			}
+		});
+		columnLength.entrySet().stream().forEach(e -> format.append("| %" + "" + e.getValue() + "s "));
+		format.append("|\n");
+		System.out.printf(format.toString(),header[0],header[1],header[2],header[3],header[4],header[5]);
 		System.out.println("--------------------------------------------------------------"
 				+ "-------------------------------------------------------");
 		IntStream.range(0, coachList.size()).forEach(index->{
-			System.out.printf("%2s %-15s %-16s %19s %11s %11s %11s",
-					"",index+1,coachList.get(index).getName(),coachList.get(index).getChecking(),
+			System.out.printf(format.toString(),index+1,coachList.get(index).getName(),coachList.get(index).getChecking(),
 					coachList.get(index).getSkating(),coachList.get(index).getShooting(),
 					coachList.get(index).getSaving());
-			System.out.println();
 		});
 		System.out.println("--------------------------------------------------------------"
 				+ "-------------------------------------------------------");
-		System.out.println("Please Enter an number to Coach");
 
+	}
+
+
+	@Override
+	public void sendManagerMessage(List<ManagerModel> managerList) {
+		Map<Integer,Integer> columnLength = new HashMap<Integer,Integer>();
+		StringBuilder format = new StringBuilder();
+		String header [] = {"Number","Name"};
+		IntStream.range(0, header.length).forEach(a->{
+			if(columnLength.get(a)==null) {
+				columnLength.put(a, header[a].length());
+			}
+		});
+		IntStream.range(0, managerList.size()).forEach(a->{
+			String name = managerList.get(a).getName();
+			if(columnLength.get(1) < name.length()) {
+				columnLength.put(1, name.length());
+			}
+		});
+		columnLength.entrySet().stream().forEach(e -> format.append("| %" + "" + e.getValue() + "s "));
+		format.append("|\n");
+		System.out.printf(format.toString(),header[0],header[1]);
+		System.out.println("--------------------------------------------------------------"
+				+ "-------------------------------------------------------");
+		IntStream.range(0, managerList.size()).forEach(index->{
+			System.out.printf(format.toString(),index+1,managerList.get(index).getName());
+		});
+		System.out.println("--------------------------------------------------------------"
+				+ "-------------------------------------------------------");
 	}
 
 }

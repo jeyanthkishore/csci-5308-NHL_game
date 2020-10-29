@@ -159,7 +159,7 @@ public class LeagueModelTest {
 	public void checkEvenConference() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		LeagueModel valid = new LeagueModel(mock);
-		assertTrue(valid.hasEvenNumberConference());
+		assertFalse(valid.hasOddNumberConference());
 	}
 
 	@Test
@@ -167,7 +167,7 @@ public class LeagueModelTest {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.removeOneConference();
 		LeagueModel valid = new LeagueModel(mock);
-		assertFalse(valid.hasEvenNumberConference());
+		assertTrue(valid.hasOddNumberConference());
 	}
 
 	@Test

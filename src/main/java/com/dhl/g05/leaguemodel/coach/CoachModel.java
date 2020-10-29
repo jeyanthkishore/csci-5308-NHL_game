@@ -27,6 +27,10 @@ public class CoachModel {
 		coach.loadCoachModelData(this);
 	}
 
+	public int saveLeagueCoachObject(int leagueId, ICoachModelPersistence database) {
+		return database.saveLeagueCoachObject(leagueId, this);
+	}
+	
 	public String getName() {
 		return name;
 	}

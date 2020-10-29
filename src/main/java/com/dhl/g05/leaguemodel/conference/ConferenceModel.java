@@ -51,14 +51,14 @@ public class ConferenceModel {
 		if(isDivisionListEmpty()) {
 			return ConferenceConstant.DivisionListEmpty;
 		}
-		if(!hasEvenNumberDivision()) {
+		if(hasOddNumberDivision()) {
 			return ConferenceConstant.NoEvenDivisionCount;
 		}
 		return ConferenceConstant.Success;
 	}
 
-	public boolean hasEvenNumberDivision() {
-		if(divisions.size()%2 == 0) {
+	public boolean hasOddNumberDivision() {
+		if(divisions.size()%2 == 1) {
 			return true;	
 		}
 		return false;

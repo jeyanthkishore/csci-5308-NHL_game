@@ -465,7 +465,7 @@ public class StoredProcedure {
 		return result;
 	}
 
-	public int saveFreeAgent(String agent_name, String position_name , String league_name, int age, double skating, double shooting, double checking, double saving)
+	public int saveFreeAgent(String agent_name, String position_name , int league_id, int age, double skating, double shooting, double checking, double saving)
 	{
 		int result=0;
 		try {
@@ -475,7 +475,7 @@ public class StoredProcedure {
 			java.sql.CallableStatement stmt = conn.prepareCall(query);
 			stmt.setString(1, agent_name);
 			stmt.setString(2, position_name);
-			stmt.setString(3, league_name);
+			stmt.setInt(3, league_id);
 			stmt.setInt(4,age);
 			stmt.setDouble(5,skating);
 			stmt.setDouble(6,shooting);

@@ -4,11 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.leaguemodel.coach.CoachModel;
-import com.dhl.g05.leaguemodel.coach.ICoachModelPersistence;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.leaguemodel.manager.IManagerPersistence;
 import com.dhl.g05.leaguemodel.manager.ManagerModel;
 
 public class LeagueModel {
@@ -96,24 +94,8 @@ public class LeagueModel {
 		return database.saveLeagueObject(this);
 	}
 
-	public int saveLeagueCoachObject(int leagueId, ICoachModelPersistence database) {
-		return database.saveLeagueCoachObject(leagueId, this);
-	}
-
 	public int loadLeagueObject(String leagueName,ILeagueModelPersistence database) {
 		return database.loadLeagueObject(leagueName,this);
-	}
-
-	public int loadLeagueCoachObject(String leagueName, ICoachModelPersistence database) {
-		return database.loadLeagueCoachObject(leagueName, this);
-	}
-
-	public int saveLeagueManagerObject(int leagueId, IManagerPersistence database) {
-		return database.saveLeagueManagerObject(leagueId, this);
-	}
-
-	public int loadLeagueManagerObject(String leagueName,IManagerPersistence database) {
-		return database.loadLeagueManagerObject(leagueName,this);
 	}
 
 	public LeagueConstant validate() {
@@ -123,7 +105,7 @@ public class LeagueModel {
 		if(isConferenceListEmpty()) {
 			return LeagueConstant.ConferenceListEmpty;
 		}
-		if(!hasEvenNumberConference()) {
+		if(hasOddNumberConference()) {
 			return LeagueConstant.NoEvenConferenceCount;
 		}
 		if(isFreeAgentListEmpty()) {
@@ -161,9 +143,9 @@ public class LeagueModel {
 		return true;
 	}
 
-	public boolean hasEvenNumberConference() {
+	public boolean hasOddNumberConference() {
 		if(conferences != null) {
-			return (conferences.size()%2 ==0);
+			return (conferences.size()%2 ==1);
 		}
 		return false;
 	}
