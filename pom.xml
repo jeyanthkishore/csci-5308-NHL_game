@@ -30,7 +30,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.21</version>
 		</dependency>
-    
     <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
 	<dependency>
 	    <groupId>com.googlecode.json-simple</groupId>
@@ -97,7 +96,7 @@
           <configuration>
             <archive>
               <manifest>
-                <mainClass>com.dhl.g05</mainClass>
+                <mainClass>com.dhl.g05.Driver</mainClass>
                 <addClasspath>true</addClasspath>
               </manifest>
             </archive>
