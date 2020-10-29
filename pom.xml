@@ -103,21 +103,6 @@
 <!--            </archive>-->
 <!--                  </configuration>-->
 <!--        </plugin>-->
-          <plugin>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <executions>
-              <execution>
-                <phase>install</phase>
-                <goals>
-                  <goal>copy-dependencies</goal>
-                </goals>
-                <configuration>
-                  <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-
         <plugin>
           <artifactId>maven-assembly-plugin</artifactId>
           <configuration>
@@ -133,6 +118,22 @@
             <appendAssemblyId>false</appendAssemblyId>
           </configuration>
         </plugin>
+          <plugin>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>install</phase>
+                <goals>
+                  <goal>copy-dependencies</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+
       </plugins>
     </pluginManagement>
   </build>
