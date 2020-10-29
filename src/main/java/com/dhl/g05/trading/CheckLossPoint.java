@@ -1,32 +1,32 @@
-package com.dhl.g05.trading;
+	package com.dhl.g05.trading;
+	
+	public class CheckLossPoint implements ICheckLossPoint{
 
-public class CheckLossPoint {
+		private int lossPoint;
+		private int lossCount;
 
-	private int lossPoint;
-	private int lossCount;
-
-	public int getLossPoint() {
-		return lossPoint;
-	}
-
-	public void setLossPoint(int lossPoint) {
-		this.lossPoint = lossPoint;
-	}
-
-	public int getLossCount() {
-		return lossCount;
-	}
-
-	public void setLossCount(int lossCount) {
-		this.lossCount = lossCount;
-	}	
-
-	public boolean checkLossPoint() {
-		if (lossCount >= lossPoint) {
-			return true;
-		} else {
-			return false;
+		public int getLossPoint() {
+			return lossPoint;
 		}
-	}
 
-}
+		public void setLossPoint(int lossPoint) {
+			this.lossPoint = lossPoint;
+		}
+
+		public int getLossCount() {
+			return lossCount;
+		}
+
+		public void setLossCount(int lossCount) {
+			this.lossCount = lossCount;
+		}
+
+		public boolean checkLossPoint() {
+			if (lossCount >= lossPoint) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+	}

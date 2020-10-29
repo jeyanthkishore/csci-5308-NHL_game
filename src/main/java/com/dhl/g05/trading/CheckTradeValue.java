@@ -3,6 +3,7 @@ package com.dhl.g05.trading;
 import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
 
 public class CheckTradeValue extends GenerateRandomTradeValue {
+
 	private double randomTradeOffer;
 	private double tradeChanceInConfig;
 
