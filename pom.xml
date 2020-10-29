@@ -91,19 +91,39 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.0.0-M5</version>
         </plugin>
-<!--        <plugin>-->
-<!--          <groupId>org.apache.maven.plugins</groupId>-->
-<!--          <artifactId>maven-jar-plugin</artifactId>-->
-<!--          <configuration>-->
-<!--            <archive>-->
-<!--              <manifest>-->
-<!--                <mainClass>com.dhl.g05.Driver</mainClass>-->
-<!--                <addClasspath>true</addClasspath>-->
-<!--              </manifest>-->
-<!--            </archive>-->
-<!--                  </configuration>-->
-<!--        </plugin>-->
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <configuration>
+            <archive>
+              <manifest>
+                <addClasspath>true</addClasspath>
+                <mainClass>com.dhl.g05.Driver</mainClass>
+                <classpathPrefix>dependency-jars/</classpathPrefix>
+              </manifest>
+            </archive>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>2.5.1</version>
+          <executions>
+            <execution>
+              <id>copy-dependencies</id>
+              <phase>package</phase>
+              <goals>
+                <goal>copy-dependencies</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>
+                  ${project.build.directory}/dependency-jars/
+                </outputDirectory>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+<!--        <plugin>
           <artifactId>maven-assembly-plugin</artifactId>
           <configuration>
             <archive>
@@ -117,23 +137,7 @@
             </descriptorRefs>
             <appendAssemblyId>false</appendAssemblyId>
           </configuration>
-        </plugin>
-          <plugin>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <executions>
-              <execution>
-                <phase>install</phase>
-                <goals>
-                  <goal>copy-dependencies</goal>
-                </goals>
-                <configuration>
-                  <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-
-
+        </plugin>-->
       </plugins>
     </pluginManagement>
   </build>
