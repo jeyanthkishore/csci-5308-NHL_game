@@ -101,7 +101,7 @@
 <!--                <addClasspath>true</addClasspath>-->
 <!--              </manifest>-->
 <!--            </archive>-->
-<!--          </configuration>-->
+<!--                  </configuration>-->
 <!--        </plugin>-->
         <plugin>
           <artifactId>maven-assembly-plugin</artifactId>
@@ -112,6 +112,9 @@
                 <addClasspath>true</addClasspath>
               </manifest>
             </archive>
+            <descriptorRefs>
+              <descriptorRef>jar-with-dependencies</descriptorRef>
+            </descriptorRefs>
             <appendAssemblyId>false</appendAssemblyId>
           </configuration>
         </plugin>
