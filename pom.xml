@@ -97,38 +97,6 @@
             </dependency>
           </dependencies>
 
-        <profiles>
-          <profile>
-            <id>dev</id>
-            <activation>
-              <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-              <finalName>${project.artifactId}</finalName>
-              <filters>
-                <filter>src/main/resources/filters/dev.properties</filter>
-              </filters>
-            </build>
-          </profile>
-          <profile>
-            <id>test</id>
-            <build>
-              <finalName>${project.artifactId}</finalName>
-              <filters>
-                <filter>src/main/resources/filters/test.properties</filter>
-              </filters>
-            </build>
-          </profile>
-          <profile>
-            <id>prod</id>
-            <build>
-              <finalName>${project.artifactId}</finalName>
-              <filters>
-                <filter>src/main/resources/filters/prod.properties</filter>
-              </filters>
-            </build>
-          </profile>
-        </profiles>
 
   <!--<build>
     <pluginManagement>&lt;!&ndash; lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) &ndash;&gt;
