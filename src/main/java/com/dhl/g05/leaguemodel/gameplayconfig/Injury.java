@@ -6,7 +6,6 @@ public class Injury implements IInjury {
     private int injuryDaysHigh;
 
     public Injury() {
-
     }
 
     public Injury(double randomInjuryChance, int injuryDaysLow, int injuryDaysHigh) {
