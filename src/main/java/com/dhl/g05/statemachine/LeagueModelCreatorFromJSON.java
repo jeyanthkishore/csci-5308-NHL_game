@@ -104,18 +104,12 @@ public class LeagueModelCreatorFromJSON {
 		ArrayList<FreeAgentModel> freeAgents = createFreeAgents((JSONArray)leagueData.get("freeAgents"));
 		ArrayList<CoachModel> freeCoaches = createFreeCoaches((JSONArray)leagueData.get("coaches"));
 		ArrayList<ManagerModel> managers = createFreeManagers((JSONArray)leagueData.get("generalManagers"));
-		ArrayList<ManagerModel> managerList = new ArrayList<>();
 		GamePlayConfigModel gamePlayConfig = setGamePlayConfigsFromFile((JSONObject) leagueData.get("gameplayConfig"));
 		String leagueName = (String)leagueData.get("leagueName");
 		if (conferences != null && freeAgents != null && freeCoaches != null && managers != null && gamePlayConfig!=null) {
 			LeagueModel league = leagueModel.createLeague(leagueName, conferences, freeAgents, freeCoaches, managers,gamePlayConfig);
 			LeagueConstant validationResult  =  leagueModel.validateLeague(league);
 			if (validationResult.equals(LeagueConstant.Success)) {
-//				if ( managers != null){
-//					System.out.println(managers);
-//					ManagerModel managerObject = new ManagerModel(managers);
-//					managerList.add(managerObject);
-//				}
 				return league;
 			} else {
 				playerCommunication.sendMessage(validationResult.getValue());
@@ -131,6 +125,7 @@ public class LeagueModelCreatorFromJSON {
 		} else {
 			Aging agingObject = createAging((JSONObject)gamePlayConfigs.get("aging"));
 			Injury injuryObject = createInjury((JSONObject)gamePlayConfigs.get("injuries"));
+			System.out.println("Injury Object:"+injuryObject);
 			TrainingConfig trainingObject = createTrainingConfig((JSONObject)gamePlayConfigs.get("training"));
 			TradingModel tradingObject = createTradingConfig((JSONObject)gamePlayConfigs.get("trading"));
 			GameResolverConfig gameResolver = createGameResolver((JSONObject)gamePlayConfigs.get("gameResolver"));
