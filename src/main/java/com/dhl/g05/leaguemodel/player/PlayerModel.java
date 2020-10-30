@@ -6,7 +6,7 @@ import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
 
-public class PlayerModel extends FreeAgentModel{
+public class PlayerModel extends FreeAgentModel implements IPlayerInjury{
 
 	private Boolean captain;
 	private int injuredForNumberOfDays;

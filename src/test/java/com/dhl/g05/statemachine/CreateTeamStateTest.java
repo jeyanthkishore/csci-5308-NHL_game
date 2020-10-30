@@ -49,16 +49,16 @@ public class CreateTeamStateTest {
 	@Test
 	public void testExit() {
 		assertTrue(state.exit());
-		//		assertTrue(state.getNextState() instanceof PlayerChoiceState);
+		assertTrue(state.getNextState() instanceof PlayerChoiceState);
 	}
 
 
-	//	@Test
-	//	public void testExitFails() {
-	//		state.getOuterStateMachine().setLeagueModel(new MockLeagueModelValidationFails());
-	//		state.performStateTask();
-	//		assertFalse(state.exit());
-	//		assertTrue(state.getNextState() instanceof CreateTeamState);
-	//	}
+		@Test
+		public void testExitFails() {
+			state.getOuterStateMachine().setLeagueModel(new MockLeagueModelValidationFails());
+			state.performStateTask();
+			assertFalse(state.exit());
+			assertTrue(state.getNextState() instanceof CreateTeamState);
+		}
 
 }

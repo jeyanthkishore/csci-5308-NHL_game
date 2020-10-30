@@ -4,6 +4,6 @@ import com.dhl.g05.leaguemodel.league.LeagueModel;
 
 public interface IPlayerTraining {
 
-	public LeagueModel implementTraining(LeagueModel object);
+	public LeagueModel implementTraining();
 
 }

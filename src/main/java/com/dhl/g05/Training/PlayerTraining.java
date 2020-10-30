@@ -6,16 +6,20 @@ import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.player.IPlayerInjury;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 
 public class PlayerTraining implements IPlayerTraining {
 
 	private LeagueModel leagueObject;
-
-
-	public LeagueModel implementTraining(LeagueModel league) {
+	private IPlayerInjury playerInjury = new PlayerModel();
+	
+	public PlayerTraining(LeagueModel league) {
 		this.leagueObject = league;
+	}
+	
+	public LeagueModel implementTraining() {
 		List<ConferenceModel> conferences = leagueObject.getConferenceDetails();
 		for (ConferenceModel c: conferences) {
 			List<DivisionModel> divisions = c.getDivisionDetails();
@@ -34,32 +38,42 @@ public class PlayerTraining implements IPlayerTraining {
 	}
 
 	public PlayerModel performTrainingForPlayer(PlayerModel player, CoachModel headCoach) {
+		
+		Boolean playerInjured = false;
 
 		if(trainingAlgorithm(player.getChecking(), headCoach.getChecking())) {
 			player.setChecking((player.getChecking()+1));
 		}else {
-			//call injury check
+			if(playerInjury.checkPlayerInjury(player)) {
+				playerInjured = true;
+			}
 		}
 
 		if(trainingAlgorithm(player.getSaving(), headCoach.getSaving())) {
 			player.setSaving((player.getSaving()+1));
 		}else {
-			//call injury check
+			if(playerInjury.checkPlayerInjury(player)) {
+				playerInjured = true;
+			}
 		}
 
 		if(trainingAlgorithm(player.getSkating(), headCoach.getSkating())) {
 			player.setSkating((player.getSkating()+1));
 		}else {
-			//call injury check
+			if(playerInjury.checkPlayerInjury(player)) {
+				playerInjured = true;
+			}
 		}
 
 		if(trainingAlgorithm(player.getShooting(), headCoach.getShooting())) {
 			player.setShooting((player.getShooting()+1));
 		}else {
-			//call injury check
+			if(playerInjury.checkPlayerInjury(player)) {
+				playerInjured = true;
+			}
 		}
 		player.setPlayerStrength(player.calculatePlayerStrength());
-
+		player.setHasInjured(playerInjured);
 		return player;
 	}
 
