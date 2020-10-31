@@ -10,14 +10,13 @@ import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.league.ILeagueModelPersistence;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
 
 public class LeaguePersistence implements ILeagueModelPersistence{
 
 	private List<ConferenceModel> conferenceList = new ArrayList<ConferenceModel>();
 	private List<FreeAgentModel> freeAgent = new ArrayList<FreeAgentModel>();
 	private List<CoachModel> freeCoaches = new ArrayList<CoachModel>();
-	private List<ManagerModel> freeManager = new ArrayList<ManagerModel>();
+	private List<String> freeManager = new ArrayList<String>();
 
 	@Override
 	public ArrayList<HashMap<String, Object>> loadDetails() {
@@ -32,6 +31,15 @@ public class LeaguePersistence implements ILeagueModelPersistence{
 		StoredProcedure sp= new StoredProcedure();
 		String leagueName = leagueObject.getLeagueName();
 		int leagueId = sp.saveLeague(leagueName);
+		if(leagueId == 0 ) {
+			return 0;
+		}
+		for(String m : leagueObject.getManagerList()) {
+			int managerId = sp.saveFreeManager(leagueId, m);
+			if(managerId == 0) {
+				return 0;
+			}
+		}
 		return leagueId;
 	}
 
@@ -54,9 +62,16 @@ public class LeaguePersistence implements ILeagueModelPersistence{
 		ICoachLoad coachLoad = new CoachPersistence();
 		freeCoaches = coachLoad.loadLeagueCoachObject(leagueName);
 		league.setFreeCoach(freeCoaches);
-		IManagerLoad managerLoad = new ManagerPersistence();
-		freeManager = managerLoad.loadLeagueManagerObject(leagueName);
+
+
+		List<HashMap<String,Object>> managersValue = new ArrayList<HashMap<String,Object>>();
+		managersValue = sp.fetchAllFreeManager(league_id);
+		for(HashMap<String, Object> manager : managersValue) {
+			String name = manager.get("name").toString();
+			freeManager.add(name);
+		}
 		league.setManagerList(freeManager);
+
 		league.setLeagueName(leagueName);
 		return league_id;
 	}

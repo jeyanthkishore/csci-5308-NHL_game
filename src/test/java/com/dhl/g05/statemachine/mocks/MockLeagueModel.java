@@ -12,8 +12,6 @@ import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.manager.ManagerConstant;
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.TeamConstant;
 import com.dhl.g05.leaguemodel.team.TeamModel;
@@ -34,7 +32,7 @@ public class MockLeagueModel implements ILeagueModelJson{
 	}
 
 	@Override
-	public LeagueModel createLeague(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<ManagerModel> managers,GamePlayConfigModel playConfig) {
+	public LeagueModel createLeague(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<String> managers,GamePlayConfigModel playConfig) {
 		return new LeagueModel(league, conferencedetail, agent, coach, managers,playConfig,new DbPersistanceMock());
 	}
 
@@ -82,10 +80,4 @@ public class MockLeagueModel implements ILeagueModelJson{
 	public FreeAgentConstant validatePlayer(PlayerModel player) {
 		return FreeAgentConstant.Success;
 	}
-
-	@Override
-	public ManagerConstant validateManager(ManagerModel managerObject) {
-		return ManagerConstant.Success;
-	}
-
 }

@@ -17,15 +17,13 @@ import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.leaguemodel.gameplayconfig.IGameConfigPersistence;
 import com.dhl.g05.leaguemodel.league.ILeagueModelPersistence;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.manager.IManagerPersistence;
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.IPlayerModelPersistence;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.ITeamModelPersistence;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.simulation.Date;
 
-public class DbPersistanceMock implements IGameConfigPersistence,IFreeAgentPersistence,IManagerLoad,ICoachLoad,IManagerPersistence,IDatePersistence,IConferenceModelPersistence,IPlayerModelPersistence,IDivisionModelPersistence,ILeagueModelPersistence,ITeamModelPersistence,ICoachModelPersistence{
+public class DbPersistanceMock implements IGameConfigPersistence,IFreeAgentPersistence,ICoachLoad,IDatePersistence,IConferenceModelPersistence,IPlayerModelPersistence,IDivisionModelPersistence,ILeagueModelPersistence,ITeamModelPersistence,ICoachModelPersistence{
 
 	@Override
 	public ArrayList<HashMap<String, Object>> loadDetails() {
@@ -85,14 +83,6 @@ public class DbPersistanceMock implements IGameConfigPersistence,IFreeAgentPersi
 	}
 
 	@Override
-	public int saveLeagueManagerObject(int league_id, ManagerModel object) {
-		if(league_id==1) {
-			return 1;
-		}
-		return 0;
-	}
-
-	@Override
 	public int loadLeagueObject(String leagueName,LeagueModel leagueObject) {
 		if(leagueName.equalsIgnoreCase("HockeyLeague")) {
 			leagueObject.setLeagueName(leagueName);
@@ -109,15 +99,6 @@ public class DbPersistanceMock implements IGameConfigPersistence,IFreeAgentPersi
 		JsonMockDataDb mock = new JsonMockDataDb();
 		if(leagueName.equalsIgnoreCase("HockeyLeague")) {
 			return mock.coachList;
-		}
-		return null;
-	}
-
-	@Override
-	public List<ManagerModel> loadLeagueManagerObject(String leagueName) {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		if(leagueName.equalsIgnoreCase("HockeyLeague")) {
-			return mock.managerList;
 		}
 		return null;
 	}

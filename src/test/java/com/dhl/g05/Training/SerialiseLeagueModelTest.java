@@ -1,6 +1,5 @@
 package com.dhl.g05.Training;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileNotFoundException;
@@ -23,7 +22,7 @@ public class SerialiseLeagueModelTest {
 		assertTrue(serial.serialiseObjects(data.league));
 		LeagueModelCreatorFromJSON deSerialize = new LeagueModelCreatorFromJSON(new MockLeagueModel(), new MockPlayerCommunication());
 		Boolean result = deSerialize.createLeagueFromFile(SerialiseLeagueConstant.FilePath.getValue());
-		assertFalse(result);
+		assertTrue(result);
 	}
 
 }

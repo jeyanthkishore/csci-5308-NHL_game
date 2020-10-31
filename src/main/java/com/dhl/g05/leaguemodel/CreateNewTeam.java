@@ -9,10 +9,9 @@ import com.dhl.g05.leaguemodel.coach.CoachConstant;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.manager.ManagerConstant;
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.mysql.cj.util.StringUtils;
 
 public class CreateNewTeam implements ICreateTeam {
 
@@ -21,7 +20,7 @@ public class CreateNewTeam implements ICreateTeam {
 	private IPlayerCommunication communicate;
 	List<FreeAgentModel> freeAgentList = new ArrayList<FreeAgentModel>();
 	List<CoachModel> coachList = new ArrayList<CoachModel>();
-	List<ManagerModel> managerList = new ArrayList<ManagerModel>();
+	List<String> managerList = new ArrayList<String>();
 
 	public CreateNewTeam() {
 		this.leagueObject = null;
@@ -56,11 +55,11 @@ public class CreateNewTeam implements ICreateTeam {
 		this.coachList = coachList;
 	}
 
-	public List<ManagerModel> getManagerList() {
+	public List<String> getManagerList() {
 		return managerList;
 	}
 
-	public void setManagerList(List<ManagerModel> managerList) {
+	public void setManagerList(List<String> managerList) {
 		this.managerList = managerList;
 	}
 	
@@ -81,13 +80,13 @@ public class CreateNewTeam implements ICreateTeam {
 			return false;
 		}
 		
-		ManagerModel managerObject = new ManagerModel();
+		String managerObject = "";
 		managerObject = pickManager();
-		if(managerObject.validate().equals(ManagerConstant.Success)) {
-			newTeam.setGeneralManagerName(managerObject.getName());
-		}else {
+		if(StringUtils.isNullOrEmpty(managerObject)) {
 			communicate.sendMessage(CreateTeamConstant.ErrorManagerCreation.getValue());
 			return false;
+		}else {
+			newTeam.setGeneralManagerName(managerObject);
 		}
 		
 		playerList = pickPlayers();
@@ -134,10 +133,10 @@ public class CreateNewTeam implements ICreateTeam {
 		return selectedCoach;
 	}
 
-	private ManagerModel pickManager() {
+	private String pickManager() {
 		managerList = leagueObject.getManagerList();
 		Boolean ManagerNotSelected = true;
-		ManagerModel selectedManager = new ManagerModel();
+		String selectedManager ="";
 		int number;
 		while(ManagerNotSelected) {
 			communicate.sendMessage(CreateTeamConstant.SelectManager.getValue());

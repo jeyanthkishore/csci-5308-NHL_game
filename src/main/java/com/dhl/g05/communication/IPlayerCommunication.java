@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
 
 public interface IPlayerCommunication {
 	
@@ -14,6 +13,6 @@ public interface IPlayerCommunication {
 	public String getFile();
 	public void sendMessage(List<FreeAgentModel> free);
 	public void sendCoachMessage(List<CoachModel> coachList);
-	public void sendManagerMessage(List<ManagerModel> managerList);
+	public void sendManagerMessage(List<String> managerList);
 	
 }

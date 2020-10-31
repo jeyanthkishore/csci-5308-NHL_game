@@ -28,12 +28,11 @@ import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
 import com.dhl.g05.leaguemodel.gameplayconfig.TrainingConfig;
 import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.manager.ManagerConstant;
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.TeamConstant;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.simulation.Date;
+import com.mysql.cj.util.StringUtils;
 
 public class LeagueModelCreatorFromJSON {
 
@@ -104,7 +103,7 @@ public class LeagueModelCreatorFromJSON {
 		ArrayList<ConferenceModel> conferences = createConferences((JSONArray)leagueData.get("conferences"));
 		ArrayList<FreeAgentModel> freeAgents = createFreeAgents((JSONArray)leagueData.get("freeAgents"));
 		ArrayList<CoachModel> freeCoaches = createFreeCoaches((JSONArray)leagueData.get("coaches"));
-		ArrayList<ManagerModel> managers = createFreeManagers((JSONArray)leagueData.get("generalManagers"));
+		ArrayList<String> managers = createFreeManagers((JSONArray)leagueData.get("generalManagers"));
 		GamePlayConfigModel gamePlayConfig = setGamePlayConfigsFromFile((JSONObject) leagueData.get("gameplayConfig"));
 		String leagueName = (String)leagueData.get("leagueName");
 		if (conferences != null && freeAgents != null && freeCoaches != null && managers != null && gamePlayConfig!=null) {
@@ -328,24 +327,17 @@ public class LeagueModelCreatorFromJSON {
 		return coaches;
 	}
 
-	private ArrayList<ManagerModel> createFreeManagers(JSONArray jsonManagers) {
+	private ArrayList<String> createFreeManagers(JSONArray jsonManagers) {
 		if (jsonManagers == null){
 			return null;
 		}
-		ArrayList<ManagerModel> managers = new ArrayList<>();
+		ArrayList<String> managers = new ArrayList<>();
 		for (int i=0; i<jsonManagers.size(); i++){
 			String name = (String) jsonManagers.get(i);
-			if (name.isEmpty()) {
+			if (StringUtils.isNullOrEmpty(name)) {
 				playerCommunication.sendMessage(("Manager name is empty"));
 			}
-			ManagerModel managerObject = new ManagerModel(name);
-			ManagerConstant validationResult  = managerObject.validate();
-			if (validationResult.equals(ManagerConstant.Success)) {
-				managers.add(managerObject);
-			} else {
-				playerCommunication.sendMessage(validationResult.getValue());
-				return null;
-			}
+				managers.add(name);
 		}
 		return managers;
 	}

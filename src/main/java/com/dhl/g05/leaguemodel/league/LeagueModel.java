@@ -7,7 +7,6 @@ import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.mysql.cj.util.StringUtils;
 
 public class LeagueModel {
@@ -16,7 +15,7 @@ public class LeagueModel {
 	private List<ConferenceModel> conferences;
 	private List<FreeAgentModel> freeAgents;
 	private List<CoachModel> coaches;
-	private List<ManagerModel> managerList;
+	private List<String> generalManagers;
 	private ILeagueModelPersistence dbObject;
 	private GamePlayConfigModel gameplayConfig;
 
@@ -29,7 +28,7 @@ public class LeagueModel {
 		setGamePlayConfig(null);
 	}
 
-	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<ManagerModel> managers,GamePlayConfigModel gamePlay ,ILeagueModelPersistence dbObject) {
+	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<String> managers,GamePlayConfigModel gamePlay ,ILeagueModelPersistence dbObject) {
 		setLeagueName(league);
 		setConferenceDetails(conferencedetail);
 		setFreeAgent(agent);
@@ -75,12 +74,12 @@ public class LeagueModel {
 		this.coaches = freeCoach;
 	}
 
-	public List<ManagerModel> getManagerList() {
-		return managerList;
+	public List<String> getManagerList() {
+		return generalManagers;
 	}
 
-	public void setManagerList(List<ManagerModel> managerList) {
-		this.managerList = managerList;
+	public void setManagerList(List<String> managerList) {
+		this.generalManagers = managerList;
 	}
 
 	public ILeagueModelPersistence getDbObject() {
@@ -170,7 +169,7 @@ public class LeagueModel {
 	}
 
 	private boolean isManagerListEmpty() {
-		if(managerList.isEmpty()) {
+		if(generalManagers.isEmpty() || generalManagers == null) {
 			return true;
 		}
 		return false;

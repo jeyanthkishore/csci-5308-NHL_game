@@ -8,7 +8,6 @@ import java.util.stream.IntStream;
 
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
 
 public class PlayerCommunication implements IPlayerCommunication{
 	private static Scanner scanner = new Scanner(System.in);
@@ -110,7 +109,7 @@ public class PlayerCommunication implements IPlayerCommunication{
 
 
 	@Override
-	public void sendManagerMessage(List<ManagerModel> managerList) {
+	public void sendManagerMessage(List<String> managerList) {
 		Map<Integer,Integer> columnLength = new HashMap<Integer,Integer>();
 		StringBuilder format = new StringBuilder();
 		String header [] = {"Number","Name"};
@@ -120,7 +119,7 @@ public class PlayerCommunication implements IPlayerCommunication{
 			}
 		});
 		IntStream.range(0, managerList.size()).forEach(a->{
-			String name = managerList.get(a).getName();
+			String name = managerList.get(a);
 			if(columnLength.get(1) < name.length()) {
 				columnLength.put(1, name.length());
 			}
@@ -130,7 +129,7 @@ public class PlayerCommunication implements IPlayerCommunication{
 		System.out.printf(format.toString(),header[0],header[1]);
 		System.out.println("--------------------------------------------------------------");
 		IntStream.range(0, managerList.size()).forEach(index->{
-			System.out.printf(format.toString(),index+1,managerList.get(index).getName());
+			System.out.printf(format.toString(),index+1,managerList.get(index));
 		});
 		System.out.println("--------------------------------------------------------------");
 	}

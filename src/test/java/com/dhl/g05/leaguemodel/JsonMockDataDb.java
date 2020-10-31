@@ -23,15 +23,13 @@ import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
 import com.dhl.g05.leaguemodel.gameplayconfig.TrainingConfig;
 import com.dhl.g05.leaguemodel.league.ILeagueModel;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.manager.IManagerModel;
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.IPlayerModel;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.ITeamModel;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.operation.DbPersistanceMock;
 
-public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionModel,ITeamModel,IPlayerModel,IFreeAgentModel,ICoachModel,IManagerModel{
+public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionModel,ITeamModel,IPlayerModel,IFreeAgentModel,ICoachModel{
 	Random randomNumber = new Random();
 	public String leagueName = "HockeyLeague";
 	public Map<String,Object> firstPlayerInfo;
@@ -42,9 +40,8 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public List<FreeAgentModel> freeAgentList;
 	public List<ConferenceModel> conferenceList;
 	public List<CoachModel> coachList;
-	public List<ManagerModel> managerList;
+	public List<String> managerList;
 	public CoachModel coachDetails;
-	public ManagerModel managerDetails;
 	public ArrayList<HashMap<String,Object>> leagueList;
 	public HashMap<String,Object> leagueMap;
 	public GamePlayConfigModel gamePlayConfig;
@@ -115,7 +112,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		teamList = new ArrayList<TeamModel>();
 		freeAgentList = new ArrayList<FreeAgentModel>();
 		coachList = new ArrayList<CoachModel>();
-		managerList = new ArrayList<ManagerModel>();
+		managerList = new ArrayList<String>();
 		conferenceList = new ArrayList<ConferenceModel>();
 		leagueList = new ArrayList<HashMap<String,Object>>();
 		leagueMap = new HashMap<String,Object>();
@@ -165,9 +162,9 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		conferenceList.add(new ConferenceModel(conferenceName,divisionList));
 		conferenceList.add(new ConferenceModel(conferenceTwoName,divisionList));
 		coachList.add(new CoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving));
-		managerList.add(new ManagerModel(generalManagerName));
-		managerList.add(new ManagerModel(generalManagerName+"Two"));
-		managerList.add(new ManagerModel(generalManagerName+"Three"));
+		managerList.add(generalManagerName);
+		managerList.add(generalManagerName+"Two");
+		managerList.add(generalManagerName+"Three");
 		league.setLeagueName(leagueName);
 		league.setConferenceDetails(conferenceList);
 		league.setFreeAgent(freeAgentList);
@@ -423,10 +420,4 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		coachObject.setSaving(coachSaving);
 
 	}
-
-	@Override
-	public void loadManagerModelData(ManagerModel managerObject){
-		managerObject.setName(generalManagerName);
-	}
-
 }

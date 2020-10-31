@@ -1,15 +1,11 @@
 package com.dhl.g05.statemachine.mocks;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
 
 public class MockPlayerCommunication implements IPlayerCommunication{
 
@@ -51,7 +47,7 @@ public class MockPlayerCommunication implements IPlayerCommunication{
 	}
 
 	@Override
-	public void sendManagerMessage(List<ManagerModel> managerList) {
+	public void sendManagerMessage(List<String> managerList) {
 		System.out.println("Manager List Will be Displayed");
 		
 	}
