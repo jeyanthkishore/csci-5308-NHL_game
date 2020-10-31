@@ -3,6 +3,7 @@ package com.dhl.g05.leaguemodel;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.leaguemodel.coach.CoachConstant;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
@@ -10,7 +11,6 @@ import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.TeamModel;
-import com.dhl.g05.statemachine.IPlayerCommunication;
 
 public class CreateNewTeam implements ICreateTeam {
 
@@ -67,11 +67,10 @@ public class CreateNewTeam implements ICreateTeam {
 	}
 	
 	public boolean teamCreation(String TeamName) {
-		CoachModel coach = new CoachModel();
-		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
 		newTeam = new TeamModel();
+		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
 		newTeam.setTeamName(TeamName);
-		coach = pickCoach();
+		CoachModel coach = pickCoach();
 		if(coach.validate().equals(CoachConstant.Success)) {
 			newTeam.setCoachDetails(coach);
 		}else {
@@ -83,12 +82,15 @@ public class CreateNewTeam implements ICreateTeam {
 			communicate.sendMessage("Error Creating players for the team");
 			return false;
 		}
+		ManagerModel managerObject = new ManagerModel();
+		managerObject = pickManager();
+		newTeam.setGeneralManagerName(managerObject.getName());
 		newTeam.setPlayerList(playerList);
 		newTeam.setUserTeam(true);
 		return true;
 	}
 
-	public CoachModel pickCoach() {
+	private CoachModel pickCoach() {
 		CoachModel selectedCoach = new CoachModel();
 		coachList = leagueObject.getFreeCoach();
 		String wait = "";
@@ -111,7 +113,7 @@ public class CreateNewTeam implements ICreateTeam {
 		return selectedCoach;
 	}
 
-	public ManagerModel pickManager() {
+	private ManagerModel pickManager() {
 		managerList = leagueObject.getManagerList();
 		Boolean ManagerNotSelected = true;
 		ManagerModel selectedManager = new ManagerModel();
@@ -133,7 +135,7 @@ public class CreateNewTeam implements ICreateTeam {
 		return selectedManager;
 	}
 
-	public List<PlayerModel> pickPlayers() {
+	private List<PlayerModel> pickPlayers() {
 		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
 		Boolean captainNotAssigned = true;
 		String captainResponse ="";

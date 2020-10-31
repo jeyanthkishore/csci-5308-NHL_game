@@ -85,19 +85,12 @@ public class CreateNewTeamTest {
 
 
 	@Test
-	public void pickPlayersTest() {
+	public void teamCreationTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
 		MockPlayerCommunication communicate = new MockPlayerCommunication();
 		CreateNewTeam team = new CreateNewTeam(data.league,communicate);
-		assertNotNull(team.pickPlayers());
+		assertNotNull(team.teamCreation("Rocker"));
+		assertNotNull(team.getNewTeam());
+		assertSame(20,team.getNewTeam().getPlayerList().size());
 	}
-
-	@Test
-	public void pickCoachTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		MockPlayerCommunication communicate = new MockPlayerCommunication();
-		CreateNewTeam team = new CreateNewTeam(data.league,communicate);
-		assertNotNull(team.pickPlayers());
-	}
-
 }

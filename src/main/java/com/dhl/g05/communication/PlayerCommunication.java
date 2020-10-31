@@ -1,4 +1,4 @@
-package com.dhl.g05.statemachine;
+package com.dhl.g05.communication;
 
 import java.util.HashMap;
 import java.util.List;

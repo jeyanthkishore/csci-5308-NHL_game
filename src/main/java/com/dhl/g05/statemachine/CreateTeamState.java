@@ -2,6 +2,7 @@ package com.dhl.g05.statemachine;
 
 import java.util.List;
 
+import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.leaguemodel.CreateNewTeam;
 import com.dhl.g05.leaguemodel.ICreateTeam;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
@@ -77,7 +78,7 @@ public class CreateTeamState extends AbstractState {
 	}
 
 
-	public Boolean createOperation() {
+	private Boolean createOperation() {
 
 		createTeam = new CreateNewTeam(league,communicate);
 		if(createTeam.teamCreation(teamName)){
@@ -92,7 +93,7 @@ public class CreateTeamState extends AbstractState {
 	}
 
 
-	public void addNewTeamtoLeagueObject() {
+	private void addNewTeamtoLeagueObject() {
 		List<ConferenceModel> conferences = league.getConferenceDetails();
 		for (ConferenceModel c: conferences) {
 			if (c.getConferenceName().equalsIgnoreCase(conferenceName)) {

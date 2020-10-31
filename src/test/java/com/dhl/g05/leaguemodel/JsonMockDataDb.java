@@ -180,6 +180,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		injury = new Injury(randomInjuryChance, injuryDaysLow, injuryDaysHigh);
 		aging = new Aging(averageRetirementAge, maximumAge);
 		gamePlayConfig = new GamePlayConfigModel(tradeConfig, aging, injury, gameResolver, training);
+		league.setGamePlayConfig(gamePlayConfig);
 	}
 	
 	public void setLeagueEmpty() {
@@ -380,6 +381,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		leagueModelObject.setConferenceDetails(conferenceList);
 		leagueModelObject.setFreeAgent(freeAgentList);
 		leagueModelObject.setFreeCoach(coachList);
+		leagueModelObject.setGamePlayConfig(gamePlayConfig);
 	}
 
 	@Override
