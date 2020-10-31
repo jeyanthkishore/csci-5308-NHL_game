@@ -8,6 +8,7 @@ import com.dhl.g05.leaguemodel.coach.CoachConstant;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.manager.ManagerConstant;
 import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.TeamModel;
@@ -69,23 +70,33 @@ public class CreateNewTeam implements ICreateTeam {
 	public boolean teamCreation(String TeamName) {
 		newTeam = new TeamModel();
 		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
+		freeAgentList = leagueObject.getFreeAgent();
 		newTeam.setTeamName(TeamName);
+		
 		CoachModel coach = pickCoach();
 		if(coach.validate().equals(CoachConstant.Success)) {
 			newTeam.setCoachDetails(coach);
 		}else {
-			communicate.sendMessage("Error Creating Coach for the team");
+			communicate.sendMessage(CreateTeamConstant.ErrorCoachCreation.getValue());
 			return false;
 		}
+		
 		playerList = pickPlayers();
-		if(playerList.size()<20 && playerList.size()>20) {
-			communicate.sendMessage("Error Creating players for the team");
+		if(playerList.size()<20 || playerList.size()>20) {
+			communicate.sendMessage(CreateTeamConstant.ErrorPlayerCreation.getValue());
 			return false;
+		}else {
+			newTeam.setPlayerList(playerList);
 		}
+		
 		ManagerModel managerObject = new ManagerModel();
 		managerObject = pickManager();
-		newTeam.setGeneralManagerName(managerObject.getName());
-		newTeam.setPlayerList(playerList);
+		if(managerObject.validate().equals(ManagerConstant.Success)) {
+			newTeam.setGeneralManagerName(managerObject.getName());
+		}else {
+			communicate.sendMessage(CreateTeamConstant.ErrorManagerCreation.getValue());
+			return false;
+		}
 		newTeam.setUserTeam(true);
 		return true;
 	}
@@ -96,13 +107,13 @@ public class CreateNewTeam implements ICreateTeam {
 		String wait = "";
 		Boolean coachNotSelected = true;
 		while(coachNotSelected) {
-			communicate.sendMessage("Select a Coach from the below list --");
+			communicate.sendMessage(CreateTeamConstant.SelectCoach.getValue());
 			communicate.sendCoachMessage(coachList);
-			communicate.sendMessage("Enter a Number to add coach");
+			communicate.sendMessage(CreateTeamConstant.AddCoach.getValue());
 			int number = communicate.getResponseNumber();
 			if(number ==0 || number>coachList.size()) {
-				communicate.sendMessage("Invalid Number.......");
-				communicate.sendMessage("Press Enter to Continue");
+				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
+				communicate.sendMessage(CreateTeamConstant.EnterKeyMessage.getValue());
 				wait = communicate.getResponse();
 				continue;
 			}
@@ -119,12 +130,12 @@ public class CreateNewTeam implements ICreateTeam {
 		ManagerModel selectedManager = new ManagerModel();
 		String wait = "";
 		while(ManagerNotSelected) {
-			communicate.sendMessage("Select a Manager from the below lits --");
+			communicate.sendMessage(CreateTeamConstant.SelectManager.getValue());
 			communicate.sendManagerMessage(managerList);
 			int number = communicate.getResponseNumber();
 			if(number ==0 || number>managerList.size()) {
-				communicate.sendMessage("Invalid Number.......");
-				communicate.sendMessage("Press Enter to Continue");
+				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
+				communicate.sendMessage(CreateTeamConstant.EnterKeyMessage.getValue());
 				wait = communicate.getResponse();
 				continue;
 			}
@@ -151,36 +162,36 @@ public class CreateNewTeam implements ICreateTeam {
 		String position="";
 		String wait="";
 
-		freeAgentList = leagueObject.getFreeAgent();
 		while(playerList.size()<20) {
-			String teamCount = "Total Team Strength = " + playerList.size();
-			String skaterscount = "Number of Skaters = " +skaters;
-			String gaoliecount = "Number of Goalies = " +goalie;
-			communicate.sendMessage(teamCount+" | "+skaterscount+" | "+gaoliecount);
-			communicate.sendMessage("Select a Free Agent from the below list --");
+			String teamCount = CreateTeamConstant.TeamCount.getValue() + playerList.size();
+			String skaterscount = CreateTeamConstant.SkaterCount.getValue() +skaters;
+			String goaliecount = CreateTeamConstant.GoalieCount.getValue() +goalie;
+			communicate.sendMessage(teamCount+CreateTeamConstant.Separator.getValue()
+			+skaterscount+CreateTeamConstant.Separator.getValue()+goaliecount);
+			communicate.sendMessage(CreateTeamConstant.SelectFreeAgent.getValue());
 			communicate.sendMessage(freeAgentList);
-			communicate.sendMessage("Enter a Number to add player");
+			communicate.sendMessage(CreateTeamConstant.AddPlayer.getValue());
 			int number = communicate.getResponseNumber();
 			if(number ==0 || number>freeAgentList.size()) {
-				communicate.sendMessage("Invalid Number.......");
-				communicate.sendMessage("Press Enter to Continue");
+				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
+				communicate.sendMessage(CreateTeamConstant.EnterKeyMessage.getValue());
 				wait = communicate.getResponse();
 				continue;
 			}
 			if(captainNotAssigned) {
-				communicate.sendMessage("Do Want him to be captain (Yes/No) : ");
+				communicate.sendMessage(CreateTeamConstant.CaptainConfirmation.getValue());
 				captainResponse = communicate.getResponse();
-				if(captainResponse.equalsIgnoreCase("yes")) {
+				if(captainResponse.equals(CreateTeamConstant.Yes.getValue())) {
 					captain = true;
 					captainNotAssigned = false;
 				}
 			}
-			if(freeAgentList.get(number-1).getPosition().equalsIgnoreCase("goalie")) {
+			if(freeAgentList.get(number-1).getPosition().equals(CreateTeamConstant.Goalie.getValue())) {
 				goalie++;
 				if(goalie > 2) {
 					goalie--;
-					communicate.sendMessage("Maximum Two Goalie per Team");
-					communicate.sendMessage("Press Enter to Continue");
+					communicate.sendMessage(CreateTeamConstant.MaximumGoalieMessage.getValue());
+					communicate.sendMessage(CreateTeamConstant.EnterKeyMessage.getValue());
 					wait = communicate.getResponse();
 					continue;
 				}
@@ -188,8 +199,8 @@ public class CreateNewTeam implements ICreateTeam {
 				skaters++;
 				if(skaters > 18) {
 					skaters--;
-					communicate.sendMessage("Maximum Skater Count Reached,Pls Select Goalie");
-					communicate.sendMessage("Press Enter to Continue");
+					communicate.sendMessage(CreateTeamConstant.MaximumSkatersMessage.getValue());
+					communicate.sendMessage(CreateTeamConstant.EnterKeyMessage.getValue());
 					wait = communicate.getResponse();
 					continue;
 				}

@@ -88,9 +88,16 @@ public class CreateNewTeamTest {
 	public void teamCreationTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
 		MockPlayerCommunication communicate = new MockPlayerCommunication();
-		CreateNewTeam team = new CreateNewTeam(data.league,communicate);
-		assertNotNull(team.teamCreation("Rocker"));
-		assertNotNull(team.getNewTeam());
-		assertSame(20,team.getNewTeam().getPlayerList().size());
+		CreateNewTeam teamCreation = new CreateNewTeam(data.league,communicate);
+		int FreeAgentSize = data.league.getFreeAgent().size();
+		int managerSize = data.league.getManagerList().size();
+		int coachListSize = data.league.getFreeCoach().size();
+		assertNotNull(teamCreation.teamCreation("Rocker"));
+		assertNotNull(teamCreation.getNewTeam());
+		assertSame(20,teamCreation.getNewTeam().getPlayerList().size());
+		int lastFreeAgentSize = FreeAgentSize-20;
+		assertSame(lastFreeAgentSize,teamCreation.getFreeAgentList().size());
+		assertSame(managerSize-1,teamCreation.getManagerList().size());
+		assertSame(coachListSize-1,teamCreation.getCoachList().size());
 	}
 }

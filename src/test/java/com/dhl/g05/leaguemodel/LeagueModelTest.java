@@ -186,60 +186,6 @@ public class LeagueModelTest {
 		assertFalse(valid.checkLeaguePresent());
 	}
 
-	@Test
-	public void checkFreeAgentWrongPositionTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		LeagueModel valid = new LeagueModel(mock);
-		assertFalse(valid.isFreeAgentPositionWrong());
-	}
-
-
-	@Test
-	public void checkFreeAgentWrongPositionChange() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setFreeAgentPositionDifferent();
-		LeagueModel valid = new LeagueModel(mock);
-		assertTrue(valid.isFreeAgentPositionWrong());
-	}
-
-	@Test
-	public void isFreeAgentAttributeEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		LeagueModel valid = new LeagueModel(mock);
-		assertFalse(valid.isFreeAgentDetailsEmptyOrNull());
-	}
-
-	@Test
-	public void isFreeAgentNameEmpty() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setFreeAgentNameEmpty();
-		LeagueModel valid = new LeagueModel(mock);
-		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
-	}
-
-	@Test
-	public void checkFreeAgentNameeNull() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setFreeAgentNameNull();
-		LeagueModel valid = new LeagueModel(mock);
-		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
-	}
-
-	@Test
-	public void checkFreeAgentPositionEmpty() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setFreeAgentPositionEmpty();
-		LeagueModel valid = new LeagueModel(mock);
-		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
-	}
-
-	@Test
-	public void checkFreeAgentPositionNull() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setFreeAgentPositionNull();
-		LeagueModel valid = new LeagueModel(mock);
-		assertTrue(valid.isFreeAgentDetailsEmptyOrNull());
-	}
 
 	@Test
 	public void isCoachListEmptyTest() {
@@ -271,15 +217,11 @@ public class LeagueModelTest {
 		mock = new JsonMockDataDb();
 		mock.setFreeAgentListEmpty();
 		league = new LeagueModel(mock);
-		assertSame(LeagueConstant.FreeAgentsEmpty,league.validate());
+		assertSame(LeagueConstant.FreeAgentsNotValid,league.validate());
 		mock = new JsonMockDataDb();
-		mock.setFreeAgentNameEmpty();
+		mock.setFreeAgentListNotValid();
 		league = new LeagueModel(mock);
-		assertSame(LeagueConstant.FreeAgentAttributeEmpty,league.validate());
-		mock = new JsonMockDataDb();
-		mock.setFreeAgentPositionDifferent();
-		league = new LeagueModel(mock);
-		assertSame(LeagueConstant.ImproperPlayerPosition,league.validate());
+		assertSame(LeagueConstant.FreeAgentsNotValid,league.validate());
 	}
 
 }

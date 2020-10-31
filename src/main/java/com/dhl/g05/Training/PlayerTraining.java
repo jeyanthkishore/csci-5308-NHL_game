@@ -37,7 +37,7 @@ public class PlayerTraining implements IPlayerTraining {
 		return leagueObject;
 	}
 
-	public PlayerModel performTrainingForPlayer(PlayerModel player, CoachModel headCoach) {
+	private PlayerModel performTrainingForPlayer(PlayerModel player, CoachModel headCoach) {
 		
 		Boolean playerInjured = false;
 
@@ -78,7 +78,7 @@ public class PlayerTraining implements IPlayerTraining {
 		return false;
 	}
 	
-	public Boolean trainingAlgorithm(double playerValue, double coachValue) {
+	private Boolean trainingAlgorithm(double playerValue, double coachValue) {
 		double randomValue = Math.random();
 		if(randomValue < coachValue) {
 			return true;

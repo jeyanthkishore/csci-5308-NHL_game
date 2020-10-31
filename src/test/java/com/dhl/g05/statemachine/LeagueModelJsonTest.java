@@ -44,6 +44,7 @@ public class LeagueModelJsonTest {
 		leagueModel.setFreeAgentDatabase(new DbPersistanceMock());
 		leagueModel.setManagerDatabase(new DbPersistanceMock());
 		leagueModel.setCoachDatabase(new DbPersistanceMock());
+		leagueModel.setGamePlayDatabase(new DbPersistanceMock());
 
 		PlayerModel player = new PlayerModel("Cristiano Ronaldo",null,null,10,15,1,20,15);
 		ArrayList<PlayerModel> players = new ArrayList<>();

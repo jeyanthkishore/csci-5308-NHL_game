@@ -13,6 +13,8 @@ import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.leaguemodel.division.IDivisionModelPersistence;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.freeagent.IFreeAgentPersistence;
+import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.IGameConfigPersistence;
 import com.dhl.g05.leaguemodel.league.ILeagueModelPersistence;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
 import com.dhl.g05.leaguemodel.manager.IManagerPersistence;
@@ -23,7 +25,7 @@ import com.dhl.g05.leaguemodel.team.ITeamModelPersistence;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.simulation.Date;
 
-public class DbPersistanceMock implements IFreeAgentPersistence,IManagerLoad,ICoachLoad,IManagerPersistence,IDatePersistence,IConferenceModelPersistence,IPlayerModelPersistence,IDivisionModelPersistence,ILeagueModelPersistence,ITeamModelPersistence,ICoachModelPersistence{
+public class DbPersistanceMock implements IGameConfigPersistence,IFreeAgentPersistence,IManagerLoad,ICoachLoad,IManagerPersistence,IDatePersistence,IConferenceModelPersistence,IPlayerModelPersistence,IDivisionModelPersistence,ILeagueModelPersistence,ITeamModelPersistence,ICoachModelPersistence{
 
 	@Override
 	public ArrayList<HashMap<String, Object>> loadDetails() {
@@ -180,6 +182,14 @@ public class DbPersistanceMock implements IFreeAgentPersistence,IManagerLoad,ICo
 
 	@Override
 	public int saveFreeAgentObject(int leagueId, FreeAgentModel freeAgent) {
+		if(leagueId==1) {
+			return 1;
+		}
+		return 0;
+	}
+
+	@Override
+	public int saveGamePlayObject(int leagueId, GamePlayConfigModel gamePlayConfigModel) {
 		if(leagueId==1) {
 			return 1;
 		}

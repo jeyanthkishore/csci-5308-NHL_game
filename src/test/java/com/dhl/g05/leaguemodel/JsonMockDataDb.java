@@ -165,6 +165,8 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		conferenceList.add(new ConferenceModel(conferenceTwoName,divisionList));
 		coachList.add(new CoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving));
 		managerList.add(new ManagerModel(generalManagerName));
+		managerList.add(new ManagerModel(generalManagerName+"Two"));
+		managerList.add(new ManagerModel(generalManagerName+"Three"));
 		league.setLeagueName(leagueName);
 		league.setConferenceDetails(conferenceList);
 		league.setFreeAgent(freeAgentList);
@@ -295,6 +297,14 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	}
 	public void setFreeAgentListEmpty() {
 		freeAgentList.clear();
+	}
+	
+	public void setFreeAgentListNotValid() {
+		int size = freeAgentList.size();
+		for(int i = size-1; i>=20;i--) {
+			freeAgentList.remove(i);
+		}
+		
 	}
 	public void setFreeAgentNameEmpty() {
 		freeAgentList.get(0).setPlayerName("");

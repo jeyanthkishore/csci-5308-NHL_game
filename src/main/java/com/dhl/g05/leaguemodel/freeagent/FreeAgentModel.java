@@ -113,8 +113,8 @@ public class FreeAgentModel implements IFreeAgent {
 		this.playerStrength = playerStrength;
 	}
 	
-	public int saveFreeAgentObject(int conferenceId,IFreeAgentPersistence database) {
-		return database.saveFreeAgentObject(conferenceId,this);
+	public int saveFreeAgentObject(int leagueId,IFreeAgentPersistence database) {
+		return database.saveFreeAgentObject(leagueId,this);
 	}
 
 	public double calculatePlayerStrength(){

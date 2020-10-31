@@ -16,18 +16,4 @@ public class PlayerTrainingTest {
 		assertNotNull(train.implementTraining());
 	}
 	
-	@Test
-	public void performTrainingForPlayerTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		PlayerTraining train = new PlayerTraining(data.league);
-		assertNotNull(train.performTrainingForPlayer(data.playerList.get(0), data.coachDetails));
-	}
-	
-	@Test
-	public void trainingAlgorithmTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		PlayerTraining train = new PlayerTraining(data.league);
-		assertTrue(train.trainingAlgorithm(10.0, 11.1));
-	}
-	
 }

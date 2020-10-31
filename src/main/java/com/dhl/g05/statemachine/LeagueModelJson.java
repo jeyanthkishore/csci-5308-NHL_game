@@ -14,6 +14,7 @@ import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.freeagent.IFreeAgentPersistence;
 import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.IGameConfigPersistence;
 import com.dhl.g05.leaguemodel.league.ILeagueModelPersistence;
 import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
@@ -30,6 +31,7 @@ import com.dhl.g05.operation.ConferencePersistence;
 import com.dhl.g05.operation.DatePersistence;
 import com.dhl.g05.operation.DivisionPersistence;
 import com.dhl.g05.operation.FreeAgentPersistence;
+import com.dhl.g05.operation.GamePlayPersistence;
 import com.dhl.g05.operation.IDatePersistence;
 import com.dhl.g05.operation.LeaguePersistence;
 import com.dhl.g05.operation.ManagerPersistence;
@@ -49,6 +51,7 @@ public class LeagueModelJson implements ILeagueModelJson{
 	private IFreeAgentPersistence freeAgentDatabase;
 	private ICoachModelPersistence coachDataBase;
 	private IManagerPersistence managerDatabase;
+	private IGameConfigPersistence gamePlayDatabase;
 
 	public LeagueModelJson() {
 		this.leagueDatabase = new LeaguePersistence();
@@ -60,6 +63,7 @@ public class LeagueModelJson implements ILeagueModelJson{
 		this.freeAgentDatabase = new FreeAgentPersistence();
 		this.coachDataBase = new CoachPersistence();
 		this.managerDatabase = new ManagerPersistence();
+		this.gamePlayDatabase = new GamePlayPersistence();
 	}
 
 	public void setDateDatabase(IDatePersistence dateDatabase) {
@@ -96,6 +100,10 @@ public class LeagueModelJson implements ILeagueModelJson{
 	
 	public void setManagerDatabase(IManagerPersistence managerDatabase) {
 		this.managerDatabase = managerDatabase;
+	}
+	
+	public void setGamePlayDatabase(IGameConfigPersistence gamePlayDatabase) {
+		this.gamePlayDatabase = gamePlayDatabase;
 	}
 
 	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches, List<ManagerModel> managers,GamePlayConfigModel gamePlay) {
@@ -163,6 +171,11 @@ public class LeagueModelJson implements ILeagueModelJson{
 			if(managerId == 0) {
 				return false;
 			}
+		}
+		GamePlayConfigModel gamePlay = league.getGamePlayConfig();
+		int gamePlayId = gamePlay.saveGamePlayObject(leagueId,gamePlayDatabase);
+		if(gamePlayId == 0) {
+			return false;
 		}
 		return true;
 	}
