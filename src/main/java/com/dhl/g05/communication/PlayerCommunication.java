@@ -97,14 +97,14 @@ public class PlayerCommunication implements IPlayerCommunication{
 		format.append("|\n");
 		System.out.printf(format.toString(),header[0],header[1],header[2],header[3],header[4],header[5]);
 		System.out.println("--------------------------------------------------------------"
-				+ "-------------------------------------------------------");
+				+ "------------");
 		IntStream.range(0, coachList.size()).forEach(index->{
 			System.out.printf(format.toString(),index+1,coachList.get(index).getName(),coachList.get(index).getChecking(),
 					coachList.get(index).getSkating(),coachList.get(index).getShooting(),
 					coachList.get(index).getSaving());
 		});
 		System.out.println("--------------------------------------------------------------"
-				+ "-------------------------------------------------------");
+				+ "------------");
 
 	}
 
@@ -128,13 +128,11 @@ public class PlayerCommunication implements IPlayerCommunication{
 		columnLength.entrySet().stream().forEach(e -> format.append("| %" + "" + e.getValue() + "s "));
 		format.append("|\n");
 		System.out.printf(format.toString(),header[0],header[1]);
-		System.out.println("--------------------------------------------------------------"
-				+ "-------------------------------------------------------");
+		System.out.println("--------------------------------------------------------------");
 		IntStream.range(0, managerList.size()).forEach(index->{
 			System.out.printf(format.toString(),index+1,managerList.get(index).getName());
 		});
-		System.out.println("--------------------------------------------------------------"
-				+ "-------------------------------------------------------");
+		System.out.println("--------------------------------------------------------------");
 	}
 
 }

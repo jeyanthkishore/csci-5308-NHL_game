@@ -11,16 +11,25 @@ import com.google.gson.GsonBuilder;
 public class SerialiseLeagueModel implements ISerializeModel{
 
 	private LeagueModel leagueObject;
+	private String serailizeObject;
+
+	public String getSerailizeObject() {
+		return serailizeObject;
+	}
+
+	public void setSerailizeObject(String serailizeObject) {
+		this.serailizeObject = serailizeObject;
+	}
 
 	public Boolean serialiseObjects(LeagueModel league) {
 		this.leagueObject = league;
 		GsonBuilder builder = new GsonBuilder(); 
 		builder.setPrettyPrinting(); 
 		Gson gson = builder.create();
-		String serailizeObject = gson.toJson(leagueObject);
+		serailizeObject = gson.toJson(leagueObject);
 		System.out.println(serailizeObject);
 		try {
-			File file = new File("src/test/java/com/dhl/g05/jsontestfiles/OutputModel.json");
+			File file = new File(SerialiseLeagueConstant.FilePath.getValue());
 			FileWriter myWriter = new FileWriter(file);
 			myWriter.write(serailizeObject);
 			myWriter.close();

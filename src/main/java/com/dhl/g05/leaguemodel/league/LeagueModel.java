@@ -18,7 +18,7 @@ public class LeagueModel {
 	private List<CoachModel> coaches;
 	private List<ManagerModel> managerList;
 	private ILeagueModelPersistence dbObject;
-	private GamePlayConfigModel gamePlayConfig;
+	private GamePlayConfigModel gameplayConfig;
 
 	public LeagueModel() {
 		setLeagueName(null);
@@ -92,11 +92,11 @@ public class LeagueModel {
 	}
 	
 	public GamePlayConfigModel getGamePlayConfig() {
-		return gamePlayConfig;
+		return gameplayConfig;
 	}
 
 	public void setGamePlayConfig(GamePlayConfigModel gamePlayConfig) {
-		this.gamePlayConfig = gamePlayConfig;
+		this.gameplayConfig = gamePlayConfig;
 	}
 	public int saveLeagueObject(ILeagueModelPersistence database) {
 		return database.saveLeagueObject(this);

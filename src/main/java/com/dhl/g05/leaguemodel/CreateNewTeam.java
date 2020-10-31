@@ -1,6 +1,7 @@
 package com.dhl.g05.leaguemodel;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 import com.dhl.g05.communication.IPlayerCommunication;
@@ -15,7 +16,7 @@ import com.dhl.g05.leaguemodel.team.TeamModel;
 
 public class CreateNewTeam implements ICreateTeam {
 
-	private TeamModel newTeam;
+	private TeamModel newTeam = new TeamModel();
 	private LeagueModel leagueObject;
 	private IPlayerCommunication communicate;
 	List<FreeAgentModel> freeAgentList = new ArrayList<FreeAgentModel>();
@@ -68,7 +69,6 @@ public class CreateNewTeam implements ICreateTeam {
 	}
 	
 	public boolean teamCreation(String TeamName) {
-		newTeam = new TeamModel();
 		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
 		freeAgentList = leagueObject.getFreeAgent();
 		newTeam.setTeamName(TeamName);
@@ -105,18 +105,25 @@ public class CreateNewTeam implements ICreateTeam {
 	private CoachModel pickCoach() {
 		CoachModel selectedCoach = new CoachModel();
 		coachList = leagueObject.getFreeCoach();
-		String wait = "";
 		Boolean coachNotSelected = true;
+		int number;
 		
 		while(coachNotSelected) {
 			communicate.sendMessage(CreateTeamConstant.SelectCoach.getValue());
 			communicate.sendCoachMessage(coachList);
 			communicate.sendMessage(CreateTeamConstant.AddCoach.getValue());
-			int number = communicate.getResponseNumber();
+			try {
+				number = communicate.getResponseNumber();
+			}catch(InputMismatchException e) {
+				communicate.sendMessage(CreateTeamConstant.NoNumberResponse.getValue());
+				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
+				communicate.getResponse();
+				continue;
+			}
 			if(number ==0 || number>coachList.size()) {
 				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
-				communicate.sendMessage(CreateTeamConstant.EnterKeyMessage.getValue());
-				wait = communicate.getResponse();
+				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
+				communicate.getResponse();
 				continue;
 			}
 			selectedCoach = coachList.get(number-1);
@@ -131,16 +138,23 @@ public class CreateNewTeam implements ICreateTeam {
 		managerList = leagueObject.getManagerList();
 		Boolean ManagerNotSelected = true;
 		ManagerModel selectedManager = new ManagerModel();
-		String wait = "";
-		
+		int number;
 		while(ManagerNotSelected) {
 			communicate.sendMessage(CreateTeamConstant.SelectManager.getValue());
 			communicate.sendManagerMessage(managerList);
-			int number = communicate.getResponseNumber();
+			communicate.sendMessage(CreateTeamConstant.AddManager.getValue());
+			try {
+				number = communicate.getResponseNumber();
+			}catch(InputMismatchException e) {
+				communicate.sendMessage(CreateTeamConstant.NoNumberResponse.getValue());
+				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
+				communicate.getResponse();
+				continue;
+			}
 			if(number ==0 || number>managerList.size()) {
 				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
-				communicate.sendMessage(CreateTeamConstant.EnterKeyMessage.getValue());
-				wait = communicate.getResponse();
+				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
+				communicate.getResponse();
 				continue;
 			}
 			selectedManager = managerList.get(number-1);
@@ -159,14 +173,13 @@ public class CreateNewTeam implements ICreateTeam {
 		int goalie = 0;
 		int skaters = 0;
 		int age = 0;
+		int responseNumber;
 		double skating = 0;
 		double shooting = 0;
 		double checking = 0;
 		double saving = 0;
 		String name ="";
 		String position="";
-		String wait="";
-
 		while(playerList.size()<20) {
 			String teamCount = CreateTeamConstant.TeamCount.getValue() + playerList.size();
 			String skaterscount = CreateTeamConstant.SkaterCount.getValue() +skaters;
@@ -176,11 +189,19 @@ public class CreateNewTeam implements ICreateTeam {
 			communicate.sendMessage(CreateTeamConstant.SelectFreeAgent.getValue());
 			communicate.sendMessage(freeAgentList);
 			communicate.sendMessage(CreateTeamConstant.AddPlayer.getValue());
-			int number = communicate.getResponseNumber();
-			if(number ==0 || number>freeAgentList.size()) {
+			try {
+				responseNumber = communicate.getResponseNumber();
+			}catch(InputMismatchException e) {
+				communicate.sendMessage(CreateTeamConstant.NoNumberResponse.getValue());
+				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
+				communicate.getResponse();
+				continue;
+			}
+			
+			if(responseNumber ==0 || responseNumber>freeAgentList.size()) {
 				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
-				communicate.sendMessage(CreateTeamConstant.EnterKeyMessage.getValue());
-				wait = communicate.getResponse();
+				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
+				communicate.getResponse();
 				continue;
 			}
 			if(captainNotAssigned) {
@@ -191,13 +212,13 @@ public class CreateNewTeam implements ICreateTeam {
 					captainNotAssigned = false;
 				}
 			}
-			if(freeAgentList.get(number-1).getPosition().equals(CreateTeamConstant.Goalie.getValue())) {
+			if(freeAgentList.get(responseNumber-1).getPosition().equals(CreateTeamConstant.Goalie.getValue())) {
 				goalie++;
 				if(goalie > 2) {
 					goalie--;
 					communicate.sendMessage(CreateTeamConstant.MaximumGoalieMessage.getValue());
-					communicate.sendMessage(CreateTeamConstant.EnterKeyMessage.getValue());
-					wait = communicate.getResponse();
+					communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
+					communicate.getResponse();
 					continue;
 				}
 			}else {
@@ -205,21 +226,21 @@ public class CreateNewTeam implements ICreateTeam {
 				if(skaters > 18) {
 					skaters--;
 					communicate.sendMessage(CreateTeamConstant.MaximumSkatersMessage.getValue());
-					communicate.sendMessage(CreateTeamConstant.EnterKeyMessage.getValue());
-					wait = communicate.getResponse();
+					communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
+					communicate.getResponse();
 					continue;
 				}
 			}
-			name = freeAgentList.get(number-1).getPlayerName();
-			position = freeAgentList.get(number-1).getPosition();
-			age = freeAgentList.get(number-1).getAge();
-			checking = freeAgentList.get(number-1).getChecking();
-			skating = freeAgentList.get(number-1).getSkating();
-			shooting = freeAgentList.get(number-1).getShooting();
-			saving = freeAgentList.get(number-1).getSaving();
+			name = freeAgentList.get(responseNumber-1).getPlayerName();
+			position = freeAgentList.get(responseNumber-1).getPosition();
+			age = freeAgentList.get(responseNumber-1).getAge();
+			checking = freeAgentList.get(responseNumber-1).getChecking();
+			skating = freeAgentList.get(responseNumber-1).getSkating();
+			shooting = freeAgentList.get(responseNumber-1).getShooting();
+			saving = freeAgentList.get(responseNumber-1).getSaving();
 			playerList.add(new PlayerModel(name,position,captain,age,checking,skating,shooting,saving));
 			captain = false;
-			freeAgentList.remove(number-1);
+			freeAgentList.remove(responseNumber-1);
 		}
 
 		return playerList;
