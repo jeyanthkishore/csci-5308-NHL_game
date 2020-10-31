@@ -38,16 +38,6 @@ public interface IFreeAgent {
 
 	public FreeAgentConstant validate();
 
-	public boolean isPlayerDetailsNull();
-
-	public boolean isPlayerDetailsEmpty();
-
-	public boolean isPlayerPositionValid() ;
-
-	public boolean isPlayerAgeValid();
-
-	public boolean isPlayerStatValid();
-
 	public boolean validateStat(double stat);
 
 	public boolean getHasInjured();

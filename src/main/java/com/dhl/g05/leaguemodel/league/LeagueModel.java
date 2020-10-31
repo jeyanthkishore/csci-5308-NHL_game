@@ -8,6 +8,7 @@ import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.leaguemodel.manager.ManagerModel;
+import com.mysql.cj.util.StringUtils;
 
 public class LeagueModel {
 
@@ -118,60 +119,57 @@ public class LeagueModel {
 		if(isFreeAgentListNotValid()) {
 			return LeagueConstant.FreeAgentsNotValid;
 		}
-		if(checkLeaguePresent()) {
-			return LeagueConstant.LeagueExists;
-		}
 		if(isCoachListEmpty()){
 			return LeagueConstant.CoachListEmpty;
 		}
 		if(isManagerListEmpty()){
 			return LeagueConstant.ManagerListEmpty;
 		}
+		if(checkLeaguePresent()) {
+			return LeagueConstant.LeagueExists;
+		}
 		return LeagueConstant.Success;
 	}
 
-	public boolean isLeagueNameEmptyOrNull() {
-		if(leagueName==""|| leagueName == null) {
+	private boolean isLeagueNameEmptyOrNull() {
+		return StringUtils.isNullOrEmpty(leagueName);
+	}
+
+	private boolean isConferenceListEmpty() {
+		if(conferences == null) {
 			return true;
 		}
-		return false;
+		return (conferences.size()<=0);
 	}
 
-	public boolean isConferenceListEmpty() {
-		if(conferences != null) {
-			return (conferences.size()<=0);
+	private boolean hasOddNumberConference() {
+		if(conferences == null) {
+			return false;
 		}
-		return true;
+		return (conferences.size()%2 ==1);
 	}
 
-	public boolean hasOddNumberConference() {
-		if(conferences != null) {
-			return (conferences.size()%2 ==1);
-		}
-		return false;
-	}
-
-	public boolean isFreeAgentListNotValid() {
+	private boolean isFreeAgentListNotValid() {
 		if(freeAgents == null) {
 			return true;
 		}
 		else return (freeAgents.size()<=20);
 	}
 
-	public Boolean checkLeaguePresent() {
+	private Boolean checkLeaguePresent() {
 		ArrayList<HashMap<String,Object>> allLeague = dbObject.loadDetails();
 		Boolean leaguePresent = allLeague.stream().anyMatch(v->v.get("league_name").equals(leagueName));
 		return leaguePresent;
 	}
 
-	public boolean isCoachListEmpty() {
+	private boolean isCoachListEmpty() {
 		if(coaches.isEmpty()) {
 			return true;
 		}
 		return false;
 	}
 
-	public boolean isManagerListEmpty() {
+	private boolean isManagerListEmpty() {
 		if(managerList.isEmpty()) {
 			return true;
 		}

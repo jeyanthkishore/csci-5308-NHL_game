@@ -3,6 +3,7 @@ package com.dhl.g05.leaguemodel.division;
 import java.util.List;
 
 import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.mysql.cj.util.StringUtils;
 
 public class DivisionModel {
 
@@ -57,14 +58,11 @@ public class DivisionModel {
 		return DivisionConstant.Success;
 	}
 
-	public boolean isDivisionNameEmptyorNull() {
-		if(divisionName == "" || divisionName == null) {
-			return true;
-		}
-		return false;
+	private boolean isDivisionNameEmptyorNull() {
+		return StringUtils.isNullOrEmpty(divisionName);
 	}
 
-	public boolean isTeamListEmpty() {
+	private boolean isTeamListEmpty() {
 		if(teams == null || teams.isEmpty()) {
 			return true;
 		}

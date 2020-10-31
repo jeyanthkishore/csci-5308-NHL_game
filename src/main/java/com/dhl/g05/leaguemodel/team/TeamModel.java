@@ -5,6 +5,7 @@ import java.util.List;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.freeagent.IFreeAgent;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.mysql.cj.util.StringUtils;
 
 public class TeamModel {
 
@@ -105,14 +106,14 @@ public class TeamModel {
 	}
 
 	public TeamConstant validate() {
-		if(isTeamDetailsEmpty()||isTeamDetailsNull()) {
+		if(isTeamDetailsEmptyOrNull()) {
 			return TeamConstant.TeamDetailsEmpty;
 		}
 		if(isPlayerListEmpty()) {
 			return TeamConstant.PlayerListEmpty;
 		}
-		if(isPlayerListMaximum()) {
-			return TeamConstant.MaxPlayerCountExceed;
+		if(isPlayerListValid()) {
+			return TeamConstant.PlayerCountMismatch;
 		}
 		if(containOneTeamCaptain()==0) {
 			return TeamConstant.NoTeamCaptain;
@@ -126,25 +127,19 @@ public class TeamModel {
 		return TeamConstant.Success;
 	}
 
-	public boolean isTeamDetailsEmpty() {
-		if(teamName == "" || generalManager =="") {
+	private boolean isTeamDetailsEmptyOrNull() {
+		if(StringUtils.isNullOrEmpty(generalManager) || StringUtils.isNullOrEmpty(teamName)) {
 			return true;
 		}
 		return false;
 	}
 
-	public boolean isTeamDetailsNull() {
-		if(teamName == null || generalManager ==null) {
-			return true;
-		}
-		return false;
-	}
 
-	public boolean isPlayerListEmpty() {
+	private boolean isPlayerListEmpty() {
 		return (players == null || players.isEmpty());
 	}
 
-	public boolean isPlayerListMaximum() {
+	private boolean isPlayerListValid() {
 		if(players.size() > 20) {
 			return true;
 		}
@@ -156,7 +151,7 @@ public class TeamModel {
 		return captainCount;
 	}
 
-	public boolean isCoachDetailsEmptyOrNull() {
+	private boolean isCoachDetailsEmptyOrNull() {
 		if(headCoach == null){
 			return true;
 		}

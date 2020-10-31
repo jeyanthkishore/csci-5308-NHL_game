@@ -6,7 +6,7 @@ public enum TeamConstant {
 	Failure("fails"),
 	TeamDetailsEmpty("Team Details Are Empty"),
 	PlayerListEmpty("Player List Is Empty"),
-	MaxPlayerCountExceed("Maximum Player Limit Is 20"),
+	PlayerCountMismatch("Team must contain 20 Players"),
 	NoTeamCaptain("Team Must Contain Atleast One Captain"),
 	MoreTeamCaptain("Team Must Contain Only One Captain"),
 	CoachDetailsEmpty("Coach has missing values");

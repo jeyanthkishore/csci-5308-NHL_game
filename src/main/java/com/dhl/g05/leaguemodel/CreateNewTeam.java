@@ -81,14 +81,6 @@ public class CreateNewTeam implements ICreateTeam {
 			return false;
 		}
 		
-		playerList = pickPlayers();
-		if(playerList.size()<20 || playerList.size()>20) {
-			communicate.sendMessage(CreateTeamConstant.ErrorPlayerCreation.getValue());
-			return false;
-		}else {
-			newTeam.setPlayerList(playerList);
-		}
-		
 		ManagerModel managerObject = new ManagerModel();
 		managerObject = pickManager();
 		if(managerObject.validate().equals(ManagerConstant.Success)) {
@@ -97,6 +89,15 @@ public class CreateNewTeam implements ICreateTeam {
 			communicate.sendMessage(CreateTeamConstant.ErrorManagerCreation.getValue());
 			return false;
 		}
+		
+		playerList = pickPlayers();
+		if(playerList.size()<20 || playerList.size()>20) {
+			communicate.sendMessage(CreateTeamConstant.ErrorPlayerCreation.getValue());
+			return false;
+		}else {
+			newTeam.setPlayerList(playerList);
+		}
+		
 		newTeam.setUserTeam(true);
 		return true;
 	}
@@ -106,6 +107,7 @@ public class CreateNewTeam implements ICreateTeam {
 		coachList = leagueObject.getFreeCoach();
 		String wait = "";
 		Boolean coachNotSelected = true;
+		
 		while(coachNotSelected) {
 			communicate.sendMessage(CreateTeamConstant.SelectCoach.getValue());
 			communicate.sendCoachMessage(coachList);
@@ -121,6 +123,7 @@ public class CreateNewTeam implements ICreateTeam {
 			coachList.remove(number-1);
 			coachNotSelected = false;
 		}
+		
 		return selectedCoach;
 	}
 
@@ -129,6 +132,7 @@ public class CreateNewTeam implements ICreateTeam {
 		Boolean ManagerNotSelected = true;
 		ManagerModel selectedManager = new ManagerModel();
 		String wait = "";
+		
 		while(ManagerNotSelected) {
 			communicate.sendMessage(CreateTeamConstant.SelectManager.getValue());
 			communicate.sendManagerMessage(managerList);
@@ -143,6 +147,7 @@ public class CreateNewTeam implements ICreateTeam {
 			managerList.remove(number-1);
 			ManagerNotSelected = false;
 		}
+		
 		return selectedManager;
 	}
 

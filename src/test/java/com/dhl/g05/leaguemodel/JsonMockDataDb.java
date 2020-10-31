@@ -29,6 +29,7 @@ import com.dhl.g05.leaguemodel.player.IPlayerModel;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.ITeamModel;
 import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.dhl.g05.operation.DbPersistanceMock;
 
 public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionModel,ITeamModel,IPlayerModel,IFreeAgentModel,ICoachModel,IManagerModel{
 	Random randomNumber = new Random();
@@ -392,6 +393,8 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		leagueModelObject.setFreeAgent(freeAgentList);
 		leagueModelObject.setFreeCoach(coachList);
 		leagueModelObject.setGamePlayConfig(gamePlayConfig);
+		leagueModelObject.setDbObject(new DbPersistanceMock());
+		leagueModelObject.setManagerList(managerList);
 	}
 
 	@Override

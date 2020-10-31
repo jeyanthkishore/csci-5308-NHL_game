@@ -1,7 +1,6 @@
 package com.dhl.g05.leaguemodel;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
@@ -67,87 +66,87 @@ public class PlayerModelTest {
 	@Test
 	public void playerListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		PlayerModel validate = new PlayerModel(mock);
-		assertFalse(validate.isPlayerDetailsEmpty());
+		PlayerModel player = new PlayerModel(mock);
+		assertSame(FreeAgentConstant.Success,player.validate());
 	}
 
 	@Test
 	public void checkPlayerDetailsEmpty() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		PlayerModel validate = new PlayerModel(mock);
-		assertFalse(validate.isPlayerDetailsEmpty());
+		PlayerModel player = new PlayerModel(mock);
+		assertSame(FreeAgentConstant.Success,player.validate());
 	}
 
 	@Test
 	public void playerNameEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPlayerNameEmpty();
-		PlayerModel validate = new PlayerModel(mock);
-		assertTrue(validate.isPlayerDetailsEmpty());
+		PlayerModel player = new PlayerModel(mock);
+		assertSame(FreeAgentConstant.PlayerValueEmpty,player.validate());
 	}
 
 	@Test
 	public void playerNameNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPlayerNameNull();
-		PlayerModel validate = new PlayerModel(mock);
-		assertTrue(validate.isPlayerDetailsNull());
+		PlayerModel player = new PlayerModel(mock);
+		assertSame(FreeAgentConstant.PlayerValueEmpty,player.validate());
 	}
 
 	@Test
 	public void playerPositionEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPlayerPositionEmpty();
-		PlayerModel validate = new PlayerModel(mock);
-		assertTrue(validate.isPlayerDetailsEmpty());
+		PlayerModel player = new PlayerModel(mock);
+		assertSame(FreeAgentConstant.PlayerValueEmpty,player.validate());
 	}
 
 	@Test
 	public void playerPositionNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPlayerPostitionNull();
-		PlayerModel validate = new PlayerModel(mock);
-		assertTrue(validate.isPlayerDetailsNull());
+		PlayerModel player = new PlayerModel(mock);
+		assertSame(FreeAgentConstant.PlayerValueEmpty,player.validate());
 	}
 
 	@Test
 	public void playerPositionValidTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		PlayerModel validate = new PlayerModel(mock);
-		assertTrue(validate.isPlayerPositionValid());
+		PlayerModel player = new PlayerModel(mock);
+		assertSame(FreeAgentConstant.Success,player.validate());
 	}
 
 	@Test
 	public void playerPositionCheckTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPositionDifferent();
-		PlayerModel validate = new PlayerModel(mock);
-		assertFalse(validate.isPlayerPositionValid());
+		PlayerModel player = new PlayerModel(mock);
+		assertSame(FreeAgentConstant.PlayerPositionWrong,player.validate());
 	}
 
 	@Test
 	public void captainNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setCaptainNull();
-		PlayerModel validate = new PlayerModel(mock);
-		assertTrue(validate.isCaptainNull());
+		PlayerModel player = new PlayerModel(mock);
+		assertSame(FreeAgentConstant.CaptainNull,player.validate());
 	}
 	@Test
 	public void validatePlayerTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		PlayerModel validate = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.Success,validate.validate());
+		PlayerModel player = new PlayerModel(mock);
+		assertSame(FreeAgentConstant.Success,player.validate());
 		mock.setPlayerPositionEmpty();
-		validate = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.PlayerValueEmpty,validate.validate());
+		player = new PlayerModel(mock);
+		assertSame(FreeAgentConstant.PlayerValueEmpty,player.validate());
 		mock = new JsonMockDataDb();
 		mock.setPositionDifferent();
-		validate = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.PlayerPositionWrong,validate.validate());
+		player = new PlayerModel(mock);
+		assertSame(FreeAgentConstant.PlayerPositionWrong,player.validate());
 		mock = new JsonMockDataDb();
 		mock.setCaptainNull();
-		validate = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.CaptainNull,validate.validate());
+		player = new PlayerModel(mock);
+		assertSame(FreeAgentConstant.CaptainNull,player.validate());
 	}
 
 	@Test
