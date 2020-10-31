@@ -78,7 +78,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public double randownWinChance = 0.1;
 	public double randomInjuryChance = 0.05;
 	public int injuryDaysLow = 1;
-	public int injuryDaysHigh = 269;
+	public int injuryDaysHigh = 120;
 	public int daysUntilTraining = 100;
 	public int lossPoint = 8;
 	public double randomTradeOffer = 0.05;

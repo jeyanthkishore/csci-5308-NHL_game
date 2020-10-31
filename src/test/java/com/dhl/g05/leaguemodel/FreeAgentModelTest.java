@@ -148,14 +148,28 @@ public class FreeAgentModelTest {
 	public void setHasInjuredTest() {
 		FreeAgentModel object = new FreeAgentModel();
 		object.setHasInjured(true);
-		assertSame(object.getHasInjured(),true);
+		assertTrue(object.getHasInjured());
 	}
 
 	@Test
 	public void getHasInjuredTest() {
 		FreeAgentModel object = new FreeAgentModel();
 		object.setHasInjured(true);
-		assertSame(object.getHasInjured(),true);
+		assertTrue(object.getHasInjured());
+	}
+
+	@Test
+	public void setIsRetiredTest() {
+		FreeAgentModel object = new FreeAgentModel();
+		object.setIsRetired(true);
+		assertTrue(object.getIsRetired());
+	}
+
+	@Test
+	public void getIsRetiredTest() {
+		FreeAgentModel object = new FreeAgentModel();
+		object.setIsRetired(true);
+		assertTrue(object.getIsRetired());
 	}
 
 	@Test

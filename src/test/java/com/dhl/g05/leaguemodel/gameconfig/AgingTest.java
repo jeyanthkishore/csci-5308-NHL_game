@@ -17,4 +17,33 @@ public class AgingTest {
         assertSame(data.averageRetirementAge,object.getAverageRetirementAge());
         assertSame(data.maximumAge, object.getMaximumAge());
     }
+
+    @Test
+    public void getAverageRetirementAgeTest() {
+        Aging object = new Aging();
+        object.setAverageRetirementAge(37);
+        assertSame(object.getAverageRetirementAge(),37);
+    }
+
+    @Test
+    public void setAverageRetirementAgeTest() {
+        Aging object = new Aging();
+        object.setAverageRetirementAge(37);
+        assertSame(object.getAverageRetirementAge(),37);
+    }
+
+    @Test
+    public void getMaximumAgeTest() {
+        Aging object = new Aging();
+        object.setMaximumAge(50);
+        assertSame(object.getMaximumAge(),50);
+    }
+
+    @Test
+    public void setMaximumAgeTest() {
+        Aging object = new Aging();
+        object.setMaximumAge(50);
+        assertSame(object.getMaximumAge(),50);
+    }
+
 }

@@ -4,6 +4,9 @@ public class Aging implements IAging{
     private int averageRetirementAge;
     private int maximumAge;
 
+    public Aging() {
+    }
+
     public Aging(int averageRetirementAge, int maximumAge){
         this.averageRetirementAge = averageRetirementAge;
         this.maximumAge = maximumAge;
