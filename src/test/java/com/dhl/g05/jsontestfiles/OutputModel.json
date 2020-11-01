@@ -735,9 +735,32 @@
       "saving": 0.5
     }
   ],
-  "managerList": [
-    {
-      "name": "Zidanie Zidane"
+  "generalManagers": [
+    "Zidanie Zidane",
+    "Zidanie ZidaneTwo",
+    "Zidanie ZidaneThree"
+  ],
+  "gameplayConfig": {
+    "trading": {
+      "lossPoint": 8,
+      "randomTradeOfferChance": 0.05,
+      "maxPlayersPerTrade": 2,
+      "randomAcceptanceChance": 0.05
+    },
+    "aging": {
+      "averageRetirementAge": 35,
+      "maximumAge": 60
+    },
+    "injuries": {
+      "randomInjuryChance": 0.05,
+      "injuryDaysLow": 1,
+      "injuryDaysHigh": 120
+    },
+    "gameResolve": {
+      "randomWinChance": 0.1
+    },
+    "training": {
+      "daysUntilStatIncreaseCheck": 100
     }
-  ]
+  }
 }

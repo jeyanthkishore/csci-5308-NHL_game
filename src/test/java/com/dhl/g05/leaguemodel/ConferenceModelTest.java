@@ -1,10 +1,8 @@
 package com.dhl.g05.leaguemodel;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -62,81 +60,81 @@ public class ConferenceModelTest {
 	@Test
 	public void divisionReferenceConstructor() {
 		JsonMockDataDb data = new JsonMockDataDb();
-		ConferenceModel object = new ConferenceModel(data);
-		assertSame(data.conferenceName,object.getConferenceName());
-		assertSame(data.divisionList,object.getDivisionDetails());
+		ConferenceModel conference = new ConferenceModel(data);
+		assertSame(data.conferenceName,conference.getConferenceName());
+		assertSame(data.divisionList,conference.getDivisionDetails());
 	}
 
 	@Test
 	public void checkConferenceNameEmpty() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		ConferenceModel validate = new ConferenceModel(mock); 
-		assertFalse(validate.isNameEmptyOrNull());
+		ConferenceModel conference = new ConferenceModel(mock); 
+		assertSame(ConferenceConstant.Success,conference.validate());
 	}
 
 	@Test
 	public void checkConferenceNameEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setConferenceNameEmpty();
-		ConferenceModel validate = new ConferenceModel(mock);
-		assertTrue(validate.isNameEmptyOrNull());
+		ConferenceModel conference = new ConferenceModel(mock);
+		assertSame(ConferenceConstant.ConferenceNameEmpty,conference.validate());
 	}
 
 	@Test
 	public void checkConferenceNameNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setConferenceNameNull();
-		ConferenceModel validate = new ConferenceModel(mock); 
-		assertTrue(validate.isNameEmptyOrNull());
+		ConferenceModel conference = new ConferenceModel(mock);
+		assertSame(ConferenceConstant.ConferenceNameEmpty,conference.validate());
 	}
 
 	@Test
 	public void isDivisonListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		ConferenceModel validate = new ConferenceModel(mock); 
-		assertFalse(validate.isDivisionListEmpty());
+		ConferenceModel conference = new ConferenceModel(mock);
+		assertSame(ConferenceConstant.Success,conference.validate());
 	}
 
 	@Test
 	public void divisonListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.removeDivision();
-		ConferenceModel validate = new ConferenceModel(mock); 
-		assertFalse(validate.hasOddNumberDivision());
+		ConferenceModel conference = new ConferenceModel(mock);
+		assertSame(ConferenceConstant.DivisionListEmpty,conference.validate());
 	}
 
 	@Test
 	public void hasEvenDivsionTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		ConferenceModel validate = new ConferenceModel(mock); 
-		assertFalse(validate.hasOddNumberDivision());
+		ConferenceModel conference = new ConferenceModel(mock); 
+		assertSame(ConferenceConstant.Success,conference.validate());
 	}
 
 	@Test
 	public void hasOddDivsionTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.removeOneDivision();
-		ConferenceModel validate = new ConferenceModel(mock); 
-		assertTrue(validate.hasOddNumberDivision());
+		ConferenceModel conference = new ConferenceModel(mock);
+		assertSame(ConferenceConstant.NoEvenDivisionCount,conference.validate());
 	}
 
 	@Test
 	public void validateConferenceTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		ConferenceModel validate = new ConferenceModel(mock); 
-		assertSame(ConferenceConstant.Success,validate.validate());
+		ConferenceModel conference = new ConferenceModel(mock); 
+		assertSame(ConferenceConstant.Success,conference.validate());
 		mock = new JsonMockDataDb();
 		mock.setConferenceNameEmpty();
-		validate = new ConferenceModel(mock); 
-		assertSame(ConferenceConstant.ConferenceNameEmpty,validate.validate());
+		conference = new ConferenceModel(mock); 
+		assertSame(ConferenceConstant.ConferenceNameEmpty,conference.validate());
 		mock = new JsonMockDataDb();
 		mock.removeDivision();
-		validate = new ConferenceModel(mock); 
-		assertSame(ConferenceConstant.DivisionListEmpty,validate.validate());
+		conference = new ConferenceModel(mock); 
+		assertSame(ConferenceConstant.DivisionListEmpty,conference.validate());
 		mock = new JsonMockDataDb();
 		mock.removeOneDivision();
-		validate = new ConferenceModel(mock); 
-		assertSame(ConferenceConstant.NoEvenDivisionCount,validate.validate());
+		conference = new ConferenceModel(mock); 
+		assertSame(ConferenceConstant.NoEvenDivisionCount,conference.validate());
 	}
 
 	@Test

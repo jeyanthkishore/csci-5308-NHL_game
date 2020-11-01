@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,8 +41,8 @@ public class LeagueModelJsonTest {
 		leagueModel.setPlayerDatabase(new DbPersistanceMock());
 		leagueModel.setDateDatabase(new DbPersistanceMock());
 		leagueModel.setFreeAgentDatabase(new DbPersistanceMock());
-		leagueModel.setManagerDatabase(new DbPersistanceMock());
 		leagueModel.setCoachDatabase(new DbPersistanceMock());
+		leagueModel.setGamePlayDatabase(new DbPersistanceMock());
 
 		PlayerModel player = new PlayerModel("Cristiano Ronaldo",null,null,10,15,1,20,15);
 		ArrayList<PlayerModel> players = new ArrayList<>();
@@ -70,9 +69,8 @@ public class LeagueModelJsonTest {
 		ArrayList<CoachModel> coachList = new ArrayList<>();
 		coachList.add(coach);
 
-		ManagerModel manager = new ManagerModel("Smith");
-		ArrayList<ManagerModel> managerList = new ArrayList<>();
-		managerList.add(manager);
+		ArrayList<String> managerList = new ArrayList<>();
+		managerList.add("Smith");
 		
 		TradingModel trade = new TradingModel(8, 0.05, 2, 0.07);
 		TrainingConfig train = new TrainingConfig(100);
@@ -87,7 +85,7 @@ public class LeagueModelJsonTest {
 
 	@Test
 	public void testCreateLeague() {
-		LeagueModel newleague = leagueModel.createLeague("testLeague", new ArrayList<ConferenceModel>(), new ArrayList<FreeAgentModel>(), new ArrayList<CoachModel>(), new ArrayList<ManagerModel>(),new GamePlayConfigModel(null,null,null,null,null));
+		LeagueModel newleague = leagueModel.createLeague("testLeague", new ArrayList<ConferenceModel>(), new ArrayList<FreeAgentModel>(), new ArrayList<CoachModel>(), new ArrayList<String>(),new GamePlayConfigModel(null,null,null,null,null));
 		assertNotNull(newleague);
 		assertTrue(newleague.getLeagueName().equals("testLeague"));
 	}
@@ -129,14 +127,14 @@ public class LeagueModelJsonTest {
 
 	@Test
 	public void testLoadTeam() {
-		assertTrue(leagueModel.loadTeam("HockeyLeague", "Western Conference", "Atlantic", "Striker Six"));
+		assertTrue(leagueModel.loadTeam("Striker Six"));
 		assertNotNull(leagueModel.getCurrentTeam());
 		assertNotNull(leagueModel.getLeague());
 	}
 
 	@Test
 	public void testLoadTeamFails() {
-		leagueModel.loadTeam("HockeyLeague", "", "", "");
+		leagueModel.loadTeam("");
 		assertNull(leagueModel.getCurrentTeam());
 	}
 

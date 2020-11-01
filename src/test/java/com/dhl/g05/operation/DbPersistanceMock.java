@@ -13,17 +13,17 @@ import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.leaguemodel.division.IDivisionModelPersistence;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.freeagent.IFreeAgentPersistence;
+import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.IGameConfigPersistence;
 import com.dhl.g05.leaguemodel.league.ILeagueModelPersistence;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.manager.IManagerPersistence;
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.IPlayerModelPersistence;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.ITeamModelPersistence;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 import com.dhl.g05.simulation.Date;
 
-public class DbPersistanceMock implements IFreeAgentPersistence,IManagerLoad,ICoachLoad,IManagerPersistence,IDatePersistence,IConferenceModelPersistence,IPlayerModelPersistence,IDivisionModelPersistence,ILeagueModelPersistence,ITeamModelPersistence,ICoachModelPersistence{
+public class DbPersistanceMock implements IGameConfigPersistence,IFreeAgentPersistence,ICoachLoad,IDatePersistence,IConferenceModelPersistence,IPlayerModelPersistence,IDivisionModelPersistence,ILeagueModelPersistence,ITeamModelPersistence,ICoachModelPersistence{
 
 	@Override
 	public ArrayList<HashMap<String, Object>> loadDetails() {
@@ -83,20 +83,12 @@ public class DbPersistanceMock implements IFreeAgentPersistence,IManagerLoad,ICo
 	}
 
 	@Override
-	public int saveLeagueManagerObject(int league_id, ManagerModel object) {
-		if(league_id==1) {
-			return 1;
-		}
-		return 0;
-	}
-
-	@Override
-	public int loadLeagueObject(String leagueName,LeagueModel leagueObject) {
-		if(leagueName.equalsIgnoreCase("HockeyLeague")) {
-			leagueObject.setLeagueName(leagueName);
-			ArrayList<ConferenceModel> conferences = new ArrayList<>();
-			conferences.add(new ConferenceModel("Western Conference",null));
-			leagueObject.setConferenceDetails(conferences);;
+	public int loadLeagueObject(int leagueId,LeagueModel leagueObject) {
+		if(leagueId == 1) {
+			ArrayList<ConferenceModel> conference = new ArrayList<ConferenceModel>();
+			conference.add(new ConferenceModel("Western Conference",null));
+			leagueObject.setLeagueName("HockeyLeague");
+			leagueObject.setConferenceDetails(conference);
 			return 1;
 		}
 		return 0;
@@ -107,15 +99,6 @@ public class DbPersistanceMock implements IFreeAgentPersistence,IManagerLoad,ICo
 		JsonMockDataDb mock = new JsonMockDataDb();
 		if(leagueName.equalsIgnoreCase("HockeyLeague")) {
 			return mock.coachList;
-		}
-		return null;
-	}
-
-	@Override
-	public List<ManagerModel> loadLeagueManagerObject(String leagueName) {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		if(leagueName.equalsIgnoreCase("HockeyLeague")) {
-			return mock.managerList;
 		}
 		return null;
 	}
@@ -184,6 +167,34 @@ public class DbPersistanceMock implements IFreeAgentPersistence,IManagerLoad,ICo
 			return 1;
 		}
 		return 0;
+	}
+
+	@Override
+	public int saveGamePlayObject(int leagueId, GamePlayConfigModel gamePlayConfigModel) {
+		if(leagueId==1) {
+			return 1;
+		}
+		return 0;
+	}
+
+	@Override
+	public int loadLeagueFromTeam(String teamName) {
+		if(teamName.equals("Striker Six")) {
+			return 1;
+		}
+		return 0;
+	}
+
+	@Override
+	public List<HashMap<String, Object>> loadAllTeamName() {
+		List<HashMap<String,Object>> teamName = new ArrayList<HashMap<String,Object>>();
+		HashMap<String,Object> name = new HashMap<String, Object>();
+		name.put("team_name", "Striker Six");
+		teamName.add(name);
+		name = new HashMap<String, Object>();
+		name.put("team_name", "Rockers");
+		teamName.add(name);
+		return teamName;
 	}
 
 }

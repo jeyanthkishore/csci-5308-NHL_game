@@ -1,5 +1,5 @@
 {
-    "leagueName":"Dalhousie Hockey League05",
+    "leagueName":"Dalhousie Hockey League08",
     "gameplayConfig":{
         "aging":{
             "averageRetirementAge":35,
@@ -149,7 +149,7 @@
             ]
         },
         {
-            "conferenceName":"Eastern Conference", "divisions":[
+            "conferenceName":"Western Conference", "divisions":[
                 {
                     "divisionName":"Atlantic", "teams":[
                         {

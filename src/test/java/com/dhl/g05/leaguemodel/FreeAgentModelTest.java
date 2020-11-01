@@ -1,16 +1,12 @@
 package com.dhl.g05.leaguemodel;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+
+import static org.junit.Assert.*;
 
 public class FreeAgentModelTest {
 
@@ -190,14 +186,14 @@ public class FreeAgentModelTest {
 	public void playerListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertFalse(validate.isPlayerDetailsEmpty());
+		assertSame(FreeAgentConstant.Success,validate.validate());
 	}
 
 	@Test
 	public void checkPlayerDetailsEmpty() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertFalse(validate.isPlayerDetailsEmpty());
+		assertSame(FreeAgentConstant.Success,validate.validate());
 	}
 
 	@Test
@@ -205,7 +201,7 @@ public class FreeAgentModelTest {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPlayerNameEmpty();
 		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertTrue(validate.isPlayerDetailsEmpty());
+		assertSame(FreeAgentConstant.PlayerValueEmpty,validate.validate());
 	}
 
 	@Test
@@ -213,7 +209,7 @@ public class FreeAgentModelTest {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPlayerNameNull();
 		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertTrue(validate.isPlayerDetailsNull());
+		assertSame(FreeAgentConstant.PlayerValueEmpty,validate.validate());
 	}
 
 	@Test
@@ -221,7 +217,7 @@ public class FreeAgentModelTest {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPlayerPositionEmpty();
 		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertTrue(validate.isPlayerDetailsEmpty());
+		assertSame(FreeAgentConstant.PlayerValueEmpty,validate.validate());
 	}
 
 	@Test
@@ -229,14 +225,14 @@ public class FreeAgentModelTest {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPlayerPostitionNull();
 		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertTrue(validate.isPlayerDetailsNull());
+		assertSame(FreeAgentConstant.PlayerValueEmpty,validate.validate());
 	}
 
 	@Test
 	public void playerPositionValidTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertTrue(validate.isPlayerPositionValid());
+		assertSame(FreeAgentConstant.Success,validate.validate());
 	}
 
 	@Test
@@ -244,14 +240,14 @@ public class FreeAgentModelTest {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPositionDifferent();
 		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertFalse(validate.isPlayerPositionValid());
+		assertSame(FreeAgentConstant.PlayerPositionWrong,validate.validate());
 	}
 
 	@Test
 	public void isPlayerAgeValidTest() {
 		FreeAgentModel validate = new FreeAgentModel();
 		validate.setAge(25);
-		assertEquals(validate.isPlayerAgeValid(),true);
+		assertEquals(validate.isPlayerAgeNotValid(),false);
 	}
 
 	@Test
@@ -275,7 +271,7 @@ public class FreeAgentModelTest {
 		validate.setShooting(10);
 		validate.setChecking(5);
 		validate.setSaving(15);
-		assertEquals(validate.isPlayerStatValid(),true);
+		assertEquals(validate.isPlayerStatNotValid(),false);
 	}
 
 	@Test

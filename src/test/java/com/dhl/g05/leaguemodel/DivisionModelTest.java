@@ -1,10 +1,8 @@
 package com.dhl.g05.leaguemodel;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -70,54 +68,54 @@ public class DivisionModelTest {
 	@Test
 	public void checkDivisionNameEmpty() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		DivisionModel validate = new DivisionModel(mock); 
-		assertFalse(validate.isDivisionNameEmptyorNull());
+		DivisionModel division = new DivisionModel(mock); 
+		assertSame(DivisionConstant.Success,division.validate());
 	}
 
 	@Test
 	public void checkDivisionNameEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setDivisionNameEmpty();
-		DivisionModel validate = new DivisionModel(mock); 
-		assertTrue(validate.isDivisionNameEmptyorNull());
+		DivisionModel division = new DivisionModel(mock); 
+		assertSame(DivisionConstant.DivisionNameEmpty,division.validate());
 	}
 
 	@Test
 	public void checkDivisionNameNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setDivisionNameNull();
-		DivisionModel validate = new DivisionModel(mock); 
-		assertTrue(validate.isDivisionNameEmptyorNull());
+		DivisionModel division = new DivisionModel(mock); 
+		assertSame(DivisionConstant.DivisionNameEmpty,division.validate());
 	}
 
 	@Test
 	public void isTeamListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		DivisionModel validate = new DivisionModel(mock); 
-		assertFalse(validate.isTeamListEmpty());
+		DivisionModel division = new DivisionModel(mock); 
+		assertSame(DivisionConstant.Success,division.validate());
 	}
 
 	@Test
 	public void teamListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.removeTeams();
-		DivisionModel validate = new DivisionModel(mock); 
-		assertTrue(validate.isTeamListEmpty());
+		DivisionModel division = new DivisionModel(mock); 
+		assertSame(DivisionConstant.TeamListEmpty,division.validate());
 	}
 
 	@Test
 	public void validateDivisionTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		DivisionModel validate = new DivisionModel(mock); 
-		assertSame(DivisionConstant.Success,validate.validate());
+		DivisionModel division = new DivisionModel(mock); 
+		assertSame(DivisionConstant.Success,division.validate());
 		mock = new JsonMockDataDb();
 		mock.setDivisionNameEmpty();
-		validate = new DivisionModel(mock);
-		assertSame(DivisionConstant.DivisionNameEmpty,validate.validate());
+		division = new DivisionModel(mock);
+		assertSame(DivisionConstant.DivisionNameEmpty,division.validate());
 		mock = new JsonMockDataDb();
 		mock.removeTeams();
-		validate = new DivisionModel(mock); 
-		assertSame(DivisionConstant.TeamListEmpty,validate.validate());
+		division = new DivisionModel(mock); 
+		assertSame(DivisionConstant.TeamListEmpty,division.validate());
 	}
 
 	@Test

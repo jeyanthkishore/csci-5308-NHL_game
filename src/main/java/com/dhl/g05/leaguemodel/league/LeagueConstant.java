@@ -7,7 +7,7 @@ public enum LeagueConstant {
 	LeagueNameEmpty("League Name Is Empty"),
 	ConferenceListEmpty("Conference List Is Empty"),
 	NoEvenConferenceCount("Conference Count Must Be Even"),
-	FreeAgentsEmpty("Free Agent List Is Empty"),
+	FreeAgentsNotValid("Free Agent List Is Not Valid"),
 	FreeAgentAttributeEmpty("Free Agent Attribue Is Empty"),
 	ImproperPlayerPosition("Position Of The Player Cannot Be Different"),
 	LeagueExists("League Already Present"),

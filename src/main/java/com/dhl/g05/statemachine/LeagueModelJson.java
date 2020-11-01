@@ -1,5 +1,7 @@
 package com.dhl.g05.statemachine;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.leaguemodel.coach.CoachModel;
@@ -14,12 +16,10 @@ import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.freeagent.IFreeAgentPersistence;
 import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.IGameConfigPersistence;
 import com.dhl.g05.leaguemodel.league.ILeagueModelPersistence;
 import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.manager.IManagerPersistence;
-import com.dhl.g05.leaguemodel.manager.ManagerConstant;
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.IPlayerModelPersistence;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.ITeamModelPersistence;
@@ -30,9 +30,9 @@ import com.dhl.g05.operation.ConferencePersistence;
 import com.dhl.g05.operation.DatePersistence;
 import com.dhl.g05.operation.DivisionPersistence;
 import com.dhl.g05.operation.FreeAgentPersistence;
+import com.dhl.g05.operation.GamePlayPersistence;
 import com.dhl.g05.operation.IDatePersistence;
 import com.dhl.g05.operation.LeaguePersistence;
-import com.dhl.g05.operation.ManagerPersistence;
 import com.dhl.g05.operation.PlayerPersistence;
 import com.dhl.g05.operation.TeamPersistence;
 import com.dhl.g05.simulation.Date;
@@ -48,7 +48,7 @@ public class LeagueModelJson implements ILeagueModelJson{
 	private IDatePersistence dateDatabase;
 	private IFreeAgentPersistence freeAgentDatabase;
 	private ICoachModelPersistence coachDataBase;
-	private IManagerPersistence managerDatabase;
+	private IGameConfigPersistence gamePlayDatabase;
 
 	public LeagueModelJson() {
 		this.leagueDatabase = new LeaguePersistence();
@@ -59,7 +59,7 @@ public class LeagueModelJson implements ILeagueModelJson{
 		this.dateDatabase = new DatePersistence();
 		this.freeAgentDatabase = new FreeAgentPersistence();
 		this.coachDataBase = new CoachPersistence();
-		this.managerDatabase = new ManagerPersistence();
+		this.gamePlayDatabase = new GamePlayPersistence();
 	}
 
 	public void setDateDatabase(IDatePersistence dateDatabase) {
@@ -94,11 +94,11 @@ public class LeagueModelJson implements ILeagueModelJson{
 		this.coachDataBase = coachDataBase;
 	}
 	
-	public void setManagerDatabase(IManagerPersistence managerDatabase) {
-		this.managerDatabase = managerDatabase;
+	public void setGamePlayDatabase(IGameConfigPersistence gamePlayDatabase) {
+		this.gamePlayDatabase = gamePlayDatabase;
 	}
 
-	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches, List<ManagerModel> managers,GamePlayConfigModel gamePlay) {
+	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches, List<String> managers,GamePlayConfigModel gamePlay) {
 		return new LeagueModel(leagueName, conferences, freeAgents, coaches, managers, gamePlay,leagueDatabase);
 	}
 
@@ -158,11 +158,10 @@ public class LeagueModelJson implements ILeagueModelJson{
 				return false;
 			}
 		}
-		for(ManagerModel m : league.getManagerList()) {
-			int managerId = m.saveLeagueManagerObject(leagueId, managerDatabase);
-			if(managerId == 0) {
-				return false;
-			}
+		GamePlayConfigModel gamePlay = league.getGamePlayConfig();
+		int gamePlayId = gamePlay.saveGamePlayObject(leagueId,gamePlayDatabase);
+		if(gamePlayId == 0) {
+			return false;
 		}
 		return true;
 	}
@@ -189,13 +188,28 @@ public class LeagueModelJson implements ILeagueModelJson{
 		return false;
 	}
 
-
 	@Override
-	public boolean loadTeam(String leagueName, String conferenceName, String divisionName, String teamName) {
+	public Boolean checkTeamNotUnique(String teamName) {
+		TeamModel teamObject = new TeamModel();
+		List<HashMap<String,Object>> teamNameList = teamObject.loadAllTeamName(teamDatabase);
+		for(HashMap<String,Object> team : teamNameList) {
+			if(team.get("team_name").equals(teamName)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean loadTeam(String teamName) {
 
 		TeamModel teamToLoad = null;
 		LeagueModel newLeague = new LeagueModel();
-		int leagueId = newLeague.loadLeagueObject(leagueName, leagueDatabase);
+		int leagueId = newLeague.loadLeagueFromTeam(teamName,leagueDatabase);
+		if (leagueId == 0) {
+			return false;
+		}
+		leagueId = newLeague.loadLeagueObject(leagueId, leagueDatabase);
 		if (leagueId == 0) {
 			return false;
 		}
@@ -207,26 +221,26 @@ public class LeagueModelJson implements ILeagueModelJson{
 
 		for (ConferenceModel c: conferences) {
 			int conferenceId = c.loadConferenceObject(leagueId, conferenceDatabase);
-			String cName = c.getConferenceName();
 
 			if (conferenceId == 0) {
 				return false;
 			}
 
-			List<DivisionModel> divisions = c.getDivisionDetails();
+			List<DivisionModel> divisions = new ArrayList<DivisionModel>();
+			divisions =	c.getDivisionDetails();
 			if (divisions == null) {
 				return false;
 			}
 
 			for (DivisionModel d: divisions) {
 				int divisionId = d.loadDivisionObject(conferenceId, divisionDatabase);
-				String dName = d.getDivisionName();
 
 				if (divisionId == 0) {
 					return false;
 				}
 
-				List<TeamModel> teams = d.getTeamDetails();
+				List<TeamModel> teams = new ArrayList<TeamModel>();
+				teams =	d.getTeamDetails();
 				if (teams == null) {
 					return false;
 				}
@@ -239,7 +253,8 @@ public class LeagueModelJson implements ILeagueModelJson{
 						return false;
 					}
 
-					List<PlayerModel> players = t.getPlayerList();
+					List<PlayerModel> players = new ArrayList<PlayerModel>();
+					players = t.getPlayerList();
 					if (players == null) {
 						return false;
 					}
@@ -251,7 +266,7 @@ public class LeagueModelJson implements ILeagueModelJson{
 						}
 					}
 
-					if (tName.equalsIgnoreCase(teamName) && dName.equalsIgnoreCase(divisionName) && cName.equalsIgnoreCase(conferenceName)) {
+					if (tName.equalsIgnoreCase(teamName)) {
 						teamToLoad = t;
 					}
 				}
@@ -261,7 +276,6 @@ public class LeagueModelJson implements ILeagueModelJson{
 		if (teamToLoad != null) {
 			currentTeam = teamToLoad;
 			this.league = newLeague;
-			Date.getInstance().loadDate(newLeague, dateDatabase);
 			return true;
 		}
 
@@ -312,11 +326,6 @@ public class LeagueModelJson implements ILeagueModelJson{
 	}
 
 	@Override
-	public ManagerConstant validateManager(ManagerModel managerObject) {
-		return managerObject.validate();
-	}
-
-	@Override
 	public DivisionConstant validateDivision(DivisionModel division) {
 		return division.validate();
 	}
@@ -330,6 +339,5 @@ public class LeagueModelJson implements ILeagueModelJson{
 	public FreeAgentConstant validatePlayer(PlayerModel player) {
 		return player.validate();
 	}
-
 
 }

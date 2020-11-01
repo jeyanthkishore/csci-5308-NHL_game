@@ -36,4 +36,7 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 		return trading;
 	}
 
+	public int saveGamePlayObject(int leagueId,IGameConfigPersistence database) {
+		return database.saveGamePlayObject(leagueId,this);
+	}
 }

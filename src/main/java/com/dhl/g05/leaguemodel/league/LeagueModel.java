@@ -7,7 +7,7 @@ import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
+import com.mysql.cj.util.StringUtils;
 
 public class LeagueModel {
 
@@ -15,9 +15,9 @@ public class LeagueModel {
 	private List<ConferenceModel> conferences;
 	private List<FreeAgentModel> freeAgents;
 	private List<CoachModel> coaches;
-	private List<ManagerModel> managerList;
-	private ILeagueModelPersistence object;
-	private GamePlayConfigModel gamePlayConfig;
+	private List<String> generalManagers;
+	private ILeagueModelPersistence dbObject;
+	private GamePlayConfigModel gameplayConfig;
 
 	public LeagueModel() {
 		setLeagueName(null);
@@ -28,14 +28,14 @@ public class LeagueModel {
 		setGamePlayConfig(null);
 	}
 
-	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<ManagerModel> managers,GamePlayConfigModel gamePlay ,ILeagueModelPersistence dbObject) {
+	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<String> managers,GamePlayConfigModel gamePlay ,ILeagueModelPersistence dbObject) {
 		setLeagueName(league);
 		setConferenceDetails(conferencedetail);
 		setFreeAgent(agent);
 		setFreeCoach(coach);
 		setManagerList(managers);
 		setGamePlayConfig(gamePlay);
-		this.object = dbObject;
+		setDbObject(dbObject);
 	}
 
 	public LeagueModel(ILeagueModel leagueObject) {
@@ -74,30 +74,41 @@ public class LeagueModel {
 		this.coaches = freeCoach;
 	}
 
-	public List<ManagerModel> getManagerList() {
-		return managerList;
+	public List<String> getManagerList() {
+		return generalManagers;
 	}
 
-	public void setManagerList(List<ManagerModel> managerList) {
-		this.managerList = managerList;
+	public void setManagerList(List<String> managerList) {
+		this.generalManagers = managerList;
 	}
 
-	public ILeagueModelPersistence getObject() {
-		return object;
+	public ILeagueModelPersistence getDbObject() {
+		return dbObject;
 	}
 
-	public void setObject(ILeagueModelPersistence object) {
-		this.object = object;
+	public void setDbObject(ILeagueModelPersistence object) {
+		this.dbObject = object;
+	}
+	
+	public GamePlayConfigModel getGamePlayConfig() {
+		return gameplayConfig;
 	}
 
+	public void setGamePlayConfig(GamePlayConfigModel gamePlayConfig) {
+		this.gameplayConfig = gamePlayConfig;
+	}
 	public int saveLeagueObject(ILeagueModelPersistence database) {
 		return database.saveLeagueObject(this);
 	}
 
-	public int loadLeagueObject(String leagueName,ILeagueModelPersistence database) {
-		return database.loadLeagueObject(leagueName,this);
+	public int loadLeagueObject(int leagueId,ILeagueModelPersistence database) {
+		return database.loadLeagueObject(leagueId,this);
 	}
 
+	public int loadLeagueFromTeam(String teamName, ILeagueModelPersistence database) {
+		return database.loadLeagueFromTeam(teamName);
+	}
+	
 	public LeagueConstant validate() {
 		if(isLeagueNameEmptyOrNull()) {
 			return LeagueConstant.LeagueNameEmpty;
@@ -108,17 +119,8 @@ public class LeagueModel {
 		if(hasOddNumberConference()) {
 			return LeagueConstant.NoEvenConferenceCount;
 		}
-		if(isFreeAgentListEmpty()) {
-			return LeagueConstant.FreeAgentsEmpty;
-		}
-		if(isFreeAgentDetailsEmptyOrNull()) {
-			return LeagueConstant.FreeAgentAttributeEmpty;
-		}
-		if(isFreeAgentPositionWrong()) {
-			return LeagueConstant.ImproperPlayerPosition;
-		}
-		if(checkLeaguePresent()) {
-			return LeagueConstant.LeagueExists;
+		if(isFreeAgentListNotValid()) {
+			return LeagueConstant.FreeAgentsNotValid;
 		}
 		if(isCoachListEmpty()){
 			return LeagueConstant.CoachListEmpty;
@@ -126,75 +128,55 @@ public class LeagueModel {
 		if(isManagerListEmpty()){
 			return LeagueConstant.ManagerListEmpty;
 		}
+		if(checkLeaguePresent()) {
+			return LeagueConstant.LeagueExists;
+		}
 		return LeagueConstant.Success;
 	}
 
-	public boolean isLeagueNameEmptyOrNull() {
-		if(leagueName==""|| leagueName == null) {
+	private boolean isLeagueNameEmptyOrNull() {
+		return StringUtils.isNullOrEmpty(leagueName);
+	}
+
+	private boolean isConferenceListEmpty() {
+		if(conferences == null) {
 			return true;
 		}
-		return false;
+		return (conferences.size()<=0);
 	}
 
-	public boolean isConferenceListEmpty() {
-		if(conferences != null) {
-			return (conferences.size()<=0);
+	private boolean hasOddNumberConference() {
+		if(conferences == null) {
+			return false;
 		}
-		return true;
+		return (conferences.size()%2 ==1);
 	}
 
-	public boolean hasOddNumberConference() {
-		if(conferences != null) {
-			return (conferences.size()%2 ==1);
+	private boolean isFreeAgentListNotValid() {
+		if(freeAgents == null) {
+			return true;
 		}
-		return false;
+		else return (freeAgents.size()<=20);
 	}
 
-	public boolean isFreeAgentPositionWrong() {
-		Boolean position = freeAgents.stream().anyMatch(v ->!(v.getPosition().equalsIgnoreCase("forward")
-				|| v.getPosition().equalsIgnoreCase("defense") ||v.getPosition().equalsIgnoreCase("goalie")));
-		return position;
-	}
-
-	public boolean isFreeAgentListEmpty() {
-		if(freeAgents != null) {
-			return (freeAgents.size()<=0);
-		}
-		return true;
-	}
-
-	public boolean isFreeAgentDetailsEmptyOrNull() {
-		Boolean emptyOrNull = freeAgents.stream().anyMatch(v -> v.getPlayerName() ==""
-				||v.getPosition() ==""||v.getPlayerName()==null||v.getPosition()==null);
-		return emptyOrNull;
-	}
-
-	public Boolean checkLeaguePresent() {
-		ArrayList<HashMap<String,Object>> allLeague = object.loadDetails();
+	private Boolean checkLeaguePresent() {
+		ArrayList<HashMap<String,Object>> allLeague = dbObject.loadDetails();
 		Boolean leaguePresent = allLeague.stream().anyMatch(v->v.get("league_name").equals(leagueName));
 		return leaguePresent;
 	}
 
-	public boolean isCoachListEmpty() {
+	private boolean isCoachListEmpty() {
 		if(coaches.isEmpty()) {
 			return true;
 		}
 		return false;
 	}
 
-	public boolean isManagerListEmpty() {
-		if(managerList.isEmpty()) {
+	private boolean isManagerListEmpty() {
+		if(generalManagers.isEmpty() || generalManagers == null) {
 			return true;
 		}
 		return false;
-	}
-
-	public GamePlayConfigModel getGamePlayConfig() {
-		return gamePlayConfig;
-	}
-
-	public void setGamePlayConfig(GamePlayConfigModel gamePlayConfig) {
-		this.gamePlayConfig = gamePlayConfig;
 	}
 
 }

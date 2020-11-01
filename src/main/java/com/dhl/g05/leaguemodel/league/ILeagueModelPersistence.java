@@ -9,6 +9,8 @@ public interface ILeagueModelPersistence {
 
 	public int saveLeagueObject(LeagueModel leagueObject);
 
-	public int loadLeagueObject(String leagueName, LeagueModel leagueObject);
+	public int loadLeagueObject(int leagueId, LeagueModel leagueObject);
+
+	public int loadLeagueFromTeam(String teamName);
 
 }

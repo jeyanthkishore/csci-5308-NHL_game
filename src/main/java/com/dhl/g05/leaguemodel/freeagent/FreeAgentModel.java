@@ -1,5 +1,7 @@
 package com.dhl.g05.leaguemodel.freeagent;
 
+import com.mysql.cj.util.StringUtils;
+
 public class FreeAgentModel implements IFreeAgent {
 	private String playerName;
 	private String position;
@@ -114,8 +116,8 @@ public class FreeAgentModel implements IFreeAgent {
 		this.playerStrength = playerStrength;
 	}
 	
-	public int saveFreeAgentObject(int conferenceId,IFreeAgentPersistence database) {
-		return database.saveFreeAgentObject(conferenceId,this);
+	public int saveFreeAgentObject(int leagueId,IFreeAgentPersistence database) {
+		return database.saveFreeAgentObject(leagueId,this);
 	}
 
 	public double calculatePlayerStrength(){
@@ -131,31 +133,33 @@ public class FreeAgentModel implements IFreeAgent {
 		return playerStrength;
 	}
 
+	public enum Position{
+		goalie,
+		defense,
+		forward
+	}
+	
 	public FreeAgentConstant validate() {
-		if(isPlayerDetailsNull()||isPlayerDetailsEmpty()) {
+		if(isPlayerDetailsNullOrEmpty()) {
 			return FreeAgentConstant.PlayerValueEmpty;
 		}
-		if(!isPlayerPositionValid()) {
+		if(isPlayerPositionValid()) {
 			return FreeAgentConstant.PlayerPositionWrong;
 		}
-		if(!isPlayerAgeValid()) {
+		if(isPlayerAgeNotValid()) {
 			return FreeAgentConstant.PlayerAgeInvalid;
 		}
-		if(!isPlayerStatValid()) {
+		if(isPlayerStatNotValid()) {
 			return FreeAgentConstant.PlayerStateInvalid;
 		}
 		return FreeAgentConstant.Success;
 	}
 
-	public boolean isPlayerDetailsNull() {
-		if(playerName == null || position ==null) {
+	private boolean isPlayerDetailsNullOrEmpty() {
+		if(StringUtils.isNullOrEmpty(playerName)) {
 			return true;
 		}
-		return false;
-	}
-
-	public boolean isPlayerDetailsEmpty() {
-		if(playerName == "" || position =="") {
+		if(StringUtils.isNullOrEmpty(position)) {
 			return true;
 		}
 		return false;
@@ -163,23 +167,23 @@ public class FreeAgentModel implements IFreeAgent {
 
 	public boolean isPlayerPositionValid() {
 		if(position.equals("forward") || position.equals("defense") || position.equals("goalie")) {
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 
-	public boolean isPlayerAgeValid() {
+	public boolean isPlayerAgeNotValid() {
 		if (age > 0) {
-			return true;
+			return false;
 		}
-		return  false;
+		return  true;
 	}
 
-	public boolean isPlayerStatValid() {
+	public boolean isPlayerStatNotValid() {
 		if (validateStat(skating) && validateStat(shooting) && validateStat(checking) && validateStat(saving)) {
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	public boolean validateStat(double stat) {
@@ -188,4 +192,5 @@ public class FreeAgentModel implements IFreeAgent {
 		}
 		return false;
 	}
+
 }

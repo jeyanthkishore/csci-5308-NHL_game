@@ -2,6 +2,7 @@ package com.dhl.g05.leaguemodel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
@@ -150,7 +151,7 @@ public class TeamModelTest{
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setCoachDetailsNull();
 		TeamModel object = new TeamModel(mock);
-		assertTrue(object.isCoachDetailsEmptyOrNull());
+		assertSame(TeamConstant.CoachDetailsEmpty,object.validate());
 	}
 
 	@Test
@@ -158,14 +159,14 @@ public class TeamModelTest{
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setCoachDetailsNull();
 		TeamModel object = new TeamModel(mock);
-		assertTrue(object.isCoachDetailsEmptyOrNull());
+		assertSame(TeamConstant.CoachDetailsEmpty,object.validate());
 	}
 
 	@Test
 	public void checkPlayerListTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		TeamModel validate = new TeamModel(mock);
-		assertFalse(validate.isPlayerListEmpty());
+		assertSame(TeamConstant.Success,validate.validate());
 	}
 
 	@Test
@@ -173,7 +174,7 @@ public class TeamModelTest{
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setPlayerListEmpty();
 		TeamModel validate = new TeamModel(mock);
-		assertTrue(validate.isPlayerListEmpty());
+		assertSame(TeamConstant.PlayerListEmpty,validate.validate());
 	}
 
 	@Test
@@ -181,7 +182,7 @@ public class TeamModelTest{
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.addMaximumPlayer();
 		TeamModel validate = new TeamModel(mock);
-		assertTrue(validate.isPlayerListMaximum());
+		assertSame(TeamConstant.PlayerCountMismatch,validate.validate());
 	}
 
 	@Test
@@ -189,7 +190,7 @@ public class TeamModelTest{
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setTeamNameEmpty();
 		TeamModel validate = new TeamModel(mock);
-		assertTrue(validate.isTeamDetailsEmpty());
+		assertSame(TeamConstant.TeamDetailsEmpty,validate.validate());
 	}
 
 	@Test
@@ -197,7 +198,7 @@ public class TeamModelTest{
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setTeamNameNull();
 		TeamModel validate = new TeamModel(mock);
-		assertTrue(validate.isTeamDetailsNull());
+		assertSame(TeamConstant.TeamDetailsEmpty,validate.validate());
 	}
 
 	@Test
@@ -205,7 +206,7 @@ public class TeamModelTest{
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setManagerNameEmpty();
 		TeamModel validate = new TeamModel(mock);
-		assertTrue(validate.isTeamDetailsEmpty());
+		assertSame(TeamConstant.TeamDetailsEmpty,validate.validate());
 	}
 
 	@Test
@@ -213,21 +214,21 @@ public class TeamModelTest{
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setManagerNameNull();
 		TeamModel validate = new TeamModel(mock);
-		assertTrue(validate.isTeamDetailsNull());
+		assertSame(TeamConstant.TeamDetailsEmpty,validate.validate());
 	}
 
 	@Test
 	public void oneTeamCaptainTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		TeamModel validate = new TeamModel(mock);
-		assertEquals(1,validate.containOneTeamCaptain());
+		assertSame(TeamConstant.Success,validate.validate());
 	}
 	@Test
 	public void twoTeamCaptainTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setSecondCaptain();
 		TeamModel validate = new TeamModel(mock);
-		assertEquals(2,validate.containOneTeamCaptain());
+		assertSame(TeamConstant.MoreTeamCaptain,validate.validate());
 	}
 
 	@Test
@@ -241,7 +242,7 @@ public class TeamModelTest{
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.removeCaptain();
 		TeamModel validate = new TeamModel(mock);
-		assertEquals(0,validate.containOneTeamCaptain());
+		assertSame(TeamConstant.NoTeamCaptain,validate.validate());
 	}
 
 	@Test
@@ -260,7 +261,7 @@ public class TeamModelTest{
 		mock = new JsonMockDataDb();
 		mock.addMaximumPlayer();
 		validate = new TeamModel(mock);
-		assertSame(TeamConstant.MaxPlayerCountExceed,validate.validate());
+		assertSame(TeamConstant.PlayerCountMismatch,validate.validate());
 		mock = new JsonMockDataDb();
 		mock.setSecondCaptain();
 		validate = new TeamModel(mock);
@@ -289,5 +290,13 @@ public class TeamModelTest{
 		DbPersistanceMock data = new DbPersistanceMock();
 		TeamModel valid = new TeamModel(mock);
 		assertEquals(1,valid.loadTeamObject(1,data));
+	}
+	
+	@Test
+	public void loadAllTeamNameTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock data = new DbPersistanceMock();
+		TeamModel valid = new TeamModel(mock);
+		assertNotNull(valid.loadAllTeamName(data));
 	}
 }

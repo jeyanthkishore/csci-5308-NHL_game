@@ -2,6 +2,7 @@ package com.dhl.g05.leaguemodel.conference;
 import java.util.List;
 
 import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.mysql.cj.util.StringUtils;
 
 public class ConferenceModel {
 
@@ -57,21 +58,18 @@ public class ConferenceModel {
 		return ConferenceConstant.Success;
 	}
 
-	public boolean hasOddNumberDivision() {
+	private boolean hasOddNumberDivision() {
 		if(divisions.size()%2 == 1) {
 			return true;	
 		}
 		return false;
 	}
 
-	public boolean isNameEmptyOrNull() {
-		if(conferenceName == "" || conferenceName == null) {
-			return true;
-		}
-		return false;
+	private boolean isNameEmptyOrNull() {
+		return StringUtils.isNullOrEmpty(conferenceName);
 	}
 
-	public boolean isDivisionListEmpty() {
+	private boolean isDivisionListEmpty() {
 		if(divisions == null || divisions.isEmpty()) {
 			return true;
 		}

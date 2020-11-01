@@ -1,7 +1,7 @@
 package com.dhl.g05;
 
+import com.dhl.g05.communication.PlayerCommunication;
 import com.dhl.g05.statemachine.LeagueModelJson;
-import com.dhl.g05.statemachine.PlayerCommunication;
 import com.dhl.g05.statemachine.StateMachine;
 
 public class Driver {

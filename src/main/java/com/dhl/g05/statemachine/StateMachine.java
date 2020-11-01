@@ -1,5 +1,6 @@
 package com.dhl.g05.statemachine;
 
+import com.dhl.g05.communication.IPlayerCommunication;
 
 public class StateMachine {
 

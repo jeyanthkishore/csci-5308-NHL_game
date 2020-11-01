@@ -12,8 +12,6 @@ import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.leaguemodel.league.LeagueConstant;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.manager.ManagerConstant;
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
 import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.leaguemodel.team.TeamConstant;
 import com.dhl.g05.leaguemodel.team.TeamModel;
@@ -34,7 +32,7 @@ private LeagueModel league;
 
 	@Override
 	public LeagueModel createLeague(String league, List<ConferenceModel> conferencedetail,
-			List<FreeAgentModel> agent, List<CoachModel> coach, List<ManagerModel> managers,GamePlayConfigModel gamePlay) {
+			List<FreeAgentModel> agent, List<CoachModel> coach, List<String> managers,GamePlayConfigModel gamePlay) {
 		return null;
 	}
 
@@ -64,11 +62,6 @@ private LeagueModel league;
 	}
 
 	@Override
-	public ManagerConstant validateManager(ManagerModel managerObject) {
-		return ManagerConstant.Failure;
-	}
-
-	@Override
 	public boolean persistLeague() {
 		return false;
 	}
@@ -79,13 +72,18 @@ private LeagueModel league;
 	}
 
 	@Override
-	public boolean loadTeam(String leagueName, String conferenceName, String divisionName, String teamName) {
+	public TeamModel getCurrentTeam() {
+		return null;
+	}
+
+	@Override
+	public boolean loadTeam(String teamName) {
 		return false;
 	}
 
 	@Override
-	public TeamModel getCurrentTeam() {
-		return null;
+	public Boolean checkTeamNotUnique(String teamName) {
+		return true;
 	}
 
 }

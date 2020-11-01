@@ -1,4 +1,4 @@
-package com.dhl.g05.statemachine;
+package com.dhl.g05.communication;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +8,6 @@ import java.util.stream.IntStream;
 
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
-import com.dhl.g05.leaguemodel.manager.ManagerModel;
 
 public class PlayerCommunication implements IPlayerCommunication{
 	private static Scanner scanner = new Scanner(System.in);
@@ -97,20 +96,20 @@ public class PlayerCommunication implements IPlayerCommunication{
 		format.append("|\n");
 		System.out.printf(format.toString(),header[0],header[1],header[2],header[3],header[4],header[5]);
 		System.out.println("--------------------------------------------------------------"
-				+ "-------------------------------------------------------");
+				+ "------------");
 		IntStream.range(0, coachList.size()).forEach(index->{
 			System.out.printf(format.toString(),index+1,coachList.get(index).getName(),coachList.get(index).getChecking(),
 					coachList.get(index).getSkating(),coachList.get(index).getShooting(),
 					coachList.get(index).getSaving());
 		});
 		System.out.println("--------------------------------------------------------------"
-				+ "-------------------------------------------------------");
+				+ "------------");
 
 	}
 
 
 	@Override
-	public void sendManagerMessage(List<ManagerModel> managerList) {
+	public void sendManagerMessage(List<String> managerList) {
 		Map<Integer,Integer> columnLength = new HashMap<Integer,Integer>();
 		StringBuilder format = new StringBuilder();
 		String header [] = {"Number","Name"};
@@ -120,7 +119,7 @@ public class PlayerCommunication implements IPlayerCommunication{
 			}
 		});
 		IntStream.range(0, managerList.size()).forEach(a->{
-			String name = managerList.get(a).getName();
+			String name = managerList.get(a);
 			if(columnLength.get(1) < name.length()) {
 				columnLength.put(1, name.length());
 			}
@@ -128,13 +127,11 @@ public class PlayerCommunication implements IPlayerCommunication{
 		columnLength.entrySet().stream().forEach(e -> format.append("| %" + "" + e.getValue() + "s "));
 		format.append("|\n");
 		System.out.printf(format.toString(),header[0],header[1]);
-		System.out.println("--------------------------------------------------------------"
-				+ "-------------------------------------------------------");
+		System.out.println("--------------------------------------------------------------");
 		IntStream.range(0, managerList.size()).forEach(index->{
-			System.out.printf(format.toString(),index+1,managerList.get(index).getName());
+			System.out.printf(format.toString(),index+1,managerList.get(index));
 		});
-		System.out.println("--------------------------------------------------------------"
-				+ "-------------------------------------------------------");
+		System.out.println("--------------------------------------------------------------");
 	}
 
 }

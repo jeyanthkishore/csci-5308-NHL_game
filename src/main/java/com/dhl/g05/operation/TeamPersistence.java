@@ -12,8 +12,6 @@ import com.dhl.g05.leaguemodel.team.TeamModel;
 
 public class TeamPersistence implements ITeamModelPersistence{
 
-	private List<PlayerModel> playerList = new ArrayList<PlayerModel>();
-
 	@Override
 	public int saveTeamObject(int divisionId, TeamModel teamObject, CoachModel coachDetails) {
 		StoredProcedure sp= new StoredProcedure();
@@ -36,6 +34,7 @@ public class TeamPersistence implements ITeamModelPersistence{
 		StoredProcedure sp= new StoredProcedure();
 		int teamId = sp.getTeamID(teamName, divisionId);
 		List<HashMap<String, Object>> playerValue = new ArrayList<HashMap<String,Object>>();
+		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
 
 		playerValue = sp.fetchAllPlayers(teamId);
 		for(HashMap<String, Object> player : playerValue) {
@@ -52,7 +51,7 @@ public class TeamPersistence implements ITeamModelPersistence{
 		List<HashMap<String, Object>> coachValue = new ArrayList<HashMap<String,Object>>();
 		coachValue = sp.fetchTeamCoach(teamId);
 		for(HashMap<String, Object> coach : coachValue) {
-			String name = coach.get("name").toString();
+			String name = coach.get("coach_name").toString();
 			double coachSkating = Double.parseDouble(coach.get("skating").toString());
 			double coachShooting = Double.parseDouble(coach.get("shooting").toString());
 			double coachChecking = Double.parseDouble(coach.get("checking").toString());
@@ -64,6 +63,14 @@ public class TeamPersistence implements ITeamModelPersistence{
 			coachObject.setSaving(coachSaving);
 		}
 		return teamId;
+	}
+
+	@Override
+	public List<HashMap<String, Object>> loadAllTeamName() {
+		StoredProcedure sp= new StoredProcedure();
+		List<HashMap<String, Object>> teamNames = new ArrayList<HashMap<String,Object>>();
+		teamNames = sp.fetchAllTeamName();
+		return teamNames;
 	}
 
 }

@@ -5,5 +5,6 @@ import com.dhl.g05.leaguemodel.league.LeagueModel;
 public interface ISerializeModel {
 
 	public Boolean serialiseObjects(LeagueModel object);
+	public String getSerailizeObject();
 
 }

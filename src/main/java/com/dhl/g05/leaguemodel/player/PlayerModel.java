@@ -6,7 +6,6 @@ import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.gameplayconfig.Aging;
 import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
-import com.dhl.g05.leaguemodel.league.LeagueModel;
 
 public class PlayerModel extends FreeAgentModel implements IPlayerInjury{
 
@@ -64,7 +63,7 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury{
 		return result;
 	}
 
-	public Boolean isCaptainNull() {
+	private Boolean isCaptainNull() {
 		if(captain == null) {
 			return true;
 		}
