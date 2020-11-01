@@ -19,7 +19,7 @@ public class FreeAgentModelTest {
 		FreeAgentModel object = new FreeAgentModel();
 		assertNull(object.getPlayerName());
 		assertNull(object.getPosition());
-		assertFalse(object.getHasInjured());
+		assertFalse(object.getInjuredStatus());
 	}
 
 	@Test
@@ -147,29 +147,29 @@ public class FreeAgentModelTest {
 	@Test
 	public void setHasInjuredTest() {
 		FreeAgentModel object = new FreeAgentModel();
-		object.setHasInjured(true);
-		assertTrue(object.getHasInjured());
+		object.setInjuredStatus(true);
+		assertTrue(object.getInjuredStatus());
 	}
 
 	@Test
 	public void getHasInjuredTest() {
 		FreeAgentModel object = new FreeAgentModel();
-		object.setHasInjured(true);
-		assertTrue(object.getHasInjured());
+		object.setInjuredStatus(true);
+		assertTrue(object.getInjuredStatus());
 	}
 
 	@Test
 	public void setIsRetiredTest() {
 		FreeAgentModel object = new FreeAgentModel();
-		object.setIsRetired(true);
-		assertTrue(object.getIsRetired());
+		object.setInjuredStatus(true);
+		assertTrue(object.getInjuredStatus());
 	}
 
 	@Test
 	public void getIsRetiredTest() {
 		FreeAgentModel object = new FreeAgentModel();
-		object.setIsRetired(true);
-		assertTrue(object.getIsRetired());
+		object.setInjuredStatus(true);
+		assertTrue(object.getInjuredStatus());
 	}
 
 	@Test

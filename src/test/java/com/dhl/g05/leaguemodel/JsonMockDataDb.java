@@ -338,7 +338,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 
 	public double calculateTeamStrength(List<PlayerModel> playerList){
 		for (IFreeAgent player: playerList) {
-			if(player.getHasInjured()){
+			if(player.getInjuredStatus()){
 				teamStrength +=	player.calculatePlayerStrength()/2;
 			}
 			else{

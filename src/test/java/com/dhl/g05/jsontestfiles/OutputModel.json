@@ -29,7 +29,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 },
                 {
@@ -43,7 +43,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 }
               ],
@@ -72,7 +72,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 },
                 {
@@ -86,7 +86,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 }
               ],
@@ -120,7 +120,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 },
                 {
@@ -134,7 +134,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 }
               ],
@@ -163,7 +163,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 },
                 {
@@ -177,7 +177,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 }
               ],
@@ -216,7 +216,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 },
                 {
@@ -230,7 +230,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 }
               ],
@@ -259,7 +259,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 },
                 {
@@ -273,7 +273,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 }
               ],
@@ -307,7 +307,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 },
                 {
@@ -321,7 +321,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 }
               ],
@@ -350,7 +350,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 },
                 {
@@ -364,7 +364,7 @@
                   "checking": 10.0,
                   "saving": 5.0,
                   "playerStrength": 0.0,
-                  "hasInjured": false,
+                  "isInjured": false,
                   "isRetired": false
                 }
               ],
@@ -386,7 +386,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -398,7 +398,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -410,7 +410,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -422,7 +422,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -434,7 +434,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -446,7 +446,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -458,7 +458,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -470,7 +470,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -482,7 +482,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -494,7 +494,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -506,7 +506,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -518,7 +518,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -530,7 +530,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -542,7 +542,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -554,7 +554,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -566,7 +566,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -578,7 +578,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -590,7 +590,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -602,7 +602,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -614,7 +614,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -626,7 +626,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -638,7 +638,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -650,7 +650,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -662,7 +662,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -674,7 +674,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -686,7 +686,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -698,7 +698,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -710,7 +710,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     },
     {
@@ -722,7 +722,7 @@
       "checking": 10.0,
       "saving": 5.0,
       "playerStrength": 0.0,
-      "hasInjured": false,
+      "isInjured": false,
       "isRetired": false
     }
   ],

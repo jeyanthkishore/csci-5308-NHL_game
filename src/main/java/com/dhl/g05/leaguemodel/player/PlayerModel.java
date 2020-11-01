@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.Aging;
 import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
 
@@ -11,6 +12,7 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury{
 
 	private Boolean captain;
 	private int injuredForNumberOfDays;
+
 
 	public PlayerModel() {
 		setCaptain(null);
@@ -70,7 +72,7 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury{
 	}
 
 	public boolean checkPlayerInjury(PlayerModel playerObject,Injury injury){
-		if (playerObject.getHasInjured()){
+		if (playerObject.getInjuredStatus()){
 			return true;
 		}
 		else {
@@ -78,7 +80,7 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury{
 			if (randomDecimal < injury.getRandomInjuryChance()){
 				injuredForNumberOfDays = randomIntegerNumberGenerator(injury.getInjuryDaysLow(),injury.getInjuryDaysHigh());
 				playerObject.setInjuredForNumberOfDays(injuredForNumberOfDays);
-				playerObject.setHasInjured(true);
+				playerObject.setInjuredStatus(true);
 				return true;
 			}
 			return false;
@@ -96,4 +98,9 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury{
 		Random random = new Random();
 		return random.nextInt(max - min) + max;
 	}
+
+	/*public boolean playerRetirement(Aging aging) {
+		PlayerRetirement p = new PlayerRetirement();
+		return p.checkPlayerRetirement(aging,this);
+	}*/
 }

@@ -9,14 +9,15 @@ public class FreeAgentModel implements IFreeAgent {
 	private double checking;
 	private double saving;
 	private double playerStrength;
-	private boolean hasInjured;
+	private boolean isInjured;
 	private boolean isRetired;
 
 	public FreeAgentModel() {
 		setPlayerName(null);
 		setPosition(null);
-		setHasInjured(false);
-		setIsRetired(false);
+		setInjuredStatus(false);
+		setInjuredStatus(false);
+
 	}
 
 	public FreeAgentModel(String playerName, String position, int age, double skating, double shooting, double checking, double saving) {
@@ -89,19 +90,19 @@ public class FreeAgentModel implements IFreeAgent {
 		this.saving = saving;
 	}
 
-	public boolean getHasInjured() {
-		return hasInjured;
+	public boolean getInjuredStatus() {
+		return isInjured;
 	}
 
-	public void setHasInjured(boolean hasInjured) {
-		this.hasInjured = hasInjured;
+	public void setInjuredStatus(boolean isInjured) {
+		this.isInjured = isInjured;
 	}
 
-	public boolean getIsRetired() {
+	public boolean getRetiredStatus() {
 		return isRetired;
 	}
 
-	public void setIsRetired(boolean retired) {
+	public void setRetiredStatus(boolean retired) {
 		isRetired = retired;
 	}
 

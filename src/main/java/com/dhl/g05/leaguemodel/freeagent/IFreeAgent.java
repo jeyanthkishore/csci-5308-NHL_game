@@ -2,55 +2,59 @@ package com.dhl.g05.leaguemodel.freeagent;
 
 public interface IFreeAgent {
 
-	public String getPlayerName();
+	String getPlayerName();
 
-	public void setPlayerName(String player) ;
+	void setPlayerName(String player) ;
 
-	public String getPosition();
+	String getPosition();
 
-	public void setPosition(String postition);
+	void setPosition(String position);
 
-	public int getAge();
+	int getAge();
 
-	public void setAge(int age);
+	void setAge(int age);
 
-	public double getSkating();
+	double getSkating();
 
-	public void setSkating(double skating);
+	void setSkating(double skating);
 
-	public double getShooting();
+	double getShooting();
 
-	public void setShooting(double shooting);
+	void setShooting(double shooting);
 
-	public double getChecking();
+	double getChecking();
 
-	public void setChecking(double checking);
+	void setChecking(double checking);
 
-	public double getSaving();
+	double getSaving();
 
-	public void setSaving(double saving);
+	void setSaving(double saving);
 
-	public double getPlayerStrength();
+	double getPlayerStrength();
 
-	public void setPlayerStrength(double playerStrength);
+	void setPlayerStrength(double playerStrength);
 
-	public double calculatePlayerStrength();
+	double calculatePlayerStrength();
 
-	public FreeAgentConstant validate();
+	FreeAgentConstant validate();
 
-	public boolean isPlayerDetailsNull();
+	boolean isPlayerDetailsNull();
 
-	public boolean isPlayerDetailsEmpty();
+	boolean isPlayerDetailsEmpty();
 
-	public boolean isPlayerPositionValid() ;
+	boolean isPlayerPositionValid() ;
 
-	public boolean isPlayerAgeValid();
+	boolean isPlayerAgeValid();
 
-	public boolean isPlayerStatValid();
+	boolean isPlayerStatValid();
 
-	public boolean validateStat(double stat);
+	boolean validateStat(double stat);
 
-	public boolean getHasInjured();
+	boolean getInjuredStatus();
 
-	public void setHasInjured(boolean hasInjured);
+	void setInjuredStatus(boolean isInjured);
+
+	boolean getRetiredStatus();
+
+	void setRetiredStatus(boolean isRetired);
 }
