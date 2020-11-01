@@ -44,14 +44,22 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean enter() {
-
+		Boolean teamNotEntered = true;
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Creating a New Team");
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter conference name:");
 		conferenceName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
 		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter division name:");
 		divisionName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team name:");
-		teamName =  this.getOuterStateMachine().getPlayerCommunication().getResponse();
+		while(teamNotEntered) {
+			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team name:");
+			teamName =  this.getOuterStateMachine().getPlayerCommunication().getResponse();
+			Boolean notUnique = this.getOuterStateMachine().getLeagueModel().checkTeamNotUnique(teamName);
+			if(notUnique) {
+				this.getOuterStateMachine().getPlayerCommunication().sendMessage("Please Enter Unique Team Name");
+				continue;
+			}
+			teamNotEntered = false;
+		}
 		return true; 
 	}
 

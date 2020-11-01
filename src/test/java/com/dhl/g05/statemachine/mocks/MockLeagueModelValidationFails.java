@@ -72,13 +72,18 @@ private LeagueModel league;
 	}
 
 	@Override
-	public boolean loadTeam(String leagueName, String conferenceName, String divisionName, String teamName) {
+	public TeamModel getCurrentTeam() {
+		return null;
+	}
+
+	@Override
+	public boolean loadTeam(String teamName) {
 		return false;
 	}
 
 	@Override
-	public TeamModel getCurrentTeam() {
-		return null;
+	public Boolean checkTeamNotUnique(String teamName) {
+		return true;
 	}
 
 }

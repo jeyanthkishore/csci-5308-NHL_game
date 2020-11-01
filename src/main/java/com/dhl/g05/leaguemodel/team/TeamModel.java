@@ -1,5 +1,6 @@
 package com.dhl.g05.leaguemodel.team;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.leaguemodel.coach.CoachModel;
@@ -93,6 +94,10 @@ public class TeamModel {
 		return database.loadTeamObject(divisionId,this, headCoach);
 	}
 
+	public List<HashMap<String, Object>> loadAllTeamName(ITeamModelPersistence database) {
+		return database.loadAllTeamName();
+	}
+	
 	public double calculateTeamStrength(List<PlayerModel> playerList){
 		for (IFreeAgent player: playerList) {
 			if(player.getHasInjured()){

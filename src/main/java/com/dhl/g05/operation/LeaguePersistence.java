@@ -44,9 +44,9 @@ public class LeaguePersistence implements ILeagueModelPersistence{
 	}
 
 	@Override
-	public int loadLeagueObject(String leagueName, LeagueModel league) {
+	public int loadLeagueObject(int league_id, LeagueModel league) {
 		StoredProcedure sp= new StoredProcedure();
-		int league_id = sp.getLeagueID(leagueName);
+		String leagueName = sp.getLeagueName(league_id);
 		List<HashMap<String, Object>> conferenceValue = new ArrayList<HashMap<String,Object>>();
 		conferenceList = new ArrayList<ConferenceModel>();
 
@@ -73,6 +73,13 @@ public class LeaguePersistence implements ILeagueModelPersistence{
 		league.setManagerList(freeManager);
 
 		league.setLeagueName(leagueName);
+		return league_id;
+	}
+
+	@Override
+	public int loadLeagueFromTeam(String teamName) {
+		StoredProcedure sp= new StoredProcedure();
+		int league_id = sp.getLeagueFromTeam(teamName);
 		return league_id;
 	}
 

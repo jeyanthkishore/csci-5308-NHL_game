@@ -116,12 +116,18 @@ public class LeagueModelTest {
 
 	@Test
 	public void loadLeagueObjectTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
 		DbPersistanceMock data = new DbPersistanceMock();
 		LeagueModel league = new LeagueModel();
-		assertEquals(1,league.loadLeagueObject(mock.leagueName,data));
+		assertEquals(1,league.loadLeagueObject(1,data));
 	}
 
+	@Test
+	public void loadLeagueFromTeamTest() {
+		DbPersistanceMock data = new DbPersistanceMock();
+		LeagueModel league = new LeagueModel();
+		assertEquals(1,league.loadLeagueFromTeam("Striker Six", data));
+	}
+	
 	@Test
 	public void isLeagueNameEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();

@@ -25,11 +25,12 @@ public interface ILeagueModelJson {
 	public void setLeague(LeagueModel league);
 	public boolean persistLeague();
 	public boolean addTeamToCurrentLeague(String conferenceName, String divisionName, TeamModel team);
-	public boolean loadTeam(String leagueName, String conferenceName, String divisionName, String teamName);
+	public boolean loadTeam(String teamName);
 	public LeagueConstant validateLeague(LeagueModel league);
 	public ConferenceConstant validateConference(ConferenceModel conference);
 	public DivisionConstant validateDivision(DivisionModel division);
 	public TeamConstant validateTeam(TeamModel team);
 	public FreeAgentConstant validatePlayer(PlayerModel player);
+	public Boolean checkTeamNotUnique(String teamName);
 
 }

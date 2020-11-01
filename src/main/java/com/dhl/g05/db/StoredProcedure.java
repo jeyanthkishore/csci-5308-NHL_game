@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StoredProcedure {
 	
@@ -843,6 +844,51 @@ public class StoredProcedure {
 
 		return list;
 	}
+	
+	public ArrayList<HashMap<String, Object>> fetchAllTeamName() {
+		try {
+			conn = db.createNewDBconnection();
+			String query = "{CALL fetchAllTeamName()}";
+			java.sql.CallableStatement stmt = conn.prepareCall(query);
+			rs = stmt.executeQuery();
+			list = rsToList.resultSetToArrayList(rs);
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			db.closeDbConnection(conn);
+		}
 
+		return list;
+	}
+	
+	
+	public int getLeagueFromTeam(String team_name)
+	{
+		int result=0;
+		try {
+			conn = db.createNewDBconnection();
+			String query = "{CALL fetchLeagueFromTeam(?)}";
+			java.sql.CallableStatement stmt = conn.prepareCall(query);
+			stmt.setString(1, team_name);
+			rs = stmt.executeQuery();
+			while(rs.next())
+			{
+				result=rs.getInt("league_id");
+			}
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+
+		} finally 
+		{
+			db.closeDbConnection(conn);
+		}
+		return result;
+	}
 }
 

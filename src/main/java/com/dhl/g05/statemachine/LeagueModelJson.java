@@ -1,5 +1,7 @@
 package com.dhl.g05.statemachine;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.leaguemodel.coach.CoachModel;
@@ -186,13 +188,28 @@ public class LeagueModelJson implements ILeagueModelJson{
 		return false;
 	}
 
-
 	@Override
-	public boolean loadTeam(String leagueName, String conferenceName, String divisionName, String teamName) {
+	public Boolean checkTeamNotUnique(String teamName) {
+		TeamModel teamObject = new TeamModel();
+		List<HashMap<String,Object>> teamNameList = teamObject.loadAllTeamName(teamDatabase);
+		for(HashMap<String,Object> team : teamNameList) {
+			if(team.get("team_name").equals(teamName)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean loadTeam(String teamName) {
 
 		TeamModel teamToLoad = null;
 		LeagueModel newLeague = new LeagueModel();
-		int leagueId = newLeague.loadLeagueObject(leagueName, leagueDatabase);
+		int leagueId = newLeague.loadLeagueFromTeam(teamName,leagueDatabase);
+		if (leagueId == 0) {
+			return false;
+		}
+		leagueId = newLeague.loadLeagueObject(leagueId, leagueDatabase);
 		if (leagueId == 0) {
 			return false;
 		}
@@ -204,26 +221,26 @@ public class LeagueModelJson implements ILeagueModelJson{
 
 		for (ConferenceModel c: conferences) {
 			int conferenceId = c.loadConferenceObject(leagueId, conferenceDatabase);
-			String cName = c.getConferenceName();
 
 			if (conferenceId == 0) {
 				return false;
 			}
 
-			List<DivisionModel> divisions = c.getDivisionDetails();
+			List<DivisionModel> divisions = new ArrayList<DivisionModel>();
+			divisions =	c.getDivisionDetails();
 			if (divisions == null) {
 				return false;
 			}
 
 			for (DivisionModel d: divisions) {
 				int divisionId = d.loadDivisionObject(conferenceId, divisionDatabase);
-				String dName = d.getDivisionName();
 
 				if (divisionId == 0) {
 					return false;
 				}
 
-				List<TeamModel> teams = d.getTeamDetails();
+				List<TeamModel> teams = new ArrayList<TeamModel>();
+				teams =	d.getTeamDetails();
 				if (teams == null) {
 					return false;
 				}
@@ -236,7 +253,8 @@ public class LeagueModelJson implements ILeagueModelJson{
 						return false;
 					}
 
-					List<PlayerModel> players = t.getPlayerList();
+					List<PlayerModel> players = new ArrayList<PlayerModel>();
+					players = t.getPlayerList();
 					if (players == null) {
 						return false;
 					}
@@ -248,7 +266,7 @@ public class LeagueModelJson implements ILeagueModelJson{
 						}
 					}
 
-					if (tName.equalsIgnoreCase(teamName) && dName.equalsIgnoreCase(divisionName) && cName.equalsIgnoreCase(conferenceName)) {
+					if (tName.equalsIgnoreCase(teamName)) {
 						teamToLoad = t;
 					}
 				}
@@ -258,7 +276,6 @@ public class LeagueModelJson implements ILeagueModelJson{
 		if (teamToLoad != null) {
 			currentTeam = teamToLoad;
 			this.league = newLeague;
-			Date.getInstance().loadDate(newLeague, dateDatabase);
 			return true;
 		}
 
@@ -322,6 +339,5 @@ public class LeagueModelJson implements ILeagueModelJson{
 	public FreeAgentConstant validatePlayer(PlayerModel player) {
 		return player.validate();
 	}
-
 
 }

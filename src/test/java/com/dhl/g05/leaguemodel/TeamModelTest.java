@@ -2,6 +2,7 @@ package com.dhl.g05.leaguemodel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
@@ -289,5 +290,13 @@ public class TeamModelTest{
 		DbPersistanceMock data = new DbPersistanceMock();
 		TeamModel valid = new TeamModel(mock);
 		assertEquals(1,valid.loadTeamObject(1,data));
+	}
+	
+	@Test
+	public void loadAllTeamNameTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		DbPersistanceMock data = new DbPersistanceMock();
+		TeamModel valid = new TeamModel(mock);
+		assertNotNull(valid.loadAllTeamName(data));
 	}
 }

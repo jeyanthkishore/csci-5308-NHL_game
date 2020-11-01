@@ -127,14 +127,14 @@ public class LeagueModelJsonTest {
 
 	@Test
 	public void testLoadTeam() {
-		assertTrue(leagueModel.loadTeam("HockeyLeague", "Western Conference", "Atlantic", "Striker Six"));
+		assertTrue(leagueModel.loadTeam("Striker Six"));
 		assertNotNull(leagueModel.getCurrentTeam());
 		assertNotNull(leagueModel.getLeague());
 	}
 
 	@Test
 	public void testLoadTeamFails() {
-		leagueModel.loadTeam("HockeyLeague", "", "", "");
+		leagueModel.loadTeam("");
 		assertNull(leagueModel.getCurrentTeam());
 	}
 

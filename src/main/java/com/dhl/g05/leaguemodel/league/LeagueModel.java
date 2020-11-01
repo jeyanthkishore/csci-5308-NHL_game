@@ -101,10 +101,14 @@ public class LeagueModel {
 		return database.saveLeagueObject(this);
 	}
 
-	public int loadLeagueObject(String leagueName,ILeagueModelPersistence database) {
-		return database.loadLeagueObject(leagueName,this);
+	public int loadLeagueObject(int leagueId,ILeagueModelPersistence database) {
+		return database.loadLeagueObject(leagueId,this);
 	}
 
+	public int loadLeagueFromTeam(String teamName, ILeagueModelPersistence database) {
+		return database.loadLeagueFromTeam(teamName);
+	}
+	
 	public LeagueConstant validate() {
 		if(isLeagueNameEmptyOrNull()) {
 			return LeagueConstant.LeagueNameEmpty;
@@ -174,4 +178,5 @@ public class LeagueModel {
 		}
 		return false;
 	}
+
 }

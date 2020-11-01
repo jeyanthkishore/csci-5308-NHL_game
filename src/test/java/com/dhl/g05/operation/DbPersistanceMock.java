@@ -83,12 +83,12 @@ public class DbPersistanceMock implements IGameConfigPersistence,IFreeAgentPersi
 	}
 
 	@Override
-	public int loadLeagueObject(String leagueName,LeagueModel leagueObject) {
-		if(leagueName.equalsIgnoreCase("HockeyLeague")) {
-			leagueObject.setLeagueName(leagueName);
-			ArrayList<ConferenceModel> conferences = new ArrayList<>();
-			conferences.add(new ConferenceModel("Western Conference",null));
-			leagueObject.setConferenceDetails(conferences);;
+	public int loadLeagueObject(int leagueId,LeagueModel leagueObject) {
+		if(leagueId == 1) {
+			ArrayList<ConferenceModel> conference = new ArrayList<ConferenceModel>();
+			conference.add(new ConferenceModel("Western Conference",null));
+			leagueObject.setLeagueName("HockeyLeague");
+			leagueObject.setConferenceDetails(conference);
 			return 1;
 		}
 		return 0;
@@ -175,6 +175,26 @@ public class DbPersistanceMock implements IGameConfigPersistence,IFreeAgentPersi
 			return 1;
 		}
 		return 0;
+	}
+
+	@Override
+	public int loadLeagueFromTeam(String teamName) {
+		if(teamName.equals("Striker Six")) {
+			return 1;
+		}
+		return 0;
+	}
+
+	@Override
+	public List<HashMap<String, Object>> loadAllTeamName() {
+		List<HashMap<String,Object>> teamName = new ArrayList<HashMap<String,Object>>();
+		HashMap<String,Object> name = new HashMap<String, Object>();
+		name.put("team_name", "Striker Six");
+		teamName.add(name);
+		name = new HashMap<String, Object>();
+		name.put("team_name", "Rockers");
+		teamName.add(name);
+		return teamName;
 	}
 
 }

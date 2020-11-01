@@ -47,7 +47,7 @@ public class MockLeagueModel implements ILeagueModelJson{
 	}
 
 	@Override
-	public boolean loadTeam(String leagueName, String conferenceName, String divisionName, String teamName) {
+	public boolean loadTeam(String teamName) {
 		return true;
 	}
 
@@ -79,5 +79,10 @@ public class MockLeagueModel implements ILeagueModelJson{
 	@Override
 	public FreeAgentConstant validatePlayer(PlayerModel player) {
 		return FreeAgentConstant.Success;
+	}
+
+	@Override
+	public Boolean checkTeamNotUnique(String teamName) {
+		return false;
 	}
 }
