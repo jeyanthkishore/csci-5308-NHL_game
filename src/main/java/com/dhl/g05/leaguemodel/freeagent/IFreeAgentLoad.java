@@ -1,8 +1,6 @@
-package com.dhl.g05.operation;
+package com.dhl.g05.leaguemodel.freeagent;
 
 import java.util.List;
-
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 
 public interface IFreeAgentLoad {
 

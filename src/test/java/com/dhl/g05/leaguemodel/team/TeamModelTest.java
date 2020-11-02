@@ -1,4 +1,4 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.leaguemodel.team;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -9,8 +9,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.dhl.g05.leaguemodel.team.TeamConstant;
-import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.dhl.g05.leaguemodel.JsonMockDataDb;
 import com.dhl.g05.operation.DbPersistanceMock;
 
 public class TeamModelTest{

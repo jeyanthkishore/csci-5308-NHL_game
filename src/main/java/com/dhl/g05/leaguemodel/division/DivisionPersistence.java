@@ -1,4 +1,4 @@
-package com.dhl.g05.operation;
+package com.dhl.g05.leaguemodel.division;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,8 +6,6 @@ import java.util.List;
 
 import com.dhl.g05.db.StoredProcedure;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
-import com.dhl.g05.leaguemodel.division.DivisionModel;
-import com.dhl.g05.leaguemodel.division.IDivisionModelPersistence;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 
 public class DivisionPersistence implements IDivisionModelPersistence{

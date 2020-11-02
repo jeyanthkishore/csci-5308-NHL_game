@@ -1,6 +1,4 @@
-package com.dhl.g05.operation;
-
-import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
+package com.dhl.g05.leaguemodel.gameplayconfig;
 
 public interface ILoadGamePlayConfig {
 

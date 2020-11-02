@@ -1,8 +1,6 @@
-package com.dhl.g05.operation;
+package com.dhl.g05.leaguemodel.coach;
 
 import java.util.List;
-
-import com.dhl.g05.leaguemodel.coach.CoachModel;
 
 public interface ICoachLoad {
 

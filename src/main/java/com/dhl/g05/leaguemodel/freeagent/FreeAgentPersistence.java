@@ -1,12 +1,10 @@
-package com.dhl.g05.operation;
+package com.dhl.g05.leaguemodel.freeagent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.db.StoredProcedure;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
-import com.dhl.g05.leaguemodel.freeagent.IFreeAgentPersistence;
 
 public class FreeAgentPersistence implements IFreeAgentPersistence,IFreeAgentLoad{
 

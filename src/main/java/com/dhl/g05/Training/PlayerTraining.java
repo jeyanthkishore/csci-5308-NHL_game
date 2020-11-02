@@ -17,11 +17,11 @@ import com.dhl.g05.leaguemodel.team.TeamModel;
 public class PlayerTraining implements IPlayerTraining {
 
 	private LeagueModel leagueObject;
-	
+
 	public PlayerTraining(LeagueModel league) {
 		this.leagueObject = league;
 	}
-	
+
 	public LeagueModel implementTraining() {
 		List<ConferenceModel> conferences = leagueObject.getConferenceDetails();
 		for (ConferenceModel c: conferences) {
@@ -41,7 +41,7 @@ public class PlayerTraining implements IPlayerTraining {
 	}
 
 	private PlayerModel performTrainingForPlayer(PlayerModel player, CoachModel headCoach) {
-		
+
 		Boolean playerInjured = false;
 
 		if(trainingAlgorithm(player.getChecking(), headCoach.getChecking())) {
@@ -81,7 +81,7 @@ public class PlayerTraining implements IPlayerTraining {
 		}
 		return false;
 	}
-	
+
 	private Boolean trainingAlgorithm(double playerValue, double coachValue) {
 		double randomValue = Math.random();
 		if(randomValue < coachValue) {

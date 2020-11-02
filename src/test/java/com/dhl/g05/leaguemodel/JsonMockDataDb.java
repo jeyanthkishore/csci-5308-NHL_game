@@ -84,16 +84,16 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public double randomAcceptanceChance = 0.05;
 	public int maxPlayerPerTrade = 2;
 	public LeagueModel league;
-	String playerOneName = "";
-	String positionOne = "";
-	String positionForward = "forward";
-	String positionDefense = "defense";
-	String positionGoalie = "goalie";
-	Boolean captainOne = true;
-	String playerTwoName = "";
-	String positionTwo = "";
-	Boolean captainTwo = false;
-	String result = "success";
+	public String playerOneName = "";
+	public String positionOne = "";
+	public String positionForward = "forward";
+	public String positionDefense = "defense";
+	public String positionGoalie = "goalie";
+	public Boolean captainOne = true;
+	public String playerTwoName = "";
+	public String positionTwo = "";
+	public Boolean captainTwo = false;
+	public String result = "success";
 	
 	public LeagueModel getLeague() {
 		return league;

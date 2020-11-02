@@ -1,12 +1,10 @@
-package com.dhl.g05.operation;
+package com.dhl.g05.leaguemodel.conference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.db.StoredProcedure;
-import com.dhl.g05.leaguemodel.conference.ConferenceModel;
-import com.dhl.g05.leaguemodel.conference.IConferenceModelPersistence;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
 
 public class ConferencePersistence implements IConferenceModelPersistence{

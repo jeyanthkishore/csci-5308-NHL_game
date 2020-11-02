@@ -62,16 +62,16 @@ public class CreateNewTeam implements ICreateTeam {
 	public void setManagerList(List<String> managerList) {
 		this.managerList = managerList;
 	}
-	
+
 	public TeamModel getNewTeam() {
 		return newTeam;
 	}
-	
+
 	public boolean teamCreation(String TeamName) {
 		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
 		freeAgentList = leagueObject.getFreeAgent();
 		newTeam.setTeamName(TeamName);
-		
+
 		CoachModel coach = pickCoach();
 		if(coach.validate().equals(CoachConstant.Success)) {
 			newTeam.setCoachDetails(coach);
@@ -79,7 +79,7 @@ public class CreateNewTeam implements ICreateTeam {
 			communicate.sendMessage(CreateTeamConstant.ErrorCoachCreation.getValue());
 			return false;
 		}
-		
+
 		String managerObject = "";
 		managerObject = pickManager();
 		if(StringUtils.isNullOrEmpty(managerObject)) {
@@ -88,7 +88,7 @@ public class CreateNewTeam implements ICreateTeam {
 		}else {
 			newTeam.setGeneralManagerName(managerObject);
 		}
-		
+
 		playerList = pickPlayers();
 		if(playerList.size()<20 || playerList.size()>20) {
 			communicate.sendMessage(CreateTeamConstant.ErrorPlayerCreation.getValue());
@@ -96,7 +96,7 @@ public class CreateNewTeam implements ICreateTeam {
 		}else {
 			newTeam.setPlayerList(playerList);
 		}
-		
+
 		newTeam.setUserTeam(true);
 		return true;
 	}
@@ -106,7 +106,7 @@ public class CreateNewTeam implements ICreateTeam {
 		coachList = leagueObject.getFreeCoach();
 		Boolean coachNotSelected = true;
 		int number;
-		
+
 		while(coachNotSelected) {
 			communicate.sendMessage(CreateTeamConstant.SelectCoach.getValue());
 			communicate.sendCoachMessage(coachList);
@@ -129,7 +129,7 @@ public class CreateNewTeam implements ICreateTeam {
 			coachList.remove(number-1);
 			coachNotSelected = false;
 		}
-		
+
 		return selectedCoach;
 	}
 
@@ -160,7 +160,7 @@ public class CreateNewTeam implements ICreateTeam {
 			managerList.remove(number-1);
 			ManagerNotSelected = false;
 		}
-		
+
 		return selectedManager;
 	}
 
@@ -196,7 +196,7 @@ public class CreateNewTeam implements ICreateTeam {
 				communicate.getResponse();
 				continue;
 			}
-			
+
 			if(responseNumber == 0 || responseNumber>freeAgentList.size()) {
 				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
 				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());

@@ -1,14 +1,10 @@
-package com.dhl.g05.operation;
+package com.dhl.g05.leaguemodel.gameplayconfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.db.StoredProcedure;
-import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.leaguemodel.gameplayconfig.GameResolverConfig;
-import com.dhl.g05.leaguemodel.gameplayconfig.IGameConfigPersistence;
-import com.dhl.g05.leaguemodel.gameplayconfig.TrainingConfig;
 
 public class GamePlayPersistence implements IGameConfigPersistence,ILoadGamePlayConfig{
 

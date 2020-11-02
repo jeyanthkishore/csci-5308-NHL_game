@@ -1,4 +1,4 @@
-package com.dhl.g05.operation;
+package com.dhl.g05.leaguemodel.league;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,10 +6,12 @@ import java.util.List;
 
 import com.dhl.g05.db.StoredProcedure;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
+import com.dhl.g05.leaguemodel.coach.CoachPersistence;
+import com.dhl.g05.leaguemodel.coach.ICoachLoad;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
-import com.dhl.g05.leaguemodel.league.ILeagueModelPersistence;
-import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.leaguemodel.freeagent.FreeAgentPersistence;
+import com.dhl.g05.leaguemodel.freeagent.IFreeAgentLoad;
 
 public class LeaguePersistence implements ILeagueModelPersistence{
 

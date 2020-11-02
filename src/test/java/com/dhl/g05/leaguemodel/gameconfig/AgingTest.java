@@ -1,12 +1,11 @@
 package com.dhl.g05.leaguemodel.gameconfig;
 
-import com.dhl.g05.leaguemodel.JsonMockDataDb;
-import com.dhl.g05.leaguemodel.coach.CoachModel;
-import com.dhl.g05.leaguemodel.gameplayconfig.Aging;
+import static org.junit.Assert.assertSame;
+
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
+import com.dhl.g05.leaguemodel.JsonMockDataDb;
+import com.dhl.g05.leaguemodel.gameplayconfig.Aging;
 
 public class AgingTest {
 

@@ -1,6 +1,5 @@
 package com.dhl.g05.leaguemodel.player;
 
-import com.dhl.g05.leaguemodel.freeagent.IFreeAgent;
 import com.dhl.g05.leaguemodel.gameplayconfig.IInjury;
 
 public class PlayerProgress implements IPlayerProgress{

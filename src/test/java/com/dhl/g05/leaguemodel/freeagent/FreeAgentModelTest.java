@@ -1,12 +1,15 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.leaguemodel.freeagent;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.dhl.g05.leaguemodel.JsonMockDataDb;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
-
-import static org.junit.Assert.*;
 
 public class FreeAgentModelTest {
 

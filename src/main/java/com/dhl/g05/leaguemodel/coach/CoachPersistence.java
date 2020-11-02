@@ -1,12 +1,10 @@
-package com.dhl.g05.operation;
+package com.dhl.g05.leaguemodel.coach;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.db.StoredProcedure;
-import com.dhl.g05.leaguemodel.coach.CoachModel;
-import com.dhl.g05.leaguemodel.coach.ICoachModelPersistence;
 
 public class CoachPersistence implements ICoachModelPersistence,ICoachLoad{
 
