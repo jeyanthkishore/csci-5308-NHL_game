@@ -21,10 +21,13 @@ import com.dhl.g05.division.DivisionModel;
 import com.dhl.g05.freeagent.FreeAgentConstant;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.gameplayconfig.Aging;
+import com.dhl.g05.gameplayconfig.AgingConstant;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.gameplayconfig.GameResolverConfig;
 import com.dhl.g05.gameplayconfig.GameResolverConstant;
 import com.dhl.g05.gameplayconfig.Injury;
+import com.dhl.g05.gameplayconfig.InjuryConstant;
+import com.dhl.g05.gameplayconfig.TradingConstant;
 import com.dhl.g05.gameplayconfig.TradingModel;
 import com.dhl.g05.gameplayconfig.TrainingConfig;
 import com.dhl.g05.gameplayconfig.TrainingConstant;
@@ -67,7 +70,14 @@ public class LeagueModelCreatorFromJSON {
 		}
 		int averageRetirementAge = Integer.parseInt(jsonAging.get("averageRetirementAge").toString());
 		int maximumAge = Integer.parseInt( jsonAging.get("maximumAge").toString());
-		return new Aging(averageRetirementAge, maximumAge);
+		Aging aging = new Aging(averageRetirementAge, maximumAge);
+		AgingConstant result = aging.validate();
+		if(result.equals(AgingConstant.Success)) {
+			return aging;
+		}else {
+			playerCommunication.sendMessage(result.getValue());
+		}
+		return null;
 	}
 
 	private Injury createInjury(JSONObject jsonInjury) {
@@ -77,24 +87,30 @@ public class LeagueModelCreatorFromJSON {
 		double randomInjuryChance = Double.parseDouble(jsonInjury.get("randomInjuryChance").toString());
 		int injuryDaysLow = Integer.parseInt(jsonInjury.get("injuryDaysLow").toString());
 		int injuryDaysHigh = Integer.parseInt(jsonInjury.get("injuryDaysHigh").toString());
-		return new Injury(randomInjuryChance, injuryDaysLow, injuryDaysHigh);
+		Injury injury = new Injury(randomInjuryChance, injuryDaysLow, injuryDaysHigh);
+		InjuryConstant result = injury.validate();
+		if(result.equals(InjuryConstant.Success)) {
+			return injury;
+		}else {
+			playerCommunication.sendMessage(result.getValue());
+		}
+		return null;
 	}
 
 	private TrainingConfig createTrainingConfig(JSONObject training) {
 		if (training == null) {
 			return null;
-		} else {
-			Number daysUntilStatIncreaseCheck =  (Number) training.get("daysUntilStatIncreaseCheck");
-			Date.getInstance().setDaysUntilStatIncreaseCheck(daysUntilStatIncreaseCheck.intValue());
-			TrainingConfig train = new TrainingConfig(daysUntilStatIncreaseCheck.intValue());
-			TrainingConstant result = train.Validate();
-			if(result.equals(TrainingConstant.Success)) {
-				return train;
-			}else {
-				playerCommunication.sendMessage(result.getValue());
-			}
-			return null;
+		} 
+		Number daysUntilStatIncreaseCheck =  (Number) training.get("daysUntilStatIncreaseCheck");
+		Date.getInstance().setDaysUntilStatIncreaseCheck(daysUntilStatIncreaseCheck.intValue());
+		TrainingConfig train = new TrainingConfig(daysUntilStatIncreaseCheck.intValue());
+		TrainingConstant result = train.Validate();
+		if(result.equals(TrainingConstant.Success)) {
+			return train;
+		}else {
+			playerCommunication.sendMessage(result.getValue());
 		}
+		return null;
 	}
 
 	public boolean createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException {
@@ -131,46 +147,50 @@ public class LeagueModelCreatorFromJSON {
 	public GamePlayConfigModel setGamePlayConfigsFromFile(JSONObject gamePlayConfigs){
 		if (gamePlayConfigs == null) {
 			return null;
-		} else {
-			Aging agingObject = createAging((JSONObject)gamePlayConfigs.get("aging"));
-			Injury injuryObject = createInjury((JSONObject)gamePlayConfigs.get("injuries"));
-			TrainingConfig trainingObject = createTrainingConfig((JSONObject)gamePlayConfigs.get("training"));
-			TradingModel tradingObject = createTradingConfig((JSONObject)gamePlayConfigs.get("trading"));
-			GameResolverConfig gameResolver = createGameResolver((JSONObject)gamePlayConfigs.get("gameResolver"));
-			if (agingObject == null || injuryObject == null || trainingObject == null || tradingObject == null || gameResolver == null) {
-				playerCommunication.sendMessage("Error in GamePlay Config");
-				return null;
-			}
-			return new GamePlayConfigModel(tradingObject, agingObject, injuryObject, gameResolver, trainingObject);
 		}
+		Aging agingObject = createAging((JSONObject)gamePlayConfigs.get("aging"));
+		Injury injuryObject = createInjury((JSONObject)gamePlayConfigs.get("injuries"));
+		TrainingConfig trainingObject = createTrainingConfig((JSONObject)gamePlayConfigs.get("training"));
+		TradingModel tradingObject = createTradingConfig((JSONObject)gamePlayConfigs.get("trading"));
+		GameResolverConfig gameResolver = createGameResolver((JSONObject)gamePlayConfigs.get("gameResolver"));
+		if (agingObject == null || injuryObject == null || trainingObject == null || tradingObject == null || gameResolver == null) {
+			playerCommunication.sendMessage("Error in GamePlay Config");
+			return null;
+		}
+		return new GamePlayConfigModel(tradingObject, agingObject, injuryObject, gameResolver, trainingObject);
 }
 	
 	private GameResolverConfig createGameResolver(JSONObject gameResolver) {
 		if (gameResolver == null) {
 			return null;
-		} else {
-			double randomWin = Double.parseDouble(gameResolver.get("randomWinChance").toString());
-			GameResolverConfig resolver = new GameResolverConfig(randomWin);
-			GameResolverConstant result = resolver.Validate();
-			if(result.equals(GameResolverConstant.Success)) {
-				return resolver;
-			}else {
-				playerCommunication.sendMessage(result.getValue());
-			}
-			return null;
+		} 
+		double randomWin = Double.parseDouble(gameResolver.get("randomWinChance").toString());
+		GameResolverConfig resolver = new GameResolverConfig(randomWin);
+		GameResolverConstant result = resolver.Validate();
+		if(result.equals(GameResolverConstant.Success)) {
+			return resolver;
+		}else {
+			playerCommunication.sendMessage(result.getValue());
 		}
+		return null;
 	}
 
 	private TradingModel createTradingConfig(JSONObject tradingObject) {
 		if (tradingObject == null) {
 			return null;
-		} else {
-			double randomTradeOfferChance = Double.parseDouble(tradingObject.get("randomTradeOfferChance").toString());
-			int lossPoint = Integer.parseInt(tradingObject.get("lossPoint").toString());
-			int maxPlayersPerTrade = Integer.parseInt(tradingObject.get("maxPlayersPerTrade").toString());
-			double randomAcceptance =  Double.parseDouble(tradingObject.get("randomAcceptanceChance").toString());
-			return new TradingModel(lossPoint,randomTradeOfferChance,maxPlayersPerTrade,randomAcceptance);
+		} 
+		double randomTradeOfferChance = Double.parseDouble(tradingObject.get("randomTradeOfferChance").toString());
+		int lossPoint = Integer.parseInt(tradingObject.get("lossPoint").toString());
+		int maxPlayersPerTrade = Integer.parseInt(tradingObject.get("maxPlayersPerTrade").toString());
+		double randomAcceptance =  Double.parseDouble(tradingObject.get("randomAcceptanceChance").toString());
+		TradingModel trade =  new TradingModel(lossPoint,randomTradeOfferChance,maxPlayersPerTrade,randomAcceptance);
+		TradingConstant result = trade.validate();
+		if(result.equals(TradingConstant.Success)) {
+			return trade;
+		}else {
+			playerCommunication.sendMessage(result.getValue());
 		}
+		return null;
 	}
 
 	private ArrayList<ConferenceModel> createConferences(JSONArray jsonConferences) {
