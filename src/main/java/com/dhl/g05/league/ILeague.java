@@ -24,7 +24,7 @@ public interface ILeague {
     List<String> getManagerList();
     void setManagerList(List<String> managerList);
 
-    ILeagueModelPersistence getDbObject();
+    //ILeagueModelPersistence getDbObject();
     void setDbObject(ILeagueModelPersistence object);
 
     GamePlayConfigModel getGamePlayConfig();
