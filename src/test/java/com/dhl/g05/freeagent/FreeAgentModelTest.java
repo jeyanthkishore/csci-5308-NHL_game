@@ -160,15 +160,15 @@ public class FreeAgentModelTest {
 	@Test
 	public void setIsRetiredTest() {
 		FreeAgentModel object = new FreeAgentModel();
-		object.setInjuredStatus(true);
-		assertTrue(object.getInjuredStatus());
+		object.setRetiredStatus(true);
+		assertTrue(object.getRetiredStatus());
 	}
 
 	@Test
 	public void getIsRetiredTest() {
 		FreeAgentModel object = new FreeAgentModel();
-		object.setInjuredStatus(true);
-		assertTrue(object.getInjuredStatus());
+		object.setRetiredStatus(true);
+		assertTrue(object.getRetiredStatus());
 	}
 
 	@Test

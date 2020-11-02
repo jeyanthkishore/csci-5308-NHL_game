@@ -156,7 +156,24 @@ public class LeagueModelTest {
 		LeagueModel league = new LeagueModel(mock);
 		assertSame(LeagueConstant.ConferenceListEmpty,league.validate());
 	}
-
+	
+	@Test
+	public void checkNullFreeAgent() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		LeagueModel league = new LeagueModel(mock);
+		league.setFreeAgent(null);
+		assertSame(LeagueConstant.FreeAgentsNotValid,league.validate());
+	}
+	
+	
+	@Test
+	public void checkNullConference() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		LeagueModel league = new LeagueModel(mock);
+		league.setConferenceDetails(null);
+		assertSame(LeagueConstant.ConferenceListEmpty,league.validate());
+	}
+	
 	@Test
 	public void checkOddConference() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -225,6 +242,11 @@ public class LeagueModelTest {
 		mock.setFreeAgentListNotValid();
 		league = new LeagueModel(mock);
 		assertSame(LeagueConstant.FreeAgentsNotValid,league.validate());
+		mock = new JsonMockDataDb();
+		league = new LeagueModel(mock);
+		league.setLeagueName("DummyLEague");
+		league.setManagerList(null);
+		assertSame(LeagueConstant.ManagerListEmpty,league.validate());
 	}
 
 }

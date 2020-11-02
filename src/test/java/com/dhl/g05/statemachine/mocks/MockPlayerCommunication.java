@@ -1,11 +1,12 @@
 package com.dhl.g05.statemachine.mocks;
 
 import java.util.List;
-import java.util.Random;
 
 import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.player.IRandomGeneratorFactory;
+import com.dhl.g05.player.RandomGeneratorFactory;
 
 public class MockPlayerCommunication implements IPlayerCommunication{
 
@@ -33,12 +34,9 @@ public class MockPlayerCommunication implements IPlayerCommunication{
 
 	@Override
 	public int getResponseNumber() {
-		Random rand = new Random();
-		int number =  rand.nextInt(5);
-		if (number==0){          
-			number= number+1;
-		}
-		return number;
+		IRandomGeneratorFactory randomGeneratorFactory = new RandomGeneratorFactory();
+		int randomValue = randomGeneratorFactory.getRandomIntegerNumber(0, 22);
+		return randomValue;
 	}
 
 	@Override
