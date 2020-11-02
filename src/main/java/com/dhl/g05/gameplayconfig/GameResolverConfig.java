@@ -12,4 +12,12 @@ public class GameResolverConfig implements IGameResolver{
 		return randomWinChance;
 	}
 	
+	@Override
+	public GameResolverConstant Validate() {
+		if(randomWinChance > 1 || randomWinChance < 0) {
+			return GameResolverConstant.RandWinError;
+		}
+		return GameResolverConstant.Success;
+	}
+	
 }
