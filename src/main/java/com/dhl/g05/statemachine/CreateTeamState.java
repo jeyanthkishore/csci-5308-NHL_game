@@ -6,8 +6,8 @@ import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.conference.ConferenceModel;
 import com.dhl.g05.division.DivisionModel;
 import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.leaguemodel.CreateNewTeam;
-import com.dhl.g05.leaguemodel.ICreateTeam;
+import com.dhl.g05.team.CreateNewTeam;
+import com.dhl.g05.team.ICreateTeam;
 import com.dhl.g05.team.TeamModel;
 
 public class CreateTeamState extends AbstractState {

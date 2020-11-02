@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dhl.g05.leaguemodel.JsonMockDataDb;
+import com.dhl.g05.MockData.JsonMockDataDb;
 import com.dhl.g05.statemachine.mocks.MockLeagueModel;
 import com.dhl.g05.statemachine.mocks.MockLeagueModelValidationFails;
 import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;

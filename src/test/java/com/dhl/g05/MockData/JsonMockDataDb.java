@@ -1,4 +1,4 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.MockData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
