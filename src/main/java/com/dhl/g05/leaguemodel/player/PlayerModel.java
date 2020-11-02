@@ -12,6 +12,8 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury{
 
 	private Boolean captain;
 	private int injuredForNumberOfDays;
+	private final static int DAYS_IN_YEAR = 365;
+	private int elapsedDaysSinceLastBDay;
 
 	public PlayerModel() {
 		setCaptain(null);
@@ -40,7 +42,15 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury{
 		this.injuredForNumberOfDays = injuredForNumberOfDays;
 	}
 
-	public int savePlayerObject(int teamId,IPlayerModelPersistence database) {
+	public int getElapsedDaysSinceLastBDay() {
+		return elapsedDaysSinceLastBDay;
+	}
+
+	public void setElapsedDaysSinceLastBDay(int elapsedDaysSinceLastBDay) {
+		this.elapsedDaysSinceLastBDay = elapsedDaysSinceLastBDay;
+	}
+
+	public int savePlayerObject(int teamId, IPlayerModelPersistence database) {
 		return database.savePlayerObject(teamId,this);
 	}
 	
@@ -69,6 +79,27 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury{
 		return false;
 	}
 
+	public void calculatePlayerAgeByDays(int days) {
+		if (days > 0) {
+			elapsedDaysSinceLastBDay += days;
+			handlePlayerAge();
+		}
+	}
+
+	private void handlePlayerAge() {
+		if (elapsedDaysSinceLastBDay >= DAYS_IN_YEAR) {
+			int daysAfterYear = elapsedDaysSinceLastBDay % DAYS_IN_YEAR;
+
+			if (daysAfterYear == 0) {
+				setAge(getAge() + 1);
+				elapsedDaysSinceLastBDay = 0;
+			}
+			else {
+				setAge( getAge() + (elapsedDaysSinceLastBDay/DAYS_IN_YEAR));
+				elapsedDaysSinceLastBDay = daysAfterYear;
+			}
+		}
+	}
 
 	@Override
 	public boolean isInjured(IPlayerProgress playerProgress, PlayerModel playerModel , IInjury injury) {

@@ -21,6 +21,7 @@
                 {
                   "captain": true,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Cristiano Ronaldo",
                   "position": "forward",
                   "age": 10,
@@ -35,6 +36,7 @@
                 {
                   "captain": false,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Messi",
                   "position": "goalie",
                   "age": 10,
@@ -64,6 +66,7 @@
                 {
                   "captain": true,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Cristiano Ronaldo",
                   "position": "forward",
                   "age": 10,
@@ -78,6 +81,7 @@
                 {
                   "captain": false,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Messi",
                   "position": "goalie",
                   "age": 10,
@@ -112,6 +116,7 @@
                 {
                   "captain": true,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Cristiano Ronaldo",
                   "position": "forward",
                   "age": 10,
@@ -126,6 +131,7 @@
                 {
                   "captain": false,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Messi",
                   "position": "goalie",
                   "age": 10,
@@ -155,6 +161,7 @@
                 {
                   "captain": true,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Cristiano Ronaldo",
                   "position": "forward",
                   "age": 10,
@@ -169,6 +176,7 @@
                 {
                   "captain": false,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Messi",
                   "position": "goalie",
                   "age": 10,
@@ -208,6 +216,7 @@
                 {
                   "captain": true,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Cristiano Ronaldo",
                   "position": "forward",
                   "age": 10,
@@ -222,6 +231,7 @@
                 {
                   "captain": false,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Messi",
                   "position": "goalie",
                   "age": 10,
@@ -251,6 +261,7 @@
                 {
                   "captain": true,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Cristiano Ronaldo",
                   "position": "forward",
                   "age": 10,
@@ -265,6 +276,7 @@
                 {
                   "captain": false,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Messi",
                   "position": "goalie",
                   "age": 10,
@@ -299,6 +311,7 @@
                 {
                   "captain": true,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Cristiano Ronaldo",
                   "position": "forward",
                   "age": 10,
@@ -313,6 +326,7 @@
                 {
                   "captain": false,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Messi",
                   "position": "goalie",
                   "age": 10,
@@ -342,6 +356,7 @@
                 {
                   "captain": true,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Cristiano Ronaldo",
                   "position": "forward",
                   "age": 10,
@@ -356,6 +371,7 @@
                 {
                   "captain": false,
                   "injuredForNumberOfDays": 0,
+                  "elapsedDaysSinceLastBDay": 0,
                   "playerName": "Messi",
                   "position": "goalie",
                   "age": 10,

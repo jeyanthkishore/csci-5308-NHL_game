@@ -174,6 +174,28 @@ public class PlayerModelTest {
 		IPlayerInjury playerInjury = new PlayerModel();
 		PlayerModel player = new PlayerModel();
 		IInjury injury = new Injury();
-		Assert.assertTrue(playerInjury.isInjured(playerProgress, player,injury));
+		assertTrue(playerInjury.isInjured(playerProgress, player,injury));
+	}
+
+	@Test
+	public void calculatePlayerAgeByDays() {
+		PlayerModel player = new PlayerModel();
+		player.setAge(25);
+		player.calculatePlayerAgeByDays(30);
+		assertEquals(25,player.getAge());
+		assertEquals(30,player.getElapsedDaysSinceLastBDay());
+
+		player = new PlayerModel();
+		player.setAge(30);
+		player.calculatePlayerAgeByDays(365);
+		assertEquals(31,player.getAge());
+		assertEquals(0,player.getElapsedDaysSinceLastBDay());
+
+		player = new PlayerModel();
+		player.setAge(25);
+		player.calculatePlayerAgeByDays(520);
+		assertEquals(26,player.getAge());
+		assertEquals(155,player.getElapsedDaysSinceLastBDay());
+
 	}
 }
