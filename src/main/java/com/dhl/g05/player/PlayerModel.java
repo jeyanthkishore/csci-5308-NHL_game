@@ -104,10 +104,13 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer
 		return  playerProgress.isInjured(playerModel, injury);
 	}
 
+	
+
 	@Override
 	public boolean isRetired(IPlayerProgress playerProgress, PlayerModel player, IAging aging){
 		return  playerProgress.isRetired(player,aging);
 	}
+
 	/*public boolean playerRetirement(Aging aging) {
 		PlayerRetirement p = new PlayerRetirement();
 		return p.checkPlayerRetirement(aging,this);
