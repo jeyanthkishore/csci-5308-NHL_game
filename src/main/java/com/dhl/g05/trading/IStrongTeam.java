@@ -2,9 +2,9 @@ package com.dhl.g05.trading;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.player.PlayerModel;
-import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.team.TeamModel;
 
 public interface IStrongTeam {
 

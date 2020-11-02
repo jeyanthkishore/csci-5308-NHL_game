@@ -2,9 +2,9 @@ package com.dhl.g05.trading;
 
 import java.util.Random;
 
-import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
-import com.dhl.g05.leaguemodel.player.PlayerModel;
-import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.dhl.g05.gameplayconfig.TradingModel;
+import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.team.TeamModel;
 
 public class TradeDecision implements ITradeDecision {
 

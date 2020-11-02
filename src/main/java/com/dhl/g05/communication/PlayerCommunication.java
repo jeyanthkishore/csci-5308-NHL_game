@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-import com.dhl.g05.leaguemodel.coach.CoachModel;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.freeagent.FreeAgentModel;
 
 public class PlayerCommunication implements IPlayerCommunication{
 	private static Scanner scanner = new Scanner(System.in);

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.dhl.g05.db.DateStoredProcedure;
 import com.dhl.g05.db.StoredProcedure;
-import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.simulation.Date;
 
 public class DatePersistence implements IDatePersistence{

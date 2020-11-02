@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
-import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.dhl.g05.gameplayconfig.TradingModel;
+import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.team.TeamModel;
 
 public class InitiateTradeOfferTest {
 	private ArrayList<TeamModel> expectedTeam;

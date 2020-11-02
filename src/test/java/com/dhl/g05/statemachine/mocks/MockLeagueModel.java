@@ -2,21 +2,21 @@ package com.dhl.g05.statemachine.mocks;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.coach.CoachModel;
-import com.dhl.g05.leaguemodel.conference.ConferenceConstant;
-import com.dhl.g05.leaguemodel.conference.ConferenceModel;
-import com.dhl.g05.leaguemodel.division.DivisionConstant;
-import com.dhl.g05.leaguemodel.division.DivisionModel;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
-import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.leaguemodel.league.LeagueConstant;
-import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.player.PlayerModel;
-import com.dhl.g05.leaguemodel.team.TeamConstant;
-import com.dhl.g05.leaguemodel.team.TeamModel;
-import com.dhl.g05.operation.DbPersistanceMock;
+import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.conference.ConferenceConstant;
+import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.division.DivisionConstant;
+import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.freeagent.FreeAgentConstant;
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
+import com.dhl.g05.league.LeagueConstant;
+import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.league.LeaguePersistenceMock;
+import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.statemachine.ILeagueModelJson;
+import com.dhl.g05.team.TeamConstant;
+import com.dhl.g05.team.TeamModel;
 
 public class MockLeagueModel implements ILeagueModelJson{
 	private LeagueModel league;
@@ -33,7 +33,7 @@ public class MockLeagueModel implements ILeagueModelJson{
 
 	@Override
 	public LeagueModel createLeague(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<String> managers,GamePlayConfigModel playConfig) {
-		return new LeagueModel(league, conferencedetail, agent, coach, managers,playConfig,new DbPersistanceMock());
+		return new LeagueModel(league, conferencedetail, agent, coach, managers,playConfig,new LeaguePersistenceMock());
 	}
 
 	@Override

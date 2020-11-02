@@ -2,9 +2,9 @@ package com.dhl.g05.leaguemodel;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.coach.CoachModel;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
-import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.team.TeamModel;
 
 public interface ICreateTeam {
 

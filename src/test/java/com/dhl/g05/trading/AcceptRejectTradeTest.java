@@ -4,7 +4,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.dhl.g05.team.TeamModel;
 
 public class AcceptRejectTradeTest {
 	

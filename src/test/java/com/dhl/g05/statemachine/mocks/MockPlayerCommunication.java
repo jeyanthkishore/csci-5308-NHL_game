@@ -3,9 +3,9 @@ package com.dhl.g05.statemachine.mocks;
 import java.util.List;
 import java.util.Random;
 
+import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.leaguemodel.coach.CoachModel;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
+import com.dhl.g05.freeagent.FreeAgentModel;
 
 public class MockPlayerCommunication implements IPlayerCommunication{
 
@@ -17,7 +17,7 @@ public class MockPlayerCommunication implements IPlayerCommunication{
 
 	@Override
 	public String getResponse() {
-		return "mock response";
+		return "yes";
 	}
 	
 	@Override
@@ -34,7 +34,7 @@ public class MockPlayerCommunication implements IPlayerCommunication{
 	@Override
 	public int getResponseNumber() {
 		Random rand = new Random();
-		int number =  rand.nextInt(4);
+		int number =  rand.nextInt(5);
 		if (number==0){          
 			number= number+1;
 		}

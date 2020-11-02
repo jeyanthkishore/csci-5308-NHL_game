@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
+import com.dhl.g05.gameplayconfig.TradingModel;
 
 public class CheckTradeValueTest {
 

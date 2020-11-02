@@ -10,20 +10,28 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dhl.g05.leaguemodel.coach.CoachModel;
-import com.dhl.g05.leaguemodel.conference.ConferenceModel;
-import com.dhl.g05.leaguemodel.division.DivisionModel;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
-import com.dhl.g05.leaguemodel.gameplayconfig.Aging;
-import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.leaguemodel.gameplayconfig.GameResolverConfig;
-import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
-import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
-import com.dhl.g05.leaguemodel.gameplayconfig.TrainingConfig;
-import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.player.PlayerModel;
-import com.dhl.g05.leaguemodel.team.TeamModel;
-import com.dhl.g05.operation.DbPersistanceMock;
+import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.coach.CoachPersistenceMock;
+import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.conference.ConferencePersistenceMock;
+import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.division.DivisionPersistenceMock;
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.freeagent.FreeAgentPersistenceMock;
+import com.dhl.g05.gameplayconfig.Aging;
+import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
+import com.dhl.g05.gameplayconfig.GamePlayConfigPersistenceMock;
+import com.dhl.g05.gameplayconfig.GameResolverConfig;
+import com.dhl.g05.gameplayconfig.Injury;
+import com.dhl.g05.gameplayconfig.TradingModel;
+import com.dhl.g05.gameplayconfig.TrainingConfig;
+import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.league.LeaguePersistenceMock;
+import com.dhl.g05.operation.DatePersistenceMock;
+import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.player.PlayerPersistenceMock;
+import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.team.TeamPersistenceMock;
 
 public class LeagueModelJsonTest {
 	LeagueModelJson leagueModel;
@@ -34,15 +42,15 @@ public class LeagueModelJsonTest {
 	@Before
 	public void init() {
 		leagueModel = new LeagueModelJson();
-		leagueModel.setConferenceDatabase(new DbPersistanceMock());
-		leagueModel.setLeagueDatabase(new DbPersistanceMock());
-		leagueModel.setDivisionDatabase(new DbPersistanceMock());
-		leagueModel.setTeamDatabase(new DbPersistanceMock());
-		leagueModel.setPlayerDatabase(new DbPersistanceMock());
-		leagueModel.setDateDatabase(new DbPersistanceMock());
-		leagueModel.setFreeAgentDatabase(new DbPersistanceMock());
-		leagueModel.setCoachDatabase(new DbPersistanceMock());
-		leagueModel.setGamePlayDatabase(new DbPersistanceMock());
+		leagueModel.setConferenceDatabase(new ConferencePersistenceMock());
+		leagueModel.setLeagueDatabase(new LeaguePersistenceMock());
+		leagueModel.setDivisionDatabase(new DivisionPersistenceMock());
+		leagueModel.setTeamDatabase(new TeamPersistenceMock());
+		leagueModel.setPlayerDatabase(new PlayerPersistenceMock());
+		leagueModel.setDateDatabase(new DatePersistenceMock());
+		leagueModel.setFreeAgentDatabase(new FreeAgentPersistenceMock());
+		leagueModel.setCoachDatabase(new CoachPersistenceMock());
+		leagueModel.setGamePlayDatabase(new GamePlayConfigPersistenceMock());
 
 		PlayerModel player = new PlayerModel("Cristiano Ronaldo",null,null,10,15,1,20,15);
 		ArrayList<PlayerModel> players = new ArrayList<>();
@@ -79,7 +87,7 @@ public class LeagueModelJsonTest {
 		Aging age = new Aging(28, 60);
 		GamePlayConfigModel game = new GamePlayConfigModel(trade, age, injury, resolver, train);
 
-		league = new LeagueModel("HockeyLeague",conferences,freeAgentList,coachList, managerList,game,new DbPersistanceMock());
+		league = new LeagueModel("HockeyLeague",conferences,freeAgentList,coachList, managerList,game,new LeaguePersistenceMock());
 
 	}
 
