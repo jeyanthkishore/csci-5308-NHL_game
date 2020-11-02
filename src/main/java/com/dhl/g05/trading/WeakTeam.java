@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
-import com.dhl.g05.leaguemodel.player.PlayerModel;
-import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.dhl.g05.gameplayconfig.TradingModel;
+import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.team.TeamModel;
 
 public class WeakTeam implements IWeakTeam {
 

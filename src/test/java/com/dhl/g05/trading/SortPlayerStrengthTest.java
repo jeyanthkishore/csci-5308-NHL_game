@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.player.PlayerModel;
 
 public class SortPlayerStrengthTest {
 

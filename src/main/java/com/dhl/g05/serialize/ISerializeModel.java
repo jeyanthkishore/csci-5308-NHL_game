@@ -1,6 +1,6 @@
 package com.dhl.g05.serialize;
 
-import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.league.LeagueModel;
 
 public interface ISerializeModel {
 
