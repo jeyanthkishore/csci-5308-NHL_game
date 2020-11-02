@@ -2,7 +2,7 @@ package com.dhl.g05.freeagent;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.JsonMockDataDb;
+import com.dhl.g05.MockData.JsonMockDataDb;
 
 public class FreeAgentPersistenceMock implements IFreeAgentPersistence,IFreeAgentLoad{
 

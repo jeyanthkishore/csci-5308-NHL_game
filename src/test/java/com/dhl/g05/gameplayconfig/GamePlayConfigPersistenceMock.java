@@ -1,6 +1,6 @@
 package com.dhl.g05.gameplayconfig;
 
-import com.dhl.g05.leaguemodel.JsonMockDataDb;
+import com.dhl.g05.MockData.JsonMockDataDb;
 
 public class GamePlayConfigPersistenceMock implements IGameConfigPersistence,ILoadGamePlayConfig{
 

@@ -1,4 +1,4 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.team;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -7,7 +7,9 @@ import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
+import com.dhl.g05.MockData.JsonMockDataDb;
 import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
+import com.dhl.g05.team.CreateNewTeam;
 
 public class CreateNewTeamTest {
 
