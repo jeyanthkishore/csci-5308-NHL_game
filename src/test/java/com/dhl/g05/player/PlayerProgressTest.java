@@ -1,6 +1,5 @@
 package com.dhl.g05.player;
 
-import com.dhl.g05.MockData.JsonMockDataDb;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.Aging;
@@ -13,6 +12,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
+import com.dhl.g05.mockdata.JsonMockDataDb;
 
 import static org.mockito.Mockito.when;
 
