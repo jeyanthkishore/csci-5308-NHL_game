@@ -38,11 +38,6 @@ public interface IFreeAgent {
 
 	FreeAgentConstant validate();
 
-
-	boolean isPlayerPositionValid() ;
-
-	boolean validateStat(double stat);
-
 	boolean getInjuredStatus();
 
 	void setInjuredStatus(boolean isInjured);
