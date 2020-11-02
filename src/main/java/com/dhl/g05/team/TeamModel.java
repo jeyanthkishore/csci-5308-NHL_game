@@ -5,10 +5,11 @@ import java.util.List;
 
 import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.freeagent.IFreeAgent;
+import com.dhl.g05.player.IPlayerModel;
 import com.dhl.g05.player.PlayerModel;
 import com.mysql.cj.util.StringUtils;
 
-public class TeamModel {
+public class TeamModel implements ITeam{
 
 	private String teamName;
 	private CoachModel headCoach;
@@ -97,7 +98,15 @@ public class TeamModel {
 	public List<HashMap<String, Object>> loadAllTeamName(ITeamModelPersistence database) {
 		return database.loadAllTeamName();
 	}
-	
+
+	@Override
+	public boolean removeTeamPlayer(PlayerModel player) {
+		if(players.size() > 0) {
+			return players.remove(player);
+		}
+		return false;
+	}
+
 	public double calculateTeamStrength(List<PlayerModel> playerList){
 		for (IFreeAgent player: playerList) {
 			if(player.getInjuredStatus()){

@@ -8,6 +8,7 @@ import com.dhl.g05.conference.ConferenceModel;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
+import com.dhl.g05.player.PlayerModel;
 import com.mysql.cj.util.StringUtils;
 
 public class LeagueModel implements ILeague{
@@ -20,6 +21,7 @@ public class LeagueModel implements ILeague{
 	private List<String> generalManagers;
 	private ILeagueModelPersistence dbObject;
 	private GamePlayConfigModel gameplayConfig;
+	private List<PlayerModel> retiredTeamPlayers;
 
 	public LeagueModel() {
 		setLeagueName(null);
@@ -29,6 +31,7 @@ public class LeagueModel implements ILeague{
 		setManagerList(null);
 		setGamePlayConfig(null);
 		retiredFreeAgents = new ArrayList<>();
+		retiredTeamPlayers = new ArrayList<>();
 	}
 
 	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<String> managers,GamePlayConfigModel gamePlay ,ILeagueModelPersistence dbObject) {
@@ -118,6 +121,21 @@ public class LeagueModel implements ILeague{
 	}
 
 	@Override
+	public List<PlayerModel> getRetiredTeamPlayers() {
+		return retiredTeamPlayers;
+	}
+
+	@Override
+	public void setRetiredTeamPlayers(List<PlayerModel> retiredTeamPlayers) {
+		this.retiredTeamPlayers = retiredTeamPlayers;
+	}
+
+	@Override
+	public void addRetiredTeamPlayer(PlayerModel player) {
+		retiredTeamPlayers.add(player);
+	}
+
+	@Override
 	public void addRetiredFreeAgent(IFreeAgent freeAgent) {
 		retiredFreeAgents.add(freeAgent);
 	}
@@ -129,6 +147,8 @@ public class LeagueModel implements ILeague{
 		}
 		return false;
 	}
+
+
 
 	public LeagueConstant validate() {
 		if(isLeagueNameEmptyOrNull()) {

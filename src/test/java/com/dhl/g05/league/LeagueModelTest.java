@@ -2,6 +2,7 @@ package com.dhl.g05.league;
 
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.IFreeAgent;
+import com.dhl.g05.player.PlayerModel;
 import org.junit.Test;
 
 import com.dhl.g05.mockdata.JsonMockDataDb;
@@ -269,5 +270,13 @@ public class LeagueModelTest {
 		IFreeAgent freeAgent = freeAgents.get(0);
 		leagueModel.addRetiredFreeAgent(new FreeAgentModel(mock.freeAgentOne, mock.positionForward, mock.age, mock.skating, mock.shooting, mock.checking, mock.saving));
 		assertEquals(3,leagueModel.getRetiredFreeAgents().size());
+	}
+
+	@Test
+	public void addRetiredTeamPlayerTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ILeague leagueModel = new LeagueModel(mock);
+		leagueModel.addRetiredTeamPlayer(new PlayerModel(mock.playerOneName, mock.positionDefense, mock.captainOne, mock.age, mock.skating, mock.shooting, mock.checking, mock.saving));
+		assertEquals(2,leagueModel.getRetiredFreeAgents().size());
 	}
 }
