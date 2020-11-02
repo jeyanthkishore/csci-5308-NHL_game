@@ -48,57 +48,71 @@ public class LeagueModel implements ILeague{
 		leagueObject.loadLeagueModelData(this);
 	}
 
+	@Override
 	public String getLeagueName() {
 		return leagueName;
 	}
 
+	@Override
 	public void setLeagueName(String league) {
 		this.leagueName = league;
 	}
 
+	@Override
 	public List<ConferenceModel> getConferenceDetails() {
 		return conferences;
 	}
 
+	@Override
 	public void setConferenceDetails(List<ConferenceModel> conferencedetail) {
 		this.conferences = conferencedetail;
 	}
 
+	@Override
 	public List<FreeAgentModel> getFreeAgent() {
 		return freeAgents;
 	}
 
+	@Override
 	public void setFreeAgent(List<FreeAgentModel> agent) {
 		this.freeAgents = agent;
 	}
 
+	@Override
 	public List<CoachModel> getFreeCoach() {
 		return coaches;
 	}
 
+	@Override
 	public void setFreeCoach(List<CoachModel> freeCoach) {
 		this.coaches = freeCoach;
 	}
 
+	@Override
 	public List<String> getManagerList() {
 		return generalManagers;
 	}
 
+	@Override
 	public void setManagerList(List<String> managerList) {
 		this.generalManagers = managerList;
 	}
 
+	@Override
 	public void setDbObject(ILeagueModelPersistence object) {
 		this.dbObject = object;
 	}
-	
+
+	@Override
 	public GamePlayConfigModel getGamePlayConfig() {
 		return gameplayConfig;
 	}
 
+	@Override
 	public void setGamePlayConfig(GamePlayConfigModel gamePlayConfig) {
 		this.gameplayConfig = gamePlayConfig;
 	}
+
 	public int saveLeagueObject(ILeagueModelPersistence database) {
 		return database.saveLeagueObject(this);
 	}
@@ -116,6 +130,7 @@ public class LeagueModel implements ILeague{
 		return retiredFreeAgents;
 	}
 
+	@Override
 	public void setRetiredFreeAgents(List<IFreeAgent> retiredFreeAgents) {
 		this.retiredFreeAgents = retiredFreeAgents;
 	}
@@ -148,8 +163,7 @@ public class LeagueModel implements ILeague{
 		return false;
 	}
 
-
-
+	@Override
 	public LeagueConstant validate() {
 		if(isLeagueNameEmptyOrNull()) {
 			return LeagueConstant.LeagueNameEmpty;

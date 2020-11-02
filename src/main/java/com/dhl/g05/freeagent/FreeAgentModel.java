@@ -3,6 +3,7 @@ package com.dhl.g05.freeagent;
 import com.mysql.cj.util.StringUtils;
 
 public class FreeAgentModel implements IFreeAgent {
+	private final static int MIN_AGE = 0;
 	private String playerName;
 	private String position;
 	private int age;
@@ -36,90 +37,111 @@ public class FreeAgentModel implements IFreeAgent {
 		player.loadPlayerModelData(this);
 	}
 
+	@Override
 	public String getPlayerName() {
 		return playerName;
 	}
 
+	@Override
 	public void setPlayerName(String player) {
 		playerName = player;
 	}
 
+	@Override
 	public String getPosition() {
 		return position;
 	}
 
+	@Override
 	public void setPosition(String postition) {
 		this.position = postition;
 	}
 
+	@Override
 	public int getAge() {
 		return age;
 	}
 
+	@Override
 	public void setAge(int age) {
 		this.age = age;
 	}
 
+	@Override
 	public double getSkating() {
 		return skating;
 	}
 
+	@Override
 	public void setSkating(double skating) {
 		this.skating = skating;
 	}
 
+	@Override
 	public double getShooting() {
 		return shooting;
 	}
 
+	@Override
 	public void setShooting(double shooting) {
 		this.shooting = shooting;
 	}
 
+	@Override
 	public double getChecking() {
 		return checking;
 	}
 
+	@Override
 	public void setChecking(double checking) {
 		this.checking = checking;
 	}
 
+	@Override
 	public double getSaving() {
 		return saving;
 	}
 
+	@Override
 	public void setSaving(double saving) {
 		this.saving = saving;
 	}
 
+	@Override
 	public boolean getInjuredStatus() {
 		return isInjured;
 	}
 
+	@Override
 	public void setInjuredStatus(boolean isInjured) {
 		this.isInjured = isInjured;
 	}
 
+	@Override
 	public boolean getRetiredStatus() {
 		return isRetired;
 	}
 
+	@Override
 	public void setRetiredStatus(boolean retired) {
 		isRetired = retired;
 	}
 
+	@Override
 	public double getPlayerStrength() {
 		return playerStrength;
 	}
 
+	@Override
 	public void setPlayerStrength(double playerStrength) {
 		this.playerStrength = playerStrength;
 	}
-	
+
 	public int saveFreeAgentObject(int leagueId,IFreeAgentPersistence database) {
 		return database.saveFreeAgentObject(leagueId,this);
 	}
 
+	@Override
 	public double calculatePlayerStrength(){
 		if(position.equalsIgnoreCase("forward")){
 			playerStrength = skating + shooting + (checking/2);
@@ -169,7 +191,7 @@ public class FreeAgentModel implements IFreeAgent {
 	}
 
 	public boolean isPlayerAgeNotValid() {
-		if (age > 0) {
+		if (age > MIN_AGE) {
 			return false;
 		}
 		return  true;

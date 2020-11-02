@@ -42,8 +42,8 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public List<CoachModel> coachList;
 	public List<CoachModel> coachListTwo;
 	public List<String> managerList;
-	private List<IFreeAgent> retiredFreeAgents;
-	private List<PlayerModel> retiredTeamPlayers;
+	public List<IFreeAgent> retiredFreeAgents;
+	public List<PlayerModel> retiredTeamPlayers;
 	public List<String> managerListTwo;
 	public CoachModel coachDetails;
 	public ArrayList<HashMap<String,Object>> leagueList;

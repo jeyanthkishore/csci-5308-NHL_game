@@ -279,4 +279,11 @@ public class LeagueModelTest {
 		leagueModel.addRetiredTeamPlayer(new PlayerModel(mock.playerOneName, mock.positionDefense, mock.captainOne, mock.age, mock.skating, mock.shooting, mock.checking, mock.saving));
 		assertEquals(2,leagueModel.getRetiredFreeAgents().size());
 	}
+
+	@Test
+	public void getRetiredTeamPlayersTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ILeague leagueModel = new LeagueModel(mock);
+		assertEquals(mock.retiredTeamPlayers.size(),leagueModel.getRetiredTeamPlayers().size());
+	}
 }
