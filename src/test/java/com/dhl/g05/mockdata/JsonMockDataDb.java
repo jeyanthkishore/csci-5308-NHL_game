@@ -1,4 +1,4 @@
-package com.dhl.g05.MockData;
+package com.dhl.g05.mockdata;
 
 import java.util.ArrayList;
 import java.util.HashMap;

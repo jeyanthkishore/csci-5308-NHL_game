@@ -7,7 +7,7 @@ import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
-import com.dhl.g05.MockData.JsonMockDataDb;
+import com.dhl.g05.mockdata.JsonMockDataDb;
 import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
 
 public class CreateNewTeamTest {

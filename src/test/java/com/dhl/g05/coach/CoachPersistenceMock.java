@@ -2,7 +2,7 @@ package com.dhl.g05.coach;
 
 import java.util.List;
 
-import com.dhl.g05.MockData.JsonMockDataDb;
+import com.dhl.g05.mockdata.JsonMockDataDb;
 
 public class CoachPersistenceMock implements ICoachModelPersistence,ICoachLoad{
 

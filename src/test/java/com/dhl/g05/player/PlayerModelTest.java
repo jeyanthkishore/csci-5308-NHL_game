@@ -8,11 +8,11 @@ import static org.junit.Assert.assertTrue;
 import com.dhl.g05.gameplayconfig.Aging;
 import com.dhl.g05.gameplayconfig.IAging;
 import org.junit.Test;
-import com.dhl.g05.MockData.JsonMockDataDb;
 
 import com.dhl.g05.freeagent.FreeAgentConstant;
 import com.dhl.g05.gameplayconfig.IInjury;
 import com.dhl.g05.gameplayconfig.Injury;
+import com.dhl.g05.mockdata.JsonMockDataDb;
 
 
 public class PlayerModelTest {

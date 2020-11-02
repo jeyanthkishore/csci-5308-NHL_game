@@ -9,8 +9,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.dhl.g05.MockData.JsonMockDataDb;
 import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.mockdata.JsonMockDataDb;
 import com.dhl.g05.player.IRandomGeneratorFactory;
 import com.dhl.g05.player.RandomGeneratorFactory;
 
