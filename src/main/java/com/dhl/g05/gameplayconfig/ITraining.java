@@ -1,6 +1,6 @@
 package com.dhl.g05.gameplayconfig;
 
-public interface IGetTrainingDays {
+public interface ITraining {
 
 	public int getDaysUntilStatIncreaseCheck() ;
 	
