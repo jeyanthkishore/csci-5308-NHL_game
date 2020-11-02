@@ -429,5 +429,6 @@
     "training": {
       "daysUntilStatIncreaseCheck": 100
     }
-  }
+  },
+  "retiredTeamPlayers": []
 }

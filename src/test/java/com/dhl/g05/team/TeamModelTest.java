@@ -7,9 +7,15 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.league.ILeague;
+import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.player.PlayerModel;
 import org.junit.Test;
 
 import com.dhl.g05.mockdata.JsonMockDataDb;
+
+import java.util.List;
 
 public class TeamModelTest{
 
@@ -241,6 +247,15 @@ public class TeamModelTest{
 		mock.removeCaptain();
 		TeamModel validate = new TeamModel(mock);
 		assertSame(TeamConstant.NoTeamCaptain,validate.validate());
+	}
+
+	@Test
+	public void removeTeamPlayerTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ITeam team = new TeamModel(mock);
+		List<PlayerModel> players = mock.playerList;
+		team.removeTeamPlayer(players.get(0));
+		assertEquals(mock.playerList.size()-1,team.getPlayerList().size()-1);
 	}
 
 	@Test

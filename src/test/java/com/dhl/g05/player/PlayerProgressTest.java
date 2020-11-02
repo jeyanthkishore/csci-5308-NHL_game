@@ -8,6 +8,8 @@ import com.dhl.g05.gameplayconfig.IInjury;
 import com.dhl.g05.gameplayconfig.Injury;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.team.ITeam;
+import com.dhl.g05.team.TeamModel;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -86,6 +88,15 @@ public class PlayerProgressTest {
         IFreeAgent freeAgentRemove = league.getFreeAgent().get(0);
         playerProgress.handleFreeAgentRetirement(freeAgentRemove, league);
         Assert.assertEquals(mock.freeAgentList.size()-1, league.getFreeAgent().size()-1);
+    }
+
+    @Test
+    public void handleTeamPlayerRetirementTest() {
+        JsonMockDataDb mock = new JsonMockDataDb();
+        ILeague league = new LeagueModel(mock);
+        PlayerModel player = new PlayerModel(mock);
+        ITeam team = new TeamModel(mock);
+        Assert.assertFalse(playerProgress.handleTeamPlayerRetirement(player,team,league));
     }
 
 }

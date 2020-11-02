@@ -5,6 +5,7 @@ import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.IAging;
 import com.dhl.g05.gameplayconfig.IInjury;
 import com.dhl.g05.league.ILeague;
+import com.dhl.g05.team.ITeam;
 
 public class PlayerProgress implements IPlayerProgress{
     private final int MAX_INJURY_PROBABILITY = 1;
@@ -70,6 +71,15 @@ public class PlayerProgress implements IPlayerProgress{
         if(isFreeAgentRemoved) {
             league.addRetiredFreeAgent(freeAgent);
             return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean handleTeamPlayerRetirement(PlayerModel player, ITeam team, ILeague league) {
+        boolean isRemoved = team.removeTeamPlayer(player);
+        if(isRemoved) {
+            league.addRetiredTeamPlayer(player);
         }
         return false;
     }
