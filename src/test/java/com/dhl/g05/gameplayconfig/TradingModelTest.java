@@ -1,8 +1,8 @@
 package com.dhl.g05.gameplayconfig;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -51,21 +51,46 @@ public class TradingModelTest {
 	public void isValidLossPointTest() {
 		TradingModel object = new TradingModel();
 		object.setLossPoint(-1);
-		assertFalse(object.isValidLossPoint(object.getLossPoint()));
+		assertTrue(object.isNotValidLossPoint());
 	}
 
 	@Test
 	public void isValidTradeOfferChanceTest() {
 		TradingModel object = new TradingModel();
 		object.setRandomAcceptanceChance(2.99);
-		assertFalse(object.isValidTradeOfferChance(object.getRandomAcceptanceChance()));
+		assertTrue(object.isNotValidAcceptanceChance());
 	}
 
 	@Test
 	public void isValidMaxplayerPerTradeTest() {
 		TradingModel object = new TradingModel();
 		object.setMaxPlayersPerTrade(-10);
-		assertFalse(object.isValidTradeOfferChance(object.getMaxPlayersPerTrade()));
+		assertTrue(object.isNotValidMaxplayerPerTrade());
+	}
+	
+	@Test
+	public void isNotValidAcceptanceChanceTest() {
+		TradingModel object = new TradingModel();
+		object.setRandomAcceptanceChance(-10);
+		assertTrue(object.isNotValidAcceptanceChance());
+	}
+	
+	@Test
+	public void validateTest() {
+		TradingModel object = new TradingModel();
+		object.setLossPoint(-1);
+		assertSame(TradingConstant.LossError,object.validate());
+		object = new TradingModel();
+		object.setRandomAcceptanceChance(2.99);
+		assertSame(TradingConstant.AcceptanceError,object.validate());
+		object = new TradingModel();
+		object.setMaxPlayersPerTrade(-10);
+		assertSame(TradingConstant.MaxPlayerError,object.validate());
+		object = new TradingModel();
+		object.setRandomAcceptanceChance(-10);
+		assertSame(TradingConstant.AcceptanceError,object.validate());
+		object = new TradingModel(4, 0.2, 2, 0.4);
+		assertSame(TradingConstant.Success,object.validate());
 	}
 
 }
