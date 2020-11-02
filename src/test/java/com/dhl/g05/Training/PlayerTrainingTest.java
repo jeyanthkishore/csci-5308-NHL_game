@@ -6,8 +6,8 @@ import static org.junit.Assert.assertNotSame;
 
 import org.junit.Test;
 
+import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.leaguemodel.JsonMockDataDb;
-import com.dhl.g05.leaguemodel.league.LeagueModel;
 
 public class PlayerTrainingTest {
 	

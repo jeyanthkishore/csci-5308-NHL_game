@@ -6,28 +6,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import com.dhl.g05.leaguemodel.coach.CoachModel;
-import com.dhl.g05.leaguemodel.coach.ICoachModel;
-import com.dhl.g05.leaguemodel.conference.ConferenceModel;
-import com.dhl.g05.leaguemodel.conference.IConferenceModel;
-import com.dhl.g05.leaguemodel.division.DivisionModel;
-import com.dhl.g05.leaguemodel.division.IDivisionModel;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
-import com.dhl.g05.leaguemodel.freeagent.IFreeAgent;
-import com.dhl.g05.leaguemodel.freeagent.IFreeAgentModel;
-import com.dhl.g05.leaguemodel.gameplayconfig.Aging;
-import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.leaguemodel.gameplayconfig.GameResolverConfig;
-import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
-import com.dhl.g05.leaguemodel.gameplayconfig.TradingModel;
-import com.dhl.g05.leaguemodel.gameplayconfig.TrainingConfig;
-import com.dhl.g05.leaguemodel.league.ILeagueModel;
-import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.player.IPlayerModel;
-import com.dhl.g05.leaguemodel.player.PlayerModel;
-import com.dhl.g05.leaguemodel.team.ITeamModel;
-import com.dhl.g05.leaguemodel.team.TeamModel;
-import com.dhl.g05.operation.DbPersistanceMock;
+import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.coach.ICoachModel;
+import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.conference.IConferenceModel;
+import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.division.IDivisionModel;
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.freeagent.IFreeAgent;
+import com.dhl.g05.freeagent.IFreeAgentModel;
+import com.dhl.g05.gameplayconfig.Aging;
+import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
+import com.dhl.g05.gameplayconfig.GameResolverConfig;
+import com.dhl.g05.gameplayconfig.Injury;
+import com.dhl.g05.gameplayconfig.TradingModel;
+import com.dhl.g05.gameplayconfig.TrainingConfig;
+import com.dhl.g05.league.ILeagueModel;
+import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.league.LeaguePersistenceMock;
+import com.dhl.g05.player.IPlayerModel;
+import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.team.ITeamModel;
+import com.dhl.g05.team.TeamModel;
 
 public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionModel,ITeamModel,IPlayerModel,IFreeAgentModel,ICoachModel{
 	Random randomNumber = new Random();
@@ -394,7 +394,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		leagueModelObject.setFreeAgent(freeAgentList);
 		leagueModelObject.setFreeCoach(coachList);
 		leagueModelObject.setGamePlayConfig(gamePlayConfig);
-		leagueModelObject.setDbObject(new DbPersistanceMock());
+		leagueModelObject.setDbObject(new LeaguePersistenceMock());
 		leagueModelObject.setManagerList(managerList);
 	}
 

@@ -8,8 +8,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.operation.DbPersistanceMock;
+import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.league.LeaguePersistenceMock;
 import com.dhl.g05.statemachine.mocks.MockLeagueModel;
 import com.dhl.g05.statemachine.mocks.MockLeagueModelValidationFails;
 import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
@@ -24,7 +24,7 @@ public class LoadTeamStateTest {
 		stateMachine = new StateMachine(new MockPlayerCommunication(),new MockLeagueModel());
 		state = new LoadTeamState(stateMachine);
 		stateMachine.setCurrentState(state);
-		stateMachine.getLeagueModel().setLeague(new LeagueModel(null, null, null,null, null,null, new DbPersistanceMock()));
+		stateMachine.getLeagueModel().setLeague(new LeagueModel(null, null, null,null, null,null, new LeaguePersistenceMock()));
 	}
 
 	@Test

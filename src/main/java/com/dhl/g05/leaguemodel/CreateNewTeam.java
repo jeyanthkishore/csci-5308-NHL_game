@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
+import com.dhl.g05.coach.CoachConstant;
+import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.leaguemodel.coach.CoachConstant;
-import com.dhl.g05.leaguemodel.coach.CoachModel;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
-import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.player.PlayerModel;
-import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.team.TeamModel;
 import com.mysql.cj.util.StringUtils;
 
 public class CreateNewTeam implements ICreateTeam {

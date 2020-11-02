@@ -3,12 +3,12 @@ package com.dhl.g05.statemachine;
 import java.util.List;
 
 import com.dhl.g05.communication.IPlayerCommunication;
+import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.leaguemodel.CreateNewTeam;
 import com.dhl.g05.leaguemodel.ICreateTeam;
-import com.dhl.g05.leaguemodel.conference.ConferenceModel;
-import com.dhl.g05.leaguemodel.division.DivisionModel;
-import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.dhl.g05.team.TeamModel;
 
 public class CreateTeamState extends AbstractState {
 
