@@ -16,6 +16,9 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import com.dhl.g05.mockdata.JsonMockDataDb;
 
+import java.time.LocalDate;
+
+import static org.mockito.ArgumentMatchers.floatThat;
 import static org.mockito.Mockito.when;
 
 public class PlayerProgressTest {
@@ -98,5 +101,54 @@ public class PlayerProgressTest {
         ITeam team = new TeamModel(mock);
         assertFalse(playerProgress.handleTeamPlayerRetirement(player,team,league));
     }
+
+    @Test
+    public void isRecoveredTest() {
+        player.setInjuredStatus(false);
+        playerProgress.isRecovered(player, LocalDate.of(2020,11,02));
+        assertFalse(player.getInjuredStatus());
+        assertEquals(0,player.getInjuredForNumberOfDays());
+        assertNull(player.getInjuryDate());
+
+        player.setInjuredStatus(true);
+        player.setInjuredForNumberOfDays(30);
+        player.setInjuryDate(LocalDate.of(2020,10,02));
+        assertFalse(playerProgress.isRecovered(player,LocalDate.of(2020,10,05)));
+
+        player.setInjuredStatus(true);
+        player.setInjuredForNumberOfDays(3);
+        player.setInjuryDate(LocalDate.of(2020,10,02));
+        playerProgress.isRecovered(player,LocalDate.of(2020,10,05));
+        assertFalse(player.getInjuredStatus());
+        assertEquals(0,player.getInjuredForNumberOfDays());
+        assertNull(player.getInjuryDate());
+
+
+    }
+/*
+    @Test
+    public void isRecoveredTest() {
+        player.setInjuredStatus(false);
+        playerCareerProgression.isRecovered(player, LocalDate.of(2020,10,27));
+
+        Assert.assertEquals(0, player.getDaysInjured());
+        Assert.assertNull(player.getInjuryDate());
+        Assert.assertFalse(player.getInjuredStatus());
+
+        player.setInjuredStatus(true);
+        player.setInjuryDate(LocalDate.of(2020, 10, 23));
+        player.setDaysInjured(4);
+        playerCareerProgression.isRecovered(player, LocalDate.of(2020,10,27));
+
+        Assert.assertEquals(0, player.getDaysInjured());
+        Assert.assertNull(player.getInjuryDate());
+        Assert.assertFalse(player.getInjuredStatus());
+
+        player.setInjuredStatus(true);
+        player.setInjuryDate(LocalDate.of(2020, 10, 23));
+        player.setDaysInjured(9);
+        Assert.assertFalse(playerCareerProgression.isRecovered(player, LocalDate.of(2020,10,27)));
+    }
+*/
 
 }
