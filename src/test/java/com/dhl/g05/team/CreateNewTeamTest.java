@@ -9,7 +9,6 @@ import org.junit.Test;
 
 import com.dhl.g05.MockData.JsonMockDataDb;
 import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
-import com.dhl.g05.team.CreateNewTeam;
 
 public class CreateNewTeamTest {
 
@@ -109,6 +108,15 @@ public class CreateNewTeamTest {
 		JsonMockDataDb data = new JsonMockDataDb();
 		MockPlayerCommunication communicate = new MockPlayerCommunication();
 		data.league.setManagerList(data.managerListTwo);
+		CreateNewTeam creation = new CreateNewTeam(data.getLeague(),communicate);
+		assertFalse(creation.teamCreation("Rocker"));
+	}
+	
+	@Test
+	public void coachInvalidTest() {
+		JsonMockDataDb data = new JsonMockDataDb();
+		MockPlayerCommunication communicate = new MockPlayerCommunication();
+		data.league.setFreeCoach(data.coachListTwo);
 		CreateNewTeam creation = new CreateNewTeam(data.getLeague(),communicate);
 		assertFalse(creation.teamCreation("Rocker"));
 	}

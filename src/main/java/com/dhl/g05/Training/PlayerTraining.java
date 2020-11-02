@@ -8,6 +8,7 @@ import com.dhl.g05.division.DivisionModel;
 import com.dhl.g05.gameplayconfig.IInjury;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.IPlayerProgress;
+import com.dhl.g05.player.IRandomGeneratorFactory;
 import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.player.PlayerProgress;
 import com.dhl.g05.player.RandomGeneratorFactory;
@@ -16,12 +17,14 @@ import com.dhl.g05.team.TeamModel;
 public class PlayerTraining implements IPlayerTraining {
 
 	private LeagueModel leagueObject;
+	private IRandomGeneratorFactory randomGeneratorFactory;
 
-	public PlayerTraining(LeagueModel league) {
-		this.leagueObject = league;
+	public PlayerTraining(IRandomGeneratorFactory randomGeneratorFactory) {
+		this.randomGeneratorFactory = randomGeneratorFactory;
 	}
 
-	public LeagueModel implementTraining() {
+	public LeagueModel implementTraining(LeagueModel league) {
+		this.leagueObject = league;
 		List<ConferenceModel> conferences = leagueObject.getConferenceDetails();
 		for (ConferenceModel c: conferences) {
 			List<DivisionModel> divisions = c.getDivisionDetails();
@@ -81,7 +84,7 @@ public class PlayerTraining implements IPlayerTraining {
 	}
 
 	private Boolean trainingAlgorithm(double playerValue, double coachValue) {
-		double randomValue = Math.random();
+		double randomValue = randomGeneratorFactory.getRandomDoubleNumber(0,1);
 		if(randomValue < coachValue) {
 			return true;
 		}
