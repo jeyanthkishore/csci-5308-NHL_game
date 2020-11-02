@@ -6,6 +6,7 @@ import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.team.TeamModel;
 
+
 public interface IStrongTeam {
 
 	public String getConferenceName();
@@ -20,12 +21,15 @@ public interface IStrongTeam {
 
 	public void setStrongTeam(TeamModel strongTeam);
 
+	public double getStrengthOfStrongestPlayers();
+
+	public void setStrengthOfStrongestPlayers(double strengthOfStrongestPlayers);
+
 	public List<PlayerModel> getStrongestPlayersToTrade();
 
 	public void setStrongestPlayersToTrade(List<PlayerModel> strongestPlayersToTrade);
 
-	public List<PlayerModel> findTeamToSwap(List<PlayerModel> weakestPlayersToTrade, TeamModel teamTrading,
-			LeagueModel league);
+	public boolean findTeamToSwap(LeagueModel league);
 
 //	public boolean findPlayersToSwap(List<PlayerObject> sortPlayersStrongToWeak);
 }

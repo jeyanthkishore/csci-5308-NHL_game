@@ -9,7 +9,7 @@ import com.dhl.g05.player.IPlayerModel;
 import com.dhl.g05.player.PlayerModel;
 import com.mysql.cj.util.StringUtils;
 
-public class TeamModel implements ITeam{
+public class TeamModel implements ITeam {
 
 	private String teamName;
 	private CoachModel headCoach;
@@ -17,6 +17,7 @@ public class TeamModel implements ITeam{
 	private List<PlayerModel> players;
 	private double teamStrength;
 	private Boolean userTeam;
+	private int LossCount;
 
 	public TeamModel() {
 		setGeneralManagerName(null);
@@ -25,7 +26,6 @@ public class TeamModel implements ITeam{
 		setCoachDetails(null);
 		setUserTeam(false);
 	}
-
 
 	public TeamModel(ITeamModel teamObject) {
 		teamObject.loadTeamModelData(this);
@@ -45,6 +45,14 @@ public class TeamModel implements ITeam{
 
 	public void setUserTeam(Boolean userTeam) {
 		this.userTeam = userTeam;
+	}
+
+	public int getLossCount() {
+		return LossCount;
+	}
+
+	public void setLossCount(int lossCount) {
+		LossCount = lossCount;
 	}
 
 	public String getTeamName() {
@@ -87,12 +95,12 @@ public class TeamModel implements ITeam{
 		this.teamStrength = teamStrength;
 	}
 
-	public int saveTeamObject(int divisionId,ITeamModelPersistence database) {
-		return database.saveTeamObject(divisionId,this, headCoach);
+	public int saveTeamObject(int divisionId, ITeamModelPersistence database) {
+		return database.saveTeamObject(divisionId, this, headCoach);
 	}
 
-	public int loadTeamObject(int divisionId,ITeamModelPersistence database) {
-		return database.loadTeamObject(divisionId,this, headCoach);
+	public int loadTeamObject(int divisionId, ITeamModelPersistence database) {
+		return database.loadTeamObject(divisionId, this, headCoach);
 	}
 
 	public List<HashMap<String, Object>> loadAllTeamName(ITeamModelPersistence database) {
@@ -101,60 +109,58 @@ public class TeamModel implements ITeam{
 
 	@Override
 	public boolean removeTeamPlayer(PlayerModel player) {
-		if(players.size() > 0) {
+		if (players.size() > 0) {
 			return players.remove(player);
 		}
 		return false;
 	}
 
-	public double calculateTeamStrength(List<PlayerModel> playerList){
-		for (IFreeAgent player: playerList) {
-			if(player.getInjuredStatus()){
-				teamStrength +=	player.calculatePlayerStrength()/2;
-			}
-			else{
+	public double calculateTeamStrength(List<PlayerModel> playerList) {
+		for (IFreeAgent player : playerList) {
+			if (player.getInjuredStatus()) {
+				teamStrength += player.calculatePlayerStrength() / 2;
+			} else {
 				teamStrength += player.calculatePlayerStrength();
 			}
 		}
-		return  teamStrength;
+		return teamStrength;
 	}
 
 	public TeamConstant validate() {
-		if(isTeamDetailsEmptyOrNull()) {
+		if (isTeamDetailsEmptyOrNull()) {
 			return TeamConstant.TeamDetailsEmpty;
 		}
-		if(isPlayerListEmpty()) {
+		if (isPlayerListEmpty()) {
 			return TeamConstant.PlayerListEmpty;
 		}
-		if(isPlayerListValid()) {
+		if (isPlayerListValid()) {
 			return TeamConstant.PlayerCountMismatch;
 		}
-		if(containOneTeamCaptain()==0) {
+		if (containOneTeamCaptain() == 0) {
 			return TeamConstant.NoTeamCaptain;
 		}
-		if(containOneTeamCaptain()>1) {
+		if (containOneTeamCaptain() > 1) {
 			return TeamConstant.MoreTeamCaptain;
 		}
-		if(isCoachDetailsEmptyOrNull()){
+		if (isCoachDetailsEmptyOrNull()) {
 			return TeamConstant.CoachDetailsEmpty;
 		}
 		return TeamConstant.Success;
 	}
 
 	private boolean isTeamDetailsEmptyOrNull() {
-		if(StringUtils.isNullOrEmpty(generalManager) || StringUtils.isNullOrEmpty(teamName)) {
+		if (StringUtils.isNullOrEmpty(generalManager) || StringUtils.isNullOrEmpty(teamName)) {
 			return true;
 		}
 		return false;
 	}
-
 
 	private boolean isPlayerListEmpty() {
 		return (players == null || players.isEmpty());
 	}
 
 	private boolean isPlayerListValid() {
-		if(players.size() > 20) {
+		if (players.size() > 20) {
 			return true;
 		}
 		return false;
@@ -166,9 +172,52 @@ public class TeamModel implements ITeam{
 	}
 
 	private boolean isCoachDetailsEmptyOrNull() {
-		if(headCoach == null){
+		if (headCoach == null) {
 			return true;
 		}
 		return false;
+	}
+	public int numberOfSkaters(TeamModel team)
+	{
+		int skater = 0;
+		for (PlayerModel player : team.getPlayerList()) {
+			if ((player.getPosition().equalsIgnoreCase("Forward"))
+					|| (player.getPosition().equalsIgnoreCase("Defense"))) {
+				skater++;
+			}
+	}
+		return skater;
+	}
+	
+	public int numberOfGoalies(TeamModel team)
+	{
+		int goalie = 0;
+		for (PlayerModel player : team.getPlayerList()) {
+			if (player.getPosition().equalsIgnoreCase("Goalie")) {
+				goalie++;
+			}
+	}
+		return goalie;
+	}
+	public boolean isTeamBalanced(TeamModel team) {
+		int goalie=numberOfSkaters(team);
+		int skater=numberOfGoalies(team);
+		if (goalie == 2 && skater == 18) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void assignOneCaptain(TeamModel team) {
+		int captainCount = 0;
+		for (int i = 1; i < team.getPlayerList().size(); i++) {
+			if (team.getPlayerList().get(i).getCaptain() == true) {
+				captainCount++;
+				if (captainCount > 1) {
+					team.getPlayerList().get(i).setCaptain(false);
+				}
+			}
+		}
 	}
 }
