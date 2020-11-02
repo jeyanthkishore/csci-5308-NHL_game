@@ -1,8 +1,10 @@
 package com.dhl.g05.player;
 
 
+import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.IAging;
 import com.dhl.g05.gameplayconfig.IInjury;
+import com.dhl.g05.league.ILeague;
 
 public class PlayerProgress implements IPlayerProgress{
     private final int MAX_INJURY_PROBABILITY = 1;
@@ -57,6 +59,16 @@ public class PlayerProgress implements IPlayerProgress{
         }
         if(randomRetirementProbability < retirementLikeliehood) {
             player.setRetiredStatus(true);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean handleFreeAgentRetirement(IFreeAgent freeAgent, ILeague league) {
+        boolean isFreeAgentRemoved = league.removeFreeAgentFromLeague(freeAgent);
+        if(isFreeAgentRemoved) {
+            league.addRetiredFreeAgent(freeAgent);
             return true;
         }
         return false;

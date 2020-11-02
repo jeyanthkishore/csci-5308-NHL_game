@@ -1,9 +1,14 @@
 package com.dhl.g05.player;
 
+import com.dhl.g05.MockData.JsonMockDataDb;
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.Aging;
 import com.dhl.g05.gameplayconfig.IAging;
 import com.dhl.g05.gameplayconfig.IInjury;
 import com.dhl.g05.gameplayconfig.Injury;
+import com.dhl.g05.league.ILeague;
+import com.dhl.g05.league.LeagueModel;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -70,4 +75,17 @@ public class PlayerProgressTest {
         player.isRetired(playerProgress,player, aging);
         Assert.assertTrue(player.getRetiredStatus());
     }
+
+    @Test
+    public void handleFreeAgentRetirementTest() {
+        JsonMockDataDb mock = new JsonMockDataDb();
+        ILeague league = new LeagueModel(mock);
+        IFreeAgent freeAgent = new FreeAgentModel(mock);
+        Assert.assertFalse(playerProgress.handleFreeAgentRetirement(freeAgent,league));
+
+        IFreeAgent freeAgentRemove = league.getFreeAgent().get(0);
+        playerProgress.handleFreeAgentRetirement(freeAgentRemove, league);
+        Assert.assertEquals(mock.freeAgentList.size()-1, league.getFreeAgent().size()-1);
+    }
+
 }
