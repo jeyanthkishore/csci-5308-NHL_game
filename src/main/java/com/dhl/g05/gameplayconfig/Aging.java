@@ -12,22 +12,27 @@ public class Aging implements IAging{
         this.maximumAge = maximumAge;
     }
 
+    @Override
     public int getAverageRetirementAge() {
         return averageRetirementAge;
     }
 
+    @Override
     public void setAverageRetirementAge(int averageRetirementAge) {
         this.averageRetirementAge = averageRetirementAge;
     }
 
+    @Override
     public int getMaximumAge() {
         return maximumAge;
     }
 
+    @Override
     public void setMaximumAge(int maximumAge) {
         this.maximumAge = maximumAge;
     }
 
+    @Override
     public AgingConstant validate() {
         if (isMaximumAgeNotValid(maximumAge)) {
             return AgingConstant.MaximumAgeNotValid;
