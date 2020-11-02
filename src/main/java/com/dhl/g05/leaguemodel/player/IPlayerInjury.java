@@ -1,9 +1,10 @@
 package com.dhl.g05.leaguemodel.player;
 
+import com.dhl.g05.leaguemodel.gameplayconfig.IInjury;
 import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
 
 public interface IPlayerInjury {
 
-	public boolean checkPlayerInjury(PlayerModel playerObject, Injury injury);
+	boolean isInjured(IPlayerProgress playerProgress, PlayerModel playerModel , IInjury injury);
 	
 }

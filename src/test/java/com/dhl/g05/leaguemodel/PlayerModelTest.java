@@ -5,10 +5,13 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
+import com.dhl.g05.leaguemodel.gameplayconfig.IInjury;
+import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
+import com.dhl.g05.leaguemodel.player.*;
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
-import com.dhl.g05.leaguemodel.player.PlayerModel;
 import com.dhl.g05.operation.DbPersistanceMock;
 
 public class PlayerModelTest {
@@ -163,5 +166,14 @@ public class PlayerModelTest {
 		DbPersistanceMock data = new DbPersistanceMock();
 		PlayerModel valid = new PlayerModel(mock);
 		assertEquals(1,valid.loadPlayerObject(1,data));
+	}
+
+	@Test
+	public void isInjured() {
+		IPlayerProgress playerProgress = new PlayerProgress(new RandomGeneratorFactory());
+		IPlayerInjury playerInjury = new PlayerModel();
+		PlayerModel player = new PlayerModel();
+		IInjury injury = new Injury();
+		Assert.assertTrue(playerInjury.isInjured(playerProgress, player,injury));
 	}
 }

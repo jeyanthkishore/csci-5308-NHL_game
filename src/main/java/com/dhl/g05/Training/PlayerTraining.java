@@ -5,10 +5,10 @@ import java.util.List;
 import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
+import com.dhl.g05.leaguemodel.gameplayconfig.IInjury;
 import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.player.IPlayerInjury;
-import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.player.*;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 
 public class PlayerTraining implements IPlayerTraining {
@@ -71,8 +71,9 @@ public class PlayerTraining implements IPlayerTraining {
 
 	private Boolean isPlayerInjured(PlayerModel player) {
 		IPlayerInjury playerInjury = new PlayerModel();
-		Injury injurDetails = leagueObject.getGamePlayConfig().getInjuries();
-		if(playerInjury.checkPlayerInjury(player,injurDetails)) {
+		IPlayerProgress playerProgress= new PlayerProgress(new RandomGeneratorFactory());
+		IInjury injury = leagueObject.getGamePlayConfig().getInjuries();
+		if(playerInjury.isInjured(playerProgress,player,injury)) {
 			return true;
 		}
 		return false;

@@ -1,7 +1,9 @@
 package com.dhl.g05.leaguemodel.player;
 
+import com.dhl.g05.leaguemodel.gameplayconfig.IInjury;
+
 public interface IPlayerModel {
 
-	public void loadPlayerModelData(PlayerModel playerObject);
+	void loadPlayerModelData(PlayerModel playerObject);
 
 }
