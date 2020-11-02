@@ -9,12 +9,22 @@ import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.team.TeamModel;
 
+
 public class StrongTeam implements IStrongTeam {
 
 	private TeamModel strongTeam;
 	private String conferenceName;
 	private String divisionName;
+	private double strengthOfStrongestPlayers = 0.00;
 	private List<PlayerModel> strongestPlayersToTrade;
+
+	public double getStrengthOfStrongestPlayers() {
+		return strengthOfStrongestPlayers;
+	}
+
+	public void setStrengthOfStrongestPlayers(double strengthOfStrongestPlayers) {
+		this.strengthOfStrongestPlayers = strengthOfStrongestPlayers;
+	}
 
 	public String getConferenceName() {
 		return conferenceName;
@@ -48,131 +58,62 @@ public class StrongTeam implements IStrongTeam {
 		this.strongestPlayersToTrade = strongestPlayersToTrade;
 	}
 
-	double strongestTeamStrength = 0.00;
+	public boolean findTeamToSwap(LeagueModel league) {
 
-	public List<PlayerModel> findTeamToSwap(List<PlayerModel> weakestPlayersToTrade, TeamModel teamTrading,
-			LeagueModel league) {
-		System.out.println("In strong");
-		ISortPlayerStrength sortPlayer = TradingConfig.instance().getSortplayerstrength();
+		boolean isTradePossible = false;
+		double strengthOfStrongestPLayer = 0.00;
+		List<PlayerModel> playersRequested = new ArrayList<PlayerModel>();
 		IWeakTeam teamInitiatingTrade = TradingConfig.instance().getWeakteam();
+		String position = teamInitiatingTrade.getOfferedPlayerPosition();
+		int numberOfPlayersToTrade = teamInitiatingTrade.getNumberOfPlayersOffered();
+		ISortPlayerStrength sortPlayer = TradingConfig.instance().getSortplayerstrength();
 
 		for (ConferenceModel conference : league.getConferenceDetails()) {
 			for (DivisionModel division : conference.getDivisionDetails()) {
 				for (TeamModel team : division.getTeamDetails()) {
-					if (((teamTrading.getTeamName()).equals(team.getTeamName()))
+					int countOfPlayers = 0;
+					double strengthOfPlayers = 0.00;
+					if (((teamInitiatingTrade.getWeakTeam().getTeamName()).equals(team.getTeamName()))
 							&& ((teamInitiatingTrade.getConferenceName()).equals(conference.getConferenceName()))
 							&& ((teamInitiatingTrade.getDivisionName()).equals(division.getDivisionName()))) {
-						{
-							// do something
-						}
+						continue;
 					} else {
-						System.out.println("In strong 1");
-						System.out.println(team.getTeamName());
-						List<PlayerModel> sortPlayersStrongToWeak = sortPlayer.sortByDescending(team.getPlayerList());
-						boolean result = findPlayersToSwap(sortPlayersStrongToWeak, weakestPlayersToTrade);
-						if (result) {
-							this.setStrongTeam(team);
+						List<PlayerModel> strongestPlayers = sortPlayer.sortByDescending(team.getPlayerList());
+						for (int i = 0; i < teamInitiatingTrade.getPlayersOffered().size(); i++) {
+							for (int j = 0; j < strongestPlayers.size(); j++) {
+								if (strongestPlayers.get(j).getPlayerStrength() >= teamInitiatingTrade
+										.getPlayersOffered().get(i).getPlayerStrength()
+										&& strongestPlayers.get(j).getPosition().equals(position)) {
+									if (playersRequested.contains(strongestPlayers.get(j))) {
+										continue;
+									} else {
+										playersRequested.add(strongestPlayers.get(j));
+										strengthOfPlayers += strongestPlayers.get(j).getPlayerStrength();
+										countOfPlayers++;
+										break;
+									}
+								}
+							}
+							if (countOfPlayers == numberOfPlayersToTrade) {
+								break;
+							}
+						}
+						if ((strengthOfPlayers > strengthOfStrongestPLayer)
+								&& countOfPlayers == numberOfPlayersToTrade) {
+							setStrengthOfStrongestPlayers(strengthOfPlayers);
+							setStrongTeam(team);
+							setStrongestPlayersToTrade(playersRequested);
 							this.setConferenceName(conference.getConferenceName());
 							this.setDivisionName(division.getDivisionName());
-							System.out.println("strong team is " + this.getStrongTeam().getTeamName());
-							for (PlayerModel player : this.getStrongestPlayersToTrade()) {
-								System.out.println(player.getPlayerName());
-							}
-
-						} else {
-							break;
+							isTradePossible = true;
 						}
 					}
 				}
 			}
 		}
-		System.out.println("weak team is " + teamTrading.getTeamName());
 
-		return this.getStrongestPlayersToTrade();
-	}
+		return isTradePossible;
 
-	public boolean findPlayersToSwap(List<PlayerModel> sortPlayersStrongToWeak,
-			List<PlayerModel> weakestPlayersToTrade) {
-		ISortPlayerStrength sortPlayer = TradingConfig.instance().getSortplayerstrength();
-		IWeakTeam teamInitiatingTrade = TradingConfig.instance().getWeakteam();
-		int goalie = teamInitiatingTrade.getNumberOfGoalies();
-		int skaters = teamInitiatingTrade.getNumberOfSkaters();
-		// ISortPlayerStrength sort = TradingConfig.instance().getSortplayerstrength();
-		boolean isFinalTradeTeam = false;
-		List<PlayerModel> goodSkaters = new ArrayList<PlayerModel>();
-		List<PlayerModel> goodGoalies = new ArrayList<PlayerModel>();
-		List<PlayerModel> finalSwapGoalies = new ArrayList<PlayerModel>();
-		List<PlayerModel> finalSwapSkaters = new ArrayList<PlayerModel>();
-		List<PlayerModel> finalSwapPlayers = new ArrayList<PlayerModel>();
-
-		for (PlayerModel strongPlayer : sortPlayersStrongToWeak) {
-			for (PlayerModel weakPlayer : weakestPlayersToTrade) {
-				if (strongPlayer.getPlayerStrength() >= weakPlayer.getPlayerStrength()
-						&& (strongPlayer.getPosition().equalsIgnoreCase("forward")
-								|| (strongPlayer.getPosition().equalsIgnoreCase("defense")))
-						&& (weakPlayer.getPosition().equalsIgnoreCase("defense")
-								|| weakPlayer.getPosition().equalsIgnoreCase("forward"))) {
-					goodSkaters.add(strongPlayer);
-					break;
-
-				}
-				{
-					if ((strongPlayer.getPlayerStrength() >= weakPlayer.getPlayerStrength())
-							&& (strongPlayer.getPosition().equalsIgnoreCase("goalie"))
-							&& (weakPlayer.getPosition().equalsIgnoreCase("goalie"))) {
-						goodGoalies.add(strongPlayer);
-						break;
-					}
-				}
-
-			}
-		}
-
-		if (goodGoalies.size() > 0) {
-			goodGoalies = sortPlayer.sortByDescending(goodGoalies);
-			if (goodGoalies.size() > 1) {
-				finalSwapGoalies = goodGoalies.subList(0, goalie);
-			}
-			if (goodGoalies.size() == 1) {
-				finalSwapGoalies = goodGoalies;
-			}
-			finalSwapPlayers.addAll(finalSwapGoalies);
-		}
-
-		if (goodSkaters.size() > 0) {
-
-			goodSkaters = (sortPlayer.sortByDescending(goodSkaters));
-			if (goodSkaters.size() > 1) {
-				finalSwapSkaters = goodSkaters.subList(0, skaters);
-			}
-			if (goodSkaters.size() == 1) {
-				finalSwapSkaters = goodSkaters;
-			}
-			finalSwapPlayers.addAll(finalSwapSkaters);
-		}
-
-		if (finalSwapPlayers.size() == (skaters + goalie)) {
-			double strength = 0.0;
-			System.out.println();
-			System.out.println("this is the final list of players to trade from the strongest team");
-			for (PlayerModel player : finalSwapPlayers) {
-				System.out.println(
-						player.getPlayerName() + "  " + player.getPosition() + " " + player.getPlayerStrength());
-				strength += player.getPlayerStrength();
-			}
-
-			if (strength > strongestTeamStrength) {
-				this.setStrongestPlayersToTrade(finalSwapPlayers);
-				strongestTeamStrength = strength;
-				isFinalTradeTeam = true;
-			}
-
-			return isFinalTradeTeam;
-		}
-
-		else {
-			return isFinalTradeTeam;
-		}
 	}
 
 }

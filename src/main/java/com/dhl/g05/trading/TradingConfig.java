@@ -1,38 +1,41 @@
 package com.dhl.g05.trading;
 
-import java.util.List;
-
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.TeamModel;
-
 public class TradingConfig {
 
 	private static TradingConfig uniqueInstance = null;
-	private ICheckLossPoint checklosspoint;
+
 	private ISortPlayerStrength sortplayerstrength;
 	private IStrongTeam strongteam;
 	private ISwapPlayers swapplayers;
 	private IWeakTeam weakteam;
-	private IAcceptRejectTrade acceptreject;
-	private IResolveTrade resolvetrade;
-	// private ITradingModel trade;
+	private ITradeDecision tradedecision;
+	private IResolveTrade resolveTrade;
+
+	public IResolveTrade getResolveTrade() {
+		return resolveTrade;
+	}
+
+	public void setResolveTrade(IResolveTrade resolveTrade) {
+		this.resolveTrade = resolveTrade;
+	}
 
 	private TradingConfig() {
-		checklosspoint = new CheckLossPoint();
+
 		sortplayerstrength = new SortPlayerStrength();
 		strongteam = new StrongTeam();
 		swapplayers = new SwapPlayers();
 		weakteam = new WeakTeam();
-		acceptreject = new AcceptRejectTrade();
-		resolvetrade=new ResolveTrade() ;
-}
+		tradedecision = new TradeDecision();
+		resolveTrade = new ResolveTrade();
 
-	public IResolveTrade getResolvetrade() {
-		return resolvetrade;
 	}
 
-	public void setResolvetrade(IResolveTrade resolvetrade) {
-		this.resolvetrade = resolvetrade;
+	public ITradeDecision getTradedecision() {
+		return tradedecision;
+	}
+
+	public void setTradedecision(ITradeDecision tradedecision) {
+		this.tradedecision = tradedecision;
 	}
 
 	public ISortPlayerStrength getSortplayerstrength() {
@@ -65,22 +68,6 @@ public class TradingConfig {
 
 	public void setWeakteam(IWeakTeam weakteam) {
 		this.weakteam = weakteam;
-	}
-
-	public ICheckLossPoint getChecklosspoint() {
-		return checklosspoint;
-	}
-
-	public void setChecklosspoint(ICheckLossPoint checklosspoint) {
-		this.checklosspoint = checklosspoint;
-	}
-
-	public IAcceptRejectTrade getAcceptreject() {
-		return acceptreject;
-	}
-
-	public void setAcceptreject(IAcceptRejectTrade acceptreject) {
-		this.acceptreject = acceptreject;
 	}
 
 	public static TradingConfig instance() {

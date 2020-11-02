@@ -9,31 +9,21 @@ import org.junit.Test;
 
 import com.dhl.g05.gameplayconfig.TradingModel;
 import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.team.TeamModel;
+
 
 public class InitiateTradeOfferTest {
-	private ArrayList<TeamModel> expectedTeam;
-
-	public ArrayList<TeamModel> getExpectedTeam() {
-		return expectedTeam;
-	}
-
-	public void setExpectedTeam(ArrayList<TeamModel> expectedTeam) {
-		this.expectedTeam = expectedTeam;
-	}
 
 	@Test
 	public void generateTradeOfferTest() {
-		LeagueModelTest mockLeague = new LeagueModelTest();
-		LeagueModel league = mockLeague.leagueMock();
-
-		MockTradingObject tradeMock = new MockTradingObject();
+		MockLeagueModel mockLeague = new MockLeagueModel();
+		LeagueModel league = mockLeague.leagueMock1();
+		MockTradeConfig tradeMock = new MockTradeConfig();
 		TradingModel trade = tradeMock.TradingModelTest();
-		InitiateTradeOffer startTrade = new InitiateTradeOffer();
+		IIntiateTradeOffer startTrade = new InitiateTradeOffer();
 		startTrade.setTrade(trade);
-		league= startTrade.initiateTradeOffer(league);
-		
+		startTrade.initiateTradeOffer(league);
 	    assertNotNull(league);
+	    assertNotNull(startTrade.getTrade());
 
 	}
 

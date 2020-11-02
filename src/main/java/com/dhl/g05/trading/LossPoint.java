@@ -1,6 +1,6 @@
 	package com.dhl.g05.trading;
 	
-	public class CheckLossPoint implements ICheckLossPoint{
+	public class LossPoint{
 
 		private int lossPoint;
 		private int lossCount;
@@ -28,5 +28,5 @@
 				return false;
 			}
 		}
-
+		
 	}

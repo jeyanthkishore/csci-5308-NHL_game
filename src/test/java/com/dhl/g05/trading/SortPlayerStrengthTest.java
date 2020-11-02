@@ -34,6 +34,7 @@ public class SortPlayerStrengthTest {
 		actualAsc.add(player3);
 		actualAsc.add(player1);
 		actualAsc.add(player2);
+		
 		assertTrue(expectedAscending.equals(actualAsc));
 	}
 
@@ -49,15 +50,18 @@ public class SortPlayerStrengthTest {
 		PlayerModel player3 = new PlayerModel();
 		player3.setPlayerName("Lily");
 		player3.setPlayerStrength(6);
+		
 		List<PlayerModel> playerDetails = new ArrayList<PlayerModel>();
 		playerDetails.add(player1);
 		playerDetails.add(player2);
 		playerDetails.add(player3);
+		
 		List<PlayerModel> expectedDescending = sort.sortByDescending(playerDetails);
 		List<PlayerModel> actualDesc = new ArrayList<PlayerModel>();
 		actualDesc.add(player2);
 		actualDesc.add(player1);
 		actualDesc.add(player3);
+		
 		assertTrue(expectedDescending.equals(actualDesc));
 	}
 
