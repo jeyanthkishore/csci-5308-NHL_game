@@ -1,11 +1,10 @@
 package com.dhl.g05.gameplayconfig;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
-
 import org.junit.Test;
 
 import com.dhl.g05.mockdata.JsonMockDataDb;
+
+import static org.junit.Assert.*;
 
 public class InjuryTest {
 
@@ -43,6 +42,33 @@ public class InjuryTest {
         Injury object = new Injury();
         object.setInjuryDaysHigh(120);
         assertSame(object.getInjuryDaysHigh(),120);
+    }
+
+    @Test
+    public void isRandomInjuryChanceNotValid() {
+        Injury object = new Injury();
+        object.setRandomInjuryChance(1.5);
+        assertFalse(object.isRandomInjuryChanceNotValid(object.getRandomInjuryChance()));
+        object.setRandomInjuryChance(-5);
+        assertTrue(object.isRandomInjuryChanceNotValid(object.getRandomInjuryChance()));
+    }
+
+    @Test
+    public void isRandomInjuryChanceNotValidTest() {
+        Injury object = new Injury(0.05,1,235);
+        assertFalse(object.isInjuryDaysHighValueNotValid(object.getInjuryDaysLow(),object.getInjuryDaysHigh()));
+        object = new Injury(0.05,200,150);
+        assertTrue(object.isInjuryDaysHighValueNotValid(object.getInjuryDaysLow(),object.getInjuryDaysHigh()));
+    }
+
+    @Test
+    public void validateTest() {
+        Injury object = new Injury(-5,1,200);
+        assertSame(InjuryConstant.RandomInjuryChanceError,object.validate());
+        object = new Injury(0.05,200,1);
+        assertSame(InjuryConstant.InjuryDaysError, object.validate());
+        object = new Injury(0.05,1,213);
+        assertSame(InjuryConstant.Success, object.validate());
     }
 
 

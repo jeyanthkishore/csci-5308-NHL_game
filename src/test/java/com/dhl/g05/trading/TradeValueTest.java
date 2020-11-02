@@ -7,23 +7,22 @@ import org.junit.Test;
 
 import com.dhl.g05.gameplayconfig.TradingModel;
 
-public class CheckTradeValueTest {
+public class TradeValueTest {
 
-	MockTradingObject tradeMock = new MockTradingObject();
+	MockTradeConfig tradeMock = new MockTradeConfig();
 	TradingModel trade = tradeMock.TradingModelTest();
 
 	@Test
-	public void checkGenerateRandomValue() {
+	public void generateRandomValueTest() {
 
-		CheckTradeValue tradeValue = new CheckTradeValue(trade);
+		TradeValue tradeValue = new TradeValue(trade);
 		double randomValue = tradeValue.generateRandomValue();
 		assertTrue(randomValue >= 0.00 && randomValue <= 1.00);
 	}
 
 	@Test
 	public void checkTradeValue() {
-
-		CheckTradeValue tradeValue = new CheckTradeValue(trade);
+		TradeValue tradeValue = new TradeValue(trade);
 		double randomValue = tradeValue.generateRandomValue();
 		if (randomValue <= 1.0) {
 			assertTrue(tradeValue.checkTradeValue());

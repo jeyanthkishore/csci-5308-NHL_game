@@ -1,8 +1,8 @@
 package com.dhl.g05.trading;
 
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.gameplayconfig.TradingModel;
 
 public interface ITradeDecision {
 
-	public boolean TradeResult(TeamModel weakTeam, TeamModel strongTeam);
+	public void TradeResult(TradingModel trade);
 }

@@ -1,6 +1,7 @@
 package com.dhl.g05.communication;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -8,8 +9,9 @@ import java.util.stream.IntStream;
 
 import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.player.PlayerModel;
 
-public class PlayerCommunication implements IPlayerCommunication{
+public class PlayerCommunication implements IPlayerCommunication, ITradeCommunication{
 	private static Scanner scanner = new Scanner(System.in);
 
 
@@ -132,6 +134,59 @@ public class PlayerCommunication implements IPlayerCommunication{
 			System.out.printf(format.toString(),index+1,managerList.get(index));
 		});
 		System.out.println("--------------------------------------------------------------");
+	}
+	@Override
+	public void sendTradeMessage(List<PlayerModel> playersOffered, List<PlayerModel> playersRequested) {
+		System.out.println("Players offered and their statistics are :");
+		for (PlayerModel player : playersOffered) {
+			System.out.println("Name -  " + player.getPlayerName() + " position -  " + player.getPosition()
+					+ " Strength -  " + player.getPlayerStrength());
+		}
+		System.out.println();
+
+		System.out.println("Playres requested from your team are: ");
+		for (PlayerModel player : playersRequested) {
+			System.out.println("Name -  " + player.getPlayerName() + " position -  " + player.getPosition()
+					+ " Strength -  " + player.getPlayerStrength());
+		}
+		System.out.println();
+	}
+
+	@Override
+	public int getTradeDecision() {
+		int response;
+		try {
+			System.out.println("Enter 1 to accept and 2 to reject");
+			return getResponseNumber();
+		} catch (InputMismatchException e) {
+			System.out.println("OOPS input mismatch, only number allowed!");
+			response = getTradeDecision();
+
+		}
+		return response;
+	}
+
+	@Override
+	public void DropPlayerDetails(List<PlayerModel> playersToDrop, int count) {
+
+		System.out.println("Players to drop are :" + count);
+		for (PlayerModel player : playersToDrop) {
+			System.out.println("Name -  " + player.getPlayerName() + " position -  " + player.getPosition()
+					+ " Strength -  " + player.getPlayerStrength());
+		}
+		System.out.println();
+
+	}
+
+	@Override
+	public void AddPlayerDetails(List<FreeAgentModel> freeAgents, int count) {
+		System.out.println("Players to add are :" + count);
+		for (FreeAgentModel player : freeAgents) {
+			System.out.println("Name -  " + player.getPlayerName() + " position -  " + player.getPosition()
+					+ " Strength -  " + player.getPlayerStrength());
+		}
+		System.out.println();
+
 	}
 
 }
