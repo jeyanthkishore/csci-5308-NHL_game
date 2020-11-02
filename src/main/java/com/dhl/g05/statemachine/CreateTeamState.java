@@ -109,6 +109,7 @@ public class CreateTeamState extends AbstractState {
 				for (DivisionModel d: divisions) {
 					if (d.getDivisionName().equalsIgnoreCase(divisionName)) {
 						d.getTeamDetails().add(newTeam);
+						break;
 					}
 				}
 			}

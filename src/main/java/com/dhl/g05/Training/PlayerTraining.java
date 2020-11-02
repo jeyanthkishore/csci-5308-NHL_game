@@ -47,25 +47,33 @@ public class PlayerTraining implements IPlayerTraining {
 		Boolean playerInjured = false;
 
 		if(trainingAlgorithm(player.getChecking(), headCoach.getChecking())) {
-			player.setChecking((player.getChecking()+1));
+			if(player.getChecking() < 20) {
+				player.setChecking((player.getChecking()+1));
+			}
 		}else {
 			playerInjured = isPlayerInjured(player);
 		}
 
 		if(trainingAlgorithm(player.getSaving(), headCoach.getSaving())) {
-			player.setSaving((player.getSaving()+1));
+			if(player.getSaving() < 20) {
+				player.setSaving((player.getSaving()+1));
+			}
 		}else {
 			playerInjured = isPlayerInjured(player);
 		}
 
 		if(trainingAlgorithm(player.getSkating(), headCoach.getSkating())) {
-			player.setSkating((player.getSkating()+1));
+			if(player.getSkating() < 20) {
+				player.setSkating((player.getSkating()+1));
+			}
 		}else {
 			playerInjured = isPlayerInjured(player);
 		}
 
 		if(trainingAlgorithm(player.getShooting(), headCoach.getShooting())) {
-			player.setShooting((player.getShooting()+1));
+			if(player.getShooting() < 20) {
+				player.setShooting((player.getShooting()+1));
+			}
 		}else {
 			playerInjured = isPlayerInjured(player);
 		}
