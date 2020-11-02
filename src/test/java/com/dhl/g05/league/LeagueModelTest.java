@@ -6,7 +6,7 @@ import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
-import com.dhl.g05.leaguemodel.JsonMockDataDb;
+import com.dhl.g05.MockData.JsonMockDataDb;
 
 
 public class LeagueModelTest {

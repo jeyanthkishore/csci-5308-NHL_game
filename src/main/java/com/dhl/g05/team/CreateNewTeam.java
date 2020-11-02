@@ -1,4 +1,4 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.team;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -10,7 +10,6 @@ import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.TeamModel;
 import com.mysql.cj.util.StringUtils;
 
 public class CreateNewTeam implements ICreateTeam {

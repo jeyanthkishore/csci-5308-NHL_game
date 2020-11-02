@@ -9,7 +9,7 @@ import java.io.IOException;
 import org.json.simple.parser.ParseException;
 import org.junit.Test;
 
-import com.dhl.g05.leaguemodel.JsonMockDataDb;
+import com.dhl.g05.MockData.JsonMockDataDb;
 import com.dhl.g05.statemachine.LeagueModelCreatorFromJSON;
 import com.dhl.g05.statemachine.mocks.MockLeagueModel;
 import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
