@@ -1,17 +1,18 @@
 package com.dhl.g05.player;
-
-
 import com.dhl.g05.freeagent.FreeAgentConstant;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.gameplayconfig.IAging;
 import com.dhl.g05.gameplayconfig.IInjury;
 
-public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayerRetirement{
+import java.time.LocalDate;
+
+public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayerRetirement,IPlayer{
 
 	private Boolean captain;
 	private int injuredForNumberOfDays;
 	private final static int DAYS_IN_YEAR = 365;
 	private int elapsedDaysSinceLastBDay;
+	private LocalDate injuryDate;
 
 	public PlayerModel() {
 		setCaptain(null);
@@ -24,28 +25,42 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer
 		this.captain = captain;
 	}
 
+	@Override
 	public Boolean getCaptain() {
 		return captain;
 	}
-	
+
+	@Override
 	public void setCaptain(Boolean captain) {
 		this.captain = captain;
 	}
 
+	@Override
 	public int getInjuredForNumberOfDays() {
 		return injuredForNumberOfDays;
 	}
 
+	@Override
 	public void setInjuredForNumberOfDays(int injuredForNumberOfDays) {
 		this.injuredForNumberOfDays = injuredForNumberOfDays;
 	}
 
+	@Override
 	public int getElapsedDaysSinceLastBDay() {
 		return elapsedDaysSinceLastBDay;
 	}
 
+	@Override
 	public void setElapsedDaysSinceLastBDay(int elapsedDaysSinceLastBDay) {
 		this.elapsedDaysSinceLastBDay = elapsedDaysSinceLastBDay;
+	}
+
+	public LocalDate getInjuryDate() {
+		return injuryDate;
+	}
+
+	public void setInjuryDate(LocalDate injuryDate) {
+		this.injuryDate = injuryDate;
 	}
 
 	public int savePlayerObject(int teamId, IPlayerModelPersistence database) {
@@ -77,6 +92,12 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer
 		return false;
 	}
 
+	@Override
+	public boolean isRecovered(IPlayerProgress playerCareerProgression, LocalDate currentDate) {
+		return playerCareerProgression.isRecovered(this, currentDate);
+	}
+
+	@Override
 	public void calculatePlayerAgeByDays(int days) {
 		if (days > 0) {
 			elapsedDaysSinceLastBDay += days;
@@ -104,15 +125,8 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer
 		return  playerProgress.isInjured(playerModel, injury);
 	}
 
-	
-
 	@Override
 	public boolean isRetired(IPlayerProgress playerProgress, PlayerModel player, IAging aging){
 		return  playerProgress.isRetired(player,aging);
 	}
-
-	/*public boolean playerRetirement(Aging aging) {
-		PlayerRetirement p = new PlayerRetirement();
-		return p.checkPlayerRetirement(aging,this);
-	}*/
 }

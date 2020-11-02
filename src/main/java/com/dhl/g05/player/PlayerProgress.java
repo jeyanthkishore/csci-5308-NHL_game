@@ -1,11 +1,11 @@
 package com.dhl.g05.player;
-
-
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.IAging;
 import com.dhl.g05.gameplayconfig.IInjury;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.team.ITeam;
+
+import java.time.LocalDate;
 
 public class PlayerProgress implements IPlayerProgress{
     private final int MAX_INJURY_PROBABILITY = 1;
@@ -82,6 +82,11 @@ public class PlayerProgress implements IPlayerProgress{
             league.addRetiredTeamPlayer(player);
         }
         return false;
+    }
+
+    @Override
+    public boolean isRecovered(PlayerModel player, LocalDate currentDate) {
+        return true;
     }
 }
 
