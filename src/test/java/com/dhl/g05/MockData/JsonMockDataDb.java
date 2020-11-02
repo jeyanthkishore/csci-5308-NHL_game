@@ -41,6 +41,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public List<ConferenceModel> conferenceList;
 	public List<CoachModel> coachList;
 	public List<String> managerList;
+	private List<IFreeAgent> retiredFreeAgents;
 	public List<String> managerListTwo;
 	public CoachModel coachDetails;
 	public ArrayList<HashMap<String,Object>> leagueList;
@@ -87,6 +88,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public String playerOneName = "";
 	public String positionOne = "";
 	public String positionForward = "forward";
+	public String freeAgentOne = "freeAgentOne";
 	public String positionDefense = "defense";
 	public String positionGoalie = "goalie";
 	public Boolean captainOne = true;
@@ -116,6 +118,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		managerList = new ArrayList<String>();
 		managerListTwo = new ArrayList<String>();
 		conferenceList = new ArrayList<ConferenceModel>();
+		retiredFreeAgents = new ArrayList<IFreeAgent>();
 		leagueList = new ArrayList<HashMap<String,Object>>();
 		leagueMap = new HashMap<String,Object>();
 		league = new LeagueModel();
@@ -161,6 +164,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		freeAgentList.add(new FreeAgentModel("Vijay Joseph","forward",age,skating,shooting,checking,saving));
 		freeAgentList.add(new FreeAgentModel("Maadu Ravi","forward",age,skating,shooting,checking,saving));
 		freeAgentList.add(new FreeAgentModel("Kajol","defense",age,skating,shooting,checking,saving));
+		retiredFreeAgents.add(new FreeAgentModel("Kajol","defense",age,skating,shooting,checking,saving));
 		conferenceList.add(new ConferenceModel(conferenceName,divisionList));
 		conferenceList.add(new ConferenceModel(conferenceTwoName,divisionList));
 		coachList.add(new CoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving));
@@ -396,6 +400,8 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		leagueModelObject.setGamePlayConfig(gamePlayConfig);
 		leagueModelObject.setDbObject(new LeaguePersistenceMock());
 		leagueModelObject.setManagerList(managerList);
+		leagueModelObject.setRetiredFreeAgents(retiredFreeAgents);
+		leagueModelObject.addRetiredFreeAgent(new FreeAgentModel(freeAgentOne,positionDefense,age,skating,shooting,checking,saving));
 	}
 
 	@Override

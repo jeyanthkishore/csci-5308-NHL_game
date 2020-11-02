@@ -6,14 +6,16 @@ import java.util.List;
 import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.conference.ConferenceModel;
 import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
 import com.mysql.cj.util.StringUtils;
 
-public class LeagueModel {
+public class LeagueModel implements ILeague{
 
 	private String leagueName;
 	private List<ConferenceModel> conferences;
 	private List<FreeAgentModel> freeAgents;
+	private List<IFreeAgent> retiredFreeAgents;
 	private List<CoachModel> coaches;
 	private List<String> generalManagers;
 	private ILeagueModelPersistence dbObject;
@@ -26,6 +28,7 @@ public class LeagueModel {
 		setFreeCoach(null);
 		setManagerList(null);
 		setGamePlayConfig(null);
+		retiredFreeAgents = new ArrayList<>();
 	}
 
 	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<String> managers,GamePlayConfigModel gamePlay ,ILeagueModelPersistence dbObject) {
@@ -108,7 +111,29 @@ public class LeagueModel {
 	public int loadLeagueFromTeam(String teamName, ILeagueModelPersistence database) {
 		return database.loadLeagueFromTeam(teamName);
 	}
-	
+
+	@Override
+	public List<IFreeAgent> getRetiredFreeAgents() {
+		return retiredFreeAgents;
+	}
+
+	public void setRetiredFreeAgents(List<IFreeAgent> retiredFreeAgents) {
+		this.retiredFreeAgents = retiredFreeAgents;
+	}
+
+	@Override
+	public void addRetiredFreeAgent(IFreeAgent freeAgent) {
+		retiredFreeAgents.add(freeAgent);
+	}
+
+	@Override
+	public boolean removeFreeAgentFromLeague(IFreeAgent freeAgent) {
+		if(freeAgents.size() > 0) {
+			return freeAgents.remove(freeAgent);
+		}
+		return false;
+	}
+
 	public LeagueConstant validate() {
 		if(isLeagueNameEmptyOrNull()) {
 			return LeagueConstant.LeagueNameEmpty;

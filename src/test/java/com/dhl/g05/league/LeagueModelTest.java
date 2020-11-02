@@ -1,12 +1,15 @@
 package com.dhl.g05.league;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.freeagent.IFreeAgent;
 import org.junit.Test;
 
 import com.dhl.g05.MockData.JsonMockDataDb;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 
 public class LeagueModelTest {
@@ -227,4 +230,22 @@ public class LeagueModelTest {
 		assertSame(LeagueConstant.FreeAgentsNotValid,league.validate());
 	}
 
+	@Test
+	public void removeFreeAgentFromLeagueTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ILeague leagueModel = new LeagueModel(mock);
+		List<FreeAgentModel> freeAgents = mock.freeAgentList;
+		leagueModel.removeFreeAgentFromLeague(freeAgents.get(0));
+		assertEquals(mock.freeAgentList.size()-1,leagueModel.getFreeAgent().size()-1);
+	}
+
+	@Test
+	public void addRetiredFreeAgentsTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ILeague leagueModel = new LeagueModel(mock);
+		List<FreeAgentModel> freeAgents = mock.freeAgentList;
+		IFreeAgent freeAgent = freeAgents.get(0);
+		leagueModel.addRetiredFreeAgent(new FreeAgentModel(mock.freeAgentOne, mock.positionForward, mock.age, mock.skating, mock.shooting, mock.checking, mock.saving));
+		assertEquals(3,leagueModel.getRetiredFreeAgents().size());
+	}
 }
