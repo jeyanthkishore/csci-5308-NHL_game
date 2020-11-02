@@ -44,4 +44,27 @@ public class Injury implements IInjury {
         this.injuryDaysHigh = injuryDaysHigh;
     }
 
+    public InjuryConstant validate() {
+        if(isRandomInjuryChanceNotValid(randomInjuryChance)){
+            return InjuryConstant.RandomInjuryChanceError;
+        }
+        if(isInjuryDaysHighValueNotValid(injuryDaysLow, injuryDaysHigh)) {
+            return InjuryConstant.InjuryDaysError;
+        }
+        return InjuryConstant.Success;
+    }
+
+    public boolean isRandomInjuryChanceNotValid(double randomInjuryChance) {
+        if (randomInjuryChance < -1) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isInjuryDaysHighValueNotValid(int injuryDaysLow,int injuryDaysHigh) {
+        if(injuryDaysHigh <= injuryDaysLow) {
+            return true;
+        }
+        return false;
+    }
 }
