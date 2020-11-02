@@ -150,7 +150,7 @@ public class CreateNewTeam implements ICreateTeam {
 				communicate.getResponse();
 				continue;
 			}
-			if(number ==0 || number>managerList.size()) {
+			if(number == 0 || number>managerList.size()) {
 				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
 				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
 				communicate.getResponse();
@@ -197,7 +197,7 @@ public class CreateNewTeam implements ICreateTeam {
 				continue;
 			}
 			
-			if(responseNumber ==0 || responseNumber>freeAgentList.size()) {
+			if(responseNumber == 0 || responseNumber>freeAgentList.size()) {
 				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
 				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
 				communicate.getResponse();

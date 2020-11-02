@@ -17,7 +17,7 @@ public class MockPlayerCommunication implements IPlayerCommunication{
 
 	@Override
 	public String getResponse() {
-		return "mock response";
+		return "yes";
 	}
 	
 	@Override
@@ -34,7 +34,7 @@ public class MockPlayerCommunication implements IPlayerCommunication{
 	@Override
 	public int getResponseNumber() {
 		Random rand = new Random();
-		int number =  rand.nextInt(4);
+		int number =  rand.nextInt(5);
 		if (number==0){          
 			number= number+1;
 		}

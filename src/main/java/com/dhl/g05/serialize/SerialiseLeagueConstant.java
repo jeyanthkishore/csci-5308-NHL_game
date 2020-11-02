@@ -1,4 +1,4 @@
-package com.dhl.g05.Training;
+package com.dhl.g05.serialize;
 
 public enum SerialiseLeagueConstant {
 	

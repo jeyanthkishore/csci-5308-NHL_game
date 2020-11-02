@@ -41,6 +41,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public List<ConferenceModel> conferenceList;
 	public List<CoachModel> coachList;
 	public List<String> managerList;
+	public List<String> managerListTwo;
 	public CoachModel coachDetails;
 	public ArrayList<HashMap<String,Object>> leagueList;
 	public HashMap<String,Object> leagueMap;
@@ -113,6 +114,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		freeAgentList = new ArrayList<FreeAgentModel>();
 		coachList = new ArrayList<CoachModel>();
 		managerList = new ArrayList<String>();
+		managerListTwo = new ArrayList<String>();
 		conferenceList = new ArrayList<ConferenceModel>();
 		leagueList = new ArrayList<HashMap<String,Object>>();
 		leagueMap = new HashMap<String,Object>();
@@ -165,6 +167,8 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		managerList.add(generalManagerName);
 		managerList.add(generalManagerName+"Two");
 		managerList.add(generalManagerName+"Three");
+		managerListTwo.add("");
+		managerListTwo.add("");
 		league.setLeagueName(leagueName);
 		league.setConferenceDetails(conferenceList);
 		league.setFreeAgent(freeAgentList);

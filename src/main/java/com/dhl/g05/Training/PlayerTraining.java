@@ -6,9 +6,12 @@ import com.dhl.g05.leaguemodel.coach.CoachModel;
 import com.dhl.g05.leaguemodel.conference.ConferenceModel;
 import com.dhl.g05.leaguemodel.division.DivisionModel;
 import com.dhl.g05.leaguemodel.gameplayconfig.IInjury;
-import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
 import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.player.*;
+import com.dhl.g05.leaguemodel.player.IPlayerInjury;
+import com.dhl.g05.leaguemodel.player.IPlayerProgress;
+import com.dhl.g05.leaguemodel.player.PlayerModel;
+import com.dhl.g05.leaguemodel.player.PlayerProgress;
+import com.dhl.g05.leaguemodel.player.RandomGeneratorFactory;
 import com.dhl.g05.leaguemodel.team.TeamModel;
 
 public class PlayerTraining implements IPlayerTraining {

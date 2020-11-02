@@ -1,4 +1,4 @@
-package com.dhl.g05.Training;
+package com.dhl.g05.serialize;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,14 +12,6 @@ public class SerialiseLeagueModel implements ISerializeModel{
 
 	private LeagueModel leagueObject;
 	private String serailizeObject;
-
-	public String getSerailizeObject() {
-		return serailizeObject;
-	}
-
-	public void setSerailizeObject(String serailizeObject) {
-		this.serailizeObject = serailizeObject;
-	}
 
 	public Boolean serialiseObjects(LeagueModel league) {
 		this.leagueObject = league;
