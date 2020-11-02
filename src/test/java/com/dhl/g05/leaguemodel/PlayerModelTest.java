@@ -5,14 +5,15 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
+import com.dhl.g05.leaguemodel.gameplayconfig.Aging;
+import com.dhl.g05.leaguemodel.gameplayconfig.IAging;
 import com.dhl.g05.leaguemodel.gameplayconfig.IInjury;
 import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
 import com.dhl.g05.leaguemodel.player.*;
-import org.junit.Assert;
 import org.junit.Test;
-
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.operation.DbPersistanceMock;
+
 
 public class PlayerModelTest {
 
@@ -198,4 +199,16 @@ public class PlayerModelTest {
 		assertEquals(155,player.getElapsedDaysSinceLastBDay());
 
 	}
+
+	@Test
+	public void isRetiredTest() {
+		IPlayerProgress playerProgress = new PlayerProgress(new RandomGeneratorFactory());
+		PlayerModel player = new PlayerModel();
+		player.setAge(45);
+		IAging aging = new Aging();
+		aging.setAverageRetirementAge(30);
+		aging.setMaximumAge(40);
+		assertTrue(playerProgress.isRetired(player,aging));
+	}
+
 }

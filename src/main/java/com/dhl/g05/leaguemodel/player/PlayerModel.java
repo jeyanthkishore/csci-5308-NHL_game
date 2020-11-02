@@ -1,14 +1,12 @@
 package com.dhl.g05.leaguemodel.player;
 
-import java.util.Random;
-
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
 import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
 import com.dhl.g05.leaguemodel.gameplayconfig.Aging;
+import com.dhl.g05.leaguemodel.gameplayconfig.IAging;
 import com.dhl.g05.leaguemodel.gameplayconfig.IInjury;
-import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
 
-public class PlayerModel extends FreeAgentModel implements IPlayerInjury{
+public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayerRetirement{
 
 	private Boolean captain;
 	private int injuredForNumberOfDays;
@@ -106,6 +104,10 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury{
 		return  playerProgress.isInjured(playerModel, injury);
 	}
 
+	@Override
+	public boolean isRetired(IPlayerProgress playerProgress, PlayerModel player, IAging aging){
+		return  playerProgress.isRetired(player,aging);
+	}
 	/*public boolean playerRetirement(Aging aging) {
 		PlayerRetirement p = new PlayerRetirement();
 		return p.checkPlayerRetirement(aging,this);
