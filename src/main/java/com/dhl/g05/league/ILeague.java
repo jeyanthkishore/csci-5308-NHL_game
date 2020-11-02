@@ -37,12 +37,6 @@ public interface ILeague {
 
     void setGamePlayConfig(GamePlayConfigModel gamePlayConfig);
 
-    int saveLeagueObject(ILeagueModelPersistence database);
-
-    int loadLeagueObject(int leagueId,ILeagueModelPersistence database);
-
-    int loadLeagueFromTeam(String teamName, ILeagueModelPersistence database);
-
     boolean removeFreeAgentFromLeague(IFreeAgent freeAgent);
 
     void addRetiredFreeAgent(IFreeAgent freeAgent);
@@ -56,4 +50,6 @@ public interface ILeague {
     void setRetiredTeamPlayers(List<PlayerModel> retiredTeamPlayers);
 
     void addRetiredTeamPlayer(PlayerModel player);
+
+    LeagueConstant validate();
 }

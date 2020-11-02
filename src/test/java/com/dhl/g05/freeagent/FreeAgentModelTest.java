@@ -268,7 +268,7 @@ public class FreeAgentModelTest {
 	}
 
 	@Test
-	public void isPlayerStatValidTest() {
+	public void isPlayerStatNotValidTest() {
 		FreeAgentModel validate = new FreeAgentModel();
 		validate.setSkating(12);
 		validate.setShooting(10);
