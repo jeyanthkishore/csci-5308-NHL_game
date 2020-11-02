@@ -85,10 +85,6 @@ public class LeagueModel implements ILeague{
 		this.generalManagers = managerList;
 	}
 
-	public ILeagueModelPersistence getDbObject() {
-		return dbObject;
-	}
-
 	public void setDbObject(ILeagueModelPersistence object) {
 		this.dbObject = object;
 	}
@@ -171,9 +167,6 @@ public class LeagueModel implements ILeague{
 	}
 
 	private boolean hasOddNumberConference() {
-		if(conferences == null) {
-			return false;
-		}
 		return (conferences.size()%2 ==1);
 	}
 
@@ -198,7 +191,7 @@ public class LeagueModel implements ILeague{
 	}
 
 	private boolean isManagerListEmpty() {
-		if(generalManagers.isEmpty() || generalManagers == null) {
+		if( generalManagers == null ||generalManagers.isEmpty()) {
 			return true;
 		}
 		return false;

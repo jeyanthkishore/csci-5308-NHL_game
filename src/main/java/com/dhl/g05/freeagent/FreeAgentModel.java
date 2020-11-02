@@ -133,12 +133,6 @@ public class FreeAgentModel implements IFreeAgent {
 		return playerStrength;
 	}
 
-	public enum Position{
-		goalie,
-		defense,
-		forward
-	}
-	
 	public FreeAgentConstant validate() {
 		if(isPlayerDetailsNullOrEmpty()) {
 			return FreeAgentConstant.PlayerValueEmpty;
@@ -166,7 +160,9 @@ public class FreeAgentModel implements IFreeAgent {
 	}
 
 	public boolean isPlayerPositionValid() {
-		if(position.equals("forward") || position.equals("defense") || position.equals("goalie")) {
+		if(position.equals(PositionConstant.forward.getValue())
+				|| position.equals(PositionConstant.defense.getValue()) 
+				|| position.equals(PositionConstant.goalie.getValue())) {
 			return false;
 		}
 		return true;
