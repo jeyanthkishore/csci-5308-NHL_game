@@ -10,7 +10,7 @@ import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
-import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -37,18 +37,18 @@ public class PlayerProgressTest {
         injury.setInjuryDaysHigh(200);
         injury.setInjuryDaysLow(1);
         player.setInjuredStatus(true);
-        Assert.assertTrue(playerProgress.isInjured(player,injury));
+        assertTrue(playerProgress.isInjured(player,injury));
         player.setInjuredStatus(false);
         Mockito.when(randomGeneratorFactoryMock.getRandomDoubleNumber(0,1)).thenReturn(0.9);
         Mockito.when(randomGeneratorFactoryMock.roundDoubleNumber(0.9,2)).thenReturn(0.9);
-        Assert.assertTrue(playerProgress.isInjured(player,injury));
+        assertTrue(playerProgress.isInjured(player,injury));
         player.setInjuredStatus(false);
         Mockito.when(randomGeneratorFactoryMock.getRandomDoubleNumber(0,1)).thenReturn(0.01);
         Mockito.when(randomGeneratorFactoryMock.roundDoubleNumber(0.01,2)).thenReturn(0.01);
         Mockito.when(randomGeneratorFactoryMock.getRandomIntegerNumber(injury.getInjuryDaysLow(),injury.getInjuryDaysHigh())).thenReturn(10);
         playerProgress.isInjured(player,injury);
-        Assert.assertTrue(player.getInjuredStatus());
-        Assert.assertEquals(10,player.getInjuredForNumberOfDays());
+        assertTrue(player.getInjuredStatus());
+        assertEquals(10,player.getInjuredForNumberOfDays());
     }
 
     @Test
@@ -61,21 +61,21 @@ public class PlayerProgressTest {
         player.setAge(45);
         player.setElapsedDaysSinceLastBDay(100);
         player.isRetired(playerProgress, player, aging);
-        Assert.assertTrue(player.getRetiredStatus());
+        assertTrue(player.getRetiredStatus());
 
         player = new PlayerModel();
         player.setAge(20);
         player.setElapsedDaysSinceLastBDay(1);
         when(randomGeneratorFactoryMock.getRandomDoubleNumber(0,aging.getMaximumAge())).thenReturn(8.1);
         player.isRetired(playerProgress, player, aging);
-        Assert.assertFalse(player.getRetiredStatus());
+        assertFalse(player.getRetiredStatus());
 
         player = new PlayerModel();
         player.setAge(42);
         player.setElapsedDaysSinceLastBDay(100);
         when(randomGeneratorFactoryMock.getRandomDoubleNumber(0,aging.getMaximumAge())).thenReturn(4.1);
         player.isRetired(playerProgress,player, aging);
-        Assert.assertTrue(player.getRetiredStatus());
+        assertTrue(player.getRetiredStatus());
     }
 
     @Test
@@ -83,11 +83,11 @@ public class PlayerProgressTest {
         JsonMockDataDb mock = new JsonMockDataDb();
         ILeague league = new LeagueModel(mock);
         IFreeAgent freeAgent = new FreeAgentModel(mock);
-        Assert.assertFalse(playerProgress.handleFreeAgentRetirement(freeAgent,league));
+        assertFalse(playerProgress.handleFreeAgentRetirement(freeAgent,league));
 
         IFreeAgent freeAgentRemove = league.getFreeAgent().get(0);
         playerProgress.handleFreeAgentRetirement(freeAgentRemove, league);
-        Assert.assertEquals(mock.freeAgentList.size()-1, league.getFreeAgent().size()-1);
+        assertEquals(mock.freeAgentList.size()-1, league.getFreeAgent().size()-1);
     }
 
     @Test
@@ -96,7 +96,7 @@ public class PlayerProgressTest {
         ILeague league = new LeagueModel(mock);
         PlayerModel player = new PlayerModel(mock);
         ITeam team = new TeamModel(mock);
-        Assert.assertFalse(playerProgress.handleTeamPlayerRetirement(player,team,league));
+        assertFalse(playerProgress.handleTeamPlayerRetirement(player,team,league));
     }
 
 }
