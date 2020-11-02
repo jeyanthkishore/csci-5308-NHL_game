@@ -8,8 +8,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.dhl.g05.MockData.JsonMockDataDb;
 import com.dhl.g05.coach.CoachModel;
-import com.dhl.g05.leaguemodel.JsonMockDataDb;
 
 public class FreeAgentModelTest {
 

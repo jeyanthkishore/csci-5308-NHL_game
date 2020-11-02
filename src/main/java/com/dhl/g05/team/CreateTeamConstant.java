@@ -1,4 +1,4 @@
-package com.dhl.g05.leaguemodel;
+package com.dhl.g05.team;
 
 public enum CreateTeamConstant {
 	
