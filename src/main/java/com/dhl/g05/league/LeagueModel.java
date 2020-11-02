@@ -8,6 +8,7 @@ import com.dhl.g05.conference.ConferenceModel;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
+import com.google.gson.annotations.Expose;
 import com.mysql.cj.util.StringUtils;
 
 public class LeagueModel implements ILeague{
@@ -15,6 +16,7 @@ public class LeagueModel implements ILeague{
 	private String leagueName;
 	private List<ConferenceModel> conferences;
 	private List<FreeAgentModel> freeAgents;
+	@Expose
 	private List<IFreeAgent> retiredFreeAgents;
 	private List<CoachModel> coaches;
 	private List<String> generalManagers;

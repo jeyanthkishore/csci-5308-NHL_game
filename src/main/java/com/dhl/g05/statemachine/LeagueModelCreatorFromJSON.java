@@ -23,9 +23,11 @@ import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.gameplayconfig.Aging;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.gameplayconfig.GameResolverConfig;
+import com.dhl.g05.gameplayconfig.GameResolverConstant;
 import com.dhl.g05.gameplayconfig.Injury;
 import com.dhl.g05.gameplayconfig.TradingModel;
 import com.dhl.g05.gameplayconfig.TrainingConfig;
+import com.dhl.g05.gameplayconfig.TrainingConstant;
 import com.dhl.g05.league.LeagueConstant;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.PlayerModel;
@@ -84,7 +86,14 @@ public class LeagueModelCreatorFromJSON {
 		} else {
 			Number daysUntilStatIncreaseCheck =  (Number) training.get("daysUntilStatIncreaseCheck");
 			Date.getInstance().setDaysUntilStatIncreaseCheck(daysUntilStatIncreaseCheck.intValue());
-			return new TrainingConfig(daysUntilStatIncreaseCheck.intValue());
+			TrainingConfig train = new TrainingConfig(daysUntilStatIncreaseCheck.intValue());
+			TrainingConstant result = train.Validate();
+			if(result.equals(TrainingConstant.Success)) {
+				return train;
+			}else {
+				playerCommunication.sendMessage(result.getValue());
+			}
+			return null;
 		}
 	}
 
@@ -125,10 +134,13 @@ public class LeagueModelCreatorFromJSON {
 		} else {
 			Aging agingObject = createAging((JSONObject)gamePlayConfigs.get("aging"));
 			Injury injuryObject = createInjury((JSONObject)gamePlayConfigs.get("injuries"));
-			System.out.println("Injury Object:"+injuryObject);
 			TrainingConfig trainingObject = createTrainingConfig((JSONObject)gamePlayConfigs.get("training"));
 			TradingModel tradingObject = createTradingConfig((JSONObject)gamePlayConfigs.get("trading"));
 			GameResolverConfig gameResolver = createGameResolver((JSONObject)gamePlayConfigs.get("gameResolver"));
+			if (agingObject == null || injuryObject == null || trainingObject == null || tradingObject == null || gameResolver == null) {
+				playerCommunication.sendMessage("Error in GamePlay Config");
+				return null;
+			}
 			return new GamePlayConfigModel(tradingObject, agingObject, injuryObject, gameResolver, trainingObject);
 		}
 }
@@ -138,7 +150,14 @@ public class LeagueModelCreatorFromJSON {
 			return null;
 		} else {
 			double randomWin = Double.parseDouble(gameResolver.get("randomWinChance").toString());
-			return new GameResolverConfig(randomWin);
+			GameResolverConfig resolver = new GameResolverConfig(randomWin);
+			GameResolverConstant result = resolver.Validate();
+			if(result.equals(GameResolverConstant.Success)) {
+				return resolver;
+			}else {
+				playerCommunication.sendMessage(result.getValue());
+			}
+			return null;
 		}
 	}
 

@@ -18,4 +18,15 @@ public class TrainingConfigTest {
 		assertSame(100,train.getDaysUntilStatIncreaseCheck());
 	}
 	
+	@Test
+	public void validationTest() {
+		TrainingConfig train = new TrainingConfig(-9);
+		assertSame(TrainingConstant.TrainingDaysError,train.Validate());
+	}
+	
+	@Test
+	public void validationExceedTest() {
+		TrainingConfig train = new TrainingConfig(400);
+		assertSame(TrainingConstant.TrainingDaysError,train.Validate());
+	}
 }
