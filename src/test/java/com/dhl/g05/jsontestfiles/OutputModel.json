@@ -423,7 +423,7 @@
       "injuryDaysLow": 1,
       "injuryDaysHigh": 120
     },
-    "gameResolve": {
+    "gameResolver": {
       "randomWinChance": 0.1
     },
     "training": {
