@@ -2,23 +2,25 @@ package com.dhl.g05.Training;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.coach.CoachModel;
-import com.dhl.g05.leaguemodel.conference.ConferenceModel;
-import com.dhl.g05.leaguemodel.division.DivisionModel;
-import com.dhl.g05.leaguemodel.gameplayconfig.IInjury;
-import com.dhl.g05.leaguemodel.gameplayconfig.Injury;
-import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.player.*;
-import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.gameplayconfig.IInjury;
+import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.player.IPlayerProgress;
+import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.player.PlayerProgress;
+import com.dhl.g05.player.RandomGeneratorFactory;
+import com.dhl.g05.team.TeamModel;
 
 public class PlayerTraining implements IPlayerTraining {
 
 	private LeagueModel leagueObject;
-	
+
 	public PlayerTraining(LeagueModel league) {
 		this.leagueObject = league;
 	}
-	
+
 	public LeagueModel implementTraining() {
 		List<ConferenceModel> conferences = leagueObject.getConferenceDetails();
 		for (ConferenceModel c: conferences) {
@@ -38,7 +40,7 @@ public class PlayerTraining implements IPlayerTraining {
 	}
 
 	private PlayerModel performTrainingForPlayer(PlayerModel player, CoachModel headCoach) {
-		
+
 		Boolean playerInjured = false;
 
 		if(trainingAlgorithm(player.getChecking(), headCoach.getChecking())) {
@@ -70,15 +72,14 @@ public class PlayerTraining implements IPlayerTraining {
 	}
 
 	private Boolean isPlayerInjured(PlayerModel player) {
-		IPlayerInjury playerInjury = new PlayerModel();
 		IPlayerProgress playerProgress= new PlayerProgress(new RandomGeneratorFactory());
 		IInjury injury = leagueObject.getGamePlayConfig().getInjuries();
-		if(playerInjury.isInjured(playerProgress,player,injury)) {
+		if(playerProgress.isInjured(player,injury)) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	private Boolean trainingAlgorithm(double playerValue, double coachValue) {
 		double randomValue = Math.random();
 		if(randomValue < coachValue) {

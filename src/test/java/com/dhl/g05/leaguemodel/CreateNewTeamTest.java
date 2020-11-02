@@ -1,5 +1,6 @@
 package com.dhl.g05.leaguemodel;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
@@ -99,5 +100,14 @@ public class CreateNewTeamTest {
 		assertSame(lastFreeAgentSize,teamCreation.getFreeAgentList().size());
 		assertSame(managerSize-1,teamCreation.getManagerList().size());
 		assertSame(coachListSize-1,teamCreation.getCoachList().size());
+	}
+	
+	@Test
+	public void managerNameEmptyTest() {
+		JsonMockDataDb data = new JsonMockDataDb();
+		MockPlayerCommunication communicate = new MockPlayerCommunication();
+		data.league.setManagerList(data.managerListTwo);
+		CreateNewTeam creation = new CreateNewTeam(data.getLeague(),communicate);
+		assertFalse(creation.teamCreation("Rocker"));
 	}
 }

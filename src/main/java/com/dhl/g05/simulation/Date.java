@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.MonthDay;
 import java.time.Year;
 
-import com.dhl.g05.leaguemodel.league.LeagueModel;
+import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.operation.IDatePersistence;
 
 public class Date {

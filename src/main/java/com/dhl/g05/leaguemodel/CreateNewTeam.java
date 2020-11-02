@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
+import com.dhl.g05.coach.CoachConstant;
+import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.leaguemodel.coach.CoachConstant;
-import com.dhl.g05.leaguemodel.coach.CoachModel;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
-import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.player.PlayerModel;
-import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.team.TeamModel;
 import com.mysql.cj.util.StringUtils;
 
 public class CreateNewTeam implements ICreateTeam {
@@ -62,16 +62,16 @@ public class CreateNewTeam implements ICreateTeam {
 	public void setManagerList(List<String> managerList) {
 		this.managerList = managerList;
 	}
-	
+
 	public TeamModel getNewTeam() {
 		return newTeam;
 	}
-	
+
 	public boolean teamCreation(String TeamName) {
 		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
 		freeAgentList = leagueObject.getFreeAgent();
 		newTeam.setTeamName(TeamName);
-		
+
 		CoachModel coach = pickCoach();
 		if(coach.validate().equals(CoachConstant.Success)) {
 			newTeam.setCoachDetails(coach);
@@ -79,7 +79,7 @@ public class CreateNewTeam implements ICreateTeam {
 			communicate.sendMessage(CreateTeamConstant.ErrorCoachCreation.getValue());
 			return false;
 		}
-		
+
 		String managerObject = "";
 		managerObject = pickManager();
 		if(StringUtils.isNullOrEmpty(managerObject)) {
@@ -88,7 +88,7 @@ public class CreateNewTeam implements ICreateTeam {
 		}else {
 			newTeam.setGeneralManagerName(managerObject);
 		}
-		
+
 		playerList = pickPlayers();
 		if(playerList.size()<20 || playerList.size()>20) {
 			communicate.sendMessage(CreateTeamConstant.ErrorPlayerCreation.getValue());
@@ -96,7 +96,7 @@ public class CreateNewTeam implements ICreateTeam {
 		}else {
 			newTeam.setPlayerList(playerList);
 		}
-		
+
 		newTeam.setUserTeam(true);
 		return true;
 	}
@@ -106,7 +106,7 @@ public class CreateNewTeam implements ICreateTeam {
 		coachList = leagueObject.getFreeCoach();
 		Boolean coachNotSelected = true;
 		int number;
-		
+
 		while(coachNotSelected) {
 			communicate.sendMessage(CreateTeamConstant.SelectCoach.getValue());
 			communicate.sendCoachMessage(coachList);
@@ -129,7 +129,7 @@ public class CreateNewTeam implements ICreateTeam {
 			coachList.remove(number-1);
 			coachNotSelected = false;
 		}
-		
+
 		return selectedCoach;
 	}
 
@@ -150,7 +150,7 @@ public class CreateNewTeam implements ICreateTeam {
 				communicate.getResponse();
 				continue;
 			}
-			if(number ==0 || number>managerList.size()) {
+			if(number == 0 || number>managerList.size()) {
 				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
 				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
 				communicate.getResponse();
@@ -160,7 +160,7 @@ public class CreateNewTeam implements ICreateTeam {
 			managerList.remove(number-1);
 			ManagerNotSelected = false;
 		}
-		
+
 		return selectedManager;
 	}
 
@@ -196,8 +196,8 @@ public class CreateNewTeam implements ICreateTeam {
 				communicate.getResponse();
 				continue;
 			}
-			
-			if(responseNumber ==0 || responseNumber>freeAgentList.size()) {
+
+			if(responseNumber == 0 || responseNumber>freeAgentList.size()) {
 				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
 				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
 				communicate.getResponse();

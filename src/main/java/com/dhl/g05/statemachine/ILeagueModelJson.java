@@ -2,19 +2,19 @@ package com.dhl.g05.statemachine;
 
 import java.util.List;
 
-import com.dhl.g05.leaguemodel.coach.CoachModel;
-import com.dhl.g05.leaguemodel.conference.ConferenceConstant;
-import com.dhl.g05.leaguemodel.conference.ConferenceModel;
-import com.dhl.g05.leaguemodel.division.DivisionConstant;
-import com.dhl.g05.leaguemodel.division.DivisionModel;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentConstant;
-import com.dhl.g05.leaguemodel.freeagent.FreeAgentModel;
-import com.dhl.g05.leaguemodel.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.leaguemodel.league.LeagueConstant;
-import com.dhl.g05.leaguemodel.league.LeagueModel;
-import com.dhl.g05.leaguemodel.player.PlayerModel;
-import com.dhl.g05.leaguemodel.team.TeamConstant;
-import com.dhl.g05.leaguemodel.team.TeamModel;
+import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.conference.ConferenceConstant;
+import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.division.DivisionConstant;
+import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.freeagent.FreeAgentConstant;
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
+import com.dhl.g05.league.LeagueConstant;
+import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.team.TeamConstant;
+import com.dhl.g05.team.TeamModel;
 
 
 public interface ILeagueModelJson {
