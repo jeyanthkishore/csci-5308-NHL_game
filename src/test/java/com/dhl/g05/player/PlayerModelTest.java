@@ -1,10 +1,5 @@
 package com.dhl.g05.player;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
-
 import com.dhl.g05.gameplayconfig.Aging;
 import com.dhl.g05.gameplayconfig.IAging;
 import org.junit.Test;
@@ -13,6 +8,10 @@ import com.dhl.g05.freeagent.FreeAgentConstant;
 import com.dhl.g05.gameplayconfig.IInjury;
 import com.dhl.g05.gameplayconfig.Injury;
 import com.dhl.g05.mockdata.JsonMockDataDb;
+
+import java.time.LocalDate;
+
+import static org.junit.Assert.*;
 
 
 public class PlayerModelTest {
@@ -135,6 +134,7 @@ public class PlayerModelTest {
 		PlayerModel player = new PlayerModel(mock);
 		assertSame(FreeAgentConstant.CaptainNull,player.validate());
 	}
+
 	@Test
 	public void validatePlayerTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -210,5 +210,30 @@ public class PlayerModelTest {
 		aging.setMaximumAge(40);
 		assertTrue(playerProgress.isRetired(player,aging));
 	}
+
+	@Test
+	public void getInjuryDateTest() {
+		IPlayer player = new PlayerModel();
+		player.setInjuryDate(LocalDate.of(2020, 11, 02));
+		assertEquals(LocalDate.of(2020, 11, 02), player.getInjuryDate());
+	}
+
+	@Test
+	public void setInjuryDateTest() {
+		IPlayer player = new PlayerModel();
+		player.setInjuryDate(LocalDate.of(2020, 11, 02));
+		assertEquals(LocalDate.of(2020, 11, 02), player.getInjuryDate());
+	}
+
+	@Test
+	public void isRecoveredTest() {
+		IPlayerProgress playerProgress = new PlayerProgress(new RandomGeneratorFactory());
+		PlayerModel player = new PlayerModel();
+		player.setInjuryDate(LocalDate.of(2020,11,02));
+		player.setInjuredStatus(true);
+		player.setInjuredForNumberOfDays(30);
+		assertTrue(player.isRecovered(playerProgress,LocalDate.of(2020,12,02)));
+	}
+
 
 }
