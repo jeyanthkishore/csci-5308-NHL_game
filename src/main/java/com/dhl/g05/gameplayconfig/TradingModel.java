@@ -48,20 +48,36 @@ public class TradingModel implements ITradingModel{
     public void setRandomAcceptanceChance(double d) {
         this.randomAcceptanceChance = d;
     }
-
-	public boolean isValidLossPoint(int lossPoint) {
-		return lossPoint >= 0;
+    public TradingConstant validate() {
+    	if(isNotValidLossPoint()) {
+    		return TradingConstant.LossError;
+    	}
+    	if(isNotValidTradeOfferChance()) {
+    		return TradingConstant.OfferError;
+    	}
+    	if(isNotValidMaxplayerPerTrade()) {
+    		return TradingConstant.MaxPlayerError;
+    	}
+    	if(isNotValidAcceptanceChance()) {
+    		return TradingConstant.AcceptanceError;
+    	}
+		return TradingConstant.Success;
+    }
+    
+    
+	public boolean isNotValidLossPoint() {
+		return lossPoint < 0;
 	}
 
-	public boolean isValidTradeOfferChance(double TradeOfferChance) {
-		return TradeOfferChance >= 0 && TradeOfferChance <= 1;
+	public boolean isNotValidTradeOfferChance() {
+		return randomTradeOfferChance < 0 || randomTradeOfferChance > 1;
 	}
 
-	public boolean isValidMaxplayerPerTrade(int maxPlayerEntry) {
-		return maxPlayerEntry >= 0;
+	public boolean isNotValidMaxplayerPerTrade() {
+		return maxPlayersPerTrade < 0;
 	}
 
-	public boolean isValidAcceptanceChance(double randomAcceptanceChance) {
-		return randomAcceptanceChance >= 0 && randomAcceptanceChance <= 1;
+	public boolean isNotValidAcceptanceChance() {
+		return randomAcceptanceChance < 0 || randomAcceptanceChance > 1;
 	}
 }
