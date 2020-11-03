@@ -3,7 +3,6 @@ package com.dhl.g05.coach;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import com.dhl.g05.db.StoredProcedure;
 
 public class CoachPersistence implements ICoachModelPersistence,ICoachLoad{
