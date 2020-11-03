@@ -50,7 +50,8 @@
                 }
               ],
               "teamStrength": 0.0,
-              "userTeam": false
+              "userTeam": false,
+              "LossCount": 0
             },
             {
               "teamName": "Thunder Rockers",
@@ -95,7 +96,8 @@
                 }
               ],
               "teamStrength": 0.0,
-              "userTeam": false
+              "userTeam": false,
+              "LossCount": 0
             }
           ]
         },
@@ -145,7 +147,8 @@
                 }
               ],
               "teamStrength": 0.0,
-              "userTeam": false
+              "userTeam": false,
+              "LossCount": 0
             },
             {
               "teamName": "Thunder Rockers",
@@ -190,7 +193,8 @@
                 }
               ],
               "teamStrength": 0.0,
-              "userTeam": false
+              "userTeam": false,
+              "LossCount": 0
             }
           ]
         }
@@ -245,7 +249,8 @@
                 }
               ],
               "teamStrength": 0.0,
-              "userTeam": false
+              "userTeam": false,
+              "LossCount": 0
             },
             {
               "teamName": "Thunder Rockers",
@@ -290,7 +295,8 @@
                 }
               ],
               "teamStrength": 0.0,
-              "userTeam": false
+              "userTeam": false,
+              "LossCount": 0
             }
           ]
         },
@@ -340,7 +346,8 @@
                 }
               ],
               "teamStrength": 0.0,
-              "userTeam": false
+              "userTeam": false,
+              "LossCount": 0
             },
             {
               "teamName": "Thunder Rockers",
@@ -385,7 +392,8 @@
                 }
               ],
               "teamStrength": 0.0,
-              "userTeam": false
+              "userTeam": false,
+              "LossCount": 0
             }
           ]
         }
