@@ -10,22 +10,16 @@ import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.team.TeamModel;
 
-
-
 public class ResolveTrade implements IResolveTrade {
 	int SKATERS_COUNT = 18;
 	int GOALIES_COUNT = 2;
 
 	public void resolveTrade() {
-
 		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
-
 		List<TeamModel> teams = new ArrayList<TeamModel>();
 		IWeakTeam teamInitiatingTrade = TradingConfig.instance().getWeakteam();
 		IStrongTeam teamAcceptingTrade = TradingConfig.instance().getStrongteam();
 		ISortPlayerStrength sortPlayer = TradingConfig.instance().getSortplayerstrength();
-
-
 	}
 
 	public void adjustUserTeamRoaster(TeamModel userTeam) {
