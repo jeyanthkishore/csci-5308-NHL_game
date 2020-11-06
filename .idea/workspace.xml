@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4fa4f36d-761e-4e78-939b-98bc1dc538d2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/PlayerInjury.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/dhl/g05/player/PlayerInjuryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/league/ILeague.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/league/ILeague.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/league/LeagueModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/league/LeagueModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/IPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/IPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/IPlayerProgress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/IPlayerInjured.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/IRandomGeneratorFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/PlayerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/PlayerModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/PlayerProgress.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/RandomGeneratorFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/team/ITeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/team/ITeam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/team/TeamModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/team/TeamModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dhl/g05/league/LeagueModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dhl/g05/league/LeagueModelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dhl/g05/player/PlayerModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dhl/g05/player/PlayerModelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dhl/g05/player/PlayerProgressTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/dhl/g05/team/TeamModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dhl/g05/team/TeamModelTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1jvScHP6LyFkjnlXzwLBSX1bHKG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4fa4f36d-761e-4e78-939b-98bc1dc538d2" name="Default Changelist" comment="" />
+      <created>1604683152545</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604683152545</updated>
+    </task>
+    <servers />
+  </component>
+</project>

@@ -43,6 +43,12 @@ public class LoadTeamState extends AbstractState{
 		this.teamName = name;
 	}
 
+	public void loadTeamPlayer() {
 
+	}
+
+	public void saveTeamPlayer() {
+
+	}
 
 }

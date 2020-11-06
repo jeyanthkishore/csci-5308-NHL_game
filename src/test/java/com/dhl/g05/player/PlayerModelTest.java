@@ -3,7 +3,6 @@ package com.dhl.g05.player;
 import com.dhl.g05.gameplayconfig.Aging;
 import com.dhl.g05.gameplayconfig.IAging;
 import org.junit.Test;
-
 import com.dhl.g05.freeagent.FreeAgentConstant;
 import com.dhl.g05.gameplayconfig.IInjury;
 import com.dhl.g05.gameplayconfig.Injury;
@@ -170,70 +169,10 @@ public class PlayerModelTest {
 	}
 
 	@Test
-	public void isInjured() {
-		IPlayerProgress playerProgress = new PlayerProgress(new RandomGeneratorFactory());
-		IPlayerInjury playerInjury = new PlayerModel();
+	public void isPlayerInjuredTest() {
+		IPlayerInjured playerInjured = new playerInjury();
 		PlayerModel player = new PlayerModel();
 		IInjury injury = new Injury();
-		assertTrue(playerInjury.isInjured(playerProgress, player,injury));
+		assertTrue(player.isPlayerInjured(playerInjured, player,injury));
 	}
-
-	@Test
-	public void calculatePlayerAgeByDays() {
-		PlayerModel player = new PlayerModel();
-		player.setAge(25);
-		player.calculatePlayerAgeByDays(30);
-		assertEquals(25,player.getAge());
-		assertEquals(30,player.getElapsedDaysSinceLastBDay());
-
-		player = new PlayerModel();
-		player.setAge(30);
-		player.calculatePlayerAgeByDays(365);
-		assertEquals(31,player.getAge());
-		assertEquals(0,player.getElapsedDaysSinceLastBDay());
-
-		player = new PlayerModel();
-		player.setAge(25);
-		player.calculatePlayerAgeByDays(520);
-		assertEquals(26,player.getAge());
-		assertEquals(155,player.getElapsedDaysSinceLastBDay());
-
-	}
-
-	@Test
-	public void isRetiredTest() {
-		IPlayerProgress playerProgress = new PlayerProgress(new RandomGeneratorFactory());
-		PlayerModel player = new PlayerModel();
-		player.setAge(45);
-		IAging aging = new Aging();
-		aging.setAverageRetirementAge(30);
-		aging.setMaximumAge(40);
-		assertTrue(playerProgress.isRetired(player,aging));
-	}
-
-	@Test
-	public void getInjuryDateTest() {
-		IPlayer player = new PlayerModel();
-		player.setInjuryDate(LocalDate.of(2020, 11, 02));
-		assertEquals(LocalDate.of(2020, 11, 02), player.getInjuryDate());
-	}
-
-	@Test
-	public void setInjuryDateTest() {
-		IPlayer player = new PlayerModel();
-		player.setInjuryDate(LocalDate.of(2020, 11, 02));
-		assertEquals(LocalDate.of(2020, 11, 02), player.getInjuryDate());
-	}
-
-	@Test
-	public void isRecoveredTest() {
-		IPlayerProgress playerProgress = new PlayerProgress(new RandomGeneratorFactory());
-		PlayerModel player = new PlayerModel();
-		player.setInjuryDate(LocalDate.of(2020,11,02));
-		player.setInjuredStatus(true);
-		player.setInjuredForNumberOfDays(30);
-		assertTrue(player.isRecovered(playerProgress,LocalDate.of(2020,12,02)));
-	}
-
-
 }

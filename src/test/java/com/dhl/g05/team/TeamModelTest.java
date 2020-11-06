@@ -250,15 +250,6 @@ public class TeamModelTest{
 	}
 
 	@Test
-	public void removeTeamPlayerTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		ITeam team = new TeamModel(mock);
-		List<PlayerModel> players = mock.playerList;
-		team.removeTeamPlayer(players.get(0));
-		assertEquals(mock.playerList.size()-1,team.getPlayerList().size()-1);
-	}
-
-	@Test
 	public void validateTeamTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		TeamModel validate = new TeamModel(mock);
