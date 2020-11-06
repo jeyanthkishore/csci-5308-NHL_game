@@ -65,6 +65,7 @@ public class StateMachine {
 
 	}
 
+
 	public IPlayerCommunication getPlayerCommunication() {
 		return playerCommunication;
 	}

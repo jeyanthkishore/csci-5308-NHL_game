@@ -14,16 +14,4 @@ public interface IPlayer {
 
     void setInjuredForNumberOfDays(int injuredForNumberOfDays);
 
-    int getElapsedDaysSinceLastBDay();
-
-    void setElapsedDaysSinceLastBDay(int elapsedDaysSinceLastBDay);
-
-    void calculatePlayerAgeByDays(int days);
-
-    boolean isRecovered(IPlayerProgress playerCareerProgression, LocalDate currentDate);
-
-    LocalDate getInjuryDate();
-
-    void setInjuryDate(LocalDate injuryDate);
-
 }

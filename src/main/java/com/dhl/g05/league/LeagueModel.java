@@ -16,12 +16,10 @@ public class LeagueModel implements ILeague{
 	private String leagueName;
 	private List<ConferenceModel> conferences;
 	private List<FreeAgentModel> freeAgents;
-	private List<IFreeAgent> retiredFreeAgents;
 	private List<CoachModel> coaches;
 	private List<String> generalManagers;
 	private ILeagueModelPersistence dbObject;
 	private GamePlayConfigModel gameplayConfig;
-	private List<PlayerModel> retiredTeamPlayers;
 
 	public LeagueModel() {
 		setLeagueName(null);
@@ -30,8 +28,6 @@ public class LeagueModel implements ILeague{
 		setFreeCoach(null);
 		setManagerList(null);
 		setGamePlayConfig(null);
-		retiredFreeAgents = new ArrayList<>();
-		retiredTeamPlayers = new ArrayList<>();
 	}
 
 	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<String> managers,GamePlayConfigModel gamePlay ,ILeagueModelPersistence dbObject) {
@@ -123,44 +119,6 @@ public class LeagueModel implements ILeague{
 
 	public int loadLeagueFromTeam(String teamName, ILeagueModelPersistence database) {
 		return database.loadLeagueFromTeam(teamName);
-	}
-
-	@Override
-	public List<IFreeAgent> getRetiredFreeAgents() {
-		return retiredFreeAgents;
-	}
-
-	@Override
-	public void setRetiredFreeAgents(List<IFreeAgent> retiredFreeAgents) {
-		this.retiredFreeAgents = retiredFreeAgents;
-	}
-
-	@Override
-	public List<PlayerModel> getRetiredTeamPlayers() {
-		return retiredTeamPlayers;
-	}
-
-	@Override
-	public void setRetiredTeamPlayers(List<PlayerModel> retiredTeamPlayers) {
-		this.retiredTeamPlayers = retiredTeamPlayers;
-	}
-
-	@Override
-	public void addRetiredTeamPlayer(PlayerModel player) {
-		retiredTeamPlayers.add(player);
-	}
-
-	@Override
-	public void addRetiredFreeAgent(IFreeAgent freeAgent) {
-		retiredFreeAgents.add(freeAgent);
-	}
-
-	@Override
-	public boolean removeFreeAgentFromLeague(IFreeAgent freeAgent) {
-		if(freeAgents.size() > 0) {
-			return freeAgents.remove(freeAgent);
-		}
-		return false;
 	}
 
 	@Override
