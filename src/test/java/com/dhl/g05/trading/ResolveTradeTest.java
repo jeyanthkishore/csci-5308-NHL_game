@@ -41,7 +41,7 @@ public class ResolveTradeTest {
 		TeamModel team= new  TeamModel();
         team.setPlayerList(players);
 		resolve.dropToFreeAgentList(team, DEFENSE, 1);
-        assertEquals(team.getPlayerList().size(),1);
+        assertEquals(team.getPlayerList().size(),2);
 	}
 	
 

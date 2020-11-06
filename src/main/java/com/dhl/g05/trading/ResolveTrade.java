@@ -93,7 +93,7 @@ public class ResolveTrade implements IResolveTrade {
 			leagueDetails.setFreeAgent(dropPlayer);
 		}
 		for (PlayerModel player : weakestPLayersToTrade) {
-			team.removeTeamPlayer(player);
+			//team.removeTeamPlayer(player);
 		}
 	}
 
@@ -110,7 +110,7 @@ public class ResolveTrade implements IResolveTrade {
 			playersAdded.add(FreeAgentToPlayer);
 			team.setPlayerList(playersAdded);
 			for (FreeAgentModel freeAgent : freeAgents) {
-				leagueDetails.removeFreeAgentFromLeague(freeAgent);
+				//leagueDetails.removeFreeAgentFromLeague(freeAgent);
 			}
 		}
 	}
@@ -135,7 +135,7 @@ public class ResolveTrade implements IResolveTrade {
 		for (PlayerModel player : playerToDrop) {
 			if (playerToDrop.contains(player))
 				;
-			team.removeTeamPlayer(player);
+			//team.removeTeamPlayer(player);
 		}
 	}
 
