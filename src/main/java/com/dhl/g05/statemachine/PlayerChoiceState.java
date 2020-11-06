@@ -65,4 +65,8 @@ public class PlayerChoiceState extends AbstractState{
 		this.message = message;
 	}
 
+	public void initiatePlayerSelection(){
+		IPlayer plaer = new PlayerModel();
+		ITeam team = new TeamModel();
+	}
 }
