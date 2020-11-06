@@ -406,9 +406,6 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		leagueModelObject.setGamePlayConfig(gamePlayConfig);
 		leagueModelObject.setDbObject(new LeaguePersistenceMock());
 		leagueModelObject.setManagerList(managerList);
-		leagueModelObject.setRetiredFreeAgents(retiredFreeAgents);
-		leagueModelObject.addRetiredFreeAgent(new FreeAgentModel(freeAgentOne,positionDefense,age,skating,shooting,checking,saving));
-		leagueModelObject.setRetiredTeamPlayers(retiredTeamPlayers);
 	}
 
 	@Override

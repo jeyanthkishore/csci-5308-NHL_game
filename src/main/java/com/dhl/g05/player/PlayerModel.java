@@ -1,18 +1,12 @@
 package com.dhl.g05.player;
 import com.dhl.g05.freeagent.FreeAgentConstant;
 import com.dhl.g05.freeagent.FreeAgentModel;
-import com.dhl.g05.gameplayconfig.IAging;
 import com.dhl.g05.gameplayconfig.IInjury;
 
-import java.time.LocalDate;
-
-public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayerRetirement,IPlayer{
+public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer{
 
 	private Boolean captain;
 	private int injuredForNumberOfDays;
-	private final static int DAYS_IN_YEAR = 365;
-	private int elapsedDaysSinceLastBDay;
-	private LocalDate injuryDate;
 
 	public PlayerModel() {
 		setCaptain(null);
@@ -45,24 +39,6 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer
 		this.injuredForNumberOfDays = injuredForNumberOfDays;
 	}
 
-	@Override
-	public int getElapsedDaysSinceLastBDay() {
-		return elapsedDaysSinceLastBDay;
-	}
-
-	@Override
-	public void setElapsedDaysSinceLastBDay(int elapsedDaysSinceLastBDay) {
-		this.elapsedDaysSinceLastBDay = elapsedDaysSinceLastBDay;
-	}
-
-	public LocalDate getInjuryDate() {
-		return injuryDate;
-	}
-
-	public void setInjuryDate(LocalDate injuryDate) {
-		this.injuryDate = injuryDate;
-	}
-
 	public int savePlayerObject(int teamId, IPlayerModelPersistence database) {
 		return database.savePlayerObject(teamId,this);
 	}
@@ -93,40 +69,7 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer
 	}
 
 	@Override
-	public boolean isRecovered(IPlayerProgress playerCareerProgression, LocalDate currentDate) {
-		return playerCareerProgression.isRecovered(this, currentDate);
-	}
-
-	@Override
-	public void calculatePlayerAgeByDays(int days) {
-		if (days > 0) {
-			elapsedDaysSinceLastBDay += days;
-			handlePlayerAge();
-		}
-	}
-
-	private void handlePlayerAge() {
-		if (elapsedDaysSinceLastBDay >= DAYS_IN_YEAR) {
-			int daysAfterYear = elapsedDaysSinceLastBDay % DAYS_IN_YEAR;
-
-			if (daysAfterYear == 0) {
-				setAge(getAge() + 1);
-				elapsedDaysSinceLastBDay = 0;
-			}
-			else {
-				setAge( getAge() + (elapsedDaysSinceLastBDay/DAYS_IN_YEAR));
-				elapsedDaysSinceLastBDay = daysAfterYear;
-			}
-		}
-	}
-
-	@Override
-	public boolean isInjured(IPlayerProgress playerProgress, PlayerModel playerModel , IInjury injury) {
-		return  playerProgress.isInjured(playerModel, injury);
-	}
-
-	@Override
-	public boolean isRetired(IPlayerProgress playerProgress, PlayerModel player, IAging aging){
-		return  playerProgress.isRetired(player,aging);
+	public boolean isPlayerInjured(IPlayerInjured playerInjured, PlayerModel playerModel , IInjury injury) {
+		return  playerInjured.isPlayerInjured(playerModel, injury);
 	}
 }

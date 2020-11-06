@@ -37,19 +37,5 @@ public interface ILeague {
 
     void setGamePlayConfig(GamePlayConfigModel gamePlayConfig);
 
-    boolean removeFreeAgentFromLeague(IFreeAgent freeAgent);
-
-    void addRetiredFreeAgent(IFreeAgent freeAgent);
-
-    List<IFreeAgent> getRetiredFreeAgents();
-
-    void setRetiredFreeAgents(List<IFreeAgent> retiredFreeAgents);
-
-    List<PlayerModel> getRetiredTeamPlayers();
-
-    void setRetiredTeamPlayers(List<PlayerModel> retiredTeamPlayers);
-
-    void addRetiredTeamPlayer(PlayerModel player);
-
     LeagueConstant validate();
 }

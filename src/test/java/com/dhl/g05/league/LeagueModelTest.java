@@ -249,37 +249,4 @@ public class LeagueModelTest {
 		assertSame(LeagueConstant.ManagerListEmpty,league.validate());
 	}
 
-	@Test
-	public void removeFreeAgentFromLeagueTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		ILeague leagueModel = new LeagueModel(mock);
-		List<FreeAgentModel> freeAgents = mock.freeAgentList;
-		leagueModel.removeFreeAgentFromLeague(freeAgents.get(0));
-		assertEquals(mock.freeAgentList.size()-1,leagueModel.getFreeAgent().size()-1);
-	}
-
-	@Test
-	public void addRetiredFreeAgentsTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		ILeague leagueModel = new LeagueModel(mock);
-		List<FreeAgentModel> freeAgents = mock.freeAgentList;
-		IFreeAgent freeAgent = freeAgents.get(0);
-		leagueModel.addRetiredFreeAgent(new FreeAgentModel(mock.freeAgentOne, mock.positionForward, mock.age, mock.skating, mock.shooting, mock.checking, mock.saving));
-		assertEquals(3,leagueModel.getRetiredFreeAgents().size());
-	}
-
-	@Test
-	public void addRetiredTeamPlayerTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		ILeague leagueModel = new LeagueModel(mock);
-		leagueModel.addRetiredTeamPlayer(new PlayerModel(mock.playerOneName, mock.positionDefense, mock.captainOne, mock.age, mock.skating, mock.shooting, mock.checking, mock.saving));
-		assertEquals(2,leagueModel.getRetiredFreeAgents().size());
-	}
-
-	@Test
-	public void getRetiredTeamPlayersTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		ILeague leagueModel = new LeagueModel(mock);
-		assertEquals(mock.retiredTeamPlayers.size(),leagueModel.getRetiredTeamPlayers().size());
-	}
 }

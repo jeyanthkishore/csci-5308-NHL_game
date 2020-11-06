@@ -106,14 +106,6 @@ public class TeamModel implements ITeam {
 		return database.loadAllTeamName();
 	}
 
-	@Override
-	public boolean removeTeamPlayer(PlayerModel player) {
-		if (players.size() > 0) {
-			return players.remove(player);
-		}
-		return false;
-	}
-
 	public double calculateTeamStrength(List<PlayerModel> playerList) {
 		for (IFreeAgent player : playerList) {
 			if (player.getInjuredStatus()) {
@@ -176,6 +168,7 @@ public class TeamModel implements ITeam {
 		}
 		return false;
 	}
+
 	public int numberOfSkaters(TeamModel team)
 	{
 		int skater = 0;
