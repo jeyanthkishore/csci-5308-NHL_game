@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fa4f36d-761e-4e78-939b-98bc1dc538d2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/PlayerInjury.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/dhl/g05/player/PlayerInjuryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/league/ILeague.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/league/ILeague.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/league/LeagueModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/league/LeagueModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/IPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/IPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/IPlayerProgress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/IPlayerInjured.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/IRandomGeneratorFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/PlayerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/PlayerModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/PlayerProgress.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/player/RandomGeneratorFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/team/ITeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/team/ITeam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/team/TeamModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/team/TeamModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dhl/g05/league/LeagueModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dhl/g05/league/LeagueModelTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dhl/g05/player/PlayerModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dhl/g05/player/PlayerModelTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dhl/g05/player/PlayerProgressTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/dhl/g05/team/TeamModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/dhl/g05/team/TeamModelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dhl/g05/statemachine/PlayerChoiceState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dhl/g05/statemachine/PlayerChoiceState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,5 +31,11 @@
       <updated>1604683152545</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604687265990">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1604687265990" />
   </component>
 </project>
