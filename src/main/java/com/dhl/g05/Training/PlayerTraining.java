@@ -7,20 +7,16 @@ import com.dhl.g05.conference.ConferenceModel;
 import com.dhl.g05.division.DivisionModel;
 import com.dhl.g05.gameplayconfig.IInjury;
 import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.player.IPlayerProgress;
-import com.dhl.g05.player.IRandomGeneratorFactory;
+import com.dhl.g05.player.IPlayerInjured;
+import com.dhl.g05.player.PlayerInjury;
 import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.player.PlayerProgress;
-import com.dhl.g05.player.RandomGeneratorFactory;
 import com.dhl.g05.team.TeamModel;
 
 public class PlayerTraining implements IPlayerTraining {
 
 	private LeagueModel leagueObject;
-	private IRandomGeneratorFactory randomGeneratorFactory;
 
-	public PlayerTraining(IRandomGeneratorFactory randomGeneratorFactory) {
-		this.randomGeneratorFactory = randomGeneratorFactory;
+	public PlayerTraining() {
 	}
 
 	public LeagueModel implementTraining(LeagueModel league) {
@@ -83,16 +79,16 @@ public class PlayerTraining implements IPlayerTraining {
 	}
 
 	private Boolean isPlayerInjured(PlayerModel player) {
-		IPlayerProgress playerProgress= new PlayerProgress(new RandomGeneratorFactory());
+		IPlayerInjured playerProgress= new PlayerInjury();
 		IInjury injury = leagueObject.getGamePlayConfig().getInjuries();
-		if(playerProgress.isInjured(player,injury)) {
+		if(playerProgress.isPlayerInjured(player,injury)) {
 			return true;
 		}
 		return false;
 	}
 
 	private Boolean trainingAlgorithm(double playerValue, double coachValue) {
-		double randomValue = randomGeneratorFactory.getRandomDoubleNumber(0,1);
+		double randomValue = ((Math.random() * (1 - 0)) + 1);
 		if(randomValue < coachValue) {
 			return true;
 		}

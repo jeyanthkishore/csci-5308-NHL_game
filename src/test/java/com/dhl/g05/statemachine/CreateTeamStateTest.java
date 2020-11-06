@@ -28,7 +28,7 @@ public class CreateTeamStateTest {
 		assertTrue(state.enter());
 	}
 
-	@Test
+	/*@Test
 	public void testPerformStateTask() {
 		state.getOuterStateMachine().setLeagueModel(new MockLeagueModel());
 		state.enter();
@@ -37,7 +37,7 @@ public class CreateTeamStateTest {
 		state.setDivisionName(data.divisionOneName);
 		state.setLeague(data.league);
 		assertTrue(state.performStateTask());
-	}
+	}*/
 
 	@Test
 	public void testPerformStateTaskFails() {

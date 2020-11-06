@@ -37,6 +37,4 @@ public interface ITeam {
     int loadTeamObject(int divisionId,ITeamModelPersistence database);
 
     List<HashMap<String, Object>> loadAllTeamName(ITeamModelPersistence database);
-
-    boolean removeTeamPlayer(PlayerModel player);
 }
