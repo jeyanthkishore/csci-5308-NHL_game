@@ -17,29 +17,6 @@
           <build>
             <pluginManagement>
               <plugins>
-                <plugin>
-                  <artifactId>maven-assembly-plugin</artifactId>
-                  <configuration>
-                    <archive>
-                      <manifest>
-                        <addClasspath>true</addClasspath>
-                        <mainClass>com.dhl.g05.Driver</mainClass>
-                      </manifest>
-                    </archive>
-                    <descriptorRefs>
-                      <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                  </configuration>
-                  <executions>
-                    <execution>
-                      <id>make-my-jar-with-dependencies</id>
-                      <phase>package</phase>
-                      <goals>
-                        <goal>single</goal>
-                      </goals>
-                    </execution>
-                  </executions>
-                </plugin>
                 <!--<plugin>
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-assembly-plugin</artifactId>
@@ -80,6 +57,31 @@
 
               </plugins>
             </pluginManagement>
+            <plugins>
+              <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                  <archive>
+                    <manifest>
+                      <addClasspath>true</addClasspath>
+                      <mainClass>com.dhl.g05.Driver</mainClass>
+                    </manifest>
+                  </archive>
+                  <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                  </descriptorRefs>
+                </configuration>
+                <executions>
+                  <execution>
+                    <id>make-my-jar-with-dependencies</id>
+                    <phase>package</phase>
+                    <goals>
+                      <goal>single</goal>
+                    </goals>
+                  </execution>
+                </executions>
+              </plugin>
+            </plugins>
           </build>
 
           <dependencies>
