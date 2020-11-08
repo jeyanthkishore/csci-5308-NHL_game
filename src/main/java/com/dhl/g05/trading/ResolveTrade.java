@@ -20,6 +20,7 @@ public class ResolveTrade implements IResolveTrade {
 	private static final String SKATER = "skater";
 
 	public void resolveTrade() {
+
 		IWeakTeam teamInitiatingTrade = TradingConfig.instance().getWeakteam();
 		IStrongTeam teamAcceptingTrade = TradingConfig.instance().getStrongteam();
 		if(teamAcceptingTrade.getStrongTeam().getUserTeam() == null)
@@ -56,6 +57,12 @@ public class ResolveTrade implements IResolveTrade {
 			String position = SKATER;
 			adjustPlayersForUserTeam(team, position, GOALIES_COUNT - goaliesCount);
 		}
+		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
+		List<TeamModel> teams = new ArrayList<TeamModel>();
+		IWeakTeam teamInitiatingTrade = TradingConfig.instance().getWeakteam();
+		IStrongTeam teamAcceptingTrade = TradingConfig.instance().getStrongteam();
+		ISortPlayerStrength sortPlayer = TradingConfig.instance().getSortplayerstrength();
+
 	}
 
 	public void adjustAITeam(TeamModel team) {
