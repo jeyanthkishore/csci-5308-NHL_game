@@ -1,48 +1,42 @@
 package com.dhl.g05.statemachine;
 
+import com.dhl.g05.communication.IPlayerCommunication;
+import com.dhl.g05.filehandler.ILeagueModelJson;
 
 public class LoadTeamState extends AbstractState{
 
+	private IPlayerCommunication communication;
+	private ILeagueModelJson leagueModel;
 	private String teamName;
 
-	public LoadTeamState(StateMachine stateMachine) {
-		super(stateMachine);
+	public LoadTeamState(IPlayerCommunication communicate, ILeagueModelJson leagueModel) {
+		this.communication = communicate;
+		this.leagueModel = leagueModel;
 	}
 
 	@Override
 	public boolean enter() {
 
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team name:");
-		teamName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
+		communication.sendMessage("Enter team name:");
+		teamName = communication.getResponse();
 
 		return true;
 	}
 
 	@Override
 	public boolean performStateTask() {
-		ILeagueModelJson leagueModel = this.getOuterStateMachine().getLeagueModel();
 		if (leagueModel.loadTeam(teamName)) {
 			return true;
 		} else {
-			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Team does not exist");
+			communication.sendMessage("Team does not exist");
 			return false;
 		}
 	}
 
 	@Override
 	public boolean exit() {
-		this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(),"Enter number of seasons to simulate", new SimulateState(this.getOuterStateMachine())));
+		this.setNextState(AbstractStateMachineFactory.getFactory().getPlayerChoiceState());
 		return true;
 	}
-
-	public String getTeamName() {
-		return teamName;
-	}
-
-	public void setTeamName(String name) {
-		this.teamName = name;
-	}
-
-
 
 }

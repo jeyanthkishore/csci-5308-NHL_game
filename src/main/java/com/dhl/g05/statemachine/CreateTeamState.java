@@ -4,11 +4,14 @@ import java.util.List;
 
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.db.AbstractDataBaseFactory;
 import com.dhl.g05.division.DivisionModel;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.team.CreateNewTeam;
 import com.dhl.g05.team.ICreateTeam;
+import com.dhl.g05.team.ITeamModelPersistence;
 import com.dhl.g05.team.TeamModel;
+import com.mysql.cj.util.StringUtils;
 
 public class CreateTeamState extends AbstractState {
 
@@ -20,42 +23,31 @@ public class CreateTeamState extends AbstractState {
 	private IPlayerCommunication communicate;
 	private ICreateTeam createTeam;
 
-	public LeagueModel getLeague() {
-		return league;
+	public CreateTeamState(IPlayerCommunication communication) {
+		communicate = communication;
+		league = this.getLeague();
 	}
 
-	public void setLeague(LeagueModel league) {
-		this.league = league;
-	}
-
-	public void setConferenceName(String conferenceName) {
-		this.conferenceName = conferenceName;
-	}
-
-	public void setDivisionName(String divisionName) {
-		this.divisionName = divisionName;
-	}
-
-	public CreateTeamState(StateMachine stateMachine) {
-		super(stateMachine);
-		league = this.getOuterStateMachine().getLeagueModel().getLeague();
-		communicate = this.getOuterStateMachine().getPlayerCommunication();
+	public void setCommunicate(IPlayerCommunication communicate) {
+		this.communicate = communicate;
 	}
 
 	@Override
 	public boolean enter() {
 		Boolean teamNotEntered = true;
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Creating a New Team");
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter conference name:");
-		conferenceName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter division name:");
-		divisionName = this.getOuterStateMachine().getPlayerCommunication().getResponse();
+		communicate.sendMessage("Creating a New Team");
+		communicate.sendMessage("Enter conference name:");
+		conferenceName = communicate.getResponse();
+		communicate.sendMessage("Enter division name:");
+		divisionName = communicate.getResponse();
 		while(teamNotEntered) {
-			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Enter team name:");
-			teamName =  this.getOuterStateMachine().getPlayerCommunication().getResponse();
-			Boolean notUnique = this.getOuterStateMachine().getLeagueModel().checkTeamNotUnique(teamName);
+			communicate.sendMessage("Enter team name:");
+			teamName =  communicate.getResponse();
+			TeamModel team = new TeamModel();
+			ITeamModelPersistence teamDatabase = AbstractDataBaseFactory.getFactory().getTeamDatabase();
+			boolean notUnique = team.checkTeamNotUnique(teamName,teamDatabase);
 			if(notUnique) {
-				this.getOuterStateMachine().getPlayerCommunication().sendMessage("Please Enter Unique Team Name");
+				communicate.sendMessage("Please Enter Unique Team Name");
 				continue;
 			}
 			teamNotEntered = false;
@@ -63,22 +55,27 @@ public class CreateTeamState extends AbstractState {
 		return true; 
 	}
 
+	public void setLeague(LeagueModel league) {
+		this.league = league;
+	}
+
 	@Override
 	public boolean performStateTask() {
-		this.setNextState(new CreateTeamState(this.getOuterStateMachine()));
+		this.setNextState(AbstractStateMachineFactory.getFactory().getCreateTeamState());
 
-		if (teamName== null || divisionName == null||conferenceName == null ){
-			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Missing feild, team not created");
+		if (StringUtils.isNullOrEmpty(teamName) || StringUtils.isNullOrEmpty(divisionName)
+				|| StringUtils.isNullOrEmpty(conferenceName)){
+			communicate.sendMessage("Missing feild, team not created");
 			return false;
 		}
 
 		if  (isDivisionConferenceNotExists()) {
-			this.getOuterStateMachine().getPlayerCommunication().sendMessage("Conference/Division combo does not exist in current league ");
+			communicate.sendMessage("Conference/Division combo does not exist in current league ");
 			return false;
 		}
 
 		if(createOperation()){
-			this.getOuterStateMachine().getLeagueModel().setLeague(league);
+			this.setLeague(league);
 			return true;
 		}
 
@@ -133,15 +130,8 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		if(getOuterStateMachine().getLeagueModel().persistLeague()) {
-			this.setNextState(new PlayerChoiceState(this.getOuterStateMachine(), "Enter number of seasons to simulate", new SimulateState(this.getOuterStateMachine())));
-			return true;
-		}
-		return false;
-	}
-
-	public TeamModel getTeam() {
-		return newTeam;
+		this.setNextState(AbstractStateMachineFactory.getFactory().getPlayerChoiceState());
+		return true;
 	}
 
 }

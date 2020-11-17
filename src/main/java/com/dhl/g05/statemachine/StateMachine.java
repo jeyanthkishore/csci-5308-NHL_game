@@ -1,17 +1,11 @@
 package com.dhl.g05.statemachine;
 
-import com.dhl.g05.communication.IPlayerCommunication;
-
-public class StateMachine {
+public class StateMachine implements IStateMachine {
 
 	private AbstractState currentState;   
-	private IPlayerCommunication playerCommunication;
-	private ILeagueModelJson leagueModel;
 
-	public StateMachine(IPlayerCommunication playerCommunication, ILeagueModelJson leagueModel) {
-		currentState = new ImportState(this);  
-		this.playerCommunication = playerCommunication;
-		this.leagueModel = leagueModel;
+	public StateMachine(AbstractState state) {
+		setCurrentState(state);
 	}
 
 	public AbstractState getCurrentState() {
@@ -22,13 +16,12 @@ public class StateMachine {
 		currentState = state;
 	}
 
-	public boolean enterState() {
+	public void enterState() {
 		if (currentState.enter()) {
-			return runState();
+			runState();
 		} else {
 			enterState();
 		}
-		return false;
 	}
 
 	public boolean runState() {
@@ -44,36 +37,13 @@ public class StateMachine {
 
 		if (currentState.exit()) {
 			currentState = currentState.getNextState();
-			if (currentState!=null) {
-				return enterState();
-			} else {
-				this.exit();
+			if (currentState==null) {
+				return false;
+			}else {
+				enterState();
 			}
-			return true;
 		}
 		return false;
 	}
 
-	public void exit() {
-		if(leagueModel.getLeague()!=null) {
-			leagueModel.persistLeague();
-		}
-	}
-
-	public void setPlayerCommunication(IPlayerCommunication playerCommunication) {
-		this.playerCommunication = playerCommunication;
-
-	}
-
-	public IPlayerCommunication getPlayerCommunication() {
-		return playerCommunication;
-	}
-
-	public void setLeagueModel(ILeagueModelJson leagueModel) {
-		this.leagueModel = leagueModel;
-	}
-
-	public ILeagueModelJson getLeagueModel() {
-		return leagueModel;
-	}
 }

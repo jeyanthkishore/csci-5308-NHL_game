@@ -1,68 +1,38 @@
 package com.dhl.g05.statemachine;
 
+import java.util.InputMismatchException;
+
+import com.dhl.g05.communication.IPlayerCommunication;
+
 public class PlayerChoiceState extends AbstractState{
 
-	private String choice;
-	private String message;
+	private IPlayerCommunication communication;
+	private int choice;
 
-	public PlayerChoiceState(StateMachine stateMachine, String message) {
-		super(stateMachine);
-		this.message = message;
-	}
-
-	public PlayerChoiceState(StateMachine stateMachine, String message, AbstractState state) {
-		super(stateMachine);
-		this.setNextState(state);
-		this.message = message;
+	public PlayerChoiceState(IPlayerCommunication communicate) {
+		this.communication = communicate;
 	}
 
 	@Override
 	public boolean enter() {
-		this.getOuterStateMachine().getPlayerCommunication().sendMessage(message);
+		communication.sendMessage("Enter the number of Season to stimulate");
 		return true;
 	}
 
 	@Override
 	public boolean performStateTask() {
-		this.choice = this.getOuterStateMachine().getPlayerCommunication().getResponse();
+		try {
+			this.choice = communication.getResponseNumber();
+		}catch(InputMismatchException e) {
+			communication.sendMessage("No Number Was Entered, Please Enter a Number..");
+			return false;
+		}
 		return true;
 	}
 
 	@Override
 	public boolean exit() {
-
-		if (choice.equalsIgnoreCase("create")){
-			this.setNextState(new CreateTeamState(this.getOuterStateMachine()));
-		} else if (choice.equalsIgnoreCase("load")) {
-			this.setNextState(new LoadTeamState(this.getOuterStateMachine()));
-		} else {
-			this.getNextState().setPlayerInput(choice);
-			if (this.getNextState().validateInput()) {
-				return true;
-			} else {
-				this.getOuterStateMachine().getPlayerCommunication().sendMessage("Invalid input");
-
-				return false;
-
-			}
-		}
+		this.setNextState(AbstractStateMachineFactory.getFactory().getStimulateState(choice));
 		return true;
 	}
-
-	public String getChoice() {
-		return choice;
-	}
-
-	public void setChoice(String choice) {
-		this.choice = choice;
-	}
-
-	public String getMessage() {
-		return choice;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
 }

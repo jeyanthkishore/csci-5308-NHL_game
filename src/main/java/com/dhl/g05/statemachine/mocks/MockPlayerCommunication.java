@@ -1,5 +1,6 @@
 package com.dhl.g05.statemachine.mocks;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 import com.dhl.g05.coach.CoachModel;
@@ -21,7 +22,7 @@ public class MockPlayerCommunication implements IPlayerCommunication{
 	
 	@Override
 	public String getFile() {
-		return "src/test/java/com/dhl/g05/jsontestfiles/jsonGoodInfo.json";
+		return getResponse();
 	}
 
 	@Override
@@ -32,7 +33,7 @@ public class MockPlayerCommunication implements IPlayerCommunication{
 
 	@Override
 	public int getResponseNumber() {
-		return (int) ((Math.random() * (22)) + 22);
+		return (int) ((Math.random() * (5)));
 	}
 
 	@Override
@@ -43,6 +44,11 @@ public class MockPlayerCommunication implements IPlayerCommunication{
 	@Override
 	public void sendManagerMessage(List<String> managerList) {
 		System.out.println("Manager List Will be Displayed");
-		
 	}
+	
+    public void commandLineInput(String data) {
+    	ByteArrayInputStream testInput = new ByteArrayInputStream(data.getBytes());
+        System.setIn(testInput);
+    }
+	
 }

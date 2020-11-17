@@ -112,6 +112,7 @@ public class CreateNewTeam implements ICreateTeam {
 			communicate.sendMessage(CreateTeamConstant.AddCoach.getValue());
 			try {
 				number = communicate.getResponseNumber();
+				System.out.println(number);
 			}catch(InputMismatchException e) {
 				communicate.sendMessage(CreateTeamConstant.NoNumberResponse.getValue());
 				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());

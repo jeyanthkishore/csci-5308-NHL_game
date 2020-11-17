@@ -102,10 +102,6 @@ public class TeamModel implements ITeam {
 		return database.loadTeamObject(divisionId, this, headCoach);
 	}
 
-	public List<HashMap<String, Object>> loadAllTeamName(ITeamModelPersistence database) {
-		return database.loadAllTeamName();
-	}
-
 	public double calculateTeamStrength(List<PlayerModel> playerList) {
 		for (IFreeAgent player : playerList) {
 			if (player.getInjuredStatus()) {
@@ -211,5 +207,15 @@ public class TeamModel implements ITeam {
 				}
 			}
 		}
+	}
+	
+	public boolean checkTeamNotUnique(String teamName,ITeamModelPersistence database) {
+		List<HashMap<String,Object>> teamNameList = database.loadAllTeamName();
+		for(HashMap<String,Object> team : teamNameList) {
+			if(team.get("team_name").equals(teamName)){
+				return true;
+			}
+		}
+		return false;
 	}
 }

@@ -296,11 +296,4 @@ public class TeamModelTest{
 		assertEquals(1,valid.loadTeamObject(1,data));
 	}
 	
-	@Test
-	public void loadAllTeamNameTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		TeamPersistenceMock data = new TeamPersistenceMock();
-		TeamModel valid = new TeamModel(mock);
-		assertNotNull(valid.loadAllTeamName(data));
-	}
 }
