@@ -1,10 +1,9 @@
 package com.dhl.g05.team;
 
+import java.util.List;
+
 import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.player.PlayerModel;
-
-import java.util.HashMap;
-import java.util.List;
 
 public interface ITeam {
 
@@ -36,5 +35,5 @@ public interface ITeam {
 
     int loadTeamObject(int divisionId,ITeamModelPersistence database);
 
-    List<HashMap<String, Object>> loadAllTeamName(ITeamModelPersistence database);
+    boolean checkTeamNotUnique(String teamName,ITeamModelPersistence database);
 }

@@ -1,4 +1,4 @@
-package com.dhl.g05.statemachine;
+package filehandler;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -16,6 +16,7 @@ import com.dhl.g05.conference.ConferenceModel;
 import com.dhl.g05.conference.ConferencePersistenceMock;
 import com.dhl.g05.division.DivisionModel;
 import com.dhl.g05.division.DivisionPersistenceMock;
+import com.dhl.g05.filehandler.LeagueModelJson;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.FreeAgentPersistenceMock;
 import com.dhl.g05.gameplayconfig.Aging;
@@ -27,7 +28,6 @@ import com.dhl.g05.gameplayconfig.TradingModel;
 import com.dhl.g05.gameplayconfig.TrainingConfig;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.league.LeaguePersistenceMock;
-import com.dhl.g05.operation.DatePersistenceMock;
 import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.player.PlayerPersistenceMock;
 import com.dhl.g05.team.TeamModel;
@@ -47,7 +47,6 @@ public class LeagueModelJsonTest {
 		leagueModel.setDivisionDatabase(new DivisionPersistenceMock());
 		leagueModel.setTeamDatabase(new TeamPersistenceMock());
 		leagueModel.setPlayerDatabase(new PlayerPersistenceMock());
-		leagueModel.setDateDatabase(new DatePersistenceMock());
 		leagueModel.setFreeAgentDatabase(new FreeAgentPersistenceMock());
 		leagueModel.setCoachDatabase(new CoachPersistenceMock());
 		leagueModel.setGamePlayDatabase(new GamePlayConfigPersistenceMock());
@@ -87,15 +86,8 @@ public class LeagueModelJsonTest {
 		Aging age = new Aging(28, 60);
 		GamePlayConfigModel game = new GamePlayConfigModel(trade, age, injury, resolver, train);
 
-		league = new LeagueModel("HockeyLeague",conferences,freeAgentList,coachList, managerList,game,new LeaguePersistenceMock());
+		league = new LeagueModel("HockeyLeague",conferences,freeAgentList,coachList, managerList,game);
 
-	}
-
-	@Test
-	public void testCreateLeague() {
-		LeagueModel newleague = leagueModel.createLeague("testLeague", new ArrayList<ConferenceModel>(), new ArrayList<FreeAgentModel>(), new ArrayList<CoachModel>(), new ArrayList<String>(),new GamePlayConfigModel(null,null,null,null,null));
-		assertNotNull(newleague);
-		assertTrue(newleague.getLeagueName().equals("testLeague"));
 	}
 
 	@Test

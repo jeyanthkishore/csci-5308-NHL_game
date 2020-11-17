@@ -1,49 +1,80 @@
 package com.dhl.g05.statemachine;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dhl.g05.statemachine.mocks.MockLeagueModel;
+import com.dhl.g05.communication.AbstractCommunicationFactory;
+import com.dhl.g05.communication.CommunicationFactory;
+import com.dhl.g05.db.AbstractDataBaseFactory;
+import com.dhl.g05.filehandler.LeagueModelJson;
 import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
 
-public class ImportStateTest {
-	private ImportState state;
-	private StateMachine stateMachine;
+import filehandler.DatabaseMockFactory;
 
+public class ImportStateTest {
+	private AbstractState state;
+	private static MockPlayerCommunication communicate;
+
+	 @BeforeClass
+	    public static void setup() {
+	        AbstractCommunicationFactory.setFactory(new CommunicationFactory());
+	        AbstractDataBaseFactory.setFactory(new DatabaseMockFactory());
+	        AbstractStateMachineFactory.setFactory(
+	                new StateMachineFactory(
+	                		AbstractCommunicationFactory.getFactory().getCommunication(),
+	                		new LeagueModelJson()
+	                )
+	        );
+	        communicate = new MockPlayerCommunication();
+	    }
+	 
 	@Before
 	public void init() {
-		stateMachine = new StateMachine(new MockPlayerCommunication(),new MockLeagueModel());
-		state = new ImportState(stateMachine);
-		stateMachine.setCurrentState(state);
-	}
-
-	@Test
-	public void testEnter() {
-		assertTrue(state.enter());
-		assertNotNull(state.getFileName());
+		state = AbstractStateMachineFactory.getFactory().getImportState();
 	}
 
 	@Test
 	public void testPerformStateTask() {
-		state.setFileName("src/test/java/com/dhl/g05/jsontestfiles/jsonGoodInfo.json");
-		assertTrue(state.performStateTask());
-		assertNotNull(state.getOuterStateMachine());
-		assertNotNull(state.getOuterStateMachine().getLeagueModel().getLeague());
-	}
-
-	@Test
-	public void testExitWithFile() {
-		state.setFileName("src/test/java/com/dhl/g05/jsontestfiles/jsonGoodInfo.json");
-		assertTrue(state.exit());
+		communicate.commandLineInput("src/test/java/com/dhl/g05/jsontestfiles/jsonGoodInfo.json");
+		state.enter();
+		state.performStateTask();
+		state.exit();
+		assertNotNull(state.getLeague());;
 		assertTrue(state.getNextState() instanceof CreateTeamState);
 	}
 
 	@Test
+	public void testPerformStateFailTask() {
+		communicate.commandLineInput("src/test/java/com/dhl/g05/jsontestfiles/jsonInvalidInfo.json");
+		state.enter();
+		state.performStateTask();
+		state.exit();
+		assertNotNull(state);
+		assertNull(state.getLeague());
+	}
+	
+	@Test
+	public void testPerformLeagueNullTask() {
+		communicate.commandLineInput("src/test/java/com/dhl/g05/jsontestfiles/jsonBadConferenceInfo.json");
+		state.enter();
+		state.performStateTask();
+		state.exit();
+		assertNotNull(state);
+		assertNull(state.getLeague());
+	}
+	
+	
+	@Test
 	public void testExitNoFile() {
-		state.setFileName("");
-		assertTrue(state.exit());
+		communicate.commandLineInput("\r\n");
+		state.enter();
+		state.performStateTask();
+		state.exit();
 		assertTrue(state.getNextState() instanceof LoadTeamState);
 	}
 

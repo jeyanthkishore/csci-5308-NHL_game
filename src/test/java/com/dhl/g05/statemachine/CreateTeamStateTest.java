@@ -3,62 +3,65 @@ package com.dhl.g05.statemachine;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
 import org.junit.Test;
 
+import com.dhl.g05.communication.AbstractCommunicationFactory;
+import com.dhl.g05.communication.CommunicationFactory;
+import com.dhl.g05.communication.IPlayerCommunication;
+import com.dhl.g05.db.AbstractDataBaseFactory;
+import com.dhl.g05.filehandler.LeagueModelJson;
 import com.dhl.g05.mockdata.JsonMockDataDb;
-import com.dhl.g05.statemachine.mocks.MockLeagueModel;
-import com.dhl.g05.statemachine.mocks.MockLeagueModelValidationFails;
+import com.dhl.g05.statemachine.mocks.MockCreateTeamCommnication;
 import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
 
+import filehandler.DatabaseMockFactory;
+
 public class CreateTeamStateTest {
-	private CreateTeamState state;
-	private StateMachine stateMachine;
+	private static MockPlayerCommunication communicate;
+	IStateMachine machine;
+	private static CreateTeamState create;
 
 
-	@Before
-	public void init() {
-		stateMachine = new StateMachine(new MockPlayerCommunication(),new MockLeagueModel());
-		state = new CreateTeamState(stateMachine);
-		stateMachine.setCurrentState(state);
-	}
+	 public static void setup(String userInput) {
+		    communicate = new MockPlayerCommunication();
+		    communicate.commandLineInput(userInput);
+	        AbstractCommunicationFactory.setFactory(new CommunicationFactory());
+	        AbstractDataBaseFactory.setFactory(new DatabaseMockFactory());
+	        AbstractStateMachineFactory.setFactory(
+	                new StateMachineFactory(
+	                		AbstractCommunicationFactory.getFactory().getCommunication(),
+	                		new LeagueModelJson()
+	                )
+	        );
+	        create = new CreateTeamState(new MockCreateTeamCommnication());
+			JsonMockDataDb data = new JsonMockDataDb();
+			create.setLeague(data.league);
+	    }
 
-	@Test
-	public void testEnter() {
-		assertTrue(state.enter());
-	}
+	 @Test
+	 public void performTaskTest() {
+		 String userInput = "Western Conference\nPacific\nKillers";
+		 setup(userInput);
+		 create.enter();
+		 IPlayerCommunication com = new MockPlayerCommunication();
+		 create.setCommunicate(com);
+		 create.performStateTask();
+		 assertTrue(create.exit());
+	 }
+	 
+	 @Test
+	 public void divisionNotExistTest() {
+		 String userInput = "Western Conference\nDummy\nKillers";
+		 setup(userInput);
+		 create.enter();
+		 assertFalse(create.performStateTask());
+	 }
 
-	/*@Test
-	public void testPerformStateTask() {
-		state.getOuterStateMachine().setLeagueModel(new MockLeagueModel());
-		state.enter();
-		JsonMockDataDb data = new JsonMockDataDb();
-		state.setConferenceName(data.conferenceName);
-		state.setDivisionName(data.divisionOneName);
-		state.setLeague(data.league);
-		assertTrue(state.performStateTask());
-	}*/
-
-	@Test
-	public void testPerformStateTaskFails() {
-		state.getOuterStateMachine().setLeagueModel(new MockLeagueModelValidationFails());
-		assertFalse(state.performStateTask());
-		assertTrue(state.getNextState() instanceof CreateTeamState);
-	}
-
-	@Test
-	public void testExit() {
-		assertTrue(state.exit());
-		assertTrue(state.getNextState() instanceof PlayerChoiceState);
-	}
-
-
-		@Test
-		public void testExitFails() {
-			state.getOuterStateMachine().setLeagueModel(new MockLeagueModelValidationFails());
-			state.performStateTask();
-			assertFalse(state.exit());
-			assertTrue(state.getNextState() instanceof CreateTeamState);
-		}
-
+	 @Test
+	 public void conferenceNullTest() {
+		 String userInput = "Western Conference\n\nKillers";
+		 setup(userInput);
+		 create.enter();
+		 assertFalse(create.performStateTask());
+	 }
 }

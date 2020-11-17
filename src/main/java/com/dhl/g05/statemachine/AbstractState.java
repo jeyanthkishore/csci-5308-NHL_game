@@ -1,38 +1,15 @@
 package com.dhl.g05.statemachine;
 
+import com.dhl.g05.league.LeagueModel;
+
 public abstract class AbstractState {
-	private StateMachine outerStateMachine;
-	private StateMachine innerStateMachine;
 	private AbstractState nextState;
-	private String playerInput;
+	private static LeagueModel league;
 
 	public abstract boolean enter();
 	public abstract boolean performStateTask();
 	public abstract boolean exit();
 
-	public AbstractState(StateMachine stateMachine) {
-		this.setOuterStateMachine(stateMachine);
-	}
-
-	public StateMachine getInnerStateMachine() {
-		return innerStateMachine;
-	}
-
-	public void setInnerStateMachine(StateMachine stateMachine) {
-		this.innerStateMachine = stateMachine;		
-	}
-
-	public boolean runInnerStateMachine() {
-		return innerStateMachine.enterState();
-	}
-
-	public StateMachine getOuterStateMachine() {
-		return outerStateMachine;
-	}
-
-	public void setOuterStateMachine(StateMachine stateMachine) {
-		this.outerStateMachine = stateMachine;
-	}
 
 	public void setNextState(AbstractState state) {
 		this.nextState = state;
@@ -42,16 +19,11 @@ public abstract class AbstractState {
 		return nextState;
 	}
 
-	public void setPlayerInput(String input) {
-		this.playerInput = input;
+	public void setLeague(LeagueModel league) {
+		AbstractState.league = league;
 	}
 
-	public String getPlayerInput() {
-		return	playerInput;
+	public LeagueModel getLeague() {
+		return	league;
 	}
-	
-	public boolean validateInput() {
-		return true;
-	}
-
 }

@@ -12,7 +12,7 @@ import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.player.PlayerModel;
 
 public class PlayerCommunication implements IPlayerCommunication, ITradeCommunication{
-	private static Scanner scanner = new Scanner(System.in);
+	 private Scanner scanner;
 
 
 	public void sendMessage(String message) {

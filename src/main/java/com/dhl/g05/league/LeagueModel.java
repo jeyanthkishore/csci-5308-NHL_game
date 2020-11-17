@@ -1,4 +1,5 @@
 package com.dhl.g05.league;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -6,9 +7,7 @@ import java.util.List;
 import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.conference.ConferenceModel;
 import com.dhl.g05.freeagent.FreeAgentModel;
-import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.player.PlayerModel;
 import com.mysql.cj.util.StringUtils;
 
 public class LeagueModel implements ILeague{
@@ -20,6 +19,8 @@ public class LeagueModel implements ILeague{
 	private List<String> generalManagers;
 	private ILeagueModelPersistence dbObject;
 	private GamePlayConfigModel gameplayConfig;
+	private int daysSinceStatIncrease;
+	private LocalDate leagueCurrentDate;
 
 	public LeagueModel() {
 		setLeagueName(null);
@@ -30,7 +31,7 @@ public class LeagueModel implements ILeague{
 		setGamePlayConfig(null);
 	}
 
-	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<String> managers,GamePlayConfigModel gamePlay ,ILeagueModelPersistence dbObject) {
+	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<String> managers,GamePlayConfigModel gamePlay) {
 		setLeagueName(league);
 		setConferenceDetails(conferencedetail);
 		setFreeAgent(agent);
@@ -109,6 +110,26 @@ public class LeagueModel implements ILeague{
 		this.gameplayConfig = gamePlayConfig;
 	}
 
+	public LocalDate getLeagueCurrentDate() {
+		return leagueCurrentDate;
+	}
+
+	public void setLeagueCurrentDate(LocalDate leagueCurrentDate) {
+		this.leagueCurrentDate = leagueCurrentDate;
+	}
+
+	public int getDaysSinceStatIncrease() {
+		return daysSinceStatIncrease;
+	}
+
+	public void setDaysSinceStatIncrease(int daysSinceStatIncrease) {
+		this.daysSinceStatIncrease = daysSinceStatIncrease;
+	}
+	
+    public void resetDaysSinceStatIncrease() {
+        this.daysSinceStatIncrease = 0;
+    }
+	
 	public int saveLeagueObject(ILeagueModelPersistence database) {
 		return database.saveLeagueObject(this);
 	}
@@ -141,9 +162,9 @@ public class LeagueModel implements ILeague{
 		if(isManagerListEmpty()){
 			return LeagueConstant.ManagerListEmpty;
 		}
-		if(checkLeaguePresent()) {
-			return LeagueConstant.LeagueExists;
-		}
+//		if(checkLeaguePresent()) {
+//			return LeagueConstant.LeagueExists;
+//		}
 		return LeagueConstant.Success;
 	}
 

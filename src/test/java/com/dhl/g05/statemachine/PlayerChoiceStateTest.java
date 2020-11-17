@@ -1,51 +1,57 @@
 package com.dhl.g05.statemachine;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dhl.g05.statemachine.mocks.MockLeagueModel;
+import com.dhl.g05.communication.AbstractCommunicationFactory;
+import com.dhl.g05.communication.CommunicationFactory;
+import com.dhl.g05.db.AbstractDataBaseFactory;
+import com.dhl.g05.filehandler.LeagueModelJson;
 import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
 
+import filehandler.DatabaseMockFactory;
+
 public class PlayerChoiceStateTest {
-	public PlayerChoiceState state;
-	private StateMachine stateMachine;
+	private AbstractState state;
+	private static MockPlayerCommunication communicate;
+	
+	
+	 @BeforeClass
+	    public static void setup() {
+	        AbstractCommunicationFactory.setFactory(new CommunicationFactory());
+	        AbstractDataBaseFactory.setFactory(new DatabaseMockFactory());
+	        AbstractStateMachineFactory.setFactory(
+	                new StateMachineFactory(
+	                		AbstractCommunicationFactory.getFactory().getCommunication(),
+	                		new LeagueModelJson()
+	                )
+	        );
+	        communicate = new MockPlayerCommunication();
+	    }
 
 	@Before
 	public void init() {
-		stateMachine = new StateMachine(new MockPlayerCommunication(), new MockLeagueModel());
-		state = new PlayerChoiceState(stateMachine, "message");
-		stateMachine.setCurrentState(state);
+		state = AbstractStateMachineFactory.getFactory().getPlayerChoiceState();
 	}
 
 	@Test
-	public void testPerformStateTask() {
-		assertTrue(state.performStateTask());
-		assertNotNull(state.getChoice());
-	}
-
-	@Test
-	public void testExitToCreate() {
-		state.setChoice("create");
-		assertTrue(state.exit());
-		assertTrue(state.getNextState() instanceof CreateTeamState);
-	}
-
-	@Test
-	public void testExitToLoad() {
-		state.setChoice("load");
-		assertTrue(state.exit());
-		assertTrue(state.getNextState() instanceof LoadTeamState);
-	}
-
-	@Test
-	public void testExitToSimulate() {
-		state = new PlayerChoiceState(stateMachine, "message", new SimulateState(stateMachine));
-		state.setChoice("1");
-		assertTrue(state.exit());
+	public void performStateTaskTest() {
+		communicate.commandLineInput("5");
+		state.enter();
+		state.performStateTask();
+		state.exit();
 		assertTrue(state.getNextState() instanceof SimulateState);
-		assertTrue(state.getNextState().getPlayerInput().equals("1"));
 	}
 
+	@Test
+	public void performStateTaskFailTest() {
+		communicate.commandLineInput("Jeyanth");
+		state.enter();
+		assertFalse(state.performStateTask());
+	}
+	
 }

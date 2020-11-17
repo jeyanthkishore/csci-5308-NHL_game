@@ -1,4 +1,4 @@
-package com.dhl.g05.statemachine;
+package com.dhl.g05.filehandler;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,22 +33,20 @@ import com.dhl.g05.gameplayconfig.TrainingConfig;
 import com.dhl.g05.gameplayconfig.TrainingConstant;
 import com.dhl.g05.league.LeagueConstant;
 import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.leaguesimulation.DateHandler;
 import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.simulation.Date;
 import com.dhl.g05.team.TeamConstant;
 import com.dhl.g05.team.TeamModel;
 import com.mysql.cj.util.StringUtils;
 
-public class LeagueModelCreatorFromJSON {
+public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 
 	private FileReader reader;
 	private JSONParser parser;
-	private ILeagueModelJson leagueModel;
 	private IPlayerCommunication playerCommunication;
 
-	public LeagueModelCreatorFromJSON(ILeagueModelJson leagueModel, IPlayerCommunication playerCommunication) {
+	public LeagueModelCreatorFromJSON(IPlayerCommunication playerCommunication) {
 		parser = new JSONParser();
-		this.leagueModel = leagueModel;
 		this.playerCommunication = playerCommunication;
 	}
 
@@ -102,7 +100,6 @@ public class LeagueModelCreatorFromJSON {
 			return null;
 		} 
 		Number daysUntilStatIncreaseCheck =  (Number) training.get("daysUntilStatIncreaseCheck");
-		Date.getInstance().setDaysUntilStatIncreaseCheck(daysUntilStatIncreaseCheck.intValue());
 		TrainingConfig train = new TrainingConfig(daysUntilStatIncreaseCheck.intValue());
 		TrainingConstant result = train.Validate();
 		if(result.equals(TrainingConstant.Success)) {
@@ -113,12 +110,11 @@ public class LeagueModelCreatorFromJSON {
 		return null;
 	}
 
-	public boolean createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException {
+	public LeagueModel createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException {
 		File file = new File(fileName);
 		reader = new FileReader(file);
 		LeagueModel league = createLeague((JSONObject)parser.parse(reader));
-		leagueModel.setLeague(league);
-		return (leagueModel.getLeague() != null);
+		return league;
 	}
 	
 	private LeagueModel createLeague(JSONObject leagueData) {
@@ -132,8 +128,8 @@ public class LeagueModelCreatorFromJSON {
 		GamePlayConfigModel gamePlayConfig = setGamePlayConfigsFromFile((JSONObject) leagueData.get("gameplayConfig"));
 		String leagueName = (String)leagueData.get("leagueName");
 		if (conferences != null && freeAgents != null && freeCoaches != null && managers != null && gamePlayConfig!=null) {
-			LeagueModel league = leagueModel.createLeague(leagueName, conferences, freeAgents, freeCoaches, managers,gamePlayConfig);
-			LeagueConstant validationResult  =  leagueModel.validateLeague(league);
+			LeagueModel league = new LeagueModel(leagueName, conferences, freeAgents, freeCoaches, managers,gamePlayConfig);
+			LeagueConstant validationResult  =  league.validate();
 			if (validationResult.equals(LeagueConstant.Success)) {
 				return league;
 			} else {
@@ -203,7 +199,7 @@ public class LeagueModelCreatorFromJSON {
 			String conferenceName = (String)((JSONObject) c).get("conferenceName");
 			if (divisions != null) {
 				ConferenceModel newConference = new ConferenceModel(conferenceName, divisions);
-				ConferenceConstant validationResult  = leagueModel.validateConference(newConference);
+				ConferenceConstant validationResult  = newConference.validate();
 				if (validationResult.equals(ConferenceConstant.Success)) {
 					conferences.add(newConference);
 				} else {
@@ -228,7 +224,7 @@ public class LeagueModelCreatorFromJSON {
 			String divisionName = (String)((JSONObject) d).get("divisionName");
 			if (teams != null) {
 				DivisionModel newDivision = new DivisionModel(divisionName,teams);
-				DivisionConstant validationResult  = leagueModel.validateDivision(newDivision);
+				DivisionConstant validationResult  = newDivision.validate();
 				if (validationResult.equals(DivisionConstant.Success)) {
 					divisions.add(newDivision);
 				} else {
@@ -255,7 +251,7 @@ public class LeagueModelCreatorFromJSON {
 			CoachModel coachDetails = createCoach(coach);
 			if (players != null && teamName != null && managerName != null && coachDetails != null) {
 				TeamModel newTeam = new TeamModel(teamName, coachDetails, managerName, players);
-				TeamConstant validationResult  = leagueModel.validateTeam(newTeam);
+				TeamConstant validationResult  = newTeam.validate();
 				if (validationResult.equals(TeamConstant.Success)) {
 					teams.add(newTeam);
 				}  else {
@@ -287,7 +283,7 @@ public class LeagueModelCreatorFromJSON {
 				return null;
 			}
 			PlayerModel newPlayer = new PlayerModel(playerName, position, captain, age, skating, shooting, checking, saving);
-			FreeAgentConstant validationResult  = leagueModel.validatePlayer(newPlayer);
+			FreeAgentConstant validationResult  = newPlayer.validate();
 			if (validationResult.equals(FreeAgentConstant.Success)) {
 				players.add(newPlayer);
 			} else {

@@ -1,6 +1,7 @@
 package com.dhl.g05.serialize;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileNotFoundException;
@@ -9,9 +10,9 @@ import java.io.IOException;
 import org.json.simple.parser.ParseException;
 import org.junit.Test;
 
+import com.dhl.g05.filehandler.LeagueModelCreatorFromJSON;
+import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.mockdata.JsonMockDataDb;
-import com.dhl.g05.statemachine.LeagueModelCreatorFromJSON;
-import com.dhl.g05.statemachine.mocks.MockLeagueModel;
 import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
 
 public class SerialiseLeagueModelTest {
@@ -28,9 +29,9 @@ public class SerialiseLeagueModelTest {
 		ISerializeModel serial = new SerialiseLeagueModel();
 		JsonMockDataDb data = new JsonMockDataDb();
 		assertTrue(serial.serialiseObjects(data.league));
-		LeagueModelCreatorFromJSON deSerialize = new LeagueModelCreatorFromJSON(new MockLeagueModel(), new MockPlayerCommunication());
-		Boolean result = deSerialize.createLeagueFromFile(SerialiseLeagueConstant.FilePath.getValue());
-		assertTrue(result);
+		LeagueModelCreatorFromJSON deSerialize = new LeagueModelCreatorFromJSON(new MockPlayerCommunication());
+		LeagueModel result = deSerialize.createLeagueFromFile(SerialiseLeagueConstant.FilePath.getValue());
+		assertNotNull(result);
 	}
 	
 	@Test
@@ -39,9 +40,9 @@ public class SerialiseLeagueModelTest {
 		JsonMockDataDb data = new JsonMockDataDb();
 		data.league.setFreeAgent(null);
 		assertTrue(serial.serialiseObjects(data.league));
-		LeagueModelCreatorFromJSON deSerialize = new LeagueModelCreatorFromJSON(new MockLeagueModel(), new MockPlayerCommunication());
-		Boolean result = deSerialize.createLeagueFromFile(SerialiseLeagueConstant.FilePath.getValue());
-		assertFalse(result);
+		LeagueModelCreatorFromJSON deSerialize = new LeagueModelCreatorFromJSON(new MockPlayerCommunication());
+		LeagueModel result = deSerialize.createLeagueFromFile(SerialiseLeagueConstant.FilePath.getValue());
+		assertNull(result);
 	}
 	
 }

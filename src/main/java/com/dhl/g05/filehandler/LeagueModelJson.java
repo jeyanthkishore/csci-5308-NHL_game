@@ -1,41 +1,26 @@
-package com.dhl.g05.statemachine;
+package com.dhl.g05.filehandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.coach.CoachModel;
-import com.dhl.g05.coach.CoachPersistence;
 import com.dhl.g05.coach.ICoachModelPersistence;
-import com.dhl.g05.conference.ConferenceConstant;
 import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.conference.ConferencePersistence;
 import com.dhl.g05.conference.IConferenceModelPersistence;
-import com.dhl.g05.division.DivisionConstant;
+import com.dhl.g05.db.AbstractDataBaseFactory;
 import com.dhl.g05.division.DivisionModel;
-import com.dhl.g05.division.DivisionPersistence;
 import com.dhl.g05.division.IDivisionModelPersistence;
-import com.dhl.g05.freeagent.FreeAgentConstant;
 import com.dhl.g05.freeagent.FreeAgentModel;
-import com.dhl.g05.freeagent.FreeAgentPersistence;
 import com.dhl.g05.freeagent.IFreeAgentPersistence;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.gameplayconfig.GamePlayPersistence;
 import com.dhl.g05.gameplayconfig.IGameConfigPersistence;
 import com.dhl.g05.league.ILeagueModelPersistence;
-import com.dhl.g05.league.LeagueConstant;
 import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.league.LeaguePersistence;
-import com.dhl.g05.operation.DatePersistence;
-import com.dhl.g05.operation.IDatePersistence;
 import com.dhl.g05.player.IPlayerModelPersistence;
 import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.player.PlayerPersistence;
-import com.dhl.g05.simulation.Date;
 import com.dhl.g05.team.ITeamModelPersistence;
-import com.dhl.g05.team.TeamConstant;
 import com.dhl.g05.team.TeamModel;
-import com.dhl.g05.team.TeamPersistence;
 
 public class LeagueModelJson implements ILeagueModelJson{
 	private LeagueModel league;
@@ -45,25 +30,19 @@ public class LeagueModelJson implements ILeagueModelJson{
 	private IDivisionModelPersistence divisionDatabase;
 	private ITeamModelPersistence teamDatabase;
 	private IPlayerModelPersistence playerDatabase;
-	private IDatePersistence dateDatabase;
 	private IFreeAgentPersistence freeAgentDatabase;
 	private ICoachModelPersistence coachDataBase;
 	private IGameConfigPersistence gamePlayDatabase;
 
 	public LeagueModelJson() {
-		this.leagueDatabase = new LeaguePersistence();
-		this.conferenceDatabase = new ConferencePersistence();
-		this.divisionDatabase = new DivisionPersistence();
-		this.teamDatabase = new TeamPersistence();
-		this.playerDatabase = new PlayerPersistence();
-		this.dateDatabase = new DatePersistence();
-		this.freeAgentDatabase = new FreeAgentPersistence();
-		this.coachDataBase = new CoachPersistence();
-		this.gamePlayDatabase = new GamePlayPersistence();
-	}
-
-	public void setDateDatabase(IDatePersistence dateDatabase) {
-		this.dateDatabase = dateDatabase;
+		this.leagueDatabase = AbstractDataBaseFactory.getFactory().getLeagueDatabase();
+		this.conferenceDatabase = AbstractDataBaseFactory.getFactory().getConferenceDatabase();
+		this.divisionDatabase = AbstractDataBaseFactory.getFactory().getDivisionDatabase();
+		this.teamDatabase = AbstractDataBaseFactory.getFactory().getTeamDatabase();
+		this.playerDatabase = AbstractDataBaseFactory.getFactory().getPlayerDatabase();
+		this.freeAgentDatabase = AbstractDataBaseFactory.getFactory().getFreeAgentDatabase();
+		this.coachDataBase = AbstractDataBaseFactory.getFactory().getCoachDatabase();
+		this.gamePlayDatabase = AbstractDataBaseFactory.getFactory().getGameConfigDatabase();
 	}
 
 	public void setFreeAgentDatabase(IFreeAgentPersistence freeAgentDatabase) {
@@ -98,10 +77,6 @@ public class LeagueModelJson implements ILeagueModelJson{
 		this.gamePlayDatabase = gamePlayDatabase;
 	}
 
-	public LeagueModel createLeague(String leagueName, List<ConferenceModel> conferences, List<FreeAgentModel> freeAgents, List<CoachModel> coaches, List<String> managers,GamePlayConfigModel gamePlay) {
-		return new LeagueModel(leagueName, conferences, freeAgents, coaches, managers, gamePlay,leagueDatabase);
-	}
-
 	@Override
 	public LeagueModel getLeague() {
 		return league;
@@ -114,8 +89,6 @@ public class LeagueModelJson implements ILeagueModelJson{
 
 	@Override
 	public boolean persistLeague() { 
-
-		Date.getInstance().saveDate(getLeague(), dateDatabase);
 
 		int leagueId = this.league.saveLeagueObject(leagueDatabase);
 		if (leagueId == 0) {
@@ -188,18 +161,6 @@ public class LeagueModelJson implements ILeagueModelJson{
 		return false;
 	}
 
-	@Override
-	public Boolean checkTeamNotUnique(String teamName) {
-		TeamModel teamObject = new TeamModel();
-		List<HashMap<String,Object>> teamNameList = teamObject.loadAllTeamName(teamDatabase);
-		for(HashMap<String,Object> team : teamNameList) {
-			if(team.get("team_name").equals(teamName)){
-				return true;
-			}
-		}
-		return false;
-	}
-	
 	@Override
 	public boolean loadTeam(String teamName) {
 
@@ -313,31 +274,6 @@ public class LeagueModelJson implements ILeagueModelJson{
 	@Override
 	public TeamModel getCurrentTeam() {
 		return currentTeam;
-	}
-
-	@Override
-	public LeagueConstant validateLeague(LeagueModel league) {
-		return league.validate();
-	}
-
-	@Override
-	public ConferenceConstant validateConference(ConferenceModel conference) {
-		return conference.validate();
-	}
-
-	@Override
-	public DivisionConstant validateDivision(DivisionModel division) {
-		return division.validate();
-	}
-
-	@Override
-	public TeamConstant validateTeam(TeamModel team) {
-		return team.validate();
-	}
-
-	@Override
-	public FreeAgentConstant validatePlayer(PlayerModel player) {
-		return player.validate();
 	}
 
 }
