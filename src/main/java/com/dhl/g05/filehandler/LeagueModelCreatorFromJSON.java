@@ -273,16 +273,18 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			String playerName = (String)((JSONObject) p).get("playerName");
 			String position = (String)((JSONObject) p).get("position");
 			Boolean captain = (Boolean)((JSONObject) p).get("captain");
-			int age = Integer.parseInt(((JSONObject) p).get("age").toString());
 			double skating = Double.parseDouble(((JSONObject) p).get("skating").toString());
 			double shooting = Double.parseDouble(((JSONObject) p).get("shooting").toString());
 			double checking = Double.parseDouble(((JSONObject) p).get("checking").toString());
 			double saving = Double.parseDouble(((JSONObject) p).get("saving").toString());
-			if (playerName == null ||position == null || captain == null || age < 0 || skating < 0 || shooting < 0 || checking < 0 || saving < 0) {
+			int birthDay=Integer.parseInt(((JSONObject) p).get("birthDay").toString());
+			int birthMonth=Integer.parseInt(((JSONObject) p).get("birthMonth").toString());
+			int birthYear=Integer.parseInt(((JSONObject) p).get("birthYear").toString());
+			if (playerName == null ||position == null || captain == null || birthDay < 0 || birthMonth < 0|| birthYear < 0|| skating < 0 || shooting < 0 || checking < 0 || saving < 0) {
 				playerCommunication.sendMessage("player missing field");
 				return null;
 			}
-			PlayerModel newPlayer = new PlayerModel(playerName, position, captain, age, skating, shooting, checking, saving);
+			PlayerModel newPlayer = new PlayerModel(playerName, position, captain,skating, shooting, checking, saving,birthDay,birthMonth,birthYear);
 			FreeAgentConstant validationResult  = newPlayer.validate();
 			if (validationResult.equals(FreeAgentConstant.Success)) {
 				players.add(newPlayer);
@@ -302,16 +304,18 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		for (Object p: jsonPlayers) {
 			String playerName = (String)((JSONObject) p).get("playerName");
 			String position = (String)((JSONObject) p).get("position");
-			int age = Integer.parseInt(((JSONObject) p).get("age").toString());
 			double skating = Double.parseDouble(((JSONObject) p).get("skating").toString());
 			double shooting = Double.parseDouble(((JSONObject) p).get("shooting").toString());
 			double checking = Double.parseDouble(((JSONObject) p).get("checking").toString());
 			double saving = Double.parseDouble(((JSONObject) p).get("saving").toString());
-			if (playerName == null ||position == null || age < 0 || skating < 0 || shooting < 0 || checking < 0 || saving < 0) {
+			int birthDay=Integer.parseInt(((JSONObject) p).get("birthDay").toString());
+			int birthMonth=Integer.parseInt(((JSONObject) p).get("birthMonth").toString());
+			int birthYear=Integer.parseInt(((JSONObject) p).get("birthYear").toString());
+			if (playerName == null ||position == null || birthDay < 0 || birthMonth < 0|| birthYear < 0|| skating < 0 || shooting < 0 || checking < 0 || saving < 0) {
 				playerCommunication.sendMessage("player missing field");
 				return null;
 			}
-			FreeAgentModel newPlayer = new FreeAgentModel(playerName, position, age, skating, shooting, checking, saving);
+			FreeAgentModel newPlayer = new FreeAgentModel(playerName, position,skating, shooting, checking, saving,birthDay,birthMonth,birthYear);
 			FreeAgentConstant validationResult  = newPlayer.validate();
 			if (validationResult.equals(FreeAgentConstant.Success)) {
 				players.add(newPlayer);

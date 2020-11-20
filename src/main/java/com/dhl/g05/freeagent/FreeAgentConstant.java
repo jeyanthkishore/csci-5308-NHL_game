@@ -8,7 +8,8 @@ public enum FreeAgentConstant {
 	PlayerPositionWrong("Player Position Is Wrong"),
 	PlayerAgeInvalid("Player age is invalid"),
 	CaptainNull("Captain Cannot be Null"),
-	PlayerStateInvalid("Invalid state of player");
+	PlayerStateInvalid("Invalid state of player"), 
+	PlayerBirthdateInvalid("Player birth date is not valid");
 
 	private String value; 
 

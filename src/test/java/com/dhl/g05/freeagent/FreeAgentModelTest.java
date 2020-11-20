@@ -276,25 +276,128 @@ public class FreeAgentModelTest {
 		validate.setSaving(15);
 		assertEquals(validate.isPlayerStatNotValid(),false);
 	}
+	@Test
+	public void isbirthDayValidTest1()
+	{
+		FreeAgentModel validate = new FreeAgentModel();
+		validate.setBirthDay(22);
+		assertEquals(validate.isbirthDayValid(),true);
+	}
+	@Test
+	public void isbirthDayValidTest2()
+	{
+		FreeAgentModel validate = new FreeAgentModel();
+		validate.setBirthDay(-1);
+		assertEquals(validate.isbirthDayValid(),false);
+	}
+	
+	@Test
+	public void isbirthDayValidTest3()
+	{
+		FreeAgentModel validate = new FreeAgentModel();
+		validate.setBirthDay(33);
+		assertEquals(validate.isbirthDayValid(),false);
+	}
+	@Test
+	public void isbirthYearValidTest1()
+	{
+		FreeAgentModel validate = new FreeAgentModel();
+		validate.setBirthYear(1995);
+		assertEquals(validate.isbirthYearValid(),true);
+	}
+	@Test
+	public void isbirthYearValidTest2()
+	{
+		FreeAgentModel validate = new FreeAgentModel();
+		validate.setBirthYear(-1997);;
+		assertEquals(validate.isbirthYearValid(),false);
+	}
+	
+	@Test
+	public void isbirthYearValidTest3()
+	{
+		FreeAgentModel validate = new FreeAgentModel();
+		validate.setBirthYear(997);;
+		assertEquals(validate.isbirthYearValid(),false);
+	}
+	@Test
+	public void isbirthMonthValidTest1()
+	{
+		FreeAgentModel validate = new FreeAgentModel();
+		validate.setBirthMonth(12);
+		assertEquals(validate.isbirthMonthValid(),true);
+	}
+	@Test
+	public void isbirthMonthValidTest2()
+	{
+		FreeAgentModel validate = new FreeAgentModel();
+		validate.setBirthMonth(-1);;
+		assertEquals(validate.isbirthMonthValid(),false);
+	}
+	
+	@Test
+	public void isbirthMonthValidTest3()
+	{
+		FreeAgentModel validate = new FreeAgentModel();
+		validate.setBirthMonth(16);;
+		assertEquals(validate.isbirthMonthValid(),false);
+	}
+	@Test
+	public void isBirthDateValidTest1()
+	{
+		FreeAgentModel validate = new FreeAgentModel();
+		validate.setBirthDay(20);
+		validate.setBirthMonth(10);
+		validate.setBirthYear(2000);
+		assertEquals(validate.isBirthDateValid(),true);
+	}
+	@Test
+	public void isBirthDateValidTest2()
+	{
+		FreeAgentModel validate = new FreeAgentModel();
+		validate.setBirthDay(31);
+		validate.setBirthMonth(11);
+		validate.setBirthYear(2000);
+		assertEquals(validate.isBirthDateValid(),false);
+	}
+	@Test
+	public void isBirthDateValidTest3()
+	{
+		FreeAgentModel validate = new FreeAgentModel();
+		validate.setBirthDay(29);
+		validate.setBirthMonth(2);
+		validate.setBirthYear(2004);
+		assertEquals(validate.isBirthDateValid(),true);
+	}
+	@Test
+	public void calculateAgeTest()
+	{
+		FreeAgentModel validate = new FreeAgentModel();
+		validate.setBirthDay(22);
+		validate.setBirthMonth(9);
+		validate.setBirthYear(1994);
+		validate.calculateAge();
+		assertEquals(validate.getAge(),26);
+	}
 
 	@Test
 	public void calculateForwardPlayerStrengthTest(){
 		JsonMockDataDb data = new JsonMockDataDb();
-		FreeAgentModel validate = new FreeAgentModel(data.playerOneName,data.positionForward,data.age, data.skating, data.shooting, data.checking, data.saving);
+		FreeAgentModel validate = new FreeAgentModel(data.playerOneName,data.positionForward,data.skating, data.shooting, data.checking, data.saving,data.birthDay,data.birthMonth,data.birthYear);
 		assertEquals(validate.calculatePlayerStrength(),data.calculatePlayerStrength(data.positionForward),0);
 	}
 
 	@Test
 	public void calculateDefensePlayerStrengthTest(){
 		JsonMockDataDb data = new JsonMockDataDb();
-		FreeAgentModel validate = new FreeAgentModel(data.playerOneName,data.positionDefense,data.age, data.skating, data.shooting, data.checking, data.saving);
+		FreeAgentModel validate = new FreeAgentModel(data.playerOneName,data.positionDefense,data.skating, data.shooting, data.checking, data.saving,data.birthDay,data.birthMonth,data.birthYear);
 		assertEquals(validate.calculatePlayerStrength(),data.calculatePlayerStrength(data.positionDefense),0);
 	}
 
 	@Test
 	public void calculateGoaliePlayerStrengthTest(){
 		JsonMockDataDb data = new JsonMockDataDb();
-		FreeAgentModel validate = new FreeAgentModel(data.playerOneName,data.positionGoalie,data.age, data.skating, data.shooting, data.checking, data.saving);
+		FreeAgentModel validate = new FreeAgentModel(data.playerOneName,data.positionGoalie,data.skating, data.shooting, data.checking, data.saving,data.birthDay,data.birthMonth,data.birthYear);
 		assertEquals(validate.calculatePlayerStrength(),data.calculatePlayerStrength(data.positionGoalie),0);
 	}
 
@@ -312,8 +415,8 @@ public class FreeAgentModelTest {
 		assertSame(FreeAgentConstant.PlayerPositionWrong,validate.validate());
 		mock = new JsonMockDataDb();
 		validate = new FreeAgentModel(mock);
-		validate.setAge(-1);
-		assertSame(FreeAgentConstant.PlayerAgeInvalid,validate.validate());
+		validate.setBirthDay(55);
+		assertSame(FreeAgentConstant.PlayerBirthdateInvalid,validate.validate());
 		mock = new JsonMockDataDb();
 		validate = new FreeAgentModel(mock);
 		validate.setSkating(-1);

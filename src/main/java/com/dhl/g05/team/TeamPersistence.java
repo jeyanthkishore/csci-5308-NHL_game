@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.json.simple.JSONObject;
+
 import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.db.StoredProcedure;
 import com.dhl.g05.player.PlayerModel;
@@ -37,12 +39,14 @@ public class TeamPersistence implements ITeamModelPersistence{
 		playerValue = sp.fetchAllPlayers(teamId);
 		for(HashMap<String, Object> player : playerValue) {
 			String playerName = player.get("player_name").toString();
-			int age = Integer.parseInt(player.get("age").toString());
 			double skating = Double.parseDouble(player.get("skating").toString());
 			double shooting = Double.parseDouble(player.get("shooting").toString());
 			double checking = Double.parseDouble(player.get("checking").toString());
 			double saving = Double.parseDouble(player.get("saving").toString());
-			playerList.add(new PlayerModel(playerName,null,null,age,skating,shooting,checking,saving));
+			int birthDay=Integer.parseInt(player.get("birthDay").toString());
+			int birthMonth=Integer.parseInt(player.get("birthMonth").toString());
+			int birthYear=Integer.parseInt(player.get("birthYear").toString());
+			playerList.add(new PlayerModel(playerName,null,null,skating,shooting,checking,saving, birthDay,birthMonth,birthYear));
 		}
 
 		teamObject.setPlayerList(playerList);
