@@ -7,3 +7,6 @@
 [INFO ] 2020-11-20 00:39:30.160 [main] Driver:17 - Test-Driver-Info
 [ERROR] 2020-11-20 00:39:30.164 [main] Driver:18 - Test-Driver-Error
 [DEBUG] 2020-11-20 00:39:30.164 [main] Driver:19 - Test-Driver-Debug
+[INFO ] 2020-11-20 00:43:07.170 [main] Driver:17 - Test-Driver-Info
+[ERROR] 2020-11-20 00:43:07.174 [main] Driver:18 - Test-Driver-Error
+[DEBUG] 2020-11-20 00:43:07.182 [main] Driver:19 - Test-Driver-Debug
