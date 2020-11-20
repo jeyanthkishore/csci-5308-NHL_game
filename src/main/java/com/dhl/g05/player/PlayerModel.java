@@ -14,8 +14,8 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer
 		setPosition(null);
 	}
 
-	public PlayerModel(String playerName, String position, Boolean captain, int age, double skating, double shooting, double checking, double saving) {
-		super(playerName,position, age, skating, shooting, checking, saving);
+	public PlayerModel(String playerName, String position, Boolean captain,double skating, double shooting, double checking, double saving, int birthDay,int birthMonth,int birthYear) {
+		super(playerName,position,skating, shooting, checking, saving, birthDay,birthMonth,birthYear);
 		this.captain = captain;
 	}
 

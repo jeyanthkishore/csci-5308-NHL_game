@@ -171,12 +171,14 @@ public class CreateNewTeam implements ICreateTeam {
 		Boolean captain = false;
 		int goalie = 0;
 		int skaters = 0;
-		int age = 0;
 		int responseNumber;
 		double skating = 0;
 		double shooting = 0;
 		double checking = 0;
 		double saving = 0;
+		int birthDay=0;
+		int birthMonth=0;
+	    int birthYear =0;
 		String name ="";
 		String position="";
 		while(playerList.size()<20) {
@@ -232,12 +234,14 @@ public class CreateNewTeam implements ICreateTeam {
 			}
 			name = freeAgentList.get(responseNumber-1).getPlayerName();
 			position = freeAgentList.get(responseNumber-1).getPosition();
-			age = freeAgentList.get(responseNumber-1).getAge();
 			checking = freeAgentList.get(responseNumber-1).getChecking();
 			skating = freeAgentList.get(responseNumber-1).getSkating();
 			shooting = freeAgentList.get(responseNumber-1).getShooting();
 			saving = freeAgentList.get(responseNumber-1).getSaving();
-			playerList.add(new PlayerModel(name,position,captain,age,checking,skating,shooting,saving));
+			birthDay = freeAgentList.get(responseNumber-1).getBirthDay();
+			birthMonth = freeAgentList.get(responseNumber-1).getBirthMonth();
+			birthYear = freeAgentList.get(responseNumber-1).getBirthYear();
+			playerList.add(new PlayerModel(name,position,captain,checking,skating,shooting,saving,birthDay,birthMonth,birthYear));
 			captain = false;
 			freeAgentList.remove(responseNumber-1);
 		}

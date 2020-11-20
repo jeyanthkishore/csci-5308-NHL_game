@@ -39,7 +39,7 @@ import com.dhl.g05.gameplayconfig.TrainingConfig;class PlayerTrainingMockData {
 	
 	public PlayerTrainingMockData() {
 		leagueObject = new LeagueModel();
-		player = new PlayerModel("Lebron James", "forward", true, 33, 10, 12, 11, 12);
+		player = new PlayerModel("Lebron James", "forward", true,10, 12, 11, 12,22,10,1997);
 		CoachModel coach = new CoachModel("Livingstone", 0.5, 0.6, 0.7, 0.8);
 		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
 		playerList.add(player);

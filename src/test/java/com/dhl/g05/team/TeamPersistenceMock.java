@@ -21,7 +21,7 @@ public class TeamPersistenceMock implements ITeamModelPersistence{
 	public int loadTeamObject(int divisionId, TeamModel teamObject, CoachModel coachObject) {
 		if(divisionId==1 && teamObject.getTeamName().equals("Striker Six")) {
 			ArrayList<PlayerModel> players = new ArrayList<>();
-			players.add(new PlayerModel("Cristiano Ronaldo",null,null,10,10,10,10,10));
+			players.add(new PlayerModel("Cristiano Ronaldo",null,null,10,10,10,10,20,20,2000));
 			teamObject.setPlayerList(players);
 			return 1;
 		}

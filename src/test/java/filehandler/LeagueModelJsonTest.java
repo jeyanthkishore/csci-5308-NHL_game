@@ -51,7 +51,7 @@ public class LeagueModelJsonTest {
 		leagueModel.setCoachDatabase(new CoachPersistenceMock());
 		leagueModel.setGamePlayDatabase(new GamePlayConfigPersistenceMock());
 
-		PlayerModel player = new PlayerModel("Cristiano Ronaldo",null,null,10,15,1,20,15);
+		PlayerModel player = new PlayerModel("Cristiano Ronaldo",null,null,10,15,1,20,22,10,1997);
 		ArrayList<PlayerModel> players = new ArrayList<>();
 		players.add(player);
 
@@ -68,7 +68,7 @@ public class LeagueModelJsonTest {
 		ArrayList<ConferenceModel> conferences = new ArrayList<>();
 		conferences.add(conference);
 		
-		FreeAgentModel freeAgent = new FreeAgentModel("Kane","forward",30,0.5,0.6,0.7,0.8);
+		FreeAgentModel freeAgent = new FreeAgentModel("Kane","forward",0.5,0.6,0.7,0.8,22,10,1997);
 		ArrayList<FreeAgentModel>freeAgentList = new ArrayList<FreeAgentModel>();
 		freeAgentList.add(freeAgent);
 
