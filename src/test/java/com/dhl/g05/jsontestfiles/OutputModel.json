@@ -455,7 +455,8 @@
     },
     "aging": {
       "averageRetirementAge": 35,
-      "maximumAge": 60
+      "maximumAge": 60,
+      "statDecayChance": 0.05
     },
     "injuries": {
       "randomInjuryChance": 0.05,

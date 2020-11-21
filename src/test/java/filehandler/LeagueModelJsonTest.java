@@ -83,7 +83,7 @@ public class LeagueModelJsonTest {
 		TrainingConfig train = new TrainingConfig(100);
 		GameResolverConfig resolver = new GameResolverConfig(0.2);
 		Injury injury = new Injury(2, 1, 260);
-		Aging age = new Aging(28, 60);
+		Aging age = new Aging(28, 60,0.05);
 		GamePlayConfigModel game = new GamePlayConfigModel(trade, age, injury, resolver, train);
 
 		league = new LeagueModel("HockeyLeague",conferences,freeAgentList,coachList, managerList,game);

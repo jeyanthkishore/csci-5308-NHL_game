@@ -57,18 +57,11 @@ public class ResolveTrade implements IResolveTrade {
 			String position = SKATER;
 			adjustPlayersForUserTeam(team, position, GOALIES_COUNT - goaliesCount);
 		}
-		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
-		List<TeamModel> teams = new ArrayList<TeamModel>();
-		IWeakTeam teamInitiatingTrade = TradingConfig.instance().getWeakteam();
-		IStrongTeam teamAcceptingTrade = TradingConfig.instance().getStrongteam();
-		ISortPlayerStrength sortPlayer = TradingConfig.instance().getSortplayerstrength();
-
 	}
 
 	public void adjustAITeam(TeamModel team) {
 		int skatersCount = team.numberOfSkaters(team);
 		int goaliesCount = team.numberOfGoalies(team);
-		LeagueModel league = new LeagueModel();
 
 		if (skatersCount > SKATERS_COUNT) {
 			dropToFreeAgentList(team, SKATER, skatersCount - SKATERS_COUNT);
@@ -99,9 +92,6 @@ public class ResolveTrade implements IResolveTrade {
 			dropPlayer.add(FreeAgentToPlayer);
 			leagueDetails.setFreeAgent(dropPlayer);
 		}
-		for (PlayerModel player : weakestPLayersToTrade) {
-			//team.removeTeamPlayer(player);
-		}
 	}
 
 	public void adjustPlayersForAI(TeamModel team, String position, int count) {
@@ -116,9 +106,7 @@ public class ResolveTrade implements IResolveTrade {
 			FreeAgentToPlayer.setPosition(freeAgentToSwap.getPosition());
 			playersAdded.add(FreeAgentToPlayer);
 			team.setPlayerList(playersAdded);
-			for (FreeAgentModel freeAgent : freeAgents) {
-				//leagueDetails.removeFreeAgentFromLeague(freeAgent);
-			}
+			
 		}
 	}
 
