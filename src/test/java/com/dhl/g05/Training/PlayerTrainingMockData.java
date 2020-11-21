@@ -21,6 +21,7 @@ import com.dhl.g05.gameplayconfig.TrainingConfig;class PlayerTrainingMockData {
 	public PlayerModel player;
 	public int averageRetirementAge = 35;
 	public int maximumAge = 60;
+	public double statDecayChance=0.05;
 	public double randownWinChance = 0.1;
 	public double randomInjuryChance = 0.05;
 	public int injuryDaysLow = 1;
@@ -57,7 +58,7 @@ import com.dhl.g05.gameplayconfig.TrainingConfig;class PlayerTrainingMockData {
 		training = new TrainingConfig(daysUntilTraining);
 		gameResolver = new GameResolverConfig(randownWinChance);
 		injury = new Injury(randomInjuryChance, injuryDaysLow, injuryDaysHigh);
-		aging = new Aging(averageRetirementAge, maximumAge);
+		aging = new Aging(averageRetirementAge, maximumAge,statDecayChance);
 		gamePlayConfig = new GamePlayConfigModel(tradeConfig, aging, injury, gameResolver, training);
 		leagueObject.setGamePlayConfig(gamePlayConfig);
 	}

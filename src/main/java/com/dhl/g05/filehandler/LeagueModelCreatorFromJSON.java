@@ -68,7 +68,8 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		}
 		int averageRetirementAge = Integer.parseInt(jsonAging.get("averageRetirementAge").toString());
 		int maximumAge = Integer.parseInt( jsonAging.get("maximumAge").toString());
-		Aging aging = new Aging(averageRetirementAge, maximumAge);
+		double statDecayChance=Double.parseDouble(jsonAging.get("statDecayChance").toString());
+		Aging aging = new Aging(averageRetirementAge, maximumAge,statDecayChance);
 		AgingConstant result = aging.validate();
 		if(result.equals(AgingConstant.Success)) {
 			return aging;

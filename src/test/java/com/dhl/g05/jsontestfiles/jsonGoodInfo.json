@@ -3,7 +3,8 @@
     "gameplayConfig":{
         "aging":{
             "averageRetirementAge":35,
-            "maximumAge":50
+            "maximumAge":50,
+            "statDecayChance":0.05
         },
         "gameResolver":{
             "randomWinChance":0.1

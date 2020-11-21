@@ -9,8 +9,6 @@ public class SwapPlayers implements ISwapPlayers {
 
 	public void swapPlayers(TeamModel weakTeam, TeamModel strongTeam, List<PlayerModel> weakestPlayersToTrade,
 			List<PlayerModel> strongestPlayersToTrade) {
-
-		IResolveTrade resolveTrade = TradingConfig.instance().getResolveTrade();
 		List<PlayerModel> weakTeamPlayers = weakTeam.getPlayerList();
 		List<PlayerModel> strongTeamPlayers = strongTeam.getPlayerList();
 		List<PlayerModel> weakPlayersToTrade = weakestPlayersToTrade;
