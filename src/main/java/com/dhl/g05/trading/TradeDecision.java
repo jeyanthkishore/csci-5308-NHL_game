@@ -22,8 +22,7 @@ public class TradeDecision implements ITradeDecision {
 		IStrongTeam teamAcceptingTrade = TradingConfig.instance().getStrongteam();
 
 		if (teamAcceptingTrade.getStrongTeam().getUserTeam() == true) {
-			showDetails.sendTradeMessage(teamInitiatingTrade.getPlayersOffered(),
-					teamAcceptingTrade.getStrongestPlayersToTrade());
+			showDetails.sendTradeMessage(teamInitiatingTrade.getPlayersOffered(),teamAcceptingTrade.getStrongestPlayersToTrade());
 			response = showDetails.getTradeDecision();
 			do {
 				if (response == 1) {
@@ -40,17 +39,14 @@ public class TradeDecision implements ITradeDecision {
 				}
 			} while (response == 1 || response == 2);
 		}
-
 		else {
-			if (teamAcceptingTrade.getStrengthOfStrongestPlayers() > teamInitiatingTrade
-					.getStrengthOfPlayersOffered()) {
+			if (teamAcceptingTrade.getStrengthOfStrongestPlayers() > teamInitiatingTrade.getStrengthOfPlayersOffered()) {
 				tradeAccepeted = true;
 				teamAcceptingTrade.setStrengthOfStrongestPlayers(0.00);
 			} else {
 				if (ramdomTradeChance >= trade.getRandomAcceptanceChance()) {
 					tradeAccepeted = true;
 				}
-
 			}
 		}
 		if (tradeAccepeted == true) {

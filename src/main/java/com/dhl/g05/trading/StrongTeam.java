@@ -9,7 +9,6 @@ import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.team.TeamModel;
 
-
 public class StrongTeam implements IStrongTeam {
 
 	private TeamModel strongTeam;
@@ -111,9 +110,7 @@ public class StrongTeam implements IStrongTeam {
 				}
 			}
 		}
-
 		return isTradePossible;
-
 	}
 
 }

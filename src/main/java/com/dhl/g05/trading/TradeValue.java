@@ -8,12 +8,11 @@ public class TradeValue {
 
 	private double randomTradeValue;
 	private double tradeChanceInConfig;
-	 
 
 	public TradeValue(TradingModel trade) {
 		this.tradeChanceInConfig = trade.getRandomTradeOfferChance();
 	}
-	
+
 	public double generateRandomValue() {
 		Random randomValue = new Random();
 		randomTradeValue = randomValue.nextDouble();
@@ -22,9 +21,10 @@ public class TradeValue {
 
 	public boolean checkTradeValue() {
 		randomTradeValue = generateRandomValue();
-		if (randomTradeValue <= tradeChanceInConfig)
+		if (randomTradeValue <= tradeChanceInConfig) {
 			return true;
-		else
+		} else {
 			return false;
+		}
 	}
 }

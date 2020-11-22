@@ -9,14 +9,12 @@ import com.dhl.g05.communication.PlayerCommunication;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.player.PositionConstant;
 import com.dhl.g05.team.TeamModel;
 
 public class ResolveTrade implements IResolveTrade {
 	private static final int SKATERS_COUNT = 18;
 	private static final int GOALIES_COUNT = 2;
-	private static final String FORWARD = "Forward";
-	private static final String GOALIE = "Goalie";
-	private static final String DEFENSE = "Defense";
 	private static final String SKATER = "skater";
 
 	public void resolveTrade() {
@@ -35,14 +33,12 @@ public class ResolveTrade implements IResolveTrade {
 		if (teamInitiatingTrade.getWeakTeam().getUserTeam() == false) {
 			adjustAITeam(teamInitiatingTrade.getWeakTeam());
 		}
-
 	}
 
 	public void adjustUserTeam(TeamModel team) {
 		TeamModel userTeam = new TeamModel();
 		int skatersCount = userTeam.numberOfSkaters(team);
 		int goaliesCount = userTeam.numberOfGoalies(team);
-
 		if (skatersCount > SKATERS_COUNT) {
 			String position = SKATER;
 			dropPlayersFromUserTeam(team, position, skatersCount - SKATERS_COUNT);
@@ -62,7 +58,6 @@ public class ResolveTrade implements IResolveTrade {
 	public void adjustAITeam(TeamModel team) {
 		int skatersCount = team.numberOfSkaters(team);
 		int goaliesCount = team.numberOfGoalies(team);
-
 		if (skatersCount > SKATERS_COUNT) {
 			dropToFreeAgentList(team, SKATER, skatersCount - SKATERS_COUNT);
 		} else if (skatersCount < SKATERS_COUNT) {
@@ -70,9 +65,9 @@ public class ResolveTrade implements IResolveTrade {
 		}
 
 		if (goaliesCount > GOALIES_COUNT) {
-			dropToFreeAgentList(team, GOALIE, goaliesCount - GOALIES_COUNT);
+			dropToFreeAgentList(team, PositionConstant.goalie.getValue(), goaliesCount - GOALIES_COUNT);
 		} else if (goaliesCount < GOALIES_COUNT) {
-			adjustPlayersForAI(team, GOALIE, GOALIES_COUNT - goaliesCount);
+			adjustPlayersForAI(team, PositionConstant.goalie.getValue(), GOALIES_COUNT - goaliesCount);
 		}
 	}
 
@@ -106,7 +101,6 @@ public class ResolveTrade implements IResolveTrade {
 			FreeAgentToPlayer.setPosition(freeAgentToSwap.getPosition());
 			playersAdded.add(FreeAgentToPlayer);
 			team.setPlayerList(playersAdded);
-			
 		}
 	}
 
@@ -115,7 +109,6 @@ public class ResolveTrade implements IResolveTrade {
 		List<PlayerModel> players = getPlayerPosition(team.getPlayerList(), position);
 		message.DropPlayerDetails(players, count);
 		List<PlayerModel> playerToDrop = new ArrayList<PlayerModel>();
-
 		for (int i = 0; i < count; i++) {
 			while (true) {
 				String name = message.getResponse();
@@ -137,10 +130,9 @@ public class ResolveTrade implements IResolveTrade {
 	public List<FreeAgentModel> getFreeAgentPlayerPosition(List<FreeAgentModel> players, String position) {
 
 		List<FreeAgentModel> playersWithPosition = new ArrayList<>();
-		if (position.equalsIgnoreCase("skater")) {
+		if (position.equalsIgnoreCase(SKATER)) {
 			for (FreeAgentModel player : players) {
-				if (player.getPosition().equalsIgnoreCase("Forward")
-						|| player.getPosition().equalsIgnoreCase("Defense")) {
+				if (player.getPosition().equals(PositionConstant.forward.getValue())|| player.getPosition().equals(PositionConstant.defense.getValue())){
 					if (player.getRetiredStatus() == true) {
 						continue;
 					}
@@ -198,10 +190,9 @@ public class ResolveTrade implements IResolveTrade {
 	public List<PlayerModel> getPlayerPosition(List<PlayerModel> players, String position) {
 
 		List<PlayerModel> playersWithPosition = new ArrayList<>();
-		if (position.equalsIgnoreCase("skater")) {
+		if (position.equalsIgnoreCase(SKATER)) {
 			for (PlayerModel player : players) {
-				if (player.getPosition().equalsIgnoreCase("Forward")
-						|| player.getPosition().equalsIgnoreCase("Defense")) {
+				if (player.getPosition().equals(PositionConstant.forward.getValue())|| player.getPosition().equals(PositionConstant.defense.getValue())) {
 					if (player.getRetiredStatus() == true) {
 						continue;
 					}
@@ -219,7 +210,6 @@ public class ResolveTrade implements IResolveTrade {
 				}
 			}
 			return playersWithPosition;
-
 		}
 	}
 
@@ -228,8 +218,7 @@ public class ResolveTrade implements IResolveTrade {
 		List<FreeAgentModel> freeAgentsWithPosition = new ArrayList<FreeAgentModel>();
 		if (position.equalsIgnoreCase(SKATER)) {
 			for (FreeAgentModel freeAgent : freeAgents) {
-				if (freeAgent.getPosition().equalsIgnoreCase(FORWARD)
-						|| freeAgent.getPosition().equalsIgnoreCase(DEFENSE)) {
+				if (freeAgent.getPosition().equals(PositionConstant.forward.getValue())|| freeAgent.getPosition().equals(PositionConstant.defense.getValue())) {
 					if (freeAgent.getRetiredStatus() == true) {
 						continue;
 					}
@@ -238,7 +227,6 @@ public class ResolveTrade implements IResolveTrade {
 			}
 			return freeAgentsWithPosition;
 		}
-
 		for (FreeAgentModel freeAgent : freeAgents) {
 			if (freeAgent.getPosition().equals(position)) {
 				if (freeAgent.getRetiredStatus() == true) {
