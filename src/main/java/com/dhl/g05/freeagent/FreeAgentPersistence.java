@@ -23,10 +23,10 @@ public class FreeAgentPersistence implements IFreeAgentPersistence,IFreeAgentLoa
 	}
 
 	@Override
-	public List<FreeAgentModel> loadFreeAgentObject(String leagueName) {
+	public List<IFreeAgent> loadFreeAgentObject(String leagueName) {
 		StoredProcedure sp= new StoredProcedure();
 		List<HashMap<String,Object>> agentValue = new ArrayList<HashMap<String,Object>>();
-		List<FreeAgentModel> freeAgent = new ArrayList<FreeAgentModel>();
+		List<IFreeAgent> freeAgent = new ArrayList<>();
 		String playerName,position;
 		int birthDay,birthMonth,birthYear;
 		double skating, shooting, checking, saving;

@@ -1,20 +1,18 @@
 package com.dhl.g05.Training;
 
-import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.gameplayconfig.IInjury;
 import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.IPlayerInjured;
 import com.dhl.g05.player.PlayerInjury;
-import com.dhl.g05.player.PlayerModel;
 
 public class PlayerTraining implements IPlayerTraining {
 
 	private LeagueModel leagueObject;
 
-	public PlayerTraining() {
-	}
 
-	public PlayerModel performTrainingForPlayer(PlayerModel player, CoachModel headCoach,LeagueModel league) {
+	public IPlayer performTrainingForPlayer(IPlayer player, ICoach headCoach,LeagueModel league) {
 		this.leagueObject = league;
 
 		Boolean playerInjured = false;
@@ -55,7 +53,7 @@ public class PlayerTraining implements IPlayerTraining {
 		return player;
 	}
 
-	private Boolean isPlayerInjured(PlayerModel player) {
+	private Boolean isPlayerInjured(IPlayer player) {
 		IPlayerInjured playerProgress= new PlayerInjury();
 		IInjury injury = leagueObject.getGamePlayConfig().getInjuries();
 		if(playerProgress.isPlayerInjured(player,injury)) {

@@ -8,74 +8,77 @@ import java.util.List;
 import org.junit.Test;
 
 import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.division.IDivision;
 import com.dhl.g05.gameplayconfig.Aging;
 import com.dhl.g05.gameplayconfig.IAging;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
 public class PlayerBirthdayTest {
 
 	@Test
 	public void decreaseStatOnBirthdayTest1() {
-		List<PlayerModel> playerDetails = callPlayerBirthday();
+		List<IPlayer> playerDetails = callPlayerBirthday();
 		assertEquals(playerDetails.get(0).getSaving(), 10 - 1, 0);
 	}
 
 	@Test
 	public void decreaseStatOnBirthdayTest2() {
-		List<PlayerModel> playerDetails = callPlayerBirthday();
+		List<IPlayer> playerDetails = callPlayerBirthday();
 		assertEquals(playerDetails.get(0).getChecking(), 10 - 1, 0);
 	}
 
 	@Test
 	public void decreaseStatOnBirthdayTest3() {
-		List<PlayerModel> playerDetails = callPlayerBirthday();
+		List<IPlayer> playerDetails = callPlayerBirthday();
 		assertEquals(playerDetails.get(0).getSkating(), 10 - 1, 0);
 	}
 
 	@Test
 	public void decreaseStatOnBirthdayTest4() {
-		List<PlayerModel> playerDetails = callPlayerBirthday();
+		List<IPlayer> playerDetails = callPlayerBirthday();
 		assertEquals(playerDetails.get(0).getShooting(), 10 - 1, 0);
 	}
 
 	@Test
 	public void decreaseStatOnBirthdayTest5() {
-		List<PlayerModel> playerDetails = callPlayerBirthday();
+		List<IPlayer> playerDetails = callPlayerBirthday();
 		assertEquals(playerDetails.get(1).getSaving(), 15, 0);
 	}
 
 	@Test
 	public void decreaseStatOnBirthdayTest6() {
-		List<PlayerModel> playerDetails = callPlayerBirthday();
+		List<IPlayer> playerDetails = callPlayerBirthday();
 		assertEquals(playerDetails.get(1).getShooting(), 15, 0);
 	}
 
 	@Test
 	public void decreaseStatOnBirthdayTest7() {
-		List<PlayerModel> playerDetails = callPlayerBirthday();
+		List<IPlayer> playerDetails = callPlayerBirthday();
 		assertEquals(playerDetails.get(1).getChecking(), 15, 0);
 	}
 
 	@Test
 	public void decreaseStatOnBirthdayTest8() {
-		List<PlayerModel> playerDetails = callPlayerBirthday();
+		List<IPlayer> playerDetails = callPlayerBirthday();
 		assertEquals(playerDetails.get(1).getSkating(), 15, 0);
 	}
 
-	public List<PlayerModel> callPlayerBirthday() {
+	public ArrayList<IPlayer> callPlayerBirthday() {
 		IAging agingConfig = new Aging();
 		agingConfig.setStatDecayChance(1);
 		ILeague league = mockTOCheckBirthdate();
-		ArrayList<PlayerModel> playerDetails = new ArrayList<>();
+		ArrayList<IPlayer> playerDetails = new ArrayList<>();
 		IPlayerBirthday playerBirthday = new PlayerBirthday();
 		playerBirthday.decreaseStatOnBirthday(league, agingConfig);
-		for (ConferenceModel c : league.getConferenceDetails()) {
-			for (DivisionModel d : c.getDivisionDetails()) {
-				for (TeamModel t : d.getTeamDetails()) {
-					for (PlayerModel p : t.getPlayerList()) {
+		for (IConference c : league.getConferenceDetails()) {
+			for (IDivision d : c.getDivisionDetails()) {
+				for (ITeam t : d.getTeamDetails()) {
+					for (IPlayer p : t.getPlayerList()) {
 						playerDetails.add(p);
 
 					}
@@ -89,10 +92,10 @@ public class PlayerBirthdayTest {
 		LeagueModel leagueMock = new LeagueModel();
 		leagueMock.setLeagueName("DHL");
 		ConferenceModel conference = new ConferenceModel();
-		ArrayList<ConferenceModel> conferenceDetails = new ArrayList<ConferenceModel>();
-		ArrayList<DivisionModel> divisionDetails = new ArrayList<DivisionModel>();
-		ArrayList<TeamModel> teamDetails = new ArrayList<TeamModel>();
-		ArrayList<PlayerModel> playerDetails = new ArrayList<PlayerModel>();
+		List<IConference> conferenceDetails = new ArrayList<>();
+		List<IDivision> divisionDetails = new ArrayList<>();
+		List<ITeam> teamDetails = new ArrayList<>();
+		ArrayList<IPlayer> playerDetails = new ArrayList<>();
 		conferenceDetails.add(conference);
 		leagueMock.setConferenceDetails(conferenceDetails);
 		DivisionModel division = new DivisionModel();

@@ -2,41 +2,42 @@ package com.dhl.g05.leaguesimulation.leaguestanding;
 
 import java.util.Comparator;
 
-import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.conference.IConference;
+import com.dhl.g05.division.IDivision;
+import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
 public class Standing implements IStanding {
 	
-	private ConferenceModel conference;
-	private DivisionModel Division;
-	private TeamModel team;
+	private IConference conference;
+	private IDivision Division;
+	private ITeam team;
 	private int gamesPlayed;
     private int gamesWon;
     private int points;
 	
 	@Override
-	public ConferenceModel getConference() {
+	public IConference getConference() {
 		return conference;
 	}
 	@Override
-	public void setConference(ConferenceModel conference) {
+	public void setConference(IConference conference) {
 		this.conference = conference;
 	}
 	@Override
-	public DivisionModel getDivision() {
+	public IDivision getDivision() {
 		return Division;
 	}
 	@Override
-	public void setDivision(DivisionModel division) {
+	public void setDivision(IDivision division) {
 		Division = division;
 	}
 	@Override
-	public TeamModel getTeam() {
+	public ITeam getTeam() {
 		return team;
 	}
 	@Override
-	public void setTeam(TeamModel team) {
+	public void setTeam(ITeam team) {
 		this.team = team;
 	}
 	

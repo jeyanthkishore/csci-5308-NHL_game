@@ -7,10 +7,13 @@ import java.util.Map;
 import java.util.Random;
 
 import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.coach.ICoachModel;
 import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.conference.IConference;
 import com.dhl.g05.conference.IConferenceModel;
 import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.division.IDivision;
 import com.dhl.g05.division.IDivisionModel;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.IFreeAgent;
@@ -24,8 +27,10 @@ import com.dhl.g05.gameplayconfig.TrainingConfig;
 import com.dhl.g05.league.ILeagueModel;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.league.LeaguePersistenceMock;
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.IPlayerModel;
 import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.ITeamModel;
 import com.dhl.g05.team.TeamModel;
 
@@ -34,12 +39,12 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public String leagueName = "HockeyLeague";
 	public Map<String,Object> firstPlayerInfo;
 	public Map<String,Object> secondPlayerInfo;
-	public List<PlayerModel> playerList;
-	public List<TeamModel> teamList;
-	public List<DivisionModel> divisionList;
-	public List<FreeAgentModel> freeAgentList;
-	public List<ConferenceModel> conferenceList;
-	public List<CoachModel> coachList;
+	public List<IPlayer> playerList;
+	public List<ITeam> teamList;
+	public List<IDivision> divisionList;
+	public List<IFreeAgent> freeAgentList;
+	public List<IConference> conferenceList;
+	public List<ICoach> coachList;
 	public List<CoachModel> coachListTwo;
 	public List<String> managerList;
 	public List<IFreeAgent> retiredFreeAgents;
@@ -115,19 +120,19 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	}
 	
 	private void setJsonValues() {
-		divisionList = new ArrayList<DivisionModel>();
-		playerList = new ArrayList<PlayerModel>();
-		teamList = new ArrayList<TeamModel>();
-		freeAgentList = new ArrayList<FreeAgentModel>();
-		coachList = new ArrayList<CoachModel>();
-		coachListTwo = new ArrayList<CoachModel>();
-		managerList = new ArrayList<String>();
-		managerListTwo = new ArrayList<String>();
-		conferenceList = new ArrayList<ConferenceModel>();
-		retiredFreeAgents = new ArrayList<IFreeAgent>();
-		retiredTeamPlayers = new ArrayList<PlayerModel>();
-		leagueList = new ArrayList<HashMap<String,Object>>();
-		leagueMap = new HashMap<String,Object>();
+		divisionList = new ArrayList<>();
+		playerList = new ArrayList<>();
+		teamList = new ArrayList<>();
+		freeAgentList = new ArrayList<>();
+		coachList = new ArrayList<>();
+		coachListTwo = new ArrayList<>();
+		managerList = new ArrayList<>();
+		managerListTwo = new ArrayList<>();
+		conferenceList = new ArrayList<>();
+		retiredFreeAgents = new ArrayList<>();
+		retiredTeamPlayers = new ArrayList<>();
+		leagueList = new ArrayList<>();
+		leagueMap = new HashMap<>();
 		league = new LeagueModel();
 		playerOneName =  "Cristiano Ronaldo";
 		positionOne = "forward";
@@ -362,8 +367,8 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		return playerStrength;
 	}
 
-	public double calculateTeamStrength(List<PlayerModel> playerList){
-		for (IFreeAgent player: playerList) {
+	public double calculateTeamStrength(List<IPlayer> playerList){
+		for (IPlayer player: playerList) {
 			if(player.getInjuredStatus()){
 				teamStrength +=	player.calculatePlayerStrength()/2;
 			}
@@ -397,7 +402,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	}
 
 	@Override
-	public void LoadDivisionModelData(DivisionModel divisionModelObject) {
+	public void LoadDivisionModelData(IDivision divisionModelObject) {
 		divisionModelObject.setDivisionName(divisionOneName);
 		divisionModelObject.setTeamDetails(teamList);
 	}
@@ -414,7 +419,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	}
 
 	@Override
-	public void loadConferenceModelData(ConferenceModel conferenceModelObject) {
+	public void loadConferenceModelData(IConference conferenceModelObject) {
 		conferenceModelObject.setConferenceName(conferenceName);
 		conferenceModelObject.setDivisionDetails(divisionList);
 	}

@@ -72,4 +72,6 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer
 	public boolean isPlayerInjured(IPlayerInjured playerInjured, PlayerModel playerModel , IInjury injury) {
 		return  playerInjured.isPlayerInjured(playerModel, injury);
 	}
+
+
 }

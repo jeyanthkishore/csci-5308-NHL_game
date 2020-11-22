@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface ICoachLoad {
 
-	public List<CoachModel> loadLeagueCoachObject(String leagueName);
+	public List<ICoach> loadLeagueCoachObject(String leagueName);
 	
 }

@@ -2,8 +2,8 @@ package com.dhl.g05.leaguesimulation.leaguestanding;
 
 import java.util.List;
 
-import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.conference.IConference;
+import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.team.TeamModel;
 
@@ -15,14 +15,14 @@ public interface ILeagueStanding {
 
 	void initializeStandings(LeagueModel league);
 
-	void updateStatsForWinningTeam(ConferenceModel conference, DivisionModel division, TeamModel team);
+	void updateStatsForWinningTeam(IConference conference, IDivision division, TeamModel team);
 
-	void updateStatsForLosingTeam(ConferenceModel conference, DivisionModel division, TeamModel team);
+	void updateStatsForLosingTeam(IConference conference, IDivision division, TeamModel team);
 
-	List<IStanding> getStandingsInDivision(DivisionModel division);
+	List<IStanding> getStandingsInDivision(IDivision division);
 
-	List<IStanding> getStandingsInConference(ConferenceModel conference);
+	List<IStanding> getStandingsInConference(IConference conference);
 
-	IStanding getTopStandingInConference(ConferenceModel conference);
+	IStanding getTopStandingInConference(IConference conference);
 
 }

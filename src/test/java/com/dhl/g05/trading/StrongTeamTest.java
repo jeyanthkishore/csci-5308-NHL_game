@@ -11,7 +11,9 @@ import java.util.List;
 import org.junit.Test;
 
 import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.division.IDivision;
 import com.dhl.g05.gameplayconfig.TradingModel;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.PlayerModel;
@@ -40,7 +42,7 @@ public class StrongTeamTest {
 
 	@Test
 	public void setConferenceNameTest() {
-		ConferenceModel conference = new ConferenceModel();
+		IConference conference = new ConferenceModel();
 		StrongTeam strong = new StrongTeam();
 		conference.setConferenceName("Western");
 		strong.setConferenceName(conference.getConferenceName());
@@ -49,7 +51,7 @@ public class StrongTeamTest {
 
 	@Test
 	public void setDivisionNameTest() {
-		DivisionModel division = new DivisionModel();
+		IDivision division = new DivisionModel();
 		StrongTeam strong = new StrongTeam();
 		division.setDivisionName("Indian");
 		strong.setDivisionName(division.getDivisionName());
@@ -58,7 +60,7 @@ public class StrongTeamTest {
 
 	@Test
 	public void getDivisionNameTest() {
-		DivisionModel division = new DivisionModel();
+		IDivision division = new DivisionModel();
 		StrongTeam strong = new StrongTeam();
 		division.setDivisionName("Pacific");
 		strong.setDivisionName(division.getDivisionName());
@@ -113,8 +115,8 @@ public class StrongTeamTest {
 		TradingModel trade = mockLeague.TradingConfigMock();
 		IWeakTeam teamInitiatingTrade = TradingConfig.instance().getWeakteam();
 
-		for (ConferenceModel conference : league.getConferenceDetails()) {
-			for (DivisionModel division : conference.getDivisionDetails()) {
+		for (IConference conference : league.getConferenceDetails()) {
+			for (IDivision division : conference.getDivisionDetails()) {
 				for (TeamModel team : division.getTeamDetails()) {
 					if (team.getTeamName().equals("Tigers"))
 					{

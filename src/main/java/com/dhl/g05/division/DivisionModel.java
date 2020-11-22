@@ -2,13 +2,13 @@ package com.dhl.g05.division;
 
 import java.util.List;
 
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.team.ITeam;
 import com.mysql.cj.util.StringUtils;
 
-public class DivisionModel {
+public class DivisionModel implements IDivision {
 
 	private String divisionName;
-	private List<TeamModel> teams;
+	private List<ITeam> teams;
 
 	public DivisionModel() {
 		setDivisionName(null);
@@ -19,24 +19,28 @@ public class DivisionModel {
 		divisionObject.LoadDivisionModelData(this);
 	}
 
-	public DivisionModel(String division, List<TeamModel> teamdetail) {
+	public DivisionModel(String division, List<ITeam> teamdetail) {
 		this.divisionName = division;
 		this.teams = teamdetail;
 	}
 
+	@Override
 	public String getDivisionName() {
 		return divisionName;
 	}
 
+	@Override
 	public void setDivisionName(String divisionName) {
 		this.divisionName = divisionName;
 	}
 
-	public List<TeamModel> getTeamDetails() {
+	@Override
+	public List<ITeam> getTeamDetails() {
 		return teams;
 	}
 
-	public void setTeamDetails(List<TeamModel> teamDetails) {
+	@Override
+	public void setTeamDetails(List<ITeam> teamDetails) {
 		this.teams = teamDetails;
 	}
 
@@ -48,6 +52,7 @@ public class DivisionModel {
 		return database.loadDivisionObject(conferenceId,this);
 	}
 
+	@Override
 	public DivisionConstant validate() {
 		if(isDivisionNameEmptyorNull()) {
 			return DivisionConstant.DivisionNameEmpty;

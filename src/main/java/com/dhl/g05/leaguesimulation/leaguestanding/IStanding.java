@@ -1,22 +1,23 @@
 package com.dhl.g05.leaguesimulation.leaguestanding;
 
-import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.conference.IConference;
+import com.dhl.g05.division.IDivision;
+import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
 public interface IStanding {
 
-	ConferenceModel getConference();
+	IConference getConference();
 
-	void setConference(ConferenceModel conference);
+	void setConference(IConference conference);
 
-	DivisionModel getDivision();
+	IDivision getDivision();
 
-	void setDivision(DivisionModel division);
+	void setDivision(IDivision division);
 
-	TeamModel getTeam();
+	ITeam getTeam();
 
-	void setTeam(TeamModel team);
+	void setTeam(ITeam team);
 
 	int getGamesPlayed();
 

@@ -15,7 +15,7 @@ public class FreeAgentPersistenceMock implements IFreeAgentPersistence,IFreeAgen
 	}
 
 	@Override
-	public List<FreeAgentModel> loadFreeAgentObject(String leagueName) {
+	public List<IFreeAgent> loadFreeAgentObject(String leagueName) {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		if(leagueName.equalsIgnoreCase("HockeyLeague")) {
 			return mock.freeAgentList;
