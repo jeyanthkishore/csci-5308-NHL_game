@@ -50,5 +50,53 @@ public class StateMachineFactory extends AbstractStateMachineFactory{
 	public AbstractState getInitializeSeasonState() {
 		return new InitializeSeasonState(communication);
 	}
+
+
+	@Override
+	public AbstractState getAdvancedTimeState() {
+		return new AdvanceTimeState();
+	}
+
+
+	@Override
+	public AbstractState getTrainingState() {
+		return new TrainingState();
+	}
+
+
+	@Override
+	public AbstractState getPlayOffState() {
+		return new PlayoffScheduleState();
+	}
+
+
+	@Override
+	public AbstractState getAgingState() {
+		return new AgingState();
+	}
+
+
+	@Override
+	public AbstractState getTradeState() {
+		return new TradeState();
+	}
+
+
+	@Override
+	public AbstractState getStimulateGameState() {
+		return new StimulateGameState();
+	}
+
+
+	@Override
+	public AbstractState getAdvanceToNextSeasonState() {
+		return new AdvanceToNextSeasonState();
+	}
+
+
+	@Override
+	public AbstractState getPersistState() {
+		return new PersistState();
+	}
 	
 }

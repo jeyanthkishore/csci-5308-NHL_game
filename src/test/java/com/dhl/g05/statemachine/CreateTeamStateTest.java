@@ -11,8 +11,8 @@ import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.db.AbstractDataBaseFactory;
 import com.dhl.g05.filehandler.LeagueModelJson;
 import com.dhl.g05.mockdata.JsonMockDataDb;
-import com.dhl.g05.statemachine.mocks.MockCreateTeamCommnication;
-import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
+import com.dhl.g05.mocks.MockCreateTeamCommnication;
+import com.dhl.g05.mocks.MockPlayerCommunication;
 
 import filehandler.DatabaseMockFactory;
 

@@ -37,11 +37,13 @@ public class InitializeSeasonState extends AbstractState{
 		}
 		DateHandler dateObject  = DateHandler.getInstance();
 		dateObject.performDateAssignment(currentYear);
+		league.getLeagueStanding().initializeStandings(league);
 		return true;
 	}
 
 	@Override
 	public boolean exit() {
+		this.setNextState(AbstractStateMachineFactory.getFactory().getAdvancedTimeState());
 		return true;
 	}
 	

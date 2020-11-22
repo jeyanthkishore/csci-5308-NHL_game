@@ -19,5 +19,13 @@ public abstract class AbstractStateMachineFactory {
 	    public abstract AbstractState getPlayerChoiceState();
 	    public abstract AbstractState getStimulateState(int numberOfSeasons);
 	    public abstract AbstractState getInitializeSeasonState();
+	    public abstract AbstractState getAdvancedTimeState();
+	    public abstract AbstractState getTrainingState();
+	    public abstract AbstractState getPlayOffState();
+	    public abstract AbstractState getAgingState();
+	    public abstract AbstractState getTradeState();
+	    public abstract AbstractState getStimulateGameState();
+	    public abstract AbstractState getAdvanceToNextSeasonState();
+	    public abstract AbstractState getPersistState();
 	    
 }

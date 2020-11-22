@@ -27,7 +27,6 @@ public class FreeAgentModel implements IFreeAgent {
 		setPosition(null);
 		setInjuredStatus(false);
 		setInjuredStatus(false);
-
 	}
 
 	public FreeAgentModel(String playerName, String position, double skating, double shooting, double checking,
@@ -171,8 +170,12 @@ public class FreeAgentModel implements IFreeAgent {
 		this.playerStrength = playerStrength;
 	}
 
-	public int saveFreeAgentObject(int leagueId, IFreeAgentPersistence database) {
-		return database.saveFreeAgentObject(leagueId, this);
+	public int saveFreeAgentObject(int leagueId,IFreeAgentPersistence database) {
+		return database.saveFreeAgentObject(leagueId,this);
+	}
+	
+	public void incrementPlayerAgeByDay(int day) {
+		
 	}
 
 	@Override
