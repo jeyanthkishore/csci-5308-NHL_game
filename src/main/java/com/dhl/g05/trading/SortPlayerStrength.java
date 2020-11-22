@@ -10,7 +10,6 @@ public class SortPlayerStrength implements ISortPlayerStrength {
 	public List<PlayerModel> sortByAscending(List<PlayerModel> players) {
 		players.sort(Comparator.comparing(PlayerModel::getPlayerStrength));
 		return players;
-
 	}
 
 	public List<PlayerModel> sortByDescending(List<PlayerModel> players) {

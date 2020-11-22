@@ -31,5 +31,4 @@ public interface IStrongTeam {
 
 	public boolean findTeamToSwap(LeagueModel league);
 
-//	public boolean findPlayersToSwap(List<PlayerObject> sortPlayersStrongToWeak);
 }

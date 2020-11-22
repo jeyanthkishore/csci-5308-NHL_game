@@ -94,10 +94,8 @@ public class WeakTeam implements IWeakTeam {
 		List<PlayerModel> playersOfWeakTeam = weakTeam.getPlayerList();
 		ISortPlayerStrength sortPlayer = TradingConfig.instance().getSortplayerstrength();
 		List<PlayerModel> sortPlayersWeakToStrong = sortPlayer.sortByAscending(playersOfWeakTeam);
-
 		Collection<PlayerModel> players = sortPlayersWeakToStrong;
-		List<PlayerModel> weakestPLayersToTrade = players.stream().limit(maxPersonPerTrade)
-				.collect(Collectors.toList());
+		List<PlayerModel> weakestPLayersToTrade = players.stream().limit(maxPersonPerTrade).collect(Collectors.toList());
 		weakPosition = weakestPLayersToTrade.get(0).getPosition();
 
 		for (PlayerModel player : weakestPLayersToTrade) {
@@ -112,6 +110,4 @@ public class WeakTeam implements IWeakTeam {
 		setOfferedPlayerPosition(weakPosition);
 		setStrengthOfPlayersOffered(strength);
 	}
-
-
 }

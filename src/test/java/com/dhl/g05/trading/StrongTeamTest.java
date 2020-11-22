@@ -2,6 +2,7 @@ package com.dhl.g05.trading;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
@@ -17,10 +18,11 @@ import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.team.TeamModel;
 
 public class StrongTeamTest {
-
+	
+	MockLeagueModel mockLeague = new MockLeagueModel();
 	WeakTeamTest weakTest = new WeakTeamTest();
 	WeakTeam weakTeam = new WeakTeam();
-	TeamModel strongestTeam = weakTest.mock1();
+	TeamModel strongestTeam = mockLeague.leagueMock4();
 
 	@Test
 	public void setStrongTeamTest() {
@@ -32,8 +34,8 @@ public class StrongTeamTest {
 	@Test
 	public void getWeakTeamTest() {
 		StrongTeam strong = new StrongTeam();
-		strong.setStrongTeam(weakTest.mock2());
-		assertNotSame(weakTest.mock1(), strong.getStrongTeam());
+		strong.setStrongTeam(mockLeague.leagueMock4());
+		assertNotSame(mockLeague.leagueMock4(), strong.getStrongTeam());
 	}
 
 	@Test
@@ -62,21 +64,62 @@ public class StrongTeamTest {
 		strong.setDivisionName(division.getDivisionName());
 		assertSame(strong.getDivisionName(), division.getDivisionName());
 	}
+	
+	@Test
+	public void setStrongestPlayersToTradeTest() {
+		MockLeagueModel mockLeague = new MockLeagueModel();
+		StrongTeam strong = new StrongTeam();
+		strong.setStrongestPlayersToTrade(mockLeague.leagueMock2());
+		assertSame(strong.getStrongestPlayersToTrade().size(),2);
+	}
+	
+	@Test
+	public void getStrongestPlayersToTradeTest1() {
+		MockLeagueModel mockLeague = new MockLeagueModel();
+		StrongTeam strong = new StrongTeam();
+		strong.setStrongestPlayersToTrade(mockLeague.leagueMock3());
+		assertSame(strong.getStrongestPlayersToTrade().size(),1);
+	}
+	@Test
+	public void getStrongestPlayersToTradeTest2() {
+		StrongTeam strong = new StrongTeam();
+		assertNull(strong.getStrongestPlayersToTrade());
+	}
+	@Test
+	public void getStrengthOfStrongestPlayersTest1() {
+		StrongTeam strong = new StrongTeam();
+		strong.setStrengthOfStrongestPlayers(5);
+		assertNotSame(strong.getStrengthOfStrongestPlayers(),4);
+	}
+	
+	@Test
+	public void getStrengthOfStrongestPlayersTest2() {
+		StrongTeam strong = new StrongTeam();
+		strong.setStrengthOfStrongestPlayers(5);
+		assertEquals(strong.getStrengthOfStrongestPlayers(),5,0);
+	}
+	
+	@Test
+	public void setStrengthOfStrongestPlayersTest() {
+		StrongTeam strong = new StrongTeam();
+		strong.setStrengthOfStrongestPlayers(8);
+		assertEquals(strong.getStrengthOfStrongestPlayers(),8,0);
+	}
 
 	@Test
 	public void findTeamToSwapTest() {
-		MockTradeConfig tradeMock = new MockTradeConfig();
 		StrongTeam strong = new StrongTeam();
-		MockLeagueModel mockLeague = new MockLeagueModel();
 		LeagueModel league = mockLeague.leagueMock();
-		TradingModel trade = tradeMock.TradingModelTest();
+		TradingModel trade = mockLeague.TradingConfigMock();
 		IWeakTeam teamInitiatingTrade = TradingConfig.instance().getWeakteam();
 
 		for (ConferenceModel conference : league.getConferenceDetails()) {
 			for (DivisionModel division : conference.getDivisionDetails()) {
 				for (TeamModel team : division.getTeamDetails()) {
 					if (team.getTeamName().equals("Tigers"))
+					{
 						teamInitiatingTrade.setConferenceName("Eastern");
+					}
 					teamInitiatingTrade.setDivisionName("Atlantic");
 					teamInitiatingTrade.setOfferedPlayerPosition("goalie");
 					teamInitiatingTrade.setNumberOfPlayersOffered(1);
@@ -95,7 +138,6 @@ public class StrongTeamTest {
 		assertTrue(result);
 		assertEquals("player1Team2", position.get(0).getPlayerName());
 		assertEquals("defense", position.get(0).getPosition());
-
 	}
 
 }

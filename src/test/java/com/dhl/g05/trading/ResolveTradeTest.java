@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.dhl.g05.gameplayconfig.TradingModel;
 import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.team.TeamModel;
 
@@ -17,7 +16,6 @@ public class ResolveTradeTest {
 	
 	@Test
 	public void dropWeakestPlayersToFreeAgentListTest() {
-		
         ResolveTrade resolve = new ResolveTrade();
 		PlayerModel player1 = new PlayerModel();
 		player1.setPlayerName("Shawn");
@@ -26,7 +24,6 @@ public class ResolveTradeTest {
 		player1.setChecking(5);
 		player1.setShooting(5);
 		player1.setSkating(5);
-
 		PlayerModel player2 = new PlayerModel();
 		player2.setPlayerName("Mendes");
 		player2.setPosition(FORWARD);
@@ -34,7 +31,6 @@ public class ResolveTradeTest {
 		player2.setChecking(2);
 		player2.setShooting(2);
 		player2.setSkating(2);
-
 		List<PlayerModel> players = new ArrayList<PlayerModel>();
 		players.add(player1);
 		players.add(player2);
