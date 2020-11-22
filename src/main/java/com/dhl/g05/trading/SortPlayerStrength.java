@@ -3,17 +3,18 @@ package com.dhl.g05.trading;
 import java.util.Comparator;
 import java.util.List;
 
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
 
 public class SortPlayerStrength implements ISortPlayerStrength {
 
-	public List<PlayerModel> sortByAscending(List<PlayerModel> players) {
-		players.sort(Comparator.comparing(PlayerModel::getPlayerStrength));
+	public List<IPlayer> sortByAscending(List<IPlayer> players) {
+		players.sort(Comparator.comparing(IPlayer::getPlayerStrength));
 		return players;
 	}
 
-	public List<PlayerModel> sortByDescending(List<PlayerModel> players) {
-		players.sort(Comparator.comparing(PlayerModel::getPlayerStrength).reversed());
+	public List<IPlayer> sortByDescending(List<IPlayer> players) {
+		players.sort(Comparator.comparing(IPlayer::getPlayerStrength).reversed());
 		return players;
 	}
 }

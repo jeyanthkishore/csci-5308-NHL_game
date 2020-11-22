@@ -28,7 +28,7 @@ import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.gameplayconfig.GamePlayConfigPersistenceMock;
 import com.dhl.g05.gameplayconfig.GameResolverConfig;
 import com.dhl.g05.gameplayconfig.Injury;
-import com.dhl.g05.gameplayconfig.TradingModel;
+import com.dhl.g05.gameplayconfig.TradingConfig;
 import com.dhl.g05.gameplayconfig.TrainingConfig;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.league.LeaguePersistenceMock;
@@ -85,7 +85,7 @@ public class LeagueModelJsonTest {
 		ArrayList<String> managerList = new ArrayList<>();
 		managerList.add("Smith");
 		
-		TradingModel trade = new TradingModel(8, 0.05, 2, 0.07);
+		TradingConfig trade = new TradingConfig(8, 0.05, 2, 0.07);
 		TrainingConfig train = new TrainingConfig(100);
 		GameResolverConfig resolver = new GameResolverConfig(0.2);
 		Injury injury = new Injury(2, 1, 260);

@@ -5,17 +5,20 @@ import java.util.List;
 
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
+import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
 public class StrongTeam implements IStrongTeam {
 
-	private TeamModel strongTeam;
+	private ITeam strongTeam;
 	private String conferenceName;
 	private String divisionName;
 	private double strengthOfStrongestPlayers = 0.00;
-	private List<PlayerModel> strongestPlayersToTrade;
+	private List<IPlayer> strongestPlayersToTrade;
 
 	public double getStrengthOfStrongestPlayers() {
 		return strengthOfStrongestPlayers;
@@ -41,35 +44,35 @@ public class StrongTeam implements IStrongTeam {
 		this.divisionName = divisionName;
 	}
 
-	public TeamModel getStrongTeam() {
+	public ITeam getStrongTeam() {
 		return strongTeam;
 	}
 
-	public void setStrongTeam(TeamModel strongTeam) {
+	public void setStrongTeam(ITeam strongTeam) {
 		this.strongTeam = strongTeam;
 	}
 
-	public List<PlayerModel> getStrongestPlayersToTrade() {
+	public List<IPlayer> getStrongestPlayersToTrade() {
 		return strongestPlayersToTrade;
 	}
 
-	public void setStrongestPlayersToTrade(List<PlayerModel> strongestPlayersToTrade) {
+	public void setStrongestPlayersToTrade(List<IPlayer> strongestPlayersToTrade) {
 		this.strongestPlayersToTrade = strongestPlayersToTrade;
 	}
 
-	public boolean findTeamToSwap(LeagueModel league) {
+	public boolean findTeamToSwap(ILeague league) {
 
 		boolean isTradePossible = false;
 		double strengthOfStrongestPLayer = 0.00;
-		List<PlayerModel> playersRequested = new ArrayList<PlayerModel>();
-		IWeakTeam teamInitiatingTrade = TradingConfig.instance().getWeakteam();
+		List<IPlayer> playersRequested = new ArrayList<>();
+		IWeakTeam teamInitiatingTrade = Trading.instance().getWeakteam();
 		String position = teamInitiatingTrade.getOfferedPlayerPosition();
 		int numberOfPlayersToTrade = teamInitiatingTrade.getNumberOfPlayersOffered();
-		ISortPlayerStrength sortPlayer = TradingConfig.instance().getSortplayerstrength();
+		ISortPlayerStrength sortPlayer = Trading.instance().getSortplayerstrength();
 
 		for (IConference conference : league.getConferenceDetails()) {
 			for (IDivision division : conference.getDivisionDetails()) {
-				for (TeamModel team : division.getTeamDetails()) {
+				for (ITeam team : division.getTeamDetails()) {
 					int countOfPlayers = 0;
 					double strengthOfPlayers = 0.00;
 					if (((teamInitiatingTrade.getWeakTeam().getTeamName()).equals(team.getTeamName()))
@@ -77,7 +80,7 @@ public class StrongTeam implements IStrongTeam {
 							&& ((teamInitiatingTrade.getDivisionName()).equals(division.getDivisionName()))) {
 						continue;
 					} else {
-						List<PlayerModel> strongestPlayers = sortPlayer.sortByDescending(team.getPlayerList());
+						List<IPlayer> strongestPlayers = sortPlayer.sortByDescending(team.getPlayerList());
 						for (int i = 0; i < teamInitiatingTrade.getPlayersOffered().size(); i++) {
 							for (int j = 0; j < strongestPlayers.size(); j++) {
 								if (strongestPlayers.get(j).getPlayerStrength() >= teamInitiatingTrade
@@ -112,5 +115,4 @@ public class StrongTeam implements IStrongTeam {
 		}
 		return isTradePossible;
 	}
-
 }

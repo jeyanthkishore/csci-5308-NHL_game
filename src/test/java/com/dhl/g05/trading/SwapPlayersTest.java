@@ -8,16 +8,19 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
 public class SwapPlayersTest {
 	
 	ISwapPlayers swap = new SwapPlayers();
 	MockLeagueModel mockLeague = new MockLeagueModel();
-	List<TeamModel> teams = new ArrayList<TeamModel>();
-	List<PlayerModel> swapList1 = new ArrayList<PlayerModel>();
-	List<PlayerModel> swapList2 = new ArrayList<PlayerModel>();
+	List<ITeam> teams = new ArrayList<>();
+	List<IPlayer> swapList1 = new ArrayList<>();
+	List<IPlayer> swapList2 = new ArrayList<>();
 	
 	@Test
 	public void swapPlayersTest1() {
@@ -36,6 +39,6 @@ public class SwapPlayersTest {
 		swapList1.add(teams.get(0).getPlayerList().get(2));
 		swapList2.add(teams.get(1).getPlayerList().get(1));
 		swap.swapPlayers(teams.get(0), teams.get(1), swapList1, swapList2);
-		assertEquals(teams.get(0).getPlayerList().get(2).getPlayerName(), "JustinTeam2");
+		assertEquals(((FreeAgentModel) teams.get(0).getPlayerList().get(2)).getPlayerName(), "JustinTeam2");
 	}
 }

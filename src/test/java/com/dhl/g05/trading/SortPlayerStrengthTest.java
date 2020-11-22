@@ -7,30 +7,32 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
 
 public class SortPlayerStrengthTest {
 
 	@Test
 	public void sortByAscendingTest() {
-		SortPlayerStrength sort = new SortPlayerStrength();
-		PlayerModel player1 = new PlayerModel();
-		player1.setPlayerName("Brian");
+		ISortPlayerStrength sort = new SortPlayerStrength();
+		IPlayer player1 = new PlayerModel();
+		((FreeAgentModel) player1).setPlayerName("Brian");
 		player1.setPlayerStrength(8);
-		PlayerModel player2 = new PlayerModel();
-		player2.setPlayerName("James");
+		IPlayer player2 = new PlayerModel();
+		((FreeAgentModel) player2).setPlayerName("James");
 		player2.setPlayerStrength(10);
-		PlayerModel player3 = new PlayerModel();
-		player3.setPlayerName("Lily");
+		IPlayer player3 = new PlayerModel();
+		((FreeAgentModel) player3).setPlayerName("Lily");
 		player3.setPlayerStrength(6);
 
-		List<PlayerModel> playerDetails = new ArrayList<PlayerModel>();
+		List<IPlayer> playerDetails = new ArrayList<>();
 		playerDetails.add(player1);
 		playerDetails.add(player2);
 		playerDetails.add(player3);
-		List<PlayerModel> expectedAscending = sort.sortByAscending(playerDetails);
+		List<IPlayer> expectedAscending = sort.sortByAscending(playerDetails);
 
-		List<PlayerModel> actualAsc = new ArrayList<PlayerModel>();
+		List<IPlayer> actualAsc = new ArrayList<>();
 		actualAsc.add(player3);
 		actualAsc.add(player1);
 		actualAsc.add(player2);
@@ -41,23 +43,23 @@ public class SortPlayerStrengthTest {
 	@Test
 	public void sortByDescendingTest() {
 		SortPlayerStrength sort = new SortPlayerStrength();
-		PlayerModel player1 = new PlayerModel();
-		player1.setPlayerName("Brian");
+		IPlayer player1 = new PlayerModel();
+		((FreeAgentModel) player1).setPlayerName("Brian");
 		player1.setPlayerStrength(8);
 		PlayerModel player2 = new PlayerModel();
 		player2.setPlayerName("James");
 		player2.setPlayerStrength(10);
-		PlayerModel player3 = new PlayerModel();
-		player3.setPlayerName("Lily");
+		IPlayer player3 = new PlayerModel();
+		((FreeAgentModel) player3).setPlayerName("Lily");
 		player3.setPlayerStrength(6);
 		
-		List<PlayerModel> playerDetails = new ArrayList<PlayerModel>();
+		List<IPlayer> playerDetails = new ArrayList<>();
 		playerDetails.add(player1);
 		playerDetails.add(player2);
 		playerDetails.add(player3);
 		
-		List<PlayerModel> expectedDescending = sort.sortByDescending(playerDetails);
-		List<PlayerModel> actualDesc = new ArrayList<PlayerModel>();
+		List<IPlayer> expectedDescending = sort.sortByDescending(playerDetails);
+		List<IPlayer> actualDesc = new ArrayList<>();
 		actualDesc.add(player2);
 		actualDesc.add(player1);
 		actualDesc.add(player3);

@@ -1,13 +1,13 @@
 package com.dhl.g05.trading;
 
-import com.dhl.g05.gameplayconfig.TradingModel;
-import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.gameplayconfig.ITradingConfig;
+import com.dhl.g05.league.ILeague;
 
 public interface IIntiateTradeOffer {
 
-	public TradingModel getTrade();
+	public ITradingConfig getTrade();
 
-	public void setTrade(TradingModel trade);
+	public void setTrade(ITradingConfig trade);
 
-	public void initiateTradeOffer(LeagueModel league);
+	public ILeague initiateTradeOffer(ILeague league);
 }

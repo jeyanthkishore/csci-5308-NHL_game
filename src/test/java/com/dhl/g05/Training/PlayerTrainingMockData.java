@@ -12,7 +12,7 @@ import com.dhl.g05.gameplayconfig.Aging;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.gameplayconfig.GameResolverConfig;
 import com.dhl.g05.gameplayconfig.Injury;
-import com.dhl.g05.gameplayconfig.TradingModel;
+import com.dhl.g05.gameplayconfig.TradingConfig;
 import com.dhl.g05.gameplayconfig.TrainingConfig;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.IPlayer;
@@ -35,7 +35,7 @@ import com.dhl.g05.team.TeamModel;class PlayerTrainingMockData {
 	public double randomAcceptanceChance = 0.05;
 	public int maxPlayerPerTrade = 2;
 	public GamePlayConfigModel gamePlayConfig;
-	public TradingModel tradeConfig;
+	public TradingConfig tradeConfig;
 	public TrainingConfig training;
 	public GameResolverConfig gameResolver;
 	public Injury injury;
@@ -57,7 +57,7 @@ import com.dhl.g05.team.TeamModel;class PlayerTrainingMockData {
 		List<IConference> conList = new ArrayList<>();
 		conList.add(conference);
 		leagueObject.setConferenceDetails(conList);
-		tradeConfig = new TradingModel(lossPoint, randomTradeOffer, maxPlayerPerTrade, randomAcceptanceChance);
+		tradeConfig = new TradingConfig(lossPoint, randomTradeOffer, maxPlayerPerTrade, randomAcceptanceChance);
 		training = new TrainingConfig(daysUntilTraining);
 		gameResolver = new GameResolverConfig(randownWinChance);
 		injury = new Injury(randomInjuryChance, injuryDaysLow, injuryDaysHigh);

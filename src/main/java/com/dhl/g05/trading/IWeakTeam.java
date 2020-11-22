@@ -2,14 +2,15 @@ package com.dhl.g05.trading;
 
 import java.util.List;
 
-import com.dhl.g05.gameplayconfig.TradingModel;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.TeamModel;
-
+import com.dhl.g05.gameplayconfig.ITradingConfig;
+import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.team.ITeam;
 
 public interface IWeakTeam {
-	public TeamModel getWeakTeam();
-	public void setWeakTeam(TeamModel weakTeam);
+
+	public ITeam getWeakTeam();
+
+	public void setWeakTeam(ITeam weakTeam);
 
 	public String getConferenceName();
 
@@ -23,7 +24,7 @@ public interface IWeakTeam {
 
 	public void setNumberOfPlayersOffered(int numberOfPlayersOffered);
 
-	public List<PlayerModel> getPlayersOffered();
+	public List<IPlayer> getPlayersOffered();
 
 	public String getOfferedPlayerPosition();
 
@@ -33,7 +34,7 @@ public interface IWeakTeam {
 
 	public void setStrengthOfPlayersOffered(double strengthOfPlayersOffered);
 
-	public void setPlayersOffered(List<PlayerModel> playersOffered);
+	public void setPlayersOffered(List<IPlayer> playersOffered);
 
-	public void playersToOffer(TradingModel trade);
+	public void playersToOffer(ITradingConfig trade);
 }
