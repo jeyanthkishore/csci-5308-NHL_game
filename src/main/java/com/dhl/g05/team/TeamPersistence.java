@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.json.simple.JSONObject;
-
-import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.db.StoredProcedure;
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
 
 public class TeamPersistence implements ITeamModelPersistence{
 
 	@Override
-	public int saveTeamObject(int divisionId, TeamModel teamObject, CoachModel coachDetails) {
+	public int saveTeamObject(int divisionId, ITeam teamObject, ICoach coachDetails) {
 		StoredProcedure sp= new StoredProcedure();
 		String teamName = teamObject.getTeamName();
 		String managerName = teamObject.getGeneralManagerName();
@@ -29,12 +28,12 @@ public class TeamPersistence implements ITeamModelPersistence{
 	}
 
 	@Override
-	public int loadTeamObject(int divisionId, TeamModel teamObject, CoachModel coachObject) {
+	public int loadTeamObject(int divisionId, ITeam teamObject, ICoach coachObject) {
 		String teamName = teamObject.getTeamName();
 		StoredProcedure sp= new StoredProcedure();
 		int teamId = sp.getTeamID(teamName, divisionId);
 		List<HashMap<String, Object>> playerValue = new ArrayList<HashMap<String,Object>>();
-		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
+		List<IPlayer> playerList = new ArrayList<>();
 
 		playerValue = sp.fetchAllPlayers(teamId);
 		for(HashMap<String, Object> player : playerValue) {

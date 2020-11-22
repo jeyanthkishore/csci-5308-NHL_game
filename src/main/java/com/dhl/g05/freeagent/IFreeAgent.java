@@ -45,4 +45,14 @@ public interface IFreeAgent {
 	boolean getRetiredStatus();
 
 	void setRetiredStatus(boolean isRetired);
+
+	int getBirthDay();
+
+	int getBirthMonth();
+
+	int getBirthYear();
+
+	int saveFreeAgentObject(int leagueId, IFreeAgentPersistence freeAgentDatabase);
+
+	void incrementPlayerAgeByDay(int day);
 }

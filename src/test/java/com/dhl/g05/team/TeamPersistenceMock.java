@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.coach.ICoach;
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
 
 public class TeamPersistenceMock implements ITeamModelPersistence{
 	
 	@Override
-	public int saveTeamObject(int divisionId, TeamModel object, CoachModel coachObject) {
+	public int saveTeamObject(int divisionId, ITeam object, ICoach coachObject) {
 		if(divisionId==1 && object.getTeamName().equals("Striker Six")) {
 			return 1;
 		}
@@ -18,9 +19,9 @@ public class TeamPersistenceMock implements ITeamModelPersistence{
 	}
 	
 	@Override
-	public int loadTeamObject(int divisionId, TeamModel teamObject, CoachModel coachObject) {
+	public int loadTeamObject(int divisionId, ITeam teamObject, ICoach coachObject) {
 		if(divisionId==1 && teamObject.getTeamName().equals("Striker Six")) {
-			ArrayList<PlayerModel> players = new ArrayList<>();
+			ArrayList<IPlayer> players = new ArrayList<>();
 			players.add(new PlayerModel("Cristiano Ronaldo",null,null,10,10,10,10,20,20,2000));
 			teamObject.setPlayerList(players);
 			return 1;

@@ -6,7 +6,7 @@ public class PlayerInjury implements IPlayerInjured {
     }
 
     @Override
-    public boolean isPlayerInjured(PlayerModel playerObject, IInjury injury){
+    public boolean isPlayerInjured(IPlayer playerObject, IInjury injury){
         double randomInjuryChance= injury.getRandomInjuryChance();
         int maximumInjuryDays= injury.getInjuryDaysHigh();
         int minimumInjuryDays= injury.getInjuryDaysLow();

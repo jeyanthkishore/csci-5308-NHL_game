@@ -13,13 +13,17 @@ import org.json.simple.parser.ParseException;
 
 import com.dhl.g05.coach.CoachConstant;
 import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.conference.ConferenceConstant;
 import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.DivisionConstant;
 import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.division.IDivision;
 import com.dhl.g05.freeagent.FreeAgentConstant;
 import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.Aging;
 import com.dhl.g05.gameplayconfig.AgingConstant;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
@@ -33,8 +37,9 @@ import com.dhl.g05.gameplayconfig.TrainingConfig;
 import com.dhl.g05.gameplayconfig.TrainingConstant;
 import com.dhl.g05.league.LeagueConstant;
 import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.leaguesimulation.DateHandler;
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamConstant;
 import com.dhl.g05.team.TeamModel;
 import com.mysql.cj.util.StringUtils;
@@ -122,9 +127,9 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		if (leagueData == null) {
 			return null;
 		}
-		ArrayList<ConferenceModel> conferences = createConferences((JSONArray)leagueData.get("conferences"));
-		ArrayList<FreeAgentModel> freeAgents = createFreeAgents((JSONArray)leagueData.get("freeAgents"));
-		ArrayList<CoachModel> freeCoaches = createFreeCoaches((JSONArray)leagueData.get("coaches"));
+		ArrayList<IConference> conferences = createConferences((JSONArray)leagueData.get("conferences"));
+		ArrayList<IFreeAgent> freeAgents = createFreeAgents((JSONArray)leagueData.get("freeAgents"));
+		ArrayList<ICoach> freeCoaches = createFreeCoaches((JSONArray)leagueData.get("coaches"));
 		ArrayList<String> managers = createFreeManagers((JSONArray)leagueData.get("generalManagers"));
 		GamePlayConfigModel gamePlayConfig = setGamePlayConfigsFromFile((JSONObject) leagueData.get("gameplayConfig"));
 		String leagueName = (String)leagueData.get("leagueName");
@@ -190,16 +195,16 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		return null;
 	}
 
-	private ArrayList<ConferenceModel> createConferences(JSONArray jsonConferences) {
+	private ArrayList<IConference> createConferences(JSONArray jsonConferences) {
 		if (jsonConferences == null) {
 			return null;
 		}
-		ArrayList<ConferenceModel> conferences = new ArrayList<>();
+		ArrayList<IConference> conferences = new ArrayList<>();
 		for (Object c: jsonConferences) {
-			ArrayList<DivisionModel> divisions = createDivisions((JSONArray)((JSONObject) c).get("divisions"));
+			ArrayList<IDivision> divisions = createDivisions((JSONArray)((JSONObject) c).get("divisions"));
 			String conferenceName = (String)((JSONObject) c).get("conferenceName");
 			if (divisions != null) {
-				ConferenceModel newConference = new ConferenceModel(conferenceName, divisions);
+				IConference newConference = new ConferenceModel(conferenceName, divisions);
 				ConferenceConstant validationResult  = newConference.validate();
 				if (validationResult.equals(ConferenceConstant.Success)) {
 					conferences.add(newConference);
@@ -214,17 +219,17 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		return conferences;
 	}
 
-	private ArrayList<DivisionModel> createDivisions(JSONArray jsonDivisions) {
+	private ArrayList<IDivision> createDivisions(JSONArray jsonDivisions) {
 		if (jsonDivisions == null) {
 			return null;
 		}
 		
-		ArrayList<DivisionModel> divisions = new ArrayList<>();
+		ArrayList<IDivision> divisions = new ArrayList<>();
 		for (Object d: jsonDivisions) {
-			ArrayList<TeamModel> teams = createTeams((JSONArray)((JSONObject) d).get("teams"));
+			ArrayList<ITeam> teams = createTeams((JSONArray)((JSONObject) d).get("teams"));
 			String divisionName = (String)((JSONObject) d).get("divisionName");
 			if (teams != null) {
-				DivisionModel newDivision = new DivisionModel(divisionName,teams);
+				IDivision newDivision = new DivisionModel(divisionName,teams);
 				DivisionConstant validationResult  = newDivision.validate();
 				if (validationResult.equals(DivisionConstant.Success)) {
 					divisions.add(newDivision);
@@ -239,19 +244,19 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		return divisions;
 	}
 
-	private ArrayList<TeamModel> createTeams(JSONArray jsonTeams) {
+	private ArrayList<ITeam> createTeams(JSONArray jsonTeams) {
 		if (jsonTeams == null) {
 			return null;
 		}
-		ArrayList<TeamModel> teams = new ArrayList<>();
+		ArrayList<ITeam> teams = new ArrayList<>();
 		for (Object t: jsonTeams) {
-			ArrayList<PlayerModel> players = createPlayers((JSONArray)((JSONObject) t).get("players"));
+			ArrayList<IPlayer> players = createPlayers((JSONArray)((JSONObject) t).get("players"));
 			String teamName = (String)((JSONObject) t).get("teamName");
 			String managerName = (String)((JSONObject) t).get("generalManager");
 			JSONObject coach = (JSONObject) ((JSONObject) t).get("headCoach");
 			CoachModel coachDetails = createCoach(coach);
 			if (players != null && teamName != null && managerName != null && coachDetails != null) {
-				TeamModel newTeam = new TeamModel(teamName, coachDetails, managerName, players);
+				ITeam newTeam = new TeamModel(teamName, coachDetails, managerName, players);
 				TeamConstant validationResult  = newTeam.validate();
 				if (validationResult.equals(TeamConstant.Success)) {
 					teams.add(newTeam);
@@ -265,11 +270,11 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		return teams;
 	}
 
-	private ArrayList<PlayerModel> createPlayers(JSONArray jsonPlayers) {
+	private ArrayList<IPlayer> createPlayers(JSONArray jsonPlayers) {
 		if (jsonPlayers == null) {
 			return null;
 		}
-		ArrayList<PlayerModel> players = new ArrayList<>();
+		ArrayList<IPlayer> players = new ArrayList<>();
 		for (Object p: jsonPlayers) {
 			String playerName = (String)((JSONObject) p).get("playerName");
 			String position = (String)((JSONObject) p).get("position");
@@ -285,7 +290,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 				playerCommunication.sendMessage("player missing field");
 				return null;
 			}
-			PlayerModel newPlayer = new PlayerModel(playerName, position, captain,skating, shooting, checking, saving,birthDay,birthMonth,birthYear);
+			IPlayer newPlayer = new PlayerModel(playerName, position, captain,skating, shooting, checking, saving,birthDay,birthMonth,birthYear);
 			FreeAgentConstant validationResult  = newPlayer.validate();
 			if (validationResult.equals(FreeAgentConstant.Success)) {
 				players.add(newPlayer);
@@ -297,11 +302,11 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		return players;
 	}
 
-	private ArrayList<FreeAgentModel> createFreeAgents(JSONArray jsonPlayers) {
+	private ArrayList<IFreeAgent> createFreeAgents(JSONArray jsonPlayers) {
 		if (jsonPlayers == null) {
 			return null;
 		}
-		ArrayList<FreeAgentModel> players = new ArrayList<>();
+		ArrayList<IFreeAgent> freeAgent = new ArrayList<>();
 		for (Object p: jsonPlayers) {
 			String playerName = (String)((JSONObject) p).get("playerName");
 			String position = (String)((JSONObject) p).get("position");
@@ -319,13 +324,13 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			FreeAgentModel newPlayer = new FreeAgentModel(playerName, position,skating, shooting, checking, saving,birthDay,birthMonth,birthYear);
 			FreeAgentConstant validationResult  = newPlayer.validate();
 			if (validationResult.equals(FreeAgentConstant.Success)) {
-				players.add(newPlayer);
+				freeAgent.add(newPlayer);
 			} else {
 				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
 		}
-		return players;
+		return freeAgent;
 	}
 
 	private CoachModel createCoach(JSONObject jsonCoachDetails) {
@@ -340,11 +345,11 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		return new CoachModel(coachName,skating,shooting,checking,saving);
 	}
 
-	private ArrayList<CoachModel> createFreeCoaches(JSONArray jsonCoaches) {
+	private ArrayList<ICoach> createFreeCoaches(JSONArray jsonCoaches) {
 		if (jsonCoaches == null){
 			return null;
 		}
-		ArrayList<CoachModel> coaches = new ArrayList<>();
+		ArrayList<ICoach> coaches = new ArrayList<>();
 		for (Object p: jsonCoaches) {
 			String coachName = (String)((JSONObject) p).get("name");
 			double skating = Double.parseDouble(((JSONObject) p).get("skating").toString());

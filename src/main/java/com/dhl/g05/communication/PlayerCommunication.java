@@ -7,8 +7,9 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.player.PlayerModel;
 
 public class PlayerCommunication implements IPlayerCommunication, ITradeCommunication{
@@ -42,7 +43,7 @@ public class PlayerCommunication implements IPlayerCommunication, ITradeCommunic
 
 
 	@Override
-	public void sendMessage(List<FreeAgentModel> free) {
+	public void sendMessage(List<IFreeAgent> free) {
 		Map<Integer,Integer> columnLength = new HashMap<Integer,Integer>();
 		StringBuilder format = new StringBuilder();
 		String header [] = {"Number","Name","Position",
@@ -79,7 +80,7 @@ public class PlayerCommunication implements IPlayerCommunication, ITradeCommunic
 
 
 	@Override
-	public void sendCoachMessage(List<CoachModel> coachList) {
+	public void sendCoachMessage(List<ICoach> coachList) {
 		Map<Integer,Integer> columnLength = new HashMap<Integer,Integer>();
 		StringBuilder format = new StringBuilder();
 		String header [] = {"Number","Name","Checking","Skating","Shooting","Saving"};

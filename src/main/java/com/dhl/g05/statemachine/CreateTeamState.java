@@ -3,9 +3,9 @@ package com.dhl.g05.statemachine;
 import java.util.List;
 
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.conference.IConference;
 import com.dhl.g05.db.AbstractDataBaseFactory;
-import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.team.CreateNewTeam;
 import com.dhl.g05.team.ICreateTeam;
@@ -99,11 +99,11 @@ public class CreateTeamState extends AbstractState {
 
 
 	private void addNewTeamtoLeagueObject() {
-		List<ConferenceModel> conferences = league.getConferenceDetails();
-		for (ConferenceModel c: conferences) {
+		List<IConference> conferences = league.getConferenceDetails();
+		for (IConference c: conferences) {
 			if (c.getConferenceName().equalsIgnoreCase(conferenceName)) {
-				List<DivisionModel> divisions = c.getDivisionDetails();
-				for (DivisionModel d: divisions) {
+				List<IDivision> divisions = c.getDivisionDetails();
+				for (IDivision d: divisions) {
 					if (d.getDivisionName().equalsIgnoreCase(divisionName)) {
 						d.getTeamDetails().add(newTeam);
 						break;
@@ -114,11 +114,11 @@ public class CreateTeamState extends AbstractState {
 	}
 
 	private boolean isDivisionConferenceNotExists() {
-		List<ConferenceModel> conferences = league.getConferenceDetails();
-		for (ConferenceModel c: conferences) {
+		List<IConference> conferences = league.getConferenceDetails();
+		for (IConference c: conferences) {
 			if (c.getConferenceName().equalsIgnoreCase(conferenceName)) {
-				List<DivisionModel> divisions = c.getDivisionDetails();
-				for (DivisionModel d: divisions) {
+				List<IDivision> divisions = c.getDivisionDetails();
+				for (IDivision d: divisions) {
 					if (d.getDivisionName().equalsIgnoreCase(divisionName)) {
 						return false;
 					}

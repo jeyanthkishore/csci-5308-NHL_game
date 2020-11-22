@@ -1,36 +1,40 @@
 package com.dhl.g05.conference;
 import java.util.List;
 
-import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.division.IDivision;
 import com.mysql.cj.util.StringUtils;
 
-public class ConferenceModel {
+public class ConferenceModel implements IConference {
 
 	private String conferenceName;
-	private List<DivisionModel> divisions;
+	private List<IDivision> divisions;
 
 	public ConferenceModel() {
 		setDivisionDetails(null);
 		setConferenceName(null);
 	}
+	
 	public ConferenceModel(IConferenceModel conferenceObject) {
 		conferenceObject.loadConferenceModelData(this);
 	}
 
-	public ConferenceModel(String conference, List<DivisionModel> divisiondetail) {
+	public ConferenceModel(String conference, List<IDivision> divisiondetail) {
 		conferenceName = conference;
 		divisions = divisiondetail;
 	}
 
+	@Override
 	public void setConferenceName(String conference) {
 		this.conferenceName = conference;
 	}
 
-	public List<DivisionModel> getDivisionDetails() {
+	@Override
+	public List<IDivision> getDivisionDetails() {
 		return divisions;
 	}
 
-	public void setDivisionDetails(List<DivisionModel> divisionDetails) {
+	@Override
+	public void setDivisionDetails(List<IDivision> divisionDetails) {
 		this.divisions = divisionDetails;
 	}
 
@@ -41,10 +45,12 @@ public class ConferenceModel {
 		return database.loadConferenceObject(leagueId,this);
 	}
 
+	@Override
 	public String getConferenceName() {
 		return conferenceName;
 	}
 
+	@Override
 	public ConferenceConstant validate() {
 		if(isNameEmptyOrNull()) {
 			return ConferenceConstant.ConferenceNameEmpty;

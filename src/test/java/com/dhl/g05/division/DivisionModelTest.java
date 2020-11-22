@@ -12,21 +12,21 @@ public class DivisionModelTest {
 
 	@Test
 	public void divsionConstructorTest() {
-		DivisionModel object = new DivisionModel();
+		IDivision object = new DivisionModel();
 		assertNull(object.getDivisionName());
 		assertNull(object.getTeamDetails());
 	}
 
 	@Test
 	public void setDivisionTest() {
-		DivisionModel object = new DivisionModel();
+		IDivision object = new DivisionModel();
 		object.setDivisionName("Division");
 		assertSame("Division",object.getDivisionName());
 	}
 
 	@Test
 	public void getDivisionTest() {
-		DivisionModel object = new DivisionModel();
+		IDivision object = new DivisionModel();
 		object.setDivisionName("Division");
 		assertSame("Division",object.getDivisionName());
 	}
@@ -34,7 +34,7 @@ public class DivisionModelTest {
 	@Test
 	public void setTeamListTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
-		DivisionModel object = new DivisionModel();
+		IDivision object = new DivisionModel();
 		object.setTeamDetails(data.teamList);;
 		assertSame(data.teamList,object.getTeamDetails());
 	}
@@ -42,7 +42,7 @@ public class DivisionModelTest {
 	@Test
 	public void getTeamListTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
-		DivisionModel object = new DivisionModel();
+		IDivision object = new DivisionModel();
 		object.setTeamDetails(data.teamList);;
 		assertSame(data.teamList,object.getTeamDetails());
 	}
@@ -50,7 +50,7 @@ public class DivisionModelTest {
 	@Test
 	public void divisionParameterConstructor() {
 		JsonMockDataDb data = new JsonMockDataDb();
-		DivisionModel object = new DivisionModel(data.divisionOneName,data.teamList);
+		IDivision object = new DivisionModel(data.divisionOneName,data.teamList);
 		assertSame(data.divisionOneName,object.getDivisionName());
 		assertSame(data.teamList,object.getTeamDetails());
 	}
@@ -58,7 +58,7 @@ public class DivisionModelTest {
 	@Test
 	public void divisionReferenceConstructor() {
 		JsonMockDataDb data = new JsonMockDataDb();
-		DivisionModel object = new DivisionModel(data);
+		IDivision object = new DivisionModel(data);
 		assertSame(data.divisionOneName,object.getDivisionName());
 		assertSame(data.teamList,object.getTeamDetails());
 	}
@@ -66,7 +66,7 @@ public class DivisionModelTest {
 	@Test
 	public void checkDivisionNameEmpty() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		DivisionModel division = new DivisionModel(mock); 
+		IDivision division = new DivisionModel(mock); 
 		assertSame(DivisionConstant.Success,division.validate());
 	}
 
@@ -74,7 +74,7 @@ public class DivisionModelTest {
 	public void checkDivisionNameEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setDivisionNameEmpty();
-		DivisionModel division = new DivisionModel(mock); 
+		IDivision division = new DivisionModel(mock); 
 		assertSame(DivisionConstant.DivisionNameEmpty,division.validate());
 	}
 
@@ -82,14 +82,14 @@ public class DivisionModelTest {
 	public void checkDivisionNameNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setDivisionNameNull();
-		DivisionModel division = new DivisionModel(mock); 
+		IDivision division = new DivisionModel(mock); 
 		assertSame(DivisionConstant.DivisionNameEmpty,division.validate());
 	}
 
 	@Test
 	public void isTeamListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		DivisionModel division = new DivisionModel(mock); 
+		IDivision division = new DivisionModel(mock); 
 		assertSame(DivisionConstant.Success,division.validate());
 	}
 
@@ -97,14 +97,14 @@ public class DivisionModelTest {
 	public void teamListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.removeTeams();
-		DivisionModel division = new DivisionModel(mock); 
+		IDivision division = new DivisionModel(mock); 
 		assertSame(DivisionConstant.TeamListEmpty,division.validate());
 	}
 
 	@Test
 	public void validateDivisionTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		DivisionModel division = new DivisionModel(mock); 
+		IDivision division = new DivisionModel(mock); 
 		assertSame(DivisionConstant.Success,division.validate());
 		mock = new JsonMockDataDb();
 		mock.setDivisionNameEmpty();

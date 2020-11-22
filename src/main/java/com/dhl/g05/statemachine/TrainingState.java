@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 import com.dhl.g05.Training.IPlayerTraining;
 import com.dhl.g05.Training.PlayerTraining;
-import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.conference.IConference;
+import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.leaguesimulation.DateHandler;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.team.ITeam;
 
 public class TrainingState extends AbstractState{
 	private LeagueModel league;
@@ -28,10 +28,10 @@ public class TrainingState extends AbstractState{
         if (daysSinceLastStatIncrease > daysUntilStatIncreaseCheck) {
         	IPlayerTraining training = new PlayerTraining();
 
-        	for (ConferenceModel conference : league.getConferenceDetails()) {
-        		for (DivisionModel division : conference.getDivisionDetails()) {
-        			for (TeamModel team : division.getTeamDetails()) {
-        				for(PlayerModel player : team.getPlayerList()) {
+        	for (IConference conference : league.getConferenceDetails()) {
+        		for (IDivision division : conference.getDivisionDetails()) {
+        			for (ITeam team : division.getTeamDetails()) {
+        				for(IPlayer player : team.getPlayerList()) {
         					training.performTrainingForPlayer(player,team.getCoachDetails(),league);
         				}
         			}

@@ -3,8 +3,8 @@ package com.dhl.g05.trading;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.conference.IConference;
+import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.team.TeamModel;
@@ -67,8 +67,8 @@ public class StrongTeam implements IStrongTeam {
 		int numberOfPlayersToTrade = teamInitiatingTrade.getNumberOfPlayersOffered();
 		ISortPlayerStrength sortPlayer = TradingConfig.instance().getSortplayerstrength();
 
-		for (ConferenceModel conference : league.getConferenceDetails()) {
-			for (DivisionModel division : conference.getDivisionDetails()) {
+		for (IConference conference : league.getConferenceDetails()) {
+			for (IDivision division : conference.getDivisionDetails()) {
 				for (TeamModel team : division.getTeamDetails()) {
 					int countOfPlayers = 0;
 					double strengthOfPlayers = 0.00;

@@ -4,48 +4,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.leaguesimulation.leaguestanding.IStanding;
 import com.dhl.g05.leaguesimulation.leaguestanding.Standing;
+import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
 public class DummyLeagueMock {
 
 	private LeagueModel createDummyLeague() {
         LeagueModel league = new LeagueModel();
-        List<TeamModel> teamList = new ArrayList<>();
-        List<DivisionModel> divisionList = new ArrayList<>();
-        List<ConferenceModel> conferenceList = new ArrayList<>();
+        List<ITeam> teamList = new ArrayList<>();
+        List<IDivision> divisionList = new ArrayList<>();
+        List<IConference> conferenceList = new ArrayList<>();
 
-        ConferenceModel conference1 = new ConferenceModel();
-        ConferenceModel conference2 = new ConferenceModel();
+        IConference conference1 = new ConferenceModel();
+        IConference conference2 = new ConferenceModel();
 
-        DivisionModel division1 = new DivisionModel();
-        DivisionModel division2 = new DivisionModel();
-        DivisionModel division3 = new DivisionModel();
-        DivisionModel division4 = new DivisionModel();
+        IDivision division1 = new DivisionModel();
+        IDivision division2 = new DivisionModel();
+        IDivision division3 = new DivisionModel();
+        IDivision division4 = new DivisionModel();
 
-        TeamModel team1 = new TeamModel();
-        TeamModel team2 = new TeamModel();
-        TeamModel team3 = new TeamModel();
-        TeamModel team4 = new TeamModel();
-        TeamModel team5 = new TeamModel();
-        TeamModel team6 = new TeamModel();
-        TeamModel team7 = new TeamModel();
-        TeamModel team8 = new TeamModel();
-        TeamModel team9 = new TeamModel();
-        TeamModel team10 = new TeamModel();
-        TeamModel team11 = new TeamModel();
-        TeamModel team12 = new TeamModel();
-        TeamModel team13 = new TeamModel();
-        TeamModel team14 = new TeamModel();
-        TeamModel team15 = new TeamModel();
-        TeamModel team16 = new TeamModel();
-        TeamModel team17 = new TeamModel();
-        TeamModel team18 = new TeamModel();
-        TeamModel team19 = new TeamModel();
-        TeamModel team20 = new TeamModel();
+        ITeam team1 = new TeamModel();
+        ITeam team2 = new TeamModel();
+        ITeam team3 = new TeamModel();
+        ITeam team4 = new TeamModel();
+        ITeam team5 = new TeamModel();
+        ITeam team6 = new TeamModel();
+        ITeam team7 = new TeamModel();
+        ITeam team8 = new TeamModel();
+        ITeam team9 = new TeamModel();
+        ITeam team10 = new TeamModel();
+        ITeam team11 = new TeamModel();
+        ITeam team12 = new TeamModel();
+        ITeam team13 = new TeamModel();
+        ITeam team14 = new TeamModel();
+        ITeam team15 = new TeamModel();
+        ITeam team16 = new TeamModel();
+        ITeam team17 = new TeamModel();
+        ITeam team18 = new TeamModel();
+        ITeam team19 = new TeamModel();
+        ITeam team20 = new TeamModel();
         
         teamList.add(team1);
         teamList.add(team2);
@@ -93,32 +96,32 @@ public class DummyLeagueMock {
     }
 	
 	private List<IStanding> dummyStanding(LeagueModel league) {
-        ConferenceModel conference1 = league.getConferenceDetails().get(0);
-        ConferenceModel conference2 = league.getConferenceDetails().get(1);
-        DivisionModel division1 = conference1.getDivisionDetails().get(0);
-        DivisionModel division2 = conference1.getDivisionDetails().get(1);
-        DivisionModel division3 = conference2.getDivisionDetails().get(0);
-        DivisionModel division4 = conference2.getDivisionDetails().get(1);
-        TeamModel team1 = division1.getTeamDetails().get(0);
-        TeamModel team2 = division1.getTeamDetails().get(1);
-        TeamModel team3 = division1.getTeamDetails().get(2);
-        TeamModel team4 = division1.getTeamDetails().get(3);
-        TeamModel team5 = division1.getTeamDetails().get(4);
-        TeamModel team6 = division2.getTeamDetails().get(0);
-        TeamModel team7 = division2.getTeamDetails().get(1);
-        TeamModel team8 = division2.getTeamDetails().get(2);
-        TeamModel team9 = division2.getTeamDetails().get(3);
-        TeamModel team10 = division2.getTeamDetails().get(4);
-        TeamModel team11 = division3.getTeamDetails().get(0);
-        TeamModel team12 = division3.getTeamDetails().get(1);
-        TeamModel team13 = division3.getTeamDetails().get(2);
-        TeamModel team14 = division3.getTeamDetails().get(3);
-        TeamModel team15 = division3.getTeamDetails().get(4);
-        TeamModel team16 = division4.getTeamDetails().get(0);
-        TeamModel team17 = division4.getTeamDetails().get(1);
-        TeamModel team18 = division4.getTeamDetails().get(2);
-        TeamModel team19 = division4.getTeamDetails().get(3);
-        TeamModel team20 = division4.getTeamDetails().get(4);
+        IConference conference1 = league.getConferenceDetails().get(0);
+        IConference conference2 = league.getConferenceDetails().get(1);
+        IDivision division1 = conference1.getDivisionDetails().get(0);
+        IDivision division2 = conference1.getDivisionDetails().get(1);
+        IDivision division3 = conference2.getDivisionDetails().get(0);
+        IDivision division4 = conference2.getDivisionDetails().get(1);
+        ITeam team1 = division1.getTeamDetails().get(0);
+        ITeam team2 = division1.getTeamDetails().get(1);
+        ITeam team3 = division1.getTeamDetails().get(2);
+        ITeam team4 = division1.getTeamDetails().get(3);
+        ITeam team5 = division1.getTeamDetails().get(4);
+        ITeam team6 = division2.getTeamDetails().get(0);
+        ITeam team7 = division2.getTeamDetails().get(1);
+        ITeam team8 = division2.getTeamDetails().get(2);
+        ITeam team9 = division2.getTeamDetails().get(3);
+        ITeam team10 = division2.getTeamDetails().get(4);
+        ITeam team11 = division3.getTeamDetails().get(0);
+        ITeam team12 = division3.getTeamDetails().get(1);
+        ITeam team13 = division3.getTeamDetails().get(2);
+        ITeam team14 = division3.getTeamDetails().get(3);
+        ITeam team15 = division3.getTeamDetails().get(4);
+        ITeam team16 = division4.getTeamDetails().get(0);
+        ITeam team17 = division4.getTeamDetails().get(1);
+        ITeam team18 = division4.getTeamDetails().get(2);
+        ITeam team19 = division4.getTeamDetails().get(3);
+        ITeam team20 = division4.getTeamDetails().get(4);
 
         IStanding standing1 = new Standing();
         standing1.setConference(conference1);

@@ -9,7 +9,9 @@ import java.util.List;
 import org.junit.Test;
 
 import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.division.IDivision;
 import com.dhl.g05.gameplayconfig.TradingModel;
 import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.team.TeamModel;
@@ -35,7 +37,7 @@ public class WeakTeamTest {
 
 	@Test
 	public void setConferenceNameTest() {
-		ConferenceModel conference = new ConferenceModel();
+		IConference conference = new ConferenceModel();
 		WeakTeam weakTeam = new WeakTeam();
 		conference.setConferenceName("Eastern");
 		weakTeam.setConferenceName(conference.getConferenceName());
@@ -44,7 +46,7 @@ public class WeakTeamTest {
 
 	@Test
 	public void setDivisionNameTest() {
-		DivisionModel division = new DivisionModel();
+		IDivision division = new DivisionModel();
 		WeakTeam weakTeam = new WeakTeam();
 		division.setDivisionName("Atlantic");
 		weakTeam.setDivisionName(division.getDivisionName());
@@ -53,7 +55,7 @@ public class WeakTeamTest {
 
 	@Test
 	public void getDivisionNameTest() {
-		DivisionModel division = new DivisionModel();
+		IDivision division = new DivisionModel();
 		WeakTeam weakTeam = new WeakTeam();
 		division.setDivisionName("Pacific");
 		weakTeam.setDivisionName(division.getDivisionName());

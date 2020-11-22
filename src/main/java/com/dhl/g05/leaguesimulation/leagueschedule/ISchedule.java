@@ -2,33 +2,33 @@ package com.dhl.g05.leaguesimulation.leagueschedule;
 
 import java.time.LocalDate;
 
-import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.conference.IConference;
 import com.dhl.g05.conference.IConferenceModel;
-import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.division.IDivision;
 import com.dhl.g05.team.ITeamModel;
 import com.dhl.g05.team.TeamModel;
 
 public interface ISchedule {
 
-	ConferenceModel getFirstConference();
+	IConference getFirstConference();
 
-	void setFirstConference(ConferenceModel firstConference);
+	void setFirstConference(IConference firstConference);
 
-	DivisionModel getFirstDivision();
+	IDivision getFirstDivision();
 
-	void setFirstDivision(DivisionModel firstDivision);
+	void setFirstDivision(IDivision firstDivision);
 
 	TeamModel getFirstTeam();
 
 	void setFirstTeam(TeamModel firstTeam);
 
-	ConferenceModel getSecondConference();
+	IConference getSecondConference();
 
-	void setSecondConference(ConferenceModel secondConference);
+	void setSecondConference(IConference secondConference);
 
-	DivisionModel getSecondDivision();
+	IDivision getSecondDivision();
 
-	void setSecondDivision(DivisionModel secondDivision);
+	void setSecondDivision(IDivision secondDivision);
 
 	TeamModel getSecondTeam();
 

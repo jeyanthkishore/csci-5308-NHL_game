@@ -1,7 +1,7 @@
 package com.dhl.g05.trading;
 
-import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.conference.IConference;
+import com.dhl.g05.division.IDivision;
 import com.dhl.g05.gameplayconfig.TradingModel;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.team.TeamModel;
@@ -25,8 +25,8 @@ public class InitiateTradeOffer implements IIntiateTradeOffer {
 		TradingModel trade = getTrade();
 		TradeValue checkTradeValue = new TradeValue(trade);
 
-		for (ConferenceModel c : league.getConferenceDetails()) {
-			for (DivisionModel d : c.getDivisionDetails()) {
+		for (IConference c : league.getConferenceDetails()) {
+			for (IDivision d : c.getDivisionDetails()) {
 				for (TeamModel t : d.getTeamDetails()) {
 					if ( t.getLossCount()>=trade.getLossPoint()== true && checkTradeValue.checkTradeValue() == true && t.getUserTeam() == false) {
 						teamInitiatingTrade.setWeakTeam(t);

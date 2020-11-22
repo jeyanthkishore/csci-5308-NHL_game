@@ -3,8 +3,8 @@ package com.dhl.g05.leaguesimulation.leaguestanding;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.conference.IConference;
+import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.team.TeamModel;
 
@@ -39,7 +39,7 @@ public class LeagueStanding implements ILeagueStanding{
     }
 
     @Override
-	public void updateStatsForWinningTeam(ConferenceModel conference, DivisionModel division, TeamModel team) {
+	public void updateStatsForWinningTeam(IConference conference, IDivision division, TeamModel team) {
         for (IStanding standing: standings) {
             if (standing.getConference() == conference &&
                 standing.getDivision() == division &&
@@ -52,7 +52,7 @@ public class LeagueStanding implements ILeagueStanding{
     }
 
     @Override
-	public void updateStatsForLosingTeam(ConferenceModel conference, DivisionModel division, TeamModel team) {
+	public void updateStatsForLosingTeam(IConference conference, IDivision division, TeamModel team) {
         for (IStanding standing: standings) {
             if (standing.getConference() == conference &&
                     standing.getDivision() == division &&
@@ -63,7 +63,7 @@ public class LeagueStanding implements ILeagueStanding{
     }
 
     @Override
-	public List<IStanding> getStandingsInDivision(DivisionModel division) {
+	public List<IStanding> getStandingsInDivision(IDivision division) {
         List<IStanding> myStandings = new ArrayList<>();
         for (IStanding standing: standings){
             if (standing.getDivision() == division){
@@ -75,7 +75,7 @@ public class LeagueStanding implements ILeagueStanding{
     }
 
     @Override
-	public List<IStanding> getStandingsInConference(ConferenceModel conference) {
+	public List<IStanding> getStandingsInConference(IConference conference) {
         List<IStanding> myStandings = new ArrayList<>();
         for (IStanding standing: standings){
             if (standing.getConference() == conference){
@@ -87,7 +87,7 @@ public class LeagueStanding implements ILeagueStanding{
     }
 
     @Override
-	public IStanding getTopStandingInConference(ConferenceModel conference) {
+	public IStanding getTopStandingInConference(IConference conference) {
         return getStandingsInConference(conference).get(0);
     }
 }

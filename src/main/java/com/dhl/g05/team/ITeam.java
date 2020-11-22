@@ -3,7 +3,8 @@ package com.dhl.g05.team;
 import java.util.List;
 
 import com.dhl.g05.coach.CoachModel;
-import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.coach.ICoach;
+import com.dhl.g05.player.IPlayer;
 
 public interface ITeam {
 
@@ -19,13 +20,13 @@ public interface ITeam {
 
     void setGeneralManagerName(String managerName);
 
-    List<PlayerModel> getPlayerList();
+    List<IPlayer> getPlayerList();
 
-    void setPlayerList(List<PlayerModel> playerList);
+    void setPlayerList(List<IPlayer> playerList);
 
-    CoachModel getCoachDetails();
+    ICoach getCoachDetails();
 
-    void setCoachDetails(CoachModel coachDetails);
+    void setCoachDetails(ICoach coachDetails);
 
     double getTeamStrength();
 
@@ -36,4 +37,6 @@ public interface ITeam {
     int loadTeamObject(int divisionId,ITeamModelPersistence database);
 
     boolean checkTeamNotUnique(String teamName,ITeamModelPersistence database);
+
+	TeamConstant validate();
 }

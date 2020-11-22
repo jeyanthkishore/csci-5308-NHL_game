@@ -6,13 +6,14 @@ import java.util.List;
 
 import com.dhl.g05.db.StoredProcedure;
 import com.dhl.g05.division.DivisionModel;
+import com.dhl.g05.division.IDivision;
 
 public class ConferencePersistence implements IConferenceModelPersistence{
 
-	private List<DivisionModel> divisionList = new ArrayList<DivisionModel>();
+	private List<IDivision> divisionList = new ArrayList<>();
 
 	@Override
-	public int saveConferenceObject(int leagueId, ConferenceModel conferenceObject) {
+	public int saveConferenceObject(int leagueId, IConference conferenceObject) {
 		StoredProcedure sp= new StoredProcedure();
 		String conferenceName = conferenceObject.getConferenceName();
 		int conferenceId = sp.saveConference(leagueId,conferenceName) ;
@@ -20,7 +21,7 @@ public class ConferencePersistence implements IConferenceModelPersistence{
 	}
 
 	@Override
-	public int loadConferenceObject(int leagueId, ConferenceModel conferenceObject) {
+	public int loadConferenceObject(int leagueId, IConference conferenceObject) {
 		String conferenceName = conferenceObject.getConferenceName();
 		List<HashMap<String, Object>> divisionValue = new ArrayList<HashMap<String,Object>>();
 		
