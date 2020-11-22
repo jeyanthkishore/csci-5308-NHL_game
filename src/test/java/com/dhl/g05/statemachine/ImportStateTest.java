@@ -12,7 +12,7 @@ import com.dhl.g05.communication.AbstractCommunicationFactory;
 import com.dhl.g05.communication.CommunicationFactory;
 import com.dhl.g05.db.AbstractDataBaseFactory;
 import com.dhl.g05.filehandler.LeagueModelJson;
-import com.dhl.g05.statemachine.mocks.MockPlayerCommunication;
+import com.dhl.g05.mocks.MockPlayerCommunication;
 
 import filehandler.DatabaseMockFactory;
 
@@ -48,25 +48,25 @@ public class ImportStateTest {
 		assertTrue(state.getNextState() instanceof CreateTeamState);
 	}
 
-//	@Test
-//	public void testPerformStateFailTask() {
-//		communicate.commandLineInput("src/test/java/com/dhl/g05/jsontestfiles/jsonInvalidInfo.json");
-//		state.enter();
-//		state.performStateTask();
-//		state.exit();
-//		assertNotNull(state);
-//		assertNull(state.getLeague());
-//	}
+	@Test
+	public void testPerformStateFailTask() {
+		communicate.commandLineInput("src/test/java/com/dhl/g05/jsontestfiles/jsonInvalidInfo.json");
+		state.enter();
+		state.performStateTask();
+		state.exit();
+		assertNotNull(state);
+		assertNull(state.getLeague());
+	}
 	
-//	@Test
-//	public void testPerformLeagueNullTask() {
-//		communicate.commandLineInput("src/test/java/com/dhl/g05/jsontestfiles/jsonBadConferenceInfo.json");
-//		state.enter();
-//		state.performStateTask();
-//		state.exit();
-//		assertNotNull(state);
-//		assertNull(state.getLeague());
-//	}
+	@Test
+	public void testPerformLeagueNullTask() {
+		communicate.commandLineInput("src/test/java/com/dhl/g05/jsontestfiles/jsonBadConferenceInfo.json");
+		state.enter();
+		state.performStateTask();
+		state.exit();
+		assertNotNull(state);
+		assertNull(state.getLeague());
+	}
 	
 	
 	@Test

@@ -1,6 +1,5 @@
 package com.dhl.g05.statemachine;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -11,14 +10,12 @@ import com.dhl.g05.communication.AbstractCommunicationFactory;
 import com.dhl.g05.communication.CommunicationFactory;
 import com.dhl.g05.db.AbstractDataBaseFactory;
 import com.dhl.g05.filehandler.LeagueModelJson;
-import com.dhl.g05.mocks.MockPlayerCommunication;
+import com.dhl.g05.mockdata.JsonMockDataDb;
 
 import filehandler.DatabaseMockFactory;
 
-public class PlayerChoiceStateTest {
+public class TradeStateTest {
 	private AbstractState state;
-	private static MockPlayerCommunication communicate;
-	
 	
 	 @BeforeClass
 	    public static void setup() {
@@ -30,28 +27,20 @@ public class PlayerChoiceStateTest {
 	                		new LeagueModelJson()
 	                )
 	        );
-	        communicate = new MockPlayerCommunication();
 	    }
 
 	@Before
 	public void init() {
-		state = AbstractStateMachineFactory.getFactory().getPlayerChoiceState();
+		state = AbstractStateMachineFactory.getFactory().getTradeState();
 	}
-
+	
 	@Test
-	public void performStateTaskTest() {
-		communicate.commandLineInput("5");
+	public void performTaskTest() {
+		JsonMockDataDb data = new JsonMockDataDb();
+		state.setLeague(data.league);
 		state.enter();
 		state.performStateTask();
 		state.exit();
-		assertTrue(state.getNextState() instanceof SimulateState);
+		assertTrue(state.getNextState() instanceof AgingState);
 	}
-
-	@Test
-	public void performStateTaskFailTest() {
-		communicate.commandLineInput("Jeyanth");
-		state.enter();
-		assertFalse(state.performStateTask());
-	}
-	
 }

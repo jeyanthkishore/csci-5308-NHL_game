@@ -8,6 +8,10 @@ import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.conference.ConferenceModel;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
+import com.dhl.g05.leaguesimulation.leagueschedule.ILeagueSchedule;
+import com.dhl.g05.leaguesimulation.leagueschedule.LeagueSchedule;
+import com.dhl.g05.leaguesimulation.leaguestanding.ILeagueStanding;
+import com.dhl.g05.leaguesimulation.leaguestanding.LeagueStanding;
 import com.mysql.cj.util.StringUtils;
 
 public class LeagueModel implements ILeague{
@@ -21,6 +25,8 @@ public class LeagueModel implements ILeague{
 	private GamePlayConfigModel gameplayConfig;
 	private int daysSinceStatIncrease;
 	private LocalDate leagueCurrentDate;
+	private ILeagueStanding leagueStanding;
+	private ILeagueSchedule leagueSchedule;
 
 	public LeagueModel() {
 		setLeagueName(null);
@@ -29,6 +35,8 @@ public class LeagueModel implements ILeague{
 		setFreeCoach(null);
 		setManagerList(null);
 		setGamePlayConfig(null);
+		this.leagueStanding = new LeagueStanding();
+		this.leagueSchedule = new LeagueSchedule();
 	}
 
 	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<String> managers,GamePlayConfigModel gamePlay) {
@@ -109,10 +117,23 @@ public class LeagueModel implements ILeague{
 	public void setGamePlayConfig(GamePlayConfigModel gamePlayConfig) {
 		this.gameplayConfig = gamePlayConfig;
 	}
+	
+	public ILeagueStanding getLeagueStanding() {
+		return leagueStanding;
+	}
+
+	public void setLeagueStanding(ILeagueStanding leagueStanding) {
+		this.leagueStanding = leagueStanding;
+	}
 
 	public LocalDate getLeagueCurrentDate() {
 		return leagueCurrentDate;
 	}
+	
+	public void incrementCurrentDate() {
+		leagueCurrentDate = leagueCurrentDate.plusDays(1);
+	}
+	
 
 	public void setLeagueCurrentDate(LocalDate leagueCurrentDate) {
 		this.leagueCurrentDate = leagueCurrentDate;
@@ -129,7 +150,19 @@ public class LeagueModel implements ILeague{
     public void resetDaysSinceStatIncrease() {
         this.daysSinceStatIncrease = 0;
     }
+    
+    public void incrementDaysSinceStatIncrease() {
+    	this.daysSinceStatIncrease +=1;
+    }
 	
+	public ILeagueSchedule getLeagueSchedule() {
+		return leagueSchedule;
+	}
+
+	public void setLeagueSchedule(ILeagueSchedule leagueSchedule) {
+		this.leagueSchedule = leagueSchedule;
+	}
+
 	public int saveLeagueObject(ILeagueModelPersistence database) {
 		return database.saveLeagueObject(this);
 	}
