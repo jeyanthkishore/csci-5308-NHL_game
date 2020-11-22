@@ -14,28 +14,29 @@ import com.dhl.g05.conference.ConferenceModel;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.DivisionModel;
 import com.dhl.g05.division.IDivision;
-import com.dhl.g05.gameplayconfig.TradingModel;
-import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.gameplayconfig.ITradingConfig;
+import com.dhl.g05.league.ILeague;
+import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.team.ITeam;
 
 public class StrongTeamTest {
-	
+
 	MockLeagueModel mockLeague = new MockLeagueModel();
 	WeakTeamTest weakTest = new WeakTeamTest();
-	WeakTeam weakTeam = new WeakTeam();
-	TeamModel strongestTeam = mockLeague.leagueMock4();
+	IWeakTeam weakTeam = Trading.instance().getWeakteam();
+	ITeam strongestTeam = mockLeague.leagueMock4();
 
 	@Test
 	public void setStrongTeamTest() {
-		StrongTeam strong = new StrongTeam();
+		IStrongTeam strong =Trading.instance().getStrongteam();
 		strong.setStrongTeam(strongestTeam);
 		assertEquals(strongestTeam, strong.getStrongTeam());
 	}
 
 	@Test
 	public void getWeakTeamTest() {
-		StrongTeam strong = new StrongTeam();
+		IStrongTeam strong = new StrongTeam();
 		strong.setStrongTeam(mockLeague.leagueMock4());
 		assertNotSame(mockLeague.leagueMock4(), strong.getStrongTeam());
 	}
@@ -43,7 +44,7 @@ public class StrongTeamTest {
 	@Test
 	public void setConferenceNameTest() {
 		IConference conference = new ConferenceModel();
-		StrongTeam strong = new StrongTeam();
+		IStrongTeam strong = Trading.instance().getStrongteam();
 		conference.setConferenceName("Western");
 		strong.setConferenceName(conference.getConferenceName());
 		assertSame(strong.getConferenceName(), conference.getConferenceName());
@@ -52,7 +53,7 @@ public class StrongTeamTest {
 	@Test
 	public void setDivisionNameTest() {
 		IDivision division = new DivisionModel();
-		StrongTeam strong = new StrongTeam();
+		IStrongTeam strong = Trading.instance().getStrongteam();
 		division.setDivisionName("Indian");
 		strong.setDivisionName(division.getDivisionName());
 		assertSame(strong.getDivisionName(), division.getDivisionName());
@@ -61,65 +62,60 @@ public class StrongTeamTest {
 	@Test
 	public void getDivisionNameTest() {
 		IDivision division = new DivisionModel();
-		StrongTeam strong = new StrongTeam();
+		IStrongTeam strong = Trading.instance().getStrongteam();
 		division.setDivisionName("Pacific");
 		strong.setDivisionName(division.getDivisionName());
 		assertSame(strong.getDivisionName(), division.getDivisionName());
 	}
-	
+
 	@Test
 	public void setStrongestPlayersToTradeTest() {
 		MockLeagueModel mockLeague = new MockLeagueModel();
-		StrongTeam strong = new StrongTeam();
+		IStrongTeam strong =Trading.instance().getStrongteam();
 		strong.setStrongestPlayersToTrade(mockLeague.leagueMock2());
-		assertSame(strong.getStrongestPlayersToTrade().size(),2);
+		assertSame(strong.getStrongestPlayersToTrade().size(), 2);
 	}
-	
+
 	@Test
 	public void getStrongestPlayersToTradeTest1() {
 		MockLeagueModel mockLeague = new MockLeagueModel();
-		StrongTeam strong = new StrongTeam();
+		IStrongTeam strong = Trading.instance().getStrongteam();
 		strong.setStrongestPlayersToTrade(mockLeague.leagueMock3());
-		assertSame(strong.getStrongestPlayersToTrade().size(),1);
+		assertSame(strong.getStrongestPlayersToTrade().size(), 1);
 	}
-	@Test
-	public void getStrongestPlayersToTradeTest2() {
-		StrongTeam strong = new StrongTeam();
-		assertNull(strong.getStrongestPlayersToTrade());
-	}
+
 	@Test
 	public void getStrengthOfStrongestPlayersTest1() {
-		StrongTeam strong = new StrongTeam();
+		IStrongTeam strong = Trading.instance().getStrongteam();
 		strong.setStrengthOfStrongestPlayers(5);
-		assertNotSame(strong.getStrengthOfStrongestPlayers(),4);
+		assertNotSame(strong.getStrengthOfStrongestPlayers(), 4);
 	}
-	
+
 	@Test
 	public void getStrengthOfStrongestPlayersTest2() {
-		StrongTeam strong = new StrongTeam();
+		IStrongTeam strong = Trading.instance().getStrongteam();
 		strong.setStrengthOfStrongestPlayers(5);
-		assertEquals(strong.getStrengthOfStrongestPlayers(),5,0);
+		assertEquals(strong.getStrengthOfStrongestPlayers(), 5, 0);
 	}
-	
+
 	@Test
 	public void setStrengthOfStrongestPlayersTest() {
-		StrongTeam strong = new StrongTeam();
+		IStrongTeam strong = Trading.instance().getStrongteam();
 		strong.setStrengthOfStrongestPlayers(8);
-		assertEquals(strong.getStrengthOfStrongestPlayers(),8,0);
+		assertEquals(strong.getStrengthOfStrongestPlayers(), 8, 0);
 	}
 
 	@Test
 	public void findTeamToSwapTest() {
-		StrongTeam strong = new StrongTeam();
-		LeagueModel league = mockLeague.leagueMock();
-		TradingModel trade = mockLeague.TradingConfigMock();
-		IWeakTeam teamInitiatingTrade = TradingConfig.instance().getWeakteam();
+		IStrongTeam strong = Trading.instance().getStrongteam();
+		ILeague league = mockLeague.leagueMock();
+		ITradingConfig trade = mockLeague.TradingConfigMock();
+		IWeakTeam teamInitiatingTrade = Trading.instance().getWeakteam();
 
 		for (IConference conference : league.getConferenceDetails()) {
 			for (IDivision division : conference.getDivisionDetails()) {
-				for (TeamModel team : division.getTeamDetails()) {
-					if (team.getTeamName().equals("Tigers"))
-					{
+				for (ITeam team : division.getTeamDetails()) {
+					if (team.getTeamName().equals("Tigers")) {
 						teamInitiatingTrade.setConferenceName("Eastern");
 					}
 					teamInitiatingTrade.setDivisionName("Atlantic");
@@ -135,10 +131,10 @@ public class StrongTeamTest {
 		}
 		boolean result = strong.findTeamToSwap(league);
 		String expectedTeamName = strong.getStrongTeam().getTeamName();
-		List<PlayerModel> position = strong.getStrongestPlayersToTrade();
+		List<IPlayer> position = strong.getStrongestPlayersToTrade();
 		assertEquals("Rythm", expectedTeamName);
 		assertTrue(result);
-		assertEquals("player1Team2", position.get(0).getPlayerName());
+		assertEquals("player1Team2", ((FreeAgentModel) position.get(0)).getPlayerName());
 		assertEquals("defense", position.get(0).getPosition());
 	}
 

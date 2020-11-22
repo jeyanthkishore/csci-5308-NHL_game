@@ -5,12 +5,12 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.dhl.g05.gameplayconfig.TradingModel;
+import com.dhl.g05.gameplayconfig.ITradingConfig;
 
 public class TradeValueTest {
 
 	MockLeagueModel mockLeague = new MockLeagueModel();
-	TradingModel trade = mockLeague.TradingConfigMock();
+	ITradingConfig trade = mockLeague.TradingConfigMock();
 
 	@Test
 	public void generateRandomValueTest() {

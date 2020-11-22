@@ -189,7 +189,7 @@ public class TeamModel implements ITeam {
 	}
 		return goalie;
 	}
-	public boolean isTeamBalanced(TeamModel team) {
+	public boolean isTeamBalanced(ITeam team) {
 		int goalie=numberOfSkaters(team);
 		int skater=numberOfGoalies(team);
 		if (goalie == 2 && skater == 18) {
@@ -199,7 +199,7 @@ public class TeamModel implements ITeam {
 		}
 	}
 	
-	public void assignOneCaptain(TeamModel team) {
+	public void assignOneCaptain(ITeam team) {
 		int captainCount = 0;
 		for (int i = 1; i < team.getPlayerList().size(); i++) {
 			if (team.getPlayerList().get(i).getCaptain() == true) {

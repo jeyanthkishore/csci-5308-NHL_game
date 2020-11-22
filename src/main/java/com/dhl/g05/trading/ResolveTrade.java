@@ -7,9 +7,12 @@ import java.util.stream.Collectors;
 import com.dhl.g05.communication.ITradeCommunication;
 import com.dhl.g05.communication.PlayerCommunication;
 import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.player.PositionConstant;
+import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
 public class ResolveTrade implements IResolveTrade {
@@ -19,8 +22,8 @@ public class ResolveTrade implements IResolveTrade {
 
 	public void resolveTrade() {
 
-		IWeakTeam teamInitiatingTrade = TradingConfig.instance().getWeakteam();
-		IStrongTeam teamAcceptingTrade = TradingConfig.instance().getStrongteam();
+		IWeakTeam teamInitiatingTrade = Trading.instance().getWeakteam();
+		IStrongTeam teamAcceptingTrade = Trading.instance().getStrongteam();
 		if(teamAcceptingTrade.getStrongTeam().getUserTeam() == null)
 		{
 			adjustAITeam(teamAcceptingTrade.getStrongTeam());
@@ -35,8 +38,8 @@ public class ResolveTrade implements IResolveTrade {
 		}
 	}
 
-	public void adjustUserTeam(TeamModel team) {
-		TeamModel userTeam = new TeamModel();
+	public void adjustUserTeam(ITeam team) {
+		ITeam userTeam = new TeamModel();
 		int skatersCount = userTeam.numberOfSkaters(team);
 		int goaliesCount = userTeam.numberOfGoalies(team);
 		if (skatersCount > SKATERS_COUNT) {
@@ -55,7 +58,7 @@ public class ResolveTrade implements IResolveTrade {
 		}
 	}
 
-	public void adjustAITeam(TeamModel team) {
+	public void adjustAITeam(ITeam team) {
 		int skatersCount = team.numberOfSkaters(team);
 		int goaliesCount = team.numberOfGoalies(team);
 		if (skatersCount > SKATERS_COUNT) {
@@ -71,17 +74,17 @@ public class ResolveTrade implements IResolveTrade {
 		}
 	}
 
-	public void dropToFreeAgentList(TeamModel team, String position, int count) {
+	public void dropToFreeAgentList(ITeam team, String position, int count) {
 		LeagueModel leagueDetails = new LeagueModel();
-		ISortPlayerStrength sortPlayer = TradingConfig.instance().getSortplayerstrength();
-		List<PlayerModel> players = getPlayerPosition(team.getPlayerList(), position);
-		List<PlayerModel> weakestPlayers = sortPlayer.sortByDescending(players);
-		List<PlayerModel> weakestPLayersToTrade = weakestPlayers.stream().limit(count).collect(Collectors.toList());
+		ISortPlayerStrength sortPlayer = Trading.instance().getSortplayerstrength();
+		List<IPlayer> players = getPlayerPosition(team.getPlayerList(), position);
+		List<IPlayer> weakestPlayers = sortPlayer.sortByDescending(players);
+		List<IPlayer> weakestPLayersToTrade = weakestPlayers.stream().limit(count).collect(Collectors.toList());
 
-		for (PlayerModel player : weakestPLayersToTrade) {
+		for (IPlayer player : weakestPLayersToTrade) {
 			FreeAgentModel FreeAgentToPlayer = new FreeAgentModel();
-			List<FreeAgentModel> dropPlayer = new ArrayList<FreeAgentModel>();
-			FreeAgentToPlayer.setPlayerName(player.getPlayerName());
+			List<IFreeAgent> dropPlayer = new ArrayList<>();
+			FreeAgentToPlayer.setPlayerName(((FreeAgentModel) player).getPlayerName());
 			FreeAgentToPlayer.setPlayerStrength(player.getPlayerStrength());
 			FreeAgentToPlayer.setPosition(player.getPosition());
 			dropPlayer.add(FreeAgentToPlayer);
@@ -89,12 +92,12 @@ public class ResolveTrade implements IResolveTrade {
 		}
 	}
 
-	public void adjustPlayersForAI(TeamModel team, String position, int count) {
+	public void adjustPlayersForAI(ITeam team, String position, int count) {
 
-		List<PlayerModel> playersAdded = team.getPlayerList();
+		List<IPlayer> playersAdded = team.getPlayerList();
 		LeagueModel leagueDetails = new LeagueModel();
-		List<FreeAgentModel> freeAgents = getFreeAgentPlayerPosition(leagueDetails.getFreeAgent(), position);
-		for (FreeAgentModel freeAgentToSwap : freeAgents) {
+		List<IFreeAgent> freeAgents = getFreeAgentPlayerPosition(leagueDetails.getFreeAgent(), position);
+		for (IFreeAgent freeAgentToSwap : freeAgents) {
 			PlayerModel FreeAgentToPlayer = new PlayerModel();
 			FreeAgentToPlayer.setPlayerName(freeAgentToSwap.getPlayerName());
 			FreeAgentToPlayer.setPlayerStrength(freeAgentToSwap.getPlayerStrength());
@@ -104,15 +107,15 @@ public class ResolveTrade implements IResolveTrade {
 		}
 	}
 
-	public void dropPlayersFromUserTeam(TeamModel team, String position, int count) {
+	public void dropPlayersFromUserTeam(ITeam team, String position, int count) {
 		ITradeCommunication message = new PlayerCommunication();
-		List<PlayerModel> players = getPlayerPosition(team.getPlayerList(), position);
+		List<IPlayer> players = getPlayerPosition(team.getPlayerList(), position);
 		message.DropPlayerDetails(players, count);
-		List<PlayerModel> playerToDrop = new ArrayList<PlayerModel>();
+		List<IPlayer> playerToDrop = new ArrayList<>();
 		for (int i = 0; i < count; i++) {
 			while (true) {
 				String name = message.getResponse();
-				if (name.equals(players.get(i).getPlayerName())) {
+				if (name.equals(((FreeAgentModel) players.get(i)).getPlayerName())) {
 					playerToDrop.add(players.get(i));
 					break;
 				} else {
@@ -120,18 +123,18 @@ public class ResolveTrade implements IResolveTrade {
 				}
 			}
 		}
-		for (PlayerModel player : playerToDrop) {
+		for (IPlayer player : playerToDrop) {
 			if (playerToDrop.contains(player))
 				;
 			//team.removeTeamPlayer(player);
 		}
 	}
 
-	public List<FreeAgentModel> getFreeAgentPlayerPosition(List<FreeAgentModel> players, String position) {
+	public List<IFreeAgent> getFreeAgentPlayerPosition(List<IFreeAgent> players, String position) {
 
-		List<FreeAgentModel> playersWithPosition = new ArrayList<>();
+		List<IFreeAgent> playersWithPosition = new ArrayList<>();
 		if (position.equalsIgnoreCase(SKATER)) {
-			for (FreeAgentModel player : players) {
+			for (IFreeAgent player : players) {
 				if (player.getPosition().equals(PositionConstant.forward.getValue())|| player.getPosition().equals(PositionConstant.defense.getValue())){
 					if (player.getRetiredStatus() == true) {
 						continue;
@@ -141,7 +144,7 @@ public class ResolveTrade implements IResolveTrade {
 			}
 			return playersWithPosition;
 		} else {
-			for (FreeAgentModel player : players) {
+			for (IFreeAgent player : players) {
 				if (player.getPosition().equals(position)) {
 					if (player.getRetiredStatus() == true) {
 						continue;
@@ -153,13 +156,13 @@ public class ResolveTrade implements IResolveTrade {
 		}
 	}
 
-	public void adjustPlayersForUserTeam(TeamModel team, String freeAgentPosition, int count) {
+	public void adjustPlayersForUserTeam(ITeam team, String freeAgentPosition, int count) {
 		LeagueModel leagueDetails = new LeagueModel();
-		List<FreeAgentModel> freeAgents = freeAgentsWithPosition(leagueDetails.getFreeAgent(), freeAgentPosition);
+		List<IFreeAgent> freeAgents = freeAgentsWithPosition(leagueDetails.getFreeAgent(), freeAgentPosition);
 		ITradeCommunication message = new PlayerCommunication();
 		message.AddPlayerDetails(freeAgents, count);
-		List<FreeAgentModel> freeAgentsName = new ArrayList<FreeAgentModel>();
-		List<PlayerModel> playersAdded = team.getPlayerList();
+		List<IFreeAgent> freeAgentsName = new ArrayList<>();
+		List<IPlayer> playersAdded = team.getPlayerList();
 
 		for (int i = 0; i < count; i++) {
 			while (true) {
@@ -173,7 +176,7 @@ public class ResolveTrade implements IResolveTrade {
 			}
 		}
 
-		for (FreeAgentModel player : freeAgentsName) {
+		for (IFreeAgent player : freeAgentsName) {
 			PlayerModel FreeAgentToPlayer = new PlayerModel();
 			FreeAgentToPlayer.setPlayerName(player.getPlayerName());
 			FreeAgentToPlayer.setPlayerStrength(player.getPlayerStrength());
@@ -182,18 +185,18 @@ public class ResolveTrade implements IResolveTrade {
 			team.setPlayerList(playersAdded);
 		}
 
-		for (FreeAgentModel player : freeAgentsName) {
+		for (IFreeAgent player : freeAgentsName) {
 			freeAgents.remove(player);
 		}
 	}
 
-	public List<PlayerModel> getPlayerPosition(List<PlayerModel> players, String position) {
+	public List<IPlayer> getPlayerPosition(List<IPlayer> list, String position) {
 
-		List<PlayerModel> playersWithPosition = new ArrayList<>();
+		List<IPlayer> playersWithPosition = new ArrayList<>();
 		if (position.equalsIgnoreCase(SKATER)) {
-			for (PlayerModel player : players) {
+			for (IPlayer player : list) {
 				if (player.getPosition().equals(PositionConstant.forward.getValue())|| player.getPosition().equals(PositionConstant.defense.getValue())) {
-					if (player.getRetiredStatus() == true) {
+					if (((FreeAgentModel) player).getRetiredStatus() == true) {
 						continue;
 					}
 					playersWithPosition.add(player);
@@ -201,9 +204,9 @@ public class ResolveTrade implements IResolveTrade {
 			}
 			return playersWithPosition;
 		} else {
-			for (PlayerModel player : players) {
+			for (IPlayer player : list) {
 				if (player.getPosition().equals(position)) {
-					if (player.getRetiredStatus() == true) {
+					if (((FreeAgentModel) player).getRetiredStatus() == true) {
 						continue;
 					}
 					playersWithPosition.add(player);
@@ -213,11 +216,11 @@ public class ResolveTrade implements IResolveTrade {
 		}
 	}
 
-	public List<FreeAgentModel> freeAgentsWithPosition(List<FreeAgentModel> freeAgents, String position) {
+	public List<IFreeAgent> freeAgentsWithPosition(List<IFreeAgent> list, String position) {
 
-		List<FreeAgentModel> freeAgentsWithPosition = new ArrayList<FreeAgentModel>();
+		List<IFreeAgent> freeAgentsWithPosition = new ArrayList<>();
 		if (position.equalsIgnoreCase(SKATER)) {
-			for (FreeAgentModel freeAgent : freeAgents) {
+			for (IFreeAgent freeAgent : list) {
 				if (freeAgent.getPosition().equals(PositionConstant.forward.getValue())|| freeAgent.getPosition().equals(PositionConstant.defense.getValue())) {
 					if (freeAgent.getRetiredStatus() == true) {
 						continue;
@@ -227,7 +230,7 @@ public class ResolveTrade implements IResolveTrade {
 			}
 			return freeAgentsWithPosition;
 		}
-		for (FreeAgentModel freeAgent : freeAgents) {
+		for (IFreeAgent freeAgent : list) {
 			if (freeAgent.getPosition().equals(position)) {
 				if (freeAgent.getRetiredStatus() == true) {
 					continue;

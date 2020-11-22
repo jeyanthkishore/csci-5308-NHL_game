@@ -12,26 +12,27 @@ import com.dhl.g05.conference.ConferenceModel;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.DivisionModel;
 import com.dhl.g05.division.IDivision;
-import com.dhl.g05.gameplayconfig.TradingModel;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.gameplayconfig.ITradingConfig;
+import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.team.ITeam;
 
 public class WeakTeamTest {
 	MockLeagueModel mockLeague = new MockLeagueModel();
-	WeakTeam weakTeam = new WeakTeam();
-	TradingModel trade =mockLeague.TradingConfigMock();
-	TeamModel weak = mockLeague.leagueMock4();
+	IWeakTeam weakTeam = Trading.instance().getWeakteam();
+	ITradingConfig trade = mockLeague.TradingConfigMock();
+	ITeam weak = mockLeague.leagueMock4();
 
 	@Test
 	public void setWeakTeamTest() {
-		WeakTeam weakTeam = new WeakTeam();
+		IWeakTeam weakTeam = Trading.instance().getWeakteam();
 		weakTeam.setWeakTeam(weak);
 		assertSame(weak, weakTeam.getWeakTeam());
 	}
 
 	@Test
 	public void getWeakTeamTest() {
-		WeakTeam weakTeam = new WeakTeam();
+		IWeakTeam weakTeam = new WeakTeam();
 		assertNotSame(weak, weakTeam.getWeakTeam());
 	}
 
@@ -47,7 +48,7 @@ public class WeakTeamTest {
 	@Test
 	public void setDivisionNameTest() {
 		IDivision division = new DivisionModel();
-		WeakTeam weakTeam = new WeakTeam();
+		IWeakTeam weakTeam = Trading.instance().getWeakteam();
 		division.setDivisionName("Atlantic");
 		weakTeam.setDivisionName(division.getDivisionName());
 		assertSame(weakTeam.getDivisionName(), division.getDivisionName());
@@ -56,7 +57,7 @@ public class WeakTeamTest {
 	@Test
 	public void getDivisionNameTest() {
 		IDivision division = new DivisionModel();
-		WeakTeam weakTeam = new WeakTeam();
+		IWeakTeam weakTeam = Trading.instance().getWeakteam();
 		division.setDivisionName("Pacific");
 		weakTeam.setDivisionName(division.getDivisionName());
 		assertSame(weakTeam.getDivisionName(), division.getDivisionName());
@@ -84,7 +85,7 @@ public class WeakTeamTest {
 	public void setPlayersOfferedTest1() {
 		weakTeam.setWeakTeam(weak);
 		weakTeam.playersToOffer(trade);
-		List<PlayerModel> expected = weakTeam.getPlayersOffered();
+		List<IPlayer> expected = weakTeam.getPlayersOffered();
 		assertEquals(1, expected.size());
 
 	}
@@ -93,15 +94,15 @@ public class WeakTeamTest {
 	public void setPlayersOfferedTest2() {
 		weakTeam.setWeakTeam(weak);
 		weakTeam.playersToOffer(trade);
-		List<PlayerModel> expected = weakTeam.getPlayersOffered();
-		assertEquals("Shawn", expected.get(0).getPlayerName());
+		List<IPlayer> expected = weakTeam.getPlayersOffered();
+		assertEquals("Shawn", ((FreeAgentModel) expected.get(0)).getPlayerName());
 	}
 
 	@Test
 	public void setOfferedPlayerPositionTest() {
 		weakTeam.setWeakTeam(weak);
 		weakTeam.playersToOffer(trade);
-		List<PlayerModel> expected = weakTeam.getPlayersOffered();
+		List<IPlayer> expected = weakTeam.getPlayersOffered();
 		assertEquals("defense", expected.get(0).getPosition());
 	}
 
@@ -116,7 +117,7 @@ public class WeakTeamTest {
 	public void playersToOfferTest2() {
 		weakTeam.setWeakTeam(mockLeague.leagueMock5());
 		weakTeam.playersToOffer(trade);
-		for (PlayerModel player : weakTeam.getPlayersOffered()) {
+		for (IPlayer player : weakTeam.getPlayersOffered()) {
 			assertEquals("goalie", player.getPosition());
 		}
 	}

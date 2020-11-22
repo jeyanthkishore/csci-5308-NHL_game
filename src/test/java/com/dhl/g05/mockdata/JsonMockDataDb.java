@@ -22,7 +22,7 @@ import com.dhl.g05.gameplayconfig.Aging;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.gameplayconfig.GameResolverConfig;
 import com.dhl.g05.gameplayconfig.Injury;
-import com.dhl.g05.gameplayconfig.TradingModel;
+import com.dhl.g05.gameplayconfig.TradingConfig;
 import com.dhl.g05.gameplayconfig.TrainingConfig;
 import com.dhl.g05.league.ILeagueModel;
 import com.dhl.g05.league.LeagueModel;
@@ -54,7 +54,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public ArrayList<HashMap<String,Object>> leagueList;
 	public HashMap<String,Object> leagueMap;
 	public GamePlayConfigModel gamePlayConfig;
-	public TradingModel tradeConfig;
+	public TradingConfig tradeConfig;
 	public TrainingConfig training;
 	public GameResolverConfig gameResolver;
 	public Injury injury;
@@ -196,7 +196,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		leagueList.add(leagueMap);
 		leagueMap.put("league_name","CanadaLeague");
 		leagueList.add(leagueMap);
-		tradeConfig = new TradingModel(lossPoint, randomTradeOffer, maxPlayerPerTrade, randomAcceptanceChance);
+		tradeConfig = new TradingConfig(lossPoint, randomTradeOffer, maxPlayerPerTrade, randomAcceptanceChance);
 		training = new TrainingConfig(daysUntilTraining);
 		gameResolver = new GameResolverConfig(randownWinChance);
 		injury = new Injury(randomInjuryChance, injuryDaysLow, injuryDaysHigh);

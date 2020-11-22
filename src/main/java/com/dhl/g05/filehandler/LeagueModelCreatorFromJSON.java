@@ -32,7 +32,7 @@ import com.dhl.g05.gameplayconfig.GameResolverConstant;
 import com.dhl.g05.gameplayconfig.Injury;
 import com.dhl.g05.gameplayconfig.InjuryConstant;
 import com.dhl.g05.gameplayconfig.TradingConstant;
-import com.dhl.g05.gameplayconfig.TradingModel;
+import com.dhl.g05.gameplayconfig.TradingConfig;
 import com.dhl.g05.gameplayconfig.TrainingConfig;
 import com.dhl.g05.gameplayconfig.TrainingConstant;
 import com.dhl.g05.league.LeagueConstant;
@@ -153,7 +153,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		Aging agingObject = createAging((JSONObject)gamePlayConfigs.get("aging"));
 		Injury injuryObject = createInjury((JSONObject)gamePlayConfigs.get("injuries"));
 		TrainingConfig trainingObject = createTrainingConfig((JSONObject)gamePlayConfigs.get("training"));
-		TradingModel tradingObject = createTradingConfig((JSONObject)gamePlayConfigs.get("trading"));
+		TradingConfig tradingObject = createTradingConfig((JSONObject)gamePlayConfigs.get("trading"));
 		GameResolverConfig gameResolver = createGameResolver((JSONObject)gamePlayConfigs.get("gameResolver"));
 		if (agingObject == null || injuryObject == null || trainingObject == null || tradingObject == null || gameResolver == null) {
 			playerCommunication.sendMessage("Error in GamePlay Config");
@@ -177,7 +177,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		return null;
 	}
 
-	private TradingModel createTradingConfig(JSONObject tradingObject) {
+	private TradingConfig createTradingConfig(JSONObject tradingObject) {
 		if (tradingObject == null) {
 			return null;
 		} 
@@ -185,7 +185,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		int lossPoint = Integer.parseInt(tradingObject.get("lossPoint").toString());
 		int maxPlayersPerTrade = Integer.parseInt(tradingObject.get("maxPlayersPerTrade").toString());
 		double randomAcceptance =  Double.parseDouble(tradingObject.get("randomAcceptanceChance").toString());
-		TradingModel trade =  new TradingModel(lossPoint,randomTradeOfferChance,maxPlayersPerTrade,randomAcceptance);
+		TradingConfig trade =  new TradingConfig(lossPoint,randomTradeOfferChance,maxPlayersPerTrade,randomAcceptance);
 		TradingConstant result = trade.validate();
 		if(result.equals(TradingConstant.Success)) {
 			return trade;

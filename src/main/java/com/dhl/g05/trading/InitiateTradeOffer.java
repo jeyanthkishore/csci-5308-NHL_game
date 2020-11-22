@@ -2,33 +2,40 @@ package com.dhl.g05.trading;
 
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
-import com.dhl.g05.gameplayconfig.TradingModel;
-import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.gameplayconfig.ITradingConfig;
+import com.dhl.g05.league.ILeague;
+import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.team.ITeam;
 
 public class InitiateTradeOffer implements IIntiateTradeOffer {
 
-	private TradingModel trade;
+	private ITradingConfig trade;
 
-	public TradingModel getTrade() {
+	public ITradingConfig getTrade() {
 		return trade;
 	}
 
-	public void setTrade(TradingModel trade) {
+	public void setTrade(ITradingConfig trade) {
 		this.trade = trade;
 	}
-	public void initiateTradeOffer(LeagueModel league) {
+
+	public ILeague initiateTradeOffer(ILeague league) {
 		boolean hasBestTeamToTrade = false;
-		IWeakTeam teamInitiatingTrade = TradingConfig.instance().getWeakteam();
-		IStrongTeam teamAcceptingTrade = TradingConfig.instance().getStrongteam();
-		ITradeDecision tradeDecision = TradingConfig.instance().getTradedecision();
-		TradingModel trade = getTrade();
-		TradeValue checkTradeValue = new TradeValue(trade);
+		IWeakTeam teamInitiatingTrade = Trading.instance().getWeakteam();
+		IStrongTeam teamAcceptingTrade = Trading.instance().getStrongteam();
+		ITradeDecision tradeDecision = Trading.instance().getTradedecision();
+		ITradingConfig trade = getTrade();
+		ITradeValue checkTradeValue = new TradeValue(trade);
 
 		for (IConference c : league.getConferenceDetails()) {
 			for (IDivision d : c.getDivisionDetails()) {
-				for (TeamModel t : d.getTeamDetails()) {
-					if ( t.getLossCount()>=trade.getLossPoint()== true && checkTradeValue.checkTradeValue() == true && t.getUserTeam() == false) {
+				for (ITeam t : d.getTeamDetails()) {
+					if (t.getLossCount() >= trade.getLossPoint() == true) {
+						if (checkTradeValue.checkTradeValue() == true) {
+							if (t.getUserTeam() == false) {
+							}
+						}
 						teamInitiatingTrade.setWeakTeam(t);
 						teamInitiatingTrade.setConferenceName(c.getConferenceName());
 						teamInitiatingTrade.setDivisionName(d.getDivisionName());
@@ -36,13 +43,26 @@ public class InitiateTradeOffer implements IIntiateTradeOffer {
 						hasBestTeamToTrade = teamAcceptingTrade.findTeamToSwap(league);
 						if (hasBestTeamToTrade == true) {
 							tradeDecision.TradeResult(trade);
-						} else {
+						} else 
 							break;
 						}
 
 					}
 				}
 			}
+		for (IConference c : league.getConferenceDetails()) {
+			for (IDivision d : c.getDivisionDetails()) {
+				for (ITeam t : d.getTeamDetails()) {
+					{
+						System.out.println(t.getTeamName());
+						for (IPlayer p : t.getPlayerList()) {
+							System.out.println(((FreeAgentModel) p).getPlayerName() + " " + p.getPosition()
+									+ p.getPlayerStrength());
+						}
+					}
+				}
+			}
 		}
+		return league;
 	}
 }

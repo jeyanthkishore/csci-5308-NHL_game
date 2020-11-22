@@ -1,33 +1,24 @@
 package com.dhl.g05.trading;
 
-public class TradingConfig {
+public class Trading {
 
-	private static TradingConfig uniqueInstance = null;
-
+	private static Trading uniqueInstance = null;
 	private ISortPlayerStrength sortplayerstrength;
 	private IStrongTeam strongteam;
 	private ISwapPlayers swapplayers;
 	private IWeakTeam weakteam;
 	private ITradeDecision tradedecision;
 	private IResolveTrade resolveTrade;
+	private ITradeValue tradevalue;
+	private IIntiateTradeOffer inititatetradeoffer;
 
-	public IResolveTrade getResolveTrade() {
-		return resolveTrade;
-	}
-
-	public void setResolveTrade(IResolveTrade resolveTrade) {
-		this.resolveTrade = resolveTrade;
-	}
-
-	private TradingConfig() {
-
+	private Trading() {
 		sortplayerstrength = new SortPlayerStrength();
 		strongteam = new StrongTeam();
 		swapplayers = new SwapPlayers();
 		weakteam = new WeakTeam();
 		tradedecision = new TradeDecision();
 		resolveTrade = new ResolveTrade();
-
 	}
 
 	public ITradeDecision getTradedecision() {
@@ -70,12 +61,33 @@ public class TradingConfig {
 		this.weakteam = weakteam;
 	}
 
-	public static TradingConfig instance() {
-		if (null == uniqueInstance) {
-			uniqueInstance = new TradingConfig();
-		}
-		return uniqueInstance;
-
+	public IResolveTrade getResolveTrade() {
+		return resolveTrade;
 	}
 
+	public void setResolveTrade(IResolveTrade resolveTrade) {
+		this.resolveTrade = resolveTrade;
+	}
+
+	public ITradeValue getTradevalue() {
+		return tradevalue;
+	}
+
+	public void setTradevalue(ITradeValue tradevalue) {
+		this.tradevalue = tradevalue;
+	}
+	public IIntiateTradeOffer getInititatetradeoffer() {
+		return inititatetradeoffer;
+	}
+
+	public void setInititatetradeoffer(IIntiateTradeOffer inititatetradeoffer) {
+		this.inititatetradeoffer = inititatetradeoffer;
+	}
+
+	public static Trading instance() {
+		if (null == uniqueInstance) {
+			uniqueInstance = new Trading();
+		}
+		return uniqueInstance;
+	}
 }
