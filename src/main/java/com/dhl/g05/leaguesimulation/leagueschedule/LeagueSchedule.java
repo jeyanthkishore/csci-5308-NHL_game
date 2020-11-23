@@ -257,7 +257,6 @@ public class LeagueSchedule implements ILeagueSchedule {
                 }
             }
         }
-    
     }
 
     @Override
