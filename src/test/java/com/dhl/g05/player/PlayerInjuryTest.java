@@ -16,7 +16,7 @@ public class PlayerInjuryTest {
     public void checkPlayerInjuryTest() {
         IRandomNumberFactory randomNumberFactoryMock = Mockito.mock(RandomNumberFactory.class);
         IInjury injury = new Injury();
-        PlayerModel player = new PlayerModel();
+        IPlayer player = new PlayerModel();
         injury.setInjuryDaysHigh(100);
         injury.setInjuryDaysLow(10);
         injury.setRandomInjuryChance(1.5);

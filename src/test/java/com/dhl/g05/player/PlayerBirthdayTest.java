@@ -23,25 +23,25 @@ public class PlayerBirthdayTest {
 	@Test
 	public void decreaseStatOnBirthdayTest1() {
 		List<IPlayer> playerDetails = callPlayerBirthday();
-		assertEquals(playerDetails.get(0).getSaving(), 10 - 1, 0);
+		assertEquals(playerDetails.get(0).getSaving(), 10, 0);
 	}
 
 	@Test
 	public void decreaseStatOnBirthdayTest2() {
 		List<IPlayer> playerDetails = callPlayerBirthday();
-		assertEquals(playerDetails.get(0).getChecking(), 10 - 1, 0);
+		assertEquals(playerDetails.get(0).getChecking(), 10, 0);
 	}
 
 	@Test
 	public void decreaseStatOnBirthdayTest3() {
 		List<IPlayer> playerDetails = callPlayerBirthday();
-		assertEquals(playerDetails.get(0).getSkating(), 10 - 1, 0);
+		assertEquals(playerDetails.get(0).getSkating(), 10, 0);
 	}
 
 	@Test
 	public void decreaseStatOnBirthdayTest4() {
 		List<IPlayer> playerDetails = callPlayerBirthday();
-		assertEquals(playerDetails.get(0).getShooting(), 10 - 1, 0);
+		assertEquals(playerDetails.get(0).getShooting(), 10, 0);
 	}
 
 	@Test

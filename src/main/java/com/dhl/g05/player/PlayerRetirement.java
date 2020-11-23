@@ -1,11 +1,12 @@
 package com.dhl.g05.player;
 
+import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.IAging;
 
 public class PlayerRetirement implements IPlayerRetired{
 
     @Override
-    public boolean checkPlayerRetirement(IAging aging, PlayerModel player) {
+    public boolean checkPlayerRetirement(IAging aging, IFreeAgent player) {
         IRandomNumberFactory randomNumberFactory = new RandomNumberFactory();
         if(player.getAge() > aging.getMaximumAge()) {
             player.setRetiredStatus(true);

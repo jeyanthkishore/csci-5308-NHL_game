@@ -1,12 +1,11 @@
 package com.dhl.g05.player;
 
+import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.Aging;
 import com.dhl.g05.gameplayconfig.IAging;
 import org.junit.Test;
 import org.mockito.Mockito;
-
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.when;
 
 public class PlayerRetirementTest {
@@ -15,18 +14,16 @@ public class PlayerRetirementTest {
     public void checkPlayerRetirementTest() {
         IRandomNumberFactory randomNumberFactoryMock = Mockito.mock(RandomNumberFactory.class);
         IPlayerRetired playerRetired = new PlayerRetirement();
-        PlayerModel player = new PlayerModel();
+        IFreeAgent player = new PlayerModel();
         IAging aging = new Aging();
         player.setAge(50);
         aging.setMaximumAge(40);
         assertTrue(playerRetired.checkPlayerRetirement(aging,player));
-
         player.setAge(30);
         aging.setAverageRetirementAge(35);
         when(randomNumberFactoryMock.generateRandomIntegerNumber(15,0)).thenReturn(7);
         when(randomNumberFactoryMock.generateRandomIntegerNumber(aging.getAverageRetirementAge(),0)).thenReturn(31);
         playerRetired.checkPlayerRetirement(aging,player);
-
         player.setAge(35);
         aging.setAverageRetirementAge(30);
         aging.setMaximumAge(50);

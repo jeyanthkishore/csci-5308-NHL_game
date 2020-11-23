@@ -1,5 +1,8 @@
 package com.dhl.g05.player;
 
+import com.dhl.g05.freeagent.IFreeAgent;
+import com.dhl.g05.gameplayconfig.Aging;
+import com.dhl.g05.gameplayconfig.IAging;
 import org.junit.Test;
 
 import com.dhl.g05.freeagent.FreeAgentConstant;
@@ -169,8 +172,18 @@ public class PlayerModelTest {
 	public void checkPlayerInjuryTest() {
 		IPlayerInjured playerInjured = new PlayerInjury();
 		IPlayerInjury playerInjury = new PlayerModel();
-		PlayerModel player = new PlayerModel();
+		IPlayer player = new PlayerModel();
 		IInjury injury = new Injury();
 		assertFalse(playerInjury.checkPlayerInjury(playerInjured,player, injury));
+	}
+
+	@Test
+	public void checkPlayerRetirementTest() {
+		IPlayerRetirement playerRetirement = new PlayerModel();
+		IPlayerRetired playerRetired = new PlayerRetirement();
+		IFreeAgent player = new PlayerModel();
+		IAging aging = new Aging();
+		assertTrue(playerRetirement.checkPlayerRetirement(playerRetired, player, aging));
+
 	}
 }

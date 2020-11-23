@@ -4,7 +4,7 @@ import com.dhl.g05.gameplayconfig.IInjury;
 public class PlayerInjury implements IPlayerInjured {
 
     @Override
-    public boolean checkPlayerInjury(PlayerModel player, IInjury injury) {
+    public boolean checkPlayerInjury(IPlayer player, IInjury injury) {
         IRandomNumberFactory randomNumberFactory = new RandomNumberFactory();
         if(player.getInjuredStatus()) {
             return true;

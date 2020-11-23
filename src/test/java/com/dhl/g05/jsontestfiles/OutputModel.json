@@ -470,5 +470,7 @@
       "daysUntilStatIncreaseCheck": 100
     }
   },
-  "daysSinceStatIncrease": 0
+  "daysSinceStatIncrease": 0,
+  "leagueStanding": {},
+  "leagueSchedule": {}
 }

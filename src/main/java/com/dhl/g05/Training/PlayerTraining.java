@@ -6,6 +6,7 @@ import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.IPlayerInjured;
 import com.dhl.g05.player.PlayerInjury;
+import com.dhl.g05.player.PlayerModel;
 
 public class PlayerTraining implements IPlayerTraining {
 

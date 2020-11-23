@@ -9,6 +9,6 @@ import java.time.LocalDate;
 
 public interface IPlayerInjured {
 
-    boolean checkPlayerInjury(PlayerModel playerObject, IInjury injury);
+    boolean checkPlayerInjury(IPlayer playerObject, IInjury injury);
 
 }
