@@ -3,9 +3,8 @@ package com.dhl.g05.leaguesimulation.leagueschedule;
 import java.time.LocalDate;
 
 import com.dhl.g05.conference.IConference;
-import com.dhl.g05.conference.IConferenceModel;
 import com.dhl.g05.division.IDivision;
-import com.dhl.g05.team.ITeamModel;
+import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
 public interface ISchedule {
@@ -18,9 +17,9 @@ public interface ISchedule {
 
 	void setFirstDivision(IDivision firstDivision);
 
-	TeamModel getFirstTeam();
+	ITeam getFirstTeam();
 
-	void setFirstTeam(TeamModel firstTeam);
+	void setFirstTeam(ITeam Team);
 
 	IConference getSecondConference();
 
@@ -30,9 +29,9 @@ public interface ISchedule {
 
 	void setSecondDivision(IDivision secondDivision);
 
-	TeamModel getSecondTeam();
+	ITeam getSecondTeam();
 
-	void setSecondTeam(TeamModel secondTeam);
+	void setSecondTeam(ITeam secondTeam);
 
 	LocalDate getDate();
 

@@ -6,6 +6,7 @@ import java.util.List;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
 public class LeagueStanding implements ILeagueStanding{
@@ -25,17 +26,17 @@ public class LeagueStanding implements ILeagueStanding{
 	public void initializeStandings(LeagueModel league) {
         standings = new ArrayList<>();
 
-//        for (ConferenceModel conference: league.getConferenceDetails()) {
-//            for (DivisionModel division: conference.getDivisionDetails()) {
-//                for (TeamModel team: division.getTeamDetails()) {
-//                    IStanding standing = new Standing();
-//                    standing.setConference(conference);
-//                    standing.setDivision(division);
-//                    standing.setTeam(team);
-//                    standings.add(standing);
-//                }
-//            }
-//        }
+        for (IConference conference: league.getConferenceDetails()) {
+            for (IDivision division: conference.getDivisionDetails()) {
+                for (ITeam team: division.getTeamDetails()) {
+                    IStanding standing = new Standing();
+                    standing.setConference(conference);
+                    standing.setDivision(division);
+                    standing.setTeam(team);
+                    standings.add(standing);
+                }
+            }
+        }
     }
 
     @Override
@@ -58,6 +59,7 @@ public class LeagueStanding implements ILeagueStanding{
                     standing.getDivision() == division &&
                     standing.getTeam() == team) {
                 standing.incrementGamesPlayed();
+                standing.incrementGamesLost();
             }
         }
     }
@@ -70,7 +72,7 @@ public class LeagueStanding implements ILeagueStanding{
                 myStandings.add(standing);
             }
         }
-        myStandings.sort(Standing.standingComparator);
+        myStandings.sort(Standing.rankingComparator);
         return myStandings;
     }
 
@@ -82,7 +84,7 @@ public class LeagueStanding implements ILeagueStanding{
                 myStandings.add(standing);
             }
         }
-        myStandings.sort(Standing.standingComparator);
+        myStandings.sort(Standing.rankingComparator);
         return myStandings;
     }
 

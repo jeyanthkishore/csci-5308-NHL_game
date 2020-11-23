@@ -4,16 +4,19 @@ import java.time.LocalDate;
 
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
+import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.leaguesimulation.leaguestanding.ILeagueStanding;
+import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
-public class Schedule implements ISchedule {
+public class Schedule implements ISchedule, IInitializeSchedule {
 
 	private IConference firstConference;
 	private IDivision firstDivision;
-	private TeamModel firstTeam;
+	private ITeam firstTeam;
 	private IConference secondConference;
 	private IDivision secondDivision;
-	private TeamModel secondTeam;
+	private ITeam secondTeam;
 	private LocalDate date;
 	private boolean isGamePlayed;
 	private TeamModel winningTeam;
@@ -39,12 +42,12 @@ public class Schedule implements ISchedule {
 	}
 	
 	@Override
-	public TeamModel getFirstTeam() {
+	public ITeam getFirstTeam() {
 		return firstTeam;
 	}
 	
 	@Override
-	public void setFirstTeam(TeamModel firstTeam) {
+	public void setFirstTeam(ITeam firstTeam) {
 		this.firstTeam = firstTeam;
 	}
 	
@@ -69,12 +72,12 @@ public class Schedule implements ISchedule {
 	}
 	
 	@Override
-	public TeamModel getSecondTeam() {
+	public ITeam getSecondTeam() {
 		return secondTeam;
 	}
 	
 	@Override
-	public void setSecondTeam(TeamModel secondTeam) {
+	public void setSecondTeam(ITeam secondTeam) {
 		this.secondTeam = secondTeam;
 	}
 	
@@ -106,6 +109,20 @@ public class Schedule implements ISchedule {
 	@Override
 	public void setIsGamePlayed(boolean isGamePlayed) {
 		this.isGamePlayed = isGamePlayed;
+	}
+	
+	@Override
+	public void generateRegularSeason(LeagueModel league) {
+		ILeagueSchedule leagueSchedule = new LeagueSchedule();
+		leagueSchedule.generateRegularSeasonSchedule(league);
+		leagueSchedule.addRegularSeasonDates();
+	}
+	
+	@Override
+	public void generatePlayOff(LeagueModel league,ILeagueStanding standingSystem) {
+		ILeagueSchedule leagueSchedule = new LeagueSchedule();
+		leagueSchedule.generatePlayoffSchedule(league,standingSystem);
+		leagueSchedule.addPlayoffSeasonDates();
 	}
 
 }
