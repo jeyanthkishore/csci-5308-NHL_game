@@ -432,6 +432,7 @@
       ]
     }
   ],
+  "retiredPlayersList": [],
   "coaches": [
     {
       "name": "Diego Maradona",
@@ -470,6 +471,7 @@
       "daysUntilStatIncreaseCheck": 100
     }
   },
+  "retiredFreeAgentsList": [],
   "daysSinceStatIncrease": 0,
   "leagueStanding": {},
   "leagueSchedule": {}

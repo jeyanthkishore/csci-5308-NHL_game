@@ -1,6 +1,9 @@
 package com.dhl.g05.gameplayconfig;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Injury implements IInjury {
+    static final Logger logger = LogManager.getLogger(Injury.class);
     private double randomInjuryChance;
     private int injuryDaysLow;
     private int injuryDaysHigh;
@@ -45,6 +48,7 @@ public class Injury implements IInjury {
     }
 
     public InjuryConstant validate() {
+        logger.info("Validating injury details");
         if(isRandomInjuryChanceNotValid(randomInjuryChance)){
             return InjuryConstant.RandomInjuryChanceError;
         }

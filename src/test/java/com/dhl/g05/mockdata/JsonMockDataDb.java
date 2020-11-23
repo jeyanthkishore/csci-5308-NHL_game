@@ -47,8 +47,8 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public List<ICoach> coachList;
 	public List<CoachModel> coachListTwo;
 	public List<String> managerList;
-	public List<IFreeAgent> retiredFreeAgents;
-	public List<PlayerModel> retiredTeamPlayers;
+	public List<IFreeAgent> retiredFreeAgentsList;
+	public List<IPlayer> retiredPlayersList;
 	public List<String> managerListTwo;
 	public CoachModel coachDetails;
 	public ArrayList<HashMap<String,Object>> leagueList;
@@ -129,8 +129,8 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		managerList = new ArrayList<>();
 		managerListTwo = new ArrayList<>();
 		conferenceList = new ArrayList<>();
-		retiredFreeAgents = new ArrayList<>();
-		retiredTeamPlayers = new ArrayList<>();
+		retiredFreeAgentsList = new ArrayList<>();
+		retiredPlayersList = new ArrayList<>();
 		leagueList = new ArrayList<>();
 		leagueMap = new HashMap<>();
 		league = new LeagueModel();
@@ -143,7 +143,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		captainTwo = false;
 		coachDetails = new CoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving);
 		playerList.add(new PlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
-		retiredTeamPlayers.add(new PlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		retiredPlayersList.add(new PlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		teamList.add(new TeamModel(teamName,coachDetails,generalManagerName,playerList));
 		teamList.add(new TeamModel(teamTwoName,coachDetails,generalManagerTwoName,playerList));
 		divisionList.add(new DivisionModel(divisionOneName,teamList));
@@ -177,7 +177,8 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		freeAgentList.add(new FreeAgentModel("Vijay Joseph","forward",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		freeAgentList.add(new FreeAgentModel("Maadu Ravi","forward",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		freeAgentList.add(new FreeAgentModel("Kajol","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
-		retiredFreeAgents.add(new FreeAgentModel("Kajol","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		retiredFreeAgentsList.add(new FreeAgentModel("Kajol","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		retiredFreeAgentsList.add(new FreeAgentModel("Kajol","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		conferenceList.add(new ConferenceModel(conferenceName,divisionList));
 		conferenceList.add(new ConferenceModel(conferenceTwoName,divisionList));
 		coachList.add(new CoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving));
@@ -416,6 +417,8 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		leagueModelObject.setGamePlayConfig(gamePlayConfig);
 		leagueModelObject.setDbObject(new LeaguePersistenceMock());
 		leagueModelObject.setManagerList(managerList);
+		leagueModelObject.setRetiredFreeAgentsList(retiredFreeAgentsList);
+		leagueModelObject.setRetiredPlayersList(retiredPlayersList);
 	}
 
 	@Override

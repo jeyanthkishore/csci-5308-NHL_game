@@ -1,6 +1,9 @@
 package com.dhl.g05.coach;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class CoachModel implements ICoach{
+	static final Logger logger = LogManager.getLogger(CoachModel.class);
 	private final static double MAX_STAT = 1.0;
 	private final static double MIN_STAT = 0.0;
 	private String name;
@@ -85,6 +88,7 @@ public class CoachModel implements ICoach{
 
 	@Override
 	public CoachConstant validate() {
+		logger.info("Validating coach details - name and statistics");
 		if(isCoachNameNull() || isCoachNameEmpty()) {
 			return CoachConstant.CoachNameEmpty;
 		}
@@ -109,6 +113,7 @@ public class CoachModel implements ICoach{
 	}
 
 	public boolean isCoachStatValid() {
+		logger.info("Validating coach statistics");
 		if (validateStat(skating) && validateStat(shooting) && validateStat(checking) && validateStat(saving)) {
 			return true;
 		}

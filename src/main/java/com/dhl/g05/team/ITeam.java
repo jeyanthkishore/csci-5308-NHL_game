@@ -36,6 +36,8 @@ public interface ITeam {
 
 	public void assignOneCaptain(ITeam team);
 
+	boolean removeRetiredPlayerFromTeam(IPlayer player);
+
 	public boolean isTeamBalanced(ITeam team);
 
 	public void setLossCount(int lossCount);

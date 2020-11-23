@@ -7,8 +7,6 @@ import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.leaguesimulation.leagueschedule.ILeagueSchedule;
-import com.dhl.g05.leaguesimulation.leaguestanding.ILeagueStanding;
 import com.dhl.g05.player.IPlayer;
 
 public interface ILeague {
@@ -54,20 +52,4 @@ public interface ILeague {
     List<IPlayer> getRetiredPlayersList();
 
     void setRetiredPlayersList(List<IPlayer> retiredPlayersList);
-
-	void incrementCurrentDate();
-
-	LocalDate getLeagueCurrentDate();
-
-	ILeagueSchedule getLeagueSchedule();
-
-	void resetDaysSinceStatIncrease();
-
-	void setLeagueCurrentDate(LocalDate currentDate);
-
-	ILeagueStanding getLeagueStanding();
-
-	void incrementDaysSinceStatIncrease();
-
-	int getDaysSinceStatIncrease();
 }
