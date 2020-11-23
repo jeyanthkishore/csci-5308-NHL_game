@@ -2,6 +2,7 @@ package com.dhl.g05.statemachine;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
 import com.dhl.g05.communication.AbstractCommunicationFactory;
 import com.dhl.g05.communication.CommunicationFactory;
@@ -29,6 +30,11 @@ public class AgingStateTest {
 	@Before
 	public void init() {
 		state = AbstractStateMachineFactory.getFactory().getAgingState();
+	}
+	
+	@Test
+	public void performTaskTest() {
+		
 	}
 	
 }

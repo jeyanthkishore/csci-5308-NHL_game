@@ -9,6 +9,7 @@ import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.freeagent.IFreeAgent;
+import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
@@ -17,7 +18,7 @@ import com.mysql.cj.util.StringUtils;
 public class CreateNewTeam implements ICreateTeam {
 
 	private TeamModel newTeam = new TeamModel();
-	private LeagueModel leagueObject;
+	private ILeague leagueObject;
 	private IPlayerCommunication communicate;
 	List<IFreeAgent> freeAgentList = new ArrayList<>();
 	List<ICoach> coachList = new ArrayList<>();
@@ -28,7 +29,7 @@ public class CreateNewTeam implements ICreateTeam {
 		this.communicate = null;
 	}
 
-	public CreateNewTeam(LeagueModel league, IPlayerCommunication communicate) {
+	public CreateNewTeam(ILeague league, IPlayerCommunication communicate) {
 		this.leagueObject = league;
 		this.communicate = communicate;
 	}
@@ -37,7 +38,7 @@ public class CreateNewTeam implements ICreateTeam {
 		return freeAgentList;
 	}
 
-	public LeagueModel getLeagueObject() {
+	public ILeague getLeagueObject() {
 		return leagueObject;
 	}
 

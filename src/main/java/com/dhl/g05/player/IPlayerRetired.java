@@ -5,6 +5,6 @@ import com.dhl.g05.gameplayconfig.IAging;
 
 public interface IPlayerRetired {
 
-    boolean checkPlayerRetirement(IAging aging, IFreeAgent player);
+    boolean checkPlayerRetirement(IAging aging, IPlayer player);
 
 }

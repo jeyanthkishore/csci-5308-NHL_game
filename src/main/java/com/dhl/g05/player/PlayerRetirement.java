@@ -1,12 +1,17 @@
 package com.dhl.g05.player;
-
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.IAging;
+import com.dhl.g05.league.ILeague;
+import com.dhl.g05.team.ITeam;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class PlayerRetirement implements IPlayerRetired{
+    static final Logger logger = LogManager.getLogger(PlayerRetirement.class);
 
     @Override
-    public boolean checkPlayerRetirement(IAging aging, IFreeAgent player) {
+    public boolean checkPlayerRetirement(IAging aging, IPlayer player) {
+        logger.info("check whether player is retired or not");
         IRandomNumberFactory randomNumberFactory = new RandomNumberFactory();
         if(player.getAge() > aging.getMaximumAge()) {
             player.setRetiredStatus(true);
@@ -39,4 +44,27 @@ public class PlayerRetirement implements IPlayerRetired{
             }
         }
     }
+
+//    @Override
+//    public boolean isFreeAgentsRetired(ILeague league, IFreeAgent freeAgent) {
+//        logger.info("Getting status of retirement of freeAgents");
+//        boolean isFreeAgentRemovedFromLeague = league.removeRetiredFreeAgentsFromLeague(freeAgent);
+//        if (isFreeAgentRemovedFromLeague) {
+//            league.addRetiredFreeAgentToList(freeAgent);
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean isPlayerRetired(ILeague league, IPlayer player, ITeam team) {
+//        logger.info("Getting status of retirement of players");
+//        boolean isPlayerRemovedFromTeam = team.removeRetiredPlayerFromTeam(player);
+//        if (isPlayerRemovedFromTeam) {
+//            league.addRetiredPlayersToList(player);
+//            return true;
+//        }
+//        return false;
+//    }
+
 }

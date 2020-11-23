@@ -56,4 +56,10 @@ public interface IPlayer {
 
 	int getBirthYear();
 
+	void setRetiredStatus(boolean value);
+
+	int getAge();
+
+	void setAge(int age);
+
 }

@@ -52,4 +52,6 @@ public interface ITeam {
 
 	TeamConstant validate();
 
+	boolean removeRetiredPlayerFromTeam(IPlayer player);
+
 }

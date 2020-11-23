@@ -181,7 +181,7 @@ public class PlayerModelTest {
 	public void checkPlayerRetirementTest() {
 		IPlayerRetirement playerRetirement = new PlayerModel();
 		IPlayerRetired playerRetired = new PlayerRetirement();
-		IFreeAgent player = new PlayerModel();
+		IPlayer player = new PlayerModel();
 		IAging aging = new Aging();
 		assertTrue(playerRetirement.checkPlayerRetirement(playerRetired, player, aging));
 

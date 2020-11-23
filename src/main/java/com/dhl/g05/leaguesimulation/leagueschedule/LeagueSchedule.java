@@ -7,7 +7,6 @@ import java.util.List;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.leaguesimulation.DateHandler;
 import com.dhl.g05.leaguesimulation.leaguestanding.ILeagueStanding;
 import com.dhl.g05.leaguesimulation.leaguestanding.IStanding;
@@ -111,7 +110,8 @@ public class LeagueSchedule implements ILeagueSchedule {
 	}
 
 	@Override
-    public void generatePlayoffSchedule(LeagueModel league, ILeagueStanding standingSystem) {
+    public void generatePlayoffSchedule(ILeague league, ILeagueStanding standingSystem) {
+		playoffSchedule = new ArrayList<>();
         for (IConference conference: league.getConferenceDetails()) {
             List<List<IStanding>> allDivisionStandings = new ArrayList<>();
             List<List<IStanding>> wildCardDivision = new ArrayList<>();
@@ -166,12 +166,11 @@ public class LeagueSchedule implements ILeagueSchedule {
 	}
 
 	@Override
-    public boolean anyUnplayedGamesOnThisDate(LocalDate date) {
+    public boolean anyUnplayedGamesOnGivenDate(LocalDate date) {
         List<ISchedule> scheduleListToCheck = null;
         if (DateHandler.getInstance().isRegularSeasonOngoing(date)) {
             scheduleListToCheck = regularSchedule;
-        }
-        else if (DateHandler.getInstance().isPlayoffSeasonOngoing(date)) {
+        } else if (DateHandler.getInstance().isPlayoffSeasonOngoing(date)) {
             scheduleListToCheck = playoffSchedule;
         }
         if (scheduleListToCheck == null) {
