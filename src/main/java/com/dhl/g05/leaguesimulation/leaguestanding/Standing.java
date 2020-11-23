@@ -5,7 +5,6 @@ import java.util.Comparator;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.TeamModel;
 
 public class Standing implements IStanding {
 	
@@ -14,28 +13,34 @@ public class Standing implements IStanding {
 	private ITeam team;
 	private int gamesPlayed;
     private int gamesWon;
+    private int gamesLost;
     private int points;
 	
 	@Override
 	public IConference getConference() {
 		return conference;
 	}
+	
 	@Override
 	public void setConference(IConference conference) {
 		this.conference = conference;
 	}
+	
 	@Override
 	public IDivision getDivision() {
 		return Division;
 	}
+	
 	@Override
 	public void setDivision(IDivision division) {
 		Division = division;
 	}
+	
 	@Override
 	public ITeam getTeam() {
 		return team;
 	}
+	
 	@Override
 	public void setTeam(ITeam team) {
 		this.team = team;
@@ -72,6 +77,21 @@ public class Standing implements IStanding {
     }
 
     @Override
+  	public void incrementGamesLost() {
+    	gamesLost += 1;
+      }
+    
+    @Override
+    public int getGamesLost() {
+		return gamesLost;
+	}
+    
+    @Override
+	public void setGamesLost(int gamesLost) {
+		this.gamesLost = gamesLost;
+	}
+    
+	@Override
 	public int getPoints() {
         return points;
     }
@@ -86,9 +106,9 @@ public class Standing implements IStanding {
         points += 2;
     }
 
-    public static Comparator<IStanding> standingComparator = (s1, s2) -> {
-        int pointsComparison = s2.getPoints() - s1.getPoints();
-        int gamesWonComparison = s2.getGamesWon() - s1.getGamesWon();
+    public static Comparator<IStanding> rankingComparator = (s1, s2) -> {
+        int pointsComparison = s1.getPoints() - s2.getPoints();
+        int gamesWonComparison = s1.getGamesWon() - s2.getGamesWon();
         int gamesPlayedComparison = s1.getGamesPlayed() - s2.getGamesPlayed();
 
         if (pointsComparison == 0) {
@@ -98,8 +118,9 @@ public class Standing implements IStanding {
             else {
                 return gamesWonComparison;
             }
+        }else {
+        	return pointsComparison;
         }
 
-        return pointsComparison;
     };
 }

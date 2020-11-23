@@ -39,8 +39,8 @@ public class InitializeSeasonStateTest {
 	
 	@Test
 	public void seasonInitializeTest() {
-		LeagueModel league = new LeagueModel();
-		state.setLeague(league);
+		JsonMockDataDb mock = new JsonMockDataDb();
+		state.setLeague(mock.league);
 		state.enter();
 		state.performStateTask();
 		state.exit();
@@ -49,9 +49,9 @@ public class InitializeSeasonStateTest {
 	
 	@Test
 	public void dateInitializeTest() {
-		LeagueModel league = new LeagueModel();
-		league.setLeagueCurrentDate(LocalDate.of(2020, Month.DECEMBER, 07));
-		state.setLeague(league);
+		JsonMockDataDb mock = new JsonMockDataDb();
+		mock.league.setLeagueCurrentDate(LocalDate.of(2020, Month.DECEMBER, 07));
+		state.setLeague(mock.league);
 		state.enter();
 		state.performStateTask();
 		state.exit();

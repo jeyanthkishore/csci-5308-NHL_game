@@ -6,7 +6,7 @@ import java.util.List;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.leaguesimulation.leaguestanding.ILeagueStanding;
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.team.ITeam;
 
 public interface ILeagueSchedule {
 
@@ -30,6 +30,11 @@ public interface ILeagueSchedule {
 
 	void updateScheduleAfterGamePlayed(ISchedule schedule);
 
-	TeamModel getStanleyCupWinner();
+	ITeam getStanleyCupWinner();
+
+	void addRegularSeasonDates();
+
+	void addPlayoffSeasonDates();
+
 
 }

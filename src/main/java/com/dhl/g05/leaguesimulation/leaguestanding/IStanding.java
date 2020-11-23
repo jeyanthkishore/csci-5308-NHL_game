@@ -3,7 +3,6 @@ package com.dhl.g05.leaguesimulation.leaguestanding;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.TeamModel;
 
 public interface IStanding {
 
@@ -36,5 +35,11 @@ public interface IStanding {
 	void setPoints(int points);
 
 	void incrementPoints();
+
+	void incrementGamesLost();
+
+	int getGamesLost();
+
+	void setGamesLost(int gamesLost);
 
 }
