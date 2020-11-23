@@ -4,6 +4,6 @@ import com.dhl.g05.gameplayconfig.IInjury;
 
 public interface IPlayerInjury {
 
-	boolean isPlayerInjured(IPlayerInjured playerProgress, PlayerModel playerModel , IInjury injury);
+	boolean checkPlayerInjury(IPlayerInjured playerInjured, PlayerModel player, IInjury injury);
 	
 }

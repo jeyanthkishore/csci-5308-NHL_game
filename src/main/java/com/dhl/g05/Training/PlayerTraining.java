@@ -81,7 +81,7 @@ public class PlayerTraining implements IPlayerTraining {
 	private Boolean isPlayerInjured(PlayerModel player) {
 		IPlayerInjured playerProgress= new PlayerInjury();
 		IInjury injury = leagueObject.getGamePlayConfig().getInjuries();
-		if(playerProgress.isPlayerInjured(player,injury)) {
+		if(playerProgress.checkPlayerInjury(player,injury)) {
 			return true;
 		}
 		return false;

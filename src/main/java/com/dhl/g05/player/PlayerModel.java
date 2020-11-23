@@ -1,9 +1,10 @@
 package com.dhl.g05.player;
 import com.dhl.g05.freeagent.FreeAgentConstant;
 import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.gameplayconfig.IAging;
 import com.dhl.g05.gameplayconfig.IInjury;
 
-public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer{
+public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer, IPlayerRetirement{
 
 	private Boolean captain;
 	private int injuredForNumberOfDays;
@@ -69,7 +70,12 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer
 	}
 
 	@Override
-	public boolean isPlayerInjured(IPlayerInjured playerInjured, PlayerModel playerModel , IInjury injury) {
-		return  playerInjured.isPlayerInjured(playerModel, injury);
+	public boolean checkPlayerInjury(IPlayerInjured playerInjured, PlayerModel player, IInjury injury) {
+		return  playerInjured.checkPlayerInjury(player, injury);
+	}
+
+	@Override
+	public boolean checkPlayerRetirement(IPlayerRetired playerRetired, PlayerModel playerModel, IAging aging) {
+		return playerRetired.checkPlayerRetirement(aging, playerModel);
 	}
 }

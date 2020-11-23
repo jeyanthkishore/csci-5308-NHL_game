@@ -166,11 +166,11 @@ public class PlayerModelTest {
 	}
 
 	@Test
-	public void isInjured() {
-		IPlayerInjured playerProgress = new PlayerInjury();
+	public void checkPlayerInjuryTest() {
+		IPlayerInjured playerInjured = new PlayerInjury();
 		IPlayerInjury playerInjury = new PlayerModel();
 		PlayerModel player = new PlayerModel();
 		IInjury injury = new Injury();
-		assertTrue(playerInjury.isPlayerInjured(playerProgress, player,injury));
+		assertFalse(playerInjury.checkPlayerInjury(playerInjured,player, injury));
 	}
 }

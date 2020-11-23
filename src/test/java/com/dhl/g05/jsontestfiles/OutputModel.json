@@ -420,5 +420,6 @@
     "training": {
       "daysUntilStatIncreaseCheck": 100
     }
-  }
+  },
+  "daysSinceStatIncrease": 0
 }
