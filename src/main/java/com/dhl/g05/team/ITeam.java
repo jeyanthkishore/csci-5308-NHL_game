@@ -2,38 +2,54 @@ package com.dhl.g05.team;
 
 import java.util.List;
 
-import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.coach.ICoach;
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
 
 public interface ITeam {
 
-    Boolean getUserTeam();
+	Boolean getUserTeam();
 
-    void setUserTeam(Boolean userTeam);
+	void setUserTeam(Boolean userTeam);
 
-    String getTeamName();
+	String getTeamName();
 
-    void setTeamName(String teamName);
+	void setTeamName(String teamName);
 
-    String getGeneralManagerName();
+	String getGeneralManagerName();
 
-    void setGeneralManagerName(String managerName);
+	void setGeneralManagerName(String managerName);
 
-    List<PlayerModel> getPlayerList();
+	List<IPlayer> getPlayerList();
 
-    void setPlayerList(List<PlayerModel> playerList);
+	void setPlayerList(List<IPlayer> playerList);
 
-    CoachModel getCoachDetails();
+	ICoach getCoachDetails();
 
-    void setCoachDetails(CoachModel coachDetails);
+	void setCoachDetails(ICoach coachDetails);
 
-    double getTeamStrength();
+	public int getLossCount();
 
-    void setTeamStrength(double teamStrength);
+	public int numberOfSkaters(ITeam team);
 
-    int saveTeamObject(int divisionId,ITeamModelPersistence database);
+	public int numberOfGoalies(ITeam team);
 
-    int loadTeamObject(int divisionId,ITeamModelPersistence database);
+	public void assignOneCaptain(ITeam team);
 
-    boolean checkTeamNotUnique(String teamName,ITeamModelPersistence database);
+	public boolean isTeamBalanced(ITeam team);
+
+	public void setLossCount(int lossCount);
+
+	double getTeamStrength();
+
+	void setTeamStrength(double teamStrength);
+
+	int saveTeamObject(int divisionId, ITeamModelPersistence database);
+
+	int loadTeamObject(int divisionId, ITeamModelPersistence database);
+
+	boolean checkTeamNotUnique(String teamName, ITeamModelPersistence database);
+
+	TeamConstant validate();
+
 }

@@ -4,16 +4,18 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.freeagent.IFreeAgent;
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
 import com.mysql.cj.util.StringUtils;
 
 public class TeamModel implements ITeam {
 
 	private String teamName;
-	private CoachModel headCoach;
+	private ICoach headCoach;
 	private String generalManager;
-	private List<PlayerModel> players;
+	private List<IPlayer> players;
 	private double teamStrength;
 	private Boolean userTeam;
 	private int LossCount;
@@ -30,7 +32,7 @@ public class TeamModel implements ITeam {
 		teamObject.loadTeamModelData(this);
 	}
 
-	public TeamModel(String team, CoachModel coachDetails, String manager, List<PlayerModel> players) {
+	public TeamModel(String team, CoachModel coachDetails, String manager, List<IPlayer> players) {
 		this.teamName = team;
 		this.headCoach = coachDetails;
 		this.generalManager = manager;
@@ -70,20 +72,20 @@ public class TeamModel implements ITeam {
 		this.generalManager = managerName;
 	}
 
-	public List<PlayerModel> getPlayerList() {
+	public List<IPlayer> getPlayerList() {
 		return players;
 	}
 
-	public void setPlayerList(List<PlayerModel> playerList) {
+	public void setPlayerList(List<IPlayer> playerList) {
 		this.players = playerList;
 	}
 
-	public CoachModel getCoachDetails() {
+	public ICoach getCoachDetails() {
 		return headCoach;
 	}
 
-	public void setCoachDetails(CoachModel coachDetails) {
-		this.headCoach = coachDetails;
+	public void setCoachDetails(ICoach coach) {
+		this.headCoach = coach;
 	}
 
 	public double getTeamStrength() {
@@ -102,8 +104,8 @@ public class TeamModel implements ITeam {
 		return database.loadTeamObject(divisionId, this, headCoach);
 	}
 
-	public double calculateTeamStrength(List<PlayerModel> playerList) {
-		for (IFreeAgent player : playerList) {
+	public double calculateTeamStrength(List<IPlayer> playerList) {
+		for (IPlayer player : playerList) {
 			if (player.getInjuredStatus()) {
 				teamStrength += player.calculatePlayerStrength() / 2;
 			} else {
@@ -165,10 +167,10 @@ public class TeamModel implements ITeam {
 		return false;
 	}
 
-	public int numberOfSkaters(TeamModel team)
+	public int numberOfSkaters(ITeam team)
 	{
 		int skater = 0;
-		for (PlayerModel player : team.getPlayerList()) {
+		for (IPlayer player : team.getPlayerList()) {
 			if ((player.getPosition().equalsIgnoreCase("Forward"))
 					|| (player.getPosition().equalsIgnoreCase("Defense"))) {
 				skater++;
@@ -177,17 +179,17 @@ public class TeamModel implements ITeam {
 		return skater;
 	}
 	
-	public int numberOfGoalies(TeamModel team)
+	public int numberOfGoalies(ITeam team)
 	{
 		int goalie = 0;
-		for (PlayerModel player : team.getPlayerList()) {
+		for (IPlayer player : team.getPlayerList()) {
 			if (player.getPosition().equalsIgnoreCase("Goalie")) {
 				goalie++;
 			}
 	}
 		return goalie;
 	}
-	public boolean isTeamBalanced(TeamModel team) {
+	public boolean isTeamBalanced(ITeam team) {
 		int goalie=numberOfSkaters(team);
 		int skater=numberOfGoalies(team);
 		if (goalie == 2 && skater == 18) {
@@ -197,7 +199,7 @@ public class TeamModel implements ITeam {
 		}
 	}
 	
-	public void assignOneCaptain(TeamModel team) {
+	public void assignOneCaptain(ITeam team) {
 		int captainCount = 0;
 		for (int i = 1; i < team.getPlayerList().size(); i++) {
 			if (team.getPlayerList().get(i).getCaptain() == true) {

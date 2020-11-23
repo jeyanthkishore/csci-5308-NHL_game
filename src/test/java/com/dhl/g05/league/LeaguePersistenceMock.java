@@ -2,13 +2,15 @@ package com.dhl.g05.league;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.conference.IConference;
 
 public class LeaguePersistenceMock implements ILeagueModelPersistence{
 	@Override
 	public ArrayList<HashMap<String, Object>> loadDetails() {
-		ArrayList<HashMap<String,Object>> leagueNames = new ArrayList<HashMap<String,Object>>();
+		ArrayList<HashMap<String,Object>> leagueNames = new ArrayList<>();
 		HashMap<String,Object> league = new HashMap<String,Object>();
 		league.put("league_name","HockeyLeague");
 		leagueNames.add(league);
@@ -29,7 +31,7 @@ public class LeaguePersistenceMock implements ILeagueModelPersistence{
 	@Override
 	public int loadLeagueObject(int leagueId,LeagueModel leagueObject) {
 		if(leagueId == 1) {
-			ArrayList<ConferenceModel> conference = new ArrayList<ConferenceModel>();
+			List<IConference> conference = new ArrayList<>();
 			conference.add(new ConferenceModel("Western Conference",null));
 			leagueObject.setLeagueName("HockeyLeague");
 			leagueObject.setConferenceDetails(conference);

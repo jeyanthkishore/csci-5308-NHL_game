@@ -2,13 +2,13 @@ package com.dhl.g05.gameplayconfig;
 
 public class GamePlayConfigModel implements IGamePlayConfig {
 	
-	TradingModel trading;
+	TradingConfig trading;
 	Aging aging;
 	Injury injuries;
 	GameResolverConfig gameResolver;
 	TrainingConfig training;
 
-	public GamePlayConfigModel(TradingModel trade,Aging age,Injury injury,GameResolverConfig gameresolve,TrainingConfig train) {
+	public GamePlayConfigModel(TradingConfig trade,Aging age,Injury injury,GameResolverConfig gameresolve,TrainingConfig train) {
 		this.trading = trade;
 		this.aging = age;
 		this.injuries = injury;
@@ -32,7 +32,7 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 		return aging;
 	}
 
-	public TradingModel getTrading() {
+	public TradingConfig getTrading() {
 		return trading;
 	}
 

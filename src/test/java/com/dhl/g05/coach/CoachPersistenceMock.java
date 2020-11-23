@@ -12,7 +12,7 @@ public class CoachPersistenceMock implements ICoachModelPersistence,ICoachLoad{
 	}
 	
 	@Override
-	public List<CoachModel> loadLeagueCoachObject(String leagueName) {
+	public List<ICoach> loadLeagueCoachObject(String leagueName) {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		if(leagueName.equalsIgnoreCase("HockeyLeague")) {
 			return mock.coachList;

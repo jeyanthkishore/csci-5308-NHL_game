@@ -12,24 +12,30 @@ import org.junit.Test;
 
 import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.coach.CoachPersistenceMock;
+import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.conference.ConferenceModel;
 import com.dhl.g05.conference.ConferencePersistenceMock;
+import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.DivisionModel;
 import com.dhl.g05.division.DivisionPersistenceMock;
+import com.dhl.g05.division.IDivision;
 import com.dhl.g05.filehandler.LeagueModelJson;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.FreeAgentPersistenceMock;
+import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.Aging;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.gameplayconfig.GamePlayConfigPersistenceMock;
 import com.dhl.g05.gameplayconfig.GameResolverConfig;
 import com.dhl.g05.gameplayconfig.Injury;
-import com.dhl.g05.gameplayconfig.TradingModel;
+import com.dhl.g05.gameplayconfig.TradingConfig;
 import com.dhl.g05.gameplayconfig.TrainingConfig;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.league.LeaguePersistenceMock;
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.player.PlayerPersistenceMock;
+import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 import com.dhl.g05.team.TeamPersistenceMock;
 
@@ -51,39 +57,39 @@ public class LeagueModelJsonTest {
 		leagueModel.setCoachDatabase(new CoachPersistenceMock());
 		leagueModel.setGamePlayDatabase(new GamePlayConfigPersistenceMock());
 
-		PlayerModel player = new PlayerModel("Cristiano Ronaldo",null,null,10,15,1,20,15);
-		ArrayList<PlayerModel> players = new ArrayList<>();
+		PlayerModel player = new PlayerModel("Cristiano Ronaldo",null,null,10,15,1,20,22,10,1997);
+		ArrayList<IPlayer> players = new ArrayList<>();
 		players.add(player);
 
 		team = new TeamModel("Striker Six",null,null,players);
 		team2 = new TeamModel("t",null,null,players);
-		ArrayList<TeamModel> teams = new ArrayList<>();
+		ArrayList<ITeam> teams = new ArrayList<>();
 		teams.add(team);
 
 		DivisionModel division = new DivisionModel("Atlantic",teams);
-		ArrayList<DivisionModel> divisions = new ArrayList<>();
+		ArrayList<IDivision> divisions = new ArrayList<>();
 		divisions.add(division);
 
 		ConferenceModel conference = new ConferenceModel("Western Conference",divisions);
-		ArrayList<ConferenceModel> conferences = new ArrayList<>();
+		ArrayList<IConference> conferences = new ArrayList<>();
 		conferences.add(conference);
 		
-		FreeAgentModel freeAgent = new FreeAgentModel("Kane","forward",30,0.5,0.6,0.7,0.8);
-		ArrayList<FreeAgentModel>freeAgentList = new ArrayList<FreeAgentModel>();
+		FreeAgentModel freeAgent = new FreeAgentModel("Kane","forward",0.5,0.6,0.7,0.8,22,10,1997);
+		ArrayList<IFreeAgent>freeAgentList = new ArrayList<>();
 		freeAgentList.add(freeAgent);
 
 		CoachModel coach = new CoachModel("Smith",0.5,0.6,0.7,0.8);
-		ArrayList<CoachModel> coachList = new ArrayList<>();
+		ArrayList<ICoach> coachList = new ArrayList<>();
 		coachList.add(coach);
 
 		ArrayList<String> managerList = new ArrayList<>();
 		managerList.add("Smith");
 		
-		TradingModel trade = new TradingModel(8, 0.05, 2, 0.07);
+		TradingConfig trade = new TradingConfig(8, 0.05, 2, 0.07);
 		TrainingConfig train = new TrainingConfig(100);
 		GameResolverConfig resolver = new GameResolverConfig(0.2);
 		Injury injury = new Injury(2, 1, 260);
-		Aging age = new Aging(28, 60);
+		Aging age = new Aging(28, 60,0.05);
 		GamePlayConfigModel game = new GamePlayConfigModel(trade, age, injury, resolver, train);
 
 		league = new LeagueModel("HockeyLeague",conferences,freeAgentList,coachList, managerList,game);

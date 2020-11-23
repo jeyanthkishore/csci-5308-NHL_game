@@ -7,10 +7,10 @@ import com.dhl.g05.db.StoredProcedure;
 
 public class CoachPersistence implements ICoachModelPersistence,ICoachLoad{
 
-	private List<CoachModel> coachList = new ArrayList<CoachModel>();
+	private List<ICoach> coachList = new ArrayList<>();
 
 	@Override
-	public List<CoachModel>  loadLeagueCoachObject(String leagueName) {
+	public List<ICoach>  loadLeagueCoachObject(String leagueName) {
 		StoredProcedure sp= new StoredProcedure();
 		int league_id = sp.getLeagueID(leagueName);
 		List<HashMap<String,Object>> coaches = new ArrayList<HashMap<String,Object>>();

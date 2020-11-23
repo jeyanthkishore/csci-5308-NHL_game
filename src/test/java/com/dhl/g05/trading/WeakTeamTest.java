@@ -4,41 +4,41 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 
 import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.DivisionModel;
-import com.dhl.g05.gameplayconfig.TradingModel;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.division.IDivision;
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.gameplayconfig.ITradingConfig;
+import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.team.ITeam;
 
 public class WeakTeamTest {
-
-	MockTradeConfig tradeMock = new MockTradeConfig();
-	WeakTeam weakTeam = new WeakTeam();
-	TradingModel trade = tradeMock.TradingModelTest();
-	TeamModel weak = mock1();
+	MockLeagueModel mockLeague = new MockLeagueModel();
+	IWeakTeam weakTeam = Trading.instance().getWeakteam();
+	ITradingConfig trade = mockLeague.TradingConfigMock();
+	ITeam weak = mockLeague.leagueMock4();
 
 	@Test
 	public void setWeakTeamTest() {
-		WeakTeam weakTeam = new WeakTeam();
-		
+		IWeakTeam weakTeam = Trading.instance().getWeakteam();
 		weakTeam.setWeakTeam(weak);
 		assertSame(weak, weakTeam.getWeakTeam());
 	}
 
 	@Test
 	public void getWeakTeamTest() {
-		WeakTeam weakTeam = new WeakTeam();
+		IWeakTeam weakTeam = new WeakTeam();
 		assertNotSame(weak, weakTeam.getWeakTeam());
 	}
 
 	@Test
 	public void setConferenceNameTest() {
-		ConferenceModel conference = new ConferenceModel();
+		IConference conference = new ConferenceModel();
 		WeakTeam weakTeam = new WeakTeam();
 		conference.setConferenceName("Eastern");
 		weakTeam.setConferenceName(conference.getConferenceName());
@@ -47,8 +47,8 @@ public class WeakTeamTest {
 
 	@Test
 	public void setDivisionNameTest() {
-		DivisionModel division = new DivisionModel();
-		WeakTeam weakTeam = new WeakTeam();
+		IDivision division = new DivisionModel();
+		IWeakTeam weakTeam = Trading.instance().getWeakteam();
 		division.setDivisionName("Atlantic");
 		weakTeam.setDivisionName(division.getDivisionName());
 		assertSame(weakTeam.getDivisionName(), division.getDivisionName());
@@ -56,8 +56,8 @@ public class WeakTeamTest {
 
 	@Test
 	public void getDivisionNameTest() {
-		DivisionModel division = new DivisionModel();
-		WeakTeam weakTeam = new WeakTeam();
+		IDivision division = new DivisionModel();
+		IWeakTeam weakTeam = Trading.instance().getWeakteam();
 		division.setDivisionName("Pacific");
 		weakTeam.setDivisionName(division.getDivisionName());
 		assertSame(weakTeam.getDivisionName(), division.getDivisionName());
@@ -85,7 +85,7 @@ public class WeakTeamTest {
 	public void setPlayersOfferedTest1() {
 		weakTeam.setWeakTeam(weak);
 		weakTeam.playersToOffer(trade);
-		List<PlayerModel> expected = weakTeam.getPlayersOffered();
+		List<IPlayer> expected = weakTeam.getPlayersOffered();
 		assertEquals(1, expected.size());
 
 	}
@@ -94,94 +94,31 @@ public class WeakTeamTest {
 	public void setPlayersOfferedTest2() {
 		weakTeam.setWeakTeam(weak);
 		weakTeam.playersToOffer(trade);
-		List<PlayerModel> expected = weakTeam.getPlayersOffered();
-		assertEquals("Shawn", expected.get(0).getPlayerName());
+		List<IPlayer> expected = weakTeam.getPlayersOffered();
+		assertEquals("Shawn", ((FreeAgentModel) expected.get(0)).getPlayerName());
 	}
 
 	@Test
 	public void setOfferedPlayerPositionTest() {
 		weakTeam.setWeakTeam(weak);
 		weakTeam.playersToOffer(trade);
-		List<PlayerModel> expected = weakTeam.getPlayersOffered();
+		List<IPlayer> expected = weakTeam.getPlayersOffered();
 		assertEquals("defense", expected.get(0).getPosition());
 	}
 
 	@Test
 	public void playersToOfferTest1() {
-		weakTeam.setWeakTeam(mock2());
+		weakTeam.setWeakTeam(mockLeague.leagueMock5());
 		weakTeam.playersToOffer(trade);
 		assertEquals(2, weakTeam.getNumberOfPlayersOffered());
 	}
 
 	@Test
 	public void playersToOfferTest2() {
-		weakTeam.setWeakTeam(mock2());
+		weakTeam.setWeakTeam(mockLeague.leagueMock5());
 		weakTeam.playersToOffer(trade);
-		for (PlayerModel player : weakTeam.getPlayersOffered()) {
+		for (IPlayer player : weakTeam.getPlayersOffered()) {
 			assertEquals("goalie", player.getPosition());
 		}
 	}
-
-	public TeamModel mock1() {
-		TeamModel weakTeam = new TeamModel();
-		weakTeam.setTeamName("Tigers");
-		PlayerModel player1 = new PlayerModel();
-		player1.setPlayerName("Brian");
-		player1.setPosition("defense");
-		player1.setPlayerStrength(8);
-		PlayerModel player2 = new PlayerModel();
-		player2.setPlayerName("James");
-		player2.setPlayerStrength(10);
-		player2.setPosition("forward");
-		PlayerModel player3 = new PlayerModel();
-		player3.setPlayerName("Lily");
-		player3.setPlayerStrength(6);
-		player3.setPosition("goalie");
-		PlayerModel player4 = new PlayerModel();
-		player4.setPlayerName("Harry");
-		player4.setPlayerStrength(4);
-		player4.setPosition("forward");
-		PlayerModel player5 = new PlayerModel();
-		player5.setPlayerName("Shawn");
-		player5.setPlayerStrength(3);
-		player5.setPosition("defense");
-
-		List<PlayerModel> playerDetails = new ArrayList<PlayerModel>();
-		playerDetails.add(player1);
-		playerDetails.add(player2);
-		playerDetails.add(player3);
-		playerDetails.add(player4);
-		playerDetails.add(player5);
-		weakTeam.setPlayerList(playerDetails);
-		return weakTeam;
-	}
-
-	public TeamModel mock2() {
-		TeamModel weakTeam = new TeamModel();
-		weakTeam.setTeamName("TeamA");
-		PlayerModel player1 = new PlayerModel();
-		player1.setPlayerName("Player1");
-		player1.setPosition("goalie");
-		player1.setPlayerStrength(7);
-		PlayerModel player2 = new PlayerModel();
-		player2.setPlayerName("Player2");
-		player2.setPosition("forward");
-		player2.setPlayerStrength(10);
-		PlayerModel player3 = new PlayerModel();
-		player3.setPlayerName("Player3");
-		player3.setPosition("goalie");
-		player3.setPlayerStrength(5);
-		PlayerModel player4 = new PlayerModel();
-		player4.setPlayerName("Player4");
-		player4.setPosition("defense");
-		player4.setPlayerStrength(7);
-		List<PlayerModel> playerDetails = new ArrayList<PlayerModel>();
-		playerDetails.add(player1);
-		playerDetails.add(player2);
-		playerDetails.add(player3);
-		playerDetails.add(player4);
-		weakTeam.setPlayerList(playerDetails);
-		return weakTeam;
-	}
-
 }

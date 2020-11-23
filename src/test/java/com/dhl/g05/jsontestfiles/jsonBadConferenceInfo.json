@@ -15,45 +15,45 @@
                             },
                             "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                    "playerName":"Player One", "position":"forward", "captain":true,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Two", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Three", "position":"goalie", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Three", "position":"goalie", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Four", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Four", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Five", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Five", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Six", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Six", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Seven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Seven", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Eight", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Eight", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Nine", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Nine", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Ten", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Ten", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Eleven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Eleven", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Twelve", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Twelve", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player twenty", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player twenty", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 }
                             ]
                         }
@@ -72,46 +72,45 @@
                             },
                             "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                    "playerName":"Player One", "position":"forward", "captain":true,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Two", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Three", "position":"goalie", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
-                        
+                                {   "playerName":"Player Three", "position":"goalie", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000                        
                                 },
-                                {   "playerName":"Player Four", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Four", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Five", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Five", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Six", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Six", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Seven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Seven", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Eight", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Eight", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Nine", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Nine", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Ten", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Ten", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Eleven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Eleven", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Twelve", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Twelve", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player twenty", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player twenty", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 }
                             ]
                         }
@@ -134,45 +133,45 @@
                             },
                             "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                    "playerName":"Player One", "position":"forward", "captain":true, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Two", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Three", "position":"goalie", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Three", "position":"goalie", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Four", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Four", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Five", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Five", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Six", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Six", "position":"defense", "captain":false,  "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Seven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Seven", "position":"defense", "captain":false,  "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Eight", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Eight", "position":"defense", "captain":false,  "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Nine", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Nine", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Ten", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Ten", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Eleven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Eleven", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Twelve", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Twelve", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false,  "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false,  "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false,  "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player twenty", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player twenty", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 }
                             ]
                         }
@@ -191,46 +190,45 @@
                             },
                             "players":[
                                 {
-                                    "playerName":"Player One", "position":"forward", "captain":true, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                    "playerName":"Player One", "position":"forward", "captain":true,  "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Two", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Three", "position":"goalie", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
-                        
+                                {   "playerName":"Player Three", "position":"goalie", "captain":false,  "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000                        
                                 },
-                                {   "playerName":"Player Four", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Four", "position":"defense", "captain":false,  "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Five", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Five", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Six", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Six", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Seven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Seven", "position":"defense", "captain":false,  "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Eight", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Eight", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Nine", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Nine", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Ten", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Ten", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Eleven", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Eleven", "position":"defense", "captain":false,  "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Twelve", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Twelve", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Thirteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Fourteen", "position":"defense", "captain":false,  "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Fifteen", "position":"defense", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Sixteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Seventeen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Eighteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player Nineteen", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 },
-                                {   "playerName":"Player twenty", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                                {   "playerName":"Player twenty", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                                 }
                             ]
                         }
@@ -241,12 +239,12 @@
     ],
     "freeAgents":[
             {
-                "playerName":"Agent One", "position":"forward", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+                "playerName":"Agent One", "position":"forward", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
             },
-            {   "playerName":"Agent Two", "position":"defense", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+            {   "playerName":"Agent Two", "position":"defense", "captain":false,"skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
                 
             },
-            {   "playerName":"Agent Three", "position":"goalie", "captain":false, "age": 10, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13
+            {   "playerName":"Agent Three", "position":"goalie", "captain":false, "skating": 11, "shooting": 12, "checking": 12 , "saving": 13,"birthDay":20,"birthMonth":10,"birthYear":2000
             }
     ],
     "coaches":[

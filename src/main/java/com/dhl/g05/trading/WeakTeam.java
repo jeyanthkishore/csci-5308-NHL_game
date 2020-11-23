@@ -5,19 +5,22 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.dhl.g05.gameplayconfig.TradingModel;
+import com.dhl.g05.gameplayconfig.ITradingConfig;
+import com.dhl.g05.gameplayconfig.TradingConfig;
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
 
 public class WeakTeam implements IWeakTeam {
 
-	private TeamModel weakTeam;
+	private ITeam weakTeam;
 	private String conferenceName;
 	private String divisionName;
 	private int numberOfPlayersOffered;
 	private String offeredPlayerPosition;
-	private List<PlayerModel> playersOffered;
+	private List<IPlayer> playersOffered;
 	private double strengthOfPlayersOffered = 0.0;
 
 	public double getStrengthOfPlayersOffered() {
@@ -32,11 +35,11 @@ public class WeakTeam implements IWeakTeam {
 		return offeredPlayerPosition;
 	}
 
-	public TeamModel getWeakTeam() {
+	public ITeam getWeakTeam() {
 		return weakTeam;
 	}
 
-	public void setWeakTeam(TeamModel weakTeam) {
+	public void setWeakTeam(ITeam weakTeam) {
 		this.weakTeam = weakTeam;
 	}
 
@@ -44,11 +47,11 @@ public class WeakTeam implements IWeakTeam {
 		this.offeredPlayerPosition = offeredPlayerPosition;
 	}
 
-	public List<PlayerModel> getPlayersOffered() {
+	public List<IPlayer> getPlayersOffered() {
 		return playersOffered;
 	}
 
-	public void setPlayersOffered(List<PlayerModel> playersOffered) {
+	public void setPlayersOffered(List<IPlayer> playersOffered) {
 		this.playersOffered = playersOffered;
 	}
 
@@ -84,23 +87,21 @@ public class WeakTeam implements IWeakTeam {
 		this.divisionName = divisionName;
 	}
 
-	public void playersToOffer(TradingModel trade) {
+	public void playersToOffer(ITradingConfig trade) {
 
 		String weakPosition = "";
 		int weakPlayers = 0;
 		double strength = 0.0;
 		int maxPersonPerTrade = trade.getMaxPlayersPerTrade();
-		List<PlayerModel> offeredPlayers = new ArrayList<PlayerModel>();
-		List<PlayerModel> playersOfWeakTeam = weakTeam.getPlayerList();
-		ISortPlayerStrength sortPlayer = TradingConfig.instance().getSortplayerstrength();
-		List<PlayerModel> sortPlayersWeakToStrong = sortPlayer.sortByAscending(playersOfWeakTeam);
-
-		Collection<PlayerModel> players = sortPlayersWeakToStrong;
-		List<PlayerModel> weakestPLayersToTrade = players.stream().limit(maxPersonPerTrade)
-				.collect(Collectors.toList());
+		List<IPlayer> offeredPlayers = new ArrayList<>();
+		List<IPlayer> playersOfWeakTeam = weakTeam.getPlayerList();
+		ISortPlayerStrength sortPlayer = Trading.instance().getSortplayerstrength();
+		List<IPlayer> sortPlayersWeakToStrong = sortPlayer.sortByAscending(playersOfWeakTeam);
+		Collection<IPlayer> players = sortPlayersWeakToStrong;
+		List<IPlayer> weakestPLayersToTrade = players.stream().limit(maxPersonPerTrade).collect(Collectors.toList());
 		weakPosition = weakestPLayersToTrade.get(0).getPosition();
 
-		for (PlayerModel player : weakestPLayersToTrade) {
+		for (IPlayer player : weakestPLayersToTrade) {
 			if (player.getPosition().equals(weakPosition)) {
 				offeredPlayers.add(player);
 				strength += player.getPlayerStrength();
@@ -112,6 +113,4 @@ public class WeakTeam implements IWeakTeam {
 		setOfferedPlayerPosition(weakPosition);
 		setStrengthOfPlayersOffered(strength);
 	}
-
-
 }

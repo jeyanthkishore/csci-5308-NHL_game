@@ -6,9 +6,11 @@ import java.util.List;
 
 import com.dhl.g05.coach.CoachConstant;
 import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
 import com.mysql.cj.util.StringUtils;
 
@@ -17,9 +19,9 @@ public class CreateNewTeam implements ICreateTeam {
 	private TeamModel newTeam = new TeamModel();
 	private LeagueModel leagueObject;
 	private IPlayerCommunication communicate;
-	List<FreeAgentModel> freeAgentList = new ArrayList<FreeAgentModel>();
-	List<CoachModel> coachList = new ArrayList<CoachModel>();
-	List<String> managerList = new ArrayList<String>();
+	List<IFreeAgent> freeAgentList = new ArrayList<>();
+	List<ICoach> coachList = new ArrayList<>();
+	List<String> managerList = new ArrayList<>();
 
 	public CreateNewTeam() {
 		this.leagueObject = null;
@@ -31,7 +33,7 @@ public class CreateNewTeam implements ICreateTeam {
 		this.communicate = communicate;
 	}
 
-	public List<FreeAgentModel> getFreeAgentList() {
+	public List<IFreeAgent> getFreeAgentList() {
 		return freeAgentList;
 	}
 
@@ -43,14 +45,14 @@ public class CreateNewTeam implements ICreateTeam {
 		return communicate;
 	}
 
-	public void setFreeAgentList(List<FreeAgentModel> freeAgentList) {
+	public void setFreeAgentList(List<IFreeAgent> freeAgentList) {
 		this.freeAgentList = freeAgentList;
 	}
-	public List<CoachModel> getCoachList() {
+	public List<ICoach> getCoachList() {
 		return coachList;
 	}
 
-	public void setCoachList(List<CoachModel> coachList) {
+	public void setCoachList(List<ICoach> coachList) {
 		this.coachList = coachList;
 	}
 
@@ -67,11 +69,11 @@ public class CreateNewTeam implements ICreateTeam {
 	}
 
 	public boolean teamCreation(String TeamName) {
-		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
+		List<IPlayer> playerList = new ArrayList<>();
 		freeAgentList = leagueObject.getFreeAgent();
 		newTeam.setTeamName(TeamName);
 
-		CoachModel coach = pickCoach();
+		ICoach coach = pickCoach();
 		if(coach.validate().equals(CoachConstant.Success)) {
 			newTeam.setCoachDetails(coach);
 		}else {
@@ -100,8 +102,8 @@ public class CreateNewTeam implements ICreateTeam {
 		return true;
 	}
 
-	private CoachModel pickCoach() {
-		CoachModel selectedCoach = new CoachModel();
+	private ICoach pickCoach() {
+		ICoach selectedCoach = new CoachModel();
 		coachList = leagueObject.getFreeCoach();
 		Boolean coachNotSelected = true;
 		int number;
@@ -164,19 +166,21 @@ public class CreateNewTeam implements ICreateTeam {
 		return selectedManager;
 	}
 
-	private List<PlayerModel> pickPlayers() {
-		List<PlayerModel> playerList = new ArrayList<PlayerModel>();
+	private List<IPlayer> pickPlayers() {
+		List<IPlayer> playerList = new ArrayList<>();
 		Boolean captainNotAssigned = true;
 		String captainResponse ="";
 		Boolean captain = false;
 		int goalie = 0;
 		int skaters = 0;
-		int age = 0;
 		int responseNumber;
 		double skating = 0;
 		double shooting = 0;
 		double checking = 0;
 		double saving = 0;
+		int birthDay=0;
+		int birthMonth=0;
+	    int birthYear =0;
 		String name ="";
 		String position="";
 		while(playerList.size()<20) {
@@ -232,12 +236,14 @@ public class CreateNewTeam implements ICreateTeam {
 			}
 			name = freeAgentList.get(responseNumber-1).getPlayerName();
 			position = freeAgentList.get(responseNumber-1).getPosition();
-			age = freeAgentList.get(responseNumber-1).getAge();
 			checking = freeAgentList.get(responseNumber-1).getChecking();
 			skating = freeAgentList.get(responseNumber-1).getSkating();
 			shooting = freeAgentList.get(responseNumber-1).getShooting();
 			saving = freeAgentList.get(responseNumber-1).getSaving();
-			playerList.add(new PlayerModel(name,position,captain,age,checking,skating,shooting,saving));
+			birthDay = freeAgentList.get(responseNumber-1).getBirthDay();
+			birthMonth = freeAgentList.get(responseNumber-1).getBirthMonth();
+			birthYear = freeAgentList.get(responseNumber-1).getBirthYear();
+			playerList.add(new PlayerModel(name,position,captain,checking,skating,shooting,saving,birthDay,birthMonth,birthYear));
 			captain = false;
 			freeAgentList.remove(responseNumber-1);
 		}

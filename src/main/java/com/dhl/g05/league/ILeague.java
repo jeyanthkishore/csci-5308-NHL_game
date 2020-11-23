@@ -1,13 +1,11 @@
 package com.dhl.g05.league;
 
-import com.dhl.g05.coach.CoachModel;
-import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.freeagent.FreeAgentModel;
+import java.util.List;
+
+import com.dhl.g05.coach.ICoach;
+import com.dhl.g05.conference.IConference;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.player.PlayerModel;
-
-import java.util.List;
 
 public interface ILeague {
 
@@ -15,17 +13,17 @@ public interface ILeague {
 
     void setLeagueName(String league);
 
-    List<ConferenceModel> getConferenceDetails();
+    List<IConference> getConferenceDetails();
 
-    void setConferenceDetails(List<ConferenceModel> conferencedetail);
+    void setConferenceDetails(List<IConference> conferencedetail);
 
-    List<FreeAgentModel> getFreeAgent();
+    List<IFreeAgent> getFreeAgent();
 
-    void setFreeAgent(List<FreeAgentModel> agent);
+    void setFreeAgent(List<IFreeAgent> agent);
 
-    List<CoachModel> getFreeCoach();
+    List<ICoach> getFreeCoach();
 
-    void setFreeCoach(List<CoachModel> freeCoach);
+    void setFreeCoach(List<ICoach> freeCoach);
 
     List<String> getManagerList();
 

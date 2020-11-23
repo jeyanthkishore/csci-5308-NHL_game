@@ -2,10 +2,9 @@ package com.dhl.g05.trading;
 
 import java.util.List;
 
-import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.TeamModel;
-
+import com.dhl.g05.league.ILeague;
+import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.team.ITeam;
 
 public interface IStrongTeam {
 
@@ -17,19 +16,17 @@ public interface IStrongTeam {
 
 	public void setDivisionName(String divisionName);
 
-	public TeamModel getStrongTeam();
+	public ITeam getStrongTeam();
 
-	public void setStrongTeam(TeamModel strongTeam);
+	public void setStrongTeam(ITeam strongTeam);
 
 	public double getStrengthOfStrongestPlayers();
 
 	public void setStrengthOfStrongestPlayers(double strengthOfStrongestPlayers);
 
-	public List<PlayerModel> getStrongestPlayersToTrade();
+	public List<IPlayer> getStrongestPlayersToTrade();
 
-	public void setStrongestPlayersToTrade(List<PlayerModel> strongestPlayersToTrade);
+	public void setStrongestPlayersToTrade(List<IPlayer> strongestPlayersToTrade);
 
-	public boolean findTeamToSwap(LeagueModel league);
-
-//	public boolean findPlayersToSwap(List<PlayerObject> sortPlayersStrongToWeak);
+	public boolean findTeamToSwap(ILeague league);
 }

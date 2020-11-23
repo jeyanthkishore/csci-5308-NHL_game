@@ -4,23 +4,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.dhl.g05.coach.CoachModel;
-import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.coach.ICoach;
+import com.dhl.g05.conference.IConference;
+import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
+import com.dhl.g05.leaguesimulation.leagueschedule.ILeagueSchedule;
+import com.dhl.g05.leaguesimulation.leagueschedule.LeagueSchedule;
+import com.dhl.g05.leaguesimulation.leaguestanding.ILeagueStanding;
+import com.dhl.g05.leaguesimulation.leaguestanding.LeagueStanding;
 import com.mysql.cj.util.StringUtils;
 
 public class LeagueModel implements ILeague{
 
 	private String leagueName;
-	private List<ConferenceModel> conferences;
-	private List<FreeAgentModel> freeAgents;
-	private List<CoachModel> coaches;
+	private List<IConference> conferences;
+	private List<IFreeAgent> freeAgents;
+	private List<ICoach> coaches;
 	private List<String> generalManagers;
 	private ILeagueModelPersistence dbObject;
 	private GamePlayConfigModel gameplayConfig;
 	private int daysSinceStatIncrease;
 	private LocalDate leagueCurrentDate;
+	private ILeagueStanding leagueStanding;
+	private ILeagueSchedule leagueSchedule;
 
 	public LeagueModel() {
 		setLeagueName(null);
@@ -29,9 +35,11 @@ public class LeagueModel implements ILeague{
 		setFreeCoach(null);
 		setManagerList(null);
 		setGamePlayConfig(null);
+		this.leagueStanding = new LeagueStanding();
+		this.leagueSchedule = new LeagueSchedule();
 	}
 
-	public LeagueModel(String league, List<ConferenceModel> conferencedetail,List<FreeAgentModel> agent, List<CoachModel> coach, List<String> managers,GamePlayConfigModel gamePlay) {
+	public LeagueModel(String league, List<IConference> conferencedetail,List<IFreeAgent> agent, List<ICoach> coach, List<String> managers,GamePlayConfigModel gamePlay) {
 		setLeagueName(league);
 		setConferenceDetails(conferencedetail);
 		setFreeAgent(agent);
@@ -56,32 +64,32 @@ public class LeagueModel implements ILeague{
 	}
 
 	@Override
-	public List<ConferenceModel> getConferenceDetails() {
+	public List<IConference> getConferenceDetails() {
 		return conferences;
 	}
 
 	@Override
-	public void setConferenceDetails(List<ConferenceModel> conferencedetail) {
+	public void setConferenceDetails(List<IConference> conferencedetail) {
 		this.conferences = conferencedetail;
 	}
 
 	@Override
-	public List<FreeAgentModel> getFreeAgent() {
+	public List<IFreeAgent> getFreeAgent() {
 		return freeAgents;
 	}
 
 	@Override
-	public void setFreeAgent(List<FreeAgentModel> agent) {
+	public void setFreeAgent(List<IFreeAgent> agent) {
 		this.freeAgents = agent;
 	}
 
 	@Override
-	public List<CoachModel> getFreeCoach() {
+	public List<ICoach> getFreeCoach() {
 		return coaches;
 	}
 
 	@Override
-	public void setFreeCoach(List<CoachModel> freeCoach) {
+	public void setFreeCoach(List<ICoach> freeCoach) {
 		this.coaches = freeCoach;
 	}
 
@@ -109,10 +117,23 @@ public class LeagueModel implements ILeague{
 	public void setGamePlayConfig(GamePlayConfigModel gamePlayConfig) {
 		this.gameplayConfig = gamePlayConfig;
 	}
+	
+	public ILeagueStanding getLeagueStanding() {
+		return leagueStanding;
+	}
+
+	public void setLeagueStanding(ILeagueStanding leagueStanding) {
+		this.leagueStanding = leagueStanding;
+	}
 
 	public LocalDate getLeagueCurrentDate() {
 		return leagueCurrentDate;
 	}
+	
+	public void incrementCurrentDate() {
+		leagueCurrentDate = leagueCurrentDate.plusDays(1);
+	}
+	
 
 	public void setLeagueCurrentDate(LocalDate leagueCurrentDate) {
 		this.leagueCurrentDate = leagueCurrentDate;
@@ -129,7 +150,19 @@ public class LeagueModel implements ILeague{
     public void resetDaysSinceStatIncrease() {
         this.daysSinceStatIncrease = 0;
     }
+    
+    public void incrementDaysSinceStatIncrease() {
+    	this.daysSinceStatIncrease +=1;
+    }
 	
+	public ILeagueSchedule getLeagueSchedule() {
+		return leagueSchedule;
+	}
+
+	public void setLeagueSchedule(ILeagueSchedule leagueSchedule) {
+		this.leagueSchedule = leagueSchedule;
+	}
+
 	public int saveLeagueObject(ILeagueModelPersistence database) {
 		return database.saveLeagueObject(this);
 	}

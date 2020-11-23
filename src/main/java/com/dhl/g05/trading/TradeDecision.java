@@ -4,12 +4,13 @@ import java.util.Random;
 
 import com.dhl.g05.communication.ITradeCommunication;
 import com.dhl.g05.communication.PlayerCommunication;
-import com.dhl.g05.gameplayconfig.TradingModel;
+import com.dhl.g05.gameplayconfig.ITradingConfig;
+import com.dhl.g05.gameplayconfig.TradingConfig;
 
 
 public class TradeDecision implements ITradeDecision {
 
-	public void TradeResult(TradingModel trade) {
+	public void TradeResult(ITradingConfig trade) {
 
 		int response = 0;
 		Random random = new Random();
@@ -17,13 +18,12 @@ public class TradeDecision implements ITradeDecision {
 		boolean tradeAccepeted = false;
 		ramdomTradeChance = random.nextDouble();
 		ITradeCommunication showDetails = new PlayerCommunication();
-		ISwapPlayers swap = TradingConfig.instance().getSwapplayers();
-		IWeakTeam teamInitiatingTrade = TradingConfig.instance().getWeakteam();
-		IStrongTeam teamAcceptingTrade = TradingConfig.instance().getStrongteam();
+		ISwapPlayers swap = Trading.instance().getSwapplayers();
+		IWeakTeam teamInitiatingTrade = Trading.instance().getWeakteam();
+		IStrongTeam teamAcceptingTrade = Trading.instance().getStrongteam();
 
 		if (teamAcceptingTrade.getStrongTeam().getUserTeam() == true) {
-			showDetails.sendTradeMessage(teamInitiatingTrade.getPlayersOffered(),
-					teamAcceptingTrade.getStrongestPlayersToTrade());
+			showDetails.sendTradeMessage(teamInitiatingTrade.getPlayersOffered(),teamAcceptingTrade.getStrongestPlayersToTrade());
 			response = showDetails.getTradeDecision();
 			do {
 				if (response == 1) {
@@ -40,17 +40,14 @@ public class TradeDecision implements ITradeDecision {
 				}
 			} while (response == 1 || response == 2);
 		}
-
 		else {
-			if (teamAcceptingTrade.getStrengthOfStrongestPlayers() > teamInitiatingTrade
-					.getStrengthOfPlayersOffered()) {
+			if (teamAcceptingTrade.getStrengthOfStrongestPlayers() > teamInitiatingTrade.getStrengthOfPlayersOffered()) {
 				tradeAccepeted = true;
 				teamAcceptingTrade.setStrengthOfStrongestPlayers(0.00);
 			} else {
 				if (ramdomTradeChance >= trade.getRandomAcceptanceChance()) {
 					tradeAccepeted = true;
 				}
-
 			}
 		}
 		if (tradeAccepeted == true) {

@@ -6,18 +6,21 @@ import java.util.List;
 
 import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.coach.CoachPersistence;
+import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.coach.ICoachLoad;
 import com.dhl.g05.conference.ConferenceModel;
+import com.dhl.g05.conference.IConference;
 import com.dhl.g05.db.StoredProcedure;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.FreeAgentPersistence;
+import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.freeagent.IFreeAgentLoad;
 
 public class LeaguePersistence implements ILeagueModelPersistence{
 
-	private List<ConferenceModel> conferenceList = new ArrayList<ConferenceModel>();
-	private List<FreeAgentModel> freeAgent = new ArrayList<FreeAgentModel>();
-	private List<CoachModel> freeCoaches = new ArrayList<CoachModel>();
+	private List<IConference> conferenceList = new ArrayList<>();
+	private List<IFreeAgent> freeAgent = new ArrayList<>();
+	private List<ICoach> freeCoaches = new ArrayList<>();
 	private List<String> freeManager = new ArrayList<String>();
 
 	@Override
@@ -50,7 +53,7 @@ public class LeaguePersistence implements ILeagueModelPersistence{
 		StoredProcedure sp= new StoredProcedure();
 		String leagueName = sp.getLeagueName(league_id);
 		List<HashMap<String, Object>> conferenceValue = new ArrayList<HashMap<String,Object>>();
-		conferenceList = new ArrayList<ConferenceModel>();
+		conferenceList = new ArrayList<>();
 
 		conferenceValue = sp.fetchAllConferences(league_id);
 		for(HashMap<String, Object> con : conferenceValue) {

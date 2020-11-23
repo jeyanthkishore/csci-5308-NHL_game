@@ -1,14 +1,18 @@
 package com.dhl.g05.gameplayconfig;
 
 public interface IAging {
-	
-    int getAverageRetirementAge();
 
-    void setAverageRetirementAge(int averageRetirementAge);
+	int getAverageRetirementAge();
 
-    int getMaximumAge();
+	void setAverageRetirementAge(int averageRetirementAge);
 
-    void setMaximumAge(int maximumAge);
+	int getMaximumAge();
 
-    AgingConstant validate();
+	void setMaximumAge(int maximumAge);
+
+	public double getStatDecayChance();
+
+	public void setStatDecayChance(double statDecayChance);
+
+	AgingConstant validate();
 }

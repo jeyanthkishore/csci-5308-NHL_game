@@ -3,9 +3,9 @@ package com.dhl.g05.statemachine.mocks;
 import java.io.ByteArrayInputStream;
 import java.util.List;
 
-import com.dhl.g05.coach.CoachModel;
+import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.freeagent.IFreeAgent;
 
 public class MockPlayerCommunication implements IPlayerCommunication{
 
@@ -26,7 +26,7 @@ public class MockPlayerCommunication implements IPlayerCommunication{
 	}
 
 	@Override
-	public void sendMessage(List<FreeAgentModel> free) {
+	public void sendMessage(List<IFreeAgent> free) {
 		System.out.println("Player List Will be Displayed");
 		
 	}
@@ -37,7 +37,7 @@ public class MockPlayerCommunication implements IPlayerCommunication{
 	}
 
 	@Override
-	public void sendCoachMessage(List<CoachModel> coachList) {
+	public void sendCoachMessage(List<ICoach> coachList) {
 		System.out.println("Coach List Will be Displayed");
 	}
 

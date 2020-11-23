@@ -6,12 +6,13 @@ import java.util.List;
 
 import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.db.StoredProcedure;
+import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
 public class DivisionPersistence implements IDivisionModelPersistence{
 
 	@Override
-	public int saveDivisionObject(int conferenceId, DivisionModel divisionObject) {
+	public int saveDivisionObject(int conferenceId, IDivision divisionObject) {
 		StoredProcedure sp= new StoredProcedure();
 		String divisionName = divisionObject.getDivisionName();
 		int divisionId = sp.saveDivision(divisionName,conferenceId);
@@ -19,12 +20,12 @@ public class DivisionPersistence implements IDivisionModelPersistence{
 	}
 
 	@Override
-	public int loadDivisionObject(int conferenceId, DivisionModel divisionObject) {
+	public int loadDivisionObject(int conferenceId, IDivision divisionObject) {
 		String divisionName = divisionObject.getDivisionName();
 		StoredProcedure sp= new StoredProcedure();
 		String teamName,coachName,managerName;
 		List<HashMap<String, Object>> teamValue = new ArrayList<HashMap<String,Object>>();
-		List<TeamModel> teamList = new ArrayList<TeamModel>();
+		List<ITeam> teamList = new ArrayList<>();
 		
 		int divisonId = sp.getDivisionID(divisionName, conferenceId);
 		teamValue = sp.fetchAllTeams(divisonId);

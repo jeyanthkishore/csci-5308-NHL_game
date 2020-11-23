@@ -1,21 +1,21 @@
 package com.dhl.g05.gameplayconfig;
 
-public class TradingModel implements ITradingModel{
+public class TradingConfig implements ITradingConfig{
 
 	private int lossPoint;
     private double randomTradeOfferChance;
     private int maxPlayersPerTrade;
     private double randomAcceptanceChance;
     
-    public TradingModel(int loss,double tradeOffer,int maxPlayer,double accept) {
+    public TradingConfig(int loss,double tradeOffer,int maxPlayer,double accept) {
     	this.lossPoint = loss;
     	this.randomTradeOfferChance = tradeOffer;
     	this.maxPlayersPerTrade = maxPlayer;
     	this.randomAcceptanceChance = accept;
     }
-
-    public TradingModel() {
-	}
+    public TradingConfig()
+    { 	
+    }
 
 	public int getLossPoint() {
         return lossPoint;
@@ -80,4 +80,5 @@ public class TradingModel implements ITradingModel{
 	public boolean isNotValidAcceptanceChance() {
 		return randomAcceptanceChance < 0 || randomAcceptanceChance > 1;
 	}
+
 }

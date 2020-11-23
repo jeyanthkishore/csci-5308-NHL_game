@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface IFreeAgentLoad {
 
-	public List<FreeAgentModel> loadFreeAgentObject(String leagueName);
+	public List<IFreeAgent> loadFreeAgentObject(String leagueName);
 	
 }
