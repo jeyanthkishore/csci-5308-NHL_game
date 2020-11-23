@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
-import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.league.ILeague;
+import com.dhl.g05.team.ITeam;
 
 public interface ILeagueStanding {
 
@@ -13,16 +13,15 @@ public interface ILeagueStanding {
 
 	void setStandings(List<IStanding> standingsList);
 
-	void initializeStandings(LeagueModel league);
+	void createStandings(ILeague league);
 
-	void updateStatsForWinningTeam(IConference conference, IDivision division, TeamModel team);
+	void updateWinningTeamData(IConference conference, IDivision division, ITeam team);
 
-	void updateStatsForLosingTeam(IConference conference, IDivision division, TeamModel team);
+	void updateLosingTeamData(IConference conference, IDivision division, ITeam team);
 
 	List<IStanding> getStandingsInDivision(IDivision division);
 
 	List<IStanding> getStandingsInConference(IConference conference);
 
-	IStanding getTopStandingInConference(IConference conference);
 
 }

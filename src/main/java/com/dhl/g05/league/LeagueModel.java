@@ -291,4 +291,46 @@ public class LeagueModel implements ILeague{
 		return false;
 	}
 
+	@Override
+	public boolean removeRetiredFreeAgentsFromLeague(IFreeAgent freeAgent) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<IFreeAgent> getRetiredFreeAgentsList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setRetiredFreeAgentsList(List<IFreeAgent> retiredFreeAgentsList) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addRetiredFreeAgentToList(IFreeAgent freeAgent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addRetiredPlayersToList(IPlayer player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<IPlayer> getRetiredPlayersList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setRetiredPlayersList(List<IPlayer> retiredPlayersList) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

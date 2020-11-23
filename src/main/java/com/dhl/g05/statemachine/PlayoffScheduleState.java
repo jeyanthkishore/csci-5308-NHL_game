@@ -1,9 +1,12 @@
 package com.dhl.g05.statemachine;
 
+import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.leaguesimulation.leagueschedule.IInitializeSchedule;
+import com.dhl.g05.leaguesimulation.leagueschedule.Schedule;
 
 public class PlayoffScheduleState extends AbstractState{
-	private LeagueModel league;
+	private ILeague league;
 
 	@Override
 	public boolean enter() {
@@ -13,7 +16,8 @@ public class PlayoffScheduleState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
-		league.getLeagueSchedule().generatePlayoffSchedule(league, league.getLeagueStanding());
+		IInitializeSchedule leagueSchedule = new Schedule();
+		leagueSchedule.generatePlayOff(league, league.getLeagueStanding());
 		return true;
 	}
 

@@ -37,9 +37,9 @@ public interface ISchedule {
 
 	void setDate(LocalDate date);
 
-	TeamModel getWinningTeam();
+	ITeam getWinningTeam();
 
-	void setWinningTeam(TeamModel winningTeam);
+	void setWinningTeam(ITeam winningTeam);
 
 	boolean getIsGamePlayed();
 

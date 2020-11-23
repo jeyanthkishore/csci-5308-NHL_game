@@ -232,4 +232,11 @@ public class TeamModel implements ITeam {
 		}
 		return false;
 	}
+
+	@Override
+	public boolean removeRetiredPlayerFromTeam(IPlayer player) {
+		// TODO Auto-generated method stub
+		
+		return false;
+	}
 }
