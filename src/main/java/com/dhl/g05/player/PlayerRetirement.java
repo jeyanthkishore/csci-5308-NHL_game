@@ -10,7 +10,7 @@ public class PlayerRetirement implements IPlayerRetired{
     static final Logger logger = LogManager.getLogger(PlayerRetirement.class);
 
     @Override
-    public boolean checkPlayerRetirement(IAging aging, IFreeAgent player) {
+    public boolean checkPlayerRetirement(IAging aging, IPlayer player) {
         logger.info("check whether player is retired or not");
         IRandomNumberFactory randomNumberFactory = new RandomNumberFactory();
         if(player.getAge() > aging.getMaximumAge()) {
