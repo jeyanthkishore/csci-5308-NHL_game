@@ -2,16 +2,15 @@ package com.dhl.g05.team;
 
 import java.util.HashMap;
 import java.util.List;
-
 import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.coach.ICoach;
-import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerModel;
 import com.mysql.cj.util.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class TeamModel implements ITeam {
-
+	static final Logger logger = LogManager.getLogger(TeamModel.class);
 	private String teamName;
 	private ICoach headCoach;
 	private String generalManager;
@@ -105,6 +104,7 @@ public class TeamModel implements ITeam {
 	}
 
 	public double calculateTeamStrength(List<IPlayer> playerList) {
+		logger.info("Calculating team strength using players strength");
 		for (IPlayer player : playerList) {
 			if (player.getInjuredStatus()) {
 				teamStrength += player.calculatePlayerStrength() / 2;
@@ -117,6 +117,7 @@ public class TeamModel implements ITeam {
 
 	@Override
 	public boolean removeRetiredPlayerFromTeam(IPlayer player) {
+		logger.info("Removing retired player from team");
 		int numberOfPlayer = players.size();
 		if (numberOfPlayer > 0) {
 			players.remove(player);
@@ -126,6 +127,7 @@ public class TeamModel implements ITeam {
 	}
 
 	public TeamConstant validate() {
+		logger.info("Validating team details");
 		if (isTeamDetailsEmptyOrNull()) {
 			return TeamConstant.TeamDetailsEmpty;
 		}

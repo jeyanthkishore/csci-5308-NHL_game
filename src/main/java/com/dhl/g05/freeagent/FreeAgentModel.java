@@ -2,11 +2,12 @@ package com.dhl.g05.freeagent;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Date;
-
 import com.mysql.cj.util.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class FreeAgentModel implements IFreeAgent {
+	static final Logger logger = LogManager.getLogger(FreeAgentModel.class);
 	private final static int MIN_AGE = 0;
 	private String playerName;
 	private String position;
@@ -181,6 +182,7 @@ public class FreeAgentModel implements IFreeAgent {
 
 	@Override
 	public double calculatePlayerStrength() {
+		logger.info("Calculating player strength");
 		if (position.equalsIgnoreCase("forward")) {
 			playerStrength = skating + shooting + (checking / 2);
 		}
@@ -194,6 +196,7 @@ public class FreeAgentModel implements IFreeAgent {
 	}
 
 	public FreeAgentConstant validate() {
+		logger.info("Validating freeAgent details - name, birthdate, statistics");
 		if (isPlayerDetailsNullOrEmpty()) {
 			return FreeAgentConstant.PlayerValueEmpty;
 		}
@@ -235,6 +238,7 @@ public class FreeAgentModel implements IFreeAgent {
 	}
 
 	public boolean isPlayerStatNotValid() {
+		logger.info("validating freeAgent's statistics");
 		if (validateStat(skating) && validateStat(shooting) && validateStat(checking) && validateStat(saving)) {
 			return false;
 		}

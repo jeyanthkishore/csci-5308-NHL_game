@@ -3,7 +3,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.freeagent.IFreeAgent;
@@ -14,9 +13,11 @@ import com.dhl.g05.leaguesimulation.leaguestanding.ILeagueStanding;
 import com.dhl.g05.leaguesimulation.leaguestanding.LeagueStanding;
 import com.dhl.g05.player.IPlayer;
 import com.mysql.cj.util.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class LeagueModel implements ILeague{
-
+	static final Logger logger = LogManager.getLogger(LeagueModel.class);
 	private String leagueName;
 	private List<IConference> conferences;
 	private List<IFreeAgent> freeAgents;
@@ -110,6 +111,7 @@ public class LeagueModel implements ILeague{
 
 	@Override
 	public boolean removeRetiredFreeAgentsFromLeague(IFreeAgent freeAgent) {
+		logger.info("Removing retired freeAgents from league");
 		int numberOfFreeAgents = freeAgents.size();
 		if(numberOfFreeAgents > 0) {
 			freeAgents.remove(freeAgent);
@@ -222,6 +224,7 @@ public class LeagueModel implements ILeague{
 
 	@Override
 	public LeagueConstant validate() {
+		logger.info("Validating league details");
 		if(isLeagueNameEmptyOrNull()) {
 			return LeagueConstant.LeagueNameEmpty;
 		}

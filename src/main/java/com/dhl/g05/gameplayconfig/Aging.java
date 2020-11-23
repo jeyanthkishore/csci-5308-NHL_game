@@ -1,6 +1,9 @@
 package com.dhl.g05.gameplayconfig;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Aging implements IAging {
+	static final Logger logger = LogManager.getLogger(Aging.class);
 	private int averageRetirementAge;
 	private int maximumAge;
 	private double statDecayChance;
@@ -44,6 +47,7 @@ public class Aging implements IAging {
 
 	@Override
 	public AgingConstant validate() {
+		logger.info("Validating aging details");
 		if (isMaximumAgeNotValid(maximumAge)) {
 			return AgingConstant.MaximumAgeNotValid;
 		}

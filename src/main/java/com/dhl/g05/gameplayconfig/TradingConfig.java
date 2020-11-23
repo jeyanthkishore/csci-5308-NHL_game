@@ -1,7 +1,9 @@
 package com.dhl.g05.gameplayconfig;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class TradingConfig implements ITradingConfig{
-
+    static final Logger logger = LogManager.getLogger(TradingConfig.class);
 	private int lossPoint;
     private double randomTradeOfferChance;
     private int maxPlayersPerTrade;
@@ -48,7 +50,9 @@ public class TradingConfig implements ITradingConfig{
     public void setRandomAcceptanceChance(double d) {
         this.randomAcceptanceChance = d;
     }
+
     public TradingConstant validate() {
+        logger.info("Validating trading details");
     	if(isNotValidLossPoint()) {
     		return TradingConstant.LossError;
     	}

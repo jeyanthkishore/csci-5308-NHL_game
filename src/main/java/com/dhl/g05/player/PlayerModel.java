@@ -4,9 +4,11 @@ import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.IAging;
 import com.dhl.g05.gameplayconfig.IInjury;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer, IPlayerRetirement{
-
+	static final Logger logger = LogManager.getLogger(PlayerModel.class);
 	private Boolean captain;
 	private int injuredForNumberOfDays;
 
@@ -54,6 +56,7 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer
 	}
 
 	public FreeAgentConstant validate() {
+		logger.info("Validating player details");
 		FreeAgentConstant result = super.validate();
 		if(result.equals(FreeAgentConstant.Success)) {
 			if(isCaptainNull()) {
@@ -72,12 +75,13 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer
 
 	@Override
 	public boolean checkPlayerInjury(IPlayerInjured playerInjured, IPlayer player, IInjury injury) {
+		logger.info("Checking player injury");
 		return  playerInjured.checkPlayerInjury(player, injury);
 	}
 
 	@Override
 	public boolean checkPlayerRetirement(IPlayerRetired playerRetired, IFreeAgent player, IAging aging) {
+		logger.info("Checking player retirement");
 		return playerRetired.checkPlayerRetirement(aging, player);
 	}
-
 }

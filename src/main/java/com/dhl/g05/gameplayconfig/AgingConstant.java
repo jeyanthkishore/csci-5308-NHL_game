@@ -7,7 +7,6 @@ public enum AgingConstant {
     AverageRetirementAgeNotValid("Average retirement age should be greater than 1"), 
     StatDecayChanceNotValid("Stat Decay Chance should be between 0 and 1 ");
 
-
     private String value;
 
     AgingConstant(String value) {
