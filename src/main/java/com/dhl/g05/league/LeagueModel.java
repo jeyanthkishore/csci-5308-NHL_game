@@ -12,6 +12,7 @@ import com.dhl.g05.leaguesimulation.leagueschedule.ILeagueSchedule;
 import com.dhl.g05.leaguesimulation.leagueschedule.LeagueSchedule;
 import com.dhl.g05.leaguesimulation.leaguestanding.ILeagueStanding;
 import com.dhl.g05.leaguesimulation.leaguestanding.LeagueStanding;
+import com.dhl.g05.player.IPlayer;
 import com.mysql.cj.util.StringUtils;
 
 public class LeagueModel implements ILeague{
@@ -19,10 +20,12 @@ public class LeagueModel implements ILeague{
 	private String leagueName;
 	private List<IConference> conferences;
 	private List<IFreeAgent> freeAgents;
+	private List<IPlayer> retiredPlayersList;
 	private List<ICoach> coaches;
 	private List<String> generalManagers;
 	private ILeagueModelPersistence dbObject;
 	private GamePlayConfigModel gameplayConfig;
+	private List<IFreeAgent> retiredFreeAgentsList;
 	private int daysSinceStatIncrease;
 	private LocalDate leagueCurrentDate;
 	private ILeagueStanding leagueStanding;
@@ -35,8 +38,10 @@ public class LeagueModel implements ILeague{
 		setFreeCoach(null);
 		setManagerList(null);
 		setGamePlayConfig(null);
+		retiredPlayersList = new ArrayList<>();
 		this.leagueStanding = new LeagueStanding();
 		this.leagueSchedule = new LeagueSchedule();
+		retiredFreeAgentsList = new ArrayList<>();
 	}
 
 	public LeagueModel(String league, List<IConference> conferencedetail,List<IFreeAgent> agent, List<ICoach> coach, List<String> managers,GamePlayConfigModel gamePlay) {
@@ -84,6 +89,16 @@ public class LeagueModel implements ILeague{
 	}
 
 	@Override
+	public List<IPlayer> getRetiredPlayersList() {
+		return retiredPlayersList;
+	}
+
+	@Override
+	public void setRetiredPlayersList(List<IPlayer> retiredPlayersList) {
+		this.retiredPlayersList = retiredPlayersList;
+	}
+
+	@Override
 	public List<ICoach> getFreeCoach() {
 		return coaches;
 	}
@@ -91,6 +106,36 @@ public class LeagueModel implements ILeague{
 	@Override
 	public void setFreeCoach(List<ICoach> freeCoach) {
 		this.coaches = freeCoach;
+	}
+
+	@Override
+	public boolean removeRetiredFreeAgentsFromLeague(IFreeAgent freeAgent) {
+		int numberOfFreeAgents = freeAgents.size();
+		if(numberOfFreeAgents > 0) {
+			freeAgents.remove(freeAgent);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public List<IFreeAgent> getRetiredFreeAgentsList() {
+		return retiredFreeAgentsList;
+	}
+
+	@Override
+	public void setRetiredFreeAgentsList(List<IFreeAgent> retiredFreeAgentsList) {
+		this.retiredFreeAgentsList = retiredFreeAgentsList;
+	}
+
+	@Override
+	public void addRetiredFreeAgentToList(IFreeAgent freeAgent) {
+		retiredFreeAgentsList.add(freeAgent);
+	}
+
+	@Override
+	public void addRetiredPlayersToList(IPlayer player) {
+		retiredPlayersList.add(player);
 	}
 
 	@Override

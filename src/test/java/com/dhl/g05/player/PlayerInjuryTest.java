@@ -22,7 +22,6 @@ public class PlayerInjuryTest {
         injury.setRandomInjuryChance(1.5);
         player.setInjuredStatus(true);
         assertTrue(playerInjured.checkPlayerInjury(player,injury));
-
         player.setInjuredStatus(false);
         when(randomNumberFactoryMock.generateRandomDoubleNumber(0,1)).thenReturn(0.01);
         assertTrue(playerInjured.checkPlayerInjury(player,injury));

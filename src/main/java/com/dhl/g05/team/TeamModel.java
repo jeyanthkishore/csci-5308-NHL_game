@@ -115,6 +115,16 @@ public class TeamModel implements ITeam {
 		return teamStrength;
 	}
 
+	@Override
+	public boolean removeRetiredPlayerFromTeam(IPlayer player) {
+		int numberOfPlayer = players.size();
+		if (numberOfPlayer > 0) {
+			players.remove(player);
+			return true;
+		}
+		return  false;
+	}
+
 	public TeamConstant validate() {
 		if (isTeamDetailsEmptyOrNull()) {
 			return TeamConstant.TeamDetailsEmpty;

@@ -10,6 +10,7 @@ import static org.junit.Assert.assertTrue;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
 import org.junit.Test;
 
@@ -74,6 +75,15 @@ public class TeamModelTest{
 		TeamModel object = new TeamModel();
 		object.setGeneralManagerName("Rubinho");
 		assertTrue(object.getGeneralManagerName().equals("Rubinho"));
+	}
+
+	@Test
+	public void removeRetiredPlayerFromTeamTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ITeam team = new TeamModel(mock);
+		List<IPlayer> players = mock.playerList;
+		team.removeRetiredPlayerFromTeam(players.get(0));
+		assertEquals(mock.playerList.size()-1,team.getPlayerList().size()-1);
 	}
 
 	@Test

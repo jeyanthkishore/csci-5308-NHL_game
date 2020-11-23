@@ -2,6 +2,8 @@ package com.dhl.g05.player;
 
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.IAging;
+import com.dhl.g05.league.ILeague;
+import com.dhl.g05.team.ITeam;
 
 public class PlayerRetirement implements IPlayerRetired{
 
@@ -39,4 +41,25 @@ public class PlayerRetirement implements IPlayerRetired{
             }
         }
     }
+
+    @Override
+    public boolean isFreeAgentsRetired(ILeague league, IFreeAgent freeAgent) {
+        boolean isFreeAgentRemovedFromLeague = league.removeRetiredFreeAgentsFromLeague(freeAgent);
+        if (isFreeAgentRemovedFromLeague) {
+            league.addRetiredFreeAgentToList(freeAgent);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isPlayerRetired(ILeague league, IPlayer player, ITeam team) {
+        boolean isPlayerRemovedFromTeam = team.removeRetiredPlayerFromTeam(player);
+        if (isPlayerRemovedFromTeam) {
+            league.addRetiredPlayersToList(player);
+            return true;
+        }
+        return false;
+    }
+
 }

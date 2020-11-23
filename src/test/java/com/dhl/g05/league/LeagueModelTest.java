@@ -4,9 +4,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.freeagent.IFreeAgent;
+import com.dhl.g05.player.IPlayer;
 import org.junit.Test;
 
 import com.dhl.g05.mockdata.JsonMockDataDb;
+
+import java.util.List;
 
 
 public class LeagueModelTest {
@@ -198,6 +203,57 @@ public class LeagueModelTest {
 //		assertSame(LeagueConstant.Success,league.validate());
 //	}
 
+	@Test
+	public void addRetiredFreeAgentToListTest(){
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ILeague leagueModel = new LeagueModel(mock);
+		List<IFreeAgent> freeAgents = mock.freeAgentList;
+		IFreeAgent freeAgent = freeAgents.get(0);
+		leagueModel.addRetiredFreeAgentToList(new FreeAgentModel(mock.freeAgentOne, mock.positionForward, mock.skating, mock.shooting, mock.checking, mock.saving, mock.birthDay, mock.birthMonth, mock.birthYear));
+		assertEquals(3,leagueModel.getRetiredFreeAgentsList().size());
+	}
+
+	@Test
+	public void addRetiredPlayersToListTest(){
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ILeague leagueModel = new LeagueModel(mock);
+		List<IPlayer> players = mock.playerList;
+		IPlayer player = players.get(0);
+		leagueModel.addRetiredPlayersToList(player);
+		assertEquals(2,leagueModel.getRetiredPlayersList().size());
+	}
+
+	@Test
+	public void setRetiredFreeAgentsListTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ILeague league = new LeagueModel(mock);
+		league.setRetiredFreeAgentsList(mock.retiredFreeAgentsList);
+		assertEquals(mock.retiredFreeAgentsList.size(),league.getRetiredFreeAgentsList().size());
+	}
+
+	@Test
+	public void getRetiredFreeAgentsListTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ILeague league = new LeagueModel(mock);
+		league.setRetiredFreeAgentsList(mock.retiredFreeAgentsList);
+		assertEquals(mock.retiredFreeAgentsList.size(),league.getRetiredFreeAgentsList().size());
+	}
+
+	@Test
+	public void getRetiredPlayersListTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ILeague league = new LeagueModel(mock);
+		league.setRetiredPlayersList(mock.retiredPlayersList);
+		assertEquals(mock.retiredPlayersList.size(),league.getRetiredPlayersList().size());
+	}
+
+	@Test
+	public void setRetiredPlayersListTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ILeague league = new LeagueModel(mock);
+		league.setRetiredPlayersList(mock.retiredPlayersList);
+		assertEquals(mock.retiredPlayersList.size(),league.getRetiredPlayersList().size());
+	}
 
 	@Test
 	public void isCoachListEmptyTest() {
@@ -214,7 +270,17 @@ public class LeagueModelTest {
 		LeagueModel league = new LeagueModel(mock);
 		assertSame(LeagueConstant.CoachListEmpty,league.validate());
 	}
-	
+
+	@Test
+	public void removeRetiredFreeAgentsFromLeagueTest() {
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ILeague leagueModel = new LeagueModel(mock);
+		List<IFreeAgent> freeAgents = mock.freeAgentList;
+		leagueModel.removeRetiredFreeAgentsFromLeague(freeAgents.get(0));
+		assertEquals(mock.freeAgentList.size()-1,leagueModel.getFreeAgent().size()-1);
+
+	}
+
 	@Test
 	public void validateLeagueTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
