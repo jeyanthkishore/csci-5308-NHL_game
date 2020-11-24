@@ -5,6 +5,10 @@ import com.dhl.g05.communication.CommunicationFactory;
 import com.dhl.g05.db.AbstractDataBaseFactory;
 import com.dhl.g05.db.DataBaseFactory;
 import com.dhl.g05.filehandler.LeagueModelJson;
+import com.dhl.g05.gameplayconfig.AbstractGamePlayConfigFactory;
+import com.dhl.g05.gameplayconfig.GamePlayConfigFactory;
+import com.dhl.g05.player.AbstractPlayerFactory;
+import com.dhl.g05.player.PlayerFactory;
 import com.dhl.g05.statemachine.AbstractState;
 import com.dhl.g05.statemachine.AbstractStateMachineFactory;
 import com.dhl.g05.statemachine.StateMachineFactory;
@@ -19,6 +23,8 @@ public class Driver {
 		logger.debug("Test-Driver-Debug");
 		AbstractCommunicationFactory.setFactory(new CommunicationFactory());
 		AbstractDataBaseFactory.setFactory(new DataBaseFactory());
+		AbstractGamePlayConfigFactory.setFactory(new GamePlayConfigFactory());
+		AbstractPlayerFactory.setFactory(new PlayerFactory());
 		AbstractStateMachineFactory.setFactory(
 				new StateMachineFactory(
 						AbstractCommunicationFactory.getFactory().getCommunication(),

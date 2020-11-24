@@ -2,7 +2,9 @@ package com.dhl.g05.player;
 
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.IFreeAgent;
+import com.dhl.g05.gameplayconfig.AbstractGamePlayConfigFactory;
 import com.dhl.g05.gameplayconfig.Aging;
+import com.dhl.g05.gameplayconfig.GamePlayConfigFactory;
 import com.dhl.g05.gameplayconfig.IAging;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
