@@ -80,8 +80,9 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer
 	}
 
 	@Override
-	public boolean checkPlayerRetirement(IPlayerRetired playerRetired, IFreeAgent player, IAging aging) {
+	public boolean checkPlayerRetirement(IPlayerRetired playerRetired, IPlayer player, IAging aging) {
 		logger.info("Checking player retirement");
 		return playerRetired.checkPlayerRetirement(aging, player);
 	}
+
 }

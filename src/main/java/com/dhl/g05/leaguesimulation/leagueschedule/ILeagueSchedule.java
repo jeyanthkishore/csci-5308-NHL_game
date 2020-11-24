@@ -20,9 +20,9 @@ public interface ILeagueSchedule {
 
 	void generateRegularSeasonSchedule(ILeague league);
 
-	void generatePlayoffSchedule(LeagueModel league, ILeagueStanding standingSystem);
+	void generatePlayoffSchedule(ILeague league, ILeagueStanding standingSystem);
 
-	boolean anyUnplayedGamesOnThisDate(LocalDate date);
+	boolean anyUnplayedGamesOnGivenDate(LocalDate date);
 
 	ISchedule getScheduledMatchOnThisDate(LocalDate date);
 

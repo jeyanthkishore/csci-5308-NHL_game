@@ -7,7 +7,7 @@ import com.dhl.g05.team.ITeam;
 
 public interface IPlayerRetired {
 
-    boolean checkPlayerRetirement(IAging aging, IFreeAgent player);
+    boolean checkPlayerRetirement(IAging aging, IPlayer player);
 
     boolean isFreeAgentsRetired(ILeague league, IFreeAgent freeAgent);
 

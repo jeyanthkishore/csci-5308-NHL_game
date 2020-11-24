@@ -3,13 +3,14 @@ package com.dhl.g05.statemachine;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.freeagent.IFreeAgent;
+import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.team.ITeam;
 
 public class AgingState extends AbstractState{
 	
-	private LeagueModel league;
+	private ILeague league;
 
 	@Override
 	public boolean enter() {

@@ -24,7 +24,7 @@ public class PlayerRetirementTest {
     public void checkPlayerRetirementTest() {
         IRandomNumberFactory randomNumberFactoryMock = Mockito.mock(RandomNumberFactory.class);
         IPlayerRetired playerRetired = new PlayerRetirement();
-        IFreeAgent player = new PlayerModel();
+        IPlayer player = new PlayerModel();
         IAging aging = new Aging();
         player.setAge(50);
         aging.setMaximumAge(40);
