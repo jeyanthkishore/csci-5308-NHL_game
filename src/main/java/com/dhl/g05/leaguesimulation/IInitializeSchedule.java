@@ -1,8 +1,7 @@
-package com.dhl.g05.leaguesimulation.leagueschedule;
+package com.dhl.g05.leaguesimulation;
 
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.leaguesimulation.leaguestanding.ILeagueStanding;
 
 public interface IInitializeSchedule {
 	

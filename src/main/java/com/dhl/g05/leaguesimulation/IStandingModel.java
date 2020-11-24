@@ -1,10 +1,10 @@
-package com.dhl.g05.leaguesimulation.leaguestanding;
+package com.dhl.g05.leaguesimulation;
 
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.team.ITeam;
 
-public interface IStanding {
+public interface IStandingModel {
 
 	IConference getConference();
 
@@ -18,28 +18,28 @@ public interface IStanding {
 
 	void setTeam(ITeam team);
 
-	int getGamesPlayed();
+	int getTotalGamesPlayed();
 
-	void setGamesPlayed(int gamesPlayed);
+	void setTotalGamesPlayed(int gamesPlayed);
 
 	void incrementGamesPlayed();
 
-	int getGamesWon();
+	int getTotalGamesWon();
 
-	void setGamesWon(int gamesWon);
+	void setTotalGamesWon(int gamesWon);
 
+	int getTotalGamesLost();
+	
+	void setTotalGamesLost(int gamesLost);
+	
 	void incrementGamesWon();
 
-	int getPoints();
+	void incrementGamesLost();
+	
+	int getTotalPoints();
 
-	void setPoints(int points);
+	void setTotalPoints(int points);
 
 	void incrementPoints();
-
-	void incrementGamesLost();
-
-	int getGamesLost();
-
-	void setGamesLost(int gamesLost);
 
 }

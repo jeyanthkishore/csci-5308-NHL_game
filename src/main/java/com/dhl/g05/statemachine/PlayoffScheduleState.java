@@ -2,8 +2,8 @@ package com.dhl.g05.statemachine;
 
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.leaguesimulation.leagueschedule.IInitializeSchedule;
-import com.dhl.g05.leaguesimulation.leagueschedule.Schedule;
+import com.dhl.g05.leaguesimulation.IInitializeSchedule;
+import com.dhl.g05.leaguesimulation.ScheduleModel;
 
 public class PlayoffScheduleState extends AbstractState{
 	private ILeague league;
@@ -16,7 +16,7 @@ public class PlayoffScheduleState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
-		IInitializeSchedule leagueSchedule = new Schedule();
+		IInitializeSchedule leagueSchedule = new ScheduleModel();
 		leagueSchedule.generatePlayOff(league, league.getLeagueStanding());
 		return true;
 	}

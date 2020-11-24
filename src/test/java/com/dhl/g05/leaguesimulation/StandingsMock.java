@@ -10,14 +10,10 @@ import com.dhl.g05.division.DivisionModel;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.leaguesimulation.leaguestanding.IStanding;
-import com.dhl.g05.leaguesimulation.leaguestanding.Standing;
 import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
 public class StandingsMock {
-	
-	
 	
     public ILeague createDummyLeague() {
     	ILeague league = new LeagueModel();
@@ -47,22 +43,22 @@ public class StandingsMock {
         return league;
     }
 
-    public List<IStanding> createDummyStandings(ILeague league) {
+    public List<IStandingModel> createDummyStandings(ILeague league) {
     	
     	Random rand = new Random();
-    	List<IStanding> standings = new ArrayList<>();
+    	List<IStandingModel> standings = new ArrayList<>();
     	
     	for(IConference conference : league.getConferenceDetails()) {
     		for(IDivision division : conference.getDivisionDetails()) {
     			for(ITeam team : division.getTeamDetails()) {
-    				IStanding standing = new Standing();
+    				IStandingModel standing = new StandingModel();
     				standing.setConference(conference);
     				standing.setDivision(division);
     				standing.setTeam(team);
-    				standing.setGamesPlayed(14);
+    				standing.setTotalGamesPlayed(14);
     				int gamesWon = rand.nextInt(10);
-    				standing.setGamesWon(gamesWon);
-    				standing.setPoints(gamesWon*2);
+    				standing.setTotalGamesLost(gamesWon);
+    				standing.setTotalPoints(gamesWon*2);
     				standings.add(standing);
     			}
     		}

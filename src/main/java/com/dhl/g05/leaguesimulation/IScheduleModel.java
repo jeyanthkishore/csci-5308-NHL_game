@@ -1,4 +1,4 @@
-package com.dhl.g05.leaguesimulation.leagueschedule;
+package com.dhl.g05.leaguesimulation;
 
 import java.time.LocalDate;
 
@@ -7,7 +7,7 @@ import com.dhl.g05.division.IDivision;
 import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
-public interface ISchedule {
+public interface IScheduleModel {
 
 	IConference getFirstConference();
 
@@ -33,16 +33,16 @@ public interface ISchedule {
 
 	void setSecondTeam(ITeam secondTeam);
 
-	LocalDate getDate();
+	LocalDate getScheduleDate();
 
-	void setDate(LocalDate date);
+	void setScheduleDate(LocalDate date);
 
 	ITeam getWinningTeam();
 
 	void setWinningTeam(ITeam winningTeam);
 
-	boolean getIsGamePlayed();
+	boolean getIsGameCompleted();
 
-	void setIsGamePlayed(boolean isGamePlayed);
+	void setIsGameCompleted(boolean isGameCompleted);
 
 }

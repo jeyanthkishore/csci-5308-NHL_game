@@ -1,15 +1,13 @@
-package com.dhl.g05.leaguesimulation.leagueschedule;
+package com.dhl.g05.leaguesimulation;
 
 import java.time.LocalDate;
 
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.leaguesimulation.leaguestanding.ILeagueStanding;
 import com.dhl.g05.team.ITeam;
 
-public class Schedule implements ISchedule, IInitializeSchedule {
+public class ScheduleModel implements IScheduleModel, IInitializeSchedule {
 
 	private IConference firstConference;
 	private IDivision firstDivision;
@@ -17,8 +15,8 @@ public class Schedule implements ISchedule, IInitializeSchedule {
 	private IConference secondConference;
 	private IDivision secondDivision;
 	private ITeam secondTeam;
-	private LocalDate date;
-	private boolean isGamePlayed;
+	private LocalDate scheduleDate;
+	private boolean isGamePlayedCompleted;
 	private ITeam winningTeam;
 
 	@Override
@@ -82,13 +80,13 @@ public class Schedule implements ISchedule, IInitializeSchedule {
 	}
 	
 	@Override
-	public LocalDate getDate() {
-		return date;
+	public LocalDate getScheduleDate() {
+		return scheduleDate;
 	}
 	
 	@Override
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setScheduleDate(LocalDate date) {
+		this.scheduleDate = date;
 	}
 	
 	@Override
@@ -102,13 +100,13 @@ public class Schedule implements ISchedule, IInitializeSchedule {
 	}
 
 	@Override
-	public boolean getIsGamePlayed() {
-		return isGamePlayed;
+	public boolean getIsGameCompleted() {
+		return isGamePlayedCompleted;
 	}
 	
 	@Override
-	public void setIsGamePlayed(boolean isGamePlayed) {
-		this.isGamePlayed = isGamePlayed;
+	public void setIsGameCompleted(boolean gameCompleted) {
+		this.isGamePlayedCompleted = gameCompleted;
 	}
 	
 	@Override

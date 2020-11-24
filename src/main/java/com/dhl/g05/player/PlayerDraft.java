@@ -6,21 +6,20 @@ import java.util.List;
 import java.util.Map;
 
 import com.dhl.g05.league.ILeague;
-import com.dhl.g05.leaguesimulation.leaguestanding.ILeagueStanding;
-import com.dhl.g05.leaguesimulation.leaguestanding.IStanding;
-import com.dhl.g05.team.ITeam;
+import com.dhl.g05.leaguesimulation.ILeagueStanding;
+import com.dhl.g05.leaguesimulation.IStandingModel;
 
 public class PlayerDraft {
 
 	private static final int draftPickTeamSubstraction = 16;
 	private ILeagueStanding leaguestanding;
 
-	public void playerDraftPick(ILeague league, ILeagueStanding leaguestanding, Map<Integer,IStanding> pickOrderAfterTrading) {
-		List<IStanding> standingForAllConference = leaguestanding.getStandingsInAllConference(league);
+	public void playerDraftPick(ILeague league, ILeagueStanding leaguestanding, Map<Integer,IStandingModel> pickOrderAfterTrading) {
+		List<IStandingModel> standingForAllConference = leaguestanding.getRankingAcrossLeague();
 		IGenerateNewPlayers g = new GenerateNewPlayers();
 		List<IPlayer> newPlayers = g.generatePlayers();
-		Map<Integer,IStanding> pickOrderBeforeTrading = new HashMap<>();
-		IStanding TeamFromTrading; 
+		Map<Integer,IStandingModel> pickOrderBeforeTrading = new HashMap<>();
+		IStandingModel TeamFromTrading; 
 		int numberOfTeamsEligibleForPick = 0;
 		String positionOfWeakPlayer = " ";
 
@@ -32,7 +31,7 @@ public class PlayerDraft {
 		}
 
 		g.setNumberOfTeams(numberOfTeamsEligibleForPick);
-		List<IStanding> teamsEligibleForPick = standingForAllConference.subList(
+		List<IStandingModel> teamsEligibleForPick = standingForAllConference.subList(
 				standingForAllConference.size() - numberOfTeamsEligibleForPick, standingForAllConference.size() - 1);
 		for (int i = 1; i <= 7; i++) {
 			 TeamFromTrading = pickOrderAfterTrading.get(i);
