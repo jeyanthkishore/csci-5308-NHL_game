@@ -4,7 +4,6 @@ import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.team.ITeam;
 
@@ -24,14 +23,14 @@ public class AgingState extends AbstractState{
             for (IDivision division : conference.getDivisionDetails()) {
                 for (ITeam team : division.getTeamDetails()) {
                     for (IPlayer player : team.getPlayerList()) {
-                    	player.incrementPlayerAgeByDay(1);
+                    	player.calculateAge();
                     }
                 }
             }
         }
 
         for (IFreeAgent freeAgent : league.getFreeAgent()) {
-            freeAgent.incrementPlayerAgeByDay(1);
+            freeAgent.calculateAge();
         }
 
 //        for (FreeAgentModel retiredFreeAgent : league.getRetiredFreeAgents()) {

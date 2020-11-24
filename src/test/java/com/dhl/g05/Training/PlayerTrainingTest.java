@@ -1,63 +1,70 @@
 package com.dhl.g05.Training;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotSame;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import com.dhl.g05.conference.IConference;
+import com.dhl.g05.division.IDivision;
+import com.dhl.g05.league.ILeague;
+import com.dhl.g05.player.AbstractPlayerFactory;
+import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.player.IRandomNumberFactory;
+import com.dhl.g05.player.PlayerFactory;
+import com.dhl.g05.player.RandomNumberFactory;
+import com.dhl.g05.team.ITeam;
 
 public class PlayerTrainingTest {
 	
     private static IPlayerTraining playerTraining;
+    private static IRandomNumberFactory randomGeneratorFactoryMock;
 
-   /* @BeforeClass
+    @BeforeClass
     public static void setup() {
-        randomGeneratorFactoryMock = Mockito.mock(RandomGeneratorFactory.class);
+    	AbstractPlayerFactory.setFactory(new PlayerFactory());
+        randomGeneratorFactoryMock = Mockito.mock(RandomNumberFactory.class);
         playerTraining =new PlayerTraining(randomGeneratorFactoryMock);
-    }*/
+    }
 
-	/*@Test
-	public void implementTrainingTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		assertNotNull(playerTraining.implementTraining(data.getLeague()));
-	}
-	
 	@Test
-	public void trainingObjectTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		LeagueModel beforeData = data.getLeague();
-		JsonMockDataDb dataTwo = new JsonMockDataDb();
-		LeagueModel afterData = dataTwo.getLeague();
-		assertNotNull(playerTraining.implementTraining(afterData));
-		assertNotSame(beforeData,playerTraining.implementTraining(afterData));
-		assertFalse(beforeData.toString().equals(playerTraining.implementTraining(afterData).toString()));
-	}
-	
-	@Test
-	public void checkPerformance() {
+	public void performanceCheckTest() {
 		PlayerTrainingMockData data = new PlayerTrainingMockData();
-		Mockito.when(randomGeneratorFactoryMock.getRandomDoubleNumber(0,1)).thenReturn(0.4);
-		assertNotNull(playerTraining.implementTraining(data.leagueObject));
+		ILeague league = data.leagueObject;
+		Mockito.when(randomGeneratorFactoryMock.generateRandomDoubleNumber(0,1)).thenReturn(0.4);
+		for (IConference conference : league.getConferenceDetails()) {
+    		for (IDivision division : conference.getDivisionDetails()) {
+    			for (ITeam team : division.getTeamDetails()) {
+    				for(IPlayer player : team.getPlayerList()) {
+    					playerTraining.performTrainingForPlayer(player,team.getCoachDetails(),league);
+    				}
+    			}
+    		}
+    	}
 		assertEquals("Same",11.0,data.player.getSkating(),0.0);
 		assertEquals("Same",13.0,data.player.getShooting(),0.0);
 		assertEquals("Same",12.0,data.player.getChecking(),0.0);
 		assertEquals("Same",13.0,data.player.getSaving(),0.0);
-		Mockito.when(randomGeneratorFactoryMock.getRandomDoubleNumber(0,1)).thenReturn(0.6);
-		assertNotNull(playerTraining.implementTraining(data.leagueObject));
-		assertEquals("Same",11.0,data.player.getSkating(),0.0);
-		assertEquals("Same",13.0,data.player.getShooting(),0.0);
-		assertEquals("Same",13.0,data.player.getChecking(),0.0);
-		assertEquals("Same",14.0,data.player.getSaving(),0.0);
-		Mockito.when(randomGeneratorFactoryMock.getRandomDoubleNumber(0,1)).thenReturn(0.7);
-		assertNotNull(playerTraining.implementTraining(data.leagueObject));
-		assertEquals("Same",11.0,data.player.getSkating(),0.0);
-		assertEquals("Same",13.0,data.player.getShooting(),0.0);
-		assertEquals("Same",13.0,data.player.getChecking(),0.0);
-		assertEquals("Same",15.0,data.player.getSaving(),0.0);
-		Mockito.when(randomGeneratorFactoryMock.getRandomDoubleNumber(0,1)).thenReturn(0.8);
-		assertNotNull(playerTraining.implementTraining(data.leagueObject));
-		assertEquals("Same",11.0,data.player.getSkating(),0.0);
-		assertEquals("Same",13.0,data.player.getShooting(),0.0);
-		assertEquals("Same",13.0,data.player.getChecking(),0.0);
-		assertEquals("Same",15.0,data.player.getSaving(),0.0);
-	}*/
+    }
+	
+	@Test
+	public void performanceCheckInjuryTest() {
+		PlayerTrainingMockData data = new PlayerTrainingMockData();
+		ILeague league = data.leagueObject;
+		Mockito.when(randomGeneratorFactoryMock.generateRandomDoubleNumber(0,1)).thenReturn(0.8);
+		for (IConference conference : league.getConferenceDetails()) {
+    		for (IDivision division : conference.getDivisionDetails()) {
+    			for (ITeam team : division.getTeamDetails()) {
+    				for(IPlayer player : team.getPlayerList()) {
+    					playerTraining.performTrainingForPlayer(player,team.getCoachDetails(),league);
+    				}
+    			}
+    		}
+    	}
+		assertEquals("Same",10.0,data.player.getSkating(),0.0);
+		assertEquals("Same",12.0,data.player.getShooting(),0.0);
+		assertEquals("Same",11.0,data.player.getChecking(),0.0);
+		assertEquals("Same",12.0,data.player.getSaving(),0.0);
+    }
 }
