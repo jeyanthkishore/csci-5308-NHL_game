@@ -5,11 +5,11 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerModel;
-import com.mysql.cj.util.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.dhl.g05.player.IPlayer;
+import com.mysql.cj.util.StringUtils;
 
 public class FreeAgentModel implements IFreeAgent {
 	static final Logger logger = LogManager.getLogger(FreeAgentModel.class);

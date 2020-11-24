@@ -1,5 +1,6 @@
 package com.dhl.g05.statemachine;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
@@ -50,6 +51,7 @@ public class PlayOffScheduleTest {
 		state.enter();
 		state.performStateTask();
 		state.exit();
+		assertNotNull(state.getLeague().getLeagueSchedule().getPlayoffSchedule());
 		assertTrue(state.getNextState() instanceof TrainingState);
 	}
 

@@ -64,4 +64,10 @@ public interface IPlayer {
 
 	void calculateAge();
 
+	void setBirthDay(int day);
+
+	void setBirthMonth(int month);
+
+	void setBirthYear(int year);
+
 }

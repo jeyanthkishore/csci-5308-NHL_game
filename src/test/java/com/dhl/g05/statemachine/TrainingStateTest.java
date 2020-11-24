@@ -19,6 +19,8 @@ import com.dhl.g05.gameplayconfig.TrainingConfig;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.leaguesimulation.DateHandler;
 import com.dhl.g05.mockdata.JsonMockDataDb;
+import com.dhl.g05.player.AbstractPlayerFactory;
+import com.dhl.g05.player.PlayerFactory;
 
 import filehandler.DatabaseMockFactory;
 
@@ -36,6 +38,7 @@ public class TrainingStateTest {
 	                		new LeagueModelJson()
 	                )
 	        );
+	        AbstractPlayerFactory.setFactory(new PlayerFactory());
 	    }
 
 	@Before
@@ -44,7 +47,7 @@ public class TrainingStateTest {
 	}
 	
 	
-/*	@Test
+	@Test
 	public void performTaskTradeTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
 		data.league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue(), Month.DECEMBER, 30));
@@ -70,6 +73,6 @@ public class TrainingStateTest {
 		state.performStateTask();
 		state.exit();
 		assertTrue(state.getNextState() instanceof AgingState);
-	}*/
+	}
 	
 }

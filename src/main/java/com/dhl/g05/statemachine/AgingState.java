@@ -29,9 +29,9 @@ public class AgingState extends AbstractState{
             }
         }
 
-        for (IFreeAgent freeAgent : league.getFreeAgent()) {
-            freeAgent.calculateAge();
-        }
+//        for (IFreeAgent freeAgent : league.getFreeAgent()) {
+//            freeAgent.calculateAge();
+//        }
 
 //        for (FreeAgentModel retiredFreeAgent : league.getRetiredFreeAgents()) {
 //            retiredFreeAgent.incrementPlayerAgeByDay(1);
