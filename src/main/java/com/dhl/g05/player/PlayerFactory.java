@@ -22,4 +22,14 @@ public class PlayerFactory extends AbstractPlayerFactory{
         return new PlayerRetirement();
     }
 
+    @Override
+    public IPlayerRetirement getRetiredPlayer() {
+        return new PlayerModel();
+    }
+
+    @Override
+    public IPlayerInjury getInjuredPlayer() {
+        return new PlayerModel();
+    }
+
 }
