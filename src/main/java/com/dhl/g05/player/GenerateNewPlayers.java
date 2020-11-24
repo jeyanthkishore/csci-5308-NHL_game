@@ -8,7 +8,7 @@ import java.util.Random;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.PositionConstant;
 
-public class GenerateNewPlayers extends FreeAgentModel implements IGenerateNewPlayers {
+public class GenerateNewPlayers implements IGenerateNewPlayers {
 
 	private static final int numberOfDraftRound = 7;
 	private static final double percentageOfForwards = 0.5;
@@ -25,9 +25,9 @@ public class GenerateNewPlayers extends FreeAgentModel implements IGenerateNewPl
 		this.numberOfTeams = numberOfTeams;
 	}
 
-	public List<PlayerModel> generatePlayers() {
+	public List<IPlayer> generatePlayers() {
 
-		List<PlayerModel> listOfNewPlayers = new ArrayList<>();
+		List<IPlayer> listOfNewPlayers = new ArrayList<>();
 		int totalPlayersNeeded = numberOfDraftRound * getNumberOfTeams();
 		int totalForwards = (int) Math.round((percentageOfForwards * totalPlayersNeeded));
 		int totalDefenses = (int) Math.round((percentageOfDefenses * totalPlayersNeeded));
@@ -55,8 +55,8 @@ public class GenerateNewPlayers extends FreeAgentModel implements IGenerateNewPl
 			}
 		}
 		for (int i = 0; i < totalDefenses; i++) {
-			PlayerModel player = new PlayerModel();
-			player.setPlayerName(generateRandomName());
+			IPlayer player = new PlayerModel();
+			((FreeAgentModel) player).setPlayerName(generateRandomName());
 			player.setCaptain(booleanValue[random.nextInt(booleanValue.length)]);
 			player.setPosition(PositionConstant.defense.getValue());
 			player.setSkating(random.nextInt((20 - 12) + 1) + 12);
@@ -64,9 +64,9 @@ public class GenerateNewPlayers extends FreeAgentModel implements IGenerateNewPl
 			player.setChecking(random.nextInt((18 - 9) + 1) + 9);
 			player.setSaving(random.nextInt((7 - 1) + 1) + 1);
 			int[] birthdate = generatePlayerBirthdate();
-			player.setBirthDay(birthdate[0]);
-			player.setBirthMonth(birthdate[1]);
-			player.setBirthYear(birthdate[2]);
+			((FreeAgentModel) player).setBirthDay(birthdate[0]);
+			((FreeAgentModel) player).setBirthMonth(birthdate[1]);
+			((FreeAgentModel) player).setBirthYear(birthdate[2]);
 			if (listOfNewPlayers.contains(player)) {
 				totalForwards++;
 				continue;
@@ -75,8 +75,8 @@ public class GenerateNewPlayers extends FreeAgentModel implements IGenerateNewPl
 			}
 		}
 		for (int i = 0; i < totalGoalies; i++) {
-			PlayerModel player = new PlayerModel();
-			player.setPlayerName(generateRandomName());
+			IPlayer player = new PlayerModel();
+			((FreeAgentModel) player).setPlayerName(generateRandomName());
 			player.setCaptain(booleanValue[random.nextInt(booleanValue.length)]);
 			player.setPosition(PositionConstant.goalie.getValue());
 			player.setSkating(random.nextInt((20 - 12) + 1) + 12);
@@ -84,9 +84,9 @@ public class GenerateNewPlayers extends FreeAgentModel implements IGenerateNewPl
 			player.setChecking(random.nextInt((18 - 9) + 1) + 9);
 			player.setSaving(random.nextInt((7 - 1) + 1) + 1);
 			int[] birthdate = generatePlayerBirthdate();
-			player.setBirthDay(birthdate[0]);
-			player.setBirthMonth(birthdate[1]);
-			player.setBirthYear(birthdate[2]);
+			((FreeAgentModel) player).setBirthDay(birthdate[0]);
+			((FreeAgentModel) player).setBirthMonth(birthdate[1]);
+			((FreeAgentModel) player).setBirthYear(birthdate[2]);
 			if (listOfNewPlayers.contains(player)) {
 				totalForwards++;
 				continue;
