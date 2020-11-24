@@ -62,4 +62,6 @@ public interface IPlayer {
 
 	void setAge(int age);
 
+	void calculateAge();
+
 }

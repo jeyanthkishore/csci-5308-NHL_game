@@ -9,6 +9,7 @@ import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.leaguesimulation.DateHandler;
 import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.player.RandomNumberFactory;
 import com.dhl.g05.team.ITeam;
 
 public class TrainingState extends AbstractState{
@@ -26,7 +27,7 @@ public class TrainingState extends AbstractState{
 		int daysUntilStatIncreaseCheck = league.getGamePlayConfig().getTraining().getDaysUntilStatIncreaseCheck();
         int daysSinceLastStatIncrease = league.getDaysSinceStatIncrease();
         if (daysSinceLastStatIncrease > daysUntilStatIncreaseCheck) {
-        	IPlayerTraining training = new PlayerTraining();
+        	IPlayerTraining training = new PlayerTraining(new RandomNumberFactory());
 
         	for (IConference conference : league.getConferenceDetails()) {
         		for (IDivision division : conference.getDivisionDetails()) {

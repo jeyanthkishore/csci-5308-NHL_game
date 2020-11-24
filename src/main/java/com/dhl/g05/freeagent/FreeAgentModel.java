@@ -320,7 +320,7 @@ public class FreeAgentModel implements IFreeAgent {
 		return valid;
 	}
 
-	public int calculateAge() {
+	public void calculateAge() {
 		int age = 0;
 		LocalDate currentDate = LocalDate.now();
 		if (isBirthDateValid()) {
@@ -328,7 +328,6 @@ public class FreeAgentModel implements IFreeAgent {
 			age = Period.between(birthDate, currentDate).getYears();
 		}
 		setAge(age);
-		return age;
 	}
 	
 	public void ConvertPlayerToFreeAgent(List<IPlayer> excessPlayers)

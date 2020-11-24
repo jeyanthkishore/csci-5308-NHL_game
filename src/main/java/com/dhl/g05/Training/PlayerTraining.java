@@ -5,11 +5,17 @@ import com.dhl.g05.gameplayconfig.IInjury;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.IPlayerInjured;
+import com.dhl.g05.player.IRandomNumberFactory;
 import com.dhl.g05.player.PlayerInjury;
 
 public class PlayerTraining implements IPlayerTraining {
 
 	private ILeague leagueObject;
+	private IRandomNumberFactory randomGeneratorFactory;
+
+	public PlayerTraining(IRandomNumberFactory randomGeneratorFactory) {
+		this.randomGeneratorFactory = randomGeneratorFactory;
+	}
 
 
 	public IPlayer performTrainingForPlayer(IPlayer player, ICoach headCoach,ILeague league) {
@@ -63,11 +69,12 @@ public class PlayerTraining implements IPlayerTraining {
 	}
 
 	private Boolean trainingAlgorithm(double coachValue) {
-		double randomValue = Math.random();
+		double randomValue = randomGeneratorFactory.generateRandomDoubleNumber(0,1);
 		if(randomValue < coachValue) {
 			return true;
 		}
 		return false;
+
 	}
 }
 
