@@ -8,7 +8,6 @@ import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.TeamModel;
 
 public class LeagueStanding implements ILeagueStanding{
     private List<IStanding> standings;
@@ -24,7 +23,7 @@ public class LeagueStanding implements ILeagueStanding{
     }
 
     @Override
-	public void initializeStandings(LeagueModel league) {
+	public void createStandings(ILeague	league) {
         standings = new ArrayList<>();
 
         for (IConference conference: league.getConferenceDetails()) {
@@ -41,7 +40,7 @@ public class LeagueStanding implements ILeagueStanding{
     }
 
     @Override
-	public void updateStatsForWinningTeam(IConference conference, IDivision division, TeamModel team) {
+	public void updateWinningTeamData(IConference conference, IDivision division, ITeam team) {
         for (IStanding standing: standings) {
             if (standing.getConference() == conference &&
                 standing.getDivision() == division &&
@@ -54,7 +53,7 @@ public class LeagueStanding implements ILeagueStanding{
     }
 
     @Override
-	public void updateStatsForLosingTeam(IConference conference, IDivision division, TeamModel team) {
+	public void updateLosingTeamData(IConference conference, IDivision division, ITeam team) {
         for (IStanding standing: standings) {
             if (standing.getConference() == conference &&
                     standing.getDivision() == division &&

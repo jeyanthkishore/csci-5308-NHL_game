@@ -6,6 +6,7 @@ import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.db.AbstractDataBaseFactory;
 import com.dhl.g05.division.IDivision;
+import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.team.CreateNewTeam;
 import com.dhl.g05.team.ICreateTeam;
@@ -19,7 +20,7 @@ public class CreateTeamState extends AbstractState {
 	private String conferenceName;
 	private String divisionName;
 	private String teamName;
-	private LeagueModel league;
+	private ILeague league;
 	private IPlayerCommunication communicate;
 	private ICreateTeam createTeam;
 

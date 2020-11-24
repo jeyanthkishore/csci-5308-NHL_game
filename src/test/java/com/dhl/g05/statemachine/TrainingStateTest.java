@@ -44,7 +44,7 @@ public class TrainingStateTest {
 	}
 	
 	
-	@Test
+/*	@Test
 	public void performTaskTradeTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
 		data.league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue(), Month.DECEMBER, 30));
@@ -70,6 +70,6 @@ public class TrainingStateTest {
 		state.performStateTask();
 		state.exit();
 		assertTrue(state.getNextState() instanceof AgingState);
-	}
+	}*/
 	
 }

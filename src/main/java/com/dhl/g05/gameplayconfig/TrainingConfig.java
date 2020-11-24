@@ -8,10 +8,15 @@ public class TrainingConfig implements ITraining {
 	public int getDaysUntilStatIncreaseCheck() {
 		return daysUntilStatIncreaseCheck;
 	}
+
+	public TrainingConfig() {
+	}
+
 	public TrainingConfig(int days) {
 		daysUntilStatIncreaseCheck = days;
 	}
-	
+
+
 	public TrainingConstant Validate() {
 		logger.info("Validating training details");
 		if(daysUntilStatIncreaseCheck > 365|| daysUntilStatIncreaseCheck < 0) {

@@ -9,7 +9,7 @@ public class PlayerInjury implements IPlayerInjured {
     @Override
     public boolean checkPlayerInjury(IPlayer player, IInjury injury) {
         logger.info("Check whether player is injured or not");
-        IRandomNumberFactory randomNumberFactory = new RandomNumberFactory();
+        IRandomNumberFactory randomNumberFactory = AbstractPlayerFactory.getFactory().getRandomNumber();
         if(player.getInjuredStatus()) {
             return true;
         }

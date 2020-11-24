@@ -14,11 +14,11 @@ public interface ILeagueStanding {
 
 	void setStandings(List<IStanding> standingsList);
 
-	void initializeStandings(LeagueModel league);
+	void createStandings(ILeague league);
 
-	void updateStatsForWinningTeam(IConference conference, IDivision division, TeamModel team);
+	void updateWinningTeamData(IConference conference, IDivision division, ITeam team);
 
-	void updateStatsForLosingTeam(IConference conference, IDivision division, TeamModel team);
+	void updateLosingTeamData(IConference conference, IDivision division, ITeam team);
 
 	List<IStanding> getStandingsInDivision(IDivision division);
 

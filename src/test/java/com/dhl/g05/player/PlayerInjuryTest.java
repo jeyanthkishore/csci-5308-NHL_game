@@ -1,22 +1,33 @@
 package com.dhl.g05.player;
 
+import com.dhl.g05.gameplayconfig.AbstractGamePlayConfigFactory;
+import com.dhl.g05.gameplayconfig.GamePlayConfigFactory;
 import com.dhl.g05.gameplayconfig.IInjury;
-import com.dhl.g05.gameplayconfig.Injury;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 public class PlayerInjuryTest {
-    private static IPlayerInjured playerInjured = new PlayerInjury();
+    private static IPlayerInjured playerInjured;
+    private static AbstractPlayerFactory playerFactory;
+    private static AbstractGamePlayConfigFactory gamePlayConfigFactory;
+
+    @BeforeClass
+    public static void setup() {
+        AbstractPlayerFactory.setFactory(new PlayerFactory());
+        AbstractGamePlayConfigFactory.setFactory(new GamePlayConfigFactory());
+        playerFactory = AbstractPlayerFactory.getFactory();
+        gamePlayConfigFactory = AbstractGamePlayConfigFactory.getFactory();
+    }
 
     @Test
     public void checkPlayerInjuryTest() {
         IRandomNumberFactory randomNumberFactoryMock = Mockito.mock(RandomNumberFactory.class);
-        IInjury injury = new Injury();
-        IPlayer player = new PlayerModel();
+        playerInjured = playerFactory.getPlayerInjury();
+        IInjury injury = gamePlayConfigFactory.getInjury();
+        IPlayer player = playerFactory.getPLayer();
         injury.setInjuryDaysHigh(100);
         injury.setInjuryDaysLow(10);
         injury.setRandomInjuryChance(1.5);

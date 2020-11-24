@@ -2,28 +2,38 @@ package com.dhl.g05.player;
 
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.IFreeAgent;
-import com.dhl.g05.gameplayconfig.Aging;
+import com.dhl.g05.gameplayconfig.AbstractGamePlayConfigFactory;
+import com.dhl.g05.gameplayconfig.GamePlayConfigFactory;
 import com.dhl.g05.gameplayconfig.IAging;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.mockdata.JsonMockDataDb;
 import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 public class PlayerRetirementTest {
+    private static AbstractPlayerFactory playerFactory;
+    private static AbstractGamePlayConfigFactory gamePlayConfigFactory;
+
+    @BeforeClass
+    public static void setup() {
+        AbstractPlayerFactory.setFactory(new PlayerFactory());
+        AbstractGamePlayConfigFactory.setFactory(new GamePlayConfigFactory());
+        playerFactory = AbstractPlayerFactory.getFactory();
+        gamePlayConfigFactory = AbstractGamePlayConfigFactory.getFactory();
+    }
 
     @Test
     public void checkPlayerRetirementTest() {
         IRandomNumberFactory randomNumberFactoryMock = Mockito.mock(RandomNumberFactory.class);
-        IPlayerRetired playerRetired = new PlayerRetirement();
-        IFreeAgent player = new PlayerModel();
-        IAging aging = new Aging();
+        IPlayerRetired playerRetired = playerFactory.getPlayerRetirement();
+        IPlayer player = playerFactory.getPLayer();
+        IAging aging = gamePlayConfigFactory.getAging();
         player.setAge(50);
         aging.setMaximumAge(40);
         assertTrue(playerRetired.checkPlayerRetirement(aging,player));
@@ -45,7 +55,7 @@ public class PlayerRetirementTest {
         JsonMockDataDb mock = new JsonMockDataDb();
         ILeague league = new LeagueModel(mock);
         IFreeAgent freeAgent = new FreeAgentModel(mock);
-        IPlayerRetired playerRetired = new PlayerRetirement();
+        IPlayerRetired playerRetired = playerFactory.getPlayerRetirement();
         assertTrue(playerRetired.isFreeAgentsRetired(league,freeAgent));
     }
 
@@ -55,7 +65,7 @@ public class PlayerRetirementTest {
         ILeague league = new LeagueModel(mock);
         ITeam team = new TeamModel(mock);
         IPlayer player = new PlayerModel(mock);
-        IPlayerRetired playerRetired = new PlayerRetirement();
+        IPlayerRetired playerRetired = playerFactory.getPlayerRetirement();
         assertTrue(playerRetired.isPlayerRetired(league,player,team));
     }
 }

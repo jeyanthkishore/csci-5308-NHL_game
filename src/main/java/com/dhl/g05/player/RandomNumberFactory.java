@@ -1,5 +1,4 @@
 package com.dhl.g05.player;
-
 import java.util.Random;
 
 public class RandomNumberFactory implements IRandomNumberFactory{

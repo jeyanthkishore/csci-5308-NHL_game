@@ -4,10 +4,10 @@ import java.time.LocalDate;
 
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
+import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.leaguesimulation.leaguestanding.ILeagueStanding;
 import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.TeamModel;
 
 public class Schedule implements ISchedule, IInitializeSchedule {
 
@@ -19,7 +19,7 @@ public class Schedule implements ISchedule, IInitializeSchedule {
 	private ITeam secondTeam;
 	private LocalDate date;
 	private boolean isGamePlayed;
-	private TeamModel winningTeam;
+	private ITeam winningTeam;
 
 	@Override
 	public IConference getFirstConference() {
@@ -92,12 +92,12 @@ public class Schedule implements ISchedule, IInitializeSchedule {
 	}
 	
 	@Override
-	public TeamModel getWinningTeam() {
+	public ITeam getWinningTeam() {
 		return winningTeam;
 	}
 	
 	@Override
-	public void setWinningTeam(TeamModel winningTeam) {
+	public void setWinningTeam(ITeam winningTeam) {
 		this.winningTeam = winningTeam;
 	}
 
@@ -112,14 +112,14 @@ public class Schedule implements ISchedule, IInitializeSchedule {
 	}
 	
 	@Override
-	public void generateRegularSeason(LeagueModel league) {
+	public void generateRegularSeason(ILeague league) {
 		ILeagueSchedule leagueSchedule = new LeagueSchedule();
 		leagueSchedule.generateRegularSeasonSchedule(league);
 		leagueSchedule.addRegularSeasonDates();
 	}
 	
 	@Override
-	public void generatePlayOff(LeagueModel league,ILeagueStanding standingSystem) {
+	public void generatePlayOff(ILeague league,ILeagueStanding standingSystem) {
 		ILeagueSchedule leagueSchedule = new LeagueSchedule();
 		leagueSchedule.generatePlayoffSchedule(league,standingSystem);
 		leagueSchedule.addPlayoffSeasonDates();

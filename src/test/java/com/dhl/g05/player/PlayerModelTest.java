@@ -1,8 +1,7 @@
 package com.dhl.g05.player;
-
-import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.Aging;
 import com.dhl.g05.gameplayconfig.IAging;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dhl.g05.freeagent.FreeAgentConstant;
@@ -14,6 +13,13 @@ import static org.junit.Assert.*;
 
 
 public class PlayerModelTest {
+
+	private static AbstractPlayerFactory playerFactory;
+	@BeforeClass
+	public static void setup() {
+		AbstractPlayerFactory.setFactory(new PlayerFactory());
+		playerFactory = AbstractPlayerFactory.getFactory();
+	}
 
 	@Test
 	public void constructorTest() {
@@ -180,8 +186,8 @@ public class PlayerModelTest {
 	@Test
 	public void checkPlayerRetirementTest() {
 		IPlayerRetirement playerRetirement = new PlayerModel();
-		IPlayerRetired playerRetired = new PlayerRetirement();
-		IFreeAgent player = new PlayerModel();
+		IPlayerRetired playerRetired = playerFactory.getPlayerRetirement();
+		IPlayer player = playerFactory.getPLayer();
 		IAging aging = new Aging();
 		assertTrue(playerRetirement.checkPlayerRetirement(playerRetired, player, aging));
 

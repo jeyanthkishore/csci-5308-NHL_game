@@ -290,5 +290,4 @@ public class LeagueModel implements ILeague{
 		}
 		return false;
 	}
-
 }
