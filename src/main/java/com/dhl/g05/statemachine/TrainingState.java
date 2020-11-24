@@ -7,7 +7,6 @@ import com.dhl.g05.Training.PlayerTraining;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.leaguesimulation.DateHandler;
 import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.team.ITeam;
@@ -45,7 +44,7 @@ public class TrainingState extends AbstractState{
 	@Override
 	public boolean exit() {
 		LocalDate currentDate = league.getLeagueCurrentDate();
-		if (league.getLeagueSchedule().anyUnplayedGamesOnGivenDate(currentDate)) {
+		if (league.getLeagueSchedule().anyUnplayedGamesOnDate(currentDate)) {
             this.setNextState(AbstractStateMachineFactory.getFactory().getStimulateGameState());
         }
         else if (DateHandler.getInstance().isTradeDeadlinePassed(currentDate)) {

@@ -39,7 +39,7 @@ public class DateHandler {
 		return inputDate.isAfter(tradeDeadLine);
 	}
 
-	public long getDaysBetweenSeason() {
+	public long getDaysBetweenRegularSeason() {
 		return DAYS.between(regularSeasonStartDate, regularSeasonEndDate);
 	}
 
