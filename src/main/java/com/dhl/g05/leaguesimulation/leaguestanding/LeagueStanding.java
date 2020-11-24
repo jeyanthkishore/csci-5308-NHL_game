@@ -6,6 +6,7 @@ import java.util.List;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.ILeague;
+import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.team.ITeam;
 
 public class LeagueStanding implements ILeagueStanding{
@@ -86,5 +87,21 @@ public class LeagueStanding implements ILeagueStanding{
         myStandings.sort(Standing.rankingComparator);
         return myStandings;
     }
-
+    
+    @Override
+	public List<IStanding> getStandingsInAllConference(ILeague league) {
+    	List<IStanding> standingForOneConference=new ArrayList<>();
+		List<IStanding> standingForAllConference=new ArrayList<>();
+		 for (IConference conference: league.getConferenceDetails()) {
+			 standingForOneConference = getStandingsInConference(conference);
+			 standingForAllConference.addAll(standingForOneConference); 
+		 }
+		 standingForAllConference.sort(Standing.rankingComparator);
+		 return standingForAllConference;
+		 }
+    
+    @Override
+	public IStanding getTopStandingInConference(IConference conference) {
+        return getStandingsInConference(conference).get(0);
+    }    
 }

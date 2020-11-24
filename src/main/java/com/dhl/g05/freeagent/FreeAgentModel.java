@@ -2,6 +2,11 @@ package com.dhl.g05.freeagent;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.player.PlayerModel;
 import com.mysql.cj.util.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -325,5 +330,31 @@ public class FreeAgentModel implements IFreeAgent {
 		setAge(age);
 		return age;
 	}
-
+	
+	public void ConvertPlayerToFreeAgent(List<IPlayer> excessPlayers)
+	{   List<IFreeAgent> freeAgent= new ArrayList<>();
+		double skating = 0;
+		double shooting = 0;
+		double checking = 0;
+		double saving = 0;
+		int birthDay=0;
+		int birthMonth=0;
+	    int birthYear =0;
+		String name ="";
+		String position="";
+		for(IPlayer player : excessPlayers)
+		{
+		name =((FreeAgentModel) player).getPlayerName();
+		position = player.getPosition();
+		skating = player.getSkating();
+		shooting = player.getShooting();
+		checking = player.getChecking();
+		saving = player.getSaving();
+		birthDay = player.getBirthDay();
+		birthMonth =player.getBirthMonth();
+		birthYear = player.getBirthYear();
+		freeAgent.add(new FreeAgentModel(name,position,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		}
+	}
+	
 }

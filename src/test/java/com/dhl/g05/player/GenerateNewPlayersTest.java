@@ -55,7 +55,7 @@ public class GenerateNewPlayersTest {
 	public void generatePlayersTest1() {
 		IGenerateNewPlayers generate = new GenerateNewPlayers();
 		generate.setNumberOfTeams(10);
-		List<PlayerModel> newPlayers = generate.generatePlayers();
+		List<IPlayer> newPlayers = generate.generatePlayers();
 		assertTrue(newPlayers.size() == 70);
 	}
 
@@ -64,8 +64,8 @@ public class GenerateNewPlayersTest {
 		IGenerateNewPlayers generate = new GenerateNewPlayers();
 		generate.setNumberOfTeams(4);
 		int numberOfDefense = 0;
-		List<PlayerModel> newPlayers = generate.generatePlayers();
-		for (PlayerModel player : newPlayers) {
+		List<IPlayer> newPlayers = generate.generatePlayers();
+		for (IPlayer player : newPlayers) {
 			if (player.getPosition().equals(PositionConstant.defense.getValue())) {
 				numberOfDefense++;
 			}
@@ -78,8 +78,8 @@ public class GenerateNewPlayersTest {
 		IGenerateNewPlayers generate = new GenerateNewPlayers();
 		generate.setNumberOfTeams(4);
 		int numberOfForwards = 0;
-		List<PlayerModel> newPlayers = generate.generatePlayers();
-		for (PlayerModel player : newPlayers) {
+		List<IPlayer> newPlayers = generate.generatePlayers();
+		for (IPlayer player : newPlayers) {
 			if (player.getPosition().equals(PositionConstant.forward.getValue())) {
 				numberOfForwards++;
 			}
@@ -92,8 +92,8 @@ public class GenerateNewPlayersTest {
 		IGenerateNewPlayers generate = new GenerateNewPlayers();
 		generate.setNumberOfTeams(4);
 		int numberOfGoalies = 0;
-		List<PlayerModel> newPlayers = generate.generatePlayers();
-		for (PlayerModel player : newPlayers) {
+		List<IPlayer> newPlayers = generate.generatePlayers();
+		for (IPlayer player : newPlayers) {
 			if (player.getPosition().equals(PositionConstant.goalie.getValue())) {
 				numberOfGoalies++;
 			}

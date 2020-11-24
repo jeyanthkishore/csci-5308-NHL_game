@@ -5,7 +5,8 @@ import java.util.List;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.ILeague;
-import com.dhl.g05.team.ITeam;
+import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.team.TeamModel;
 
 public interface ILeagueStanding {
 
@@ -23,5 +24,8 @@ public interface ILeagueStanding {
 
 	List<IStanding> getStandingsInConference(IConference conference);
 
+	public List<IStanding> getStandingsInAllConference(ILeague league);
+
+	IStanding getTopStandingInConference(IConference conference);
 
 }

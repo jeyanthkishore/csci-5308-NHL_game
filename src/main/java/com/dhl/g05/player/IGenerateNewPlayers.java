@@ -8,6 +8,6 @@ public interface IGenerateNewPlayers {
 	public int getNumberOfTeams();
 	public String generateRandomName();
 	public int[] generatePlayerBirthdate();
-	public List<PlayerModel> generatePlayers();
+	public List<IPlayer> generatePlayers();
 
 }

@@ -1,5 +1,9 @@
 package com.dhl.g05.freeagent;
 
+import java.util.List;
+
+import com.dhl.g05.player.IPlayer;
+
 public interface IFreeAgent {
 
 	String getPlayerName();
@@ -55,4 +59,6 @@ public interface IFreeAgent {
 	int saveFreeAgentObject(int leagueId, IFreeAgentPersistence freeAgentDatabase);
 
 	void incrementPlayerAgeByDay(int day);
+
+	void ConvertPlayerToFreeAgent(List<IPlayer> releaseExtraPlayers);
 }
