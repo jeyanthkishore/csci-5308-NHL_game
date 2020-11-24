@@ -1,6 +1,7 @@
 package com.dhl.g05.statemachine;
 
 import com.dhl.g05.league.ILeague;
+import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.leaguesimulation.IInitializeSchedule;
 import com.dhl.g05.leaguesimulation.ScheduleModel;
 
