@@ -17,7 +17,6 @@ public class PlayerTraining implements IPlayerTraining {
 		this.randomGeneratorFactory = randomGeneratorFactory;
 	}
 
-
 	public IPlayer performTrainingForPlayer(IPlayer player, ICoach headCoach,ILeague league) {
 		this.leagueObject = league;
 
@@ -77,5 +76,3 @@ public class PlayerTraining implements IPlayerTraining {
 
 	}
 }
-
-

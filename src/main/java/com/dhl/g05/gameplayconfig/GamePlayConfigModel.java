@@ -1,9 +1,5 @@
 package com.dhl.g05.gameplayconfig;
 
-import com.dhl.g05.Driver;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 public class GamePlayConfigModel implements IGamePlayConfig {
 	TradingConfig trading;
 	Aging aging;

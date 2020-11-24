@@ -54,26 +54,6 @@ public class LoadTeamStateTest {
 		state.enter();
 		assertFalse(state.performStateTask());
 	}
-	
-//	@Test
-//	public void testEnter() {
-//		assertTrue(state.enter());
-//		assertNotNull(state.getTeamName());
-//	}
-//
-//	@Test
-//	public void testPerformStateTaskSucceeds() {
-//		assertTrue(state.performStateTask());
-//		assertNotNull(state.getOuterStateMachine().getLeagueModel().getLeague());
-//	}
-//
-//	@Test
-//	public void testPerformStateTaskFails() {
-//		state.getOuterStateMachine().setLeagueModel(new MockLeagueModelValidationFails());
-//		state.setTeamName("");
-//		assertFalse(state.performStateTask());
-//		assertNull(state.getNextState());
-//	}
 
 	@Test
 	public void testExit() {

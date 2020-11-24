@@ -111,14 +111,14 @@ public class ScheduleModel implements IScheduleModel, IInitializeSchedule {
 	
 	@Override
 	public void generateRegularSeason(ILeague league) {
-		ILeagueSchedule leagueSchedule = new LeagueSchedule();
+		ILeagueSchedule leagueSchedule = league.getLeagueSchedule();
 		leagueSchedule.generateRegularSeasonSchedule(league);
 		leagueSchedule.addRegularSeasonDates();
 	}
 	
 	@Override
 	public void generatePlayOff(ILeague league,ILeagueStanding standingSystem) {
-		ILeagueSchedule leagueSchedule = new LeagueSchedule();
+		ILeagueSchedule leagueSchedule = league.getLeagueSchedule();
 		leagueSchedule.generatePlayoffSchedule(league,standingSystem);
 		leagueSchedule.addPlayoffSeasonDates();
 	}

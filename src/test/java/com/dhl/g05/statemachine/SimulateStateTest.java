@@ -40,27 +40,4 @@ public class SimulateStateTest {
 		assertFalse(state.exit());
 	}
 
-//	@Test
-//	public void testPerformStateTask() {
-//		state1.getInnerStateMachine().setCurrentState(state2);
-//		assertTrue(state1.performStateTask());
-//	}
-//
-//	@Test
-//	public void testExit() {
-//		assertTrue(state1.exit());
-//		assertTrue(state1.getNextState() == null);
-//	}
-//
-//	@Test
-//	public void testValidateInputGoodInput() {
-//		assertTrue(state1.validateInput());
-//	}
-//
-//	@Test
-//	public void testValidateInputBadInput() {
-//		state1.setPlayerInput("not an int");
-//		assertFalse(state1.validateInput());
-//	}
-
 }
