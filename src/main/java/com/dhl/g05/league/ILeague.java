@@ -7,8 +7,8 @@ import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.leaguesimulation.leagueschedule.ILeagueSchedule;
-import com.dhl.g05.leaguesimulation.leaguestanding.ILeagueStanding;
+import com.dhl.g05.leaguesimulation.ILeagueSchedule;
+import com.dhl.g05.leaguesimulation.ILeagueStanding;
 import com.dhl.g05.player.IPlayer;
 
 public interface ILeague {

@@ -8,8 +8,8 @@ import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.leaguesimulation.DateHandler;
-import com.dhl.g05.leaguesimulation.leagueschedule.IInitializeSchedule;
-import com.dhl.g05.leaguesimulation.leagueschedule.Schedule;
+import com.dhl.g05.leaguesimulation.IInitializeSchedule;
+import com.dhl.g05.leaguesimulation.ScheduleModel;
 
 public class InitializeSeasonState extends AbstractState{
 	private IPlayerCommunication communication;
@@ -40,8 +40,8 @@ public class InitializeSeasonState extends AbstractState{
 		}
 		DateHandler dateObject  = DateHandler.getInstance();
 		dateObject.performDateAssignment(currentYear);
-		league.getLeagueStanding().createStandings(league);
-		IInitializeSchedule leagueSchedule = new Schedule();
+		league.getLeagueStanding().createStandingList(league);
+		IInitializeSchedule leagueSchedule = new ScheduleModel();
 		leagueSchedule.generateRegularSeason(league);
 		return true;
 	}

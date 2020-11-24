@@ -1,8 +1,6 @@
-package com.dhl.g05.leaguesimulation.leagueschedule;
+package com.dhl.g05.leaguesimulation;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -15,18 +13,20 @@ import com.dhl.g05.division.DivisionModel;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.leaguesimulation.DateHandler;
-import com.dhl.g05.leaguesimulation.StandingsMock;
-import com.dhl.g05.leaguesimulation.leaguestanding.ILeagueStanding;
-import com.dhl.g05.leaguesimulation.leaguestanding.LeagueStanding;
+import com.dhl.g05.leaguesimulation.IInitializeSchedule;
+import com.dhl.g05.leaguesimulation.ILeagueStanding;
+import com.dhl.g05.leaguesimulation.IScheduleModel;
+import com.dhl.g05.leaguesimulation.LeagueStanding;
+import com.dhl.g05.leaguesimulation.ScheduleModel;
 import com.dhl.g05.mockdata.JsonMockDataDb;
 import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
-public class ScheduleTest {
+public class ScheduleModelTest {
 
 	@Test
 	public void getFirstConferenceTest() {
-		ISchedule schedule = new Schedule();
+		IScheduleModel schedule = new ScheduleModel();
 		IConference conference = new ConferenceModel();
 		schedule.setFirstConference(conference);
 		assertSame(conference,schedule.getFirstConference());
@@ -34,7 +34,7 @@ public class ScheduleTest {
 	
 	@Test
 	public void getSecondConferenceTest() {
-		ISchedule schedule = new Schedule();
+		IScheduleModel schedule = new ScheduleModel();
 		IConference conference = new ConferenceModel();
 		schedule.setSecondConference(conference);
 		assertSame(conference,schedule.getSecondConference());
@@ -42,7 +42,7 @@ public class ScheduleTest {
 	
 	@Test
 	public void getFirstDivisionTest() {
-		ISchedule schedule = new Schedule();
+		IScheduleModel schedule = new ScheduleModel();
 		IDivision division = new DivisionModel();
 		schedule.setFirstDivision(division);
 		assertSame(division,schedule.getFirstDivision());
@@ -50,7 +50,7 @@ public class ScheduleTest {
 	
 	@Test
 	public void getSecondDivisionTest() {
-		ISchedule schedule = new Schedule();
+		IScheduleModel schedule = new ScheduleModel();
 		IDivision division = new DivisionModel();
 		schedule.setSecondDivision(division);
 		assertSame(division,schedule.getSecondDivision());
@@ -58,7 +58,7 @@ public class ScheduleTest {
 	
 	@Test
 	public void getFirstTeamTest() {
-		ISchedule schedule = new Schedule();
+		IScheduleModel schedule = new ScheduleModel();
 		ITeam team = new TeamModel();
 		schedule.setFirstTeam(team);
 		assertSame(team,schedule.getFirstTeam());
@@ -66,38 +66,38 @@ public class ScheduleTest {
 	
 	@Test
 	public void getSecondTeamTest() {
-		ISchedule schedule = new Schedule();
+		IScheduleModel schedule = new ScheduleModel();
 		ITeam team = new TeamModel();
 		schedule.setSecondTeam(team);
 		assertSame(team,schedule.getSecondTeam());
 	}
 	
 	@Test
-	public void getDateTest() {
-		ISchedule schedule = new Schedule();
+	public void getScheduleDateTest() {
+		IScheduleModel schedule = new ScheduleModel();
 		LocalDate sampleDate = LocalDate.of(2020, Month.SEPTEMBER, 30);
-		schedule.setDate(sampleDate);
-		assertSame(sampleDate,schedule.getDate());
+		schedule.setScheduleDate(sampleDate);
+		assertSame(sampleDate,schedule.getScheduleDate());
 	}
 	
 	@Test
 	public void getWinningTeamTest() {
-		ISchedule schedule = new Schedule();
+		IScheduleModel schedule = new ScheduleModel();
 		ITeam team = new TeamModel();
 		schedule.setWinningTeam(team);
 		assertSame(team,schedule.getWinningTeam());
 	}
 	
 	@Test
-	public void isGamePlayedTest() {
-		ISchedule schedule = new Schedule();
-		schedule.setIsGamePlayed(true);
-		assertTrue(schedule.getIsGamePlayed());
+	public void isGameCompletedTest() {
+		IScheduleModel schedule = new ScheduleModel();
+		schedule.setIsGameCompleted(true);
+		assertTrue(schedule.getIsGameCompleted());
 	}
 	
 	@Test
 	public void generateRegularSeasonTest() {
-		IInitializeSchedule schedule = new Schedule();
+		IInitializeSchedule schedule = new ScheduleModel();
 		JsonMockDataDb mock = new JsonMockDataDb();
 		DateHandler dateObject  = DateHandler.getInstance();
 		dateObject.performDateAssignment(2020);
@@ -108,14 +108,14 @@ public class ScheduleTest {
 	
 	@Test
 	public void generatePlayOffTest() {
-		IInitializeSchedule schedule = new Schedule();
+		IInitializeSchedule schedule = new ScheduleModel();
 		StandingsMock dummyStandings = new StandingsMock();
 		ILeague league = dummyStandings.createDummyLeague();
 		DateHandler dateObject  = DateHandler.getInstance();
 		dateObject.performDateAssignment(2020);
 		league.setLeagueCurrentDate(LocalDate.of(2020, Month.DECEMBER, 07));
 		ILeagueStanding standings = new LeagueStanding();
-		standings.setStandings(dummyStandings.createDummyStandings(league));
+		standings.setStandingList(dummyStandings.createDummyStandings(league));
 		schedule.generatePlayOff(league,standings);
 		assertNotNull(league.getLeagueSchedule());
 	}

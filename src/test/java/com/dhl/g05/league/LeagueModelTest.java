@@ -28,7 +28,6 @@ public class LeagueModelTest {
 	@Test
 	public void leagueParameterConstructorTest() {
 		JsonMockDataDb data = new JsonMockDataDb();
-//		LeaguePersistenceMock db = new LeaguePersistenceMock();
 		LeagueModel object = new LeagueModel(data.leagueName,data.conferenceList,data.freeAgentList,data.coachList, data.managerList, data.gamePlayConfig);
 		assertSame(data.leagueName,object.getLeagueName());
 		assertSame(data.freeAgentList,object.getFreeAgent());
@@ -57,8 +56,8 @@ public class LeagueModelTest {
 	@Test
 	public void setLeagueNameTest() {
 		LeagueModel object = new LeagueModel();
-		object.setLeagueName("League");
-		assertSame("League",object.getLeagueName());
+		object.setLeagueName("LeagueTest");
+		assertSame("LeagueTest",object.getLeagueName());
 	}
 
 	@Test
