@@ -23,5 +23,7 @@ public abstract class AbstractPlayerFactory {
     public abstract IPlayerRetirement getRetiredPlayer();
 
     public abstract IPlayerInjury getInjuredPlayer();
+    
+    public abstract IGenerateNewPlayers getGenerateNewPlayers();
 
 }
