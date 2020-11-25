@@ -12,4 +12,14 @@ public class DataBaseFactoryMock extends AbstractDataBaseFactory{
 		return new FileOperationMock();
 	}
 
+	@Override
+	public ICheckTeam getCheckTeam() {
+		return new CheckTeamMock();
+	}
+
+	@Override
+	public IDeserializeModel getDeserializeModel() {
+		return new DeserializeLeagueModelMock();
+	}
+
 }

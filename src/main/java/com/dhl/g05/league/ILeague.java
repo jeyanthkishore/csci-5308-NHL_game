@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.conference.IConference;
+import com.dhl.g05.database.IDeserializeModel;
 import com.dhl.g05.database.ISerializeModel;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
@@ -73,5 +74,7 @@ public interface ILeague {
 	void setDaysSinceStatIncrease(int days);
 
 	boolean saveLeagueObject(ISerializeModel saveLeague,String teamName);
+
+	void loadLeagueObject(IDeserializeModel loadLeague, String teamName);
 
 }

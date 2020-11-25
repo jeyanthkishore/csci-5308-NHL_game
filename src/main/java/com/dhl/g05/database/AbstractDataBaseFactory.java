@@ -13,4 +13,6 @@ public abstract class AbstractDataBaseFactory {
 
 	public abstract ISerializeModel getSerializeModel();
 	public abstract IFileOperation getFileDetails();
+	public abstract ICheckTeam getCheckTeam();
+	public abstract IDeserializeModel getDeserializeModel();
 }

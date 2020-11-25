@@ -1,10 +1,14 @@
 package com.dhl.g05.league;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.conference.IConference;
+import com.dhl.g05.database.IDeserializeModel;
 import com.dhl.g05.database.ISerializeModel;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
@@ -14,8 +18,6 @@ import com.dhl.g05.leaguesimulation.LeagueSchedule;
 import com.dhl.g05.leaguesimulation.LeagueStanding;
 import com.dhl.g05.player.IPlayer;
 import com.mysql.cj.util.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class LeagueModel implements ILeague{
 	static final Logger logger = LogManager.getLogger(LeagueModel.class);
@@ -207,6 +209,11 @@ public class LeagueModel implements ILeague{
 	@Override
 	public boolean saveLeagueObject(ISerializeModel saveLeague,String teamName) {
 		return saveLeague.serialiseObjects(this,teamName);
+	}
+	
+	@Override
+	public void loadLeagueObject(IDeserializeModel loadLeague, String teamName) {
+		loadLeague.deserializeObjects(teamName,this);
 	}
 	
 	@Override

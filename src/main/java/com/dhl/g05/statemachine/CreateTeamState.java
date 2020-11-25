@@ -10,6 +10,8 @@ import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.database.AbstractDataBaseFactory;
+import com.dhl.g05.database.ICheckTeam;
+import com.dhl.g05.database.IFileOperation;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.league.ILeague;
@@ -28,9 +30,9 @@ public class CreateTeamState extends AbstractState {
 	private String teamName;
 	private ILeague league;
 	private IPlayerCommunication communicate;
-	List<IFreeAgent> freeAgentList = new ArrayList<>();
-	List<ICoach> coachList = new ArrayList<>();
-	List<String> managerList = new ArrayList<>();
+	private List<IFreeAgent> freeAgentList = new ArrayList<>();
+	private List<ICoach> coachList = new ArrayList<>();
+	private List<String> managerList = new ArrayList<>();
 
 	public CreateTeamState(IPlayerCommunication communication) {
 		communicate = communication;
@@ -53,12 +55,12 @@ public class CreateTeamState extends AbstractState {
 			communicate.sendMessage("Enter team name:");
 			teamName =  communicate.getResponse();
 			ITeam team = new TeamModel();
-//			ITeamModelPersistence teamDatabase = AbstractDataBaseFactory.getFactory().getTeamDatabase();
-//			boolean notUnique = team.checkTeamNotUnique(teamName,teamDatabase);
-//			if(notUnique) {
-//				communicate.sendMessage("Please Enter Unique Team Name");
-//				continue;
-//			}
+			ICheckTeam checkTeam = AbstractDataBaseFactory.getFactory().getCheckTeam();
+			boolean notUnique = team.isTeamExist(teamName,checkTeam);
+			if(notUnique) {
+				communicate.sendMessage("Please Enter Unique Team Name");
+				continue;
+			}
 			teamNotEntered = false;
 		}
 		return true; 

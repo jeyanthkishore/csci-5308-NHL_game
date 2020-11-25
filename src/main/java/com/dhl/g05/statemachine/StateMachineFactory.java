@@ -33,7 +33,7 @@ public class StateMachineFactory extends AbstractStateMachineFactory{
 
 	@Override
 	public AbstractState getLoadTeamState() {
-		return new LoadTeamState(communication,leagueModel);
+		return new LoadTeamState(communication);
 	}
 
 	@Override
