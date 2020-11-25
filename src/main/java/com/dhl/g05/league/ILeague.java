@@ -70,4 +70,6 @@ public interface ILeague {
 	void setLeagueCurrentDate(LocalDate currentDate);
 
 	ILeagueStanding getLeagueStanding();
+
+	void setDaysSinceStatIncrease(int days);
 }

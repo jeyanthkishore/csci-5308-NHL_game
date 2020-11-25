@@ -11,6 +11,8 @@ import com.dhl.g05.communication.CommunicationFactory;
 import com.dhl.g05.db.AbstractDataBaseFactory;
 import com.dhl.g05.filehandler.LeagueModelJson;
 import com.dhl.g05.mockdata.JsonMockDataDb;
+import com.dhl.g05.trading.AbstractTradingFactory;
+import com.dhl.g05.trading.TradingFactory;
 
 import filehandler.DatabaseMockFactory;
 
@@ -27,6 +29,7 @@ public class TradeStateTest {
 	                		new LeagueModelJson()
 	                )
 	        );
+	        AbstractTradingFactory.setFactory(new TradingFactory());
 	    }
 
 	@Before
