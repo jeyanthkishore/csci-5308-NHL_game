@@ -68,7 +68,7 @@ public class StrongTeam implements IStrongTeam {
 		IWeakTeam teamInitiatingTrade = Trading.instance().getWeakteam();
 		String position = teamInitiatingTrade.getOfferedPlayerPosition();
 		int numberOfPlayersToTrade = teamInitiatingTrade.getNumberOfPlayersOffered();
-		ISortPlayerStrength sortPlayer = Trading.instance().getSortplayerstrength();
+		ISortPlayerStrength sortPlayer = AbstractTradingFactory.getFactory().getSortplayerstrength();
 
 		for (IConference conference : league.getConferenceDetails()) {
 			for (IDivision division : conference.getDivisionDetails()) {

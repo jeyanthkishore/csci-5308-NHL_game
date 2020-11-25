@@ -22,8 +22,8 @@ public class ResolveTrade implements IResolveTrade {
 
 	public void resolveTrade() {
 
-		IWeakTeam teamInitiatingTrade = Trading.instance().getWeakteam();
-		IStrongTeam teamAcceptingTrade = Trading.instance().getStrongteam();
+		IWeakTeam teamInitiatingTrade = AbstractTradingFactory.getFactory().getWeakteam();
+		IStrongTeam teamAcceptingTrade = AbstractTradingFactory.getFactory().getStrongteam();
 		if(teamAcceptingTrade.getStrongTeam().getUserTeam() == null)
 		{
 			adjustAITeam(teamAcceptingTrade.getStrongTeam());

@@ -8,7 +8,7 @@ import org.junit.Test;
 import com.dhl.g05.gameplayconfig.ITradingConfig;
 
 public class TradeValueTest {
-
+	
 	MockLeagueModel mockLeague = new MockLeagueModel();
 	ITradingConfig trade = mockLeague.TradingConfigMock();
 

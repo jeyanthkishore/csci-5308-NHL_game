@@ -37,6 +37,11 @@ public class PlayerFactory extends AbstractPlayerFactory{
 		return new GenerateNewPlayers();
 	}
 
+	@Override
+	public IPlayerBirthday getPlayerBirthday() {
+		return new PlayerBirthday();
+	}
+
 
 
 }
