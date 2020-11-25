@@ -19,11 +19,6 @@ import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.DivisionModel;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.ILeague;
-import com.dhl.g05.leaguesimulation.DateHandler;
-import com.dhl.g05.leaguesimulation.ILeagueSchedule;
-import com.dhl.g05.leaguesimulation.IScheduleModel;
-import com.dhl.g05.leaguesimulation.LeagueSchedule;
-import com.dhl.g05.leaguesimulation.ScheduleModel;
 import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
 
@@ -33,16 +28,16 @@ public class LeagueScheduleTest {
 	public void getPlayoffScheduleTest() {
 		ILeagueSchedule leagueSchedule = new LeagueSchedule();
 		List<IScheduleModel> scheduleList = new ArrayList<>();
-		leagueSchedule.setPlayoffSchedule(scheduleList);
-		assertSame(scheduleList,leagueSchedule.getPlayoffSchedule());
+		leagueSchedule.setPlayoffSeasonSchedule(scheduleList);
+		assertSame(scheduleList,leagueSchedule.getPlayoffSeasonSchedule());
 	}
 	
 	@Test
 	public void getRegularScheduleTest() {
 		ILeagueSchedule leagueSchedule = new LeagueSchedule();
 		List<IScheduleModel> scheduleList = new ArrayList<>();
-		leagueSchedule.setRegularSchedule(scheduleList);
-		assertSame(scheduleList,leagueSchedule.getRegularSchedule());
+		leagueSchedule.setRegularSeasonSchedule(scheduleList);
+		assertSame(scheduleList,leagueSchedule.getRegularSeasonSchedule());
 	}
 	
 	@Test
@@ -57,7 +52,7 @@ public class LeagueScheduleTest {
 		league.setLeagueCurrentDate(LocalDate.of(2020, Month.DECEMBER, 07));
 		leagueSchedule.generateRegularSeasonSchedule(league);
 		assertNotNull(league.getLeagueSchedule());
-		assertEquals(team1,leagueSchedule.getRegularSchedule().get(0).getFirstTeam());
+		assertEquals(team1,leagueSchedule.getRegularSeasonSchedule().get(0).getFirstTeam());
 	}
 	
 	@Test
@@ -73,7 +68,7 @@ public class LeagueScheduleTest {
 		league.setLeagueCurrentDate(LocalDate.of(2021, Month.APRIL, 07));
 		leagueSchedule.generatePlayoffSchedule(league,league.getLeagueStanding());
 		assertNotNull(league.getLeagueSchedule());
-		assertEquals(team1,leagueSchedule.getPlayoffSchedule().get(2).getFirstTeam());
+		assertEquals(team1,leagueSchedule.getPlayoffSeasonSchedule().get(2).getFirstTeam());
 	}
 	
 	
@@ -88,9 +83,9 @@ public class LeagueScheduleTest {
 		schedule.setScheduleDate(LocalDate.of(2020, Month.DECEMBER, 07));
 		schedule.setIsGameCompleted(false);
 		regularSeasonSchedule.add(schedule);
-		leagueSchedule.setRegularSchedule(regularSeasonSchedule);
+		leagueSchedule.setRegularSeasonSchedule(regularSeasonSchedule);
 		
-		assertTrue(leagueSchedule.anyUnplayedGamesOnDate(LocalDate.of(2020, Month.DECEMBER, 07)));
+		assertTrue(leagueSchedule.isGamesUnplayedOnCurrentDay(LocalDate.of(2020, Month.DECEMBER, 07)));
 	}
 	
 	@Test
@@ -104,9 +99,9 @@ public class LeagueScheduleTest {
 		schedule.setScheduleDate(LocalDate.of(2020, Month.DECEMBER, 07));
 		schedule.setIsGameCompleted(true);
 		regularSeasonSchedule.add(schedule);
-		leagueSchedule.setRegularSchedule(regularSeasonSchedule);
+		leagueSchedule.setRegularSeasonSchedule(regularSeasonSchedule);
 		
-		assertFalse(leagueSchedule.anyUnplayedGamesOnDate(LocalDate.of(2020, Month.DECEMBER, 07)));
+		assertFalse(leagueSchedule.isGamesUnplayedOnCurrentDay(LocalDate.of(2020, Month.DECEMBER, 07)));
 	}
 	
 	@Test
@@ -120,9 +115,9 @@ public class LeagueScheduleTest {
 		schedule.setScheduleDate(LocalDate.of(2021, Month.APRIL, 27));
 		schedule.setIsGameCompleted(false);
 		playoffSchedule.add(schedule);
-		leagueSchedule.setPlayoffSchedule(playoffSchedule);
+		leagueSchedule.setPlayoffSeasonSchedule(playoffSchedule);
 		
-		assertTrue(leagueSchedule.anyUnplayedGamesOnDate(LocalDate.of(2021, Month.APRIL, 27)));
+		assertTrue(leagueSchedule.isGamesUnplayedOnCurrentDay(LocalDate.of(2021, Month.APRIL, 27)));
 	}
 	
     @Test
@@ -142,7 +137,7 @@ public class LeagueScheduleTest {
         schedule2.setIsGameCompleted(false);
         playoffSchedule.add(schedule1);
         playoffSchedule.add(schedule2);
-        leagueSchedule.setPlayoffSchedule(playoffSchedule);
+        leagueSchedule.setPlayoffSeasonSchedule(playoffSchedule);
 
         assertFalse(leagueSchedule.isStanleyCupWinnerDetermined());
     }
@@ -158,7 +153,7 @@ public class LeagueScheduleTest {
         schedule2.setIsGameCompleted(true);
         playoffSchedule.add(schedule1);
         playoffSchedule.add(schedule2);
-        leagueSchedule.setPlayoffSchedule(playoffSchedule);
+        leagueSchedule.setPlayoffSeasonSchedule(playoffSchedule);
 
         assertTrue(leagueSchedule.isStanleyCupWinnerDetermined());
     }
@@ -185,7 +180,7 @@ public class LeagueScheduleTest {
         schedule1.setSecondTeam(team2);
         schedule1.setWinningTeam(team2);
         playoffSchedule.add(schedule1);
-        leagueSchedule.setPlayoffSchedule(playoffSchedule);
+        leagueSchedule.setPlayoffSeasonSchedule(playoffSchedule);
 
         assertSame(team2,leagueSchedule.getStanleyCupWinner());
     }
@@ -205,9 +200,9 @@ public class LeagueScheduleTest {
         schedule2.setIsGameCompleted(false);
         regularSeasonSchedule.add(schedule1);
         regularSeasonSchedule.add(schedule2);
-        scheduleSystem.setRegularSchedule(regularSeasonSchedule);
+        scheduleSystem.setRegularSeasonSchedule(regularSeasonSchedule);
 
-        IScheduleModel currentDaySchedule = scheduleSystem.getScheduledMatchOnThisDate(LocalDate.of(2020, Month.DECEMBER, 8));
+        IScheduleModel currentDaySchedule = scheduleSystem.getMatchOnCurrentDate(LocalDate.of(2020, Month.DECEMBER, 8));
         assertEquals(LocalDate.of(2020, Month.DECEMBER, 8), currentDaySchedule.getScheduleDate());
         assertFalse(currentDaySchedule.getIsGameCompleted());
     }
@@ -227,9 +222,9 @@ public class LeagueScheduleTest {
     	schedule2.setIsGameCompleted(false);
     	playoffSchedule.add(schedule1);
     	playoffSchedule.add(schedule2);
-    	scheduleSystem.setPlayoffSchedule(playoffSchedule);
+    	scheduleSystem.setPlayoffSeasonSchedule(playoffSchedule);
 
-    	IScheduleModel currentDaySchedule = scheduleSystem.getScheduledMatchOnThisDate(LocalDate.of(2021, Month.APRIL, 28));
+    	IScheduleModel currentDaySchedule = scheduleSystem.getMatchOnCurrentDate(LocalDate.of(2021, Month.APRIL, 28));
     	assertEquals(LocalDate.of(2021, Month.APRIL, 28), currentDaySchedule.getScheduleDate());
     	assertFalse(currentDaySchedule.getIsGameCompleted());
     }
@@ -277,14 +272,14 @@ public class LeagueScheduleTest {
 
     	playoffSchedule.add(schedule1);
     	playoffSchedule.add(schedule2);
-    	scheduleSystem.setPlayoffSchedule(playoffSchedule);
+    	scheduleSystem.setPlayoffSeasonSchedule(playoffSchedule);
 
     	schedule1.setWinningTeam(team1);
     	schedule2.setWinningTeam(team4);
 
     	scheduleSystem.updateScheduleAfterGame(schedule1);
     	scheduleSystem.updateScheduleAfterGame(schedule2);
-    	List<IScheduleModel> playoffScheduleList = scheduleSystem.getPlayoffSchedule();
+    	List<IScheduleModel> playoffScheduleList = scheduleSystem.getPlayoffSeasonSchedule();
 
     	assertEquals(3, playoffScheduleList.size());
     	assertTrue(playoffScheduleList.get(0).getIsGameCompleted());
@@ -343,11 +338,11 @@ public class LeagueScheduleTest {
         playoffSchedule.add(schedule1);
         playoffSchedule.add(schedule2);
         playoffSchedule.add(schedule3);
-        scheduleSystem.setPlayoffSchedule(playoffSchedule);
+        scheduleSystem.setPlayoffSeasonSchedule(playoffSchedule);
 
         scheduleSystem.updateScheduleAfterGame(schedule1);
         scheduleSystem.updateScheduleAfterGame(schedule2);
-        List<IScheduleModel> playoffScheduleList = scheduleSystem.getPlayoffSchedule();
+        List<IScheduleModel> playoffScheduleList = scheduleSystem.getPlayoffSeasonSchedule();
 
         assertEquals(4, playoffScheduleList.size());
         assertTrue(playoffScheduleList.get(1).getIsGameCompleted());

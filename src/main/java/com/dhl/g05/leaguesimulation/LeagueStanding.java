@@ -43,7 +43,7 @@ public class LeagueStanding implements ILeagueStanding{
     @Override
 	public List<IStandingModel> getRankingAcrossLeague() {
         List<IStandingModel> leagueStandings = new ArrayList<>();
-        for (IStandingModel standing: standingsList){
+        for (IStandingModel standing: standingsList) {
             	leagueStandings.add(standing);
         }
         Collections.sort(leagueStandings,StandingModel.rankingComparator);
@@ -53,8 +53,8 @@ public class LeagueStanding implements ILeagueStanding{
     @Override
 	public List<IStandingModel> getRankingAcrossDivision(IDivision division) {
         List<IStandingModel> divisionStandings = new ArrayList<>();
-        for (IStandingModel standing: standingsList){
-            if (standing.getDivision() == division){
+        for (IStandingModel standing: standingsList) {
+            if (standing.getDivision() == division) {
             	divisionStandings.add(standing);
             }
         }
@@ -66,7 +66,7 @@ public class LeagueStanding implements ILeagueStanding{
 	public List<IStandingModel> getRankingAcrossConference(IConference conference) {
         List<IStandingModel> conferenceStandings = new ArrayList<>();
         for (IStandingModel standing: standingsList){
-            if (standing.getConference() == conference){
+            if (standing.getConference() == conference) {
             	conferenceStandings.add(standing);
             }
         }
@@ -76,25 +76,23 @@ public class LeagueStanding implements ILeagueStanding{
     
     @Override
 	public void updateStatisticsForWinningTeam(IConference conference, IDivision division, ITeam team) {
-        for (IStandingModel standing: standingsList) {
-            if (standing.getConference() == conference &&
-                standing.getDivision() == division &&
-                standing.getTeam() == team) {
-                standing.incrementGamesPlayed();
-                standing.incrementGamesWon();
-                standing.incrementPoints();
+        for (IStandingModel teamstanding: standingsList) {
+            if (teamstanding.getConference() == conference && teamstanding.getDivision() == division
+            		&& teamstanding.getTeam() == team) {
+            	teamstanding.incrementGamesPlayed();
+            	teamstanding.incrementGamesWon();
+            	teamstanding.incrementPoints();
             }
         }
     }
 
     @Override
 	public void updateStatisticsForLosingTeam(IConference conference, IDivision division, ITeam team) {
-        for (IStandingModel standing: standingsList) {
-            if (standing.getConference() == conference &&
-                    standing.getDivision() == division &&
-                    standing.getTeam() == team) {
-                standing.incrementGamesPlayed();
-                standing.incrementGamesLost();
+        for (IStandingModel teamstanding: standingsList) {
+            if (teamstanding.getConference() == conference && teamstanding.getDivision() == division
+            		&& teamstanding.getTeam() == team) {
+            	teamstanding.incrementGamesPlayed();
+                teamstanding.incrementGamesLost();
             }
         }
     }

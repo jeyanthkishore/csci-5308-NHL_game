@@ -119,7 +119,7 @@ public class AgingStateTest {
 		List<IScheduleModel> playoffSchedule = new ArrayList<>();
 		playoffSchedule.add(schedule);
 		
-		leagueMock.getLeagueSchedule().setPlayoffSchedule(playoffSchedule);
+		leagueMock.getLeagueSchedule().setPlayoffSeasonSchedule(playoffSchedule);
 		
 		state.setLeague(leagueMock);
 		state.enter();

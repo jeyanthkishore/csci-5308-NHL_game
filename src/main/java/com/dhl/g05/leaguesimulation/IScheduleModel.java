@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.TeamModel;
 
 public interface IScheduleModel {
 

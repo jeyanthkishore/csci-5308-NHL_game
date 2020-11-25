@@ -15,6 +15,7 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 		this.training = train;
 	}
 	
+
 	public Injury getInjuries() {
 		return injuries;
 	}

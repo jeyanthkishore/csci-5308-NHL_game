@@ -25,6 +25,8 @@ public class LoadTeamState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
+		//Team Name Check
+		//League Object load team
 		if (leagueModel.loadTeam(teamName)) {
 			return true;
 		} else {

@@ -5,10 +5,15 @@ import org.apache.logging.log4j.Logger;
 public class TrainingConfig implements ITraining {
 	static final Logger logger = LogManager.getLogger(TrainingConfig.class);
 	private int daysUntilStatIncreaseCheck;
+	
 	public int getDaysUntilStatIncreaseCheck() {
 		return daysUntilStatIncreaseCheck;
 	}
 
+	public void setDaysUntilStatIncreaseCheck(int days) {
+		this.daysUntilStatIncreaseCheck = days;
+	}
+	
 	public TrainingConfig() {
 	}
 

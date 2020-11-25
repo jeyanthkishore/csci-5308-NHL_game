@@ -98,5 +98,11 @@ public class StateMachineFactory extends AbstractStateMachineFactory{
 	public AbstractState getPersistState() {
 		return new PersistState();
 	}
+
+
+	@Override
+	public AbstractState getPlayerDraftState() {
+		return new PlayerDraftState();
+	}
 	
 }
