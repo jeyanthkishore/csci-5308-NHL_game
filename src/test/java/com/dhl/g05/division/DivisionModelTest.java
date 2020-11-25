@@ -116,19 +116,4 @@ public class DivisionModelTest {
 		assertSame(DivisionConstant.TeamListEmpty,division.validate());
 	}
 
-	@Test
-	public void saveDivisionObjectTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		DivisionPersistenceMock data = new DivisionPersistenceMock();
-		DivisionModel valid = new DivisionModel(mock);
-		assertEquals(1,valid.saveDivisionObject(1,data));
-	}
-	@Test
-	public void loadDivisionObjectTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		DivisionPersistenceMock data = new DivisionPersistenceMock();
-		DivisionModel valid = new DivisionModel(mock);
-		assertEquals(1,valid.loadDivisionObject(1,data));
-	}
-
 }

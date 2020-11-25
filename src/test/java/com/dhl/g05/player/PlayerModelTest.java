@@ -159,22 +159,6 @@ public class PlayerModelTest {
 	}
 
 	@Test
-	public void savePlayerObjectTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		PlayerPersistenceMock data = new PlayerPersistenceMock();
-		PlayerModel valid = new PlayerModel(mock);
-		assertEquals(1,valid.savePlayerObject(1,data));
-	}
-
-	@Test
-	public void loadPlayerObjectTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		PlayerPersistenceMock data = new PlayerPersistenceMock();
-		PlayerModel valid = new PlayerModel(mock);
-		assertEquals(1,valid.loadPlayerObject(1,data));
-	}
-
-	@Test
 	public void checkPlayerInjuryTest() {
 		IPlayerInjured playerInjured = new PlayerInjury();
 		IPlayerInjury playerInjury = new PlayerModel();

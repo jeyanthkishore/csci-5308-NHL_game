@@ -12,12 +12,11 @@ import org.junit.Test;
 
 import com.dhl.g05.communication.AbstractCommunicationFactory;
 import com.dhl.g05.communication.CommunicationFactory;
-import com.dhl.g05.db.AbstractDataBaseFactory;
+import com.dhl.g05.database.AbstractDataBaseFactory;
+import com.dhl.g05.database.DataBaseFactory;
 import com.dhl.g05.filehandler.LeagueModelJson;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.leaguesimulation.DateHandler;
-
-import filehandler.DatabaseMockFactory;
 
 public class AdvanceTimeStateTest {
 	private AbstractState state;
@@ -26,7 +25,7 @@ public class AdvanceTimeStateTest {
 	 @BeforeClass
 	    public static void setup() {
 	        AbstractCommunicationFactory.setFactory(new CommunicationFactory());
-	        AbstractDataBaseFactory.setFactory(new DatabaseMockFactory());
+	        AbstractDataBaseFactory.setFactory(new DataBaseFactory());
 	        AbstractStateMachineFactory.setFactory(
 	                new StateMachineFactory(
 	                		AbstractCommunicationFactory.getFactory().getCommunication(),

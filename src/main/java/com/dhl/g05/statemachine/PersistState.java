@@ -1,8 +1,8 @@
 package com.dhl.g05.statemachine;
 
-import com.dhl.g05.db.AbstractDataBaseFactory;
+import com.dhl.g05.database.AbstractDataBaseFactory;
+import com.dhl.g05.database.ISerializeModel;
 import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.ILeagueModelPersistence;
 
 public class PersistState extends AbstractState {
 	private ILeague league;
@@ -15,8 +15,9 @@ public class PersistState extends AbstractState {
 
 	@Override
 	public boolean performStateTask() {
-		ILeagueModelPersistence saveLeague = AbstractDataBaseFactory.getFactory().getLeagueDatabase();
-		league.saveLeagueObject(saveLeague);
+		ISerializeModel saveLeague = AbstractDataBaseFactory.getFactory().getSerializeModel();
+		String teamName = this.getCurrentUserTeam();
+		league.saveLeagueObject(saveLeague,teamName);
 		return true;
 	}
 

@@ -135,19 +135,4 @@ public class ConferenceModelTest {
 		assertSame(ConferenceConstant.NoEvenDivisionCount,conference.validate());
 	}
 
-	@Test
-	public void saveConferenceObjectTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		ConferencePersistenceMock data = new ConferencePersistenceMock();
-		ConferenceModel valid = new ConferenceModel(mock);
-		assertEquals(1,valid.saveConferenceObject(1,data));
-	}
-
-	@Test
-	public void loadConferenceObjectTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		ConferencePersistenceMock data = new ConferencePersistenceMock();
-		ConferenceModel valid = new ConferenceModel(mock);
-		assertEquals(1,valid.loadConferenceObject(1,data));
-	}
 }

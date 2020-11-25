@@ -290,20 +290,4 @@ public class TeamModelTest{
 		assertSame(TeamConstant.CoachDetailsEmpty,validate.validate());
 	}
 
-	@Test
-	public void saveTeamObjectTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		TeamPersistenceMock data = new TeamPersistenceMock();
-		TeamModel valid = new TeamModel(mock);
-		assertEquals(1,valid.saveTeamObject(1,data));
-	}
-
-	@Test
-	public void loadTeamObjectTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		TeamPersistenceMock data = new TeamPersistenceMock();
-		TeamModel valid = new TeamModel(mock);
-		assertEquals(1,valid.loadTeamObject(1,data));
-	}
-	
 }

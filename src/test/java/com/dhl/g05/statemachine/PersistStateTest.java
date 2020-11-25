@@ -15,7 +15,8 @@ import org.junit.Test;
 
 import com.dhl.g05.communication.AbstractCommunicationFactory;
 import com.dhl.g05.communication.CommunicationFactory;
-import com.dhl.g05.db.AbstractDataBaseFactory;
+import com.dhl.g05.database.AbstractDataBaseFactory;
+import com.dhl.g05.database.DataBaseFactoryMock;
 import com.dhl.g05.filehandler.LeagueModelJson;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.leaguesimulation.IScheduleModel;
@@ -26,8 +27,6 @@ import com.dhl.g05.player.PlayerFactory;
 import com.dhl.g05.trading.AbstractTradingFactory;
 import com.dhl.g05.trading.TradingFactory;
 
-import filehandler.DatabaseMockFactory;
-
 public class PersistStateTest {
 	private AbstractState state;
 	
@@ -35,7 +34,7 @@ public class PersistStateTest {
 	 @BeforeClass
 	    public static void setup() {
 	        AbstractCommunicationFactory.setFactory(new CommunicationFactory());
-	        AbstractDataBaseFactory.setFactory(new DatabaseMockFactory());
+	        AbstractDataBaseFactory.setFactory(new DataBaseFactoryMock());
 	        AbstractStateMachineFactory.setFactory(
 	                new StateMachineFactory(
 	                		AbstractCommunicationFactory.getFactory().getCommunication(),
@@ -64,7 +63,7 @@ public class PersistStateTest {
 		List<IScheduleModel> scheduleList = new ArrayList<>();
 		scheduleList.add(schedule);
 		league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
-		
+		state.setCurrentUserTeam("TeamName");
 		state.setLeague(league);
 		state.enter();
 		state.performStateTask();
@@ -85,7 +84,7 @@ public class PersistStateTest {
 		List<IScheduleModel> scheduleList = new ArrayList<>();
 		scheduleList.add(schedule);
 		league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
-		
+		state.setCurrentUserTeam("TeamName");
 		state.setLeague(league);
 		state.enter();
 		state.performStateTask();

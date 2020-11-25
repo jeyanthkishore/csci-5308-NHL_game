@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.dhl.g05.database.ISerializeModel;
+import com.dhl.g05.database.SerializeLeagueModelMock;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.mockdata.JsonMockDataDb;
@@ -110,28 +112,6 @@ public class LeagueModelTest {
 	}
 
 	@Test
-	public void saveLeagueObjectTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		LeaguePersistenceMock data = new LeaguePersistenceMock();
-		LeagueModel league = new LeagueModel(mock);
-		assertTrue(league.saveLeagueObject(data));
-	}
-
-	@Test
-	public void loadLeagueObjectTest() {
-		LeaguePersistenceMock data = new LeaguePersistenceMock();
-		LeagueModel league = new LeagueModel();
-		assertEquals(1,league.loadLeagueObject(1,data));
-	}
-
-	@Test
-	public void loadLeagueFromTeamTest() {
-		LeaguePersistenceMock data = new LeaguePersistenceMock();
-		LeagueModel league = new LeagueModel();
-		assertEquals(1,league.loadLeagueFromTeam("Striker Six", data));
-	}
-	
-	@Test
 	public void isLeagueNameEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.setLeagueEmpty();
@@ -186,22 +166,6 @@ public class LeagueModelTest {
 		LeagueModel league = new LeagueModel(mock);
 		assertSame(LeagueConstant.NoEvenConferenceCount,league.validate());
 	}
-
-//	@Test
-//	public void checkLeagueExistenceTest() {
-//		JsonMockDataDb mock = new JsonMockDataDb();
-//		LeaguePersistenceMock dbMock = new LeaguePersistenceMock();
-//		LeagueModel league = new LeagueModel(mock.leagueName,mock.conferenceList,mock.freeAgentList,mock.coachList, mock.managerList,mock.gamePlayConfig,dbMock);
-//		assertSame(LeagueConstant.LeagueExists,league.validate());
-//	}
-
-//	@Test
-//	public void checkLeagueNotExistenceTest() {
-//		JsonMockDataDb mock = new JsonMockDataDb();
-//		LeaguePersistenceMock dbMock = new LeaguePersistenceMock();
-//		LeagueModel league = new LeagueModel("dummyData",mock.conferenceList,mock.freeAgentList,mock.coachList, mock.managerList,mock.gamePlayConfig, dbMock);
-//		assertSame(LeagueConstant.Success,league.validate());
-//	}
 
 	@Test
 	public void addRetiredFreeAgentToListTest(){
@@ -284,7 +248,6 @@ public class LeagueModelTest {
 	@Test
 	public void validateLeagueTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-//		LeaguePersistenceMock data = new LeaguePersistenceMock();
 		LeagueModel league = new LeagueModel(mock.leagueName,mock.conferenceList,mock.freeAgentList, mock.coachList, mock.managerList, mock.gamePlayConfig);
 		league.setLeagueName("DummyLEague");
 		assertSame(LeagueConstant.Success,league.validate());
@@ -313,6 +276,13 @@ public class LeagueModelTest {
 		league.setLeagueName("DummyLEague");
 		league.setManagerList(null);
 		assertSame(LeagueConstant.ManagerListEmpty,league.validate());
+	}
+	
+	@Test
+	public void saveLeagueObjectTest() {
+		ILeague league = new LeagueModel();
+		ISerializeModel serializeLeague = new SerializeLeagueModelMock();
+		assertTrue(league.saveLeagueObject(serializeLeague, "TeamName"));
 	}
 
 }

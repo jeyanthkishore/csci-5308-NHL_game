@@ -26,7 +26,6 @@ import com.dhl.g05.gameplayconfig.TradingConfig;
 import com.dhl.g05.gameplayconfig.TrainingConfig;
 import com.dhl.g05.league.ILeagueModel;
 import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.league.LeaguePersistenceMock;
 import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.IPlayerModel;
 import com.dhl.g05.player.PlayerModel;
@@ -63,7 +62,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public String teamTwoName = "Thunder Rockers";
 	public String generalManagerName = "Zidanie Zidane";
 	public String generalManagerTwoName = "Sachin Tendulkar";
-	public String headCoachName = "Diego Maradona";
+	public String headCoachName = "Diego Marradona";
 	public String headCoachTwoName = "Rahul Dravid";
 	public String divisionOneName = "Atlantic";
 	public String divisionTwoName = "Pacific";
@@ -415,7 +414,6 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		leagueModelObject.setFreeAgent(freeAgentList);
 		leagueModelObject.setFreeCoach(coachList);
 		leagueModelObject.setGamePlayConfig(gamePlayConfig);
-		leagueModelObject.setDbObject(new LeaguePersistenceMock());
 		leagueModelObject.setManagerList(managerList);
 		leagueModelObject.setRetiredFreeAgentsList(retiredFreeAgentsList);
 		leagueModelObject.setRetiredPlayersList(retiredPlayersList);

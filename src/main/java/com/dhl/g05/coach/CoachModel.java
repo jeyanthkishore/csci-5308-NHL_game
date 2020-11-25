@@ -32,10 +32,6 @@ public class CoachModel implements ICoach{
 		coach.loadCoachModelData(this);
 	}
 
-	public int saveLeagueCoachObject(int leagueId, ICoachModelPersistence database) {
-		return database.saveLeagueCoachObject(leagueId, this);
-	}
-
 	@Override
 	public String getName() {
 		return name;

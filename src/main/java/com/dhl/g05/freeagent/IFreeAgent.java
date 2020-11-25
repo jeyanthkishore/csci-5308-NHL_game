@@ -56,8 +56,6 @@ public interface IFreeAgent {
 
 	int getBirthYear();
 
-	int saveFreeAgentObject(int leagueId, IFreeAgentPersistence freeAgentDatabase);
-
 	void incrementPlayerAgeByDay(int day);
 
 	void ConvertPlayerToFreeAgent(List<IPlayer> releaseExtraPlayers);

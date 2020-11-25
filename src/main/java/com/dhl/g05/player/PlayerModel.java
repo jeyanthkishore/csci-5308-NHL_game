@@ -43,14 +43,6 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer
 		this.injuredForNumberOfDays = injuredForNumberOfDays;
 	}
 
-	public int savePlayerObject(int teamId, IPlayerModelPersistence database) {
-		return database.savePlayerObject(teamId,this);
-	}
-	
-	public int loadPlayerObject(int teamId,IPlayerModelPersistence database) {
-		return database.loadPlayerObject(teamId,this);
-	}
-
 	public PlayerModel(IPlayerModel player) {
 		player.loadPlayerModelData(this);
 	}

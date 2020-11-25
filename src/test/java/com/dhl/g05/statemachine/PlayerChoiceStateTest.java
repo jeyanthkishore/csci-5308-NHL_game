@@ -9,11 +9,10 @@ import org.junit.Test;
 
 import com.dhl.g05.communication.AbstractCommunicationFactory;
 import com.dhl.g05.communication.CommunicationFactory;
-import com.dhl.g05.db.AbstractDataBaseFactory;
+import com.dhl.g05.database.AbstractDataBaseFactory;
+import com.dhl.g05.database.DataBaseFactory;
 import com.dhl.g05.filehandler.LeagueModelJson;
 import com.dhl.g05.mocks.MockPlayerCommunication;
-
-import filehandler.DatabaseMockFactory;
 
 public class PlayerChoiceStateTest {
 	private AbstractState state;
@@ -23,7 +22,7 @@ public class PlayerChoiceStateTest {
 	 @BeforeClass
 	    public static void setup() {
 	        AbstractCommunicationFactory.setFactory(new CommunicationFactory());
-	        AbstractDataBaseFactory.setFactory(new DatabaseMockFactory());
+	        AbstractDataBaseFactory.setFactory(new DataBaseFactory());
 	        AbstractStateMachineFactory.setFactory(
 	                new StateMachineFactory(
 	                		AbstractCommunicationFactory.getFactory().getCommunication(),

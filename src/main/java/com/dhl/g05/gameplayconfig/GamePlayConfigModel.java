@@ -35,8 +35,4 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 	public TradingConfig getTrading() {
 		return trading;
 	}
-
-	public int saveGamePlayObject(int leagueId,IGameConfigPersistence database) {
-		return database.saveGamePlayObject(leagueId,this);
-	}
 }

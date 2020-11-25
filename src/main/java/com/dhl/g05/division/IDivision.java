@@ -16,8 +16,4 @@ public interface IDivision {
 
 	DivisionConstant validate();
 
-	int saveDivisionObject(int conferenceId, IDivisionModelPersistence divisionDatabase);
-
-	int loadDivisionObject(int conferenceId, IDivisionModelPersistence divisionDatabase);
-
 }
