@@ -4,10 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.player.AbstractPlayerFactory;
 import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.player.PlayerFactory;
 import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.team.ITeam;
 import com.dhl.g05.team.TeamModel;
@@ -15,10 +19,18 @@ import com.dhl.g05.team.TeamModel;
 public class ResolveTradeTest {
 	private static final String FORWARD = "Forward";
 	private static final String DEFENSE = "Defense";
-	
+	private static IResolveTrade resolveTrade;
+	private static AbstractTradingFactory abstractTradingFactory;
+
+	@BeforeClass
+	public static void setup() {
+		AbstractTradingFactory.setFactory(new TradingFactory());
+		abstractTradingFactory = AbstractTradingFactory.getFactory();
+	}
+
 	@Test
 	public void dropWeakestPlayersToFreeAgentListTest() {
-        IResolveTrade resolve = new ResolveTrade();
+		resolveTrade = abstractTradingFactory.getResolveTrade();
 		IPlayer player1 = new PlayerModel();
 		((FreeAgentModel) player1).setPlayerName("Shawn");
 		player1.setPosition(DEFENSE);
@@ -36,11 +48,10 @@ public class ResolveTradeTest {
 		List<IPlayer> players = new ArrayList<>();
 		players.add(player1);
 		players.add(player2);
-		ITeam team= new  TeamModel();
-        team.setPlayerList(players);
-		resolve.dropToFreeAgentList(team, DEFENSE, 1);
-        assertEquals(team.getPlayerList().size(),2);
+		ITeam team = new TeamModel();
+		team.setPlayerList(players);
+		resolveTrade.dropToFreeAgentList(team, DEFENSE, 1);
+		assertEquals(team.getPlayerList().size(), 2);
 	}
-	
 
 }

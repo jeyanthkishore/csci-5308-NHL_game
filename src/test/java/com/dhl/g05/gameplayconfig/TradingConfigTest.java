@@ -4,11 +4,21 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dhl.g05.mockdata.JsonMockDataDb;
 
 public class TradingConfigTest {
+
+	private static ITradingConfig tradingConfig;
+	private static AbstractGamePlayConfigFactory abstractGamePlayConfigFactory;
+
+	@BeforeClass
+	public static void setup() {
+		AbstractGamePlayConfigFactory.setFactory(new GamePlayConfigFactory());
+		abstractGamePlayConfigFactory = AbstractGamePlayConfigFactory.getFactory();
+	}
 
 	@Test
 	public void parameterConstructorTest() {
@@ -21,89 +31,82 @@ public class TradingConfigTest {
 
 	@Test
 	public void getLossPointTest() {
-		ITradingConfig object = new TradingConfig();
-		object.setLossPoint(5);
-		assertEquals(object.getLossPoint(), 5);
+		tradingConfig = abstractGamePlayConfigFactory.getTradingConfig();
+		tradingConfig.setLossPoint(5);
+		assertEquals(tradingConfig.getLossPoint(), 5);
 	}
 
 	@Test
 	public void getRandomTradeOfferChanceTest() {
-		ITradingConfig object = new TradingConfig();
-		object.setRandomTradeOfferChance(0.05);
-		assertEquals(object.getRandomTradeOfferChance(), 0.05, 0);
+		tradingConfig = abstractGamePlayConfigFactory.getTradingConfig();
+		tradingConfig.setRandomTradeOfferChance(0.05);
+		assertEquals(tradingConfig.getRandomTradeOfferChance(), 0.05, 0);
 	}
 
 	@Test
 	public void getMaxPlayersPerTradeTest() {
-		ITradingConfig object = new TradingConfig();
-		object.setMaxPlayersPerTrade(2);
-		assertSame(object.getMaxPlayersPerTrade(), 2);
+		tradingConfig = abstractGamePlayConfigFactory.getTradingConfig();
+		tradingConfig.setMaxPlayersPerTrade(2);
+		assertSame(tradingConfig.getMaxPlayersPerTrade(), 2);
 	}
 
 	@Test
 	public void getRandomAcceptanceChanceTest() {
-		ITradingConfig object = new TradingConfig();
-		object.setRandomAcceptanceChance(0.09);
-		assertEquals(object.getRandomAcceptanceChance(), 0.09, 0);
+		tradingConfig = abstractGamePlayConfigFactory.getTradingConfig();
+		tradingConfig.setRandomAcceptanceChance(0.09);
+		assertEquals(tradingConfig.getRandomAcceptanceChance(), 0.09, 0);
 	}
 
 	@Test
 	public void isValidLossPointTest() {
-		ITradingConfig object = new TradingConfig();
-		object.setLossPoint(-1);
-		assertTrue(object.isNotValidLossPoint());
+		tradingConfig = abstractGamePlayConfigFactory.getTradingConfig();
+		tradingConfig.setLossPoint(-1);
+		assertTrue(tradingConfig.isNotValidLossPoint());
 	}
 
 	@Test
 	public void isValidTradeOfferChanceTest() {
-		ITradingConfig object = new TradingConfig();
-		object.setRandomAcceptanceChance(2.99);
-		assertTrue(object.isNotValidAcceptanceChance());
+		tradingConfig = abstractGamePlayConfigFactory.getTradingConfig();
+		tradingConfig.setRandomAcceptanceChance(2.99);
+		assertTrue(tradingConfig.isNotValidAcceptanceChance());
 	}
 
 	@Test
 	public void isValidMaxplayerPerTradeTest() {
-		ITradingConfig object = new TradingConfig();
-		object.setMaxPlayersPerTrade(-10);
-		assertTrue(object.isNotValidMaxplayerPerTrade());
+		tradingConfig = abstractGamePlayConfigFactory.getTradingConfig();
+		tradingConfig.setMaxPlayersPerTrade(-10);
+		assertTrue(tradingConfig.isNotValidMaxplayerPerTrade());
 	}
 
 	@Test
 	public void isNotValidAcceptanceChanceTest() {
-		ITradingConfig object = new TradingConfig();
-		object.setRandomAcceptanceChance(-10);
-		assertTrue(object.isNotValidAcceptanceChance());
+		tradingConfig = abstractGamePlayConfigFactory.getTradingConfig();
+		tradingConfig.setRandomAcceptanceChance(-10);
+		assertTrue(tradingConfig.isNotValidAcceptanceChance());
 	}
 
 	@Test
 	public void validateTest1() {
-		ITradingConfig object = new TradingConfig();
-		object.setLossPoint(-1);
-		assertSame(TradingConstant.LossError, object.validate());
+		tradingConfig = abstractGamePlayConfigFactory.getTradingConfig();
+		tradingConfig.setLossPoint(-1);
+		assertSame(TradingConstant.LossError, tradingConfig.validate());
 	}
 
 	public void validateTest2() {
-		ITradingConfig object = new TradingConfig();
-		object.setRandomAcceptanceChance(2.99);
-		assertSame(TradingConstant.AcceptanceError, object.validate());
+		tradingConfig = abstractGamePlayConfigFactory.getTradingConfig();
+		tradingConfig.setRandomAcceptanceChance(2.99);
+		assertSame(TradingConstant.AcceptanceError, tradingConfig.validate());
 	}
 
 	public void validateTest3() {
-		ITradingConfig object = new TradingConfig();
-		object.setMaxPlayersPerTrade(-10);
-		assertSame(TradingConstant.MaxPlayerError, object.validate());
+		tradingConfig = abstractGamePlayConfigFactory.getTradingConfig();
+		tradingConfig.setMaxPlayersPerTrade(-10);
+		assertSame(TradingConstant.MaxPlayerError, tradingConfig.validate());
 	}
 
 	public void validateTest4() {
-
-		ITradingConfig object = new TradingConfig();
-		object.setRandomAcceptanceChance(-10);
-		assertSame(TradingConstant.AcceptanceError, object.validate());
+		tradingConfig = abstractGamePlayConfigFactory.getTradingConfig();
+		tradingConfig.setRandomAcceptanceChance(-10);
+		assertSame(TradingConstant.AcceptanceError, tradingConfig.validate());
 	}
-
-	public void validateTest5() {
-		ITradingConfig object = new TradingConfig(4, 0.2, 2, 0.4);
-		assertSame(TradingConstant.Success, object.validate());
-	}
-
 }

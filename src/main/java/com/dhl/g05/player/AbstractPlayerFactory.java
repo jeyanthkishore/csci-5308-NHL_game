@@ -25,5 +25,7 @@ public abstract class AbstractPlayerFactory {
     public abstract IPlayerInjury getInjuredPlayer();
     
     public abstract IGenerateNewPlayers getGenerateNewPlayers();
+    
+    public abstract IPlayerBirthday getPlayerBirthday();
 
 }
