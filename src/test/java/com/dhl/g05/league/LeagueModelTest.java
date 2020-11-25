@@ -3,15 +3,16 @@ package com.dhl.g05.league;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
+import org.junit.Test;
 
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.IFreeAgent;
-import com.dhl.g05.player.IPlayer;
-import org.junit.Test;
-
 import com.dhl.g05.mockdata.JsonMockDataDb;
-
-import java.util.List;
+import com.dhl.g05.player.IPlayer;
 
 
 public class LeagueModelTest {
@@ -113,7 +114,7 @@ public class LeagueModelTest {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		LeaguePersistenceMock data = new LeaguePersistenceMock();
 		LeagueModel league = new LeagueModel(mock);
-		assertEquals(1,league.saveLeagueObject(data));
+		assertTrue(league.saveLeagueObject(data));
 	}
 
 	@Test

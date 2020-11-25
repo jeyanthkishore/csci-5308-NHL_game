@@ -1,8 +1,7 @@
-package com.dhl.g05.Training;
+package com.dhl.g05.player;
 
 import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.league.ILeague;
-import com.dhl.g05.player.IPlayer;
 
 public interface IPlayerTraining {
 

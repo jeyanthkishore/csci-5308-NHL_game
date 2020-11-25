@@ -1,23 +1,33 @@
 package com.dhl.g05.statemachine;
 
-public class PersistState extends AbstractState {
+import com.dhl.g05.db.AbstractDataBaseFactory;
+import com.dhl.g05.league.ILeague;
+import com.dhl.g05.league.ILeagueModelPersistence;
 
+public class PersistState extends AbstractState {
+	private ILeague league;
+	
 	@Override
 	public boolean enter() {
-		// TODO Auto-generated method stub
-		return false;
+		league = this.getLeague();
+		return true;
 	}
 
 	@Override
 	public boolean performStateTask() {
-		// TODO Auto-generated method stub
-		return false;
+		ILeagueModelPersistence saveLeague = AbstractDataBaseFactory.getFactory().getLeagueDatabase();
+		league.saveLeagueObject(saveLeague);
+		return true;
 	}
 
 	@Override
 	public boolean exit() {
-		// TODO Auto-generated method stub
-		return false;
+		if(league.getLeagueSchedule().isStanleyCupWinnerDetermined()) {
+			this.setNextState(null);
+		} else {
+			this.setNextState(AbstractStateMachineFactory.getFactory().getAdvancedTimeState());
+		}
+		return true;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.dhl.g05.Training;
+package com.dhl.g05.player;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,8 +11,10 @@ import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.player.AbstractPlayerFactory;
 import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.player.IPlayerTraining;
 import com.dhl.g05.player.IRandomNumberFactory;
 import com.dhl.g05.player.PlayerFactory;
+import com.dhl.g05.player.PlayerTraining;
 import com.dhl.g05.player.RandomNumberFactory;
 import com.dhl.g05.team.ITeam;
 

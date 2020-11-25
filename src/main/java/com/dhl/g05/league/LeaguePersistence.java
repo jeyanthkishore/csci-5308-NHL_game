@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.coach.CoachPersistence;
 import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.coach.ICoachLoad;
 import com.dhl.g05.conference.ConferenceModel;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.db.StoredProcedure;
-import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.FreeAgentPersistence;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.freeagent.IFreeAgentLoad;
@@ -32,20 +30,18 @@ public class LeaguePersistence implements ILeagueModelPersistence{
 	}
 
 	@Override
-	public int saveLeagueObject(LeagueModel leagueObject) {
+	public boolean saveLeagueObject(LeagueModel leagueObject) {
 		StoredProcedure sp= new StoredProcedure();
 		String leagueName = leagueObject.getLeagueName();
 		int leagueId = sp.saveLeague(leagueName);
 		if(leagueId == 0 ) {
-			return 0;
 		}
 		for(String m : leagueObject.getManagerList()) {
 			int managerId = sp.saveFreeManager(leagueId, m);
 			if(managerId == 0) {
-				return 0;
 			}
 		}
-		return leagueId;
+		return true;
 	}
 
 	@Override

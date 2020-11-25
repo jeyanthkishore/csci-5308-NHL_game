@@ -72,4 +72,6 @@ public interface ILeague {
 	ILeagueStanding getLeagueStanding();
 
 	void setDaysSinceStatIncrease(int days);
+
+	boolean saveLeagueObject(ILeagueModelPersistence leagueDatabase);
 }

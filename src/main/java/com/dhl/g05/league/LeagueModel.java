@@ -210,7 +210,7 @@ public class LeagueModel implements ILeague{
 		this.leagueSchedule = leagueSchedule;
 	}
 
-	public int saveLeagueObject(ILeagueModelPersistence database) {
+	public boolean saveLeagueObject(ILeagueModelPersistence database) {
 		return database.saveLeagueObject(this);
 	}
 

@@ -1,12 +1,8 @@
-package com.dhl.g05.Training;
+package com.dhl.g05.player;
 
 import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.gameplayconfig.IInjury;
 import com.dhl.g05.league.ILeague;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.IPlayerInjured;
-import com.dhl.g05.player.IRandomNumberFactory;
-import com.dhl.g05.player.PlayerInjury;
 
 public class PlayerTraining implements IPlayerTraining {
 

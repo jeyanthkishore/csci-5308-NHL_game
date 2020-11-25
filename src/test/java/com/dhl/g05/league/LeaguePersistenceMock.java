@@ -21,11 +21,11 @@ public class LeaguePersistenceMock implements ILeagueModelPersistence{
 	}
 
 	@Override
-	public int saveLeagueObject(LeagueModel leagueObject) {
+	public boolean saveLeagueObject(LeagueModel leagueObject) {
 		if(leagueObject.getLeagueName().equals("HockeyLeague")) {
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	}
 	
 	@Override

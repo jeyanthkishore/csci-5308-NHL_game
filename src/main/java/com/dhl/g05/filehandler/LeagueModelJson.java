@@ -90,7 +90,7 @@ public class LeagueModelJson implements ILeagueModelJson{
 	@Override
 	public boolean persistLeague() { 
 
-		int leagueId = this.league.saveLeagueObject(leagueDatabase);
+		int leagueId = 0;
 		if (leagueId == 0) {
 			return false;
 		}

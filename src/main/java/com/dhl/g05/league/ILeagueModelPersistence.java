@@ -7,7 +7,7 @@ public interface ILeagueModelPersistence {
 
 	public ArrayList<HashMap<String, Object>> loadDetails();
 
-	public int saveLeagueObject(LeagueModel leagueObject);
+	public boolean saveLeagueObject(LeagueModel leagueObject);
 
 	public int loadLeagueObject(int leagueId, LeagueModel leagueObject);
 
