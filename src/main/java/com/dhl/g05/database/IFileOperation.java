@@ -4,6 +4,6 @@ public interface IFileOperation {
 
 	String getFilePath(String teamName);
 
-	boolean isFileExist(String path);
+	boolean isFileExist(String name);
 
 }

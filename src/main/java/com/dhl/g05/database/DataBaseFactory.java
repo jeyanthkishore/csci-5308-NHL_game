@@ -12,4 +12,14 @@ public class DataBaseFactory extends AbstractDataBaseFactory{
 		return new FileOperation();
 	}
 
+	@Override
+	public ICheckTeam getCheckTeam() {
+		return new CheckTeam();
+	}
+
+	@Override
+	public IDeserializeModel getDeserializeModel() {
+		return new DeserializeLeagueModel();
+	}
+
 }

@@ -4,8 +4,7 @@ public class FileOperationMock implements IFileOperation {
 
 	@Override
 	public String getFilePath(String teamName) {
-		// TODO Auto-generated method stub
-		return null;
+		return "src/test/java/com/dhl/g05/jsontestfiles/OutputModel.json";
 	}
 
 	@Override
