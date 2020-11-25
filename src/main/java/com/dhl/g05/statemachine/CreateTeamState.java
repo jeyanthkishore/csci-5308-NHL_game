@@ -9,7 +9,7 @@ import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.conference.IConference;
-import com.dhl.g05.db.AbstractDataBaseFactory;
+import com.dhl.g05.database.AbstractDataBaseFactory;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.league.ILeague;
@@ -17,7 +17,6 @@ import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.team.CreateTeamConstant;
 import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.ITeamModelPersistence;
 import com.dhl.g05.team.TeamModel;
 import com.mysql.cj.util.StringUtils;
 
@@ -54,12 +53,12 @@ public class CreateTeamState extends AbstractState {
 			communicate.sendMessage("Enter team name:");
 			teamName =  communicate.getResponse();
 			ITeam team = new TeamModel();
-			ITeamModelPersistence teamDatabase = AbstractDataBaseFactory.getFactory().getTeamDatabase();
-			boolean notUnique = team.checkTeamNotUnique(teamName,teamDatabase);
-			if(notUnique) {
-				communicate.sendMessage("Please Enter Unique Team Name");
-				continue;
-			}
+//			ITeamModelPersistence teamDatabase = AbstractDataBaseFactory.getFactory().getTeamDatabase();
+//			boolean notUnique = team.checkTeamNotUnique(teamName,teamDatabase);
+//			if(notUnique) {
+//				communicate.sendMessage("Please Enter Unique Team Name");
+//				continue;
+//			}
 			teamNotEntered = false;
 		}
 		return true; 

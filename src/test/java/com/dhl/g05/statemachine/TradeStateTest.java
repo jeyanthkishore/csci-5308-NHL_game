@@ -8,13 +8,12 @@ import org.junit.Test;
 
 import com.dhl.g05.communication.AbstractCommunicationFactory;
 import com.dhl.g05.communication.CommunicationFactory;
-import com.dhl.g05.db.AbstractDataBaseFactory;
+import com.dhl.g05.database.AbstractDataBaseFactory;
+import com.dhl.g05.database.DataBaseFactory;
 import com.dhl.g05.filehandler.LeagueModelJson;
 import com.dhl.g05.mockdata.JsonMockDataDb;
 import com.dhl.g05.trading.AbstractTradingFactory;
 import com.dhl.g05.trading.TradingFactory;
-
-import filehandler.DatabaseMockFactory;
 
 public class TradeStateTest {
 	private AbstractState state;
@@ -22,7 +21,7 @@ public class TradeStateTest {
 	 @BeforeClass
 	    public static void setup() {
 	        AbstractCommunicationFactory.setFactory(new CommunicationFactory());
-	        AbstractDataBaseFactory.setFactory(new DatabaseMockFactory());
+	        AbstractDataBaseFactory.setFactory(new DataBaseFactory());
 	        AbstractStateMachineFactory.setFactory(
 	                new StateMachineFactory(
 	                		AbstractCommunicationFactory.getFactory().getCommunication(),

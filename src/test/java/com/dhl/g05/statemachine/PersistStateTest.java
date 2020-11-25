@@ -1,5 +1,6 @@
 package com.dhl.g05.statemachine;
 
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
@@ -15,25 +16,25 @@ import org.junit.Test;
 import com.dhl.g05.communication.AbstractCommunicationFactory;
 import com.dhl.g05.communication.CommunicationFactory;
 import com.dhl.g05.database.AbstractDataBaseFactory;
-import com.dhl.g05.database.DataBaseFactory;
+import com.dhl.g05.database.DataBaseFactoryMock;
 import com.dhl.g05.filehandler.LeagueModelJson;
-import com.dhl.g05.leaguesimulation.DateHandler;
+import com.dhl.g05.league.ILeague;
 import com.dhl.g05.leaguesimulation.IScheduleModel;
 import com.dhl.g05.leaguesimulation.ScheduleModel;
-import com.dhl.g05.mockdata.JsonMockDataDb;
+import com.dhl.g05.leaguesimulation.StandingsMock;
 import com.dhl.g05.player.AbstractPlayerFactory;
 import com.dhl.g05.player.PlayerFactory;
 import com.dhl.g05.trading.AbstractTradingFactory;
 import com.dhl.g05.trading.TradingFactory;
 
-public class TrainingStateTest {
+public class PersistStateTest {
 	private AbstractState state;
 	
 	
 	 @BeforeClass
 	    public static void setup() {
 	        AbstractCommunicationFactory.setFactory(new CommunicationFactory());
-	        AbstractDataBaseFactory.setFactory(new DataBaseFactory());
+	        AbstractDataBaseFactory.setFactory(new DataBaseFactoryMock());
 	        AbstractStateMachineFactory.setFactory(
 	                new StateMachineFactory(
 	                		AbstractCommunicationFactory.getFactory().getCommunication(),
@@ -46,63 +47,48 @@ public class TrainingStateTest {
 
 	@Before
 	public void init() {
-		state = AbstractStateMachineFactory.getFactory().getTrainingState();
+		state = AbstractStateMachineFactory.getFactory().getPersistState();
 	}
 	
-	
 	@Test
-	public void performTaskTrainingTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue(), Month.AUGUST, 30));
-		mock.league.setDaysSinceStatIncrease(140);
+	public void performTaskTest() {
+		StandingsMock mock = new StandingsMock();
+		ILeague league = mock.createDummyLeague();
+		league.setLeagueName("HockeyLeague");
 		
-		state.setLeague(mock.league);
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(Year.now().getValue());
-		state.enter();
-		state.performStateTask();
-		state.exit();
-		assertTrue(state.getNextState() instanceof TradeState);
-	}
-	
-	@Test
-	public void performTaskAgingTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		data.league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
-		data.league.setDaysSinceStatIncrease(140);
+		league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
 		IScheduleModel schedule = new ScheduleModel();
 		schedule.setIsGameCompleted(true);
 		schedule.setScheduleDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
 		List<IScheduleModel> scheduleList = new ArrayList<>();
 		scheduleList.add(schedule);
-		data.league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
-		state.setLeague(data.league);
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(Year.now().getValue());
+		league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
+		state.setCurrentUserTeam("TeamName");
+		state.setLeague(league);
 		state.enter();
 		state.performStateTask();
 		state.exit();
-		assertTrue(state.getNextState() instanceof AgingState);
+		assertNull(state.getNextState());
 	}
 	
 	@Test
-	public void performTaskStimulateGameTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		data.league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
-		data.league.setDaysSinceStatIncrease(140);
+	public void performTaskAdvancedTimeTest() {
+		StandingsMock mock = new StandingsMock();
+		ILeague league = mock.createDummyLeague();
+		league.setLeagueName("HockeyLeague");
+		
+		league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
 		IScheduleModel schedule = new ScheduleModel();
 		schedule.setIsGameCompleted(false);
 		schedule.setScheduleDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
 		List<IScheduleModel> scheduleList = new ArrayList<>();
 		scheduleList.add(schedule);
-		data.league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
-		state.setLeague(data.league);
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(Year.now().getValue());
+		league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
+		state.setCurrentUserTeam("TeamName");
+		state.setLeague(league);
 		state.enter();
 		state.performStateTask();
 		state.exit();
-		assertTrue(state.getNextState() instanceof StimulateGameState);
+		assertTrue(state.getNextState() instanceof AdvanceTimeState);
 	}
-	
 }

@@ -107,14 +107,6 @@ public class TeamModel implements ITeam {
 		this.teamStrength = teamStrength;
 	}
 
-	public int saveTeamObject(int divisionId, ITeamModelPersistence database) {
-		return database.saveTeamObject(divisionId, this, headCoach);
-	}
-
-	public int loadTeamObject(int divisionId, ITeamModelPersistence database) {
-		return database.loadTeamObject(divisionId, this, headCoach);
-	}
-
 	public double calculateTeamStrength(List<IPlayer> playerList) {
 		logger.info("Calculating team strength using players strength");
 		for (IPlayer player : playerList) {
@@ -232,16 +224,6 @@ public class TeamModel implements ITeam {
 				}
 			}
 		}
-	}
-
-	public boolean checkTeamNotUnique(String teamName, ITeamModelPersistence database) {
-		List<HashMap<String, Object>> teamNameList = database.loadAllTeamName();
-		for (HashMap<String, Object> team : teamNameList) {
-			if (team.get("team_name").equals(teamName)) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	public void adjustTeamRoasterAfterDraft(ITeam team, IPlayer newplayer) {

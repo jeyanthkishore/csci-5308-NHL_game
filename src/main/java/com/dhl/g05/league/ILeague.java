@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.conference.IConference;
+import com.dhl.g05.database.ISerializeModel;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.leaguesimulation.ILeagueSchedule;
@@ -39,8 +40,6 @@ public interface ILeague {
 
     void setManagerList(List<String> managerList);
 
-    void setDbObject(ILeagueModelPersistence object);
-
     void addRetiredFreeAgentToList(IFreeAgent freeAgent);
 
     void addRetiredPlayersToList(IPlayer player);
@@ -72,4 +71,7 @@ public interface ILeague {
 	ILeagueStanding getLeagueStanding();
 
 	void setDaysSinceStatIncrease(int days);
+
+	boolean saveLeagueObject(ISerializeModel saveLeague,String teamName);
+
 }

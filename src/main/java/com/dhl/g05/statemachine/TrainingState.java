@@ -2,13 +2,13 @@ package com.dhl.g05.statemachine;
 
 import java.time.LocalDate;
 
-import com.dhl.g05.Training.IPlayerTraining;
-import com.dhl.g05.Training.PlayerTraining;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.leaguesimulation.DateHandler;
 import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.player.IPlayerTraining;
+import com.dhl.g05.player.PlayerTraining;
 import com.dhl.g05.player.RandomNumberFactory;
 import com.dhl.g05.team.ITeam;
 

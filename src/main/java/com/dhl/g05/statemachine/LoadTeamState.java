@@ -27,12 +27,12 @@ public class LoadTeamState extends AbstractState{
 	public boolean performStateTask() {
 		//Team Name Check
 		//League Object load team
-		if (leagueModel.loadTeam(teamName)) {
+//		if (leagueModel.loadTeam(teamName)) {
 			return true;
-		} else {
-			communication.sendMessage("Team does not exist");
-			return false;
-		}
+//		} else {
+//			communication.sendMessage("Team does not exist");
+//			return false;
+//		}
 	}
 
 	@Override

@@ -176,10 +176,6 @@ public class FreeAgentModel implements IFreeAgent {
 		this.playerStrength = playerStrength;
 	}
 
-	public int saveFreeAgentObject(int leagueId,IFreeAgentPersistence database) {
-		return database.saveFreeAgentObject(leagueId,this);
-	}
-	
 	@Override
 	public void incrementPlayerAgeByDay(int day) {
 		

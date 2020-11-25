@@ -8,13 +8,12 @@ import org.junit.Test;
 import com.dhl.g05.communication.AbstractCommunicationFactory;
 import com.dhl.g05.communication.CommunicationFactory;
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.db.AbstractDataBaseFactory;
+import com.dhl.g05.database.AbstractDataBaseFactory;
+import com.dhl.g05.database.DataBaseFactory;
 import com.dhl.g05.filehandler.LeagueModelJson;
 import com.dhl.g05.mockdata.JsonMockDataDb;
 import com.dhl.g05.mocks.MockCreateTeamCommnication;
 import com.dhl.g05.mocks.MockPlayerCommunication;
-
-import filehandler.DatabaseMockFactory;
 
 public class CreateTeamStateTest {
 	private static MockPlayerCommunication communicate;
@@ -26,7 +25,7 @@ public class CreateTeamStateTest {
 		    communicate = new MockPlayerCommunication();
 		    communicate.commandLineInput(userInput);
 	        AbstractCommunicationFactory.setFactory(new CommunicationFactory());
-	        AbstractDataBaseFactory.setFactory(new DatabaseMockFactory());
+	        AbstractDataBaseFactory.setFactory(new DataBaseFactory());
 	        AbstractStateMachineFactory.setFactory(
 	                new StateMachineFactory(
 	                		AbstractCommunicationFactory.getFactory().getCommunication(),

@@ -18,10 +18,6 @@ public interface IPlayer {
 
 	FreeAgentConstant validate();
 
-	int savePlayerObject(int teamId, IPlayerModelPersistence playerDatabase);
-
-	int loadPlayerObject(int teamId, IPlayerModelPersistence playerDatabase);
-
 	void incrementPlayerAgeByDay(int days);
 
 	boolean getInjuredStatus();

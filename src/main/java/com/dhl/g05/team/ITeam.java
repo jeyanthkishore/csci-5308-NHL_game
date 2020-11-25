@@ -46,12 +46,6 @@ public interface ITeam {
 
 	void setTeamStrength(double teamStrength);
 
-	int saveTeamObject(int divisionId, ITeamModelPersistence database);
-
-	int loadTeamObject(int divisionId, ITeamModelPersistence database);
-
-	boolean checkTeamNotUnique(String teamName, ITeamModelPersistence database);
-
 	TeamConstant validate();
 
 }

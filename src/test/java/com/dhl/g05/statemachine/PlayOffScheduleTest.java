@@ -12,20 +12,19 @@ import org.junit.Test;
 
 import com.dhl.g05.communication.AbstractCommunicationFactory;
 import com.dhl.g05.communication.CommunicationFactory;
-import com.dhl.g05.db.AbstractDataBaseFactory;
+import com.dhl.g05.database.AbstractDataBaseFactory;
+import com.dhl.g05.database.DataBaseFactory;
 import com.dhl.g05.filehandler.LeagueModelJson;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.leaguesimulation.DateHandler;
 import com.dhl.g05.leaguesimulation.StandingsMock;
-
-import filehandler.DatabaseMockFactory;
 
 public class PlayOffScheduleTest {
 	private AbstractState state;
 	@BeforeClass
 	public static void setup() {
 		AbstractCommunicationFactory.setFactory(new CommunicationFactory());
-		AbstractDataBaseFactory.setFactory(new DatabaseMockFactory());
+		AbstractDataBaseFactory.setFactory(new DataBaseFactory());
 		AbstractStateMachineFactory.setFactory(
 				new StateMachineFactory(
 						AbstractCommunicationFactory.getFactory().getCommunication(),
