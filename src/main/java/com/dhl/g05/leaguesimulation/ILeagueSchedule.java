@@ -4,26 +4,25 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.team.ITeam;
 
 public interface ILeagueSchedule {
 
-	List<IScheduleModel> getRegularSchedule();
+	List<IScheduleModel> getRegularSeasonSchedule();
 
-	void setRegularSchedule(List<IScheduleModel> regularSchedule);
+	void setRegularSeasonSchedule(List<IScheduleModel> regularSchedule);
 
-	List<IScheduleModel> getPlayoffSchedule();
+	List<IScheduleModel> getPlayoffSeasonSchedule();
 
-	void setPlayoffSchedule(List<IScheduleModel> playoffSchedule);
+	void setPlayoffSeasonSchedule(List<IScheduleModel> playoffSchedule);
 
 	void generateRegularSeasonSchedule(ILeague league);
 
 	void generatePlayoffSchedule(ILeague league, ILeagueStanding standingSystem);
 
-	boolean anyUnplayedGamesOnDate(LocalDate date);
+	boolean isGamesUnplayedOnCurrentDay(LocalDate date);
 
-	IScheduleModel getScheduledMatchOnThisDate(LocalDate date);
+	IScheduleModel getMatchOnCurrentDate(LocalDate date);
 
 	boolean isStanleyCupWinnerDetermined();
 

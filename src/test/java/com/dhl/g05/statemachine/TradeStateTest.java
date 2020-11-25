@@ -36,11 +36,11 @@ public class TradeStateTest {
 	
 	@Test
 	public void performTaskTest() {
-//		JsonMockDataDb data = new JsonMockDataDb();
-//		state.setLeague(data.league);
-//		state.enter();
-//		state.performStateTask();
-//		state.exit();
-//		assertTrue(state.getNextState() instanceof AgingState);
+		JsonMockDataDb data = new JsonMockDataDb();
+		state.setLeague(data.league);
+		state.enter();
+		state.performStateTask();
+		state.exit();
+		assertTrue(state.getNextState() instanceof AgingState);
 	}
 }

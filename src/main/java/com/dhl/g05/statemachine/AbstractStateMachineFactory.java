@@ -27,5 +27,6 @@ public abstract class AbstractStateMachineFactory {
 	    public abstract AbstractState getStimulateGameState();
 	    public abstract AbstractState getAdvanceToNextSeasonState();
 	    public abstract AbstractState getPersistState();
+	    public abstract AbstractState getPlayerDraftState();
 	    
 }

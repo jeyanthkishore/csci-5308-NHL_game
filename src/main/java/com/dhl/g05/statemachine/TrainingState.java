@@ -45,7 +45,7 @@ public class TrainingState extends AbstractState{
 	@Override
 	public boolean exit() {
 		LocalDate currentDate = league.getLeagueCurrentDate();
-		if (league.getLeagueSchedule().anyUnplayedGamesOnDate(currentDate)) {
+		if (league.getLeagueSchedule().isGamesUnplayedOnCurrentDay(currentDate)) {
             this.setNextState(AbstractStateMachineFactory.getFactory().getStimulateGameState());
         }
         else if (DateHandler.getInstance().isTradeDeadlinePassed(currentDate)) {

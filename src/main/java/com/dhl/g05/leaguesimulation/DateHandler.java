@@ -55,13 +55,13 @@ public class DateHandler {
 		return playOffStartDate;
 	}
 
-	public boolean isRegularSeasonOngoing(LocalDate date) {
+	public boolean isRegularSeasonActive(LocalDate date) {
 		return date.isEqual(regularSeasonStartDate) ||
 				(date.isAfter(regularSeasonStartDate) && date.isBefore(regularSeasonEndDate)) ||
 				date.isEqual(regularSeasonEndDate);
 	}
 
-	public boolean isPlayoffSeasonOngoing(LocalDate date) {
+	public boolean isPlayoffSeasonActive(LocalDate date) {
 		return date.isEqual(playOffStartDate) ||
 				(date.isAfter(playOffStartDate) && date.isBefore(playOffEndDate)) ||
 				date.isEqual(playOffEndDate);

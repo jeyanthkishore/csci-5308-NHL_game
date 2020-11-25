@@ -51,7 +51,7 @@ public class PlayOffScheduleTest {
 		state.enter();
 		state.performStateTask();
 		state.exit();
-		assertNotNull(state.getLeague().getLeagueSchedule().getPlayoffSchedule());
+		assertNotNull(state.getLeague().getLeagueSchedule().getPlayoffSeasonSchedule());
 		assertTrue(state.getNextState() instanceof TrainingState);
 	}
 
