@@ -31,5 +31,12 @@ public class PlayerFactory extends AbstractPlayerFactory{
     public IPlayerInjury getInjuredPlayer() {
         return new PlayerModel();
     }
+    
+	@Override
+	public IGenerateNewPlayers getGenerateNewPlayers() {
+		return new GenerateNewPlayers();
+	}
+
+
 
 }
