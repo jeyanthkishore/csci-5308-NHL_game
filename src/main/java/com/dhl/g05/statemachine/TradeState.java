@@ -1,5 +1,6 @@
 package com.dhl.g05.statemachine;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.trading.IIntiateTradeOffer;
 import com.dhl.g05.trading.InitiateTradeOffer;
@@ -23,7 +24,8 @@ public class TradeState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		this.setNextState(AbstractStateMachineFactory.getFactory().getAgingState());
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
+		this.setNextState(stateFactory.getAgingState());
 		return true;
 	}
 

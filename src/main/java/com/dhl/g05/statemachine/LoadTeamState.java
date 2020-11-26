@@ -1,7 +1,8 @@
 package com.dhl.g05.statemachine;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.database.AbstractDataBaseFactory;
+import com.dhl.g05.database.DatabaseAbstractFactory;
 import com.dhl.g05.database.ICheckTeam;
 import com.dhl.g05.database.IDeserializeModel;
 import com.dhl.g05.database.ISerializeModel;
@@ -46,7 +47,8 @@ public class LoadTeamState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		this.setNextState(AbstractStateMachineFactory.getFactory().getPlayerChoiceState());
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
+		this.setNextState(stateFactory.getPlayerChoiceState());
 		return true;
 	}
 

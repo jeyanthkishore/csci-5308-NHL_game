@@ -1,8 +1,8 @@
 package com.dhl.g05.statemachine;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
-import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.team.ITeam;
@@ -45,13 +45,14 @@ public class AgingState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-	       if (league.getLeagueSchedule().isStanleyCupWinnerDetermined()) {
-	            this.setNextState(AbstractStateMachineFactory.getFactory().getAdvanceToNextSeasonState());
-	        }
-	        else {
-	            this.setNextState(AbstractStateMachineFactory.getFactory().getPersistState());
-	        }
-	       return true;
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
+		if (league.getLeagueSchedule().isStanleyCupWinnerDetermined()) {
+			this.setNextState(stateFactory.getAdvanceToNextSeasonState());
+		}
+		else {
+			this.setNextState(stateFactory.getPersistState());
+		}
+		return true;
 	}
 
 }

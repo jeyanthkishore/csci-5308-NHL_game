@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.Year;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.leaguesimulation.DateHandler;
 import com.dhl.g05.leaguesimulation.IInitializeSchedule;
 import com.dhl.g05.leaguesimulation.ScheduleModel;
@@ -48,7 +48,8 @@ public class InitializeSeasonState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		this.setNextState(AbstractStateMachineFactory.getFactory().getAdvancedTimeState());
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
+		this.setNextState(stateFactory.getAdvancedTimeState());
 		return true;
 	}
 	

@@ -9,44 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dhl.g05.communication.AbstractCommunicationFactory;
-import com.dhl.g05.communication.CommunicationFactory;
-import com.dhl.g05.database.AbstractDataBaseFactory;
-import com.dhl.g05.database.DataBaseFactory;
-import com.dhl.g05.filehandler.LeagueModelJson;
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.leaguesimulation.DateHandler;
 import com.dhl.g05.leaguesimulation.IScheduleModel;
 import com.dhl.g05.leaguesimulation.ScheduleModel;
 import com.dhl.g05.mockdata.JsonMockDataDb;
-import com.dhl.g05.player.AbstractPlayerFactory;
-import com.dhl.g05.player.PlayerFactory;
-import com.dhl.g05.trading.AbstractTradingFactory;
-import com.dhl.g05.trading.TradingFactory;
 
 public class TrainingStateTest {
 	private AbstractState state;
 	
-	
-	 @BeforeClass
-	    public static void setup() {
-	        AbstractCommunicationFactory.setFactory(new CommunicationFactory());
-	        AbstractDataBaseFactory.setFactory(new DataBaseFactory());
-	        AbstractStateMachineFactory.setFactory(
-	                new StateMachineFactory(
-	                		AbstractCommunicationFactory.getFactory().getCommunication(),
-	                		new LeagueModelJson()
-	                )
-	        );
-	        AbstractPlayerFactory.setFactory(new PlayerFactory());
-	        AbstractTradingFactory.setFactory(new TradingFactory());
-	    }
-
 	@Before
 	public void init() {
-		state = AbstractStateMachineFactory.getFactory().getTrainingState();
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
+		state = stateFactory.getTrainingState();
 	}
 	
 	

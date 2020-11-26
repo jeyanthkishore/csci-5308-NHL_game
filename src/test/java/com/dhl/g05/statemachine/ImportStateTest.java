@@ -4,42 +4,30 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.ByteArrayInputStream;
+
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dhl.g05.communication.AbstractCommunicationFactory;
-import com.dhl.g05.communication.CommunicationFactory;
-import com.dhl.g05.database.AbstractDataBaseFactory;
-import com.dhl.g05.database.DataBaseFactory;
-import com.dhl.g05.filehandler.LeagueModelJson;
-import com.dhl.g05.mocks.MockPlayerCommunication;
+import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.communication.MockPlayerCommunication;
 
 public class ImportStateTest {
 	private AbstractState state;
 	private static MockPlayerCommunication communicate;
 
-	 @BeforeClass
-	    public static void setup() {
-	        AbstractCommunicationFactory.setFactory(new CommunicationFactory());
-	        AbstractDataBaseFactory.setFactory(new DataBaseFactory());
-	        AbstractStateMachineFactory.setFactory(
-	                new StateMachineFactory(
-	                		AbstractCommunicationFactory.getFactory().getCommunication(),
-	                		new LeagueModelJson()
-	                )
-	        );
-	        communicate = new MockPlayerCommunication();
-	    }
-	 
 	@Before
 	public void init() {
-		state = AbstractStateMachineFactory.getFactory().getImportState();
+//		communicate = new MockPlayerCommunication();
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
+		state = stateFactory.getImportState();
 	}
 
 	@Test
 	public void testPerformStateTask() {
-		communicate.commandLineInput("src/test/java/com/dhl/g05/jsontestfiles/jsonGoodInfo.json");
+		String userInput = "src/test/java/com/dhl/g05/jsontestfiles/jsonGoodInfo.json";
+		ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(testInput);
 		state.enter();
 		state.performStateTask();
 		state.exit();
@@ -49,7 +37,9 @@ public class ImportStateTest {
 
 	@Test
 	public void testPerformStateFailTask() {
-		communicate.commandLineInput("src/test/java/com/dhl/g05/jsontestfiles/jsonInvalidInfo.json");
+		String userInput = "src/test/java/com/dhl/g05/jsontestfiles/jsonInvalidInfo.json";
+		ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(testInput);
 		state.enter();
 		state.performStateTask();
 		state.exit();
@@ -59,7 +49,9 @@ public class ImportStateTest {
 	
 	@Test
 	public void testPerformLeagueNullTask() {
-		communicate.commandLineInput("src/test/java/com/dhl/g05/jsontestfiles/jsonBadConferenceInfo.json");
+		String userInput = "src/test/java/com/dhl/g05/jsontestfiles/jsonBadConferenceInfo.json";
+		ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(testInput);
 		state.enter();
 		state.performStateTask();
 		state.exit();
@@ -70,7 +62,9 @@ public class ImportStateTest {
 	
 	@Test
 	public void testExitNoFile() {
-		communicate.commandLineInput("\r\n");
+		String userInput = "\r\n";
+		ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(testInput);
 		state.enter();
 		state.performStateTask();
 		state.exit();
