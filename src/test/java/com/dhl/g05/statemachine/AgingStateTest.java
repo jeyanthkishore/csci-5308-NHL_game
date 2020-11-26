@@ -8,18 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dhl.g05.communication.AbstractCommunicationFactory;
-import com.dhl.g05.communication.CommunicationFactory;
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.conference.ConferenceModel;
 import com.dhl.g05.conference.IConference;
-import com.dhl.g05.database.AbstractDataBaseFactory;
-import com.dhl.g05.database.DataBaseFactory;
 import com.dhl.g05.division.DivisionModel;
 import com.dhl.g05.division.IDivision;
-import com.dhl.g05.filehandler.LeagueModelJson;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.leaguesimulation.IScheduleModel;
@@ -32,22 +27,10 @@ import com.dhl.g05.team.TeamModel;
 public class AgingStateTest {
 	private AbstractState state;
 	
-	
-	 @BeforeClass
-	    public static void setup() {
-	        AbstractCommunicationFactory.setFactory(new CommunicationFactory());
-	        AbstractDataBaseFactory.setFactory(new DataBaseFactory());
-	        AbstractStateMachineFactory.setFactory(
-	                new StateMachineFactory(
-	                		AbstractCommunicationFactory.getFactory().getCommunication(),
-	                		new LeagueModelJson()
-	                )
-	        );
-	    }
-
 	@Before
 	public void init() {
-		state = AbstractStateMachineFactory.getFactory().getAgingState();
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
+		state = stateFactory.getAgingState();
 	}
 	
 	@Test

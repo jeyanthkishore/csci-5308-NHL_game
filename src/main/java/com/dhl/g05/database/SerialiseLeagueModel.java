@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.league.ILeague;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,7 +13,8 @@ public class SerialiseLeagueModel implements ISerializeModel{
 
 	@Override
 	public Boolean serialiseObjects(ILeague leagueObject, String teamName) {
-		IFileOperation fileValidator = AbstractDataBaseFactory.getFactory().getFileDetails();
+		DatabaseAbstractFactory databaseFactory = ApplicationConfiguration.instance().getDatabaseFactoryState();
+		IFileOperation fileValidator = databaseFactory.getFileDetails();
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String path = fileValidator.getFilePath(teamName);
 		FileWriter myWriter;

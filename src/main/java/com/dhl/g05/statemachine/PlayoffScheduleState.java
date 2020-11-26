@@ -1,5 +1,6 @@
 package com.dhl.g05.statemachine;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.leaguesimulation.IInitializeSchedule;
 import com.dhl.g05.leaguesimulation.ScheduleModel;
@@ -22,7 +23,8 @@ public class PlayoffScheduleState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		this.setNextState(AbstractStateMachineFactory.getFactory().getTrainingState());
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
+		this.setNextState(stateFactory.getTrainingState());
 		return true;
 	}
 

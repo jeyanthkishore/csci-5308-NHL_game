@@ -6,29 +6,22 @@ import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dhl.g05.communication.AbstractCommunicationFactory;
+import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.communication.CommunicationAbstractFactory;
 import com.dhl.g05.communication.CommunicationFactory;
-import com.dhl.g05.database.AbstractDataBaseFactory;
-import com.dhl.g05.database.DataBaseFactory;
+import com.dhl.g05.communication.MockPlayerCommunication;
+import com.dhl.g05.database.DatabaseAbstractFactory;
+import com.dhl.g05.database.DatabaseFactory;
 import com.dhl.g05.filehandler.LeagueModelJson;
-import com.dhl.g05.mocks.MockPlayerCommunication;
 
 public class StateMachineTest {
-	private static AbstractStateMachineFactory stateMachineFactory;
+	private static StateMachineAbstractFactory stateMachineFactory;
 	private static MockPlayerCommunication communication;
 
 
 	@BeforeClass
 	public static void setup() {
-		AbstractCommunicationFactory.setFactory(new CommunicationFactory());
-		AbstractDataBaseFactory.setFactory(new DataBaseFactory());
-		AbstractStateMachineFactory.setFactory(
-				new StateMachineFactory(
-						AbstractCommunicationFactory.getFactory().getCommunication(),
-						new LeagueModelJson()
-						)
-				);
-		stateMachineFactory = AbstractStateMachineFactory.getFactory();
+		stateMachineFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
 		communication = new MockPlayerCommunication();
 	}
 
@@ -51,7 +44,8 @@ public class StateMachineTest {
 	
 	@Test 
 	public void taskStateTest() {
-		AbstractState createState = new MockAbstractState(AbstractCommunicationFactory.getFactory().getCommunication());
+		CommunicationAbstractFactory communicationState = ApplicationConfiguration.instance().getCommunicationFactoryState();
+		AbstractState createState = new MockAbstractState(communicationState.getCommunication());
 		IStateMachine stateMachine = stateMachineFactory.getStateMachine(createState);
 		communication.commandLineInput("1\n2");
         stateMachine.enterState();

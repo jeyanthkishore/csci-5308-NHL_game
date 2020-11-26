@@ -2,6 +2,7 @@ package com.dhl.g05.statemachine;
 
 import java.time.LocalDate;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.league.ILeague;
@@ -44,15 +45,16 @@ public class TrainingState extends AbstractState{
 
 	@Override
 	public boolean exit() {
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
 		LocalDate currentDate = league.getLeagueCurrentDate();
 		if (league.getLeagueSchedule().isGamesUnplayedOnCurrentDay(currentDate)) {
-            this.setNextState(AbstractStateMachineFactory.getFactory().getStimulateGameState());
+            this.setNextState(stateFactory.getStimulateGameState());
         }
         else if (DateHandler.getInstance().isTradeDeadlinePassed(currentDate)) {
-        	this.setNextState(AbstractStateMachineFactory.getFactory().getAgingState());
+        	this.setNextState(stateFactory.getAgingState());
         }
         else {
-        	this.setNextState(AbstractStateMachineFactory.getFactory().getTradeState());
+        	this.setNextState(stateFactory.getTradeState());
         }
 		return true;
 	}

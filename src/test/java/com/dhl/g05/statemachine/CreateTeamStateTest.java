@@ -3,44 +3,42 @@ package com.dhl.g05.statemachine;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.ByteArrayInputStream;
+
+import org.junit.AfterClass;
 import org.junit.Test;
 
-import com.dhl.g05.communication.AbstractCommunicationFactory;
-import com.dhl.g05.communication.CommunicationFactory;
-import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.database.AbstractDataBaseFactory;
-import com.dhl.g05.database.DataBaseFactoryMock;
-import com.dhl.g05.filehandler.LeagueModelJson;
+import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.communication.CommunicationState;
+import com.dhl.g05.communication.CommunicationTeamMockFactoryState;
 import com.dhl.g05.mockdata.JsonMockDataDb;
-import com.dhl.g05.mocks.MockCreateTeamCommnication;
-import com.dhl.g05.mocks.MockPlayerCommunication;
 
 public class CreateTeamStateTest {
-	private static MockPlayerCommunication communicate;
 	IStateMachine machine;
-	private static CreateTeamState create;
+	private static AbstractState create;
 
 
-	 public static void setup(String userInput) {
-		    communicate = new MockPlayerCommunication();
-		    communicate.commandLineInput(userInput);
-	        AbstractCommunicationFactory.setFactory(new CommunicationFactory());
-	        AbstractDataBaseFactory.setFactory(new DataBaseFactoryMock());
-	        AbstractStateMachineFactory.setFactory(
-	                new StateMachineFactory(
-	                		AbstractCommunicationFactory.getFactory().getCommunication(),
-	                		new LeagueModelJson()
-	                )
-	        );
+	 public static void setup() {
+		 	CommunicationState communication = new CommunicationTeamMockFactoryState();
+		    ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
+		    StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
+		    create = stateFactory.getCreateTeamState();
 	        JsonMockDataDb data = new JsonMockDataDb();
-	        create = new CreateTeamState(new MockCreateTeamCommnication());
 			create.setLeague(data.league);
 	    }
+	 
+	 @AfterClass
+	 public static void setCommunication() {
+		 CommunicationState communication = ApplicationConfiguration.instance().getCommunicationState();
+		 ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
+	 }
 
 	 @Test
 	 public void divisionNotExistTest() {
 		 String userInput = "Western Conference\nDummy\nKillers";
-		 setup(userInput);
+		 ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
+	     System.setIn(testInput);
+		 setup();
 		 create.enter();
 		 assertFalse(create.performStateTask());
 	 }
@@ -48,18 +46,20 @@ public class CreateTeamStateTest {
 	 @Test
 	 public void conferenceNullTest() {
 		 String userInput = "Western Conference\n\nKillers";
-		 setup(userInput);
+		 ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
+	     System.setIn(testInput);
+		 setup();
 		 create.enter();
 		 assertFalse(create.performStateTask());
 	 }
 	 
 	 @Test
 	 public void teamNameNotUniqueTest() {
-		 String userInput = "Western Conference\nPacific\nTeamName\nKillers";
-		 setup(userInput);
+		 String userInput = "Western Conference\nPacific\nTeamName\nKillers\nYes";
+		 ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
+	     System.setIn(testInput);
+		 setup();
 		 create.enter();
-		 IPlayerCommunication com = new MockPlayerCommunication();
-		 create.setCommunicate(com);
 		 create.performStateTask();
 		 assertTrue(create.exit());
 	 }

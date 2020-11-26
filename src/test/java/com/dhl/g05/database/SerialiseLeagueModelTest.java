@@ -1,14 +1,18 @@
 package com.dhl.g05.database;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import com.dhl.g05.communication.AbstractCommunicationFactory;
+
+import com.dhl.g05.communication.CommunicationAbstractFactory;
 import com.dhl.g05.communication.CommunicationFactory;
 import com.dhl.g05.filehandler.LeagueModelJson;
+import com.dhl.g05.league.ILeague;
+import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.mockdata.JsonMockDataDb;
-import com.dhl.g05.statemachine.AbstractStateMachineFactory;
+import com.dhl.g05.statemachine.StateMachineAbstractFactory;
 import com.dhl.g05.statemachine.StateMachineFactory;
 
 public class SerialiseLeagueModelTest {
@@ -16,14 +20,7 @@ public class SerialiseLeagueModelTest {
 	
 	 @BeforeClass
 	    public static void setup() {
-	        AbstractCommunicationFactory.setFactory(new CommunicationFactory());
-	        AbstractDataBaseFactory.setFactory(new DataBaseFactory());
-	        AbstractStateMachineFactory.setFactory(
-	                new StateMachineFactory(
-	                		AbstractCommunicationFactory.getFactory().getCommunication(),
-	                		new LeagueModelJson()
-	                )
-	        );
+//	        CommunicationAbstractFactory.setFactory(new CommunicationFactory());
 	    }
 	
 	
@@ -35,6 +32,14 @@ public class SerialiseLeagueModelTest {
 		assertTrue(serial.serialiseObjects(data.league,teamName));
 	}
 
+	@Test
+	public void deserialiseObjectsTest() {
+		IDeserializeModel serial = new DeserializeLeagueModel();
+		ILeague data = new LeagueModel();
+		String teamName = "dummy";
+		assertNotNull(serial.deserializeObjects(teamName,data));
+	}
+	
 //	@Test
 //	public void deSerialiseObjectTest() throws FileNotFoundException, IOException, ParseException {
 //		ISerializeModel serial = new SerialiseLeagueModel();

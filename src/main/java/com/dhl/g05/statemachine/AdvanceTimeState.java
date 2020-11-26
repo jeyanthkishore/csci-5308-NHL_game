@@ -2,6 +2,7 @@ package com.dhl.g05.statemachine;
 
 import java.time.LocalDate;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.leaguesimulation.DateHandler;
 
@@ -23,10 +24,11 @@ public class AdvanceTimeState extends AbstractState{
 	@Override
 	public boolean exit() {
 		LocalDate currentDate = league.getLeagueCurrentDate();
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
 		if(DateHandler.getInstance().isRegularSeasonEndDate(currentDate)) {
-			this.setNextState(AbstractStateMachineFactory.getFactory().getPlayOffState());
+			this.setNextState(stateFactory.getPlayOffState());
 		}else {
-			this.setNextState(AbstractStateMachineFactory.getFactory().getTrainingState());
+			this.setNextState(stateFactory.getTrainingState());
 		}
 		return true;
 	}

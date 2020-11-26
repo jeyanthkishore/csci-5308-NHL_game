@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.coach.CoachConstant;
 import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.conference.IConference;
-import com.dhl.g05.database.AbstractDataBaseFactory;
+import com.dhl.g05.database.DatabaseAbstractFactory;
 import com.dhl.g05.database.ICheckTeam;
 import com.dhl.g05.database.IFileOperation;
 import com.dhl.g05.division.IDivision;
@@ -39,10 +40,6 @@ public class CreateTeamState extends AbstractState {
 		league = this.getLeague();
 	}
 
-	public void setCommunicate(IPlayerCommunication communicate) {
-		this.communicate = communicate;
-	}
-
 	@Override
 	public boolean enter() {
 		Boolean teamNotEntered = true;
@@ -55,7 +52,8 @@ public class CreateTeamState extends AbstractState {
 			communicate.sendMessage("Enter team name:");
 			teamName =  communicate.getResponse();
 			ITeam team = new TeamModel();
-			ICheckTeam checkTeam = AbstractDataBaseFactory.getFactory().getCheckTeam();
+			DatabaseAbstractFactory database = ApplicationConfiguration.instance().getDatabaseFactoryState();
+			ICheckTeam checkTeam = database.getCheckTeam();
 			boolean notUnique = team.isTeamExist(teamName,checkTeam);
 			if(notUnique) {
 				communicate.sendMessage("Please Enter Unique Team Name");
@@ -68,8 +66,7 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean performStateTask() {
-		this.setNextState(AbstractStateMachineFactory.getFactory().getCreateTeamState());
-
+		
 		if (StringUtils.isNullOrEmpty(teamName) || StringUtils.isNullOrEmpty(divisionName)
 				|| StringUtils.isNullOrEmpty(conferenceName)){
 			communicate.sendMessage("Missing feild, team not created");
@@ -152,14 +149,10 @@ public class CreateTeamState extends AbstractState {
 				System.out.println(number);
 			}catch(InputMismatchException e) {
 				communicate.sendMessage(CreateTeamConstant.NoNumberResponse.getValue());
-				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
-				communicate.getResponse();
 				continue;
 			}
 			if(number ==0 || number>coachList.size()) {
 				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
-				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
-				communicate.getResponse();
 				continue;
 			}
 			selectedCoach = coachList.get(number-1);
@@ -183,14 +176,10 @@ public class CreateTeamState extends AbstractState {
 				number = communicate.getResponseNumber();
 			}catch(InputMismatchException e) {
 				communicate.sendMessage(CreateTeamConstant.NoNumberResponse.getValue());
-				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
-				communicate.getResponse();
 				continue;
 			}
 			if(number == 0 || number>managerList.size()) {
 				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
-				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
-				communicate.getResponse();
 				continue;
 			}
 			selectedManager = managerList.get(number-1);
@@ -231,21 +220,17 @@ public class CreateTeamState extends AbstractState {
 				responseNumber = communicate.getResponseNumber();
 			}catch(InputMismatchException e) {
 				communicate.sendMessage(CreateTeamConstant.NoNumberResponse.getValue());
-				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
-				communicate.getResponse();
 				continue;
 			}
 
 			if(responseNumber == 0 || responseNumber>freeAgentList.size()) {
 				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
-				communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
-				communicate.getResponse();
 				continue;
 			}
 			if(captainNotAssigned) {
 				communicate.sendMessage(CreateTeamConstant.CaptainConfirmation.getValue());
 				captainResponse = communicate.getResponse();
-				if(captainResponse.equals(CreateTeamConstant.Yes.getValue())) {
+				if(captainResponse.equalsIgnoreCase(CreateTeamConstant.Yes.getValue())) {
 					captain = true;
 					captainNotAssigned = false;
 				}
@@ -255,8 +240,6 @@ public class CreateTeamState extends AbstractState {
 				if(goalie > 2) {
 					goalie--;
 					communicate.sendMessage(CreateTeamConstant.MaximumGoalieMessage.getValue());
-					communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
-					communicate.getResponse();
 					continue;
 				}
 			}else {
@@ -264,8 +247,6 @@ public class CreateTeamState extends AbstractState {
 				if(skaters > 18) {
 					skaters--;
 					communicate.sendMessage(CreateTeamConstant.MaximumSkatersMessage.getValue());
-					communicate.sendMessage(CreateTeamConstant.AnyKeyMessage.getValue());
-					communicate.getResponse();
 					continue;
 				}
 			}
@@ -319,7 +300,8 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		this.setNextState(AbstractStateMachineFactory.getFactory().getPlayerChoiceState());
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
+		this.setNextState(stateFactory.getPlayerChoiceState());
 		return true;
 	}
 
