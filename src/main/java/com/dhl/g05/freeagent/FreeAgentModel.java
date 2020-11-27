@@ -4,19 +4,15 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.IPlayer;
 import com.mysql.cj.util.StringUtils;
 
 public class FreeAgentModel implements IFreeAgent {
+
 	static final Logger logger = LogManager.getLogger(FreeAgentModel.class);
 	private final static int MIN_AGE = 0;
-	private ILeague league;
 	private String playerName;
 	private String position;
 	private int age;
@@ -34,8 +30,8 @@ public class FreeAgentModel implements IFreeAgent {
 	public FreeAgentModel() {
 		setPlayerName(null);
 		setPosition(null);
-		setInjuredStatus(false);
-		setInjuredStatus(false);
+		setInjuryStatus(false);
+		setRetirementStatus(false);
 	}
 
 	public FreeAgentModel(String playerName, String position, double skating, double shooting, double checking,
@@ -51,26 +47,32 @@ public class FreeAgentModel implements IFreeAgent {
 		this.birthYear = birthYear;
 	}
 
+	@Override
 	public int getBirthDay() {
 		return birthDay;
 	}
 
+	@Override
 	public void setBirthDay(int birthDay) {
 		this.birthDay = birthDay;
 	}
 
+	@Override
 	public int getBirthMonth() {
 		return birthMonth;
 	}
 
+	@Override
 	public void setBirthMonth(int birthMonth) {
 		this.birthMonth = birthMonth;
 	}
 
+	@Override
 	public int getBirthYear() {
 		return birthYear;
 	}
 
+	@Override
 	public void setBirthYear(int birthYear) {
 		this.birthYear = birthYear;
 	}
@@ -95,8 +97,8 @@ public class FreeAgentModel implements IFreeAgent {
 	}
 
 	@Override
-	public void setPosition(String postition) {
-		this.position = postition;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 	@Override
@@ -150,22 +152,22 @@ public class FreeAgentModel implements IFreeAgent {
 	}
 
 	@Override
-	public boolean getInjuredStatus() {
+	public boolean getInjuryStatus() {
 		return isInjured;
 	}
 
 	@Override
-	public void setInjuredStatus(boolean isInjured) {
+	public void setInjuryStatus(boolean isInjured) {
 		this.isInjured = isInjured;
 	}
 
 	@Override
-	public boolean getRetiredStatus() {
+	public boolean getRetirementStatus() {
 		return isRetired;
 	}
 
 	@Override
-	public void setRetiredStatus(boolean retired) {
+	public void setRetirementStatus(boolean retired) {
 		isRetired = retired;
 	}
 
@@ -177,11 +179,6 @@ public class FreeAgentModel implements IFreeAgent {
 	@Override
 	public void setPlayerStrength(double playerStrength) {
 		this.playerStrength = playerStrength;
-	}
-
-	@Override
-	public void incrementPlayerAgeByDay(int day) {
-		
 	}
 
 	@Override
@@ -204,7 +201,7 @@ public class FreeAgentModel implements IFreeAgent {
 		if (isPlayerDetailsNullOrEmpty()) {
 			return FreeAgentConstant.PlayerValueEmpty;
 		}
-		if (isPlayerPositionValid()) {
+		if (isPlayerPositionNotValid()) {
 			return FreeAgentConstant.PlayerPositionWrong;
 		}
 		if (isBirthDateValid()==false) {
@@ -226,7 +223,8 @@ public class FreeAgentModel implements IFreeAgent {
 		return false;
 	}
 
-	public boolean isPlayerPositionValid() {
+	@Override
+	public boolean isPlayerPositionNotValid() {
 		if (position.equals(PositionConstant.forward.getValue()) || position.equals(PositionConstant.defense.getValue())
 				|| position.equals(PositionConstant.goalie.getValue())) {
 			return false;

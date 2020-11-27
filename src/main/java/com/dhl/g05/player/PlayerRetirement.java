@@ -14,7 +14,7 @@ public class PlayerRetirement implements IPlayerRetired{
         logger.info("check whether player is retired or not");
         IRandomNumberFactory randomNumberFactory = AbstractPlayerFactory.getFactory().getRandomNumber();
         if(player.getAge() > aging.getMaximumAge()) {
-            player.setRetiredStatus(true);
+            player.setRetirementStatus(true);
             return true;
         }
         else {
@@ -22,11 +22,11 @@ public class PlayerRetirement implements IPlayerRetired{
                 int likelihood = randomNumberFactory.generateRandomIntegerNumber(15,0);
                 int randomAge = randomNumberFactory.generateRandomIntegerNumber(aging.getAverageRetirementAge(),0);
                 if (randomAge < likelihood) {
-                    player.setRetiredStatus(true);
+                    player.setRetirementStatus(true);
                     return true;
                 }
                 else {
-                    player.setRetiredStatus(false);
+                    player.setRetirementStatus(false);
                     return false;
                 }
             }
@@ -34,11 +34,11 @@ public class PlayerRetirement implements IPlayerRetired{
                 int likelihood = randomNumberFactory.generateRandomIntegerNumber(50,16);
                 int randomAge = randomNumberFactory.generateRandomIntegerNumber(aging.getMaximumAge(),aging.getAverageRetirementAge());
                 if (randomAge < likelihood) {
-                    player.setRetiredStatus(true);
+                    player.setRetirementStatus(true);
                     return true;
                 }
                 else {
-                    player.setRetiredStatus(false);
+                    player.setRetirementStatus(false);
                     return false;
                 }
             }

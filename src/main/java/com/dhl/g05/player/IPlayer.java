@@ -18,11 +18,9 @@ public interface IPlayer {
 
 	FreeAgentConstant validate();
 
-	void incrementPlayerAgeByDay(int days);
+	boolean getInjuryStatus();
 
-	boolean getInjuredStatus();
-
-	void setInjuredStatus(boolean injury);
+	void setInjuryStatus(boolean injury);
 	
 	double getSkating();
 
@@ -52,7 +50,9 @@ public interface IPlayer {
 
 	int getBirthYear();
 
-	void setRetiredStatus(boolean value);
+	void setRetirementStatus(boolean value);
+
+	boolean getRetirementStatus();
 
 	int getAge();
 

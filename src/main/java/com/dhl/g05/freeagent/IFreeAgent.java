@@ -6,6 +6,16 @@ import com.dhl.g05.player.IPlayer;
 
 public interface IFreeAgent {
 
+	int getBirthDay();
+
+	void setBirthDay(int day);
+
+	int getBirthMonth();
+
+	void setBirthMonth(int month);
+
+	int getBirthYear();
+
 	String getPlayerName();
 
 	void setPlayerName(String player) ;
@@ -42,27 +52,17 @@ public interface IFreeAgent {
 
 	FreeAgentConstant validate();
 
-	boolean getInjuredStatus();
+	boolean isPlayerPositionNotValid();
 
-	void setInjuredStatus(boolean isInjured);
+	boolean getInjuryStatus();
 
-	boolean getRetiredStatus();
+	void setInjuryStatus(boolean isInjured);
 
-	void setRetiredStatus(boolean isRetired);
+	boolean getRetirementStatus();
 
-	int getBirthDay();
-
-	int getBirthMonth();
-
-	int getBirthYear();
-	
-	void setBirthDay(int day);
-
-	void setBirthMonth(int month);
+	void setRetirementStatus(boolean isRetired);
 
 	void setBirthYear(int year);
-
-	void incrementPlayerAgeByDay(int day);
 
 	List<IFreeAgent> ConvertPlayerToFreeAgent(List<IPlayer> releaseExtraPlayers);
 

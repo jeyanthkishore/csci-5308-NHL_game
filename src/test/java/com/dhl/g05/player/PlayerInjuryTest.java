@@ -31,9 +31,9 @@ public class PlayerInjuryTest {
         injury.setInjuryDaysHigh(100);
         injury.setInjuryDaysLow(10);
         injury.setRandomInjuryChance(1.5);
-        player.setInjuredStatus(true);
+        player.setInjuryStatus(true);
         assertTrue(playerInjured.checkPlayerInjury(player,injury));
-        player.setInjuredStatus(false);
+        player.setInjuryStatus(false);
         when(randomNumberFactoryMock.generateRandomDoubleNumber(0,1)).thenReturn(0.01);
         assertTrue(playerInjured.checkPlayerInjury(player,injury));
     }

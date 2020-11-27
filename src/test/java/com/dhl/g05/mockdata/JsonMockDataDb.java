@@ -100,6 +100,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public LeagueModel league;
 	public String playerOneName = "";
 	public String positionOne = "";
+	public String position = "";
 	public String positionForward = "forward";
 	public String freeAgentOne = "freeAgentOne";
 	public String positionDefense = "defense";
@@ -283,6 +284,26 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		playerList.clear();
 	}
 
+	public void setSkating(double skating) {
+		this.skating = skating;
+	}
+
+	public void setShooting(double shooting) {
+		this.shooting = shooting;
+	}
+
+	public void setChecking(double checking) {
+		this.checking = checking;
+	}
+
+	public void setSaving(double saving) {
+		this.saving = saving;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
 	public void addMaximumPlayer() {
 		for(int count = 0; count<22; count++) {
 			playerList.add(new PlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
@@ -391,22 +412,9 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		coachDetails = null;
 	}
 
-	public double calculatePlayerStrength(String position){
-		if(position.equalsIgnoreCase("forward")){
-			playerStrength = skating + shooting + (checking/2);
-		}
-		if(position.equalsIgnoreCase("defense")){
-			playerStrength = skating + checking + (shooting/2);
-		}
-		if(position.equalsIgnoreCase("goalie")){
-			playerStrength = skating + saving;
-		}
-		return playerStrength;
-	}
-
 	public double calculateTeamStrength(List<IPlayer> playerList){
 		for (IPlayer player: playerList) {
-			if(player.getInjuredStatus()){
+			if(player.getInjuryStatus()){
 				teamStrength +=	player.calculatePlayerStrength()/2;
 			}
 			else{

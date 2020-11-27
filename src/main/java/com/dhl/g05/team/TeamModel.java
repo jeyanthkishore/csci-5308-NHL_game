@@ -105,7 +105,7 @@ public class TeamModel implements ITeam {
 	public double calculateTeamStrength(List<IPlayer> playerList) {
 		logger.info("Calculating team strength using players strength");
 		for (IPlayer player : playerList) {
-			if (player.getInjuredStatus()) {
+			if (player.getInjuryStatus()) {
 				teamStrength += player.calculatePlayerStrength() / 2;
 			} else {
 				teamStrength += player.calculatePlayerStrength();
