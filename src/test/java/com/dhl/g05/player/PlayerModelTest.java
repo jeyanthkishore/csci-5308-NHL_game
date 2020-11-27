@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
 public class PlayerModelTest {
 
 	private static AbstractPlayerFactory playerFactory;
+
 	@BeforeClass
 	public static void setup() {
 		AbstractPlayerFactory.setFactory(new PlayerFactory());
