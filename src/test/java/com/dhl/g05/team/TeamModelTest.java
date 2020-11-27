@@ -2,21 +2,16 @@ package com.dhl.g05.team;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import com.dhl.g05.freeagent.FreeAgentModel;
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerModel;
+import java.util.List;
+
 import org.junit.Test;
 
 import com.dhl.g05.mockdata.JsonMockDataDb;
-
-import java.util.List;
+import com.dhl.g05.player.IPlayer;
 
 public class TeamModelTest{
 
@@ -31,16 +26,6 @@ public class TeamModelTest{
 		assertNull(object.getPlayerList());
 		object.setPlayerList(data.playerList);
 		assertFalse(object.getPlayerList().isEmpty());
-	}
-
-	@Test
-	public void teamObjectParameterConstructorTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		TeamModel object = new TeamModel(data.teamName,data.coachDetails,data.generalManagerName,data.playerList);
-		assertSame(data.teamName,object.getTeamName());
-		assertSame(data.coachDetails,object.getCoachDetails());
-		assertSame(data.generalManagerName,object.getGeneralManagerName());
-		assertSame(data.playerList, object.getPlayerList());
 	}
 
 	@Test

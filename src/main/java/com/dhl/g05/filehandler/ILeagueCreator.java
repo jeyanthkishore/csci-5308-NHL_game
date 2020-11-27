@@ -5,8 +5,10 @@ import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
 
-import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.league.ILeague;
 
 public interface ILeagueCreator {
-	public LeagueModel createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException ;
+	
+	public ILeague createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException ;
+	
 }

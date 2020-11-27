@@ -2,16 +2,13 @@ package com.dhl.g05.team;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.database.ICheckTeam;
-import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.freeagent.PositionConstant;
 import com.dhl.g05.player.IPlayer;
@@ -42,14 +39,6 @@ public class TeamModel implements ITeam {
 
 	public TeamModel(ITeamModel teamObject) {
 		teamObject.loadTeamModelData(this);
-	}
-
-	public TeamModel(String team, CoachModel coachDetails, String manager, List<IPlayer> players) {
-		this.teamName = team;
-		this.headCoach = coachDetails;
-		this.generalManager = manager;
-		this.players = players;
-		this.userTeam = false;
 	}
 
 	public Boolean getUserTeam() {
@@ -107,7 +96,7 @@ public class TeamModel implements ITeam {
 	public void setTeamStrength(double teamStrength) {
 		this.teamStrength = teamStrength;
 	}
-	
+
 	@Override
 	public boolean isTeamExist(String teamName, ICheckTeam checkTeam) {
 		return checkTeam.isTeamExist(teamName);
@@ -232,24 +221,22 @@ public class TeamModel implements ITeam {
 		}
 	}
 
-	public void adjustTeamRoasterAfterDraft(ITeam team, IPlayer newplayer) {
-		List<IPlayer> allPlayer = team.getPlayerList();
-		allPlayer.sort(Comparator.comparing(IPlayer::getPlayerStrength).reversed());
+	public List<IPlayer> adjustTeamRoasterAfterDraft(ITeam team) {
+		List<IPlayer> allPlayers = team.getPlayerList();
+		allPlayers.sort(Comparator.comparing(IPlayer::getPlayerStrength).reversed());
 		List<IPlayer> adjustedTeam = new ArrayList<>();
 		List<IPlayer> releaseExtraPlayers = new ArrayList<>();
-		adjustedTeam.add(newplayer);
-		allPlayer.remove(newplayer);
 		int defenseCount = 0;
 		int forwardCount = 0;
 		int goalieCount = 0;
-		for (IPlayer p : allPlayer) {
+		for (IPlayer p : allPlayers) {
 			if (p.getPosition().equals(PositionConstant.defense.getValue())) {
-				defenseCount++;
 				if (defenseCount == numberOfDefense) {
 					releaseExtraPlayers.add(p);
 					continue;
 				} else {
 					adjustedTeam.add(p);
+					defenseCount++;
 				}
 			}
 			if (p.getPosition().equals(PositionConstant.forward.getValue())) {
@@ -258,6 +245,7 @@ public class TeamModel implements ITeam {
 					continue;
 				} else {
 					adjustedTeam.add(p);
+					forwardCount++;
 				}
 			}
 			if (p.getPosition().equals(PositionConstant.goalie.getValue())) {
@@ -266,11 +254,13 @@ public class TeamModel implements ITeam {
 					continue;
 				} else {
 					adjustedTeam.add(p);
+					goalieCount++;
 				}
 			}
 		}
-		agent.ConvertPlayerToFreeAgent(releaseExtraPlayers);
+		// agent.ConvertPlayerToFreeAgent(releaseExtraPlayers);
 		team.setPlayerList(adjustedTeam);
+		return releaseExtraPlayers;
 	}
 
 }

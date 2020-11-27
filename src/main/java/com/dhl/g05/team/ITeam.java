@@ -5,7 +5,6 @@ import java.util.List;
 import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.database.ICheckTeam;
 import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerModel;
 
 public interface ITeam {
 
@@ -40,6 +39,8 @@ public interface ITeam {
 	boolean removeRetiredPlayerFromTeam(IPlayer player);
 
 	public boolean isTeamBalanced(ITeam team);
+
+	public List<IPlayer> adjustTeamRoasterAfterDraft(ITeam team);
 
 	public void setLossCount(int lossCount);
 

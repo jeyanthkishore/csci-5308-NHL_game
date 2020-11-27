@@ -14,14 +14,6 @@ public class TrainingConfig implements ITraining {
 		this.daysUntilStatIncreaseCheck = days;
 	}
 	
-	public TrainingConfig() {
-	}
-
-	public TrainingConfig(int days) {
-		daysUntilStatIncreaseCheck = days;
-	}
-
-
 	public TrainingConstant Validate() {
 		logger.info("Validating training details");
 		if(daysUntilStatIncreaseCheck > 365|| daysUntilStatIncreaseCheck < 0) {
