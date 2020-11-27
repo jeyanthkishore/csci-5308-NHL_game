@@ -50,6 +50,10 @@ public interface IFreeAgent {
 
 	double calculatePlayerStrength();
 
+	boolean isPlayerAgeNotValid();
+
+	boolean isPlayerStatNotValid();
+
 	FreeAgentConstant validate();
 
 	boolean isPlayerPositionNotValid();

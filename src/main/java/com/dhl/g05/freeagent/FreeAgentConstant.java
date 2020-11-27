@@ -20,4 +20,5 @@ public enum FreeAgentConstant {
 	public String getValue() {
 		return value;
 	}
+
 }

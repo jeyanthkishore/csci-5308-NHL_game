@@ -87,14 +87,14 @@ public class CoachModelTest {
 
 	@Test
 	public void validateTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setCoachNameEmpty();
-		CoachModel validate = new CoachModel(mock);
-		assertEquals(CoachConstant.CoachNameEmpty,validate.validate());
-		mock = new JsonMockDataDb();
-		validate = new CoachModel(mock);
-		validate.setSkating(-1);
-		assertEquals(CoachConstant.InvalidStateOfCoach,validate.validate());
+		JsonMockDataDb coachMock = new JsonMockDataDb();
+		coachMock.setCoachNameEmpty();
+		ICoach coach = new CoachModel(coachMock);
+		assertEquals(CoachConstant.CoachNameEmpty,coach.validate());
+		coachMock = new JsonMockDataDb();
+		coach = new CoachModel(coachMock);
+		coach.setSkating(-1);
+		assertEquals(CoachConstant.InvalidStateOfCoach,coach.validate());
 	}
 
 	@Test

@@ -152,6 +152,16 @@ public class FreeAgentModel implements IFreeAgent {
 	}
 
 	@Override
+	public double getPlayerStrength() {
+		return playerStrength;
+	}
+
+	@Override
+	public void setPlayerStrength(double playerStrength) {
+		this.playerStrength = playerStrength;
+	}
+
+	@Override
 	public boolean getInjuryStatus() {
 		return isInjured;
 	}
@@ -172,25 +182,15 @@ public class FreeAgentModel implements IFreeAgent {
 	}
 
 	@Override
-	public double getPlayerStrength() {
-		return playerStrength;
-	}
-
-	@Override
-	public void setPlayerStrength(double playerStrength) {
-		this.playerStrength = playerStrength;
-	}
-
-	@Override
 	public double calculatePlayerStrength() {
 		logger.info("Calculating player strength");
-		if (position.equalsIgnoreCase(PositionConstant.forward.toString())) {
+		if (position.equalsIgnoreCase(PositionConstant.forward.getValue())) {
 			playerStrength = skating + shooting + (checking / 2);
 		}
-		if (position.equalsIgnoreCase(PositionConstant.defense.toString())) {
+		if (position.equalsIgnoreCase(PositionConstant.defense.getValue())) {
 			playerStrength = skating + checking + (shooting / 2);
 		}
-		if (position.equalsIgnoreCase(PositionConstant.goalie.toString())) {
+		if (position.equalsIgnoreCase(PositionConstant.goalie.getValue())) {
 			playerStrength = skating + saving;
 		}
 		return playerStrength;
@@ -232,6 +232,7 @@ public class FreeAgentModel implements IFreeAgent {
 		return true;
 	}
 
+	@Override
 	public boolean isPlayerAgeNotValid() {
 		if (age > MIN_AGE) {
 			return false;
@@ -239,6 +240,7 @@ public class FreeAgentModel implements IFreeAgent {
 		return true;
 	}
 
+	@Override
 	public boolean isPlayerStatNotValid() {
 		logger.info("validating freeAgent's statistics");
 		if (validateStat(skating) && validateStat(shooting) && validateStat(checking) && validateStat(saving)) {
@@ -247,7 +249,7 @@ public class FreeAgentModel implements IFreeAgent {
 		return true;
 	}
 
-	public boolean validateStat(double stat) {
+	private boolean validateStat(double stat) {
 		if (stat >= 0 && stat <= 20) {
 			return true;
 		}
