@@ -232,24 +232,32 @@ public class TeamModel implements ITeam {
 		}
 	}
 
-	public void adjustTeamRoasterAfterDraft(ITeam team, IPlayer newplayer) {
-		List<IPlayer> allPlayer = team.getPlayerList();
-		allPlayer.sort(Comparator.comparing(IPlayer::getPlayerStrength).reversed());
+	public boolean checkTeamNotUnique(String teamName, ITeamModelPersistence database) {
+		List<HashMap<String, Object>> teamNameList = database.loadAllTeamName();
+		for (HashMap<String, Object> team : teamNameList) {
+			if (team.get("team_name").equals(teamName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public List<IPlayer> adjustTeamRoasterAfterDraft(ITeam team) {
+		List<IPlayer> allPlayers = team.getPlayerList();
+		allPlayers.sort(Comparator.comparing(IPlayer::getPlayerStrength).reversed());
 		List<IPlayer> adjustedTeam = new ArrayList<>();
 		List<IPlayer> releaseExtraPlayers = new ArrayList<>();
-		adjustedTeam.add(newplayer);
-		allPlayer.remove(newplayer);
 		int defenseCount = 0;
 		int forwardCount = 0;
 		int goalieCount = 0;
-		for (IPlayer p : allPlayer) {
+		for (IPlayer p : allPlayers) {
 			if (p.getPosition().equals(PositionConstant.defense.getValue())) {
-				defenseCount++;
 				if (defenseCount == numberOfDefense) {
 					releaseExtraPlayers.add(p);
 					continue;
 				} else {
 					adjustedTeam.add(p);
+					defenseCount++;
 				}
 			}
 			if (p.getPosition().equals(PositionConstant.forward.getValue())) {
@@ -258,6 +266,7 @@ public class TeamModel implements ITeam {
 					continue;
 				} else {
 					adjustedTeam.add(p);
+					forwardCount++;
 				}
 			}
 			if (p.getPosition().equals(PositionConstant.goalie.getValue())) {
@@ -266,11 +275,13 @@ public class TeamModel implements ITeam {
 					continue;
 				} else {
 					adjustedTeam.add(p);
+					goalieCount++;
 				}
 			}
 		}
-		agent.ConvertPlayerToFreeAgent(releaseExtraPlayers);
+		//agent.ConvertPlayerToFreeAgent(releaseExtraPlayers);
 		team.setPlayerList(adjustedTeam);
+		return releaseExtraPlayers;
 	}
 
 }

@@ -1,11 +1,10 @@
 package com.dhl.g05.league;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-
-import java.util.List;
 
 import org.junit.Test;
 
@@ -244,7 +243,42 @@ public class LeagueModelTest {
 		assertEquals(mock.freeAgentList.size()-1,leagueModel.getFreeAgent().size()-1);
 
 	}
-
+	@Test
+	public void addNewFreeAgentsToLeagueSizeTest()
+	{
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ILeague leagueModel = new LeagueModel(mock);
+		IFreeAgent agent= new FreeAgentModel();
+		int size=leagueModel.getFreeAgent().size();
+		List<IFreeAgent> freeAgentList= agent.ConvertPlayerToFreeAgent(mock.playerList);
+		leagueModel.addNewFreeAgentsToLeague(freeAgentList);
+		assertEquals(leagueModel.getFreeAgent().size(),size + (mock.playerList.size()));
+		
+	}
+	@Test
+	public void addNewFreeAgentsToLeaguePlayer1Test()
+	{
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ILeague leagueModel = new LeagueModel(mock);
+		IFreeAgent agent= new FreeAgentModel();
+		List<IFreeAgent> freeAgentList= agent.ConvertPlayerToFreeAgent(mock.playerList);
+		leagueModel.addNewFreeAgentsToLeague(freeAgentList);
+		assertTrue(leagueModel.getFreeAgent().contains(freeAgentList.get(1)));
+	}
+	
+	@Test
+	public void addNewFreeAgentsToLeagueAgentNotPresentTest()
+	{
+		JsonMockDataDb mock = new JsonMockDataDb();
+		ILeague leagueModel = new LeagueModel(mock);
+		IFreeAgent agent= new FreeAgentModel();
+		List<IFreeAgent> freeAgentList= agent.ConvertPlayerToFreeAgent(mock.playerList);
+		IFreeAgent newPlayer= freeAgentList.get(1); 
+		freeAgentList.remove(1);
+		leagueModel.addNewFreeAgentsToLeague(freeAgentList);
+		assertFalse(leagueModel.getFreeAgent().contains(newPlayer));
+	}
+ 
 	@Test
 	public void validateLeagueTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
