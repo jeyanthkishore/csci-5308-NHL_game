@@ -2,7 +2,6 @@ package com.dhl.g05.team;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.database.ICheckTeam;
-import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.freeagent.PositionConstant;
 import com.dhl.g05.player.IPlayer;
@@ -107,7 +105,7 @@ public class TeamModel implements ITeam {
 	public void setTeamStrength(double teamStrength) {
 		this.teamStrength = teamStrength;
 	}
-	
+
 	@Override
 	public boolean isTeamExist(String teamName, ICheckTeam checkTeam) {
 		return checkTeam.isTeamExist(teamName);
@@ -232,16 +230,6 @@ public class TeamModel implements ITeam {
 		}
 	}
 
-	public boolean checkTeamNotUnique(String teamName, ITeamModelPersistence database) {
-		List<HashMap<String, Object>> teamNameList = database.loadAllTeamName();
-		for (HashMap<String, Object> team : teamNameList) {
-			if (team.get("team_name").equals(teamName)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	public List<IPlayer> adjustTeamRoasterAfterDraft(ITeam team) {
 		List<IPlayer> allPlayers = team.getPlayerList();
 		allPlayers.sort(Comparator.comparing(IPlayer::getPlayerStrength).reversed());
@@ -279,7 +267,7 @@ public class TeamModel implements ITeam {
 				}
 			}
 		}
-		//agent.ConvertPlayerToFreeAgent(releaseExtraPlayers);
+		// agent.ConvertPlayerToFreeAgent(releaseExtraPlayers);
 		team.setPlayerList(adjustedTeam);
 		return releaseExtraPlayers;
 	}
