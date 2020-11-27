@@ -8,15 +8,12 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.IPlayer;
 import com.mysql.cj.util.StringUtils;
 
 public class FreeAgentModel implements IFreeAgent {
 	static final Logger logger = LogManager.getLogger(FreeAgentModel.class);
 	private final static int MIN_AGE = 0;
-	private ILeague league;
 	private String playerName;
 	private String position;
 	private int age;
@@ -329,31 +326,30 @@ public class FreeAgentModel implements IFreeAgent {
 		setAge(age);
 	}
 	
-	public List<IFreeAgent> ConvertPlayerToFreeAgent(List<IPlayer> excessPlayers) {
-		List<IFreeAgent> freeAgents = new ArrayList<>();
+	public void ConvertPlayerToFreeAgent(List<IPlayer> excessPlayers)
+	{   List<IFreeAgent> freeAgent= new ArrayList<>();
 		double skating = 0;
 		double shooting = 0;
 		double checking = 0;
 		double saving = 0;
-		int birthDay = 0;
-		int birthMonth = 0;
-		int birthYear = 0;
-		String name = "";
-		String position = "";
-		for (IPlayer player : excessPlayers) {
-			name = ((FreeAgentModel) player).getPlayerName();
-			position = player.getPosition();
-			skating = player.getSkating();
-			shooting = player.getShooting();
-			checking = player.getChecking();
-			saving = player.getSaving();
-			birthDay = player.getBirthDay();
-			birthMonth = player.getBirthMonth();
-			birthYear = player.getBirthYear();
-			freeAgents.add(new FreeAgentModel(name, position, skating, shooting, checking, saving, birthDay, birthMonth,
-					birthYear));
+		int birthDay=0;
+		int birthMonth=0;
+	    int birthYear =0;
+		String name ="";
+		String position="";
+		for(IPlayer player : excessPlayers)
+		{
+		name =((FreeAgentModel) player).getPlayerName();
+		position = player.getPosition();
+		skating = player.getSkating();
+		shooting = player.getShooting();
+		checking = player.getChecking();
+		saving = player.getSaving();
+		birthDay = player.getBirthDay();
+		birthMonth =player.getBirthMonth();
+		birthYear = player.getBirthYear();
+		freeAgent.add(new FreeAgentModel(name,position,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		}
-		return freeAgents;
 	}
 	
 }

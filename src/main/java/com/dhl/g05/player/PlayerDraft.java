@@ -6,13 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.dhl.g05.conference.IConference;
-import com.dhl.g05.division.IDivision;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.leaguesimulation.ILeagueStanding;
 import com.dhl.g05.leaguesimulation.IStandingModel;
-import com.dhl.g05.team.ITeam;
 
 public class PlayerDraft implements IPlayerDraft {
 
@@ -78,11 +75,7 @@ public class PlayerDraft implements IPlayerDraft {
 				playersInTeam.add((newPlayers.get(0)));
 				newPlayers.remove(0);
 				team.getTeam().setPlayerList(playersInTeam);
-//				for (IConference c : league.getConferenceDetails()) {
-//					for (IDivision d : c.getDivisionDetails()) {
-//						for (ITeam t : d.getTeamDetails()) {
-//				List<IPlayer> adjustPlayers=team.getTeam().adjustTeamRoasterAfterDraft(team);
-//				call roaster;
+				// call roaster;
 			}
 		}
 		List<IStandingModel> a = teamOrder.get(1);

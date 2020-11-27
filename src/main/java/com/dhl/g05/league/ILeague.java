@@ -42,8 +42,6 @@ public interface ILeague {
     void setManagerList(List<String> managerList);
 
     void addRetiredFreeAgentToList(IFreeAgent freeAgent);
-    
-    void addNewFreeAgentsToLeague(List<IFreeAgent> freeAgentList);
 
     void addRetiredPlayersToList(IPlayer player);
 

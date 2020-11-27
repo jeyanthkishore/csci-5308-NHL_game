@@ -41,8 +41,6 @@ public interface ITeam {
 
 	public boolean isTeamBalanced(ITeam team);
 
-	public List<IPlayer> adjustTeamRoasterAfterDraft(ITeam team);
-
 	public void setLossCount(int lossCount);
 
 	double getTeamStrength();

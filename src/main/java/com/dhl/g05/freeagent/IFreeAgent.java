@@ -58,7 +58,7 @@ public interface IFreeAgent {
 
 	void incrementPlayerAgeByDay(int day);
 
-	List<IFreeAgent> ConvertPlayerToFreeAgent(List<IPlayer> releaseExtraPlayers);
+	void ConvertPlayerToFreeAgent(List<IPlayer> releaseExtraPlayers);
 
 	void calculateAge();
 
