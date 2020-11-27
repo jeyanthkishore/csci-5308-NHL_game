@@ -14,128 +14,78 @@ public class CoachModelTest {
 
 	@Test
 	public void constructorTest() {
-		CoachModel object = new CoachModel();
-		assertNull(object.getName());
-	}
-
-	@Test
-	public void setNameTest() {
-		CoachModel object = new CoachModel();
-		object.setName("Smith");
-		assertSame(object.getName(),"Smith");
+		ICoach coach = new CoachModel();
+		assertNull(coach.getName());
 	}
 
 	@Test
 	public void getNameTest() {
-		CoachModel object = new CoachModel();
-		object.setName("Smith");
-		assertSame(object.getName(),"Smith");
+		ICoach coach = new CoachModel();
+		coach.setName("Smith");
+		assertSame(coach.getName(),"Smith");
 	}
 
 	@Test
-	public void setSkatingTest() {
-		CoachModel object = new CoachModel();
-		object.setSkating(0.5);
-		assertEquals(object.getSkating(),0.5,0);
+	public void setNameTest() {
+		ICoach coach = new CoachModel();
+		coach.setName("Smith");
+		assertSame(coach.getName(),"Smith");
 	}
 
 	@Test
 	public void getSkatingTest() {
-		CoachModel object = new CoachModel();
-		object.setSkating(0.5);
-		assertEquals(object.getSkating(),0.5,0);
+		ICoach coach = new CoachModel();
+		coach.setSkating(0.5);
+		assertEquals(coach.getSkating(),0.5,0);
 	}
 
 	@Test
-	public void setShootingTest() {
-		CoachModel object = new CoachModel();
-		object.setShooting(0.5);
-		assertEquals(object.getShooting(),0.5,0);
+	public void setSkatingTest() {
+		ICoach coach = new CoachModel();
+		coach.setSkating(0.5);
+		assertEquals(coach.getSkating(),0.5,0);
 	}
 
 	@Test
 	public void getShootingTest() {
-		CoachModel object = new CoachModel();
-		object.setShooting(0.5);
-		assertEquals(object.getShooting(),0.5,0);
+		ICoach coach = new CoachModel();
+		coach.setShooting(0.5);
+		assertEquals(coach.getShooting(),0.5,0);
 	}
 
 	@Test
-	public void setCheckingTest() {
-		CoachModel object = new CoachModel();
-		object.setChecking(0.5);
-		assertEquals(object.getChecking(),0.5,0);
+	public void setShootingTest() {
+		ICoach coach = new CoachModel();
+		coach.setShooting(0.5);
+		assertEquals(coach.getShooting(),0.5,0);
 	}
 
 	@Test
 	public void getCheckingTest() {
-		CoachModel object = new CoachModel();
-		object.setChecking(0.5);
-		assertEquals(object.getChecking(),0.5,0);
+		ICoach coach = new CoachModel();
+		coach.setChecking(0.5);
+		assertEquals(coach.getChecking(),0.5,0);
 	}
 
 	@Test
-	public void setSavingTest() {
-		CoachModel object = new CoachModel();
-		object.setSaving(0.5);
-		assertEquals(object.getSaving(),0.5,0);
+	public void setCheckingTest() {
+		ICoach coach = new CoachModel();
+		coach.setChecking(0.5);
+		assertEquals(coach.getChecking(),0.5,0);
 	}
 
 	@Test
 	public void getSavingTest() {
-		CoachModel object = new CoachModel();
-		object.setSaving(0.5);
-		assertEquals(object.getSaving(),0.5,0);
+		ICoach coach = new CoachModel();
+		coach.setSaving(0.5);
+		assertEquals(coach.getSaving(),0.5,0);
 	}
 
 	@Test
-	public void isCoachNameNullTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		data.setCoachNameNull();
-		CoachModel object = new CoachModel(data);
-		assertTrue(object.isCoachNameNull());
-	}
-
-	@Test
-	public void isCoachNameEmptyTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		data.setCoachNameEmpty();
-		CoachModel object = new CoachModel(data);
-		assertTrue(object.isCoachNameEmpty());
-	}
-
-	@Test
-	public void validateStatsTest() {
-		CoachModel validate = new CoachModel();
-		validate.setSkating(0.7);
-		assertEquals(validate.validateStat(0.7),true);
-	}
-
-	@Test
-	public void validateStatsInverseTest() {
-		FreeAgentModel validate = new FreeAgentModel();
-		validate.setSkating(-1);
-		assertEquals(validate.validateStat(-1),false);
-	}
-
-	@Test
-	public void isCoachStatValidTest() {
-		CoachModel validate = new CoachModel();
-		validate.setSkating(0.5);
-		validate.setShooting(0.3);
-		validate.setChecking(0.5);
-		validate.setSaving(0.6);
-		assertEquals(validate.isCoachStatValid(),true);
-	}
-
-	@Test
-	public void isCoachStatInValidTest() {
-		CoachModel validate = new CoachModel();
-		validate.setSkating(1.5);
-		validate.setShooting(0.3);
-		validate.setChecking(0.5);
-		validate.setSaving(0.6);
-		assertEquals(validate.isCoachStatValid(),false);
+	public void setSavingTest() {
+		ICoach coach = new CoachModel();
+		coach.setSaving(0.5);
+		assertEquals(coach.getSaving(),0.5,0);
 	}
 
 	@Test
@@ -149,6 +99,43 @@ public class CoachModelTest {
 		validate.setSkating(-1);
 		assertEquals(CoachConstant.InvalidStateOfCoach,validate.validate());
 	}
+
+	@Test
+	public void isCoachNameNullTest() {
+		JsonMockDataDb coachMock = new JsonMockDataDb();
+		coachMock.setCoachNameNull();
+		ICoach coach = new CoachModel(coachMock);
+		assertTrue(coach.isCoachNameNull());
+	}
+
+	@Test
+	public void isCoachNameEmptyTest() {
+		JsonMockDataDb coachMock = new JsonMockDataDb();
+		coachMock.setCoachNameEmpty();
+		ICoach coach = new CoachModel(coachMock);
+		assertTrue(coach.isCoachNameEmpty());
+	}
+
+	@Test
+	public void isCoachStatNotValidTest() {
+		ICoach coach = new CoachModel();
+		coach.setSkating(0.5);
+		coach.setShooting(0.3);
+		coach.setChecking(0.5);
+		coach.setSaving(0.6);
+		assertEquals(coach.isCoachStatNotValid(),false);
+	}
+
+	@Test
+	public void isCoachStatValidTest() {
+		ICoach coach = new CoachModel();
+		coach.setSkating(1.5);
+		coach.setShooting(0.3);
+		coach.setChecking(0.5);
+		coach.setSaving(0.6);
+		assertEquals(coach.isCoachStatNotValid(),true);
+	}
+
 
 }
 

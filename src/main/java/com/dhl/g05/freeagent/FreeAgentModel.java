@@ -184,13 +184,13 @@ public class FreeAgentModel implements IFreeAgent {
 	@Override
 	public double calculatePlayerStrength() {
 		logger.info("Calculating player strength");
-		if (position.equalsIgnoreCase("forward")) {
+		if (position.equalsIgnoreCase(PositionConstant.forward.toString())) {
 			playerStrength = skating + shooting + (checking / 2);
 		}
-		if (position.equalsIgnoreCase("defense")) {
+		if (position.equalsIgnoreCase(PositionConstant.defense.toString())) {
 			playerStrength = skating + checking + (shooting / 2);
 		}
-		if (position.equalsIgnoreCase("goalie")) {
+		if (position.equalsIgnoreCase(PositionConstant.goalie.toString())) {
 			playerStrength = skating + saving;
 		}
 		return playerStrength;

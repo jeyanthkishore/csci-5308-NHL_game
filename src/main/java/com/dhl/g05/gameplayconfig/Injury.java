@@ -65,7 +65,7 @@ public class Injury implements IInjury {
         return false;
     }
 
-    public boolean isInjuryDaysHighValueNotValid(int injuryDaysLow,int injuryDaysHigh) {
+    public boolean isInjuryDaysHighValueNotValid(int injuryDaysLow, int injuryDaysHigh) {
         if(injuryDaysHigh <= injuryDaysLow) {
             return true;
         }
