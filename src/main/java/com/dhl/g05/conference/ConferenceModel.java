@@ -38,13 +38,6 @@ public class ConferenceModel implements IConference {
 		this.divisions = divisionDetails;
 	}
 
-	public int saveConferenceObject(int leagueId,IConferenceModelPersistence database) {
-		return database.saveConferenceObject(leagueId,this);
-	}
-	public int loadConferenceObject(int leagueId,IConferenceModelPersistence database) {
-		return database.loadConferenceObject(leagueId,this);
-	}
-
 	@Override
 	public String getConferenceName() {
 		return conferenceName;

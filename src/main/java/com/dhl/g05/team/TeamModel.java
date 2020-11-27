@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.coach.ICoach;
+import com.dhl.g05.database.ICheckTeam;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.freeagent.PositionConstant;
@@ -106,13 +107,10 @@ public class TeamModel implements ITeam {
 	public void setTeamStrength(double teamStrength) {
 		this.teamStrength = teamStrength;
 	}
-
-	public int saveTeamObject(int divisionId, ITeamModelPersistence database) {
-		return database.saveTeamObject(divisionId, this, headCoach);
-	}
-
-	public int loadTeamObject(int divisionId, ITeamModelPersistence database) {
-		return database.loadTeamObject(divisionId, this, headCoach);
+	
+	@Override
+	public boolean isTeamExist(String teamName, ICheckTeam checkTeam) {
+		return checkTeam.isTeamExist(teamName);
 	}
 
 	public double calculateTeamStrength(List<IPlayer> playerList) {
@@ -285,4 +283,5 @@ public class TeamModel implements ITeam {
 		team.setPlayerList(adjustedTeam);
 		return releaseExtraPlayers;
 	}
+
 }

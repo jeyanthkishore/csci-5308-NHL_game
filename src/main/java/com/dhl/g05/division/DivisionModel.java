@@ -44,14 +44,6 @@ public class DivisionModel implements IDivision {
 		this.teams = teamDetails;
 	}
 
-	public int saveDivisionObject(int conferenceId,IDivisionModelPersistence database) {
-		return database.saveDivisionObject(conferenceId,this);
-	}
-	
-	public int loadDivisionObject(int conferenceId,IDivisionModelPersistence database) {
-		return database.loadDivisionObject(conferenceId,this);
-	}
-
 	@Override
 	public DivisionConstant validate() {
 		if(isDivisionNameEmptyorNull()) {

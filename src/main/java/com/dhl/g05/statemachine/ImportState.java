@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.filehandler.LeagueModelCreatorFromJSON;
 import com.dhl.g05.league.LeagueModel;
@@ -58,10 +59,11 @@ public class ImportState extends AbstractState {
 
 	@Override
 	public boolean exit() {
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
 		if (StringUtils.isNullOrEmpty(fileName)) {
-			this.setNextState(AbstractStateMachineFactory.getFactory().getLoadTeamState()); 
+			this.setNextState(stateFactory.getLoadTeamState()); 
 		} else {
-			this.setNextState(AbstractStateMachineFactory.getFactory().getCreateTeamState());
+			this.setNextState(stateFactory.getCreateTeamState());
 		}
 		return true;
 	}

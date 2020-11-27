@@ -6,35 +6,18 @@ import java.time.LocalDate;
 import java.time.Month;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dhl.g05.communication.AbstractCommunicationFactory;
-import com.dhl.g05.communication.CommunicationFactory;
-import com.dhl.g05.db.AbstractDataBaseFactory;
-import com.dhl.g05.filehandler.LeagueModelJson;
-import com.dhl.g05.league.LeagueModel;
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.mockdata.JsonMockDataDb;
-
-import filehandler.DatabaseMockFactory;
 
 public class InitializeSeasonStateTest {
 	private AbstractState state;
-	@BeforeClass
-	public static void setup() {
-		AbstractCommunicationFactory.setFactory(new CommunicationFactory());
-		AbstractDataBaseFactory.setFactory(new DatabaseMockFactory());
-		AbstractStateMachineFactory.setFactory(
-				new StateMachineFactory(
-						AbstractCommunicationFactory.getFactory().getCommunication(),
-						new LeagueModelJson()
-						)
-				);
-	}
-
+	
 	@Before
 	public void init() {
-		state = AbstractStateMachineFactory.getFactory().getInitializeSeasonState();
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
+		state = stateFactory.getInitializeSeasonState();
 	}
 	
 	@Test

@@ -24,6 +24,4 @@ public interface ICoach {
 
     CoachConstant validate();
 
-	int saveLeagueCoachObject(int leagueId, ICoachModelPersistence coachDataBase);
-
 }

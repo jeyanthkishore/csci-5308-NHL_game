@@ -1,10 +1,15 @@
 package com.dhl.g05.league;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.conference.IConference;
+import com.dhl.g05.database.IDeserializeModel;
+import com.dhl.g05.database.ISerializeModel;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.leaguesimulation.ILeagueSchedule;
@@ -13,8 +18,6 @@ import com.dhl.g05.leaguesimulation.LeagueSchedule;
 import com.dhl.g05.leaguesimulation.LeagueStanding;
 import com.dhl.g05.player.IPlayer;
 import com.mysql.cj.util.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class LeagueModel implements ILeague{
 	static final Logger logger = LogManager.getLogger(LeagueModel.class);
@@ -24,7 +27,6 @@ public class LeagueModel implements ILeague{
 	private List<IPlayer> retiredPlayersList;
 	private List<ICoach> coaches;
 	private List<String> generalManagers;
-	private ILeagueModelPersistence dbObject;
 	private GamePlayConfigModel gameplayConfig;
 	private List<IFreeAgent> retiredFreeAgentsList;
 	private int daysSinceStatIncrease;
@@ -53,7 +55,6 @@ public class LeagueModel implements ILeague{
 		setFreeCoach(coach);
 		setManagerList(managers);
 		setGamePlayConfig(gamePlay);
-		setDbObject(dbObject);
 	}
 
 	public LeagueModel(ILeagueModel leagueObject) {
@@ -152,11 +153,6 @@ public class LeagueModel implements ILeague{
 	}
 
 	@Override
-	public void setDbObject(ILeagueModelPersistence object) {
-		this.dbObject = object;
-	}
-
-	@Override
 	public GamePlayConfigModel getGamePlayConfig() {
 		return gameplayConfig;
 	}
@@ -211,18 +207,16 @@ public class LeagueModel implements ILeague{
 		this.leagueSchedule = leagueSchedule;
 	}
 
-	public int saveLeagueObject(ILeagueModelPersistence database) {
-		return database.saveLeagueObject(this);
+	@Override
+	public boolean saveLeagueObject(ISerializeModel saveLeague,String teamName) {
+		return saveLeague.serialiseObjects(this,teamName);
 	}
-
-	public int loadLeagueObject(int leagueId,ILeagueModelPersistence database) {
-		return database.loadLeagueObject(leagueId,this);
+	
+	@Override
+	public void loadLeagueObject(IDeserializeModel loadLeague, String teamName) {
+		loadLeague.deserializeObjects(teamName,this);
 	}
-
-	public int loadLeagueFromTeam(String teamName, ILeagueModelPersistence database) {
-		return database.loadLeagueFromTeam(teamName);
-	}
-
+	
 	@Override
 	public LeagueConstant validate() {
 		logger.info("Validating league details");
@@ -244,9 +238,6 @@ public class LeagueModel implements ILeague{
 		if(isManagerListEmpty()){
 			return LeagueConstant.ManagerListEmpty;
 		}
-//		if(checkLeaguePresent()) {
-//			return LeagueConstant.LeagueExists;
-//		}
 		return LeagueConstant.Success;
 	}
 	
@@ -298,4 +289,5 @@ public class LeagueModel implements ILeague{
 		}
 		return false;
 	}
+
 }

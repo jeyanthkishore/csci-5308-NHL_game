@@ -1,18 +1,14 @@
 package com.dhl.g05.statemachine;
 
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.filehandler.ILeagueModelJson;
 
-public class StateMachineFactory extends AbstractStateMachineFactory{
+public class StateMachineFactory extends StateMachineAbstractFactory{
 	
 	private final IPlayerCommunication communication;
-    private final ILeagueModelJson leagueModel;
 	
     public StateMachineFactory(
-    		IPlayerCommunication communication,
-    		ILeagueModelJson leagueModel) {
+    		IPlayerCommunication communication) {
         this.communication = communication;
-        this.leagueModel = leagueModel;
     }
 
     
@@ -33,7 +29,7 @@ public class StateMachineFactory extends AbstractStateMachineFactory{
 
 	@Override
 	public AbstractState getLoadTeamState() {
-		return new LoadTeamState(communication,leagueModel);
+		return new LoadTeamState(communication);
 	}
 
 	@Override
@@ -97,6 +93,12 @@ public class StateMachineFactory extends AbstractStateMachineFactory{
 	@Override
 	public AbstractState getPersistState() {
 		return new PersistState();
+	}
+
+
+	@Override
+	public AbstractState getPlayerDraftState() {
+		return new PlayerDraftState();
 	}
 	
 }

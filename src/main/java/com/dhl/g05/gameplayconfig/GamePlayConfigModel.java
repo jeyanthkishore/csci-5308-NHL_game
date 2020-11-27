@@ -15,6 +15,7 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 		this.training = train;
 	}
 	
+
 	public Injury getInjuries() {
 		return injuries;
 	}
@@ -33,9 +34,5 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 
 	public TradingConfig getTrading() {
 		return trading;
-	}
-
-	public int saveGamePlayObject(int leagueId,IGameConfigPersistence database) {
-		return database.saveGamePlayObject(leagueId,this);
 	}
 }

@@ -3,6 +3,7 @@ package com.dhl.g05.team;
 import java.util.List;
 
 import com.dhl.g05.coach.ICoach;
+import com.dhl.g05.database.ICheckTeam;
 import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.player.PlayerModel;
 
@@ -48,12 +49,8 @@ public interface ITeam {
 
 	void setTeamStrength(double teamStrength);
 
-	int saveTeamObject(int divisionId, ITeamModelPersistence database);
-
-	int loadTeamObject(int divisionId, ITeamModelPersistence database);
-
-	boolean checkTeamNotUnique(String teamName, ITeamModelPersistence database);
-
 	TeamConstant validate();
+
+	boolean isTeamExist(String teamName, ICheckTeam checkTeam);
 
 }

@@ -16,8 +16,4 @@ public interface IConference {
 
 	ConferenceConstant validate();
 
-	int saveConferenceObject(int leagueId, IConferenceModelPersistence conferenceDatabase);
-
-	int loadConferenceObject(int leagueId, IConferenceModelPersistence conferenceDatabase);
-
 }
