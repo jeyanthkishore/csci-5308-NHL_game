@@ -42,6 +42,8 @@ public interface ILeague {
     void setDbObject(ILeagueModelPersistence object);
 
     void addRetiredFreeAgentToList(IFreeAgent freeAgent);
+    
+    void addNewFreeAgentsToLeague(List<IFreeAgent> freeAgentList);
 
     void addRetiredPlayersToList(IPlayer player);
 
