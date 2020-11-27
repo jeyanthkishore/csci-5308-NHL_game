@@ -30,7 +30,6 @@ public class LeagueModel implements ILeague{
 	private GamePlayConfigModel gameplayConfig;
 	private List<IFreeAgent> retiredFreeAgentsList;
 	private int daysSinceStatIncrease;
-	private IFreeAgent agent;
 	private LocalDate leagueCurrentDate;
 	private ILeagueStanding leagueStanding;
 	private ILeagueSchedule leagueSchedule;
@@ -240,7 +239,6 @@ public class LeagueModel implements ILeague{
 		}
 		return LeagueConstant.Success;
 	}
-	
 	public void addNewFreeAgentsToLeague(List<IFreeAgent> freeAgentList)
 	{
 		List<IFreeAgent> AllfreeAgents = getFreeAgent();
@@ -268,12 +266,6 @@ public class LeagueModel implements ILeague{
 			return true;
 		}
 		else return (freeAgents.size()<=20);
-	}
-	
-	private Boolean checkLeaguePresent() {
-		ArrayList<HashMap<String,Object>> allLeague = dbObject.loadDetails();
-		Boolean leaguePresent = allLeague.stream().anyMatch(v->v.get("league_name").equals(leagueName));
-		return leaguePresent;
 	}
 
 	private boolean isCoachListEmpty() {
