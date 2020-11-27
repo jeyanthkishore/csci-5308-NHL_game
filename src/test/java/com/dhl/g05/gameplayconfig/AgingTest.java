@@ -4,25 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
-import com.dhl.g05.mockdata.JsonMockDataDb;
-
 public class AgingTest {
-
-    @Test
-    public void parameterConstructorTest1() {
-        JsonMockDataDb data = new JsonMockDataDb();
-        Aging object = new Aging(data.averageRetirementAge, data.maximumAge, data.statDecayChance);
-        assertSame(data.averageRetirementAge,object.getAverageRetirementAge());
-        assertSame(data.maximumAge, object.getMaximumAge());
-    }
-    @Test
-    public void parameterConstructorTest2() {
-        JsonMockDataDb data = new JsonMockDataDb();
-        Aging object = new Aging(data.averageRetirementAge, data.maximumAge, data.statDecayChance);
-        assertEquals(data.statDecayChance, object.getStatDecayChance(),0); 
-    }
 
     @Test
     public void getAverageRetirementAgeTest() {
@@ -105,28 +90,24 @@ public class AgingTest {
         Aging object = new Aging();
         object.setMaximumAge(-1);
         assertSame(AgingConstant.MaximumAgeNotValid,object.validate());
-
-        object = new Aging();
-        object.setMaximumAge(10);
-        object.setAverageRetirementAge(-1);
-        assertSame(AgingConstant.AverageRetirementAgeNotValid,object.validate());
-
-        object = new Aging();
-        object.setMaximumAge(50);
-        object.setAverageRetirementAge(35);
-        assertSame(AgingConstant.Success,object.validate());
     }
 
 	@Test
 	public void validateTest2() {
-		Aging object = new Aging(50, 35, 0.05);
-		assertSame(AgingConstant.Success, object.validate());
+		Aging object = new Aging();
+		object = new Aging();
+        object.setMaximumAge(50);
+        object.setAverageRetirementAge(35);
+        assertSame(AgingConstant.Success,object.validate());
 	}
 
 	@Test
 	public void validateTest3() {
-		Aging object = new Aging(40, 32, -5.66);
-		assertSame(AgingConstant.StatDecayChanceNotValid, object.validate());
+		Aging object = new Aging();
+		object = new Aging();
+		object.setMaximumAge(10);
+		object.setAverageRetirementAge(-1);
+		assertSame(AgingConstant.AverageRetirementAgeNotValid,object.validate());
 	}
 
 }

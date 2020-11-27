@@ -8,15 +8,6 @@ public class Aging implements IAging {
 	private int maximumAge;
 	private double statDecayChance;
 
-	public Aging() {
-	}
-
-	public Aging(int averageRetirementAge, int maximumAge, double statDecayChance) {
-		this.averageRetirementAge = averageRetirementAge;
-		this.maximumAge = maximumAge;
-		this.statDecayChance = statDecayChance;
-	}
-
 	@Override
 	public int getAverageRetirementAge() {
 		return averageRetirementAge;

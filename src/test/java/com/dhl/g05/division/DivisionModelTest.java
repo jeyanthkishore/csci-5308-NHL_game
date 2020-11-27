@@ -1,6 +1,5 @@
 package com.dhl.g05.division;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
@@ -44,14 +43,6 @@ public class DivisionModelTest {
 		JsonMockDataDb data = new JsonMockDataDb();
 		IDivision object = new DivisionModel();
 		object.setTeamDetails(data.teamList);;
-		assertSame(data.teamList,object.getTeamDetails());
-	}
-
-	@Test
-	public void divisionParameterConstructor() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		IDivision object = new DivisionModel(data.divisionOneName,data.teamList);
-		assertSame(data.divisionOneName,object.getDivisionName());
 		assertSame(data.teamList,object.getTeamDetails());
 	}
 

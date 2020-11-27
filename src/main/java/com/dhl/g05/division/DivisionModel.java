@@ -19,11 +19,6 @@ public class DivisionModel implements IDivision {
 		divisionObject.LoadDivisionModelData(this);
 	}
 
-	public DivisionModel(String division, List<ITeam> teamdetail) {
-		this.divisionName = division;
-		this.teams = teamdetail;
-	}
-
 	@Override
 	public String getDivisionName() {
 		return divisionName;
