@@ -29,12 +29,17 @@ import com.dhl.g05.gameplayconfig.AgingConstant;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.gameplayconfig.GameResolverConfig;
 import com.dhl.g05.gameplayconfig.GameResolverConstant;
+import com.dhl.g05.gameplayconfig.IAging;
+import com.dhl.g05.gameplayconfig.IGamePlayConfig;
+import com.dhl.g05.gameplayconfig.IGameResolver;
+import com.dhl.g05.gameplayconfig.ITradingConfig;
 import com.dhl.g05.gameplayconfig.Injury;
 import com.dhl.g05.gameplayconfig.InjuryConstant;
-import com.dhl.g05.gameplayconfig.TradingConstant;
 import com.dhl.g05.gameplayconfig.TradingConfig;
+import com.dhl.g05.gameplayconfig.TradingConstant;
 import com.dhl.g05.gameplayconfig.TrainingConfig;
 import com.dhl.g05.gameplayconfig.TrainingConstant;
+import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueConstant;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.player.IPlayer;
@@ -67,17 +72,18 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		return false;
 	}
 
-	private Aging createAging(JSONObject jsonAging) {
+	private IAging createAging(JSONObject jsonAging) {
 		if (jsonAging == null){
 			return null;
 		}
-		int averageRetirementAge = Integer.parseInt(jsonAging.get("averageRetirementAge").toString());
-		int maximumAge = Integer.parseInt( jsonAging.get("maximumAge").toString());
-		double statDecayChance=Double.parseDouble(jsonAging.get("statDecayChance").toString());
-		Aging aging = new Aging(averageRetirementAge, maximumAge,statDecayChance);
-		AgingConstant result = aging.validate();
+		
+		IAging agingConfig = new Aging();
+		agingConfig.setAverageRetirementAge(((Number) jsonAging.get("averageRetirementAge")).intValue());
+		agingConfig.setMaximumAge(((Number) jsonAging.get("maximumAge")).intValue());
+		agingConfig.setStatDecayChance(((Number) jsonAging.get("statDecayChance")).doubleValue());
+		AgingConstant result = agingConfig.validate();
 		if(result.equals(AgingConstant.Success)) {
-			return aging;
+			return agingConfig;
 		}else {
 			playerCommunication.sendMessage(result.getValue());
 		}
@@ -88,13 +94,13 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		if (jsonInjury == null){
 			return null;
 		}
-		double randomInjuryChance = Double.parseDouble(jsonInjury.get("randomInjuryChance").toString());
-		int injuryDaysLow = Integer.parseInt(jsonInjury.get("injuryDaysLow").toString());
-		int injuryDaysHigh = Integer.parseInt(jsonInjury.get("injuryDaysHigh").toString());
-		Injury injury = new Injury(randomInjuryChance, injuryDaysLow, injuryDaysHigh);
-		InjuryConstant result = injury.validate();
+		Injury injuryConfig = new Injury();
+		injuryConfig.setRandomInjuryChance(((Number) jsonInjury.get("randomInjuryChance")).doubleValue());
+		injuryConfig.setInjuryDaysHigh(((Number) jsonInjury.get("injuryDaysHigh")).intValue());
+		injuryConfig.setInjuryDaysLow(((Number) jsonInjury.get("injuryDaysLow")).intValue());
+		InjuryConstant result = injuryConfig.validate();
 		if(result.equals(InjuryConstant.Success)) {
-			return injury;
+			return injuryConfig;
 		}else {
 			playerCommunication.sendMessage(result.getValue());
 		}
@@ -105,90 +111,87 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		if (training == null) {
 			return null;
 		} 
-		Number daysUntilStatIncreaseCheck =  (Number) training.get("daysUntilStatIncreaseCheck");
-		TrainingConfig train = new TrainingConfig(daysUntilStatIncreaseCheck.intValue());
-		TrainingConstant result = train.Validate();
+		TrainingConfig trainConfig = new TrainingConfig();
+		trainConfig.setDaysUntilStatIncreaseCheck(((Number) training.get("daysUntilStatIncreaseCheck")).intValue());
+		TrainingConstant result = trainConfig.Validate();
 		if(result.equals(TrainingConstant.Success)) {
-			return train;
+			return trainConfig;
 		}else {
 			playerCommunication.sendMessage(result.getValue());
 		}
 		return null;
 	}
 
-	public LeagueModel createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException {
+	public ILeague createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException {
 		File file = new File(fileName);
 		reader = new FileReader(file);
-		LeagueModel league = createLeague((JSONObject)parser.parse(reader));
+		ILeague league = createLeague((JSONObject)parser.parse(reader));
 		return league;
 	}
 	
-	private LeagueModel createLeague(JSONObject leagueData) {
+	private ILeague createLeague(JSONObject leagueData) {
 		if (leagueData == null) {
 			return null;
 		}
-		ArrayList<IConference> conferences = createConferences((JSONArray)leagueData.get("conferences"));
-		ArrayList<IFreeAgent> freeAgents = createFreeAgents((JSONArray)leagueData.get("freeAgents"));
-		ArrayList<ICoach> freeCoaches = createFreeCoaches((JSONArray)leagueData.get("coaches"));
-		ArrayList<String> managers = createFreeManagers((JSONArray)leagueData.get("generalManagers"));
-		GamePlayConfigModel gamePlayConfig = setGamePlayConfigsFromFile((JSONObject) leagueData.get("gameplayConfig"));
-		String leagueName = (String)leagueData.get("leagueName");
-		if (conferences != null && freeAgents != null && freeCoaches != null && managers != null && gamePlayConfig!=null) {
-			LeagueModel league = new LeagueModel(leagueName, conferences, freeAgents, freeCoaches, managers,gamePlayConfig);
-			LeagueConstant validationResult  =  league.validate();
-			if (validationResult.equals(LeagueConstant.Success)) {
-				return league;
-			} else {
-				playerCommunication.sendMessage(validationResult.getValue());
-			}
+		ILeague league = new LeagueModel();
+		league.setLeagueName((String)leagueData.get("leagueName"));
+		league.setConferenceDetails(createConferences((JSONArray)leagueData.get("conferences")));
+		league.setFreeAgent(createFreeAgents((JSONArray)leagueData.get("freeAgents")));
+		league.setFreeCoach(createFreeCoaches((JSONArray)leagueData.get("coaches")));
+		league.setManagerList(createFreeManagers((JSONArray)leagueData.get("generalManagers")));
+		league.setGamePlayConfig(setGamePlayConfigsFromFile((JSONObject) leagueData.get("gameplayConfig")));
+		LeagueConstant validationResult  =  league.validate();
+		if (validationResult.equals(LeagueConstant.Success)) {
+			return league;
+		} else {
+			playerCommunication.sendMessage(validationResult.getValue());
 		}
-		
+
 		return null;
 	}
 	
-	public GamePlayConfigModel setGamePlayConfigsFromFile(JSONObject gamePlayConfigs){
+	public IGamePlayConfig setGamePlayConfigsFromFile(JSONObject gamePlayConfigs){
 		if (gamePlayConfigs == null) {
 			return null;
 		}
-		Aging agingObject = createAging((JSONObject)gamePlayConfigs.get("aging"));
-		Injury injuryObject = createInjury((JSONObject)gamePlayConfigs.get("injuries"));
-		TrainingConfig trainingObject = createTrainingConfig((JSONObject)gamePlayConfigs.get("training"));
-		TradingConfig tradingObject = createTradingConfig((JSONObject)gamePlayConfigs.get("trading"));
-		GameResolverConfig gameResolver = createGameResolver((JSONObject)gamePlayConfigs.get("gameResolver"));
-		if (agingObject == null || injuryObject == null || trainingObject == null || tradingObject == null || gameResolver == null) {
-			playerCommunication.sendMessage("Error in GamePlay Config");
-			return null;
-		}
-		return new GamePlayConfigModel(tradingObject, agingObject, injuryObject, gameResolver, trainingObject);
+		
+		IGamePlayConfig gamePlayconfig = new GamePlayConfigModel();
+		gamePlayconfig.setInjuries(createInjury((JSONObject)gamePlayConfigs.get("injuries")));
+		gamePlayconfig.setAging(createAging((JSONObject)gamePlayConfigs.get("aging")));
+		gamePlayconfig.setGameResolver(createGameResolver((JSONObject)gamePlayConfigs.get("gameResolver")));
+		gamePlayconfig.setTrading(createTradingConfig((JSONObject)gamePlayConfigs.get("trading")));
+		gamePlayconfig.setTraining(createTrainingConfig((JSONObject)gamePlayConfigs.get("training")));
+		
+		return gamePlayconfig;
 }
 	
-	private GameResolverConfig createGameResolver(JSONObject gameResolver) {
+	private IGameResolver createGameResolver(JSONObject gameResolver) {
 		if (gameResolver == null) {
 			return null;
 		} 
-		double randomWin = Double.parseDouble(gameResolver.get("randomWinChance").toString());
-		GameResolverConfig resolver = new GameResolverConfig(randomWin);
-		GameResolverConstant result = resolver.Validate();
+		IGameResolver resolverConfig = new GameResolverConfig();
+		resolverConfig.setRandomWinChance(((Number) gameResolver.get("randomWinChance")).doubleValue());
+		GameResolverConstant result = resolverConfig.Validate();
 		if(result.equals(GameResolverConstant.Success)) {
-			return resolver;
+			return resolverConfig;
 		}else {
 			playerCommunication.sendMessage(result.getValue());
 		}
 		return null;
 	}
 
-	private TradingConfig createTradingConfig(JSONObject tradingObject) {
+	private ITradingConfig createTradingConfig(JSONObject tradingObject) {
 		if (tradingObject == null) {
 			return null;
 		} 
-		double randomTradeOfferChance = Double.parseDouble(tradingObject.get("randomTradeOfferChance").toString());
-		int lossPoint = Integer.parseInt(tradingObject.get("lossPoint").toString());
-		int maxPlayersPerTrade = Integer.parseInt(tradingObject.get("maxPlayersPerTrade").toString());
-		double randomAcceptance =  Double.parseDouble(tradingObject.get("randomAcceptanceChance").toString());
-		TradingConfig trade =  new TradingConfig(lossPoint,randomTradeOfferChance,maxPlayersPerTrade,randomAcceptance);
-		TradingConstant result = trade.validate();
+		ITradingConfig tradeConfig =  new TradingConfig();
+		tradeConfig.setLossPoint(((Number) tradingObject.get("lossPoint")).intValue());
+		tradeConfig.setMaxPlayersPerTrade(((Number) tradingObject.get("maxPlayersPerTrade")).intValue());
+		tradeConfig.setRandomAcceptanceChance(((Double) tradingObject.get("randomAcceptanceChance")).doubleValue());
+		tradeConfig.setRandomTradeOfferChance((Double)((JSONObject) tradingObject).get("randomTradeOfferChance"));
+		TradingConstant result = tradeConfig.validate();
 		if(result.equals(TradingConstant.Success)) {
-			return trade;
+			return tradeConfig;
 		}else {
 			playerCommunication.sendMessage(result.getValue());
 		}
@@ -202,17 +205,14 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		ArrayList<IConference> conferences = new ArrayList<>();
 		for (Object c: jsonConferences) {
 			ArrayList<IDivision> divisions = createDivisions((JSONArray)((JSONObject) c).get("divisions"));
-			String conferenceName = (String)((JSONObject) c).get("conferenceName");
-			if (divisions != null) {
-				IConference newConference = new ConferenceModel(conferenceName, divisions);
-				ConferenceConstant validationResult  = newConference.validate();
-				if (validationResult.equals(ConferenceConstant.Success)) {
-					conferences.add(newConference);
-				} else {
-					playerCommunication.sendMessage(validationResult.getValue());
-					return null;
-				}
+			IConference newConference = new ConferenceModel();
+			newConference.setConferenceName((String)((JSONObject) c).get("conferenceName"));
+			newConference.setDivisionDetails(divisions);
+			ConferenceConstant validationResult  = newConference.validate();
+			if (validationResult.equals(ConferenceConstant.Success)) {
+				conferences.add(newConference);
 			} else {
+				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
 		}
@@ -223,21 +223,18 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		if (jsonDivisions == null) {
 			return null;
 		}
-		
+
 		ArrayList<IDivision> divisions = new ArrayList<>();
 		for (Object d: jsonDivisions) {
 			ArrayList<ITeam> teams = createTeams((JSONArray)((JSONObject) d).get("teams"));
-			String divisionName = (String)((JSONObject) d).get("divisionName");
-			if (teams != null) {
-				IDivision newDivision = new DivisionModel(divisionName,teams);
-				DivisionConstant validationResult  = newDivision.validate();
-				if (validationResult.equals(DivisionConstant.Success)) {
-					divisions.add(newDivision);
-				} else {
-					playerCommunication.sendMessage(validationResult.getValue());
-					return null;
-				}
+			IDivision newDivision = new DivisionModel();
+			newDivision.setDivisionName((String)((JSONObject) d).get("divisionName"));
+			newDivision.setTeamDetails(teams);
+			DivisionConstant validationResult  = newDivision.validate();
+			if (validationResult.equals(DivisionConstant.Success)) {
+				divisions.add(newDivision);
 			} else {
+				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
 		}
@@ -251,21 +248,18 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		ArrayList<ITeam> teams = new ArrayList<>();
 		for (Object t: jsonTeams) {
 			ArrayList<IPlayer> players = createPlayers((JSONArray)((JSONObject) t).get("players"));
-			String teamName = (String)((JSONObject) t).get("teamName");
-			String managerName = (String)((JSONObject) t).get("generalManager");
-			JSONObject coach = (JSONObject) ((JSONObject) t).get("headCoach");
-			CoachModel coachDetails = createCoach(coach);
-			if (players != null && teamName != null && managerName != null && coachDetails != null) {
-				ITeam newTeam = new TeamModel(teamName, coachDetails, managerName, players);
-				TeamConstant validationResult  = newTeam.validate();
-				if (validationResult.equals(TeamConstant.Success)) {
-					teams.add(newTeam);
-				}  else {
-					playerCommunication.sendMessage(validationResult.getValue());
-					return null;
-				}
-			} else
+			ITeam newTeam = new TeamModel();
+			newTeam.setTeamName((String)((JSONObject) t).get("teamName"));
+			newTeam.setGeneralManagerName((String)((JSONObject) t).get("generalManager"));
+			newTeam.setCoachDetails(createCoach((JSONObject) ((JSONObject) t).get("headCoach")));
+			newTeam.setPlayerList(players);
+			TeamConstant validationResult  = newTeam.validate();
+			if (validationResult.equals(TeamConstant.Success)) {
+				teams.add(newTeam);
+			}  else {
+				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
+			}
 		}
 		return teams;
 	}

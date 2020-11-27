@@ -7,7 +7,6 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.database.ICheckTeam;
 import com.dhl.g05.freeagent.IFreeAgent;
@@ -40,14 +39,6 @@ public class TeamModel implements ITeam {
 
 	public TeamModel(ITeamModel teamObject) {
 		teamObject.loadTeamModelData(this);
-	}
-
-	public TeamModel(String team, CoachModel coachDetails, String manager, List<IPlayer> players) {
-		this.teamName = team;
-		this.headCoach = coachDetails;
-		this.generalManager = manager;
-		this.players = players;
-		this.userTeam = false;
 	}
 
 	public Boolean getUserTeam() {

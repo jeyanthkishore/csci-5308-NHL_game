@@ -1,38 +1,69 @@
 package com.dhl.g05.gameplayconfig;
 
 public class GamePlayConfigModel implements IGamePlayConfig {
-	TradingConfig trading;
-	Aging aging;
-	Injury injuries;
-	GameResolverConfig gameResolver;
-	TrainingConfig training;
+	ITradingConfig trading;
+	IAging aging;
+	IInjury injuries;
+	IGameResolver gameResolver;
+	ITraining training;
 
-	public GamePlayConfigModel(TradingConfig trade,Aging age,Injury injury,GameResolverConfig gameresolve,TrainingConfig train) {
-		this.trading = trade;
-		this.aging = age;
-		this.injuries = injury;
-		this.gameResolver = gameresolve;
-		this.training = train;
+	public GamePlayConfigModel() {
+		this.trading = null;
+		this.aging = null;
+		this.injuries = null;
+		this.gameResolver = null;
+		this.training = null;
 	}
 	
+	@Override
+	public void setGameResolver(IGameResolver gameResolver) {
+		this.gameResolver = gameResolver;
+	}
 
-	public Injury getInjuries() {
+	@Override
+	public void setAging(IAging aging) {
+		this.aging = aging;
+	}
+
+	@Override
+	public IAging getAging() {
+		return aging;
+	}
+	
+	@Override
+	public void setInjuries(IInjury injuries) {
+		this.injuries = injuries;
+	}
+	
+	@Override
+	public IInjury getInjuries() {
 		return injuries;
 	}
 
-	public GameResolverConfig getGameResolve() {
-		return gameResolver;
-	}
 
-	public TrainingConfig getTraining() {
+	@Override
+	public void setTraining(ITraining training) {
+		this.training = training;
+	}
+	
+	@Override
+	public ITraining getTraining() {
 		return training;
 	}
 
-	public Aging getAging() {
-		return aging;
-	}
-
-	public TradingConfig getTrading() {
+	@Override
+	public ITradingConfig getTrading() {
 		return trading;
 	}
+	
+	@Override
+	public void setTrading(ITradingConfig trading) {
+		this.trading = trading;
+	}
+
+	@Override
+	public IGameResolver getGameResolver() {
+		return gameResolver;
+	}
+
 }

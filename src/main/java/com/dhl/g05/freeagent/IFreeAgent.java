@@ -55,6 +55,12 @@ public interface IFreeAgent {
 	int getBirthMonth();
 
 	int getBirthYear();
+	
+	void setBirthDay(int day);
+
+	void setBirthMonth(int month);
+
+	void setBirthYear(int year);
 
 	void incrementPlayerAgeByDay(int day);
 
