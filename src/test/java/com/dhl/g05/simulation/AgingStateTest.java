@@ -31,14 +31,14 @@ import com.dhl.g05.simulation.IScheduleModel;
 import com.dhl.g05.simulation.PersistState;
 import com.dhl.g05.simulation.PlayerDraftState;
 import com.dhl.g05.simulation.ScheduleModel;
-import com.dhl.g05.simulation.StateMachineAbstractFactory;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class AgingStateTest {
 	private AbstractState state;
 	
 	@Before
 	public void init() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		state = stateFactory.createAgingState();
 	}
 	

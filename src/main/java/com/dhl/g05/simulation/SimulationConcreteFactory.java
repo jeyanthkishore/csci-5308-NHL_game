@@ -2,11 +2,11 @@ package com.dhl.g05.simulation;
 
 import com.dhl.g05.communication.IPlayerCommunication;
 
-public class StateMachineConcreteFactory extends StateMachineAbstractFactory{
+public class SimulationConcreteFactory extends SimulationAbstractFactory{
 
 	private final IPlayerCommunication communication;
 
-	public StateMachineConcreteFactory(
+	public SimulationConcreteFactory(
 			IPlayerCommunication communication) {
 		this.communication = communication;
 	}

@@ -1,10 +1,10 @@
 package com.dhl.g05.simulation;
 
-public abstract class StateMachineAbstractFactory {
+public abstract class SimulationAbstractFactory {
 
-	private static StateMachineAbstractFactory abstractStateMachineFactory;
+	private static SimulationAbstractFactory abstractStateMachineFactory;
 
-	public static StateMachineAbstractFactory getInstance(StateMachineState state) {
+	public static SimulationAbstractFactory getInstance(SimulationState state) {
 		abstractStateMachineFactory = state.concreteMethod();
 		return abstractStateMachineFactory;
 	}

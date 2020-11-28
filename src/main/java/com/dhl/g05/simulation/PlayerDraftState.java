@@ -82,7 +82,7 @@ public class PlayerDraftState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		this.setNextState(stateFactory.createAdvanceToNextSeasonState());
 		return true;
 	}

@@ -11,14 +11,14 @@ import org.junit.Test;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.AbstractState;
 import com.dhl.g05.simulation.SimulateState;
-import com.dhl.g05.simulation.StateMachineAbstractFactory;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class PlayerChoiceStateTest {
 	private AbstractState state;
 	
 	@Before
 	public void init() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		state = stateFactory.createPlayerChoiceState();
 	}
 

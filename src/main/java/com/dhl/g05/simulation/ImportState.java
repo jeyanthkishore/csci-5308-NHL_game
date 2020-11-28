@@ -59,7 +59,7 @@ public class ImportState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		if (StringUtils.isNullOrEmpty(fileName)) {
 			this.setNextState(stateFactory.createLoadTeamState()); 
 		} else {

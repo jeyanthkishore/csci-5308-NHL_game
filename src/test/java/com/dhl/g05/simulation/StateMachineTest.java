@@ -13,10 +13,10 @@ import com.dhl.g05.simulation.AbstractState;
 import com.dhl.g05.simulation.CreateTeamState;
 import com.dhl.g05.simulation.IStateMachine;
 import com.dhl.g05.simulation.ImportState;
-import com.dhl.g05.simulation.StateMachineAbstractFactory;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class StateMachineTest {
-	private static StateMachineAbstractFactory stateMachineFactory;
+	private static SimulationAbstractFactory stateMachineFactory;
 	private static MockPlayerCommunication communication;
 
 

@@ -14,14 +14,14 @@ import com.dhl.g05.database.DatabaseMockFactoryState;
 import com.dhl.g05.database.DatabaseState;
 import com.dhl.g05.simulation.AbstractState;
 import com.dhl.g05.simulation.PlayerChoiceState;
-import com.dhl.g05.simulation.StateMachineAbstractFactory;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class LoadTeamStateTest {
 	private AbstractState state;
 	
 	@Before
 	public void init() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		state = stateFactory.createLoadTeamState();
 		DatabaseState state = new DatabaseMockFactoryState();
 		ApplicationConfiguration.instance().setDataBaseFactoryState(state);
