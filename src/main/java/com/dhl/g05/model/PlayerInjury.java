@@ -2,7 +2,7 @@ package com.dhl.g05.model;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.dhl.g05.statemachine.IInjury;
+import com.dhl.g05.simulation.IInjury;
 
 public class PlayerInjury implements IPlayerInjured {
 

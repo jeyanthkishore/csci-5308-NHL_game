@@ -1,6 +1,6 @@
 package com.dhl.g05.model;
 
-import com.dhl.g05.statemachine.IInjury;
+import com.dhl.g05.simulation.IInjury;
 
 public class PlayerTraining implements IPlayerTraining {
 

@@ -5,8 +5,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.dhl.g05.model.AbstractPlayerFactory;
 import com.dhl.g05.model.PlayerFactory;
-import com.dhl.g05.statemachine.AbstractState;
-import com.dhl.g05.statemachine.StateMachineAbstractFactory;
+import com.dhl.g05.simulation.AbstractState;
+import com.dhl.g05.simulation.StateMachineAbstractFactory;
 
 public class Driver {
 

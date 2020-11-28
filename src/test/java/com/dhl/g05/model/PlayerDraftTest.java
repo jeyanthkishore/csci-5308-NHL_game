@@ -16,9 +16,9 @@ import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.IPlayerDraft;
 import com.dhl.g05.model.PlayerDraft;
-import com.dhl.g05.statemachine.ILeagueStanding;
-import com.dhl.g05.statemachine.IStandingModel;
-import com.dhl.g05.statemachine.LeagueStanding;
+import com.dhl.g05.simulation.ILeagueStanding;
+import com.dhl.g05.simulation.IStandingModel;
+import com.dhl.g05.simulation.LeagueStanding;
 
 
 public class PlayerDraftTest {

@@ -4,8 +4,8 @@ import java.util.Random;
 
 import com.dhl.g05.communication.ITradeCommunication;
 import com.dhl.g05.communication.PlayerCommunication;
-import com.dhl.g05.statemachine.ITradingConfig;
-import com.dhl.g05.statemachine.TradingConfig;
+import com.dhl.g05.simulation.ITradingConfig;
+import com.dhl.g05.simulation.TradingConfig;
 
 
 public class TradeDecision implements ITradeDecision {

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
-import com.dhl.g05.statemachine.ITradingConfig;
+import com.dhl.g05.simulation.ITradingConfig;
 
 public interface IWeakTeam {
 

@@ -16,8 +16,8 @@ import com.dhl.g05.model.ITeam;
 import com.dhl.g05.model.LeagueModel;
 import com.dhl.g05.model.PlayerModel;
 import com.dhl.g05.model.TeamModel;
-import com.dhl.g05.statemachine.IStandingModel;
-import com.dhl.g05.statemachine.StandingModel;
+import com.dhl.g05.simulation.IStandingModel;
+import com.dhl.g05.simulation.StandingModel;
 
 public class PlayerDraftMock {
 

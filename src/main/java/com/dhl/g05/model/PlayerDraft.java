@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.dhl.g05.statemachine.ILeagueStanding;
-import com.dhl.g05.statemachine.IStandingModel;
+import com.dhl.g05.simulation.ILeagueStanding;
+import com.dhl.g05.simulation.IStandingModel;
 
 public class PlayerDraft implements IPlayerDraft {
 

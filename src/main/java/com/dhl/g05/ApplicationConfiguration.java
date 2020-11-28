@@ -11,9 +11,9 @@ import com.dhl.g05.model.ModelAbstractFactory;
 import com.dhl.g05.model.ModelConcreteFactoryState;
 import com.dhl.g05.model.ModelState;
 import com.dhl.g05.model.PlayerFactory;
-import com.dhl.g05.statemachine.StateMachineAbstractFactory;
-import com.dhl.g05.statemachine.StateMachineConcreteFactoryState;
-import com.dhl.g05.statemachine.StateMachineState;
+import com.dhl.g05.simulation.StateMachineAbstractFactory;
+import com.dhl.g05.simulation.StateMachineConcreteFactoryState;
+import com.dhl.g05.simulation.StateMachineState;
 import com.dhl.g05.trading.AbstractTradingFactory;
 import com.dhl.g05.trading.TradingFactory;
 

@@ -17,7 +17,7 @@ import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
 import com.dhl.g05.model.PlayerFactory;
-import com.dhl.g05.statemachine.ITradingConfig;
+import com.dhl.g05.simulation.ITradingConfig;
 
 public class InitiateTradeOfferTest {
 	
