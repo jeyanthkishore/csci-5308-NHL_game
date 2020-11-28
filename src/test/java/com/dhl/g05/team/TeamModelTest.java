@@ -275,8 +275,6 @@ public class TeamModelTest{
 	public void adjustTeamRoasterAfterDrafPositiontCountTest()
 	{
 		IGenerateNewPlayers newPlayers = new GenerateNewPlayers();
-		FreeAgentModel validate = new FreeAgentModel();
-		JsonMockDataDb mock = new JsonMockDataDb();
 		newPlayers.setNumberOfTeams(6);
 		List<IPlayer> players = newPlayers.generatePlayers();
 		ITeam team= new TeamModel();
