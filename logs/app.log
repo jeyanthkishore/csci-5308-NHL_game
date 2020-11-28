@@ -7850,3 +7850,718 @@
 [INFO ] 2020-11-27 22:22:29.718 [main] TeamModel:119 - Removing retired player from team
 [INFO ] 2020-11-27 22:22:29.718 [main] TeamModel:129 - Validating team details
 [INFO ] 2020-11-27 22:22:29.718 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:35.877 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:35.877 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:52.191 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-27 22:39:52.207 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-27 22:39:52.207 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-27 22:39:52.207 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-27 22:39:52.207 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-27 22:39:52.207 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-27 22:39:52.222 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-27 22:39:52.434 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:52.439 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:52.441 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:52.443 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:52.444 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:52.444 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:52.445 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:52.448 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:52.448 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:52.463 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:52.464 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:52.466 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:52.466 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:52.470 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:52.470 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:52.472 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:52.475 [main] Aging:45 - Validating aging details
+[INFO ] 2020-11-27 22:39:52.476 [main] Aging:45 - Validating aging details
+[INFO ] 2020-11-27 22:39:52.479 [main] Aging:45 - Validating aging details
+[INFO ] 2020-11-27 22:39:52.479 [main] Aging:45 - Validating aging details
+[INFO ] 2020-11-27 22:39:52.489 [main] Injury:45 - Validating injury details
+[INFO ] 2020-11-27 22:39:52.490 [main] Injury:45 - Validating injury details
+[INFO ] 2020-11-27 22:39:52.491 [main] Injury:45 - Validating injury details
+[INFO ] 2020-11-27 22:39:52.495 [main] TradingConfig:45 - Validating trading details
+[INFO ] 2020-11-27 22:39:52.498 [main] TrainingConfig:18 - Validating training details
+[INFO ] 2020-11-27 22:39:52.498 [main] TrainingConfig:18 - Validating training details
+[INFO ] 2020-11-27 22:39:52.498 [main] TrainingConfig:18 - Validating training details
+[INFO ] 2020-11-27 22:39:52.498 [main] LeagueModel:106 - Removing retired freeAgents from league
+[INFO ] 2020-11-27 22:39:52.498 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:52.507 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:52.511 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:52.515 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:52.518 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:52.519 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:52.520 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:52.522 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:52.523 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:52.524 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:52.524 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:52.525 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:52.525 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:52.526 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:53.372 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.392 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.396 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.397 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.397 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.397 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.397 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.397 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.397 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.397 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.400 [main] PlayerModel:76 - Checking player retirement
+[INFO ] 2020-11-27 22:39:53.400 [main] PlayerRetirement:14 - check whether player is retired or not
+[INFO ] 2020-11-27 22:39:53.400 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.402 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.402 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.402 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.402 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.402 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.402 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.402 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.402 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.402 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.402 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.402 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.402 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.402 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.402 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.402 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.402 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.410 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.410 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.410 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.410 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.410 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.410 [main] PlayerModel:70 - Checking player injury
+[INFO ] 2020-11-27 22:39:53.410 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.410 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.410 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.410 [main] PlayerRetirement:50 - Getting status of retirement of freeAgents
+[INFO ] 2020-11-27 22:39:53.410 [main] LeagueModel:106 - Removing retired freeAgents from league
+[INFO ] 2020-11-27 22:39:53.410 [main] PlayerRetirement:14 - check whether player is retired or not
+[INFO ] 2020-11-27 22:39:53.421 [main] PlayerRetirement:14 - check whether player is retired or not
+[INFO ] 2020-11-27 22:39:53.422 [main] PlayerRetirement:14 - check whether player is retired or not
+[INFO ] 2020-11-27 22:39:53.422 [main] PlayerRetirement:61 - Getting status of retirement of players
+[INFO ] 2020-11-27 22:39:53.422 [main] TeamModel:119 - Removing retired player from team
+[INFO ] 2020-11-27 22:39:53.422 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.422 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.422 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.430 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.430 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.430 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.453 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-27 22:39:53.453 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-27 22:39:53.501 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.501 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.501 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.501 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.501 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.501 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.501 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.501 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.501 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.501 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.501 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.501 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.501 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.511 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.511 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.511 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.511 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.511 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.511 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.511 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.511 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.511 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.511 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.511 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.513 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.521 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.521 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.521 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.521 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.521 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.524 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.524 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.524 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.532 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.532 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.532 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.532 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.532 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.532 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.532 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.532 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.532 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.532 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.532 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.532 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.534 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.542 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.552 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.552 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.552 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.552 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.552 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.552 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.552 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.552 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.552 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-27 22:39:53.552 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-27 22:39:53.552 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-27 22:39:53.552 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-27 22:39:53.552 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-27 22:39:53.552 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-27 22:39:53.552 [main] Injury:45 - Validating injury details
+[INFO ] 2020-11-27 22:39:53.552 [main] Aging:45 - Validating aging details
+[INFO ] 2020-11-27 22:39:53.552 [main] TradingConfig:45 - Validating trading details
+[INFO ] 2020-11-27 22:39:53.552 [main] TrainingConfig:18 - Validating training details
+[INFO ] 2020-11-27 22:39:53.552 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.564 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.572 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.572 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.572 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.572 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.572 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.572 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.572 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.572 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.572 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.572 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.572 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.572 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.572 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.572 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.572 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.572 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.572 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.572 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] PlayerModel:51 - Validating player details
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:200 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] FreeAgentModel:245 - validating freeAgent's statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-27 22:39:53.574 [main] LeagueModel:212 - Validating league details
+[INFO ] 2020-11-27 22:39:53.602 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.602 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.602 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.602 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.602 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.604 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.612 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.612 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.612 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.612 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.612 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.612 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.612 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.612 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.612 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.612 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.614 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.622 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.622 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.622 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.622 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.624 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.624 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.632 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.633 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.633 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.633 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.633 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.633 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.633 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.633 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.633 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.633 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.633 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.633 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.633 [main] PlayerInjury:12 - Check whether player is injured or not
+[INFO ] 2020-11-27 22:39:53.633 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.635 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.635 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.635 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.635 [main] TeamModel:106 - Calculating team strength using players strength
+[INFO ] 2020-11-27 22:39:53.635 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.635 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.635 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.635 [main] FreeAgentModel:186 - Calculating player strength
+[INFO ] 2020-11-27 22:39:53.635 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.635 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.635 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.643 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.643 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.643 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.643 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.643 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.643 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.643 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.643 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.643 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.643 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.643 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.643 [main] TeamModel:119 - Removing retired player from team
+[INFO ] 2020-11-27 22:39:53.643 [main] TeamModel:129 - Validating team details
+[INFO ] 2020-11-27 22:39:53.643 [main] TeamModel:129 - Validating team details

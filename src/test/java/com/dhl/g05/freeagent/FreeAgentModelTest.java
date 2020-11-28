@@ -271,6 +271,21 @@ public class FreeAgentModelTest {
 	}
 
 	@Test
+	public void validateTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setPlayerName("Alex");
+		freeAgent.setPosition("forward");
+		freeAgent.setSkating(10);
+		freeAgent.setSaving(12);
+		freeAgent.setChecking(12);
+		freeAgent.setSaving(10);
+		freeAgent.setBirthDay(29);
+		freeAgent.setBirthMonth(12);
+		freeAgent.setBirthYear(2001);
+		assertSame(FreeAgentConstant.Success, freeAgent.validate());
+	}
+
+	@Test
 	public void playerListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		FreeAgentModel validate = new FreeAgentModel(mock);

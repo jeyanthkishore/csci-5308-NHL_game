@@ -4,9 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-
-import com.dhl.g05.freeagent.FreeAgentModel;
-import com.dhl.g05.freeagent.IFreeAgent;
 import org.junit.Test;
 import com.dhl.g05.mockdata.JsonMockDataDb;
 
