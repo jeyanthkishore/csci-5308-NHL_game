@@ -50,7 +50,7 @@ public class PlayerTraining implements IPlayerTraining {
 			playerInjured = isPlayerInjured(player);
 		}
 		player.setPlayerStrength(player.calculatePlayerStrength());
-		player.setInjuryStatus(playerInjured);
+		player.setInjuredStatus(playerInjured);
 		return player;
 	}
 

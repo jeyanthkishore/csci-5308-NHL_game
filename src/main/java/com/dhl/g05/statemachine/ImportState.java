@@ -8,7 +8,7 @@ import org.json.simple.parser.ParseException;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.filehandler.LeagueModelCreatorFromJSON;
-import com.dhl.g05.league.ILeague;
+import com.dhl.g05.league.LeagueModel;
 import com.mysql.cj.util.StringUtils;
 
 public class ImportState extends AbstractState {
@@ -36,7 +36,7 @@ public class ImportState extends AbstractState {
 		creator = new LeagueModelCreatorFromJSON(communication);
 
 		try {
-			ILeague league = creator.createLeagueFromFile(fileName);
+			LeagueModel league = creator.createLeagueFromFile(fileName);
 			if (league == null) {
 				this.setLeague(null);
 				communication.sendMessage("Issue creating league, try again");

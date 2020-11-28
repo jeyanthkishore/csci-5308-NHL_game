@@ -3,8 +3,8 @@ package com.dhl.g05.gameplayconfig;
 public class GameResolverConfig implements IGameResolver{
 
 	private double randomWinChance;
-
-	public void setRandomWinChance(double winChance) {
+	
+	public GameResolverConfig(double winChance) {
 		this.randomWinChance = winChance;
 	}
 

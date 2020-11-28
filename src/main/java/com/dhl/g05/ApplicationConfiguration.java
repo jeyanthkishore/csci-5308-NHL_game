@@ -47,6 +47,10 @@ public class ApplicationConfiguration {
 		return CommunicationAbstractFactory.getInstance(communication);
 	}
 	
+	public CommunicationState getCommunicationState() {
+		return new CommunicationFactoryState();
+	}
+	
 	public void setDataBaseFactoryState(DatabaseState newDatabase) {
 		database = newDatabase;
 	}

@@ -7,37 +7,26 @@ import org.junit.Test;
 public class TrainingConfigTest {
 	
 	@Test
-	public void getDaysUntilStatusTest() {
-		ITraining train = new TrainingConfig();
-		train.setDaysUntilStatIncreaseCheck(100);
+	public void trainingConfigConstructorTest() {
+		TrainingConfig train = new TrainingConfig(100);
 		assertSame(100,train.getDaysUntilStatIncreaseCheck());
 	}
 	
 	@Test
-	public void setDaysUntilStatusTest() {
-		ITraining train = new TrainingConfig();
-		train.setDaysUntilStatIncreaseCheck(110);
-		assertSame(110,train.getDaysUntilStatIncreaseCheck());
+	public void getDaysUntilStatusTest() {
+		TrainingConfig train = new TrainingConfig(100);
+		assertSame(100,train.getDaysUntilStatIncreaseCheck());
 	}
 	
 	@Test
 	public void validationTest() {
-		ITraining train = new TrainingConfig();
-		train.setDaysUntilStatIncreaseCheck(-9);
+		TrainingConfig train = new TrainingConfig(-9);
 		assertSame(TrainingConstant.TrainingDaysError,train.Validate());
 	}
 	
 	@Test
 	public void validationExceedTest() {
-		ITraining train = new TrainingConfig();
-		train.setDaysUntilStatIncreaseCheck(400);
+		TrainingConfig train = new TrainingConfig(400);
 		assertSame(TrainingConstant.TrainingDaysError,train.Validate());
-	}
-	
-	@Test
-	public void validationSuccessTest() {
-		ITraining train = new TrainingConfig();
-		train.setDaysUntilStatIncreaseCheck(100);
-		assertSame(TrainingConstant.Success,train.Validate());
 	}
 }

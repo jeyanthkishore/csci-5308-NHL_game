@@ -19,6 +19,4 @@ public abstract class AbstractGamePlayConfigFactory {
     public abstract ITradingConfig getTradingConfig();
 
     public abstract ITraining getTraining();
-    
-    public abstract IGameResolver getGameResolver();
 }

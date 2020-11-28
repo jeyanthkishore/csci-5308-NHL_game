@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.player.PlayerModel;
 
 public class SortPlayerStrength implements ISortPlayerStrength {
 

@@ -2,68 +2,39 @@ package com.dhl.g05.trading;
 
 public class TradingFactory extends AbstractTradingFactory {
 
-	private ITradeDecision tradeDecision;
-	private ISortPlayerStrength sortPlayerStrength;
-	private IStrongTeam strongTeam;
-	private ISwapPlayers swapPlayers;
-	private IWeakTeam weakTeam;
-	private IResolveTrade resolveTrade;
-	private IIntiateTradeOffer initiateTradeOffer;
-
 	@Override
 	public ITradeDecision getTradedecision() {
-		if (tradeDecision == null) {
-			tradeDecision = new TradeDecision();
-		}
-		return tradeDecision;
+		return  new TradeDecision();
 	}
 
 	@Override
 	public ISortPlayerStrength getSortplayerstrength() {
-		if (sortPlayerStrength == null) {
-			sortPlayerStrength = new SortPlayerStrength();
-		}
-		return sortPlayerStrength;
+		return new SortPlayerStrength();
 	}
 
 	@Override
 	public IStrongTeam getStrongteam() {
-		if (strongTeam == null) {
-			strongTeam = new StrongTeam();
-		}
-		return strongTeam;
+		return  new StrongTeam();
 	}
 
 	@Override
 	public ISwapPlayers getSwapplayers() {
-		if (swapPlayers == null) {
-			swapPlayers = new SwapPlayers();
-		}
-		return swapPlayers;
+		return new SwapPlayers();
 	}
 
 	@Override
 	public IWeakTeam getWeakteam() {
-		if (weakTeam == null) {
-			weakTeam = new WeakTeam();
-		}
-		return weakTeam;
+		return new WeakTeam();
 	}
 
 	@Override
 	public IResolveTrade getResolveTrade() {
-		if (resolveTrade == null) {
-			resolveTrade = new ResolveTrade();
-		}
-		return resolveTrade;
+		return new ResolveTrade();
 	}
 
 	@Override
 	public IIntiateTradeOffer getInititatetradeoffer() {
-		if (initiateTradeOffer == null) {
-			initiateTradeOffer = new InitiateTradeOffer();
-		}
-		return initiateTradeOffer;
+		return new InitiateTradeOffer();
 	}
 
 }

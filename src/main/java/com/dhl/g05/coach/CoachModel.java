@@ -3,7 +3,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class CoachModel implements ICoach{
-
 	static final Logger logger = LogManager.getLogger(CoachModel.class);
 	private final static double MAX_STAT = 1.0;
 	private final static double MIN_STAT = 0.0;
@@ -89,13 +88,12 @@ public class CoachModel implements ICoach{
 		if(isCoachNameNull() || isCoachNameEmpty()) {
 			return CoachConstant.CoachNameEmpty;
 		}
-		if(isCoachStatNotValid()) {
+		if(!isCoachStatValid()) {
 			return CoachConstant.InvalidStateOfCoach;
 		}
 		return CoachConstant.Success;
 	}
 
-	@Override
 	public boolean isCoachNameNull() {
 		if(name == null) {
 			return true;
@@ -103,7 +101,6 @@ public class CoachModel implements ICoach{
 		return false;
 	}
 
-	@Override
 	public boolean isCoachNameEmpty() {
 		if(name.isEmpty()) {
 			return true;
@@ -111,19 +108,19 @@ public class CoachModel implements ICoach{
 		return false;
 	}
 
-	@Override
-	public boolean isCoachStatNotValid() {
+	public boolean isCoachStatValid() {
 		logger.info("Validating coach statistics");
 		if (validateStat(skating) && validateStat(shooting) && validateStat(checking) && validateStat(saving)) {
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 
-	private boolean validateStat(double stat) {
+	public boolean validateStat(double stat) {
 		if (stat >= MIN_STAT && stat <= MAX_STAT) {
 			return true;
 		}
 		return false;
 	}
+
 }

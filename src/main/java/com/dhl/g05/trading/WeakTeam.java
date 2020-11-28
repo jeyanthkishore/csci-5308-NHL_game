@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import com.dhl.g05.gameplayconfig.ITradingConfig;
+import com.dhl.g05.gameplayconfig.TradingConfig;
 import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.player.PlayerModel;
 import com.dhl.g05.team.ITeam;
+import com.dhl.g05.team.TeamModel;
+
 
 public class WeakTeam implements IWeakTeam {
 
@@ -90,7 +95,7 @@ public class WeakTeam implements IWeakTeam {
 		int maxPersonPerTrade = trade.getMaxPlayersPerTrade();
 		List<IPlayer> offeredPlayers = new ArrayList<>();
 		List<IPlayer> playersOfWeakTeam = weakTeam.getPlayerList();
-		ISortPlayerStrength sortPlayer = AbstractTradingFactory.instance().getSortplayerstrength();
+		ISortPlayerStrength sortPlayer = AbstractTradingFactory.getFactory().getSortplayerstrength();
 		List<IPlayer> sortPlayersWeakToStrong = sortPlayer.sortByAscending(playersOfWeakTeam);
 		Collection<IPlayer> players = sortPlayersWeakToStrong;
 		List<IPlayer> weakestPLayersToTrade = players.stream().limit(maxPersonPerTrade).collect(Collectors.toList());

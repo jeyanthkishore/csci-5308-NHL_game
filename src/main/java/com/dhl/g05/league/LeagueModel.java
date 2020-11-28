@@ -11,7 +11,7 @@ import com.dhl.g05.conference.IConference;
 import com.dhl.g05.database.IDeserializeModel;
 import com.dhl.g05.database.ISerializeModel;
 import com.dhl.g05.freeagent.IFreeAgent;
-import com.dhl.g05.gameplayconfig.IGamePlayConfig;
+import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.leaguesimulation.ILeagueSchedule;
 import com.dhl.g05.leaguesimulation.ILeagueStanding;
 import com.dhl.g05.leaguesimulation.LeagueSchedule;
@@ -27,7 +27,7 @@ public class LeagueModel implements ILeague{
 	private List<IPlayer> retiredPlayersList;
 	private List<ICoach> coaches;
 	private List<String> generalManagers;
-	private IGamePlayConfig gameplayConfig;
+	private GamePlayConfigModel gameplayConfig;
 	private List<IFreeAgent> retiredFreeAgentsList;
 	private int daysSinceStatIncrease;
 	private LocalDate leagueCurrentDate;
@@ -45,6 +45,15 @@ public class LeagueModel implements ILeague{
 		this.leagueStanding = new LeagueStanding();
 		this.leagueSchedule = new LeagueSchedule();
 		retiredFreeAgentsList = new ArrayList<>();
+	}
+
+	public LeagueModel(String league, List<IConference> conferencedetail,List<IFreeAgent> agent, List<ICoach> coach, List<String> managers,GamePlayConfigModel gamePlay) {
+		setLeagueName(league);
+		setConferenceDetails(conferencedetail);
+		setFreeAgent(agent);
+		setFreeCoach(coach);
+		setManagerList(managers);
+		setGamePlayConfig(gamePlay);
 	}
 
 	public LeagueModel(ILeagueModel leagueObject) {
@@ -143,12 +152,12 @@ public class LeagueModel implements ILeague{
 	}
 
 	@Override
-	public IGamePlayConfig getGamePlayConfig() {
+	public GamePlayConfigModel getGamePlayConfig() {
 		return gameplayConfig;
 	}
 
 	@Override
-	public void setGamePlayConfig(IGamePlayConfig gamePlayConfig) {
+	public void setGamePlayConfig(GamePlayConfigModel gamePlayConfig) {
 		this.gameplayConfig = gamePlayConfig;
 	}
 	

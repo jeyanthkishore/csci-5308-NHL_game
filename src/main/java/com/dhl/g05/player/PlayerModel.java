@@ -1,13 +1,13 @@
 package com.dhl.g05.player;
 import com.dhl.g05.freeagent.FreeAgentConstant;
 import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.gameplayconfig.IAging;
 import com.dhl.g05.gameplayconfig.IInjury;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class PlayerModel extends FreeAgentModel implements IPlayerInjury, IPlayer, IPlayerRetirement{
-
+public class PlayerModel extends FreeAgentModel implements IPlayerInjury,IPlayer, IPlayerRetirement{
 	static final Logger logger = LogManager.getLogger(PlayerModel.class);
 	private Boolean captain;
 	private int injuredForNumberOfDays;
@@ -18,8 +18,8 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury, IPlaye
 		setPosition(null);
 	}
 
-	public PlayerModel(String playerName, String position, Boolean captain, double skating, double shooting, double checking, double saving, int birthDay, int birthMonth, int birthYear) {
-		super(playerName, position, skating, shooting, checking, saving, birthDay, birthMonth, birthYear);
+	public PlayerModel(String playerName, String position, Boolean captain,double skating, double shooting, double checking, double saving, int birthDay,int birthMonth,int birthYear) {
+		super(playerName,position,skating, shooting, checking, saving, birthDay,birthMonth,birthYear);
 		this.captain = captain;
 	}
 
@@ -47,7 +47,6 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury, IPlaye
 		player.loadPlayerModelData(this);
 	}
 
-	@Override
 	public FreeAgentConstant validate() {
 		logger.info("Validating player details");
 		FreeAgentConstant result = super.validate();

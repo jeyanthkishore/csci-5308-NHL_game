@@ -18,6 +18,11 @@ public class ConferenceModel implements IConference {
 		conferenceObject.loadConferenceModelData(this);
 	}
 
+	public ConferenceModel(String conference, List<IDivision> divisiondetail) {
+		conferenceName = conference;
+		divisions = divisiondetail;
+	}
+
 	@Override
 	public void setConferenceName(String conference) {
 		this.conferenceName = conference;
