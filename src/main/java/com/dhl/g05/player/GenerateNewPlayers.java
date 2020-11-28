@@ -14,6 +14,15 @@ public class GenerateNewPlayers implements IGenerateNewPlayers {
 	private static final double percentageOfForwards = 0.5;
 	private static final double percentageOfDefenses = 0.4;
 	private static final double percentageOfGoalies = 0.1;
+	private static final int skatingMaxRange =20;
+	private static final int skatingMinRange =12;
+	private static final int shootingMaxRange =20;
+	private static final int shootingMinRange =12;
+	private static final int checkingMaxRange =18;
+	private static final int checkingMinRange =9;
+	private static final int savingMaxRange =7;
+	private static final int savingMinRange =1;
+			
 	private int numberOfTeams = 2;
 	Random random = new Random();
 
@@ -39,10 +48,10 @@ public class GenerateNewPlayers implements IGenerateNewPlayers {
 			player.setPlayerName(generateRandomName());
 			player.setCaptain(booleanValue[random.nextInt(booleanValue.length)]);
 			player.setPosition(PositionConstant.forward.getValue());
-			player.setSkating(random.nextInt((20 - 12) + 1) + 12);
-			player.setShooting(random.nextInt((20 - 12) + 1) + 12);
-			player.setChecking(random.nextInt((18 - 9) + 1) + 9);
-			player.setSaving(random.nextInt((7 - 1) + 1) + 1);
+			player.setSkating(random.nextInt((skatingMaxRange - skatingMinRange) + 1) + skatingMinRange);
+			player.setShooting(random.nextInt((shootingMaxRange - 12) + 1) + 12);
+			player.setChecking(random.nextInt((checkingMaxRange - checkingMinRange) + 1) + checkingMinRange);
+			player.setSaving(random.nextInt((savingMaxRange) + savingMinRange) + savingMinRange);
 			int[] birthdate = generatePlayerBirthdate();
 			player.setBirthDay(birthdate[0]);
 			player.setBirthMonth(birthdate[1]);
@@ -59,10 +68,10 @@ public class GenerateNewPlayers implements IGenerateNewPlayers {
 			((FreeAgentModel) player).setPlayerName(generateRandomName());
 			player.setCaptain(booleanValue[random.nextInt(booleanValue.length)]);
 			player.setPosition(PositionConstant.defense.getValue());
-			player.setSkating(random.nextInt((20 - 12) + 1) + 12);
-			player.setShooting(random.nextInt((20 - 12) + 1) + 12);
-			player.setChecking(random.nextInt((18 - 9) + 1) + 9);
-			player.setSaving(random.nextInt((7 - 1) + 1) + 1);
+			player.setSkating(random.nextInt((skatingMaxRange - skatingMinRange) + 1) + skatingMinRange);
+			player.setShooting(random.nextInt((shootingMaxRange - shootingMinRange) + 1) + shootingMinRange);
+			player.setChecking(random.nextInt((checkingMaxRange - checkingMinRange) + 1) + checkingMinRange);
+			player.setSaving(random.nextInt((savingMaxRange) + savingMinRange) + savingMinRange);
 			int[] birthdate = generatePlayerBirthdate();
 			((FreeAgentModel) player).setBirthDay(birthdate[0]);
 			((FreeAgentModel) player).setBirthMonth(birthdate[1]);
@@ -79,10 +88,10 @@ public class GenerateNewPlayers implements IGenerateNewPlayers {
 			((FreeAgentModel) player).setPlayerName(generateRandomName());
 			player.setCaptain(booleanValue[random.nextInt(booleanValue.length)]);
 			player.setPosition(PositionConstant.goalie.getValue());
-			player.setSkating(random.nextInt((20 - 12) + 1) + 12);
-			player.setShooting(random.nextInt((20 - 12) + 1) + 12);
-			player.setChecking(random.nextInt((18 - 9) + 1) + 9);
-			player.setSaving(random.nextInt((7 - 1) + 1) + 1);
+			player.setSkating(random.nextInt((skatingMaxRange - skatingMinRange) + 1) + skatingMinRange);
+			player.setShooting(random.nextInt((shootingMaxRange - shootingMinRange) + 1) + shootingMinRange);
+			player.setChecking(random.nextInt((checkingMaxRange - checkingMinRange) + 1) + checkingMinRange);
+			player.setSaving(random.nextInt((savingMaxRange) + savingMinRange) + savingMinRange);
 			int[] birthdate = generatePlayerBirthdate();
 			((FreeAgentModel) player).setBirthDay(birthdate[0]);
 			((FreeAgentModel) player).setBirthMonth(birthdate[1]);
