@@ -484,12 +484,11 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	}
 
 	@Override
-	public void loadCoachModelData(CoachModel coachObject){
+	public void loadCoachModelData(ICoach coachObject){
 		coachObject.setName(headCoachName);
 		coachObject.setSkating(coachSkating);
 		coachObject.setShooting(coachShooting);
 		coachObject.setChecking(coachChecking);
 		coachObject.setSaving(coachSaving);
-
 	}
 }

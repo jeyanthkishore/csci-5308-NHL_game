@@ -27,7 +27,7 @@ public class PlayerInjuryTest {
         IRandomNumberFactory randomNumberFactoryMock = Mockito.mock(RandomNumberFactory.class);
         playerInjured = playerFactory.getPlayerInjury();
         IInjury injury = gamePlayConfigFactory.getInjury();
-        IPlayer player = playerFactory.getPLayer();
+        IPlayer player = playerFactory.getPlayer();
         injury.setInjuryDaysHigh(100);
         injury.setInjuryDaysLow(10);
         injury.setRandomInjuryChance(1.5);

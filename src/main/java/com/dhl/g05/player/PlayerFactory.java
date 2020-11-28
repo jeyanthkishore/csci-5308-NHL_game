@@ -3,8 +3,13 @@ package com.dhl.g05.player;
 public class PlayerFactory extends AbstractPlayerFactory{
 
     @Override
-    public IPlayer getPLayer() {
+    public IPlayer getPlayer() {
         return new PlayerModel();
+    }
+
+    @Override
+    public IPlayer getPlayer(String playerName, String position, Boolean captain, double skating, double shooting, double checking, double saving, int birthDay, int birthMonth, int birthYear) {
+        return new PlayerModel(playerName, position, captain, skating, shooting, checking, saving, birthDay, birthMonth, birthYear);
     }
 
     @Override

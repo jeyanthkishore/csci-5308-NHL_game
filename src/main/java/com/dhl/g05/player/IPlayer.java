@@ -4,24 +4,18 @@ import com.dhl.g05.freeagent.FreeAgentConstant;
 
 public interface IPlayer {
 
+	String getPlayerName();
+
+	void setPlayerName(String player);
+
+	String getPosition();
+
+	void setPosition(String position);
+
     Boolean getCaptain();
 
     void setCaptain(Boolean captain);
 
-    int getInjuredForNumberOfDays();
-
-    void setInjuredForNumberOfDays(int injuredForNumberOfDays);
-    
-    String getPosition();
-
-	void setPosition(String position);
-
-	FreeAgentConstant validate();
-
-	boolean getInjuryStatus();
-
-	void setInjuryStatus(boolean injury);
-	
 	double getSkating();
 
 	void setSkating(double skating);
@@ -37,22 +31,36 @@ public interface IPlayer {
 	double getSaving();
 
 	void setSaving(double saving);
-	
+
+	boolean getInjuryStatus();
+
+	void setInjuryStatus(boolean injury);
+
+	int getInjuredForNumberOfDays();
+
+    void setInjuredForNumberOfDays(int injuredForNumberOfDays);
+
+	boolean getRetirementStatus();
+
+	void setRetirementStatus(boolean value);
+
 	double getPlayerStrength();
 
 	void setPlayerStrength(double playerStrength);
 
 	double calculatePlayerStrength();
-	
+
 	int getBirthDay();
+
+	void setBirthDay(int day);
 
 	int getBirthMonth();
 
+	void setBirthMonth(int month);
+
 	int getBirthYear();
 
-	void setRetirementStatus(boolean value);
-
-	boolean getRetirementStatus();
+	void setBirthYear(int year);
 
 	int getAge();
 
@@ -60,10 +68,6 @@ public interface IPlayer {
 
 	void calculateAge();
 
-	void setBirthDay(int day);
-
-	void setBirthMonth(int month);
-
-	void setBirthYear(int year);
+	FreeAgentConstant validate();
 
 }

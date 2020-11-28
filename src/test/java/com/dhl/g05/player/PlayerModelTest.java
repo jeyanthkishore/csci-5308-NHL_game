@@ -1,12 +1,8 @@
 package com.dhl.g05.player;
-import com.dhl.g05.gameplayconfig.Aging;
-import com.dhl.g05.gameplayconfig.IAging;
+import com.dhl.g05.gameplayconfig.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import com.dhl.g05.freeagent.FreeAgentConstant;
-import com.dhl.g05.gameplayconfig.IInjury;
-import com.dhl.g05.gameplayconfig.Injury;
 import com.dhl.g05.mockdata.JsonMockDataDb;
 
 import static org.junit.Assert.*;
@@ -15,166 +11,95 @@ import static org.junit.Assert.*;
 public class PlayerModelTest {
 
 	private static AbstractPlayerFactory playerFactory;
+	private static AbstractGamePlayConfigFactory gamePlayConfigFactory;
 
 	@BeforeClass
 	public static void setup() {
 		AbstractPlayerFactory.setFactory(new PlayerFactory());
+		AbstractGamePlayConfigFactory.setFactory(new GamePlayConfigFactory());
 		playerFactory = AbstractPlayerFactory.getFactory();
+		gamePlayConfigFactory = AbstractGamePlayConfigFactory.getFactory();
 	}
 
 	@Test
 	public void constructorTest() {
-		PlayerModel object = new PlayerModel();
-		assertNull(object.getPlayerName());
-		assertNull(object.getPosition());
-		assertNull(object.getCaptain());
+		IPlayer player = playerFactory.getPlayer();
+		assertNull(player.getPlayerName());
+		assertNull(player.getPosition());
+		assertNull(player.getCaptain());
 	}
 
 	@Test
-	public void setPlayerNameTest() {
-		PlayerModel object = new PlayerModel();
-		object.setPlayerName("Ronaldo");
-		assertSame(object.getPlayerName(),"Ronaldo");
-	}
-
-	@Test
-	public void getPlayerNameTest() {
-		PlayerModel object = new PlayerModel();
-		object.setPlayerName("Ronaldo");
-		assertSame(object.getPlayerName(),"Ronaldo");
-	}
-
-	@Test
-	public void setPositionTest() {
-		PlayerModel object = new PlayerModel();
-		object.setPosition("forward");
-		assertSame(object.getPosition(),"forward");
-	}
-
-	@Test
-	public void getPositionTest() {
-		PlayerModel object = new PlayerModel();
-		object.setPosition("forward");
-		assertSame(object.getPosition(),"forward");
-	}
-
-	@Test
-	public void setCaptainTest() {
-		PlayerModel object = new PlayerModel();
-		object.setCaptain(true);
-		assertTrue(object.getCaptain());
+	public void parameterConstructorTest() {
+		JsonMockDataDb playerMock = new JsonMockDataDb();
+		IPlayer player = playerFactory.getPlayer(playerMock.playerOneName, playerMock.positionForward, playerMock.captainOne, playerMock.skating, playerMock.shooting, playerMock.checking, playerMock.saving, playerMock.birthDay, playerMock.birthMonth, playerMock.birthYear);
+		assertSame(playerMock.playerOneName, player.getPlayerName());
+		assertSame(playerMock.positionForward, player.getPosition());
+		assertSame(playerMock.captainOne, player.getCaptain());
+		assertEquals(playerMock.skating, player.getSkating(),0);
+		assertEquals(playerMock.shooting, player.getShooting(),0);
+		assertEquals(playerMock.checking, player.getChecking(),0);
+		assertEquals(playerMock.saving, player.getSaving(),0);
+		assertEquals(playerMock.birthDay, player.getBirthDay());
+		assertEquals(playerMock.birthMonth, player.getBirthMonth());
+		assertEquals(playerMock.birthYear, player.getBirthYear());
 	}
 
 	@Test
 	public void getCaptainTest() {
-		PlayerModel object = new PlayerModel();
-		object.setCaptain(true);
-		assertTrue(object.getCaptain());
+		IPlayer player = playerFactory.getPlayer();
+		player.setCaptain(true);
+		assertTrue(player.getCaptain());
 	}
 
 	@Test
-	public void playerListEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		PlayerModel player = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.Success,player.validate());
+	public void setCaptainTest() {
+		IPlayer player = playerFactory.getPlayer();
+		player.setCaptain(true);
+		assertTrue(player.getCaptain());
 	}
 
 	@Test
-	public void checkPlayerDetailsEmpty() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		PlayerModel player = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.Success,player.validate());
+	public void getInjuredForNumberOfDaysTest() {
+		IPlayer player = playerFactory.getPlayer();
+		player.setInjuredForNumberOfDays(30);
+		assertSame(player.getInjuredForNumberOfDays(), 30);
 	}
 
 	@Test
-	public void playerNameEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setPlayerNameEmpty();
-		PlayerModel player = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.PlayerValueEmpty,player.validate());
-	}
-
-	@Test
-	public void playerNameNullTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setPlayerNameNull();
-		PlayerModel player = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.PlayerValueEmpty,player.validate());
-	}
-
-	@Test
-	public void playerPositionEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setPlayerPositionEmpty();
-		PlayerModel player = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.PlayerValueEmpty,player.validate());
-	}
-
-	@Test
-	public void playerPositionNullTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setPlayerPostitionNull();
-		PlayerModel player = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.PlayerValueEmpty,player.validate());
-	}
-
-	@Test
-	public void playerPositionValidTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		PlayerModel player = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.Success,player.validate());
-	}
-
-	@Test
-	public void playerPositionCheckTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setPositionDifferent();
-		PlayerModel player = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.PlayerPositionWrong,player.validate());
-	}
-
-	@Test
-	public void captainNullTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setCaptainNull();
-		PlayerModel player = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.CaptainNull,player.validate());
-	}
-
-	@Test
-	public void validatePlayerTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		PlayerModel player = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.Success,player.validate());
-		mock.setPlayerPositionEmpty();
-		player = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.PlayerValueEmpty,player.validate());
-		mock = new JsonMockDataDb();
-		mock.setPositionDifferent();
-		player = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.PlayerPositionWrong,player.validate());
-		mock = new JsonMockDataDb();
-		mock.setCaptainNull();
-		player = new PlayerModel(mock);
-		assertSame(FreeAgentConstant.CaptainNull,player.validate());
+	public void setInjuredForNumberOfDaysTest() {
+		IPlayer player = playerFactory.getPlayer();
+		player.setInjuredForNumberOfDays(30);
+		assertSame(player.getInjuredForNumberOfDays(), 30);
 	}
 
 	@Test
 	public void checkPlayerInjuryTest() {
-		IPlayerInjured playerInjured = new PlayerInjury();
-		IPlayerInjury playerInjury = new PlayerModel();
-		IPlayer player = new PlayerModel();
-		IInjury injury = new Injury();
+		IPlayerInjured playerInjured = playerFactory.getPlayerInjury();
+		IPlayerInjury playerInjury = playerFactory.getInjuredPlayer();
+		IPlayer player = playerFactory.getPlayer();
+		IInjury injury = gamePlayConfigFactory.getInjury();
 		assertFalse(playerInjury.checkPlayerInjury(playerInjured,player, injury));
 	}
 
 	@Test
 	public void checkPlayerRetirementTest() {
-		IPlayerRetirement playerRetirement = new PlayerModel();
+		IPlayerRetirement playerRetirement = playerFactory.getRetiredPlayer();
 		IPlayerRetired playerRetired = playerFactory.getPlayerRetirement();
-		IPlayer player = playerFactory.getPLayer();
-		IAging aging = new Aging();
+		IPlayer player = playerFactory.getPlayer();
+		IAging aging = gamePlayConfigFactory.getAging();
 		assertTrue(playerRetirement.checkPlayerRetirement(playerRetired, player, aging));
+	}
 
+	@Test
+	public void validatePlayerTest() {
+		IPlayer player = playerFactory.getPlayer();
+		player.setPlayerName("Ronaldo");
+		player.setPosition("forward");
+		player.setCaptain(true);
+		player.setBirthDay(12);
+		player.setBirthMonth(11);
+		player.setBirthYear(11);
+		assertEquals(FreeAgentConstant.Success, player.validate() );
 	}
 }

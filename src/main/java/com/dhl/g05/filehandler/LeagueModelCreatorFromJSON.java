@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.dhl.g05.gameplayconfig.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -24,21 +25,6 @@ import com.dhl.g05.division.IDivision;
 import com.dhl.g05.freeagent.FreeAgentConstant;
 import com.dhl.g05.freeagent.FreeAgentModel;
 import com.dhl.g05.freeagent.IFreeAgent;
-import com.dhl.g05.gameplayconfig.Aging;
-import com.dhl.g05.gameplayconfig.AgingConstant;
-import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.gameplayconfig.GameResolverConfig;
-import com.dhl.g05.gameplayconfig.GameResolverConstant;
-import com.dhl.g05.gameplayconfig.IAging;
-import com.dhl.g05.gameplayconfig.IGamePlayConfig;
-import com.dhl.g05.gameplayconfig.IGameResolver;
-import com.dhl.g05.gameplayconfig.ITradingConfig;
-import com.dhl.g05.gameplayconfig.Injury;
-import com.dhl.g05.gameplayconfig.InjuryConstant;
-import com.dhl.g05.gameplayconfig.TradingConfig;
-import com.dhl.g05.gameplayconfig.TradingConstant;
-import com.dhl.g05.gameplayconfig.TrainingConfig;
-import com.dhl.g05.gameplayconfig.TrainingConstant;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueConstant;
 import com.dhl.g05.league.LeagueModel;
@@ -90,7 +76,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		return null;
 	}
 
-	private Injury createInjury(JSONObject jsonInjury) {
+	private IInjury createInjury(JSONObject jsonInjury) {
 		if (jsonInjury == null){
 			return null;
 		}
@@ -327,7 +313,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		return freeAgent;
 	}
 
-	private CoachModel createCoach(JSONObject jsonCoachDetails) {
+	private ICoach createCoach(JSONObject jsonCoachDetails) {
 		if (jsonCoachDetails == null){
 			return null;
 		}
