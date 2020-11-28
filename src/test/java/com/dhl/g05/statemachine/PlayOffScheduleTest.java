@@ -19,8 +19,8 @@ public class PlayOffScheduleTest {
 
 	@Before
 	public void init() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		state = stateFactory.getPlayOffState();
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		state = stateFactory.createPlayOffState();
 	}
 	
 	@Test

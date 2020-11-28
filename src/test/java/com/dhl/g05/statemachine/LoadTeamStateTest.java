@@ -18,8 +18,8 @@ public class LoadTeamStateTest {
 	
 	@Before
 	public void init() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		state = stateFactory.getLoadTeamState();
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		state = stateFactory.createLoadTeamState();
 		DatabaseState state = new DatabaseMockFactoryState();
 		ApplicationConfiguration.instance().setDataBaseFactoryState(state);
 	}

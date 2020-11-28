@@ -35,8 +35,8 @@ public class PersistStateTest {
 	
 	@Before
 	public void init() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		state = stateFactory.getPersistState();
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		state = stateFactory.createPersistState();
 		DatabaseState state = new DatabaseMockFactoryState();
 		ApplicationConfiguration.instance().setDataBaseFactoryState(state);
 	}

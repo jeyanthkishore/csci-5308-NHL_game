@@ -41,8 +41,8 @@ public class LoadTeamState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		this.setNextState(stateFactory.getPlayerChoiceState());
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		this.setNextState(stateFactory.createPlayerChoiceState());
 		return true;
 	}
 

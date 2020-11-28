@@ -21,10 +21,10 @@ public class SimulateState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		for (int i = 0; i < seasons; i++) {
-			AbstractState initializeSeasonState = stateFactory.getInitializeSeasonState();
-			stateFactory.getStateMachine(initializeSeasonState).enterState();
+			AbstractState initializeSeasonState = stateFactory.createInitializeSeasonState();
+			stateFactory.createStateMachine(initializeSeasonState).enterState();
 		}
 		return false;
 	}

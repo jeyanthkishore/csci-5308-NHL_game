@@ -22,8 +22,8 @@ public class TrainingStateTest {
 	
 	@Before
 	public void init() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		state = stateFactory.getTrainingState();
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		state = stateFactory.createTrainingState();
 	}
 	
 	

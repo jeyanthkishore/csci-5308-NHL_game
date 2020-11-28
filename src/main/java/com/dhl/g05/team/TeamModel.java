@@ -160,7 +160,7 @@ public class TeamModel implements ITeam {
 	}
 
 	private boolean isPlayerListValid() {
-		if (players.size() > 20) {
+		if (players.size() > 30) {
 			return true;
 		}
 		return false;

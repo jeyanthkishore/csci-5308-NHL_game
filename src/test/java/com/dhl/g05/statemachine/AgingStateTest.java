@@ -15,6 +15,8 @@ import com.dhl.g05.conference.ConferenceModel;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.division.DivisionModel;
 import com.dhl.g05.division.IDivision;
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.league.LeagueModel;
 import com.dhl.g05.leaguesimulation.IScheduleModel;
@@ -29,8 +31,8 @@ public class AgingStateTest {
 	
 	@Before
 	public void init() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		state = stateFactory.getAgingState();
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		state = stateFactory.createAgingState();
 	}
 	
 	@Test
@@ -41,6 +43,7 @@ public class AgingStateTest {
 		List<IDivision> divisionDetails = new ArrayList<>();
 		List<ITeam> teamDetails = new ArrayList<>();
 		ArrayList<IPlayer> playerDetails = new ArrayList<>();
+		ArrayList<IFreeAgent> freeAgentDetails = new ArrayList<>();
 		conferenceDetails.add(conference);
 		leagueMock.setConferenceDetails(conferenceDetails);
 		IDivision division = new DivisionModel();
@@ -60,6 +63,20 @@ public class AgingStateTest {
 		playerDetails.add(player1);
 		playerDetails.add(player2);
 		team.setPlayerList(playerDetails);
+		leagueMock.setRetiredPlayersList(playerDetails);
+		IFreeAgent freeAgent1 = new FreeAgentModel();
+		IFreeAgent freeAgent2 = new FreeAgentModel();
+		freeAgent1.setBirthDay(22);
+		freeAgent1.setBirthMonth(11);
+		freeAgent1.setBirthYear(2000);
+		freeAgent2.setBirthDay(LocalDate.now().getDayOfMonth());
+		freeAgent2.setBirthMonth(12);
+		freeAgent2.setBirthYear(2000);
+		freeAgentDetails.add(freeAgent1);
+		freeAgentDetails.add(freeAgent2);
+		leagueMock.setRetiredFreeAgentsList(freeAgentDetails);
+		leagueMock.setFreeAgent(freeAgentDetails);
+		
 		
 		state.setLeague(leagueMock);
 		state.enter();
@@ -77,6 +94,7 @@ public class AgingStateTest {
 		List<IDivision> divisionDetails = new ArrayList<>();
 		List<ITeam> teamDetails = new ArrayList<>();
 		ArrayList<IPlayer> playerDetails = new ArrayList<>();
+		ArrayList<IFreeAgent> freeAgentDetails = new ArrayList<>();
 		conferenceDetails.add(conference);
 		leagueMock.setConferenceDetails(conferenceDetails);
 		IDivision division = new DivisionModel();
@@ -96,6 +114,19 @@ public class AgingStateTest {
 		playerDetails.add(player1);
 		playerDetails.add(player2);
 		team.setPlayerList(playerDetails);
+		leagueMock.setRetiredPlayersList(playerDetails);
+		IFreeAgent freeAgent1 = new FreeAgentModel();
+		IFreeAgent freeAgent2 = new FreeAgentModel();
+		freeAgent1.setBirthDay(22);
+		freeAgent1.setBirthMonth(11);
+		freeAgent1.setBirthYear(2000);
+		freeAgent2.setBirthDay(LocalDate.now().getDayOfMonth());
+		freeAgent2.setBirthMonth(12);
+		freeAgent2.setBirthYear(2000);
+		freeAgentDetails.add(freeAgent1);
+		freeAgentDetails.add(freeAgent2);
+		leagueMock.setRetiredFreeAgentsList(freeAgentDetails);
+		leagueMock.setFreeAgent(freeAgentDetails);
 		IScheduleModel schedule = new ScheduleModel();
 		schedule.setIsGameCompleted(true);
 		List<IScheduleModel> playoffSchedule = new ArrayList<>();

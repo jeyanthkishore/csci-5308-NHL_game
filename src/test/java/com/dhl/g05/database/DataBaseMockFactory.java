@@ -3,22 +3,22 @@ package com.dhl.g05.database;
 public class DataBaseMockFactory extends DatabaseAbstractFactory{
 
 	@Override
-	public ISerializeModel getSerializeModel() {
+	public ISerializeModel createSerializeObject() {
 		return new SerializeLeagueModelMock();
 	}
 
 	@Override
-	public IFileOperation getFileDetails() {
+	public IFileOperation createFileOperation() {
 		return new FileOperationMock();
 	}
 
 	@Override
-	public ICheckTeam getCheckTeam() {
+	public ICheckTeam createTeamDatabaseOperation() {
 		return new CheckTeamMock();
 	}
 
 	@Override
-	public IDeserializeModel getDeserializeModel() {
+	public IDeserializeModel createDeserializeObject() {
 		return new DeserializeLeagueModelMock();
 	}
 

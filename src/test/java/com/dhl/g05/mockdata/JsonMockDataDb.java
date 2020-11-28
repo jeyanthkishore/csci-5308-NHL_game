@@ -305,7 +305,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	}
 
 	public void addMaximumPlayer() {
-		for(int count = 0; count<22; count++) {
+		for(int count = 0; count<42; count++) {
 			playerList.add(new PlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		}
 	}

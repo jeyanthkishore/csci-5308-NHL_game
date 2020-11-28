@@ -21,22 +21,22 @@ public class StateMachineTest {
 
 	@BeforeClass
 	public static void setup() {
-		stateMachineFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
+		stateMachineFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		communication = new MockPlayerCommunication();
 	}
 
 
 	@Test
 	public void ConstructorTest() {
-		AbstractState importState = stateMachineFactory.getImportState();
-		IStateMachine stateMachine = stateMachineFactory.getStateMachine(importState);
+		AbstractState importState = stateMachineFactory.createImportState();
+		IStateMachine stateMachine = stateMachineFactory.createStateMachine(importState);
 		assertTrue(stateMachine.getCurrentState() instanceof ImportState);
 	}
 
 	@Test
 	public void setCurrentStateTest() {
-		AbstractState createTeamState = stateMachineFactory.getCreateTeamState();
-		IStateMachine stateMachine = stateMachineFactory.getStateMachine(createTeamState);
+		AbstractState createTeamState = stateMachineFactory.createCreateTeamState();
+		IStateMachine stateMachine = stateMachineFactory.createStateMachine(createTeamState);
 
 		stateMachine.setCurrentState(createTeamState);
 		assertTrue(stateMachine.getCurrentState() instanceof CreateTeamState);
@@ -44,9 +44,9 @@ public class StateMachineTest {
 	
 	@Test 
 	public void taskStateTest() {
-		CommunicationAbstractFactory communicationState = ApplicationConfiguration.instance().getCommunicationFactoryState();
+		CommunicationAbstractFactory communicationState = ApplicationConfiguration.instance().getCommunicationConcreteFactoryState();
 		AbstractState createState = new MockAbstractState(communicationState.getCommunication());
-		IStateMachine stateMachine = stateMachineFactory.getStateMachine(createState);
+		IStateMachine stateMachine = stateMachineFactory.createStateMachine(createState);
 		communication.commandLineInput("1\n2");
         stateMachine.enterState();
         assertNull(stateMachine.getCurrentState());
