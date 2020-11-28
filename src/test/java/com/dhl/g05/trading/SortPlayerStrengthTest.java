@@ -7,9 +7,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.dhl.g05.freeagent.FreeAgentModel;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.model.FreeAgentModel;
+import com.dhl.g05.model.IPlayer;
+import com.dhl.g05.model.PlayerModel;
 
 public class SortPlayerStrengthTest {
 

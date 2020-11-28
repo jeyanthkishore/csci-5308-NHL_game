@@ -1,10 +1,10 @@
 package com.dhl.g05.trading;
 
-import com.dhl.g05.conference.IConference;
-import com.dhl.g05.division.IDivision;
-import com.dhl.g05.gameplayconfig.ITradingConfig;
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.team.ITeam;
+import com.dhl.g05.model.IConference;
+import com.dhl.g05.model.IDivision;
+import com.dhl.g05.model.ILeague;
+import com.dhl.g05.model.ITeam;
+import com.dhl.g05.simulation.ITradingConfig;
 
 public class InitiateTradeOffer implements IIntiateTradeOffer {
 

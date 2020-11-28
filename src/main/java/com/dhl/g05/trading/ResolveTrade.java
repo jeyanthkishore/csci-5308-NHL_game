@@ -6,14 +6,14 @@ import java.util.stream.Collectors;
 
 import com.dhl.g05.communication.ITradeCommunication;
 import com.dhl.g05.communication.PlayerCommunication;
-import com.dhl.g05.freeagent.FreeAgentModel;
-import com.dhl.g05.freeagent.IFreeAgent;
-import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.player.PositionConstant;
-import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.model.FreeAgentModel;
+import com.dhl.g05.model.IFreeAgent;
+import com.dhl.g05.model.IPlayer;
+import com.dhl.g05.model.ITeam;
+import com.dhl.g05.model.LeagueModel;
+import com.dhl.g05.model.PlayerModel;
+import com.dhl.g05.model.PositionConstant;
+import com.dhl.g05.model.TeamModel;
 
 public class ResolveTrade implements IResolveTrade {
 	private static final int SKATERS_COUNT = 18;

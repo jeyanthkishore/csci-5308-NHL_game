@@ -1057,11 +1057,15 @@
       "randomAcceptanceChance": 0.05
     },
     "aging": {
+      "MAX_STAT_DECAY_CHANCE": 1,
+      "MIN_STAT_DECAY_CHANCE": 0,
+      "MIN_AGE": 0,
       "averageRetirementAge": 35,
       "maximumAge": 60,
       "statDecayChance": 0.05
     },
     "injuries": {
+      "MIN_RANDOM_INJURY_CHANCE": -1,
       "randomInjuryChance": 0.05,
       "injuryDaysLow": 1,
       "injuryDaysHigh": 120

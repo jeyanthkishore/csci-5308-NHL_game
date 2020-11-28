@@ -2,18 +2,19 @@ package com.dhl.g05.trading;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.conference.IConference;
-import com.dhl.g05.division.DivisionModel;
-import com.dhl.g05.division.IDivision;
-import com.dhl.g05.gameplayconfig.ITradingConfig;
-import com.dhl.g05.gameplayconfig.TradingConfig;
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.TeamModel;
+
+import com.dhl.g05.model.ConferenceModel;
+import com.dhl.g05.model.DivisionModel;
+import com.dhl.g05.model.IConference;
+import com.dhl.g05.model.IDivision;
+import com.dhl.g05.model.ILeague;
+import com.dhl.g05.model.IPlayer;
+import com.dhl.g05.model.ITeam;
+import com.dhl.g05.model.LeagueModel;
+import com.dhl.g05.model.PlayerModel;
+import com.dhl.g05.model.TeamModel;
+import com.dhl.g05.simulation.ITradingConfig;
+import com.dhl.g05.simulation.TradingConfig;
 
 public class MockLeagueModel {
 

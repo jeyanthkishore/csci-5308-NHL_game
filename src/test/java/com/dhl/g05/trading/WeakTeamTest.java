@@ -9,14 +9,14 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.conference.IConference;
-import com.dhl.g05.division.DivisionModel;
-import com.dhl.g05.division.IDivision;
-import com.dhl.g05.freeagent.FreeAgentModel;
-import com.dhl.g05.gameplayconfig.ITradingConfig;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.team.ITeam;
+import com.dhl.g05.model.ConferenceModel;
+import com.dhl.g05.model.DivisionModel;
+import com.dhl.g05.model.FreeAgentModel;
+import com.dhl.g05.model.IConference;
+import com.dhl.g05.model.IDivision;
+import com.dhl.g05.model.IPlayer;
+import com.dhl.g05.model.ITeam;
+import com.dhl.g05.simulation.ITradingConfig;
 
 public class WeakTeamTest {
 	private static IWeakTeam weakTeam;

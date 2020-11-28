@@ -2,8 +2,8 @@ package com.dhl.g05.communication;
 
 import java.util.List;
 
-import com.dhl.g05.coach.ICoach;
-import com.dhl.g05.freeagent.IFreeAgent;
+import com.dhl.g05.model.ICoach;
+import com.dhl.g05.model.IFreeAgent;
 
 public interface IPlayerCommunication {
 	

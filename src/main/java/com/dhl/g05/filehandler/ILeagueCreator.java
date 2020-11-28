@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
 
-import com.dhl.g05.league.ILeague;
+import com.dhl.g05.model.ILeague;
 
 public interface ILeagueCreator {
 	

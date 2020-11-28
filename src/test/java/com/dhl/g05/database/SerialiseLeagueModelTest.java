@@ -6,14 +6,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dhl.g05.communication.CommunicationAbstractFactory;
-import com.dhl.g05.communication.CommunicationFactory;
-import com.dhl.g05.filehandler.LeagueModelJson;
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.mockdata.JsonMockDataDb;
-import com.dhl.g05.statemachine.StateMachineAbstractFactory;
-import com.dhl.g05.statemachine.StateMachineFactory;
+import com.dhl.g05.model.ILeague;
+import com.dhl.g05.model.LeagueMockData;
+import com.dhl.g05.model.LeagueModel;
 
 public class SerialiseLeagueModelTest {
 	
@@ -27,7 +22,7 @@ public class SerialiseLeagueModelTest {
 	@Test
 	public void serialiseObjectsTest() {
 		ISerializeModel serial = new SerialiseLeagueModel();
-		JsonMockDataDb data = new JsonMockDataDb();
+		LeagueMockData data = new LeagueMockData();
 		String teamName = "dummy";
 		assertTrue(serial.serialiseObjects(data.league,teamName));
 	}
