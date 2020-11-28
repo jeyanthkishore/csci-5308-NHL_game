@@ -78,12 +78,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		if (jsonAging == null){
 			return null;
 		}
-<<<<<<< HEAD
-		IAging agingConfig = new Aging();
-=======
-		
 		IAging agingConfig = new AgingConfig();
->>>>>>> develop
 		agingConfig.setAverageRetirementAge(((Number) jsonAging.get("averageRetirementAge")).intValue());
 		agingConfig.setMaximumAge(((Number) jsonAging.get("maximumAge")).intValue());
 		agingConfig.setStatDecayChance(((Number) jsonAging.get("statDecayChance")).doubleValue());
@@ -100,11 +95,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		if (jsonInjury == null){
 			return null;
 		}
-<<<<<<< HEAD
-		IInjury injuryConfig = new Injury();
-=======
 		InjuryConfig injuryConfig = new InjuryConfig();
->>>>>>> develop
 		injuryConfig.setRandomInjuryChance(((Number) jsonInjury.get("randomInjuryChance")).doubleValue());
 		injuryConfig.setInjuryDaysHigh(((Number) jsonInjury.get("injuryDaysHigh")).intValue());
 		injuryConfig.setInjuryDaysLow(((Number) jsonInjury.get("injuryDaysLow")).intValue());
