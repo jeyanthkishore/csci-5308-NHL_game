@@ -13,8 +13,8 @@ import com.dhl.g05.model.ITeam;
 import com.dhl.g05.model.LeagueModel;
 import com.dhl.g05.model.PlayerModel;
 import com.dhl.g05.model.TeamModel;
-import com.dhl.g05.statemachine.ITradingConfig;
-import com.dhl.g05.statemachine.TradingConfig;
+import com.dhl.g05.simulation.ITradingConfig;
+import com.dhl.g05.simulation.TradingConfig;
 
 public class MockLeagueModel {
 

@@ -14,13 +14,13 @@ import com.dhl.g05.model.ITeam;
 import com.dhl.g05.model.LeagueModel;
 import com.dhl.g05.model.PlayerModel;
 import com.dhl.g05.model.TeamModel;
-import com.dhl.g05.statemachine.AgingConfig;
-import com.dhl.g05.statemachine.GamePlayConfigModel;
-import com.dhl.g05.statemachine.GameResolverConfig;
-import com.dhl.g05.statemachine.IGamePlayConfig;
-import com.dhl.g05.statemachine.InjuryConfig;
-import com.dhl.g05.statemachine.TradingConfig;
-import com.dhl.g05.statemachine.TrainingConfig;class PlayerTrainingMockData {
+import com.dhl.g05.simulation.AgingConfig;
+import com.dhl.g05.simulation.GamePlayConfigModel;
+import com.dhl.g05.simulation.GameResolverConfig;
+import com.dhl.g05.simulation.IGamePlayConfig;
+import com.dhl.g05.simulation.InjuryConfig;
+import com.dhl.g05.simulation.TradingConfig;
+import com.dhl.g05.simulation.TrainingConfig;class PlayerTrainingMockData {
 
 	public LeagueModel leagueObject;
 	public PlayerModel player;

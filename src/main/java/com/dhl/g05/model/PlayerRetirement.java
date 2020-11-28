@@ -2,7 +2,7 @@ package com.dhl.g05.model;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.dhl.g05.statemachine.IAging;
+import com.dhl.g05.simulation.IAging;
 
 public class PlayerRetirement implements IPlayerRetired{
     static final Logger logger = LogManager.getLogger(PlayerRetirement.class);

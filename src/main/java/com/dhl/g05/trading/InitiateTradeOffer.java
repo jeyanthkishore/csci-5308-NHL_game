@@ -4,7 +4,7 @@ import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.ITeam;
-import com.dhl.g05.statemachine.ITradingConfig;
+import com.dhl.g05.simulation.ITradingConfig;
 
 public class InitiateTradeOffer implements IIntiateTradeOffer {
 
