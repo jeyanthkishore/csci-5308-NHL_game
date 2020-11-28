@@ -2,38 +2,28 @@ package com.dhl.g05.trading;
 
 public abstract class AbstractTradingFactory {
 
-	public static AbstractTradingFactory abstractTradingFactory;
+    public static AbstractTradingFactory abstractTradingFactory;
 
-	private static AbstractTradingFactory uniqueInstance = null;
+    public static AbstractTradingFactory getFactory() {
+        return abstractTradingFactory;
+    }
 
-	public static AbstractTradingFactory instance() {
-		if (uniqueInstance == null) {
-			uniqueInstance = new TradingFactory();
-		}
-		return uniqueInstance;
+    public static void setFactory(AbstractTradingFactory abstractTradingFactory) {
+    	AbstractTradingFactory.abstractTradingFactory = abstractTradingFactory;
+    }
 
-	}
+    public abstract ITradeDecision getTradedecision();
 
-	public static void setFactory(AbstractTradingFactory abstractTradingFactory) {
-		uniqueInstance = abstractTradingFactory;
-	}
+    public abstract ISortPlayerStrength getSortplayerstrength();
 
-	public static AbstractTradingFactory getFactory() {
-		return uniqueInstance;
-	}
+    public abstract  IStrongTeam getStrongteam();
 
-	public abstract ITradeDecision getTradedecision();
+    public abstract ISwapPlayers getSwapplayers();
 
-	public abstract ISortPlayerStrength getSortplayerstrength();
+    public abstract IWeakTeam getWeakteam();
 
-	public abstract IStrongTeam getStrongteam();
-
-	public abstract ISwapPlayers getSwapplayers();
-
-	public abstract IWeakTeam getWeakteam();
-
-	public abstract IResolveTrade getResolveTrade();
-
-	public abstract IIntiateTradeOffer getInititatetradeoffer();
+    public abstract IResolveTrade getResolveTrade();
+ 
+    public abstract IIntiateTradeOffer getInititatetradeoffer();
 
 }

@@ -309,5 +309,5 @@ public class MockLeagueModel {
 		trading.setRandomTradeOfferChance(1.00);
 		trading.setRandomAcceptanceChance(1.00);
 		return trading;
-	}
+	}	
 }

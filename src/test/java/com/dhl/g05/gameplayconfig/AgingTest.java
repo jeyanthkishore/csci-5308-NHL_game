@@ -1,135 +1,132 @@
 package com.dhl.g05.gameplayconfig;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.dhl.g05.mockdata.JsonMockDataDb;
 
 public class AgingTest {
 
-    private static AbstractGamePlayConfigFactory gamePlayConfigFactory;
-
-    @BeforeClass
-    public static void setup() {
-        AbstractGamePlayConfigFactory.setFactory(new GamePlayConfigFactory());
-        gamePlayConfigFactory = AbstractGamePlayConfigFactory.getFactory();
+    @Test
+    public void parameterConstructorTest1() {
+        JsonMockDataDb data = new JsonMockDataDb();
+        Aging object = new Aging(data.averageRetirementAge, data.maximumAge, data.statDecayChance);
+        assertSame(data.averageRetirementAge,object.getAverageRetirementAge());
+        assertSame(data.maximumAge, object.getMaximumAge());
+    }
+    @Test
+    public void parameterConstructorTest2() {
+        JsonMockDataDb data = new JsonMockDataDb();
+        Aging object = new Aging(data.averageRetirementAge, data.maximumAge, data.statDecayChance);
+        assertEquals(data.statDecayChance, object.getStatDecayChance(),0); 
     }
 
     @Test
     public void getAverageRetirementAgeTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setAverageRetirementAge(37);
-        assertSame(aging.getAverageRetirementAge(),37);
+        Aging object = new Aging();
+        object.setAverageRetirementAge(37);
+        assertSame(object.getAverageRetirementAge(),37);
     }
 
     @Test
     public void setAverageRetirementAgeTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setAverageRetirementAge(37);
-        assertSame(aging.getAverageRetirementAge(),37);
+        Aging object = new Aging();
+        object.setAverageRetirementAge(37);
+        assertSame(object.getAverageRetirementAge(),37);
     }
 
     @Test
     public void getMaximumAgeTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setMaximumAge(50);
-        assertSame(aging.getMaximumAge(),50);
+        Aging object = new Aging();
+        object.setMaximumAge(50);
+        assertSame(object.getMaximumAge(),50);
     }
 
     @Test
     public void setMaximumAgeTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setMaximumAge(50);
-        assertSame(aging.getMaximumAge(),50);
+        Aging object = new Aging();
+        object.setMaximumAge(50);
+        assertSame(object.getMaximumAge(),50);
     }
-
     @Test
     public void setStatDecayChanceTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setStatDecayChance(0.05);
-        assertEquals(aging.getStatDecayChance(),0.05,0);
+        Aging object = new Aging();
+        object.setStatDecayChance(0.05);
+        assertEquals(object.getStatDecayChance(),0.05,0);
     }
-
     @Test
     public void getStatDecayChanceTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setStatDecayChance(0.01);
-        assertEquals(aging.getStatDecayChance(),0.01,0);
+        Aging object = new Aging();
+        object.setStatDecayChance(0.01);
+        assertEquals(object.getStatDecayChance(),0.01,0);
     }
-
     @Test
-    public void isStatDecayChanceValidTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setStatDecayChance(0.05);
-        assertFalse(aging.isStatDecayChanceNotValid(aging.getStatDecayChance()));
+    public void isStatDecayChanceNotValidTest1() {
+        Aging object = new Aging();
+        object.setStatDecayChance(0.05);
+        assertFalse(object.isStatDecayChanceNotValid(object.getStatDecayChance()));
     }
-
     @Test
-    public void isStatDecayChanceNotValidTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setStatDecayChance(-0.05);
-        assertTrue(aging.isStatDecayChanceNotValid(aging.getStatDecayChance()));
+    public void isStatDecayChanceNotValidTest2() {
+        Aging object = new Aging();
+        object.setStatDecayChance(-0.05);
+        assertTrue(object.isStatDecayChanceNotValid(object.getStatDecayChance()));
     }
-
     @Test
-    public void isAverageRetirementAgeValidTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setAverageRetirementAge(50);
-        assertFalse(aging.isAverageRetirementAgeNotValid(aging.getAverageRetirementAge()));
+    public void isStatDecayChanceNotValidTest3() {
+        Aging object = new Aging();
+        object.setStatDecayChance(3.07);
+        assertTrue(object.isStatDecayChanceNotValid(object.getStatDecayChance()));
+    }
+    
+    @Test
+    public void isMaximumAgeNotValidTest() {
+        Aging object= new Aging();
+        object.setMaximumAge(12);
+        assertFalse(object.isMaximumAgeNotValid(object.getMaximumAge()));
+        object.setMaximumAge(-1);
+        assertTrue(object.isMaximumAgeNotValid(object.getMaximumAge()));
     }
 
     @Test
     public void isAverageRetirementAgeNotValidTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setAverageRetirementAge(0);
-        assertTrue(aging.isAverageRetirementAgeNotValid(aging.getAverageRetirementAge()));
+        Aging object= new Aging();
+        object.setAverageRetirementAge(45);
+        assertFalse(object.isAverageRetirementAgeNotValid(object.getAverageRetirementAge()));
+        object.setAverageRetirementAge(-1);
+        assertTrue(object.isMaximumAgeNotValid(object.getAverageRetirementAge()));
     }
 
     @Test
-    public void isMaximumAgeValidTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setMaximumAge(40);
-        assertFalse(aging.isMaximumAgeNotValid(aging.getMaximumAge()));
-    }
+    public void validateTest() {
+        Aging object = new Aging();
+        object.setMaximumAge(-1);
+        assertSame(AgingConstant.MaximumAgeNotValid,object.validate());
 
-    @Test
-    public void isMaximumAgeNotValidTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setMaximumAge(0);
-        assertTrue(aging.isMaximumAgeNotValid(aging.getMaximumAge()));
-    }
+        object = new Aging();
+        object.setMaximumAge(10);
+        object.setAverageRetirementAge(-1);
+        assertSame(AgingConstant.AverageRetirementAgeNotValid,object.validate());
 
-    @Test
-    public void maximumAgeValidateTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setMaximumAge(-1);
-        assertSame(AgingConstant.MaximumAgeNotValid,aging.validate());
-    }
-
-    @Test
-    public void retirementAgeValidateTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setMaximumAge(50);
-        aging.setAverageRetirementAge(-1);
-        assertSame(AgingConstant.AverageRetirementAgeNotValid,aging.validate());
-    }
-
-    @Test
-    public void statDecayChanceValidateTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setMaximumAge(50);
-        aging.setAverageRetirementAge(35);
-        aging.setStatDecayChance(0);
-        assertSame(AgingConstant.StatDecayChanceNotValid,aging.validate());
+        object = new Aging();
+        object.setMaximumAge(50);
+        object.setAverageRetirementAge(35);
+        assertSame(AgingConstant.Success,object.validate());
     }
 
 	@Test
-	public void validateTest() {
-        IAging aging = gamePlayConfigFactory.getAging();
-        aging.setMaximumAge(50);
-        aging.setAverageRetirementAge(35);
-        aging.setStatDecayChance(0.1);
-        assertSame(AgingConstant.Success,aging.validate());
+	public void validateTest2() {
+		Aging object = new Aging(50, 35, 0.05);
+		assertSame(AgingConstant.Success, object.validate());
 	}
+
+	@Test
+	public void validateTest3() {
+		Aging object = new Aging(40, 32, -5.66);
+		assertSame(AgingConstant.StatDecayChanceNotValid, object.validate());
+	}
+
 }

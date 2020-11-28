@@ -9,6 +9,16 @@ public class TradingConfig implements ITradingConfig{
     private int maxPlayersPerTrade;
     private double randomAcceptanceChance;
     
+    public TradingConfig(int loss,double tradeOffer,int maxPlayer,double accept) {
+    	this.lossPoint = loss;
+    	this.randomTradeOfferChance = tradeOffer;
+    	this.maxPlayersPerTrade = maxPlayer;
+    	this.randomAcceptanceChance = accept;
+    }
+    public TradingConfig()
+    { 	
+    }
+
 	public int getLossPoint() {
         return lossPoint;
     }

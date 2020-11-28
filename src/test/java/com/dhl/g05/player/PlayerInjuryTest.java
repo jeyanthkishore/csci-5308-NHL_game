@@ -27,13 +27,13 @@ public class PlayerInjuryTest {
         IRandomNumberFactory randomNumberFactoryMock = Mockito.mock(RandomNumberFactory.class);
         playerInjured = playerFactory.getPlayerInjury();
         IInjury injury = gamePlayConfigFactory.getInjury();
-        IPlayer player = playerFactory.getPlayer();
+        IPlayer player = playerFactory.getPLayer();
         injury.setInjuryDaysHigh(100);
         injury.setInjuryDaysLow(10);
         injury.setRandomInjuryChance(1.5);
-        player.setInjuryStatus(true);
+        player.setInjuredStatus(true);
         assertTrue(playerInjured.checkPlayerInjury(player,injury));
-        player.setInjuryStatus(false);
+        player.setInjuredStatus(false);
         when(randomNumberFactoryMock.generateRandomDoubleNumber(0,1)).thenReturn(0.01);
         assertTrue(playerInjured.checkPlayerInjury(player,injury));
     }

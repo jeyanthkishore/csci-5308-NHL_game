@@ -7,6 +7,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.dhl.g05.mockdata.JsonMockDataDb;
+
 public class TradingConfigTest {
 
 	private static ITradingConfig tradingConfig;
@@ -16,6 +18,15 @@ public class TradingConfigTest {
 	public static void setup() {
 		AbstractGamePlayConfigFactory.setFactory(new GamePlayConfigFactory());
 		abstractGamePlayConfigFactory = AbstractGamePlayConfigFactory.getFactory();
+	}
+
+	@Test
+	public void parameterConstructorTest() {
+		JsonMockDataDb data = new JsonMockDataDb();
+		ITradingConfig object = new TradingConfig(data.lossPoint, data.randomTradeOffer, data.maxPlayerPerTrade,
+				data.randomAcceptanceChance);
+		assertEquals(data.randomTradeOffer, object.getRandomTradeOfferChance(), 0);
+		assertSame(data.lossPoint, object.getLossPoint());
 	}
 
 	@Test

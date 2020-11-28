@@ -6,11 +6,8 @@ import com.dhl.g05.gameplayconfig.ITradingConfig;
 import com.dhl.g05.league.ILeague;
 import com.dhl.g05.team.ITeam;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 public class InitiateTradeOffer implements IIntiateTradeOffer {
-	static final Logger logger = LogManager.getLogger(TradeDecision.class);
+
 	private ITradingConfig trade;
 
 	public ITradingConfig getTrade() {
@@ -23,9 +20,9 @@ public class InitiateTradeOffer implements IIntiateTradeOffer {
 
 	public ILeague initiateTradeOffer(ILeague league) {
 		boolean hasBestTeamToTrade = false;
-		IWeakTeam teamInitiatingTrade = AbstractTradingFactory.instance().getWeakteam();
-		IStrongTeam teamAcceptingTrade = AbstractTradingFactory.instance().getStrongteam();
-		ITradeDecision tradeDecision = AbstractTradingFactory.instance().getTradedecision();
+		IWeakTeam teamInitiatingTrade = AbstractTradingFactory.getFactory().getWeakteam();
+		IStrongTeam teamAcceptingTrade = AbstractTradingFactory.getFactory().getStrongteam();
+		ITradeDecision tradeDecision = AbstractTradingFactory.getFactory().getTradedecision();
 		ITradingConfig trade = getTrade();
 		ITradeValue checkTradeValue = new TradeValue(trade);
 
@@ -37,7 +34,6 @@ public class InitiateTradeOffer implements IIntiateTradeOffer {
 							if (t.getUserTeam() == false) {
 							}
 						}
-						logger.info("Validating player details");
 						teamInitiatingTrade.setWeakTeam(t);
 						teamInitiatingTrade.setConferenceName(c.getConferenceName());
 						teamInitiatingTrade.setDivisionName(d.getDivisionName());

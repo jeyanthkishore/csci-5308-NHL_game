@@ -76,7 +76,7 @@ public class ResolveTrade implements IResolveTrade {
 
 	public void dropToFreeAgentList(ITeam team, String position, int count) {
 		LeagueModel leagueDetails = new LeagueModel();
-		ISortPlayerStrength sortPlayer = AbstractTradingFactory.instance().getSortplayerstrength();
+		ISortPlayerStrength sortPlayer = Trading.instance().getSortplayerstrength();
 		List<IPlayer> players = getPlayerPosition(team.getPlayerList(), position);
 		List<IPlayer> weakestPlayers = sortPlayer.sortByDescending(players);
 		List<IPlayer> weakestPLayersToTrade = weakestPlayers.stream().limit(count).collect(Collectors.toList());
@@ -136,7 +136,7 @@ public class ResolveTrade implements IResolveTrade {
 		if (position.equalsIgnoreCase(SKATER)) {
 			for (IFreeAgent player : players) {
 				if (player.getPosition().equals(PositionConstant.forward.getValue())|| player.getPosition().equals(PositionConstant.defense.getValue())){
-					if (player.getRetirementStatus() == true) {
+					if (player.getRetiredStatus() == true) {
 						continue;
 					}
 					playersWithPosition.add(player);
@@ -146,7 +146,7 @@ public class ResolveTrade implements IResolveTrade {
 		} else {
 			for (IFreeAgent player : players) {
 				if (player.getPosition().equals(position)) {
-					if (player.getRetirementStatus() == true) {
+					if (player.getRetiredStatus() == true) {
 						continue;
 					}
 					playersWithPosition.add(player);
@@ -196,7 +196,7 @@ public class ResolveTrade implements IResolveTrade {
 		if (position.equalsIgnoreCase(SKATER)) {
 			for (IPlayer player : list) {
 				if (player.getPosition().equals(PositionConstant.forward.getValue())|| player.getPosition().equals(PositionConstant.defense.getValue())) {
-					if (((FreeAgentModel) player).getRetirementStatus() == true) {
+					if (((FreeAgentModel) player).getRetiredStatus() == true) {
 						continue;
 					}
 					playersWithPosition.add(player);
@@ -206,7 +206,7 @@ public class ResolveTrade implements IResolveTrade {
 		} else {
 			for (IPlayer player : list) {
 				if (player.getPosition().equals(position)) {
-					if (((FreeAgentModel) player).getRetirementStatus() == true) {
+					if (((FreeAgentModel) player).getRetiredStatus() == true) {
 						continue;
 					}
 					playersWithPosition.add(player);
@@ -222,7 +222,7 @@ public class ResolveTrade implements IResolveTrade {
 		if (position.equalsIgnoreCase(SKATER)) {
 			for (IFreeAgent freeAgent : list) {
 				if (freeAgent.getPosition().equals(PositionConstant.forward.getValue())|| freeAgent.getPosition().equals(PositionConstant.defense.getValue())) {
-					if (freeAgent.getRetirementStatus() == true) {
+					if (freeAgent.getRetiredStatus() == true) {
 						continue;
 					}
 					freeAgentsWithPosition.add(freeAgent);
@@ -232,7 +232,7 @@ public class ResolveTrade implements IResolveTrade {
 		}
 		for (IFreeAgent freeAgent : list) {
 			if (freeAgent.getPosition().equals(position)) {
-				if (freeAgent.getRetirementStatus() == true) {
+				if (freeAgent.getRetiredStatus() == true) {
 					continue;
 				}
 				freeAgentsWithPosition.add(freeAgent);

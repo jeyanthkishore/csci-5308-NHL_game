@@ -21,9 +21,4 @@ public class GamePlayConfigFactory extends AbstractGamePlayConfigFactory{
     public ITraining getTraining() {
         return new TrainingConfig();
     }
-
-	@Override
-	public IGameResolver getGameResolver() {
-		return new GameResolverConfig();
-	}
 }

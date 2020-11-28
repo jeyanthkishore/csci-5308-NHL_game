@@ -12,9 +12,7 @@ public abstract class AbstractPlayerFactory {
         AbstractPlayerFactory.abstractPlayerFactory = abstractPlayerFactory;
     }
 
-    public abstract IPlayer getPlayer();
-
-    public abstract  IPlayer getPlayer(String playerName, String position, Boolean captain,double skating, double shooting, double checking, double saving, int birthDay,int birthMonth,int birthYear);
+    public abstract IPlayer getPLayer();
 
     public abstract IRandomNumberFactory getRandomNumber();
 

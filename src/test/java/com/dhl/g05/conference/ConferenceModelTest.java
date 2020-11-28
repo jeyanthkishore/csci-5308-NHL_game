@@ -1,5 +1,6 @@
 package com.dhl.g05.conference;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
@@ -43,6 +44,14 @@ public class ConferenceModelTest {
 		JsonMockDataDb data = new JsonMockDataDb();
 		IConference object = new ConferenceModel();
 		object.setDivisionDetails(data.divisionList);
+		assertSame(data.divisionList,object.getDivisionDetails());
+	}
+
+	@Test
+	public void divisionParameterConstructor() {
+		JsonMockDataDb data = new JsonMockDataDb();
+		IConference object = new ConferenceModel(data.conferenceName,data.divisionList);
+		assertSame(data.conferenceName,object.getConferenceName());
 		assertSame(data.divisionList,object.getDivisionDetails());
 	}
 

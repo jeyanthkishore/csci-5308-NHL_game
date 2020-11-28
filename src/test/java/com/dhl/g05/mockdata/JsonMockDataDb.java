@@ -21,7 +21,6 @@ import com.dhl.g05.freeagent.IFreeAgentModel;
 import com.dhl.g05.gameplayconfig.Aging;
 import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
 import com.dhl.g05.gameplayconfig.GameResolverConfig;
-import com.dhl.g05.gameplayconfig.IGamePlayConfig;
 import com.dhl.g05.gameplayconfig.Injury;
 import com.dhl.g05.gameplayconfig.TradingConfig;
 import com.dhl.g05.gameplayconfig.TrainingConfig;
@@ -53,7 +52,7 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public CoachModel coachDetails;
 	public ArrayList<HashMap<String,Object>> leagueList;
 	public HashMap<String,Object> leagueMap;
-	public IGamePlayConfig gamePlayConfig;
+	public GamePlayConfigModel gamePlayConfig;
 	public TradingConfig tradeConfig;
 	public TrainingConfig training;
 	public GameResolverConfig gameResolver;
@@ -69,9 +68,6 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public String divisionTwoName = "Pacific";
 	public String conferenceName = "Western Conference";
 	public String conferenceTwoName = "Eastern Conference";
-	public ITeam team;
-	public IDivision division;
-	public IConference conference;
 	public double skating = 10;
 	public double shooting = 15;
 	public double checking = 10;
@@ -100,7 +96,6 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	public LeagueModel league;
 	public String playerOneName = "";
 	public String positionOne = "";
-	public String position = "";
 	public String positionForward = "forward";
 	public String freeAgentOne = "freeAgentOne";
 	public String positionDefense = "defense";
@@ -148,59 +143,43 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		coachDetails = new CoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving);
 		playerList.add(new PlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		retiredPlayersList.add(new PlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
-		team = new TeamModel();
-		team.setTeamName(teamName);
-		team.setCoachDetails(coachDetails);
-		team.setGeneralManagerName(generalManagerName);
-		team.setPlayerList(playerList);
-		teamList.add(team);
-		team = new TeamModel();
-		team.setTeamName(teamTwoName);
-		team.setCoachDetails(coachDetails);
-		team.setGeneralManagerName(generalManagerTwoName);
-		team.setPlayerList(playerList);
-		teamList.add(team);
-		division = new DivisionModel();
-		division.setDivisionName(divisionOneName);
-		division.setTeamDetails(teamList);
-		divisionList.add(division);
-		division = new DivisionModel();
-		division.setDivisionName(divisionTwoName);
-		division.setTeamDetails(teamList);
-		divisionList.add(division);
-		String[] playerNames = {playerOneName,playerTwoName,"SuperMan","SpiderMan","Pit Bull",
-		"Goamer","Gamora","Roaster","Brock","Compaien","Taphael","Heinserberg","TossTaylor","Far Cry","Devil","Mike"
-		,"Sachin Tendulkar","Virat Kohli","Rondahino","James Cameron","Silambarasan","Yuvan Raj","Great Khali"
-		,"Caper Carloon","Dwayane Johnson","John Cena","Triple HHH","Vin Diesel","Robert Junior","Mingrann Bose"
-		,"Brad Pit","Kajal Agarwal","Krithick Roshan","Salman Butt","Rajni Kanth","Karthi Sivakumar","Keerthi Suresh"
-		,"Vijay Joseph","Maadu Ravi","Kajol"};
-		String[] positionValue = {"forward","defense","goalie"};
-		int i=3;
-		for(int player =0;player<playerNames.length;player++) {
-			IFreeAgent freeAgent = new FreeAgentModel();
-			freeAgent.setPlayerName(playerNames[player]);
-			freeAgent.setPosition(positionValue[ (player) % i]);
-			freeAgent.setChecking(checking);
-			freeAgent.setSaving(saving);
-			freeAgent.setShooting(shooting);
-			freeAgent.setSkating(skating);
-			freeAgent.setBirthDay(birthDay);
-			freeAgent.setBirthMonth(birthMonth);
-			freeAgent.setBirthYear(birthYear);
-			if(player==15) {
-				i--;
-			}
-			freeAgentList.add(freeAgent);
-			retiredFreeAgentsList.add(freeAgent);
-		}
-		conference = new ConferenceModel();
-		conference.setConferenceName(conferenceName);
-		conference.setDivisionDetails(divisionList);
-		conferenceList.add(conference);
-		conference = new ConferenceModel();
-		conference.setConferenceName(conferenceTwoName);
-		conference.setDivisionDetails(divisionList);
-		conferenceList.add(conference);
+		teamList.add(new TeamModel(teamName,coachDetails,generalManagerName,playerList));
+		teamList.add(new TeamModel(teamTwoName,coachDetails,generalManagerTwoName,playerList));
+		divisionList.add(new DivisionModel(divisionOneName,teamList));
+		divisionList.add(new DivisionModel(divisionTwoName,teamList));
+		freeAgentList.add(new FreeAgentModel(playerOneName,positionOne,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel(playerTwoName,positionTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("SuperMan",positionOne,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Pit Bull","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("SpiderMan","goalie",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Sachin Tendulkar","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Virat Kohli","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Rondahino","forward",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("James Cameron","goalie",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Silambarasan","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Yuvan Raj","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Great Khali","goalie",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Caper Carloon","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Dwayane Johnson","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("John Cena","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Triple HHH","forward",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Vin Diesel","forward",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Robert Junior","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Mingrann Bose","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Brad Pit","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Kajal Agarwal","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Krithick Roshan","forward",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Salman Butt","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Rajni Kanth","forward",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Karthi Sivakumar","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Keerthi Suresh","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Vijay Joseph","forward",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Maadu Ravi","forward",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		freeAgentList.add(new FreeAgentModel("Kajol","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		retiredFreeAgentsList.add(new FreeAgentModel("Kajol","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		retiredFreeAgentsList.add(new FreeAgentModel("Kajol","defense",skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		conferenceList.add(new ConferenceModel(conferenceName,divisionList));
+		conferenceList.add(new ConferenceModel(conferenceTwoName,divisionList));
 		coachList.add(new CoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving));
 		coachListTwo.add(new CoachModel(headCoachName,coachSkating,2.2,coachChecking, coachSaving));
 		managerList.add(generalManagerName);
@@ -217,29 +196,12 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		leagueList.add(leagueMap);
 		leagueMap.put("league_name","CanadaLeague");
 		leagueList.add(leagueMap);
-		tradeConfig = new TradingConfig();
-		tradeConfig.setLossPoint(lossPoint);
-		tradeConfig.setMaxPlayersPerTrade(maxPlayerPerTrade);
-		tradeConfig.setRandomTradeOfferChance(randomTradeOffer);
-		tradeConfig.setRandomAcceptanceChance(randomAcceptanceChance);
-		training = new TrainingConfig();
-		training.setDaysUntilStatIncreaseCheck(daysUntilTraining);
-		gameResolver = new GameResolverConfig();
-		gameResolver.setRandomWinChance(randownWinChance);
-		injury = new Injury();
-		injury.setInjuryDaysHigh(injuryDaysHigh);
-		injury.setInjuryDaysLow(injuryDaysLow);
-		injury.setRandomInjuryChance(randomInjuryChance);
-		aging = new Aging();
-		aging.setAverageRetirementAge(averageRetirementAge);
-		aging.setMaximumAge(maximumAge);
-		aging.setStatDecayChance(statDecayChance);
-		gamePlayConfig = new GamePlayConfigModel();
-		gamePlayConfig.setAging(aging);
-		gamePlayConfig.setGameResolver(gameResolver);
-		gamePlayConfig.setInjuries(injury);
-		gamePlayConfig.setTrading(tradeConfig);
-		gamePlayConfig.setTraining(training);
+		tradeConfig = new TradingConfig(lossPoint, randomTradeOffer, maxPlayerPerTrade, randomAcceptanceChance);
+		training = new TrainingConfig(daysUntilTraining);
+		gameResolver = new GameResolverConfig(randownWinChance);
+		injury = new Injury(randomInjuryChance, injuryDaysLow, injuryDaysHigh);
+		aging = new Aging(averageRetirementAge, maximumAge,statDecayChance);
+		gamePlayConfig = new GamePlayConfigModel(tradeConfig, aging, injury, gameResolver, training);
 		league.setGamePlayConfig(gamePlayConfig);
 	}
 	
@@ -282,26 +244,6 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	
 	public void setPlayerListEmpty() {
 		playerList.clear();
-	}
-
-	public void setSkating(double skating) {
-		this.skating = skating;
-	}
-
-	public void setShooting(double shooting) {
-		this.shooting = shooting;
-	}
-
-	public void setChecking(double checking) {
-		this.checking = checking;
-	}
-
-	public void setSaving(double saving) {
-		this.saving = saving;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
 	}
 
 	public void addMaximumPlayer() {
@@ -412,9 +354,22 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 		coachDetails = null;
 	}
 
+	public double calculatePlayerStrength(String position){
+		if(position.equalsIgnoreCase("forward")){
+			playerStrength = skating + shooting + (checking/2);
+		}
+		if(position.equalsIgnoreCase("defense")){
+			playerStrength = skating + checking + (shooting/2);
+		}
+		if(position.equalsIgnoreCase("goalie")){
+			playerStrength = skating + saving;
+		}
+		return playerStrength;
+	}
+
 	public double calculateTeamStrength(List<IPlayer> playerList){
 		for (IPlayer player: playerList) {
-			if(player.getInjuryStatus()){
+			if(player.getInjuredStatus()){
 				teamStrength +=	player.calculatePlayerStrength()/2;
 			}
 			else{
@@ -484,11 +439,12 @@ public class JsonMockDataDb implements ILeagueModel,IConferenceModel,IDivisionMo
 	}
 
 	@Override
-	public void loadCoachModelData(ICoach coachObject){
+	public void loadCoachModelData(CoachModel coachObject){
 		coachObject.setName(headCoachName);
 		coachObject.setSkating(coachSkating);
 		coachObject.setShooting(coachShooting);
 		coachObject.setChecking(coachChecking);
 		coachObject.setSaving(coachSaving);
+
 	}
 }

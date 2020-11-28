@@ -4,14 +4,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class PlayerInjury implements IPlayerInjured {
-
     static final Logger logger = LogManager.getLogger(PlayerInjury.class);
 
     @Override
     public boolean checkPlayerInjury(IPlayer player, IInjury injury) {
         logger.info("Check whether player is injured or not");
         IRandomNumberFactory randomNumberFactory = AbstractPlayerFactory.getFactory().getRandomNumber();
-        if(player.getInjuryStatus()) {
+        if(player.getInjuredStatus()) {
             return true;
         }
         else {
@@ -19,7 +18,7 @@ public class PlayerInjury implements IPlayerInjured {
             if (randomDecimal < injury.getRandomInjuryChance()) {
                 int injuredForNumberOfDays = randomNumberFactory.generateRandomIntegerNumber(injury.getInjuryDaysLow(),injury.getInjuryDaysHigh());
                 player.setInjuredForNumberOfDays(injuredForNumberOfDays);
-                player.setInjuryStatus(true);
+                player.setInjuredStatus(true);
                 return true;
             }
             return false;
