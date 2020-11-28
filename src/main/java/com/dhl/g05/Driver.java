@@ -18,9 +18,9 @@ public class Driver {
 		logger.info("Started DHL Application");
 		AbstractGamePlayConfigFactory.setFactory(new GamePlayConfigFactory());
 		AbstractPlayerFactory.setFactory(new PlayerFactory());
-		StateMachineAbstractFactory factory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		AbstractState importState = factory.getImportState();
-		factory.getStateMachine(importState).enterState();
+		StateMachineAbstractFactory factory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		AbstractState importState = factory.createImportState();
+		factory.createStateMachine(importState).enterState();
 	}
 
 }

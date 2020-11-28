@@ -19,8 +19,8 @@ public class ImportStateTest {
 	@Before
 	public void init() {
 //		communicate = new MockPlayerCommunication();
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		state = stateFactory.getImportState();
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		state = stateFactory.createImportState();
 	}
 
 	@Test

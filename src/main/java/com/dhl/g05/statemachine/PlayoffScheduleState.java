@@ -23,8 +23,8 @@ public class PlayoffScheduleState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		this.setNextState(stateFactory.getTrainingState());
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		this.setNextState(stateFactory.createTrainingState());
 		return true;
 	}
 

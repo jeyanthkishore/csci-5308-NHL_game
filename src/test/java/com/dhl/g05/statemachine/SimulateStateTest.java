@@ -12,8 +12,8 @@ public class SimulateStateTest {
 
 	@Before
 	public void init() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		state = stateFactory.getStimulateState(0);
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		state = stateFactory.createStimulateState(0);
 	}
 
 	@Test

@@ -16,8 +16,8 @@ public class PersistState extends AbstractState {
 
 	@Override
 	public boolean performStateTask() {
-		DatabaseAbstractFactory database = ApplicationConfiguration.instance().getDatabaseFactoryState();
-		ISerializeModel saveLeague = database.getSerializeModel();
+		DatabaseAbstractFactory database = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
+		ISerializeModel saveLeague = database.createSerializeObject();
 		String teamName = this.getCurrentUserTeam();
 		league.saveLeagueObject(saveLeague,teamName);
 		return true;
@@ -25,11 +25,11 @@ public class PersistState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		if(league.getLeagueSchedule().isStanleyCupWinnerDetermined()) {
 			this.setNextState(null);
 		} else {
-			this.setNextState(stateFactory.getAdvancedTimeState());
+			this.setNextState(stateFactory.createAdvancedTimeState());
 		}
 		return true;
 	}

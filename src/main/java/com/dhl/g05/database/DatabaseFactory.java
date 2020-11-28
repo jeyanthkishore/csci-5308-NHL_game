@@ -3,22 +3,22 @@ package com.dhl.g05.database;
 public class DatabaseFactory extends DatabaseAbstractFactory{
 
 	@Override
-	public ISerializeModel getSerializeModel() {
+	public ISerializeModel createSerializeObject() {
 		return new SerialiseLeagueModel();
 	}
 
 	@Override
-	public IFileOperation getFileDetails() {
+	public IFileOperation createFileOperation() {
 		return new FileOperation();
 	}
 
 	@Override
-	public ICheckTeam getCheckTeam() {
-		return new CheckTeam();
+	public ICheckTeam createTeamDatabaseOperation() {
+		return new TeamDatabaseOperation();
 	}
 
 	@Override
-	public IDeserializeModel getDeserializeModel() {
+	public IDeserializeModel createDeserializeObject() {
 		return new DeserializeLeagueModel();
 	}
 

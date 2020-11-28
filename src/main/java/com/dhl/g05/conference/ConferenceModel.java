@@ -10,8 +10,6 @@ public class ConferenceModel implements IConference {
 	private List<IDivision> divisions;
 
 	public ConferenceModel() {
-		setDivisionDetails(null);
-		setConferenceName(null);
 	}
 	
 	public ConferenceModel(IConferenceModel conferenceObject) {

@@ -13,91 +13,91 @@ public class StateMachineFactory extends StateMachineAbstractFactory{
 
     
     @Override
-    public IStateMachine getStateMachine(AbstractState abstractState) {
+    public IStateMachine createStateMachine(AbstractState abstractState) {
         return new StateMachine(abstractState);
     }
     
 	@Override
-	public AbstractState getImportState() {
+	public AbstractState createImportState() {
 		return new ImportState(communication);
 	}
 
 	@Override
-	public AbstractState getCreateTeamState() {
+	public AbstractState createCreateTeamState() {
 		return new CreateTeamState(communication);
 	}
 
 	@Override
-	public AbstractState getLoadTeamState() {
+	public AbstractState createLoadTeamState() {
 		return new LoadTeamState(communication);
 	}
 
 	@Override
-	public AbstractState getPlayerChoiceState() {
+	public AbstractState createPlayerChoiceState() {
 		return new PlayerChoiceState(communication);
 	}
 
 	@Override
-	public AbstractState getStimulateState(int seasons) {
+	public AbstractState createStimulateState(int seasons) {
 		return new SimulateState(seasons);
 	}
 
 	@Override
-	public AbstractState getInitializeSeasonState() {
+	public AbstractState createInitializeSeasonState() {
 		return new InitializeSeasonState(communication);
 	}
 
 
 	@Override
-	public AbstractState getAdvancedTimeState() {
+	public AbstractState createAdvancedTimeState() {
 		return new AdvanceTimeState();
 	}
 
 
 	@Override
-	public AbstractState getTrainingState() {
+	public AbstractState createTrainingState() {
 		return new TrainingState();
 	}
 
 
 	@Override
-	public AbstractState getPlayOffState() {
+	public AbstractState createPlayOffState() {
 		return new PlayoffScheduleState();
 	}
 
 
 	@Override
-	public AbstractState getAgingState() {
+	public AbstractState createAgingState() {
 		return new AgingState();
 	}
 
 
 	@Override
-	public AbstractState getTradeState() {
+	public AbstractState createTradeState() {
 		return new TradeState();
 	}
 
 
 	@Override
-	public AbstractState getStimulateGameState() {
+	public AbstractState createStimulateGameState() {
 		return new StimulateGameState();
 	}
 
 
 	@Override
-	public AbstractState getAdvanceToNextSeasonState() {
+	public AbstractState createAdvanceToNextSeasonState() {
 		return new AdvanceToNextSeasonState();
 	}
 
 
 	@Override
-	public AbstractState getPersistState() {
+	public AbstractState createPersistState() {
 		return new PersistState();
 	}
 
 
 	@Override
-	public AbstractState getPlayerDraftState() {
+	public AbstractState createPlayerDraftState() {
 		return new PlayerDraftState();
 	}
 	

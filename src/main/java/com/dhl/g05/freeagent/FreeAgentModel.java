@@ -207,9 +207,9 @@ public class FreeAgentModel implements IFreeAgent {
 		if (isPlayerStatNotValid()) {
 			return FreeAgentConstant.PlayerStateInvalid;
 		}
-		if (isBirthDateValid()==false) {
-			return FreeAgentConstant.PlayerBirthdateInvalid;
-		}
+//		if (isBirthDateValid()==false) {
+//			return FreeAgentConstant.PlayerBirthdateInvalid;
+//		}
 		return FreeAgentConstant.Success;
 	}
 

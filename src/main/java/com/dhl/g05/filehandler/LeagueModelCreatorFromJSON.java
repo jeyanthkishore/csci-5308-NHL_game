@@ -239,6 +239,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			newTeam.setGeneralManagerName((String)((JSONObject) t).get("generalManager"));
 			newTeam.setCoachDetails(createCoach((JSONObject) ((JSONObject) t).get("headCoach")));
 			newTeam.setPlayerList(players);
+			newTeam.setTeamStrength(newTeam.calculateTeamStrength(players));
 			TeamConstant validationResult  = newTeam.validate();
 			if (validationResult.equals(TeamConstant.Success)) {
 				teams.add(newTeam);
@@ -271,12 +272,13 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 				return null;
 			}
 			IPlayer newPlayer = new PlayerModel(playerName, position, captain,skating, shooting, checking, saving,birthDay,birthMonth,birthYear);
+			newPlayer.setPlayerStrength(newPlayer.calculatePlayerStrength());
 			FreeAgentConstant validationResult  = newPlayer.validate();
 			if (validationResult.equals(FreeAgentConstant.Success)) {
 				players.add(newPlayer);
 			} else {
 				playerCommunication.sendMessage(validationResult.getValue());
-				return null;
+//				return null;
 			}
 		}
 		return players;

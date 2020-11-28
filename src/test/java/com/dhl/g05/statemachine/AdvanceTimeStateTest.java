@@ -18,8 +18,8 @@ public class AdvanceTimeStateTest {
 
 	@Before
 	public void init() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		state = stateFactory.getAdvancedTimeState();
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		state = stateFactory.createAdvancedTimeState();
 	}
 	
 	@Test

@@ -51,5 +51,7 @@ public interface ITeam {
 	TeamConstant validate();
 
 	boolean isTeamExist(String teamName, ICheckTeam checkTeam);
+	
+	double calculateTeamStrength(List<IPlayer> playerList);
 
 }

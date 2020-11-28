@@ -8,9 +8,9 @@ public abstract class DatabaseAbstractFactory {
 		return databaseAbstractFactory;
 	}
 
-	public abstract ISerializeModel getSerializeModel();
-	public abstract IFileOperation getFileDetails();
-	public abstract ICheckTeam getCheckTeam();
-	public abstract IDeserializeModel getDeserializeModel();
+	public abstract ISerializeModel createSerializeObject();
+	public abstract IFileOperation createFileOperation();
+	public abstract ICheckTeam createTeamDatabaseOperation();
+	public abstract IDeserializeModel createDeserializeObject();
 	
 }

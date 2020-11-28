@@ -22,8 +22,8 @@ public class CreateTeamStateTest {
 	 public static void setup() {
 		 	CommunicationState communication = new CommunicationTeamMockFactoryState();
 		    ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
-		    StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		    create = stateFactory.getCreateTeamState();
+		    StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		    create = stateFactory.createCreateTeamState();
 	        JsonMockDataDb data = new JsonMockDataDb();
 			create.setLeague(data.league);
 	    }
@@ -31,7 +31,7 @@ public class CreateTeamStateTest {
 	 @AfterClass
 	 public static void setCommunication() {
 		 CommunicationState communication = new CommunicationPlayerMockFactoryState();
-		    ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
+		 ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
 //		 CommunicationState communication = ApplicationConfiguration.instance().getCommunicationState();
 //		 ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
 	 }
