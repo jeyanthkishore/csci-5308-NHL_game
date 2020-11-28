@@ -1,6 +1,6 @@
 package com.dhl.g05.model;
 
-import com.dhl.g05.gameplayconfig.IAging;
+import com.dhl.g05.statemachine.IAging;
 
 public interface IPlayerRetired {
 

@@ -5,6 +5,9 @@ import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
+import com.dhl.g05.statemachine.GameResolverConfig;
+import com.dhl.g05.statemachine.GameResolverConstant;
+
 public class GameResolverConfigTest {
 	
 	@Test

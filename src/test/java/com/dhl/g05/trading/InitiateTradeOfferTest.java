@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dhl.g05.gameplayconfig.ITradingConfig;
 import com.dhl.g05.model.AbstractPlayerFactory;
 import com.dhl.g05.model.FreeAgentModel;
 import com.dhl.g05.model.IConference;
@@ -18,6 +17,7 @@ import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
 import com.dhl.g05.model.PlayerFactory;
+import com.dhl.g05.statemachine.ITradingConfig;
 
 public class InitiateTradeOfferTest {
 	

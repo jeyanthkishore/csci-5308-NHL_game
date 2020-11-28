@@ -3,8 +3,6 @@ package com.dhl.g05.trading;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dhl.g05.gameplayconfig.ITradingConfig;
-import com.dhl.g05.gameplayconfig.TradingConfig;
 import com.dhl.g05.model.ConferenceModel;
 import com.dhl.g05.model.DivisionModel;
 import com.dhl.g05.model.IConference;
@@ -15,6 +13,8 @@ import com.dhl.g05.model.ITeam;
 import com.dhl.g05.model.LeagueModel;
 import com.dhl.g05.model.PlayerModel;
 import com.dhl.g05.model.TeamModel;
+import com.dhl.g05.statemachine.ITradingConfig;
+import com.dhl.g05.statemachine.TradingConfig;
 
 public class MockLeagueModel {
 
