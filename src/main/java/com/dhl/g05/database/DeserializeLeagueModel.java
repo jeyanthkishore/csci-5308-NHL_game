@@ -8,16 +8,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.gameplayconfig.AgingConfig;
-import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.gameplayconfig.GameResolverConfig;
-import com.dhl.g05.gameplayconfig.IAging;
-import com.dhl.g05.gameplayconfig.IGamePlayConfig;
-import com.dhl.g05.gameplayconfig.IGameResolver;
-import com.dhl.g05.gameplayconfig.ITradingConfig;
-import com.dhl.g05.gameplayconfig.InjuryConfig;
-import com.dhl.g05.gameplayconfig.TradingConfig;
-import com.dhl.g05.gameplayconfig.TrainingConfig;
 import com.dhl.g05.model.CoachModel;
 import com.dhl.g05.model.ConferenceModel;
 import com.dhl.g05.model.DivisionModel;
@@ -32,14 +22,24 @@ import com.dhl.g05.model.ITeam;
 import com.dhl.g05.model.LeagueModel;
 import com.dhl.g05.model.PlayerModel;
 import com.dhl.g05.model.TeamModel;
+import com.dhl.g05.statemachine.AgingConfig;
+import com.dhl.g05.statemachine.GamePlayConfigModel;
+import com.dhl.g05.statemachine.GameResolverConfig;
+import com.dhl.g05.statemachine.IAging;
+import com.dhl.g05.statemachine.IGamePlayConfig;
+import com.dhl.g05.statemachine.IGameResolver;
 import com.dhl.g05.statemachine.ILeagueSchedule;
 import com.dhl.g05.statemachine.ILeagueStanding;
 import com.dhl.g05.statemachine.IScheduleModel;
 import com.dhl.g05.statemachine.IStandingModel;
+import com.dhl.g05.statemachine.ITradingConfig;
+import com.dhl.g05.statemachine.InjuryConfig;
 import com.dhl.g05.statemachine.LeagueSchedule;
 import com.dhl.g05.statemachine.LeagueStanding;
 import com.dhl.g05.statemachine.ScheduleModel;
 import com.dhl.g05.statemachine.StandingModel;
+import com.dhl.g05.statemachine.TradingConfig;
+import com.dhl.g05.statemachine.TrainingConfig;
 
 public class DeserializeLeagueModel implements IDeserializeModel {
 

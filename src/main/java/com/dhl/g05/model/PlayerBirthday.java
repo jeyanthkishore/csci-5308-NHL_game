@@ -3,7 +3,7 @@ package com.dhl.g05.model;
 import java.time.LocalDate;
 import java.util.Random;
 
-import com.dhl.g05.gameplayconfig.IAging;
+import com.dhl.g05.statemachine.IAging;
 
 public class PlayerBirthday extends FreeAgentModel implements IPlayerBirthday {
 

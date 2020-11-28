@@ -3,13 +3,6 @@ package com.dhl.g05.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dhl.g05.gameplayconfig.AgingConfig;
-import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.gameplayconfig.GameResolverConfig;
-import com.dhl.g05.gameplayconfig.IGamePlayConfig;
-import com.dhl.g05.gameplayconfig.InjuryConfig;
-import com.dhl.g05.gameplayconfig.TradingConfig;
-import com.dhl.g05.gameplayconfig.TrainingConfig;
 import com.dhl.g05.model.CoachModel;
 import com.dhl.g05.model.ConferenceModel;
 import com.dhl.g05.model.DivisionModel;
@@ -20,7 +13,14 @@ import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
 import com.dhl.g05.model.LeagueModel;
 import com.dhl.g05.model.PlayerModel;
-import com.dhl.g05.model.TeamModel;class PlayerTrainingMockData {
+import com.dhl.g05.model.TeamModel;
+import com.dhl.g05.statemachine.AgingConfig;
+import com.dhl.g05.statemachine.GamePlayConfigModel;
+import com.dhl.g05.statemachine.GameResolverConfig;
+import com.dhl.g05.statemachine.IGamePlayConfig;
+import com.dhl.g05.statemachine.InjuryConfig;
+import com.dhl.g05.statemachine.TradingConfig;
+import com.dhl.g05.statemachine.TrainingConfig;class PlayerTrainingMockData {
 
 	public LeagueModel leagueObject;
 	public PlayerModel player;

@@ -1,4 +1,4 @@
-package com.dhl.g05.gameplayconfig;
+package com.dhl.g05.statemachine;
 
 public enum TradingConstant {
 

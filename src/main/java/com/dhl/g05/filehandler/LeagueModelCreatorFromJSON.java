@@ -6,7 +6,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.dhl.g05.gameplayconfig.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.model.CoachConstant;
 import com.dhl.g05.model.CoachModel;
 import com.dhl.g05.model.ConferenceConstant;
@@ -27,13 +32,22 @@ import com.dhl.g05.model.LeagueModel;
 import com.dhl.g05.model.PlayerModel;
 import com.dhl.g05.model.TeamConstant;
 import com.dhl.g05.model.TeamModel;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import com.dhl.g05.communication.IPlayerCommunication;
+import com.dhl.g05.statemachine.AgingConfig;
+import com.dhl.g05.statemachine.AgingConstant;
+import com.dhl.g05.statemachine.GamePlayConfigModel;
+import com.dhl.g05.statemachine.GameResolverConfig;
+import com.dhl.g05.statemachine.GameResolverConstant;
+import com.dhl.g05.statemachine.IAging;
+import com.dhl.g05.statemachine.IGamePlayConfig;
+import com.dhl.g05.statemachine.IGameResolver;
+import com.dhl.g05.statemachine.IInjury;
+import com.dhl.g05.statemachine.ITradingConfig;
+import com.dhl.g05.statemachine.InjuryConfig;
+import com.dhl.g05.statemachine.InjuryConstant;
+import com.dhl.g05.statemachine.TradingConfig;
+import com.dhl.g05.statemachine.TradingConstant;
+import com.dhl.g05.statemachine.TrainingConfig;
+import com.dhl.g05.statemachine.TrainingConstant;
 import com.mysql.cj.util.StringUtils;
 
 public class LeagueModelCreatorFromJSON implements ILeagueCreator{

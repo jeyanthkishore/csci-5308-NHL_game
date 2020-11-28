@@ -1,4 +1,4 @@
-package com.dhl.g05.gameplayconfig;
+package com.dhl.g05.statemachine;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

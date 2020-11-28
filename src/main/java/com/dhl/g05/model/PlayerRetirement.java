@@ -1,8 +1,8 @@
 package com.dhl.g05.model;
-import com.dhl.g05.gameplayconfig.IAging;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.dhl.g05.statemachine.IAging;
 
 public class PlayerRetirement implements IPlayerRetired{
     static final Logger logger = LogManager.getLogger(PlayerRetirement.class);

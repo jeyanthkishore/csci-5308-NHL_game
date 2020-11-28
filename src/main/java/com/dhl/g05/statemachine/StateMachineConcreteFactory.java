@@ -3,20 +3,20 @@ package com.dhl.g05.statemachine;
 import com.dhl.g05.communication.IPlayerCommunication;
 
 public class StateMachineConcreteFactory extends StateMachineAbstractFactory{
-	
-	private final IPlayerCommunication communication;
-	
-    public StateMachineConcreteFactory(
-    		IPlayerCommunication communication) {
-        this.communication = communication;
-    }
 
-    
-    @Override
-    public IStateMachine createStateMachine(AbstractState abstractState) {
-        return new StateMachine(abstractState);
-    }
-    
+	private final IPlayerCommunication communication;
+
+	public StateMachineConcreteFactory(
+			IPlayerCommunication communication) {
+		this.communication = communication;
+	}
+
+
+	@Override
+	public IStateMachine createStateMachine(AbstractState abstractState) {
+		return new StateMachine(abstractState);
+	}
+
 	@Override
 	public AbstractState createImportState() {
 		return new ImportState(communication);
@@ -124,5 +124,30 @@ public class StateMachineConcreteFactory extends StateMachineAbstractFactory{
 	public IStandingModel createStandingModel() {
 		return new StandingModel();
 	}
-	
+
+	@Override
+	public IAging createAgingConfig() {
+		return new AgingConfig();
+	}
+
+	@Override
+	public IInjury createInjuryConfig() {
+		return new InjuryConfig();
+	}
+
+	@Override
+	public ITradingConfig createTradingConfig() {
+		return new TradingConfig();
+	}
+
+	@Override
+	public ITraining createTrainingConfig() {
+		return new TrainingConfig();
+	}
+
+	@Override
+	public IGameResolver createGameResolverConfig() {
+		return new GameResolverConfig();
+	}
+
 }

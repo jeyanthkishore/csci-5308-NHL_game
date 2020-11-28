@@ -11,14 +11,6 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dhl.g05.gameplayconfig.AbstractGamePlayConfigFactory;
-import com.dhl.g05.gameplayconfig.GamePlayConfigFactory;
-import com.dhl.g05.model.AbstractPlayerFactory;
-import com.dhl.g05.model.IGenerateNewPlayers;
-import com.dhl.g05.model.IPlayer;
-import com.dhl.g05.model.PlayerFactory;
-import com.dhl.g05.model.PositionConstant;
-
 public class GenerateNewPlayersTest {
 	   private static IGenerateNewPlayers generateNewPlayers;
 	   private static AbstractPlayerFactory playerFactory;

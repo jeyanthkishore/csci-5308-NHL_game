@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.dhl.g05.database.IDeserializeModel;
 import com.dhl.g05.database.ISerializeModel;
-import com.dhl.g05.gameplayconfig.IGamePlayConfig;
+import com.dhl.g05.statemachine.IGamePlayConfig;
 import com.dhl.g05.statemachine.ILeagueSchedule;
 import com.dhl.g05.statemachine.ILeagueStanding;
 import com.dhl.g05.statemachine.LeagueSchedule;

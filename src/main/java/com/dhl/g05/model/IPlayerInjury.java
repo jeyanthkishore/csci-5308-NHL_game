@@ -1,6 +1,6 @@
 package com.dhl.g05.model;
 
-import com.dhl.g05.gameplayconfig.IInjury;
+import com.dhl.g05.statemachine.IInjury;
 
 public interface IPlayerInjury {
 
