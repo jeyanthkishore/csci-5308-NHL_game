@@ -12,10 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.leaguesimulation.DateHandler;
-import com.dhl.g05.leaguesimulation.IScheduleModel;
-import com.dhl.g05.leaguesimulation.ScheduleModel;
-import com.dhl.g05.mockdata.JsonMockDataDb;
+import com.dhl.g05.model.LeagueMockData;
 
 public class TrainingStateTest {
 	private AbstractState state;
@@ -29,7 +26,7 @@ public class TrainingStateTest {
 	
 	@Test
 	public void performTaskTrainingTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
+		LeagueMockData mock = new LeagueMockData();
 		mock.league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue(), Month.AUGUST, 30));
 		mock.league.setDaysSinceStatIncrease(140);
 		
@@ -44,7 +41,7 @@ public class TrainingStateTest {
 	
 	@Test
 	public void performTaskAgingTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
+		LeagueMockData data = new LeagueMockData();
 		data.league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
 		data.league.setDaysSinceStatIncrease(140);
 		IScheduleModel schedule = new ScheduleModel();
@@ -64,7 +61,7 @@ public class TrainingStateTest {
 	
 	@Test
 	public void performTaskStimulateGameTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
+		LeagueMockData data = new LeagueMockData();
 		data.league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
 		data.league.setDaysSinceStatIncrease(140);
 		IScheduleModel schedule = new ScheduleModel();

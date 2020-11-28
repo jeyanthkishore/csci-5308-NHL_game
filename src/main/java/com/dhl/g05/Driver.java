@@ -5,8 +5,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.dhl.g05.gameplayconfig.AbstractGamePlayConfigFactory;
 import com.dhl.g05.gameplayconfig.GamePlayConfigFactory;
-import com.dhl.g05.player.AbstractPlayerFactory;
-import com.dhl.g05.player.PlayerFactory;
+import com.dhl.g05.model.AbstractPlayerFactory;
+import com.dhl.g05.model.PlayerFactory;
 import com.dhl.g05.statemachine.AbstractState;
 import com.dhl.g05.statemachine.StateMachineAbstractFactory;
 

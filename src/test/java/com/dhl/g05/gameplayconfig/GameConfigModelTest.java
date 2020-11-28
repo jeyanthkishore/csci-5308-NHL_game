@@ -39,7 +39,7 @@ public class GameConfigModelTest {
 	
 	@Test
 	public void setInjuryConfigTest() {
-		IInjury injury = new Injury();
+		IInjury injury = new InjuryConfig();
 		injury.setInjuryDaysHigh(140);
 		injury.setInjuryDaysLow(5);
 		injury.setRandomInjuryChance(0.05);
@@ -50,7 +50,7 @@ public class GameConfigModelTest {
 
 	@Test
 	public void getInjuryConfigTest() {
-		IInjury injury = new Injury();
+		IInjury injury = new InjuryConfig();
 		injury.setInjuryDaysHigh(120);
 		injury.setInjuryDaysLow(1);
 		injury.setRandomInjuryChance(0.05);
@@ -103,7 +103,7 @@ public class GameConfigModelTest {
 	
 	@Test
 	public void setAgingConfigTest() {
-		IAging agingConfig = new Aging();
+		IAging agingConfig = new AgingConfig();
 		agingConfig.setAverageRetirementAge(50);
 		agingConfig.setMaximumAge(66);
 		agingConfig.setStatDecayChance(0.07);
@@ -114,7 +114,7 @@ public class GameConfigModelTest {
 	
 	@Test
 	public void getAgingConfigTest() {
-		IAging agingConfig = new Aging();
+		IAging agingConfig = new AgingConfig();
 		agingConfig.setAverageRetirementAge(20);
 		agingConfig.setMaximumAge(71);
 		agingConfig.setStatDecayChance(0.09);

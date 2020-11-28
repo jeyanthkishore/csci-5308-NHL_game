@@ -8,7 +8,7 @@ import org.json.simple.parser.ParseException;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.filehandler.LeagueModelCreatorFromJSON;
-import com.dhl.g05.league.ILeague;
+import com.dhl.g05.model.ILeague;
 import com.mysql.cj.util.StringUtils;
 
 public class ImportState extends AbstractState {

@@ -2,7 +2,7 @@ package com.dhl.g05.statemachine;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.league.ILeague;
+import com.dhl.g05.model.ILeague;
 
 public class LoadTeamState extends AbstractState{
 

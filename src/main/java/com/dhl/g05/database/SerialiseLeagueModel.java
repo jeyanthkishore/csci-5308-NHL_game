@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.league.ILeague;
+import com.dhl.g05.model.ILeague;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

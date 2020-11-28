@@ -6,10 +6,7 @@ import java.time.Year;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.leaguesimulation.DateHandler;
-import com.dhl.g05.leaguesimulation.IInitializeSchedule;
-import com.dhl.g05.leaguesimulation.ScheduleModel;
+import com.dhl.g05.model.ILeague;
 
 public class InitializeSeasonState extends AbstractState{
 	private IPlayerCommunication communication;

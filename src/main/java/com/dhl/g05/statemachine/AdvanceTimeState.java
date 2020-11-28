@@ -3,8 +3,7 @@ package com.dhl.g05.statemachine;
 import java.time.LocalDate;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.leaguesimulation.DateHandler;
+import com.dhl.g05.model.ILeague;
 
 public class AdvanceTimeState extends AbstractState{
 	private ILeague league;

@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,20 +13,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.conference.IConference;
-import com.dhl.g05.division.DivisionModel;
-import com.dhl.g05.division.IDivision;
-import com.dhl.g05.freeagent.FreeAgentModel;
-import com.dhl.g05.freeagent.IFreeAgent;
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.leaguesimulation.IScheduleModel;
-import com.dhl.g05.leaguesimulation.ScheduleModel;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.model.ConferenceModel;
+import com.dhl.g05.model.DivisionModel;
+import com.dhl.g05.model.FreeAgentModel;
+import com.dhl.g05.model.IConference;
+import com.dhl.g05.model.IDivision;
+import com.dhl.g05.model.IFreeAgent;
+import com.dhl.g05.model.ILeague;
+import com.dhl.g05.model.IPlayer;
+import com.dhl.g05.model.ITeam;
+import com.dhl.g05.model.LeagueModel;
+import com.dhl.g05.model.PlayerModel;
+import com.dhl.g05.model.TeamModel;
 
 public class AgingStateTest {
 	private AbstractState state;
@@ -131,7 +131,9 @@ public class AgingStateTest {
 		schedule.setIsGameCompleted(true);
 		List<IScheduleModel> playoffSchedule = new ArrayList<>();
 		playoffSchedule.add(schedule);
-		
+		DateHandler dateObject  = DateHandler.getInstance();
+		dateObject.performDateAssignment(Year.now().getValue());
+		leagueMock.setLeagueCurrentDate(LocalDate.of((Year.now().getValue()+1), Month.JULY, 15));
 		leagueMock.getLeagueSchedule().setPlayoffSeasonSchedule(playoffSchedule);
 		
 		state.setLeague(leagueMock);
@@ -139,7 +141,7 @@ public class AgingStateTest {
 		state.performStateTask();
 		state.exit();
 		assertEquals(20,player1.getAge());
-		assertTrue(state.getNextState() instanceof AdvanceToNextSeasonState);
+		assertTrue(state.getNextState() instanceof PlayerDraftState);
 	}
 	
 }

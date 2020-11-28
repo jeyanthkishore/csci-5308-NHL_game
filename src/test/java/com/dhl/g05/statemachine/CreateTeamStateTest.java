@@ -12,7 +12,7 @@ import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.CommunicationPlayerMockFactoryState;
 import com.dhl.g05.communication.CommunicationState;
 import com.dhl.g05.communication.CommunicationTeamMockFactoryState;
-import com.dhl.g05.mockdata.JsonMockDataDb;
+import com.dhl.g05.model.LeagueMockData;
 
 public class CreateTeamStateTest {
 	IStateMachine machine;
@@ -24,7 +24,7 @@ public class CreateTeamStateTest {
 		    ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
 		    StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		    create = stateFactory.createCreateTeamState();
-	        JsonMockDataDb data = new JsonMockDataDb();
+	        LeagueMockData data = new LeagueMockData();
 			create.setLeague(data.league);
 	    }
 	 

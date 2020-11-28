@@ -4,12 +4,12 @@ public class GamePlayConfigFactory extends AbstractGamePlayConfigFactory{
 
     @Override
     public IAging getAging() {
-        return new Aging();
+        return new AgingConfig();
     }
 
     @Override
     public IInjury getInjury() {
-        return new Injury();
+        return new InjuryConfig();
     }
 
     @Override

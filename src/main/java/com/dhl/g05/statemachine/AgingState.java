@@ -1,12 +1,14 @@
 package com.dhl.g05.statemachine;
 
+import java.time.LocalDate;
+
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.conference.IConference;
-import com.dhl.g05.division.IDivision;
-import com.dhl.g05.freeagent.IFreeAgent;
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.team.ITeam;
+import com.dhl.g05.model.IConference;
+import com.dhl.g05.model.IDivision;
+import com.dhl.g05.model.IFreeAgent;
+import com.dhl.g05.model.ILeague;
+import com.dhl.g05.model.IPlayer;
+import com.dhl.g05.model.ITeam;
 
 public class AgingState extends AbstractState{
 	
@@ -25,6 +27,7 @@ public class AgingState extends AbstractState{
                 for (ITeam team : division.getTeamDetails()) {
                     for (IPlayer player : team.getPlayerList()) {
                     	player.calculateAge();
+                    	//decreaseStats
                     }
                 }
             }
@@ -48,8 +51,9 @@ public class AgingState extends AbstractState{
 	@Override
 	public boolean exit() {
 		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
-		if (league.getLeagueSchedule().isStanleyCupWinnerDetermined()) {
-			this.setNextState(stateFactory.createAdvanceToNextSeasonState());
+		LocalDate currentDate = league.getLeagueCurrentDate();
+		if (league.getLeagueSchedule().isStanleyCupWinnerDetermined() && DateHandler.getInstance().isTodayPlayerDraftDate(currentDate)) {
+			this.setNextState(stateFactory.createPlayerDraftState());
 		}
 		else {
 			this.setNextState(stateFactory.createPersistState());

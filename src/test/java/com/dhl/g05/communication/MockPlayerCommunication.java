@@ -4,8 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.Scanner;
 
-import com.dhl.g05.coach.ICoach;
-import com.dhl.g05.freeagent.IFreeAgent;
+import com.dhl.g05.model.ICoach;
+import com.dhl.g05.model.IFreeAgent;
 
 public class MockPlayerCommunication implements IPlayerCommunication{
 

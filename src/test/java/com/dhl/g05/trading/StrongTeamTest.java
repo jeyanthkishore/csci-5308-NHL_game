@@ -7,11 +7,11 @@ import static org.junit.Assert.assertSame;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.conference.IConference;
-import com.dhl.g05.division.DivisionModel;
-import com.dhl.g05.division.IDivision;
-import com.dhl.g05.team.ITeam;
+import com.dhl.g05.model.ConferenceModel;
+import com.dhl.g05.model.DivisionModel;
+import com.dhl.g05.model.IConference;
+import com.dhl.g05.model.IDivision;
+import com.dhl.g05.model.ITeam;
 
 public class StrongTeamTest {
 	

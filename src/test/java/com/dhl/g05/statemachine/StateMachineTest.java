@@ -8,11 +8,7 @@ import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.CommunicationAbstractFactory;
-import com.dhl.g05.communication.CommunicationFactory;
 import com.dhl.g05.communication.MockPlayerCommunication;
-import com.dhl.g05.database.DatabaseAbstractFactory;
-import com.dhl.g05.database.DatabaseFactory;
-import com.dhl.g05.filehandler.LeagueModelJson;
 
 public class StateMachineTest {
 	private static StateMachineAbstractFactory stateMachineFactory;
