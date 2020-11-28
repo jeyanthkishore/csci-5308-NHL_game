@@ -12,9 +12,6 @@ import com.mysql.cj.util.StringUtils;
 public class FreeAgentModel implements IFreeAgent {
 
 	static final Logger logger = LogManager.getLogger(FreeAgentModel.class);
-	private static final int  monthlistWith31Days[] = { 1, 3, 5, 7, 8, 10, 12 };
-	private static final int monthlistWith30Days[] = { 4, 6, 9, 11 };
-	private static final int monthlistWith28Days[] = { 2 };
 	private final static int MIN_AGE = 0;
 	private String playerName;
 	private String position;
@@ -287,8 +284,11 @@ public class FreeAgentModel implements IFreeAgent {
 	int birthDay=getBirthDay(); 
 	int birthMonth=getBirthMonth();
 	int birthYear=getBirthYear();
+		int monthlist1[] = { 1, 3, 5, 7, 8, 10, 12 };
+		int monthlist2[] = { 4, 6, 9, 11 };
+		int monthlist3[] = { 2 };
 		boolean valid = false;
-		for (int month : monthlistWith31Days) {
+		for (int month : monthlist1) {
 			if (birthMonth == month) {
 				if (birthDay > 1 && birthDay <= 31) {
 					valid = true;
@@ -296,7 +296,7 @@ public class FreeAgentModel implements IFreeAgent {
 
 			}
 		}
-		for (int month : monthlistWith30Days) {
+		for (int month : monthlist2) {
 			if (birthMonth == month) {
 				if (birthDay > 1 && birthDay <= 30) {
 					valid = true;
@@ -304,7 +304,7 @@ public class FreeAgentModel implements IFreeAgent {
 
 			}
 		}
-		if (birthMonth == monthlistWith28Days[0]) {
+		if (birthMonth == monthlist3[0]) {
 			if ((birthYear % 4 == 0)) {
 				if (birthDay > 1 && birthDay <= 29) {
 					valid = true;
