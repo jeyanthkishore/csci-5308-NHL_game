@@ -46,10 +46,10 @@ public class Aging implements IAging {
 		if (isMaximumAgeNotValid(maximumAge)) {
 			return AgingConstant.MaximumAgeNotValid;
 		}
-		if (isAverageRetirementAgeNotValid(averageRetirementAge)) {
+		else if (isAverageRetirementAgeNotValid(averageRetirementAge)) {
 			return AgingConstant.AverageRetirementAgeNotValid;
 		}
-		if (isStatDecayChanceNotValid(statDecayChance)) {
+		else if (isStatDecayChanceNotValid(statDecayChance)) {
 			return AgingConstant.StatDecayChanceNotValid;
 		}
 		return AgingConstant.Success;

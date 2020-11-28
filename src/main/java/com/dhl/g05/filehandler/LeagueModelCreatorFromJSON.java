@@ -46,14 +46,15 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		this.playerCommunication = playerCommunication;
 	}
 
-	public boolean isFileValidJson(String fileName) {
+	public boolean isFileValidJson(String fileName) throws IOException {
 		try {
 			reader = new FileReader(new File(fileName));
 			parser.parse(reader);
-			reader.close();
 			return true;
 		} catch (ParseException | IOException e) {
 			e.printStackTrace();
+		} finally {
+			reader.close();
 		}
 		return false;
 	}
@@ -62,7 +63,6 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		if (jsonAging == null){
 			return null;
 		}
-		
 		IAging agingConfig = new Aging();
 		agingConfig.setAverageRetirementAge(((Number) jsonAging.get("averageRetirementAge")).intValue());
 		agingConfig.setMaximumAge(((Number) jsonAging.get("maximumAge")).intValue());
@@ -80,7 +80,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		if (jsonInjury == null){
 			return null;
 		}
-		Injury injuryConfig = new Injury();
+		IInjury injuryConfig = new Injury();
 		injuryConfig.setRandomInjuryChance(((Number) jsonInjury.get("randomInjuryChance")).doubleValue());
 		injuryConfig.setInjuryDaysHigh(((Number) jsonInjury.get("injuryDaysHigh")).intValue());
 		injuryConfig.setInjuryDaysLow(((Number) jsonInjury.get("injuryDaysLow")).intValue());

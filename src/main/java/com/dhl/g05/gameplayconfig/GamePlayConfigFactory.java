@@ -26,4 +26,10 @@ public class GamePlayConfigFactory extends AbstractGamePlayConfigFactory{
 	public IGameResolver getGameResolver() {
 		return new GameResolverConfig();
 	}
+
+    /*@Override
+    public IGameSimulationConfig getGameSimulationConfig() {
+        return new GameSimulationConfig();
+    }*/
+
 }

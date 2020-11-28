@@ -6,6 +6,7 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 	IInjury injuries;
 	IGameResolver gameResolver;
 	ITraining training;
+	//IGameSimulationConfig gameSimulationConfig;
 
 	public GamePlayConfigModel() {
 		this.trading = null;
@@ -13,6 +14,7 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 		this.injuries = null;
 		this.gameResolver = null;
 		this.training = null;
+		//this.gameSimulationConfig = null;
 	}
 	
 	@Override
@@ -66,4 +68,13 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 		return gameResolver;
 	}
 
+	/*@Override
+	public IGameSimulationConfig getGameSimulationConfig() {
+		return gameSimulationConfig;
+	}
+
+	@Override
+	public void setGameSimulationConfig(IGameSimulationConfig gameSimulationConfig) {
+		this.gameSimulationConfig = gameSimulationConfig;
+	}*/
 }

@@ -22,4 +22,8 @@ public interface IGamePlayConfig {
 
 	ITradingConfig getTrading();
 
+	/*IGameSimulationConfig getGameSimulationConfig();
+
+	void setGameSimulationConfig(IGameSimulationConfig gameSimulationConfig);*/
+
 }

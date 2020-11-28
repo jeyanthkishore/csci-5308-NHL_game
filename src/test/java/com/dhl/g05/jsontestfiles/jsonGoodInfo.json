@@ -22,6 +22,9 @@
             "randomTradeOfferChance":0.05,
             "maxPlayersPerTrade":2,
             "randomAcceptanceChance":0.05
+        },
+        "gameSimulationConfig" : {
+            "penaltyChance" : 0.5
         }
     },
     "conferences":[

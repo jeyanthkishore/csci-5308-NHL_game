@@ -21,4 +21,7 @@ public abstract class AbstractGamePlayConfigFactory {
     public abstract ITraining getTraining();
     
     public abstract IGameResolver getGameResolver();
+
+    //public abstract IGameSimulationConfig getGameSimulationConfig();
+
 }
