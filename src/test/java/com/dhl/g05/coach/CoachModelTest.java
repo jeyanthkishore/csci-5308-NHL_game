@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+
+import com.dhl.g05.freeagent.FreeAgentModel;
+import com.dhl.g05.freeagent.IFreeAgent;
 import org.junit.Test;
 import com.dhl.g05.mockdata.JsonMockDataDb;
 
@@ -13,6 +16,17 @@ public class CoachModelTest {
 	public void constructorTest() {
 		ICoach coach = new CoachModel();
 		assertNull(coach.getName());
+	}
+
+	@Test
+	public void parameterConstructorTest() {
+		JsonMockDataDb coachMock = new JsonMockDataDb();
+		ICoach coach = new CoachModel(coachMock.headCoachName, coachMock.coachSkating, coachMock.coachShooting, coachMock.coachChecking, coachMock.coachSaving);
+		assertSame(coachMock.headCoachName, coach.getName());
+		assertEquals(coachMock.coachSkating, coach.getSkating(),0);
+		assertEquals(coachMock.coachShooting, coach.getShooting(),0);
+		assertEquals(coachMock.coachChecking, coach.getChecking(),0);
+		assertEquals(coachMock.coachSaving, coach.getSaving(),0);
 	}
 
 	@Test
@@ -86,15 +100,28 @@ public class CoachModelTest {
 	}
 
 	@Test
+	public void coachNameValidateTest() {
+		ICoach coach = new CoachModel();
+		assertEquals(CoachConstant.CoachNameEmpty, coach.validate());
+	}
+
+	@Test
+	public void coachStatValidateTest() {
+		ICoach coach = new CoachModel();
+		coach.setName("Alex");
+		coach.setChecking(-1);
+		assertEquals(CoachConstant.InvalidStateOfCoach, coach.validate());
+	}
+
+	@Test
 	public void validateTest() {
-		JsonMockDataDb coachMock = new JsonMockDataDb();
-		coachMock.setCoachNameEmpty();
-		ICoach coach = new CoachModel(coachMock);
-		assertEquals(CoachConstant.CoachNameEmpty,coach.validate());
-		coachMock = new JsonMockDataDb();
-		coach = new CoachModel(coachMock);
-		coach.setSkating(-1);
-		assertEquals(CoachConstant.InvalidStateOfCoach,coach.validate());
+		ICoach coach = new CoachModel();
+		coach.setName("Alex");
+		coach.setSkating(0.1);
+		coach.setShooting(0.1);
+		coach.setSaving(0.1);
+		coach.setChecking(0.1);
+		assertEquals(CoachConstant.Success, coach.validate());
 	}
 
 	@Test
@@ -132,7 +159,5 @@ public class CoachModelTest {
 		coach.setSaving(0.6);
 		assertEquals(coach.isCoachStatNotValid(),true);
 	}
-
-
 }
 

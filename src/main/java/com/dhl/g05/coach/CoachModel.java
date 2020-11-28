@@ -126,5 +126,4 @@ public class CoachModel implements ICoach{
 		}
 		return false;
 	}
-
 }

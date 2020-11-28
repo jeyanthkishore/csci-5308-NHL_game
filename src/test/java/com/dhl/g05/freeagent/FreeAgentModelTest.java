@@ -6,12 +6,8 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-
 import java.util.List;
-
 import org.junit.Test;
-
-import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.mockdata.JsonMockDataDb;
 
 public class FreeAgentModelTest {
@@ -258,6 +254,23 @@ public class FreeAgentModelTest {
 	}
 
 	@Test
+	public void playerPositionValidateTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setPlayerName("Alex");
+		freeAgent.setPosition("Keeper");
+		assertSame(FreeAgentConstant.PlayerPositionWrong,freeAgent.validate());
+	}
+
+	@Test
+	public void playerStatValidateTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setPlayerName("Alex");
+		freeAgent.setPosition("forward");
+		freeAgent.setSkating(-1);
+		assertSame(FreeAgentConstant.PlayerStateInvalid,freeAgent.validate());
+	}
+
+	@Test
 	public void playerListEmptyTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		FreeAgentModel validate = new FreeAgentModel(mock);
@@ -279,7 +292,6 @@ public class FreeAgentModelTest {
 		assertSame(FreeAgentConstant.PlayerValueEmpty,validate.validate());
 	}
 
-
 	@Test
 	public void playerNameNullTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
@@ -289,43 +301,13 @@ public class FreeAgentModelTest {
 	}
 
 	@Test
-	public void playerPositionEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setPlayerPositionEmpty();
-		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertSame(FreeAgentConstant.PlayerValueEmpty,validate.validate());
-	}
-
-	@Test
-	public void playerPositionNullTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setPlayerPostitionNull();
-		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertSame(FreeAgentConstant.PlayerValueEmpty,validate.validate());
-	}
-
-	@Test
-	public void playerPositionValidTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertSame(FreeAgentConstant.Success,validate.validate());
-	}
-
-	@Test
-	public void playerPositionCheckTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setPositionDifferent();
-		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertSame(FreeAgentConstant.PlayerPositionWrong,validate.validate());
-	}
-
-	@Test
 	public void isbirthDayValidTest1()
 	{
 		FreeAgentModel validate = new FreeAgentModel();
 		validate.setBirthDay(22);
 		assertEquals(validate.isbirthDayValid(),true);
 	}
+
 	@Test
 	public void isbirthDayValidTest2()
 	{
@@ -341,6 +323,7 @@ public class FreeAgentModelTest {
 		validate.setBirthDay(33);
 		assertEquals(validate.isbirthDayValid(),false);
 	}
+
 	@Test
 	public void isbirthYearValidTest1()
 	{
@@ -348,6 +331,7 @@ public class FreeAgentModelTest {
 		validate.setBirthYear(1995);
 		assertEquals(validate.isbirthYearValid(),true);
 	}
+
 	@Test
 	public void isbirthYearValidTest2()
 	{
@@ -363,6 +347,7 @@ public class FreeAgentModelTest {
 		validate.setBirthYear(997);
 		assertEquals(validate.isbirthYearValid(),false);
 	}
+
 	@Test
 	public void isbirthMonthValidTest1()
 	{
@@ -370,6 +355,7 @@ public class FreeAgentModelTest {
 		validate.setBirthMonth(12);
 		assertEquals(validate.isbirthMonthValid(),true);
 	}
+
 	@Test
 	public void isbirthMonthValidTest2()
 	{
@@ -385,6 +371,7 @@ public class FreeAgentModelTest {
 		validate.setBirthMonth(16);
 		assertEquals(validate.isbirthMonthValid(),false);
 	}
+
 	@Test
 	public void isBirthDateValidTest1()
 	{
@@ -394,6 +381,7 @@ public class FreeAgentModelTest {
 		validate.setBirthYear(2000);
 		assertEquals(validate.isBirthDateValid(),true);
 	}
+
 	@Test
 	public void isBirthDateValidTest2()
 	{
@@ -403,6 +391,7 @@ public class FreeAgentModelTest {
 		validate.setBirthYear(2000);
 		assertEquals(validate.isBirthDateValid(),false);
 	}
+
 	@Test
 	public void isBirthDateValidTest3()
 	{
@@ -412,6 +401,7 @@ public class FreeAgentModelTest {
 		validate.setBirthYear(2004);
 		assertEquals(validate.isBirthDateValid(),true);
 	}
+
 	@Test
 	public void calculateAgeTest()
 	{
@@ -439,6 +429,7 @@ public class FreeAgentModelTest {
 		 List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
 		assertEquals(((FreeAgentModel) data.playerList.get(1)).getPlayerName(),freeAgentList.get(1).getPlayerName());
 	}
+
 	@Test
 	public void ConvertPlayerToFreeAgentTestCaptain()
 	{
@@ -447,36 +438,16 @@ public class FreeAgentModelTest {
 		 List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
 		assertNotEquals(data.playerList.get(1),freeAgentList.get(1));
 	}
+
+	@Test
 	public void ConvertPlayerToFreeAgentTestAge()
 	{
 		FreeAgentModel validate = new FreeAgentModel();
 		JsonMockDataDb data = new JsonMockDataDb();
-		 List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
-		 data.playerList.get(1).calculateAge();
-		 freeAgentList.get(1).calculateAge();
-		 assertSame(data.playerList.get(1).getAge(),freeAgentList.get(1).getAge());
-	}
-
-	@Test
-	public void validateTest() {
-		JsonMockDataDb freeAgentMock = new JsonMockDataDb();
-		IFreeAgent freeAgent = new FreeAgentModel(freeAgentMock);
-		assertSame(FreeAgentConstant.Success,freeAgent.validate());
-		freeAgentMock.setPlayerPositionEmpty();
-		freeAgent = new FreeAgentModel(freeAgentMock);
-		assertSame(FreeAgentConstant.PlayerValueEmpty,freeAgent.validate());
-		freeAgentMock = new JsonMockDataDb();
-		freeAgentMock.setPositionDifferent();
-		freeAgent = new FreeAgentModel(freeAgentMock);
-		assertSame(FreeAgentConstant.PlayerPositionWrong,freeAgent.validate());
-		freeAgentMock = new JsonMockDataDb();
-		freeAgent = new FreeAgentModel(freeAgentMock);
-		freeAgent.setBirthDay(55);
-		assertSame(FreeAgentConstant.PlayerBirthdateInvalid,freeAgent.validate());
-		freeAgentMock = new JsonMockDataDb();
-		freeAgent = new FreeAgentModel(freeAgentMock);
-		freeAgent.setSkating(-1);
-		assertSame(FreeAgentConstant.PlayerStateInvalid,freeAgent.validate());
+		List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
+		data.playerList.get(1).calculateAge();
+		freeAgentList.get(1).calculateAge();
+		assertSame(data.playerList.get(1).getAge(),freeAgentList.get(1).getAge());
 	}
 
 }

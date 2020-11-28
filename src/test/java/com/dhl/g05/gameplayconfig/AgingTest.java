@@ -1,17 +1,10 @@
 package com.dhl.g05.gameplayconfig;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-
-import com.dhl.g05.player.AbstractPlayerFactory;
-import com.dhl.g05.player.PlayerFactory;
-import com.dhl.g05.player.PlayerTraining;
-import com.dhl.g05.player.RandomNumberFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 public class AgingTest {
 
@@ -108,25 +101,35 @@ public class AgingTest {
     }
 
     @Test
-    public void validateFailureTest() {
+    public void maximumAgeValidateTest() {
         IAging aging = gamePlayConfigFactory.getAging();
         aging.setMaximumAge(-1);
         assertSame(AgingConstant.MaximumAgeNotValid,aging.validate());
+    }
+
+    @Test
+    public void retirementAgeValidateTest() {
+        IAging aging = gamePlayConfigFactory.getAging();
         aging.setMaximumAge(50);
         aging.setAverageRetirementAge(-1);
         assertSame(AgingConstant.AverageRetirementAgeNotValid,aging.validate());
+    }
+
+    @Test
+    public void statDecayChanceValidateTest() {
+        IAging aging = gamePlayConfigFactory.getAging();
+        aging.setMaximumAge(50);
         aging.setAverageRetirementAge(35);
         aging.setStatDecayChance(0);
         assertSame(AgingConstant.StatDecayChanceNotValid,aging.validate());
     }
 
 	@Test
-	public void validateSuccessTest() {
+	public void validateTest() {
         IAging aging = gamePlayConfigFactory.getAging();
         aging.setMaximumAge(50);
         aging.setAverageRetirementAge(35);
         aging.setStatDecayChance(0.1);
         assertSame(AgingConstant.Success,aging.validate());
 	}
-
 }
