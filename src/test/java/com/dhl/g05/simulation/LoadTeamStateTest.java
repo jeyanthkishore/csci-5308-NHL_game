@@ -5,16 +5,11 @@ import static org.junit.Assert.assertTrue;
 import java.io.ByteArrayInputStream;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.communication.MockPlayerCommunication;
 import com.dhl.g05.database.DatabaseMockFactoryState;
 import com.dhl.g05.database.DatabaseState;
-import com.dhl.g05.simulation.AbstractState;
-import com.dhl.g05.simulation.PlayerChoiceState;
-import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class LoadTeamStateTest {
 	private AbstractState state;

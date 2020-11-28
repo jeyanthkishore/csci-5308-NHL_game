@@ -16,6 +16,7 @@ import com.dhl.g05.model.TeamModel;
 import com.dhl.g05.simulation.ITradingConfig;
 import com.dhl.g05.simulation.TradingConfig;
 
+
 public class MockLeagueModel {
 
 	public ILeague leagueMock() {
@@ -310,5 +311,5 @@ public class MockLeagueModel {
 		trading.setRandomTradeOfferChance(1.00);
 		trading.setRandomAcceptanceChance(1.00);
 		return trading;
-	}	
+	}
 }

@@ -9,16 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
-
-import com.dhl.g05.model.GenerateNewPlayers;
-import com.dhl.g05.model.IGenerateNewPlayers;
-import com.dhl.g05.model.ILeague;
-import com.dhl.g05.model.IPlayer;
-import com.dhl.g05.model.IPlayerDraft;
-import com.dhl.g05.model.PlayerDraft;
 import com.dhl.g05.simulation.ILeagueStanding;
 import com.dhl.g05.simulation.IStandingModel;
 import com.dhl.g05.simulation.LeagueStanding;
+
 
 
 public class PlayerDraftTest {
@@ -34,11 +28,8 @@ public class PlayerDraftTest {
 	public void playerDraftPick() {
 		leagueStanding.setStandingList(mock.mockStandings());
 		List<IStandingModel> standings = leagueStanding.getRankingAcrossLeague();
-		for (IStandingModel standing : standings) {
-			System.out.println(standing.getTeam().getTeamName() + " " + standing.getConference().getConferenceName()
-					+ " " + standing.getDivision().getDivisionName()+ standing.getTotalPoints());
-		}
-		playerDraft.playerDraft(leagueStanding,mock.mockTradePick(standings));
+		playerDraft.setPickOrderAfterTrading(mock.mockTradePickLatest(standings));
+		playerDraft.playerDraft1(leagueStanding);
 	}
 	
 	@Test
@@ -49,11 +40,25 @@ public class PlayerDraftTest {
 	}
 	
 	@Test
-	public void createPickOrderTeamTest() {
+	public void createPickOrderPick1Round1Test() {
 		Map<Integer, List<IStandingModel>> pickOrder = new HashMap<>();
 		pickOrder = getPickOrder();
 		String teamInRound1Pick1 = pickOrder.get(1).get(0).getTeam().getTeamName();
 		assertSame(teamInRound1Pick1, "Boston");
+	}
+	@Test
+	public void createPickOrderPick4Round3Test() {
+		Map<Integer, List<IStandingModel>> pickOrder = new HashMap<>();
+		pickOrder = getPickOrder();
+		String teamInRound1Pick1 = pickOrder.get(3).get(3).getTeam().getTeamName();
+		assertSame(teamInRound1Pick1, "Thunders");
+	}
+	@Test
+	public void createPickOrderPick1Round7Test() {
+		Map<Integer, List<IStandingModel>> pickOrder = new HashMap<>();
+		pickOrder = getPickOrder();
+		String teamInRound1Pick1 = pickOrder.get(7).get(0).getTeam().getTeamName();
+		assertSame(teamInRound1Pick1, "Tigers");
 	}
 	
 	@Test
@@ -66,16 +71,46 @@ public class PlayerDraftTest {
         String teamThatTakesPick = pickOrder.get(3).get(0).getTeam().getTeamName();
         assertNotSame(teamThatShouldPick,teamThatTakesPick);
 	}
+	
+	@Test
+	public void createPickOrderTradeTeamFirstPickTest2()
+	{
+		leagueStanding.setStandingList(mock.mockStandings());
+		List<IStandingModel> standings = leagueStanding.getRankingAcrossLeague();
+		Map<Integer, List<IStandingModel>> pickOrder = getPickOrder();
+        String teamThatShouldPick=standings.get(standings.size()-1).getTeam().getTeamName() ;
+        String teamThatTakesPick = pickOrder.get(1).get(0).getTeam().getTeamName();
+        assertSame(teamThatTakesPick,"Boston");
+        assertSame(teamThatShouldPick,"Tigers");
+	}
+	
+//	@Test
+//	public void pickNewPlayersTest()
+//	{
+//		Map<Integer, List<IStandingModel>> pickOrder = new HashMap<>();
+//		JsonMockDataDb mock = new JsonMockDataDb();
+//		pickOrder = getPickOrder();
+//		int teamSizeBeforePick=pickOrder.get(1).get(1).getTeam().getPlayerList().size(); 
+//		playerDraft.pickNewPlayers(pickOrder,generate.generatePlayers());
+//		int teamSizeAfterPick=pickOrder.get(1).get(1).getTeam().getPlayerList().size();
+//		assertNotSame(teamSizeBeforePick,teamSizeAfterPick);
+//	}
 
 	public Map<Integer, List<IStandingModel>> getPickOrder() {
 		leagueStanding.setStandingList(mock.mockStandings());
 		List<IStandingModel> standings = leagueStanding.getRankingAcrossLeague();
-		List<IStandingModel> teamsEligibleForPick = new ArrayList<>();
-		Map<Integer, List<IStandingModel>> pickOrder = new HashMap<>();
-		for (int i = standings.size() - 1; i >= 0; i--) {
-			teamsEligibleForPick.add(standings.get(i));
+		List<IStandingModel> weakTeamFirst=new ArrayList<>();
+		for(int i=standings.size()-1; i>=0;i--)
+		{
+			weakTeamFirst.add(standings.get(i));
 		}
-		pickOrder = playerDraft.createPickOrder(teamsEligibleForPick, mock.mockTradePick(standings));
+		List<IStandingModel> teamsEligibleForPickFirst = weakTeamFirst.subList(0,2);
+		List<IStandingModel> teamsEligibleForPickLater = weakTeamFirst.subList(2, weakTeamFirst.size());
+		Map<Integer, List<IStandingModel>> pickOrder = new HashMap<>();
+		mock.mockTradePickLatest(standings);
+		playerDraft.setPickOrderAfterTrading(mock.mockTradePickLatest(standings));
+		pickOrder = playerDraft.createPickOrder(teamsEligibleForPickFirst,teamsEligibleForPickLater);
 		return pickOrder;
 	}
+
 }

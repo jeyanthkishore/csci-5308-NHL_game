@@ -6,18 +6,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.dhl.g05.model.AbstractPlayerFactory;
-import com.dhl.g05.model.IConference;
-import com.dhl.g05.model.IDivision;
-import com.dhl.g05.model.ILeague;
-import com.dhl.g05.model.IPlayer;
-import com.dhl.g05.model.IPlayerTraining;
-import com.dhl.g05.model.IRandomNumberFactory;
-import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.PlayerFactory;
-import com.dhl.g05.model.PlayerTraining;
-import com.dhl.g05.model.RandomNumberFactory;
-
 public class PlayerTrainingTest {
 	
     private static IPlayerTraining playerTraining;

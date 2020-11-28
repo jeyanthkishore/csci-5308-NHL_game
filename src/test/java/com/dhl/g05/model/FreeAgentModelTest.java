@@ -6,12 +6,10 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import java.util.List;
-import org.junit.Test;
 
-import com.dhl.g05.model.FreeAgentConstant;
-import com.dhl.g05.model.FreeAgentModel;
-import com.dhl.g05.model.IFreeAgent;
+import java.util.List;
+
+import org.junit.Test;
 
 public class FreeAgentModelTest {
 

@@ -1,7 +1,6 @@
 package com.dhl.g05.simulation;
 
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.simulation.AbstractState;
 
 public class MockAbstractState extends AbstractState{
 	private IPlayerCommunication communication;
