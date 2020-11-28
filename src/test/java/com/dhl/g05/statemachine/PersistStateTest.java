@@ -10,25 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.communication.CommunicationAbstractFactory;
-import com.dhl.g05.communication.CommunicationFactory;
-import com.dhl.g05.database.DatabaseAbstractFactory;
 import com.dhl.g05.database.DatabaseMockFactoryState;
 import com.dhl.g05.database.DatabaseState;
-import com.dhl.g05.database.DataBaseMockFactory;
-import com.dhl.g05.filehandler.LeagueModelJson;
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.leaguesimulation.IScheduleModel;
-import com.dhl.g05.leaguesimulation.ScheduleModel;
-import com.dhl.g05.leaguesimulation.StandingsMock;
-import com.dhl.g05.player.AbstractPlayerFactory;
-import com.dhl.g05.player.PlayerFactory;
-import com.dhl.g05.trading.AbstractTradingFactory;
-import com.dhl.g05.trading.TradingFactory;
+import com.dhl.g05.model.ILeague;
 
 public class PersistStateTest {
 	private AbstractState state;

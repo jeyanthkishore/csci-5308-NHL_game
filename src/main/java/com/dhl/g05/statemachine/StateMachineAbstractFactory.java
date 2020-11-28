@@ -25,5 +25,9 @@ public abstract class StateMachineAbstractFactory {
 	public abstract AbstractState createAdvanceToNextSeasonState();
 	public abstract AbstractState createPersistState();
 	public abstract AbstractState createPlayerDraftState();
+	public abstract ILeagueSchedule createLeagueSchedule();
+	public abstract ILeagueStanding createLeagueStanding();
+	public abstract IScheduleModel createScheduleModel();
+	public abstract IStandingModel createStandingModel();
 
 }

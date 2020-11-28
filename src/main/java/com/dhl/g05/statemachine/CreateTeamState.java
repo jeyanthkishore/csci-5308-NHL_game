@@ -5,21 +5,20 @@ import java.util.InputMismatchException;
 import java.util.List;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.coach.CoachConstant;
-import com.dhl.g05.coach.CoachModel;
-import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.conference.IConference;
 import com.dhl.g05.database.DatabaseAbstractFactory;
 import com.dhl.g05.database.ICheckTeam;
-import com.dhl.g05.division.IDivision;
-import com.dhl.g05.freeagent.IFreeAgent;
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.CreateTeamConstant;
-import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.model.CoachConstant;
+import com.dhl.g05.model.CoachModel;
+import com.dhl.g05.model.ICoach;
+import com.dhl.g05.model.IConference;
+import com.dhl.g05.model.IDivision;
+import com.dhl.g05.model.IFreeAgent;
+import com.dhl.g05.model.ILeague;
+import com.dhl.g05.model.IPlayer;
+import com.dhl.g05.model.ITeam;
+import com.dhl.g05.model.PlayerModel;
+import com.dhl.g05.model.TeamModel;
 import com.mysql.cj.util.StringUtils;
 
 public class CreateTeamState extends AbstractState {

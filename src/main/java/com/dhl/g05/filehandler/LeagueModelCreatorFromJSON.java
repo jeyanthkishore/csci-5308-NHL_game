@@ -7,32 +7,33 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.dhl.g05.gameplayconfig.*;
+import com.dhl.g05.model.CoachConstant;
+import com.dhl.g05.model.CoachModel;
+import com.dhl.g05.model.ConferenceConstant;
+import com.dhl.g05.model.ConferenceModel;
+import com.dhl.g05.model.DivisionConstant;
+import com.dhl.g05.model.DivisionModel;
+import com.dhl.g05.model.FreeAgentConstant;
+import com.dhl.g05.model.FreeAgentModel;
+import com.dhl.g05.model.ICoach;
+import com.dhl.g05.model.IConference;
+import com.dhl.g05.model.IDivision;
+import com.dhl.g05.model.IFreeAgent;
+import com.dhl.g05.model.ILeague;
+import com.dhl.g05.model.IPlayer;
+import com.dhl.g05.model.ITeam;
+import com.dhl.g05.model.LeagueConstant;
+import com.dhl.g05.model.LeagueModel;
+import com.dhl.g05.model.PlayerModel;
+import com.dhl.g05.model.TeamConstant;
+import com.dhl.g05.model.TeamModel;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.dhl.g05.coach.CoachConstant;
-import com.dhl.g05.coach.CoachModel;
-import com.dhl.g05.coach.ICoach;
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.conference.ConferenceConstant;
-import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.conference.IConference;
-import com.dhl.g05.division.DivisionConstant;
-import com.dhl.g05.division.DivisionModel;
-import com.dhl.g05.division.IDivision;
-import com.dhl.g05.freeagent.FreeAgentConstant;
-import com.dhl.g05.freeagent.FreeAgentModel;
-import com.dhl.g05.freeagent.IFreeAgent;
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.LeagueConstant;
-import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.TeamConstant;
-import com.dhl.g05.team.TeamModel;
 import com.mysql.cj.util.StringUtils;
 
 public class LeagueModelCreatorFromJSON implements ILeagueCreator{
@@ -63,7 +64,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			return null;
 		}
 		
-		IAging agingConfig = new Aging();
+		IAging agingConfig = new AgingConfig();
 		agingConfig.setAverageRetirementAge(((Number) jsonAging.get("averageRetirementAge")).intValue());
 		agingConfig.setMaximumAge(((Number) jsonAging.get("maximumAge")).intValue());
 		agingConfig.setStatDecayChance(((Number) jsonAging.get("statDecayChance")).doubleValue());
@@ -80,7 +81,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		if (jsonInjury == null){
 			return null;
 		}
-		Injury injuryConfig = new Injury();
+		InjuryConfig injuryConfig = new InjuryConfig();
 		injuryConfig.setRandomInjuryChance(((Number) jsonInjury.get("randomInjuryChance")).doubleValue());
 		injuryConfig.setInjuryDaysHigh(((Number) jsonInjury.get("injuryDaysHigh")).intValue());
 		injuryConfig.setInjuryDaysLow(((Number) jsonInjury.get("injuryDaysLow")).intValue());

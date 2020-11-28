@@ -10,9 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.leaguesimulation.DateHandler;
-import com.dhl.g05.leaguesimulation.StandingsMock;
+import com.dhl.g05.model.ILeague;
 
 public class PlayOffScheduleTest {
 	private AbstractState state;

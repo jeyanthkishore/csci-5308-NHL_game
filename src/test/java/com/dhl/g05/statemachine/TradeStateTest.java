@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.mockdata.JsonMockDataDb;
+import com.dhl.g05.model.LeagueMockData;
 
 public class TradeStateTest {
 	private AbstractState state;
@@ -19,7 +19,7 @@ public class TradeStateTest {
 	
 	@Test
 	public void performTaskTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
+		LeagueMockData data = new LeagueMockData();
 		state.setLeague(data.league);
 		state.enter();
 		state.performStateTask();

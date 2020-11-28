@@ -3,8 +3,8 @@ package com.dhl.g05.communication;
 import java.util.List;
 import java.util.Scanner;
 
-import com.dhl.g05.coach.ICoach;
-import com.dhl.g05.freeagent.IFreeAgent;
+import com.dhl.g05.model.ICoach;
+import com.dhl.g05.model.IFreeAgent;
 
 public class MockCreateTeamCommnication implements IPlayerCommunication{
 	private Scanner scanner = new Scanner(System.in);

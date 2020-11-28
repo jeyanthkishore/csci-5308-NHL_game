@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.mockdata.JsonMockDataDb;
+import com.dhl.g05.model.LeagueMockData;
 
 public class InitializeSeasonStateTest {
 	private AbstractState state;
@@ -22,7 +22,7 @@ public class InitializeSeasonStateTest {
 	
 	@Test
 	public void seasonInitializeTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
+		LeagueMockData mock = new LeagueMockData();
 		state.setLeague(mock.league);
 		state.enter();
 		state.performStateTask();
@@ -32,7 +32,7 @@ public class InitializeSeasonStateTest {
 	
 	@Test
 	public void dateInitializeTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
+		LeagueMockData mock = new LeagueMockData();
 		mock.league.setLeagueCurrentDate(LocalDate.of(2020, Month.DECEMBER, 07));
 		state.setLeague(mock.league);
 		state.enter();

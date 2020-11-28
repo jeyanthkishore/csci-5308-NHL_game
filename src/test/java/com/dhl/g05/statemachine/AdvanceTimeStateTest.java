@@ -10,8 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.leaguesimulation.DateHandler;
+import com.dhl.g05.model.LeagueModel;
 
 public class AdvanceTimeStateTest {
 	private AbstractState state;

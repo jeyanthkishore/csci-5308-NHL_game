@@ -3,15 +3,14 @@ package com.dhl.g05.statemachine;
 import java.time.LocalDate;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.conference.IConference;
-import com.dhl.g05.division.IDivision;
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.leaguesimulation.DateHandler;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.IPlayerTraining;
-import com.dhl.g05.player.PlayerTraining;
-import com.dhl.g05.player.RandomNumberFactory;
-import com.dhl.g05.team.ITeam;
+import com.dhl.g05.model.IConference;
+import com.dhl.g05.model.IDivision;
+import com.dhl.g05.model.ILeague;
+import com.dhl.g05.model.IPlayer;
+import com.dhl.g05.model.IPlayerTraining;
+import com.dhl.g05.model.ITeam;
+import com.dhl.g05.model.PlayerTraining;
+import com.dhl.g05.model.RandomNumberFactory;
 
 public class TrainingState extends AbstractState{
 	private ILeague league;

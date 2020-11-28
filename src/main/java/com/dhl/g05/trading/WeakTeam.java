@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 
 import com.dhl.g05.gameplayconfig.ITradingConfig;
 import com.dhl.g05.gameplayconfig.TradingConfig;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.model.IPlayer;
+import com.dhl.g05.model.ITeam;
+import com.dhl.g05.model.PlayerModel;
+import com.dhl.g05.model.TeamModel;
 
 
 public class WeakTeam implements IWeakTeam {
