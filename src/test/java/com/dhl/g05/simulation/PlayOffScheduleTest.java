@@ -13,7 +13,7 @@ import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.simulation.AbstractState;
 import com.dhl.g05.simulation.DateHandler;
-import com.dhl.g05.simulation.StateMachineAbstractFactory;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.TrainingState;
 
 public class PlayOffScheduleTest {
@@ -21,7 +21,7 @@ public class PlayOffScheduleTest {
 
 	@Before
 	public void init() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		state = stateFactory.createPlayOffState();
 	}
 	

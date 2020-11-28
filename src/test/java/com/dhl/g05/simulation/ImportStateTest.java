@@ -14,7 +14,7 @@ import com.dhl.g05.communication.MockPlayerCommunication;
 import com.dhl.g05.simulation.AbstractState;
 import com.dhl.g05.simulation.CreateTeamState;
 import com.dhl.g05.simulation.LoadTeamState;
-import com.dhl.g05.simulation.StateMachineAbstractFactory;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class ImportStateTest {
 	private AbstractState state;
@@ -23,7 +23,7 @@ public class ImportStateTest {
 	@Before
 	public void init() {
 //		communicate = new MockPlayerCommunication();
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		state = stateFactory.createImportState();
 	}
 

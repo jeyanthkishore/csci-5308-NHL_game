@@ -20,14 +20,14 @@ import com.dhl.g05.simulation.AbstractState;
 import com.dhl.g05.simulation.AdvanceTimeState;
 import com.dhl.g05.simulation.IScheduleModel;
 import com.dhl.g05.simulation.ScheduleModel;
-import com.dhl.g05.simulation.StateMachineAbstractFactory;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class PersistStateTest {
 	private AbstractState state;
 	
 	@Before
 	public void init() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		state = stateFactory.createPersistState();
 		DatabaseState state = new DatabaseMockFactoryState();
 		ApplicationConfiguration.instance().setDataBaseFactoryState(state);

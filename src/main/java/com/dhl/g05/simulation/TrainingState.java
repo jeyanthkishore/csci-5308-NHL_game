@@ -44,7 +44,7 @@ public class TrainingState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		LocalDate currentDate = league.getLeagueCurrentDate();
 		System.out.println(currentDate);
 		if (league.getLeagueSchedule().isGamesUnplayedOnCurrentDay(currentDate)) {

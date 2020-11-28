@@ -11,21 +11,21 @@ import com.dhl.g05.model.ModelAbstractFactory;
 import com.dhl.g05.model.ModelConcreteFactoryState;
 import com.dhl.g05.model.ModelState;
 import com.dhl.g05.model.PlayerFactory;
-import com.dhl.g05.simulation.StateMachineAbstractFactory;
-import com.dhl.g05.simulation.StateMachineConcreteFactoryState;
-import com.dhl.g05.simulation.StateMachineState;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
+import com.dhl.g05.simulation.SimulationConcreteFactoryState;
+import com.dhl.g05.simulation.SimulationState;
 import com.dhl.g05.trading.AbstractTradingFactory;
 import com.dhl.g05.trading.TradingFactory;
 
 public class ApplicationConfiguration {
 	private static ApplicationConfiguration uniqueInstance = null;
-	private StateMachineState statemachine;
+	private SimulationState statemachine;
 	private DatabaseState database;
 	private CommunicationState communication;
 	private ModelState model;
 	
 	private ApplicationConfiguration() {
-		statemachine = new StateMachineConcreteFactoryState();
+		statemachine = new SimulationConcreteFactoryState();
 		database = new DatabaseConcreteFactoryState();
 		communication = new CommunicationConcreteFactoryState();
 		model = new ModelConcreteFactoryState();
@@ -40,8 +40,8 @@ public class ApplicationConfiguration {
 		return uniqueInstance;
 	}
 	
-	public StateMachineAbstractFactory getStateMachineConcreteFactoryState() {
-		return StateMachineAbstractFactory.getInstance(statemachine);
+	public SimulationAbstractFactory getStateMachineConcreteFactoryState() {
+		return SimulationAbstractFactory.getInstance(statemachine);
 	}
 	
 	public DatabaseAbstractFactory getDatabaseConcreteFactoryState() {

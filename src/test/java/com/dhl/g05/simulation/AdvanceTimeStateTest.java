@@ -14,7 +14,7 @@ import com.dhl.g05.model.LeagueModel;
 import com.dhl.g05.simulation.AbstractState;
 import com.dhl.g05.simulation.DateHandler;
 import com.dhl.g05.simulation.PlayoffScheduleState;
-import com.dhl.g05.simulation.StateMachineAbstractFactory;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.TrainingState;
 
 public class AdvanceTimeStateTest {
@@ -22,7 +22,7 @@ public class AdvanceTimeStateTest {
 
 	@Before
 	public void init() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		state = stateFactory.createAdvancedTimeState();
 	}
 	

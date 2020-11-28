@@ -15,7 +15,7 @@ import com.dhl.g05.communication.CommunicationTeamMockFactoryState;
 import com.dhl.g05.model.LeagueMockData;
 import com.dhl.g05.simulation.AbstractState;
 import com.dhl.g05.simulation.IStateMachine;
-import com.dhl.g05.simulation.StateMachineAbstractFactory;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class CreateTeamStateTest {
 	IStateMachine machine;
@@ -25,7 +25,7 @@ public class CreateTeamStateTest {
 	 public static void setup() {
 		 	CommunicationState communication = new CommunicationTeamMockFactoryState();
 		    ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
-		    StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		    SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		    create = stateFactory.createCreateTeamState();
 	        LeagueMockData data = new LeagueMockData();
 			create.setLeague(data.league);
