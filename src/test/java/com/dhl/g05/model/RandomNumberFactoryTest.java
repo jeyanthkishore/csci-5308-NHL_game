@@ -1,15 +1,10 @@
 package com.dhl.g05.model;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import com.dhl.g05.model.AbstractPlayerFactory;
-import com.dhl.g05.model.IRandomNumberFactory;
-import com.dhl.g05.model.PlayerFactory;
-import com.dhl.g05.model.RandomNumberFactory;
-
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.when;
 
 public class RandomNumberFactoryTest {
 

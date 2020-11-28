@@ -8,10 +8,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.dhl.g05.simulation.ILeagueStanding;
-import com.dhl.g05.simulation.IStandingModel;
-import com.dhl.g05.simulation.LeagueStanding;
-
 public class LeagueStandingTest {
 
 	@Test

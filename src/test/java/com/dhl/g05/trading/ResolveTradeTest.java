@@ -8,11 +8,9 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dhl.g05.model.AbstractPlayerFactory;
 import com.dhl.g05.model.FreeAgentModel;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.PlayerFactory;
 import com.dhl.g05.model.PlayerModel;
 import com.dhl.g05.model.TeamModel;
 

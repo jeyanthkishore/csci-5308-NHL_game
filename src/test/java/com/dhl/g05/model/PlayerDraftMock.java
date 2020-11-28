@@ -5,17 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.dhl.g05.model.ConferenceModel;
-import com.dhl.g05.model.DivisionModel;
-import com.dhl.g05.model.FreeAgentModel;
-import com.dhl.g05.model.IConference;
-import com.dhl.g05.model.IDivision;
-import com.dhl.g05.model.ILeague;
-import com.dhl.g05.model.IPlayer;
-import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.LeagueModel;
-import com.dhl.g05.model.PlayerModel;
-import com.dhl.g05.model.TeamModel;
 import com.dhl.g05.simulation.IStandingModel;
 import com.dhl.g05.simulation.StandingModel;
 

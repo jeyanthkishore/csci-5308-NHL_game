@@ -4,19 +4,6 @@ import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
-import com.dhl.g05.simulation.AgingConfig;
-import com.dhl.g05.simulation.GamePlayConfigModel;
-import com.dhl.g05.simulation.GameResolverConfig;
-import com.dhl.g05.simulation.IAging;
-import com.dhl.g05.simulation.IGamePlayConfig;
-import com.dhl.g05.simulation.IGameResolver;
-import com.dhl.g05.simulation.IInjury;
-import com.dhl.g05.simulation.ITradingConfig;
-import com.dhl.g05.simulation.ITraining;
-import com.dhl.g05.simulation.InjuryConfig;
-import com.dhl.g05.simulation.TradingConfig;
-import com.dhl.g05.simulation.TrainingConfig;
-
 public class GameConfigModelTest {
 
 	public int averageRetirementAge = 35;

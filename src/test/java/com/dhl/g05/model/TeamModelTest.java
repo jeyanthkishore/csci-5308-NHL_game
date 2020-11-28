@@ -10,11 +10,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.dhl.g05.model.IPlayer;
-import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.TeamConstant;
-import com.dhl.g05.model.TeamModel;
-
 public class TeamModelTest{
 
 	@Test

@@ -7,7 +7,8 @@ import com.dhl.g05.model.ITeam;
 
 public class SwapPlayers implements ISwapPlayers {
 
-	public void swapPlayers(ITeam weakTeam, ITeam strongTeam, List<IPlayer> weakestPlayersToTrade,List<IPlayer> strongestPlayersToTrade) {
+	public void swapPlayers(ITeam weakTeam, ITeam strongTeam, List<IPlayer> weakestPlayersToTrade,
+			List<IPlayer> strongestPlayersToTrade) {
 		List<IPlayer> weakTeamPlayers = weakTeam.getPlayerList();
 		List<IPlayer> strongTeamPlayers = strongTeam.getPlayerList();
 		List<IPlayer> weakPlayersToTrade = weakestPlayersToTrade;

@@ -16,11 +16,6 @@ import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.database.DatabaseMockFactoryState;
 import com.dhl.g05.database.DatabaseState;
 import com.dhl.g05.model.ILeague;
-import com.dhl.g05.simulation.AbstractState;
-import com.dhl.g05.simulation.AdvanceTimeState;
-import com.dhl.g05.simulation.IScheduleModel;
-import com.dhl.g05.simulation.ScheduleModel;
-import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class PersistStateTest {
 	private AbstractState state;

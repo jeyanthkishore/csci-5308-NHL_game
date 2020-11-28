@@ -6,8 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.simulation.AbstractState;
-import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class SimulateStateTest {
 	private AbstractState state;

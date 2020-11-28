@@ -13,9 +13,6 @@ import com.dhl.g05.communication.CommunicationPlayerMockFactoryState;
 import com.dhl.g05.communication.CommunicationState;
 import com.dhl.g05.communication.CommunicationTeamMockFactoryState;
 import com.dhl.g05.model.LeagueMockData;
-import com.dhl.g05.simulation.AbstractState;
-import com.dhl.g05.simulation.IStateMachine;
-import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class CreateTeamStateTest {
 	IStateMachine machine;

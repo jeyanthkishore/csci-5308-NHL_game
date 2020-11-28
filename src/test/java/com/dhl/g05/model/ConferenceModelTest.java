@@ -5,10 +5,6 @@ import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
-import com.dhl.g05.model.ConferenceConstant;
-import com.dhl.g05.model.ConferenceModel;
-import com.dhl.g05.model.IConference;
-
 public class ConferenceModelTest {
 
 	@Test

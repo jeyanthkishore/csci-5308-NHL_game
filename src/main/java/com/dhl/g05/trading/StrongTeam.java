@@ -8,9 +8,6 @@ import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.LeagueModel;
-import com.dhl.g05.model.PlayerModel;
-import com.dhl.g05.model.TeamModel;
 
 public class StrongTeam implements IStrongTeam {
 
@@ -65,10 +62,10 @@ public class StrongTeam implements IStrongTeam {
 		boolean isTradePossible = false;
 		double strengthOfStrongestPLayer = 0.00;
 		List<IPlayer> playersRequested = new ArrayList<>();
-		IWeakTeam teamInitiatingTrade = Trading.instance().getWeakteam();
+		IWeakTeam teamInitiatingTrade = AbstractTradingFactory.instance().getWeakteam();
 		String position = teamInitiatingTrade.getOfferedPlayerPosition();
 		int numberOfPlayersToTrade = teamInitiatingTrade.getNumberOfPlayersOffered();
-		ISortPlayerStrength sortPlayer = AbstractTradingFactory.getFactory().getSortplayerstrength();
+		ISortPlayerStrength sortPlayer = AbstractTradingFactory.instance().getSortplayerstrength();
 
 		for (IConference conference : league.getConferenceDetails()) {
 			for (IDivision division : conference.getDivisionDetails()) {

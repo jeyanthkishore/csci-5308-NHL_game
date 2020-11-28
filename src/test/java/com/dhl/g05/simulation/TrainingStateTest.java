@@ -13,14 +13,6 @@ import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.LeagueMockData;
-import com.dhl.g05.simulation.AbstractState;
-import com.dhl.g05.simulation.AgingState;
-import com.dhl.g05.simulation.DateHandler;
-import com.dhl.g05.simulation.IScheduleModel;
-import com.dhl.g05.simulation.ScheduleModel;
-import com.dhl.g05.simulation.SimulationAbstractFactory;
-import com.dhl.g05.simulation.StimulateGameState;
-import com.dhl.g05.simulation.TradeState;
 
 public class TrainingStateTest {
 	private AbstractState state;

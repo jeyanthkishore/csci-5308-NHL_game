@@ -10,12 +10,6 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import com.dhl.g05.model.GenerateNewPlayers;
-import com.dhl.g05.model.IGenerateNewPlayers;
-import com.dhl.g05.model.ILeague;
-import com.dhl.g05.model.IPlayer;
-import com.dhl.g05.model.IPlayerDraft;
-import com.dhl.g05.model.PlayerDraft;
 import com.dhl.g05.simulation.ILeagueStanding;
 import com.dhl.g05.simulation.IStandingModel;
 import com.dhl.g05.simulation.LeagueStanding;
