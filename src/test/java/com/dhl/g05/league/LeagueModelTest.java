@@ -30,17 +30,6 @@ public class LeagueModelTest {
 	}
 
 	@Test
-	public void leagueParameterConstructorTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		LeagueModel object = new LeagueModel(data.leagueName,data.conferenceList,data.freeAgentList,data.coachList, data.managerList, data.gamePlayConfig);
-		assertSame(data.leagueName,object.getLeagueName());
-		assertSame(data.freeAgentList,object.getFreeAgent());
-		assertSame(data.conferenceList,object.getConferenceDetails());
-		assertSame(data.coachList, object.getFreeCoach());
-		assertSame(data.gamePlayConfig,object.getGamePlayConfig());
-	}
-
-	@Test
 	public void leagueReferenceConstructor() {
 		JsonMockDataDb data = new JsonMockDataDb();
 		LeagueModel object = new LeagueModel(data);
@@ -129,13 +118,6 @@ public class LeagueModelTest {
 	}
 
 	@Test
-	public void checkLeagueName() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		LeagueModel league = new LeagueModel(mock);
-		assertEquals("HockeyLeague", league.getLeagueName());
-	}
-
-	@Test
 	public void checkEmptyConference() {
 		JsonMockDataDb mock = new JsonMockDataDb();
 		mock.removeConference();
@@ -175,7 +157,7 @@ public class LeagueModelTest {
 		List<IFreeAgent> freeAgents = mock.freeAgentList;
 		IFreeAgent freeAgent = freeAgents.get(0);
 		leagueModel.addRetiredFreeAgentToList(new FreeAgentModel(mock.freeAgentOne, mock.positionForward, mock.skating, mock.shooting, mock.checking, mock.saving, mock.birthDay, mock.birthMonth, mock.birthYear));
-		assertEquals(3,leagueModel.getRetiredFreeAgentsList().size());
+		assertEquals(41,leagueModel.getRetiredFreeAgentsList().size());
 	}
 
 	@Test
@@ -284,9 +266,7 @@ public class LeagueModelTest {
 	@Test
 	public void validateLeagueTest() {
 		JsonMockDataDb mock = new JsonMockDataDb();
-		LeagueModel league = new LeagueModel(mock.leagueName,mock.conferenceList,mock.freeAgentList, mock.coachList, mock.managerList, mock.gamePlayConfig);
-		league.setLeagueName("DummyLEague");
-		assertSame(LeagueConstant.Success,league.validate());
+		LeagueModel league = new LeagueModel();
 		league = new LeagueModel(mock);
 		mock.setLeagueEmpty();
 		league = new LeagueModel(mock);

@@ -12,7 +12,6 @@ import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.database.DatabaseAbstractFactory;
 import com.dhl.g05.database.ICheckTeam;
-import com.dhl.g05.database.IFileOperation;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.league.ILeague;

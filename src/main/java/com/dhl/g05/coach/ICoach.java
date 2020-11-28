@@ -24,4 +24,10 @@ public interface ICoach {
 
     CoachConstant validate();
 
+    boolean isCoachNameNull();
+
+    boolean isCoachNameEmpty();
+
+    boolean isCoachStatNotValid();
+
 }

@@ -6,186 +6,283 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-
 import java.util.List;
-
 import org.junit.Test;
-
-import com.dhl.g05.coach.CoachModel;
 import com.dhl.g05.mockdata.JsonMockDataDb;
 
 public class FreeAgentModelTest {
 
 	@Test
 	public void constructorTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		assertNull(object.getPlayerName());
-		assertNull(object.getPosition());
-		assertFalse(object.getInjuredStatus());
+		IFreeAgent freeAgent = new FreeAgentModel();
+		assertNull(freeAgent.getPlayerName());
+		assertNull(freeAgent.getPosition());
+		assertFalse(freeAgent.getInjuryStatus());
+		assertFalse(freeAgent.getRetirementStatus());
 	}
 
 	@Test
 	public void parameterConstructorTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		CoachModel object = new CoachModel(data.headCoachName, data.coachSkating, data.coachShooting, data.coachChecking, data.coachSaving);
-		assertSame(data.headCoachName,object.getName());
-		assertEquals(data.coachSkating, object.getSkating(),0);
-		assertEquals(data.coachShooting, object.getShooting(),0);
-		assertEquals(data.coachChecking, object.getChecking(),0);
-		assertEquals(data.coachSaving, object.getSaving(),0);
-	}
-
-	@Test
-	public void coachObjectReferenceConstructorTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		CoachModel object = new CoachModel(data.headCoachName, data.coachSkating, data.coachShooting, data.coachChecking, data.coachSaving);
-		assertSame(data.headCoachName,object.getName());
-		assertEquals(data.coachSkating, object.getSkating(),0);
-		assertEquals(data.coachShooting, object.getShooting(),0);
-		assertEquals(data.coachChecking, object.getChecking(),0);
-		assertEquals(data.coachSaving, object.getSaving(),0);
-	}
-
-
-	@Test
-	public void setPlayerNameTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setPlayerName("Ronaldo");
-		assertSame(object.getPlayerName(),"Ronaldo");
+		JsonMockDataDb freeAgentMock = new JsonMockDataDb();
+		IFreeAgent freeAgent = new FreeAgentModel(freeAgentMock.freeAgentOne, freeAgentMock.positionDefense, freeAgentMock.skating, freeAgentMock.shooting, freeAgentMock.checking, freeAgentMock.saving, freeAgentMock.birthDay, freeAgentMock.birthMonth, freeAgentMock.birthYear);
+		assertSame(freeAgentMock.freeAgentOne, freeAgent.getPlayerName());
+		assertSame(freeAgentMock.positionDefense, freeAgent.getPosition());
+		assertEquals(freeAgentMock.skating, freeAgent.getSkating(),0);
+		assertEquals(freeAgentMock.shooting, freeAgent.getShooting(),0);
+		assertEquals(freeAgentMock.checking, freeAgent.getChecking(),0);
+		assertEquals(freeAgentMock.saving, freeAgent.getSaving(),0);
+		assertEquals(freeAgentMock.birthDay, freeAgent.getBirthDay());
+		assertEquals(freeAgentMock.birthMonth, freeAgent.getBirthMonth());
+		assertEquals(freeAgentMock.birthYear, freeAgent.getBirthYear());
 	}
 
 	@Test
 	public void getPlayerNameTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setPlayerName("Ronaldo");
-		assertSame(object.getPlayerName(),"Ronaldo");
-	}
-
-
-	@Test
-	public void setAgeTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setAge(10);
-		assertSame(object.getAge(),10);
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setPlayerName("Ronaldo");
+		assertSame(freeAgent.getPlayerName(),"Ronaldo");
 	}
 
 	@Test
-	public void getAgeTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setAge(10);
-		assertSame(object.getAge(),10);
-	}
-
-	@Test
-	public void setSkatingTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setSkating(10.0);
-		assertEquals(object.getSkating(),10.0,0);
-	}
-
-	@Test
-	public void getSkatingTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setSkating(10.0);
-		assertEquals(object.getSkating(),10.0,0);
-	}
-
-	@Test
-	public void setShootingTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setShooting(10.0);
-		assertEquals(object.getShooting(),10.0,0);
-	}
-
-	@Test
-	public void getShootingTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setShooting(10.0);
-		assertEquals(object.getShooting(),10.0,0);
-	}
-
-	@Test
-	public void setCheckingTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setChecking(10.0);
-		assertEquals(object.getChecking(),10.0,0);
-	}
-
-	@Test
-	public void getCheckingTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setChecking(10.0);
-		assertEquals(object.getChecking(),10.0,0);
-	}
-
-	@Test
-	public void setSavingTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setSaving(10.0);
-		assertEquals(object.getSaving(),10.0,0);
-	}
-
-	@Test
-	public void getSavingTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setSaving(10.0);
-		assertEquals(object.getSaving(),10.0,0);
-	}
-
-	@Test
-	public void setPlayerStrengthTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setPlayerStrength(15);
-		assertEquals(object.getPlayerStrength(),15,0);
-	}
-
-	@Test
-	public void getPlayerStrengthTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setPlayerStrength(15);
-		assertEquals(object.getPlayerStrength(),15,0);
-	}
-
-	@Test
-	public void setHasInjuredTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setInjuredStatus(true);
-		assertTrue(object.getInjuredStatus());
-	}
-
-	@Test
-	public void getHasInjuredTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setInjuredStatus(true);
-		assertTrue(object.getInjuredStatus());
-	}
-
-	@Test
-	public void setIsRetiredTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setRetiredStatus(true);
-		assertTrue(object.getRetiredStatus());
-	}
-
-	@Test
-	public void getIsRetiredTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setRetiredStatus(true);
-		assertTrue(object.getRetiredStatus());
-	}
-
-	@Test
-	public void setPositionTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setPosition("forward");
-		assertSame(object.getPosition(),"forward");
+	public void setPlayerNameTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setPlayerName("Ronaldo");
+		assertSame(freeAgent.getPlayerName(),"Ronaldo");
 	}
 
 	@Test
 	public void getPositionTest() {
-		FreeAgentModel object = new FreeAgentModel();
-		object.setPosition("forward");
-		assertSame(object.getPosition(),"forward");
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setPosition("forward");
+		assertSame(freeAgent.getPosition(),"forward");
+	}
+
+	@Test
+	public void setPositionTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setPosition("forward");
+		assertSame(freeAgent.getPosition(),"forward");
+	}
+
+	@Test
+	public void setAgeTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setAge(10);
+		assertSame(freeAgent.getAge(),10);
+	}
+
+	@Test
+	public void getAgeTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setAge(10);
+		assertSame(freeAgent.getAge(),10);
+	}
+
+	@Test
+	public void getSkatingTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setSkating(10.0);
+		assertEquals(freeAgent.getSkating(),10.0,0);
+	}
+
+	@Test
+	public void setSkatingTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setSkating(10.0);
+		assertEquals(freeAgent.getSkating(),10.0,0);
+	}
+
+	@Test
+	public void getShootingTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setShooting(10.0);
+		assertEquals(freeAgent.getShooting(),10.0,0);
+	}
+
+	@Test
+	public void setShootingTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setShooting(10.0);
+		assertEquals(freeAgent.getShooting(),10.0,0);
+	}
+
+	@Test
+	public void getCheckingTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setChecking(10.0);
+		assertEquals(freeAgent.getChecking(),10.0,0);
+	}
+
+	@Test
+	public void setCheckingTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setChecking(10.0);
+		assertEquals(freeAgent.getChecking(),10.0,0);
+	}
+
+	@Test
+	public void getSavingTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setSaving(10.0);
+		assertEquals(freeAgent.getSaving(),10.0,0);
+	}
+
+	@Test
+	public void setSavingTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setSaving(10.0);
+		assertEquals(freeAgent.getSaving(),10.0,0);
+	}
+
+	@Test
+	public void getPlayerStrengthTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setPlayerStrength(15);
+		assertEquals(freeAgent.getPlayerStrength(),15,0);
+	}
+
+	@Test
+	public void setPlayerStrengthTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setPlayerStrength(15);
+		assertEquals(freeAgent.getPlayerStrength(),15,0);
+	}
+
+	@Test
+	public void getInjuryStatusTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setInjuryStatus(true);
+		assertTrue(freeAgent.getInjuryStatus());
+	}
+
+	@Test
+	public void setInjuryStatusTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setInjuryStatus(true);
+		assertTrue(freeAgent.getInjuryStatus());
+	}
+
+	@Test
+	public void getRetirementStatusTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setRetirementStatus(true);
+		assertTrue(freeAgent.getRetirementStatus());
+	}
+
+	@Test
+	public void setRetirementStatusTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setRetirementStatus(true);
+		assertTrue(freeAgent.getRetirementStatus());
+	}
+
+	@Test
+	public void calculateForwardPlayerStrengthTest(){
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setSkating(12);
+		freeAgent.setShooting(12);
+		freeAgent.setChecking(12);
+		freeAgent.setPosition("forward");
+		assertEquals(freeAgent.calculatePlayerStrength(), 30.0, 0);
+	}
+
+	@Test
+	public void calculateDefensePlayerStrengthTest(){
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setSkating(12);
+		freeAgent.setShooting(12);
+		freeAgent.setChecking(12);
+		freeAgent.setPosition("defense");
+		assertEquals(freeAgent.calculatePlayerStrength(), 30.0, 0);
+	}
+
+	@Test
+	public void calculateGoaliePlayerStrengthTest(){
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setSaving(12);
+		freeAgent.setSkating(12);
+		freeAgent.setPosition("goalie");
+		assertEquals(freeAgent.calculatePlayerStrength(), 24.0, 0);
+	}
+
+	@Test
+	public void isPlayerPositionValidTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setPosition("forward");
+		assertFalse(freeAgent.isPlayerPositionNotValid());
+	}
+
+	@Test
+	public void isPlayerPositionNotValidTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setPosition("Keeper");
+		assertTrue(freeAgent.isPlayerPositionNotValid());
+	}
+
+	@Test
+	public void isPlayerAgeValidTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setAge(25);
+		assertFalse(freeAgent.isPlayerAgeNotValid());
+	}
+
+	@Test
+	public void isPlayerAgeNotValidTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setAge(-2);
+		assertTrue(freeAgent.isPlayerAgeNotValid());
+	}
+
+	@Test
+	public void isPlayerStatValidTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setSkating(12);
+		freeAgent.setShooting(10);
+		freeAgent.setChecking(6);
+		freeAgent.setSaving(15);
+		assertFalse(freeAgent.isPlayerStatNotValid());
+	}
+
+	@Test
+	public void isPlayerStatNotValidTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setSkating(12);
+		freeAgent.setShooting(10);
+		freeAgent.setChecking(-6);
+		freeAgent.setSaving(15);
+		assertTrue(freeAgent.isPlayerStatNotValid());
+	}
+
+	@Test
+	public void playerPositionValidateTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setPlayerName("Alex");
+		freeAgent.setPosition("Keeper");
+		assertSame(FreeAgentConstant.PlayerPositionWrong,freeAgent.validate());
+	}
+
+	@Test
+	public void playerStatValidateTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setPlayerName("Alex");
+		freeAgent.setPosition("forward");
+		freeAgent.setSkating(-1);
+		assertSame(FreeAgentConstant.PlayerStateInvalid,freeAgent.validate());
+	}
+
+	@Test
+	public void validateTest() {
+		IFreeAgent freeAgent = new FreeAgentModel();
+		freeAgent.setPlayerName("Alex");
+		freeAgent.setPosition("forward");
+		freeAgent.setSkating(10);
+		freeAgent.setSaving(12);
+		freeAgent.setChecking(12);
+		freeAgent.setSaving(10);
+		freeAgent.setBirthDay(29);
+		freeAgent.setBirthMonth(12);
+		freeAgent.setBirthYear(2001);
+		assertSame(FreeAgentConstant.Success, freeAgent.validate());
 	}
 
 	@Test
@@ -219,73 +316,13 @@ public class FreeAgentModelTest {
 	}
 
 	@Test
-	public void playerPositionEmptyTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setPlayerPositionEmpty();
-		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertSame(FreeAgentConstant.PlayerValueEmpty,validate.validate());
-	}
-
-	@Test
-	public void playerPositionNullTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setPlayerPostitionNull();
-		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertSame(FreeAgentConstant.PlayerValueEmpty,validate.validate());
-	}
-
-	@Test
-	public void playerPositionValidTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertSame(FreeAgentConstant.Success,validate.validate());
-	}
-
-	@Test
-	public void playerPositionCheckTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		mock.setPositionDifferent();
-		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertSame(FreeAgentConstant.PlayerPositionWrong,validate.validate());
-	}
-
-	@Test
-	public void isPlayerAgeValidTest() {
-		FreeAgentModel validate = new FreeAgentModel();
-		validate.setAge(25);
-		assertEquals(validate.isPlayerAgeNotValid(),false);
-	}
-
-	@Test
-	public void validateStatsTest() {
-		FreeAgentModel validate = new FreeAgentModel();
-		validate.setSkating(12);
-		assertEquals(validate.validateStat(12),true);
-	}
-
-	@Test
-	public void validateStatsInverseTest() {
-		FreeAgentModel validate = new FreeAgentModel();
-		validate.setSkating(-1);
-		assertEquals(validate.validateStat(-1),false);
-	}
-
-	@Test
-	public void isPlayerStatNotValidTest() {
-		FreeAgentModel validate = new FreeAgentModel();
-		validate.setSkating(12);
-		validate.setShooting(10);
-		validate.setChecking(5);
-		validate.setSaving(15);
-		assertEquals(validate.isPlayerStatNotValid(),false);
-	}
-	@Test
 	public void isbirthDayValidTest1()
 	{
 		FreeAgentModel validate = new FreeAgentModel();
 		validate.setBirthDay(22);
 		assertEquals(validate.isbirthDayValid(),true);
 	}
+
 	@Test
 	public void isbirthDayValidTest2()
 	{
@@ -301,6 +338,7 @@ public class FreeAgentModelTest {
 		validate.setBirthDay(33);
 		assertEquals(validate.isbirthDayValid(),false);
 	}
+
 	@Test
 	public void isbirthYearValidTest1()
 	{
@@ -308,6 +346,7 @@ public class FreeAgentModelTest {
 		validate.setBirthYear(1995);
 		assertEquals(validate.isbirthYearValid(),true);
 	}
+
 	@Test
 	public void isbirthYearValidTest2()
 	{
@@ -323,6 +362,7 @@ public class FreeAgentModelTest {
 		validate.setBirthYear(997);
 		assertEquals(validate.isbirthYearValid(),false);
 	}
+
 	@Test
 	public void isbirthMonthValidTest1()
 	{
@@ -330,6 +370,7 @@ public class FreeAgentModelTest {
 		validate.setBirthMonth(12);
 		assertEquals(validate.isbirthMonthValid(),true);
 	}
+
 	@Test
 	public void isbirthMonthValidTest2()
 	{
@@ -345,6 +386,7 @@ public class FreeAgentModelTest {
 		validate.setBirthMonth(16);
 		assertEquals(validate.isbirthMonthValid(),false);
 	}
+
 	@Test
 	public void isBirthDateValidTest1()
 	{
@@ -354,6 +396,7 @@ public class FreeAgentModelTest {
 		validate.setBirthYear(2000);
 		assertEquals(validate.isBirthDateValid(),true);
 	}
+
 	@Test
 	public void isBirthDateValidTest2()
 	{
@@ -363,6 +406,7 @@ public class FreeAgentModelTest {
 		validate.setBirthYear(2000);
 		assertEquals(validate.isBirthDateValid(),false);
 	}
+
 	@Test
 	public void isBirthDateValidTest3()
 	{
@@ -372,6 +416,7 @@ public class FreeAgentModelTest {
 		validate.setBirthYear(2004);
 		assertEquals(validate.isBirthDateValid(),true);
 	}
+
 	@Test
 	public void calculateAgeTest()
 	{
@@ -399,6 +444,7 @@ public class FreeAgentModelTest {
 		 List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
 		assertEquals(((FreeAgentModel) data.playerList.get(1)).getPlayerName(),freeAgentList.get(1).getPlayerName());
 	}
+
 	@Test
 	public void ConvertPlayerToFreeAgentTestCaptain()
 	{
@@ -407,57 +453,16 @@ public class FreeAgentModelTest {
 		 List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
 		assertNotEquals(data.playerList.get(1),freeAgentList.get(1));
 	}
+
+	@Test
 	public void ConvertPlayerToFreeAgentTestAge()
 	{
 		FreeAgentModel validate = new FreeAgentModel();
 		JsonMockDataDb data = new JsonMockDataDb();
-		 List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
-		 data.playerList.get(1).calculateAge();
-		 freeAgentList.get(1).calculateAge();
-		 assertSame(data.playerList.get(1).getAge(),freeAgentList.get(1).getAge());
-	}
-
-	@Test
-	public void calculateForwardPlayerStrengthTest(){
-		JsonMockDataDb data = new JsonMockDataDb();
-		FreeAgentModel validate = new FreeAgentModel(data.playerOneName,data.positionForward,data.skating, data.shooting, data.checking, data.saving,data.birthDay,data.birthMonth,data.birthYear);
-		assertEquals(validate.calculatePlayerStrength(),data.calculatePlayerStrength(data.positionForward),0);
-	}
-
-	@Test
-	public void calculateDefensePlayerStrengthTest(){
-		JsonMockDataDb data = new JsonMockDataDb();
-		FreeAgentModel validate = new FreeAgentModel(data.playerOneName,data.positionDefense,data.skating, data.shooting, data.checking, data.saving,data.birthDay,data.birthMonth,data.birthYear);
-		assertEquals(validate.calculatePlayerStrength(),data.calculatePlayerStrength(data.positionDefense),0);
-	}
-
-	@Test
-	public void calculateGoaliePlayerStrengthTest(){
-		JsonMockDataDb data = new JsonMockDataDb();
-		FreeAgentModel validate = new FreeAgentModel(data.playerOneName,data.positionGoalie,data.skating, data.shooting, data.checking, data.saving,data.birthDay,data.birthMonth,data.birthYear);
-		assertEquals(validate.calculatePlayerStrength(),data.calculatePlayerStrength(data.positionGoalie),0);
-	}
-
-	@Test
-	public void validatePlayerTest() {
-		JsonMockDataDb mock = new JsonMockDataDb();
-		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertSame(FreeAgentConstant.Success,validate.validate());
-		mock.setPlayerPositionEmpty();
-		validate = new FreeAgentModel(mock);
-		assertSame(FreeAgentConstant.PlayerValueEmpty,validate.validate());
-		mock = new JsonMockDataDb();
-		mock.setPositionDifferent();
-		validate = new FreeAgentModel(mock);
-		assertSame(FreeAgentConstant.PlayerPositionWrong,validate.validate());
-		mock = new JsonMockDataDb();
-		validate = new FreeAgentModel(mock);
-		validate.setBirthDay(55);
-		assertSame(FreeAgentConstant.PlayerBirthdateInvalid,validate.validate());
-		mock = new JsonMockDataDb();
-		validate = new FreeAgentModel(mock);
-		validate.setSkating(-1);
-		assertSame(FreeAgentConstant.PlayerStateInvalid,validate.validate());
+		List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
+		data.playerList.get(1).calculateAge();
+		freeAgentList.get(1).calculateAge();
+		assertSame(data.playerList.get(1).getAge(),freeAgentList.get(1).getAge());
 	}
 
 }

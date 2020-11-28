@@ -6,7 +6,6 @@ import static org.junit.Assert.assertSame;
 
 import java.util.List;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dhl.g05.conference.ConferenceModel;
@@ -19,14 +18,8 @@ import com.dhl.g05.player.IPlayer;
 import com.dhl.g05.team.ITeam;
 
 public class WeakTeamTest {
-	private static IWeakTeam weakTeam;
-	private static AbstractTradingFactory abstractTradingFactory;
 
-	@BeforeClass
-	public static void setup() {
-		AbstractTradingFactory.setFactory(new TradingFactory());
-		abstractTradingFactory = AbstractTradingFactory.getFactory();
-	}
+	private static IWeakTeam weakTeam;
 
 	MockLeagueModel mockLeague = new MockLeagueModel();
 	ITradingConfig trade = mockLeague.TradingConfigMock();
@@ -34,21 +27,21 @@ public class WeakTeamTest {
 
 	@Test
 	public void setWeakTeamTest() {
-		weakTeam = abstractTradingFactory.getWeakteam();
+		weakTeam = AbstractTradingFactory.instance().getWeakteam();
 		weakTeam.setWeakTeam(weak);
 		assertSame(weak, weakTeam.getWeakTeam());
 	}
 
 	@Test
 	public void getWeakTeamTest() {
-		weakTeam = abstractTradingFactory.getWeakteam();
+		weakTeam = AbstractTradingFactory.instance().getWeakteam();
 		assertNotSame(weak, weakTeam.getWeakTeam());
 	}
 
 	@Test
 	public void setConferenceNameTest() {
 		IConference conference = new ConferenceModel();
-		weakTeam = abstractTradingFactory.getWeakteam();
+		weakTeam = AbstractTradingFactory.instance().getWeakteam();
 		conference.setConferenceName("Eastern");
 		weakTeam.setConferenceName(conference.getConferenceName());
 		assertSame(weakTeam.getConferenceName(), conference.getConferenceName());
@@ -57,7 +50,7 @@ public class WeakTeamTest {
 	@Test
 	public void setDivisionNameTest() {
 		IDivision division = new DivisionModel();
-		weakTeam = abstractTradingFactory.getWeakteam();
+		weakTeam = AbstractTradingFactory.instance().getWeakteam();
 		division.setDivisionName("Atlantic");
 		weakTeam.setDivisionName(division.getDivisionName());
 		assertSame(weakTeam.getDivisionName(), division.getDivisionName());
@@ -66,7 +59,7 @@ public class WeakTeamTest {
 	@Test
 	public void getDivisionNameTest() {
 		IDivision division = new DivisionModel();
-		weakTeam = abstractTradingFactory.getWeakteam();
+		weakTeam = AbstractTradingFactory.instance().getWeakteam();
 		division.setDivisionName("Pacific");
 		weakTeam.setDivisionName(division.getDivisionName());
 		assertSame(weakTeam.getDivisionName(), division.getDivisionName());
@@ -109,7 +102,7 @@ public class WeakTeamTest {
 
 	@Test
 	public void setOfferedPlayerPositionTest() {
-		weakTeam = abstractTradingFactory.getWeakteam();
+		weakTeam = AbstractTradingFactory.instance().getWeakteam();
 		weakTeam.setWeakTeam(weak);
 		weakTeam.playersToOffer(trade);
 		List<IPlayer> expected = weakTeam.getPlayersOffered();
