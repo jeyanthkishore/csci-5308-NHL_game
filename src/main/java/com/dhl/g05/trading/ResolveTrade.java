@@ -6,14 +6,14 @@ import java.util.stream.Collectors;
 
 import com.dhl.g05.communication.ITradeCommunication;
 import com.dhl.g05.communication.PlayerCommunication;
-import com.dhl.g05.freeagent.FreeAgentModel;
-import com.dhl.g05.freeagent.IFreeAgent;
-import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.player.PositionConstant;
-import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.model.FreeAgentModel;
+import com.dhl.g05.model.IFreeAgent;
+import com.dhl.g05.model.IPlayer;
+import com.dhl.g05.model.ITeam;
+import com.dhl.g05.model.LeagueModel;
+import com.dhl.g05.model.PlayerModel;
+import com.dhl.g05.model.PositionConstant;
+import com.dhl.g05.model.TeamModel;
 
 public class ResolveTrade implements IResolveTrade {
 	private static final int SKATERS_COUNT = 18;
@@ -24,8 +24,7 @@ public class ResolveTrade implements IResolveTrade {
 
 		IWeakTeam teamInitiatingTrade = AbstractTradingFactory.getFactory().getWeakteam();
 		IStrongTeam teamAcceptingTrade = AbstractTradingFactory.getFactory().getStrongteam();
-		if(teamAcceptingTrade.getStrongTeam().getUserTeam() == null)
-		{
+		if (teamAcceptingTrade.getStrongTeam().getUserTeam() == null) {
 			adjustAITeam(teamAcceptingTrade.getStrongTeam());
 		}
 		if (teamAcceptingTrade.getStrongTeam().getUserTeam() == true) {
@@ -76,7 +75,7 @@ public class ResolveTrade implements IResolveTrade {
 
 	public void dropToFreeAgentList(ITeam team, String position, int count) {
 		LeagueModel leagueDetails = new LeagueModel();
-		ISortPlayerStrength sortPlayer = Trading.instance().getSortplayerstrength();
+		ISortPlayerStrength sortPlayer = AbstractTradingFactory.instance().getSortplayerstrength();
 		List<IPlayer> players = getPlayerPosition(team.getPlayerList(), position);
 		List<IPlayer> weakestPlayers = sortPlayer.sortByDescending(players);
 		List<IPlayer> weakestPLayersToTrade = weakestPlayers.stream().limit(count).collect(Collectors.toList());
@@ -126,7 +125,7 @@ public class ResolveTrade implements IResolveTrade {
 		for (IPlayer player : playerToDrop) {
 			if (playerToDrop.contains(player))
 				;
-			//team.removeTeamPlayer(player);
+			// team.removeTeamPlayer(player);
 		}
 	}
 
@@ -135,7 +134,8 @@ public class ResolveTrade implements IResolveTrade {
 		List<IFreeAgent> playersWithPosition = new ArrayList<>();
 		if (position.equalsIgnoreCase(SKATER)) {
 			for (IFreeAgent player : players) {
-				if (player.getPosition().equals(PositionConstant.forward.getValue())|| player.getPosition().equals(PositionConstant.defense.getValue())){
+				if (player.getPosition().equals(PositionConstant.forward.getValue())
+						|| player.getPosition().equals(PositionConstant.defense.getValue())) {
 					if (player.getRetirementStatus() == true) {
 						continue;
 					}
@@ -195,7 +195,8 @@ public class ResolveTrade implements IResolveTrade {
 		List<IPlayer> playersWithPosition = new ArrayList<>();
 		if (position.equalsIgnoreCase(SKATER)) {
 			for (IPlayer player : list) {
-				if (player.getPosition().equals(PositionConstant.forward.getValue())|| player.getPosition().equals(PositionConstant.defense.getValue())) {
+				if (player.getPosition().equals(PositionConstant.forward.getValue())
+						|| player.getPosition().equals(PositionConstant.defense.getValue())) {
 					if (((FreeAgentModel) player).getRetirementStatus() == true) {
 						continue;
 					}
@@ -221,7 +222,8 @@ public class ResolveTrade implements IResolveTrade {
 		List<IFreeAgent> freeAgentsWithPosition = new ArrayList<>();
 		if (position.equalsIgnoreCase(SKATER)) {
 			for (IFreeAgent freeAgent : list) {
-				if (freeAgent.getPosition().equals(PositionConstant.forward.getValue())|| freeAgent.getPosition().equals(PositionConstant.defense.getValue())) {
+				if (freeAgent.getPosition().equals(PositionConstant.forward.getValue())
+						|| freeAgent.getPosition().equals(PositionConstant.defense.getValue())) {
 					if (freeAgent.getRetirementStatus() == true) {
 						continue;
 					}

@@ -1,6 +1,6 @@
 package com.dhl.g05.communication;
 
-public class CommunicationTeamMockFactoryState extends CommunicationFactoryState {
+public class CommunicationTeamMockFactoryState extends CommunicationConcreteFactoryState {
 
 	@Override
 	public CommunicationAbstractFactory concreteMethod() {

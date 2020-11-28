@@ -3,14 +3,11 @@ package com.dhl.g05.trading;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dhl.g05.conference.IConference;
-import com.dhl.g05.division.IDivision;
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.model.IConference;
+import com.dhl.g05.model.IDivision;
+import com.dhl.g05.model.ILeague;
+import com.dhl.g05.model.IPlayer;
+import com.dhl.g05.model.ITeam;
 
 public class StrongTeam implements IStrongTeam {
 
@@ -65,10 +62,10 @@ public class StrongTeam implements IStrongTeam {
 		boolean isTradePossible = false;
 		double strengthOfStrongestPLayer = 0.00;
 		List<IPlayer> playersRequested = new ArrayList<>();
-		IWeakTeam teamInitiatingTrade = Trading.instance().getWeakteam();
+		IWeakTeam teamInitiatingTrade = AbstractTradingFactory.instance().getWeakteam();
 		String position = teamInitiatingTrade.getOfferedPlayerPosition();
 		int numberOfPlayersToTrade = teamInitiatingTrade.getNumberOfPlayersOffered();
-		ISortPlayerStrength sortPlayer = AbstractTradingFactory.getFactory().getSortplayerstrength();
+		ISortPlayerStrength sortPlayer = AbstractTradingFactory.instance().getSortplayerstrength();
 
 		for (IConference conference : league.getConferenceDetails()) {
 			for (IDivision division : conference.getDivisionDetails()) {

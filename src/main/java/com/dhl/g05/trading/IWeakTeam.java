@@ -2,9 +2,9 @@ package com.dhl.g05.trading;
 
 import java.util.List;
 
-import com.dhl.g05.gameplayconfig.ITradingConfig;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.team.ITeam;
+import com.dhl.g05.model.IPlayer;
+import com.dhl.g05.model.ITeam;
+import com.dhl.g05.simulation.ITradingConfig;
 
 public interface IWeakTeam {
 

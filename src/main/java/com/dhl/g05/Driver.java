@@ -3,12 +3,10 @@ package com.dhl.g05;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.dhl.g05.gameplayconfig.AbstractGamePlayConfigFactory;
-import com.dhl.g05.gameplayconfig.GamePlayConfigFactory;
-import com.dhl.g05.player.AbstractPlayerFactory;
-import com.dhl.g05.player.PlayerFactory;
-import com.dhl.g05.statemachine.AbstractState;
-import com.dhl.g05.statemachine.StateMachineAbstractFactory;
+import com.dhl.g05.model.AbstractPlayerFactory;
+import com.dhl.g05.model.PlayerFactory;
+import com.dhl.g05.simulation.AbstractState;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class Driver {
 
@@ -16,9 +14,8 @@ public class Driver {
 
 	public static void main(String[] args) {
 		logger.info("Started DHL Application");
-		AbstractGamePlayConfigFactory.setFactory(new GamePlayConfigFactory());
 		AbstractPlayerFactory.setFactory(new PlayerFactory());
-		StateMachineAbstractFactory factory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory factory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		AbstractState importState = factory.createImportState();
 		factory.createStateMachine(importState).enterState();
 	}

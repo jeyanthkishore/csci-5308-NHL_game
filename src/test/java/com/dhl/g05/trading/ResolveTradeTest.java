@@ -8,13 +8,11 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dhl.g05.freeagent.FreeAgentModel;
-import com.dhl.g05.player.AbstractPlayerFactory;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerFactory;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.model.FreeAgentModel;
+import com.dhl.g05.model.IPlayer;
+import com.dhl.g05.model.ITeam;
+import com.dhl.g05.model.PlayerModel;
+import com.dhl.g05.model.TeamModel;
 
 public class ResolveTradeTest {
 	private static final String FORWARD = "Forward";

@@ -2,7 +2,7 @@ package com.dhl.g05.trading;
 
 import java.util.Random;
 
-import com.dhl.g05.gameplayconfig.ITradingConfig;
+import com.dhl.g05.simulation.ITradingConfig;
 
 public class TradeValue implements ITradeValue {
 

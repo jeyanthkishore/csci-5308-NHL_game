@@ -8,38 +8,38 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.coach.CoachModel;
-import com.dhl.g05.coach.ICoach;
-import com.dhl.g05.conference.ConferenceModel;
-import com.dhl.g05.conference.IConference;
-import com.dhl.g05.division.DivisionModel;
-import com.dhl.g05.division.IDivision;
-import com.dhl.g05.freeagent.FreeAgentModel;
-import com.dhl.g05.freeagent.IFreeAgent;
-import com.dhl.g05.gameplayconfig.Aging;
-import com.dhl.g05.gameplayconfig.GamePlayConfigModel;
-import com.dhl.g05.gameplayconfig.GameResolverConfig;
-import com.dhl.g05.gameplayconfig.IAging;
-import com.dhl.g05.gameplayconfig.IGamePlayConfig;
-import com.dhl.g05.gameplayconfig.IGameResolver;
-import com.dhl.g05.gameplayconfig.ITradingConfig;
-import com.dhl.g05.gameplayconfig.Injury;
-import com.dhl.g05.gameplayconfig.TradingConfig;
-import com.dhl.g05.gameplayconfig.TrainingConfig;
-import com.dhl.g05.league.ILeague;
-import com.dhl.g05.league.LeagueModel;
-import com.dhl.g05.leaguesimulation.ILeagueSchedule;
-import com.dhl.g05.leaguesimulation.ILeagueStanding;
-import com.dhl.g05.leaguesimulation.IScheduleModel;
-import com.dhl.g05.leaguesimulation.IStandingModel;
-import com.dhl.g05.leaguesimulation.LeagueSchedule;
-import com.dhl.g05.leaguesimulation.LeagueStanding;
-import com.dhl.g05.leaguesimulation.ScheduleModel;
-import com.dhl.g05.leaguesimulation.StandingModel;
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerModel;
-import com.dhl.g05.team.ITeam;
-import com.dhl.g05.team.TeamModel;
+import com.dhl.g05.model.CoachModel;
+import com.dhl.g05.model.ConferenceModel;
+import com.dhl.g05.model.DivisionModel;
+import com.dhl.g05.model.FreeAgentModel;
+import com.dhl.g05.model.ICoach;
+import com.dhl.g05.model.IConference;
+import com.dhl.g05.model.IDivision;
+import com.dhl.g05.model.IFreeAgent;
+import com.dhl.g05.model.ILeague;
+import com.dhl.g05.model.IPlayer;
+import com.dhl.g05.model.ITeam;
+import com.dhl.g05.model.LeagueModel;
+import com.dhl.g05.model.PlayerModel;
+import com.dhl.g05.model.TeamModel;
+import com.dhl.g05.simulation.AgingConfig;
+import com.dhl.g05.simulation.GamePlayConfigModel;
+import com.dhl.g05.simulation.GameResolverConfig;
+import com.dhl.g05.simulation.IAging;
+import com.dhl.g05.simulation.IGamePlayConfig;
+import com.dhl.g05.simulation.IGameResolver;
+import com.dhl.g05.simulation.ILeagueSchedule;
+import com.dhl.g05.simulation.ILeagueStanding;
+import com.dhl.g05.simulation.IScheduleModel;
+import com.dhl.g05.simulation.IStandingModel;
+import com.dhl.g05.simulation.ITradingConfig;
+import com.dhl.g05.simulation.InjuryConfig;
+import com.dhl.g05.simulation.LeagueSchedule;
+import com.dhl.g05.simulation.LeagueStanding;
+import com.dhl.g05.simulation.ScheduleModel;
+import com.dhl.g05.simulation.StandingModel;
+import com.dhl.g05.simulation.TradingConfig;
+import com.dhl.g05.simulation.TrainingConfig;
 
 public class DeserializeLeagueModel implements IDeserializeModel {
 
@@ -61,15 +61,15 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 	}
 
 	private IAging createAging(JSONObject jsonAging) {
-		IAging agingConfig = new Aging();
+		IAging agingConfig = new AgingConfig();
 		agingConfig.setAverageRetirementAge(((Number) jsonAging.get("averageRetirementAge")).intValue());
 		agingConfig.setMaximumAge(((Number) jsonAging.get("maximumAge")).intValue());
 		agingConfig.setStatDecayChance(((Number) jsonAging.get("statDecayChance")).doubleValue());
 		return agingConfig;
 	}
 
-	private Injury createInjury(JSONObject jsonInjury) {
-		Injury injuryConfig = new Injury();
+	private InjuryConfig createInjury(JSONObject jsonInjury) {
+		InjuryConfig injuryConfig = new InjuryConfig();
 		injuryConfig.setRandomInjuryChance(((Number) jsonInjury.get("randomInjuryChance")).doubleValue());
 		injuryConfig.setInjuryDaysHigh(((Number) jsonInjury.get("injuryDaysHigh")).intValue());
 		injuryConfig.setInjuryDaysLow(((Number) jsonInjury.get("injuryDaysLow")).intValue());

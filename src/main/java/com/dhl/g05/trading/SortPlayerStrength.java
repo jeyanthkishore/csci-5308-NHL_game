@@ -3,8 +3,7 @@ package com.dhl.g05.trading;
 import java.util.Comparator;
 import java.util.List;
 
-import com.dhl.g05.player.IPlayer;
-import com.dhl.g05.player.PlayerModel;
+import com.dhl.g05.model.IPlayer;
 
 public class SortPlayerStrength implements ISortPlayerStrength {
 

@@ -7,10 +7,10 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-import com.dhl.g05.coach.ICoach;
-import com.dhl.g05.freeagent.FreeAgentModel;
-import com.dhl.g05.freeagent.IFreeAgent;
-import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.model.FreeAgentModel;
+import com.dhl.g05.model.ICoach;
+import com.dhl.g05.model.IFreeAgent;
+import com.dhl.g05.model.IPlayer;
 
 public class PlayerCommunication implements IPlayerCommunication, ITradeCommunication {
 	private Scanner scanner;
