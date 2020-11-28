@@ -15,4 +15,5 @@ public enum PositionConstant {
 	public String getValue() {
 		return value;
 	}
+
 }

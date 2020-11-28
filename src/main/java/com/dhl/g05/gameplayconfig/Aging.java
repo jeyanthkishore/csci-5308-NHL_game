@@ -3,19 +3,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Aging implements IAging {
+
 	static final Logger logger = LogManager.getLogger(Aging.class);
+	private int MAX_STAT_DECAY_CHANCE = 1;
+	private int MIN_STAT_DECAY_CHANCE = 0;
+	private int MIN_AGE = 0;
 	private int averageRetirementAge;
 	private int maximumAge;
 	private double statDecayChance;
-
-	public Aging() {
-	}
-
-	public Aging(int averageRetirementAge, int maximumAge, double statDecayChance) {
-		this.averageRetirementAge = averageRetirementAge;
-		this.maximumAge = maximumAge;
-		this.statDecayChance = statDecayChance;
-	}
 
 	@Override
 	public int getAverageRetirementAge() {
@@ -60,24 +55,27 @@ public class Aging implements IAging {
 		return AgingConstant.Success;
 	}
 
-	public boolean isMaximumAgeNotValid(int age) {
-		if (age <= 0) {
-			return true;
+	@Override
+	public boolean isMaximumAgeNotValid(int maximumAge) {
+		if (maximumAge > MIN_AGE) {
+			return false;
 		}
-		return false;
+		return true;
 	}
 
-    public boolean isAverageRetirementAgeNotValid(int age) {
-        if(age <= 0) {
-            return true;
+	@Override
+    public boolean isAverageRetirementAgeNotValid(int averageRetirementAge) {
+        if(averageRetirementAge > MIN_AGE) {
+            return false;
         }
-        return false;
+        return true;
     }
-    
+
+    @Override
 	public boolean isStatDecayChanceNotValid(double statDecayChance) {
-		if (statDecayChance > 1 || statDecayChance < 0) {
-			return true;
+		if (statDecayChance < MAX_STAT_DECAY_CHANCE && statDecayChance > MIN_STAT_DECAY_CHANCE) {
+			return false;
 		}
-		return false;
+		return true;
 	}
 }

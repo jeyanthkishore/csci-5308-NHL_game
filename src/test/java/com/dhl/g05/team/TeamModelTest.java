@@ -10,13 +10,11 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.dhl.g05.freeagent.FreeAgentModel;
-import com.dhl.g05.freeagent.IFreeAgent;
-import com.dhl.g05.freeagent.PositionConstant;
 import com.dhl.g05.mockdata.JsonMockDataDb;
 import com.dhl.g05.player.GenerateNewPlayers;
 import com.dhl.g05.player.IGenerateNewPlayers;
 import com.dhl.g05.player.IPlayer;
+import com.dhl.g05.player.PositionConstant;
 
 public class TeamModelTest{
 
@@ -31,16 +29,6 @@ public class TeamModelTest{
 		assertNull(object.getPlayerList());
 		object.setPlayerList(data.playerList);
 		assertFalse(object.getPlayerList().isEmpty());
-	}
-
-	@Test
-	public void teamObjectParameterConstructorTest() {
-		JsonMockDataDb data = new JsonMockDataDb();
-		TeamModel object = new TeamModel(data.teamName,data.coachDetails,data.generalManagerName,data.playerList);
-		assertSame(data.teamName,object.getTeamName());
-		assertSame(data.coachDetails,object.getCoachDetails());
-		assertSame(data.generalManagerName,object.getGeneralManagerName());
-		assertSame(data.playerList, object.getPlayerList());
 	}
 
 	@Test

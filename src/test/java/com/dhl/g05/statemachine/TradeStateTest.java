@@ -13,8 +13,8 @@ public class TradeStateTest {
 	
 	@Before
 	public void init() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		state = stateFactory.getTradeState();
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		state = stateFactory.createTradeState();
 	}
 	
 	@Test

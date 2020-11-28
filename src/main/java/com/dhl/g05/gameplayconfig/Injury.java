@@ -3,19 +3,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Injury implements IInjury {
+
     static final Logger logger = LogManager.getLogger(Injury.class);
+    private int MIN_RANDOM_INJURY_CHANCE = -1;
     private double randomInjuryChance;
     private int injuryDaysLow;
     private int injuryDaysHigh;
-
-    public Injury() {
-    }
-
-    public Injury(double randomInjuryChance, int injuryDaysLow, int injuryDaysHigh) {
-        this.randomInjuryChance = randomInjuryChance;
-        this.injuryDaysLow = injuryDaysLow;
-        this.injuryDaysHigh = injuryDaysHigh;
-    }
 
     @Override
     public double getRandomInjuryChance() {
@@ -47,6 +40,7 @@ public class Injury implements IInjury {
         this.injuryDaysHigh = injuryDaysHigh;
     }
 
+    @Override
     public InjuryConstant validate() {
         logger.info("Validating injury details");
         if(isRandomInjuryChanceNotValid(randomInjuryChance)){
@@ -58,17 +52,20 @@ public class Injury implements IInjury {
         return InjuryConstant.Success;
     }
 
+    @Override
     public boolean isRandomInjuryChanceNotValid(double randomInjuryChance) {
-        if (randomInjuryChance < -1) {
-            return true;
+        if (randomInjuryChance > MIN_RANDOM_INJURY_CHANCE) {
+            return false;
         }
-        return false;
+        return true;
     }
 
-    public boolean isInjuryDaysHighValueNotValid(int injuryDaysLow,int injuryDaysHigh) {
+    @Override
+    public boolean isInjuryDaysHighValueNotValid(int injuryDaysLow, int injuryDaysHigh) {
         if(injuryDaysHigh <= injuryDaysLow) {
             return true;
         }
         return false;
     }
+
 }

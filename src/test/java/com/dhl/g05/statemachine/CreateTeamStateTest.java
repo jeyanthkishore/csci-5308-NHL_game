@@ -9,6 +9,7 @@ import org.junit.AfterClass;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.communication.CommunicationPlayerMockFactoryState;
 import com.dhl.g05.communication.CommunicationState;
 import com.dhl.g05.communication.CommunicationTeamMockFactoryState;
 import com.dhl.g05.mockdata.JsonMockDataDb;
@@ -21,16 +22,18 @@ public class CreateTeamStateTest {
 	 public static void setup() {
 		 	CommunicationState communication = new CommunicationTeamMockFactoryState();
 		    ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
-		    StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		    create = stateFactory.getCreateTeamState();
+		    StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		    create = stateFactory.createCreateTeamState();
 	        JsonMockDataDb data = new JsonMockDataDb();
 			create.setLeague(data.league);
 	    }
 	 
 	 @AfterClass
 	 public static void setCommunication() {
-		 CommunicationState communication = ApplicationConfiguration.instance().getCommunicationState();
+		 CommunicationState communication = new CommunicationPlayerMockFactoryState();
 		 ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
+//		 CommunicationState communication = ApplicationConfiguration.instance().getCommunicationState();
+//		 ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
 	 }
 
 	 @Test
@@ -38,7 +41,7 @@ public class CreateTeamStateTest {
 		 String userInput = "Western Conference\nDummy\nKillers";
 		 ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
 	     System.setIn(testInput);
-		 setup();
+	     setup();
 		 create.enter();
 		 assertFalse(create.performStateTask());
 	 }

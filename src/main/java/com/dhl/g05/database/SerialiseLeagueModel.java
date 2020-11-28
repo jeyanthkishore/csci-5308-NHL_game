@@ -13,8 +13,8 @@ public class SerialiseLeagueModel implements ISerializeModel{
 
 	@Override
 	public Boolean serialiseObjects(ILeague leagueObject, String teamName) {
-		DatabaseAbstractFactory databaseFactory = ApplicationConfiguration.instance().getDatabaseFactoryState();
-		IFileOperation fileValidator = databaseFactory.getFileDetails();
+		DatabaseAbstractFactory databaseFactory = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
+		IFileOperation fileValidator = databaseFactory.createFileOperation();
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String path = fileValidator.getFilePath(teamName);
 		FileWriter myWriter;

@@ -10,17 +10,10 @@ public class ConferenceModel implements IConference {
 	private List<IDivision> divisions;
 
 	public ConferenceModel() {
-		setDivisionDetails(null);
-		setConferenceName(null);
 	}
 	
 	public ConferenceModel(IConferenceModel conferenceObject) {
 		conferenceObject.loadConferenceModelData(this);
-	}
-
-	public ConferenceModel(String conference, List<IDivision> divisiondetail) {
-		conferenceName = conference;
-		divisions = divisiondetail;
 	}
 
 	@Override

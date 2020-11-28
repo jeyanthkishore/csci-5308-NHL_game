@@ -37,6 +37,7 @@ public class StateMachine implements IStateMachine {
 
 		if (currentState.exit()) {
 			currentState = currentState.getNextState();
+			System.out.println(currentState);
 			if (currentState==null) {
 				return false;
 			}else {

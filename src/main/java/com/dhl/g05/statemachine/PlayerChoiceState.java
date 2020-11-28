@@ -33,8 +33,8 @@ public class PlayerChoiceState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		this.setNextState(stateFactory.getStimulateState(choice));
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		this.setNextState(stateFactory.createStimulateState(choice));
 		return true;
 	}
 }

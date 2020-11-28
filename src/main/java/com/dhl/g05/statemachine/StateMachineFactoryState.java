@@ -7,7 +7,7 @@ public class StateMachineFactoryState extends StateMachineState{
 
 	@Override
 	public StateMachineAbstractFactory concreteMethod() {
-		CommunicationAbstractFactory communicationState = ApplicationConfiguration.instance().getCommunicationFactoryState();
+		CommunicationAbstractFactory communicationState = ApplicationConfiguration.instance().getCommunicationConcreteFactoryState();
 		return new StateMachineFactory(communicationState.getCommunication());
 	}
 

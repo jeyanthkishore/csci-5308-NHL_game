@@ -11,7 +11,7 @@ public class TradeState extends AbstractState{
 	@Override
 	public boolean enter() {
 		league = this.getLeague();
-		return false;
+		return true;
 	}
 
 	@Override
@@ -24,8 +24,8 @@ public class TradeState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		this.setNextState(stateFactory.getAgingState());
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		this.setNextState(stateFactory.createAgingState());
 		return true;
 	}
 

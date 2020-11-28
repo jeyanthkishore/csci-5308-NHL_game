@@ -12,7 +12,6 @@ import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.conference.IConference;
 import com.dhl.g05.database.DatabaseAbstractFactory;
 import com.dhl.g05.database.ICheckTeam;
-import com.dhl.g05.database.IFileOperation;
 import com.dhl.g05.division.IDivision;
 import com.dhl.g05.freeagent.IFreeAgent;
 import com.dhl.g05.league.ILeague;
@@ -52,8 +51,8 @@ public class CreateTeamState extends AbstractState {
 			communicate.sendMessage("Enter team name:");
 			teamName =  communicate.getResponse();
 			ITeam team = new TeamModel();
-			DatabaseAbstractFactory database = ApplicationConfiguration.instance().getDatabaseFactoryState();
-			ICheckTeam checkTeam = database.getCheckTeam();
+			DatabaseAbstractFactory database = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
+			ICheckTeam checkTeam = database.createTeamDatabaseOperation();
 			boolean notUnique = team.isTeamExist(teamName,checkTeam);
 			if(notUnique) {
 				communicate.sendMessage("Please Enter Unique Team Name");
@@ -80,6 +79,7 @@ public class CreateTeamState extends AbstractState {
 
 		if(createOperation()){
 			this.setLeague(league);
+			this.setCurrentUserTeam(teamName);
 			return true;
 		}
 
@@ -300,8 +300,8 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineFactoryState();
-		this.setNextState(stateFactory.getPlayerChoiceState());
+		StateMachineAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		this.setNextState(stateFactory.createPlayerChoiceState());
 		return true;
 	}
 

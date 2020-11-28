@@ -35,20 +35,16 @@ public class ApplicationConfiguration {
 		return uniqueInstance;
 	}
 	
-	public StateMachineAbstractFactory getStateMachineFactoryState() {
+	public StateMachineAbstractFactory getStateMachineConcreteFactoryState() {
 		return StateMachineAbstractFactory.getInstance(statemachine);
 	}
 	
-	public DatabaseAbstractFactory getDatabaseFactoryState() {
+	public DatabaseAbstractFactory getDatabaseConcreteFactoryState() {
 		return DatabaseAbstractFactory.getInstance(database);
 	}
 	
-	public CommunicationAbstractFactory getCommunicationFactoryState() {
+	public CommunicationAbstractFactory getCommunicationConcreteFactoryState() {
 		return CommunicationAbstractFactory.getInstance(communication);
-	}
-	
-	public CommunicationState getCommunicationState() {
-		return new CommunicationFactoryState();
 	}
 	
 	public void setDataBaseFactoryState(DatabaseState newDatabase) {
