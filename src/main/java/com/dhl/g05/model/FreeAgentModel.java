@@ -4,10 +4,12 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.dhl.g05.simulation.IAging;
 import com.mysql.cj.util.StringUtils;
 
 public class FreeAgentModel implements IFreeAgent {
@@ -332,6 +334,27 @@ public class FreeAgentModel implements IFreeAgent {
 			LocalDate birthDate = LocalDate.of(birthYear, birthMonth, birthDay);
 			age = Period.between(birthDate, currentDate).getYears();
 			setAge(age);
+		}
+	}
+
+	public void decreaseStatOnBirthday(ILeague league, IAging agingConfig) {
+		Random random = new Random();
+		for (IFreeAgent p : league.getFreeAgent()) {
+			if (LocalDate.now().getMonthValue() == p.getBirthMonth() && LocalDate.now().getDayOfMonth() == p.getBirthDay()) {
+				if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
+					p.setSkating((p.getSkating()) - 1);
+				}
+				if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
+					p.setShooting((p.getShooting()) - 1);
+				}
+				if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
+					p.setChecking((p.getChecking()) - 1);
+				}
+				if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
+					p.setSaving((p.getSaving()) - 1);
+				}
+			} else
+				continue;
 		}
 	}
 	

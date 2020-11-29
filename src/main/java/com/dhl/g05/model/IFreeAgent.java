@@ -2,6 +2,8 @@ package com.dhl.g05.model;
 
 import java.util.List;
 
+import com.dhl.g05.simulation.IAging;
+
 public interface IFreeAgent {
 
 	int getBirthDay();
@@ -16,7 +18,7 @@ public interface IFreeAgent {
 
 	String getPlayerName();
 
-	void setPlayerName(String player) ;
+	void setPlayerName(String player);
 
 	String getPosition();
 
@@ -63,6 +65,8 @@ public interface IFreeAgent {
 	boolean getRetirementStatus();
 
 	void setRetirementStatus(boolean isRetired);
+
+	void decreaseStatOnBirthday(ILeague league, IAging agingConfig);
 
 	void setBirthYear(int year);
 

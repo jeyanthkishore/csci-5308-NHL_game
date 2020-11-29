@@ -7,9 +7,15 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+
+import com.dhl.g05.simulation.AgingConfig;
+import com.dhl.g05.simulation.AgingState;
+import com.dhl.g05.simulation.IAging;
 
 public class FreeAgentModelTest {
 
@@ -465,5 +471,60 @@ public class FreeAgentModelTest {
 		freeAgentList.get(1).calculateAge();
 		assertSame(data.playerList.get(1).getAge(),freeAgentList.get(1).getAge());
 	}
+	
+	@Test
+	public void FreeAgentStatDecayOnBirthdayTest()
+	{
+		List<IFreeAgent> freeAgents = new ArrayList<>();
+		ILeague league= new LeagueModel();
+		IAging aging = new AgingConfig();
+		IFreeAgent freeagent=new FreeAgentModel();
+		freeagent.setPlayerName("FreeAgent1");
+		freeagent.setPosition("goalie");
+		LocalDate todaysDate= LocalDate.now();
+		freeagent.setBirthDay(todaysDate.getDayOfMonth());
+		freeagent.setBirthMonth(todaysDate.getMonthValue());
+		freeagent.setBirthYear(2000);
+		freeagent.setSkating(10);
+		freeagent.setShooting(12);
+		freeagent.setChecking(15);
+		freeagent.setSaving(18);
+		freeAgents.add(freeagent);
+		league.setFreeAgent(freeAgents);
+		aging.setStatDecayChance(1);
+		freeagent.decreaseStatOnBirthday(league, aging);
+		assertEquals(freeagent.getChecking(), 14, 0);
+		assertEquals(freeagent.getSaving(), 17, 0);
+		assertEquals(freeagent.getSkating(), 9, 0);
+		assertEquals(freeagent.getShooting(), 11, 0);
+	}
+	
+	@Test
+	public void FreeAgentStatNotDecayOnBirthdayTest()
+	{
+		List<IFreeAgent> freeAgents = new ArrayList<>();
+		ILeague league= new LeagueModel();
+		IAging aging = new AgingConfig();
+		IFreeAgent freeagent=new FreeAgentModel();
+		freeagent.setPlayerName("FreeAgent1");
+		freeagent.setPosition("goalie");
+		LocalDate todaysDate= LocalDate.now();
+		freeagent.setBirthDay(todaysDate.getDayOfMonth());
+		freeagent.setBirthMonth(todaysDate.getMonthValue());
+		freeagent.setBirthYear(2000);
+		freeagent.setSkating(10);
+		freeagent.setShooting(12);
+		freeagent.setChecking(15);
+		freeagent.setSaving(18);
+		freeAgents.add(freeagent);
+		league.setFreeAgent(freeAgents);
+		aging.setStatDecayChance(0);
+		freeagent.decreaseStatOnBirthday(league, aging);
+		assertEquals(freeagent.getChecking(), 15, 0);
+		assertEquals(freeagent.getSaving(), 18, 0);
+		assertEquals(freeagent.getSkating(), 10, 0);
+		assertEquals(freeagent.getShooting(), 12, 0);
+	}
+
 
 }
