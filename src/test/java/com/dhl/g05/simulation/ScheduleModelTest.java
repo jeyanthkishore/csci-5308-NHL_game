@@ -93,7 +93,7 @@ public class ScheduleModelTest {
 	
 	@Test
 	public void generateRegularSeasonTest() {
-		IInitializeSchedule schedule = new ScheduleModel();
+		IScheduleModel schedule = new ScheduleModel();
 		LeagueMockData mock = new LeagueMockData();
 		DateHandler dateObject  = DateHandler.getInstance();
 		dateObject.performDateAssignment(2020);
@@ -104,7 +104,7 @@ public class ScheduleModelTest {
 	
 	@Test
 	public void generatePlayOffTest() {
-		IInitializeSchedule schedule = new ScheduleModel();
+		IScheduleModel schedule = new ScheduleModel();
 		StandingsMock dummyStandings = new StandingsMock();
 		ILeague league = dummyStandings.createDummyLeague();
 		DateHandler dateObject  = DateHandler.getInstance();

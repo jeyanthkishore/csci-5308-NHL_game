@@ -9,7 +9,7 @@ import com.dhl.g05.model.ITeam;
 public class StandingModel implements IStandingModel {
 	
 	private IConference conference;
-	private IDivision Division;
+	private IDivision division;
 	private ITeam team;
 	private int totalGamesPlayed;
     private int numberOfWins;
@@ -28,12 +28,12 @@ public class StandingModel implements IStandingModel {
 	
 	@Override
 	public IDivision getDivision() {
-		return Division;
+		return division;
 	}
 	
 	@Override
 	public void setDivision(IDivision division) {
-		Division = division;
+		this.division = division;
 	}
 	
 	@Override

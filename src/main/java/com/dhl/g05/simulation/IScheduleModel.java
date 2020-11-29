@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
+import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.ITeam;
 
 public interface IScheduleModel {
@@ -43,5 +44,9 @@ public interface IScheduleModel {
 	boolean getIsGameCompleted();
 
 	void setIsGameCompleted(boolean isGameCompleted);
+	
+	void generateRegularSeason(ILeague league);
+
+	void generatePlayOff(ILeague league, ILeagueStanding standingSystem);
 
 }

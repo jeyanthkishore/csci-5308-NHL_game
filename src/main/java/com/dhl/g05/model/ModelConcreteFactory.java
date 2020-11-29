@@ -77,5 +77,10 @@ public class ModelConcreteFactory extends ModelAbstractFactory{
 		return new PlayerDraft();
 	}
 
+	@Override
+	public IPlayerTraining createPlayerTraining() {
+		return new PlayerTraining();
+	}
+
 
 }

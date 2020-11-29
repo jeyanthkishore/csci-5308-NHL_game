@@ -16,7 +16,7 @@ public class PlayerChoiceState extends AbstractState{
 
 	@Override
 	public boolean enter() {
-		communication.sendMessage("Enter the number of Season to stimulate");
+		communication.sendMessage(StateMachineConstant.SeasonSimulate.getValue());
 		return true;
 	}
 
@@ -25,7 +25,7 @@ public class PlayerChoiceState extends AbstractState{
 		try {
 			this.choice = communication.getResponseNumber();
 		}catch(InputMismatchException e) {
-			communication.sendMessage("No Number Was Entered, Please Enter a Number..");
+			communication.sendMessage(StateMachineConstant.NoNumberEntered.getValue());
 			return false;
 		}
 		return true;
@@ -33,7 +33,7 @@ public class PlayerChoiceState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		this.setNextState(stateFactory.createStimulateState(choice));
 		return true;
 	}

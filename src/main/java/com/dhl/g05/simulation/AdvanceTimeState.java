@@ -23,7 +23,7 @@ public class AdvanceTimeState extends AbstractState{
 	@Override
 	public boolean exit() {
 		LocalDate currentDate = league.getLeagueCurrentDate();
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		if(DateHandler.getInstance().isRegularSeasonEndDate(currentDate)) {
 			this.setNextState(stateFactory.createPlayOffState());
 		}else {

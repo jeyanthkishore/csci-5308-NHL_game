@@ -64,7 +64,7 @@ public class AdvanceToNextSeasonState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		this.setNextState(stateFactory.createPersistState());
 		return true;
 	}

@@ -8,7 +8,7 @@ import java.util.Map;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.IPlayerDraft;
-import com.dhl.g05.model.PlayerDraft;
+import com.dhl.g05.model.ModelAbstractFactory;
 
 public class PlayerDraftState extends AbstractState {
 
@@ -21,7 +21,8 @@ public class PlayerDraftState extends AbstractState {
 
 	@Override
 	public boolean performStateTask() {
-		IPlayerDraft playerDraft = new PlayerDraft();
+		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+		IPlayerDraft playerDraft = modelFactory.createPlayerDraft();
 		//PlayerDraftMock tradeMock = new PlayerDraftMock();
 //		ILeagueStanding standing = league.getLeagueStanding();
 //		List<IStandingModel> standingList = standing.getRankingAcrossLeague();
@@ -82,7 +83,7 @@ public class PlayerDraftState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		this.setNextState(stateFactory.createAdvanceToNextSeasonState());
 		return true;
 	}

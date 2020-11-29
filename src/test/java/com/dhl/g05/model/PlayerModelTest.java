@@ -18,7 +18,7 @@ public class PlayerModelTest {
 
     @BeforeClass
     public static void init() {
-        simulationAbstractFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+        simulationAbstractFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
         modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
     }
 

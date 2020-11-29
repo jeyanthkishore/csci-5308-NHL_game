@@ -17,14 +17,14 @@ public class ImportState extends AbstractState {
 
 	@Override
 	public boolean enter() {
-		communication.sendMessage("Enter a file name to create a new team or hit enter to load an existing team:");
+		communication.sendMessage(StateMachineConstant.ImportStart.getValue());
 		fileName = communication.getFile();
 		return true;
 	}
 
 	@Override
 	public boolean performStateTask() {
-		if (fileName.equals("")||fileName.isEmpty()) {
+		if (StringUtils.isNullOrEmpty(fileName)) {
 			return true;
 		} 
 
@@ -32,7 +32,7 @@ public class ImportState extends AbstractState {
 		ILeague league = creator.createLeagueFromFile(fileName);
 		if (league == null) {
 			this.setLeague(null);
-			communication.sendMessage("Issue creating league, try again");
+			communication.sendMessage(StateMachineConstant.LeagueCreationIssue.getValue());
 		} else {
 			this.setLeague(league);
 			return true;
@@ -44,7 +44,7 @@ public class ImportState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		if (StringUtils.isNullOrEmpty(fileName)) {
 			this.setNextState(stateFactory.createLoadTeamState()); 
 		} else {

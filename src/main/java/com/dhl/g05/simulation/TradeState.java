@@ -3,7 +3,7 @@ package com.dhl.g05.simulation;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.trading.IIntiateTradeOffer;
-import com.dhl.g05.trading.InitiateTradeOffer;
+import com.dhl.g05.trading.TradeAbstractFactory;
 
 public class TradeState extends AbstractState{
 	private ILeague league;
@@ -16,7 +16,7 @@ public class TradeState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
-		IIntiateTradeOffer tradeClass = new InitiateTradeOffer();
+		IIntiateTradeOffer tradeClass = TradeAbstractFactory.instance().getInititatetradeoffer();
 		tradeClass.setTrade(league.getGamePlayConfig().getTrading());
 		tradeClass.initiateTradeOffer(league);
         return true;
@@ -24,7 +24,7 @@ public class TradeState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		this.setNextState(stateFactory.createAgingState());
 		return true;
 	}

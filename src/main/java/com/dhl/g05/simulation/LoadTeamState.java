@@ -3,12 +3,11 @@ package com.dhl.g05.simulation;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.database.DatabaseAbstractFactory;
-import com.dhl.g05.database.ITeamDatabaseOperation;
 import com.dhl.g05.database.IDeserializeModel;
+import com.dhl.g05.database.ITeamDatabaseOperation;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.ITeam;
 import com.dhl.g05.model.ModelAbstractFactory;
-import com.dhl.g05.model.TeamModel;
 
 public class LoadTeamState extends AbstractState{
 
@@ -24,7 +23,7 @@ public class LoadTeamState extends AbstractState{
 	public boolean enter() {
 		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState(); 
 		league = modelFactory.createLeagueModel();
-		communication.sendMessage("Enter team name:");
+		communication.sendMessage(StateMachineConstant.EnterTeam.getValue());
 		teamName = communication.getResponse();
 
 		return true;
@@ -32,8 +31,9 @@ public class LoadTeamState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
-		ITeam team = new TeamModel();
+		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 		DatabaseAbstractFactory databaseFactory = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
+		ITeam team = modelFactory.createTeamModel();
 		ITeamDatabaseOperation checkTeam = databaseFactory.createTeamDatabaseOperation();
 		IDeserializeModel loadLeague = databaseFactory.createDeserializeObject();
 		if (team.isTeamExist(teamName,checkTeam)) {
@@ -41,14 +41,14 @@ public class LoadTeamState extends AbstractState{
 			this.setLeague(loadedLeague);
 			return true;
 		} else {
-			communication.sendMessage("Team does not exist");
+			communication.sendMessage(StateMachineConstant.NoTeam.getValue());
 			return false;
 		}
 	}
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		this.setNextState(stateFactory.createPlayerChoiceState());
 		return true;
 	}

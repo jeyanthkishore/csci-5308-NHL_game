@@ -9,8 +9,7 @@ import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.IPlayerTraining;
 import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.PlayerTraining;
-import com.dhl.g05.model.RandomNumberFactory;
+import com.dhl.g05.model.ModelAbstractFactory;
 
 public class TrainingState extends AbstractState{
 	private ILeague league;
@@ -24,16 +23,18 @@ public class TrainingState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
+		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+		
 		int daysUntilStatIncreaseCheck = league.getGamePlayConfig().getTraining().getDaysUntilStatIncreaseCheck();
         int daysSinceLastStatIncrease = league.getDaysSinceStatIncrease();
         if (daysSinceLastStatIncrease > daysUntilStatIncreaseCheck) {
-        	IPlayerTraining training = new PlayerTraining(new RandomNumberFactory());
+        	IPlayerTraining training = modelFactory.createPlayerTraining();
 
         	for (IConference conference : league.getConferenceDetails()) {
         		for (IDivision division : conference.getDivisionDetails()) {
         			for (ITeam team : division.getTeamDetails()) {
         				for(IPlayer player : team.getPlayerList()) {
-        					training.performTrainingForPlayer(player,team.getCoachDetails(),league);
+        					training.performTrainingForPlayer(player,team.getCoachDetails(),league.getGamePlayConfig().getInjuries());
         				}
         			}
         		}
@@ -44,7 +45,7 @@ public class TrainingState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		LocalDate currentDate = league.getLeagueCurrentDate();
 		System.out.println(currentDate);
 		if (league.getLeagueSchedule().isGamesUnplayedOnCurrentDay(currentDate)) {

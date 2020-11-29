@@ -42,7 +42,6 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 		return injuries;
 	}
 
-
 	@Override
 	public void setTraining(ITraining training) {
 		this.training = training;

@@ -73,7 +73,4 @@ public class DateHandler {
 		return currentdate.isEqual(playerDraftDate);
 	}
 	
-	public int calculateIntermediateDays(LocalDate firstDate,LocalDate secondDate) {
-		return (int)DAYS.between(firstDate, secondDate);
-	}
 }

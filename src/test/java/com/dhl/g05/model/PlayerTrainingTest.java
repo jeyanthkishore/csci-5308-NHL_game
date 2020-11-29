@@ -1,4 +1,3 @@
-/*
 package com.dhl.g05.model;
 
 import static org.junit.Assert.assertEquals;
@@ -7,6 +6,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.dhl.g05.ApplicationConfiguration;
+
 public class PlayerTrainingTest {
 	
     private static IPlayerTraining playerTraining;
@@ -14,9 +15,9 @@ public class PlayerTrainingTest {
 
     @BeforeClass
     public static void setup() {
-    	AbstractPlayerFactory.setFactory(new PlayerFactory());
+    	playerTraining = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerTraining();
         randomGeneratorFactoryMock = Mockito.mock(RandomNumberFactory.class);
-        playerTraining =new PlayerTraining(randomGeneratorFactoryMock);
+        playerTraining.setRandomGeneratorFactory(randomGeneratorFactoryMock);
     }
 
 	@Test
@@ -28,7 +29,7 @@ public class PlayerTrainingTest {
     		for (IDivision division : conference.getDivisionDetails()) {
     			for (ITeam team : division.getTeamDetails()) {
     				for(IPlayer player : team.getPlayerList()) {
-    					playerTraining.performTrainingForPlayer(player,team.getCoachDetails(),league);
+    					playerTraining.performTrainingForPlayer(player,team.getCoachDetails(),league.getGamePlayConfig().getInjuries());
     				}
     			}
     		}
@@ -48,7 +49,7 @@ public class PlayerTrainingTest {
     		for (IDivision division : conference.getDivisionDetails()) {
     			for (ITeam team : division.getTeamDetails()) {
     				for(IPlayer player : team.getPlayerList()) {
-    					playerTraining.performTrainingForPlayer(player,team.getCoachDetails(),league);
+    					playerTraining.performTrainingForPlayer(player,team.getCoachDetails(),league.getGamePlayConfig().getInjuries());
     				}
     			}
     		}
@@ -59,4 +60,4 @@ public class PlayerTrainingTest {
 		assertEquals("Same",12.0,data.player.getSaving(),0.0);
     }
 }
-*/
+

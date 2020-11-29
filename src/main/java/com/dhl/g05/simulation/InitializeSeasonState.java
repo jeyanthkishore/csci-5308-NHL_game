@@ -10,6 +10,7 @@ import com.dhl.g05.model.ILeague;
 public class InitializeSeasonState extends AbstractState{
 	private LocalDate currentDate;
 	private ILeague league;
+	SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 
 	@Override
 	public boolean enter() {
@@ -32,14 +33,14 @@ public class InitializeSeasonState extends AbstractState{
 		DateHandler dateObject  = DateHandler.getInstance();
 		dateObject.performDateAssignment(currentYear);
 		league.getLeagueStanding().createStandingList(league);
-		IInitializeSchedule leagueSchedule = new ScheduleModel();
+		IScheduleModel leagueSchedule = stateFactory.createScheduleModel();
 		leagueSchedule.generateRegularSeason(league);
 		return true;
 	}
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		this.setNextState(stateFactory.createAdvancedTimeState());
 		return true;
 	}

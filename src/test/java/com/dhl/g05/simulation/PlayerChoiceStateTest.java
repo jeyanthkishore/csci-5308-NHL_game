@@ -15,7 +15,7 @@ public class PlayerChoiceStateTest {
 	
 	@Before
 	public void init() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		state = stateFactory.createPlayerChoiceState();
 	}
 
