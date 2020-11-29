@@ -95,8 +95,7 @@ public class ScheduleModelTest {
 	public void generateRegularSeasonTest() {
 		IScheduleModel schedule = new ScheduleModel();
 		LeagueMockData mock = new LeagueMockData();
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(2020);
+		DateHandler.instance().performDateAssignment(2020);
 		mock.league.setLeagueCurrentDate(LocalDate.of(2020, Month.DECEMBER, 07));
 		schedule.generateRegularSeason(mock.league);
 		assertNotNull(mock.league.getLeagueSchedule());
@@ -107,8 +106,7 @@ public class ScheduleModelTest {
 		IScheduleModel schedule = new ScheduleModel();
 		StandingMockData dummyStandings = new StandingMockData();
 		ILeague league = dummyStandings.createDummyLeague();
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(2020);
+		DateHandler.instance().performDateAssignment(2020);
 		league.setLeagueCurrentDate(LocalDate.of(2020, Month.DECEMBER, 07));
 		ILeagueStanding standings = new LeagueStanding();
 		standings.setStandingList(dummyStandings.createDummyStandings(league));

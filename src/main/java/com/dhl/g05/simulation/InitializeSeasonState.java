@@ -30,8 +30,7 @@ public class InitializeSeasonState extends AbstractState{
 		}else {
 			currentYear = league.getLeagueCurrentDate().getYear();
 		}
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(currentYear);
+		DateHandler.instance().performDateAssignment(currentYear);
 		league.getLeagueStanding().createStandingList(league);
 		IScheduleModel leagueSchedule = stateFactory.createScheduleModel();
 		leagueSchedule.generateRegularSeason(league);

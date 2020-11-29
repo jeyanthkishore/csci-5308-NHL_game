@@ -24,8 +24,7 @@ public class PlayOffScheduleTest {
 	@Test
 	public void performTaskTest() {
 		StandingMockData mock = new StandingMockData();
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(2020);
+		DateHandler.instance().performDateAssignment(2020);
 		ILeague league = mock.createDummyLeague();
 		league.setLeagueCurrentDate(LocalDate.of(2021, Month.APRIL, 07));
 		league.getLeagueStanding().createStandingList(league);
