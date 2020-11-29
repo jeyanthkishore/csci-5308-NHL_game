@@ -29,8 +29,8 @@ public class TradingConcreteFactory extends TradingAbstractFactory {
 	}
 
 	@Override
-	public IResolveTrade createResolveTrade() {
-		return new ResolveTrade();
+	public ITradePickToPlayerDraft createTradePickToPlayerDraft() {
+		return new TradePickToPlayerDraft();
 	}
 
 	@Override

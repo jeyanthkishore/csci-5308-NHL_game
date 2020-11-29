@@ -17,9 +17,10 @@ import com.dhl.g05.model.TeamModel;
 import com.dhl.g05.simulation.ITradingConfig;
 import com.dhl.g05.simulation.TradingConfig;
 
-
 public class MockLeagueModel {
+
 	IWeakTeam weakTeam = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createWeakteam();
+	IStrongTeam strongTeam = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createStrongteam();
 
 	public ILeague leagueMock() {
 		ILeague leagueMock = new LeagueModel();
@@ -41,7 +42,7 @@ public class MockLeagueModel {
 		ITeam team2 = new TeamModel();
 		team2.setTeamName("Rythm");
 		team2.setUserTeam(false);
-		team2.setLossCount(10);
+		team2.setLossCount(2);
 		ArrayList<ITeam> teamDetails1 = new ArrayList<>();
 		teamDetails1.add(team1);
 		teamDetails1.add(team2);
@@ -306,7 +307,7 @@ public class MockLeagueModel {
 		return teamDetails1;
 	}
 
-	public ITradingConfig TradingConfigMock() {
+	public ITradingConfig tradingConfigMock() {
 		ITradingConfig trading = new TradingConfig();
 		trading.setLossPoint(8);
 		trading.setMaxPlayersPerTrade(2);
@@ -314,10 +315,10 @@ public class MockLeagueModel {
 		trading.setRandomAcceptanceChance(1.00);
 		return trading;
 	}
-	public IWeakTeam weakTeamMock()
-	{
+
+	public IWeakTeam weakTeamMock() {
 		ILeague league = leagueMock();
-		ITradingConfig trade = TradingConfigMock();
+		ITradingConfig trade = tradingConfigMock();
 		for (IConference conference : league.getConferenceDetails()) {
 			for (IDivision division : conference.getDivisionDetails()) {
 				for (ITeam team : division.getTeamDetails()) {
@@ -336,5 +337,42 @@ public class MockLeagueModel {
 			}
 		}
 		return weakTeam;
+	}
+
+	public IStrongTeam strongTeamMock1() {
+		ILeague league = leagueMock();
+		for (IConference conference : league.getConferenceDetails()) {
+			for (IDivision division : conference.getDivisionDetails()) {
+				for (ITeam team : division.getTeamDetails()) {
+					if (team.getTeamName().equals("Rythms")) {
+						strongTeam.setConferenceName("Eastern");
+					}
+					strongTeam.setDivisionName("Atlantic");
+					strongTeam.setStrongTeam(team);
+					strongTeam.setStrengthOfStrongestPlayers(9);
+					strongTeam.setStrongestPlayersToTrade(team.getPlayerList());
+					break;
+				}
+			}
+		}
+		return strongTeam;
+	}
+	public IStrongTeam strongTeamMock2() {
+		ILeague league = leagueMock();
+		for (IConference conference : league.getConferenceDetails()) {
+			for (IDivision division : conference.getDivisionDetails()) {
+				for (ITeam team : division.getTeamDetails()) {
+					if (team.getTeamName().equals("Rythms")) {
+						strongTeam.setConferenceName("Eastern");
+					}
+					strongTeam.setDivisionName("Atlantic");
+					strongTeam.setStrongTeam(team);
+					strongTeam.setStrengthOfStrongestPlayers(2);
+					strongTeam.setStrongestPlayersToTrade(team.getPlayerList());
+					break;
+				}
+			}
+		}
+		return strongTeam;
 	}
 }

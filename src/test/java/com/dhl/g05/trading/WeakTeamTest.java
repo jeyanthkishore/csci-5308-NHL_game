@@ -23,7 +23,7 @@ public class WeakTeamTest {
 	private static IWeakTeam weakTeam;
 
 	MockLeagueModel mockLeague = new MockLeagueModel();
-	ITradingConfig trade = mockLeague.TradingConfigMock();
+	ITradingConfig trade = mockLeague.tradingConfigMock();
 	ITeam weak = mockLeague.leagueMock4();
 
 	@Test
