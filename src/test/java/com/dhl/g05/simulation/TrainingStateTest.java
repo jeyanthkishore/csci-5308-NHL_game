@@ -31,8 +31,7 @@ public class TrainingStateTest {
 		mock.league.setDaysSinceStatIncrease(140);
 		
 		state.setLeague(mock.league);
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(Year.now().getValue());
+		DateHandler.instance().performDateAssignment(Year.now().getValue());
 		state.enter();
 		state.performStateTask();
 		state.exit();
@@ -51,8 +50,7 @@ public class TrainingStateTest {
 		scheduleList.add(schedule);
 		data.league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
 		state.setLeague(data.league);
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(Year.now().getValue());
+		DateHandler.instance().performDateAssignment(Year.now().getValue());
 		state.enter();
 		state.performStateTask();
 		state.exit();
@@ -71,8 +69,7 @@ public class TrainingStateTest {
 		scheduleList.add(schedule);
 		data.league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
 		state.setLeague(data.league);
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(Year.now().getValue());
+		DateHandler.instance().performDateAssignment(Year.now().getValue());
 		state.enter();
 		state.performStateTask();
 		state.exit();

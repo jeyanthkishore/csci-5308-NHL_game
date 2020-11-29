@@ -26,7 +26,7 @@ public class DateHandler {
 		playerDraftDate = LocalDate.of(year + 1, Month.JULY, 15);
 	}
 
-	public static DateHandler getInstance() {
+	public static DateHandler instance() {
 		if (instance == null) {
 			instance = new DateHandler();
 		} 

@@ -51,7 +51,7 @@ public class TrainingState extends AbstractState{
 		if (league.getLeagueSchedule().isGamesUnplayedOnCurrentDay(currentDate)) {
             this.setNextState(stateFactory.createStimulateGameState());
         }
-        else if (DateHandler.getInstance().isTradeDeadlinePassed(currentDate)) {
+        else if (DateHandler.instance().isTradeDeadlinePassed(currentDate)) {
         	this.setNextState(stateFactory.createAgingState());
         }
         else {

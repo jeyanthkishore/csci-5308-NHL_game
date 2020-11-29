@@ -152,6 +152,4 @@ public class SimulationConcreteFactory extends SimulationAbstractFactory{
 	public IGamePlayConfig createGamePlayConfig() {
 		return new GamePlayConfigModel();
 	}
-
-
 }

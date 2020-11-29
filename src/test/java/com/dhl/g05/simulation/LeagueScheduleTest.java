@@ -44,8 +44,7 @@ public class LeagueScheduleTest {
 	public void generateRegularSeasonTest() {
 		ILeagueSchedule leagueSchedule = new LeagueSchedule();
 		StandingMockData mock = new StandingMockData();
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(2020);
+		DateHandler.instance().performDateAssignment(2020);
 		ILeague league = mock.createDummyLeague();
 		
 		ITeam team1 = league.getConferenceDetails().get(0).getDivisionDetails().get(0).getTeamDetails().get(0);
@@ -59,8 +58,7 @@ public class LeagueScheduleTest {
 	public void generatePlayoffScheduleTest() {
 		ILeagueSchedule leagueSchedule = new LeagueSchedule();
 		StandingMockData mock = new StandingMockData();
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(2020);
+		DateHandler.instance().performDateAssignment(2020);
 		ILeague league = mock.createDummyLeague();
 		league.getLeagueStanding().createStandingList(league);
 		
@@ -75,8 +73,7 @@ public class LeagueScheduleTest {
 	@Test
 	public void anyUnplayedGamesOnGivenDateTest() {
 		ILeagueSchedule leagueSchedule = new LeagueSchedule();
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(2020);
+		DateHandler.instance().performDateAssignment(2020);
 		
 		List<IScheduleModel> regularSeasonSchedule = new ArrayList<>();
 		IScheduleModel schedule = new ScheduleModel();
@@ -91,8 +88,7 @@ public class LeagueScheduleTest {
 	@Test
 	public void anyUnplayedGamesOnGivenDateFalseTest() {
 		ILeagueSchedule leagueSchedule = new LeagueSchedule();
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(2020);
+		DateHandler.instance().performDateAssignment(2020);
 		
 		List<IScheduleModel> regularSeasonSchedule = new ArrayList<>();
 		IScheduleModel schedule = new ScheduleModel();
@@ -107,8 +103,7 @@ public class LeagueScheduleTest {
 	@Test
 	public void anyUnplayedPlayOffGamesOnGivenDateTest() {
 		ILeagueSchedule leagueSchedule = new LeagueSchedule();
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(2020);
+		DateHandler.instance().performDateAssignment(2020);
 		
 		List<IScheduleModel> playoffSchedule = new ArrayList<>();
 		IScheduleModel schedule = new ScheduleModel();
@@ -188,8 +183,7 @@ public class LeagueScheduleTest {
     @Test
     public void getScheduledMatchOnThisDateInRegularSeasonTest() {
         ILeagueSchedule scheduleSystem = new LeagueSchedule();
-        DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(2020);
+        DateHandler.instance().performDateAssignment(2020);
 
         List<IScheduleModel> regularSeasonSchedule = new ArrayList<>();
         IScheduleModel schedule1 = new ScheduleModel();
@@ -210,8 +204,7 @@ public class LeagueScheduleTest {
     @Test
     public void getScheduledMatchOnThisDateInPlayOffTest() {
     	ILeagueSchedule scheduleSystem = new LeagueSchedule();
-    	DateHandler dateObject  = DateHandler.getInstance();
-    	dateObject.performDateAssignment(2020);
+    	DateHandler.instance().performDateAssignment(2020);
 
     	List<IScheduleModel> playoffSchedule = new ArrayList<>();
     	IScheduleModel schedule1 = new ScheduleModel();
@@ -233,8 +226,7 @@ public class LeagueScheduleTest {
     @Test
     public void updateScheduleAfterPlayoffGameOneTest() {
     	ILeagueSchedule scheduleSystem = new LeagueSchedule();
-    	DateHandler dateObject  = DateHandler.getInstance();
-    	dateObject.performDateAssignment(2020);
+    	DateHandler.instance().performDateAssignment(2020);
 
     	IConference conference1 = new ConferenceModel();
         IConference conference2 = new ConferenceModel();
@@ -290,8 +282,7 @@ public class LeagueScheduleTest {
     @Test
     public void updateScheduleAfterPlayoffGameTwoTest() {
     	ILeagueSchedule scheduleSystem = new LeagueSchedule();
-    	DateHandler dateObject  = DateHandler.getInstance();
-    	dateObject.performDateAssignment(2020);
+    	DateHandler.instance().performDateAssignment(2020);
 
         IConference conference1 = new ConferenceModel();
         IConference conference2 = new ConferenceModel();
