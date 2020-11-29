@@ -2,6 +2,8 @@ package com.dhl.g05.trading;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ILeague;
@@ -20,12 +22,11 @@ public class InitiateTradeOffer implements IIntiateTradeOffer {
 	public void setTrade(ITradingConfig trade) {
 		this.trade = trade;
 	}
-
 	public ILeague initiateTradeOffer(ILeague league) {
 		boolean hasBestTeamToTrade = false;
-		IWeakTeam teamInitiatingTrade = TradeAbstractFactory.instance().getWeakteam();
-		IStrongTeam teamAcceptingTrade = TradeAbstractFactory.instance().getStrongteam();
-		ITradeDecision tradeDecision = TradeAbstractFactory.instance().getTradedecision();
+		IWeakTeam teamInitiatingTrade = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createWeakteam();
+		IStrongTeam teamAcceptingTrade = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createStrongteam();
+		ITradeDecision tradeDecision = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createTradedecision();
 		ITradingConfig trade = getTrade();
 		ITradeValue checkTradeValue = new TradeValue(trade);
 
@@ -42,14 +43,15 @@ public class InitiateTradeOffer implements IIntiateTradeOffer {
 						teamInitiatingTrade.setConferenceName(c.getConferenceName());
 						teamInitiatingTrade.setDivisionName(d.getDivisionName());
 						teamInitiatingTrade.playersToOffer(trade);
-						hasBestTeamToTrade = teamAcceptingTrade.findTeamToSwap(league);
+						hasBestTeamToTrade = teamAcceptingTrade.findTeamToSwap(league, teamInitiatingTrade );
 						if (hasBestTeamToTrade == true) {
-							tradeDecision.TradeResult(trade);
+							tradeDecision.TradeResult(trade, teamInitiatingTrade, teamAcceptingTrade);
 						} else 
 							logger.info("No suitable Team to trade with");
 							break;
 						}
 					}
+					
 				}
 			}
 		return league;

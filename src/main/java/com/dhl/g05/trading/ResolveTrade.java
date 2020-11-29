@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.ITradeCommunication;
 import com.dhl.g05.communication.PlayerCommunication;
 import com.dhl.g05.model.FreeAgentModel;
@@ -22,8 +23,8 @@ public class ResolveTrade implements IResolveTrade {
 
 	public void resolveTrade() {
 
-		IWeakTeam teamInitiatingTrade = TradeAbstractFactory.getFactory().getWeakteam();
-		IStrongTeam teamAcceptingTrade = TradeAbstractFactory.getFactory().getStrongteam();
+		IWeakTeam teamInitiatingTrade = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createWeakteam();
+		IStrongTeam teamAcceptingTrade = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createStrongteam();
 		if (teamAcceptingTrade.getStrongTeam().getUserTeam() == null) {
 			adjustAITeam(teamAcceptingTrade.getStrongTeam());
 		}
@@ -75,7 +76,7 @@ public class ResolveTrade implements IResolveTrade {
 
 	public void dropToFreeAgentList(ITeam team, String position, int count) {
 		LeagueModel leagueDetails = new LeagueModel();
-		ISortPlayerStrength sortPlayer = TradeAbstractFactory.instance().getSortplayerstrength();
+		ISortPlayerStrength sortPlayer = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createSortplayerstrength();
 		List<IPlayer> players = getPlayerPosition(team.getPlayerList(), position);
 		List<IPlayer> weakestPlayers = sortPlayer.sortByDescending(players);
 		List<IPlayer> weakestPLayersToTrade = weakestPlayers.stream().limit(count).collect(Collectors.toList());

@@ -3,6 +3,7 @@ package com.dhl.g05.trading;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.ConferenceModel;
 import com.dhl.g05.model.DivisionModel;
 import com.dhl.g05.model.IConference;
@@ -18,6 +19,7 @@ import com.dhl.g05.simulation.TradingConfig;
 
 
 public class MockLeagueModel {
+	IWeakTeam weakTeam = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createWeakteam();
 
 	public ILeague leagueMock() {
 		ILeague leagueMock = new LeagueModel();
@@ -121,7 +123,7 @@ public class MockLeagueModel {
 		TeamModel team2 = new TeamModel();
 		team2.setTeamName("Rythm");
 		team2.setUserTeam(false);
-		team2.setLossCount(10);
+		team2.setLossCount(1);
 		ArrayList<ITeam> teamDetails1 = new ArrayList<>();
 		teamDetails1.add(team1);
 		teamDetails1.add(team2);
@@ -160,19 +162,19 @@ public class MockLeagueModel {
 		playerDetailsTeam1.add(player5Team1);
 		team1.setPlayerList(playerDetailsTeam1);
 		player1Team2.setPlayerName("player1Team2");
-		player1Team2.setPlayerStrength(6);
+		player1Team2.setPlayerStrength(1);
 		player1Team2.setPosition("defense");
 		player2Team2.setPlayerName("player2Team2");
-		player2Team2.setPlayerStrength(8);
+		player2Team2.setPlayerStrength(1);
 		player2Team2.setPosition("goalie");
 		player3Team2.setPlayerName("Player3Team2");
-		player3Team2.setPlayerStrength(2);
-		player3Team2.setPosition("goalie");
+		player3Team2.setPlayerStrength(1);
+		player3Team2.setPosition("defense");
 		player4Team2.setPlayerName("Player4Team2");
-		player4Team2.setPlayerStrength(9);
+		player4Team2.setPlayerStrength(1);
 		player4Team2.setPosition("defense");
 		player5Team2.setPlayerName("Player5Team2");
-		player5Team2.setPlayerStrength(6);
+		player5Team2.setPlayerStrength(1);
 		player5Team2.setPosition("forward");
 		playerDetailsTeam2.add(player1Team2);
 		playerDetailsTeam2.add(player2Team2);
@@ -311,5 +313,28 @@ public class MockLeagueModel {
 		trading.setRandomTradeOfferChance(1.00);
 		trading.setRandomAcceptanceChance(1.00);
 		return trading;
+	}
+	public IWeakTeam weakTeamMock()
+	{
+		ILeague league = leagueMock();
+		ITradingConfig trade = TradingConfigMock();
+		for (IConference conference : league.getConferenceDetails()) {
+			for (IDivision division : conference.getDivisionDetails()) {
+				for (ITeam team : division.getTeamDetails()) {
+					if (team.getTeamName().equals("Tigers")) {
+						weakTeam.setConferenceName("Eastern");
+					}
+					weakTeam.setDivisionName("Atlantic");
+					weakTeam.setOfferedPlayerPosition("goalie");
+					weakTeam.setNumberOfPlayersOffered(1);
+					weakTeam.setPlayersOffered(team.getPlayerList());
+					weakTeam.setStrengthOfPlayersOffered(3);
+					weakTeam.setWeakTeam(team);
+					weakTeam.playersToOffer(trade);
+					break;
+				}
+			}
+		}
+		return weakTeam;
 	}
 }

@@ -3,6 +3,8 @@ package com.dhl.g05.trading;
 import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
+
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ILeague;
@@ -31,7 +33,7 @@ public class InitiateTradeOfferTest {
 		MockLeagueModel mock = new MockLeagueModel();
 		ILeague league = mock.leagueMock();
 		ITradingConfig trade = mock.TradingConfigMock();
-		intiateTradeOffer = TradeAbstractFactory.instance().getInititatetradeoffer();
+		intiateTradeOffer = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createInititatetradeoffer();
 		intiateTradeOffer.setTrade(trade);
 		return intiateTradeOffer.initiateTradeOffer(league);
 	}
