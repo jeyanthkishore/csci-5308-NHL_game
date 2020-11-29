@@ -20,9 +20,9 @@ public class TradeDecision implements ITradeDecision {
 		boolean tradeAccepeted = false;
 		ramdomTradeChance = random.nextDouble();
 		ITradeCommunication showDetails = new PlayerCommunication();
-		ISwapPlayers swap = AbstractTradingFactory.instance().getSwapplayers();
-		IWeakTeam teamInitiatingTrade = AbstractTradingFactory.instance().getWeakteam();
-		IStrongTeam teamAcceptingTrade = AbstractTradingFactory.instance().getStrongteam();
+		ISwapPlayers swap = TradeAbstractFactory.instance().getSwapplayers();
+		IWeakTeam teamInitiatingTrade = TradeAbstractFactory.instance().getWeakteam();
+		IStrongTeam teamAcceptingTrade = TradeAbstractFactory.instance().getStrongteam();
 
 		if (teamAcceptingTrade.getStrongTeam().getUserTeam() == true) {
 			showDetails.sendTradeMessage(teamInitiatingTrade.getPlayersOffered(),

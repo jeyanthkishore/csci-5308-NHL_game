@@ -8,28 +8,29 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.FreeAgentModel;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
+import com.dhl.g05.model.ModelAbstractFactory;
 import com.dhl.g05.model.PlayerModel;
-import com.dhl.g05.model.TeamModel;
 
 public class ResolveTradeTest {
 	private static final String FORWARD = "Forward";
 	private static final String DEFENSE = "Defense";
 	private static IResolveTrade resolveTrade;
-	private static AbstractTradingFactory abstractTradingFactory;
+	private static ModelAbstractFactory modelAbstractFactory;
 
 	@BeforeClass
-	public static void setup() {
-		AbstractTradingFactory.setFactory(new TradingFactory());
-		abstractTradingFactory = AbstractTradingFactory.getFactory();
+	public static void init() {
+		modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 	}
 
 	@Test
 	public void dropWeakestPlayersToFreeAgentListTest() {
-		resolveTrade = abstractTradingFactory.getResolveTrade();
-		IPlayer player1 = new PlayerModel();
+//		resolveTrade = abstractTradingFactory.getResolveTrade();
+		resolveTrade = TradeAbstractFactory.getFactory().getResolveTrade();
+		IPlayer player1 = modelAbstractFactory.createPlayerModel();
 		((FreeAgentModel) player1).setPlayerName("Shawn");
 		player1.setPosition(DEFENSE);
 		player1.setPlayerStrength(10);
@@ -46,7 +47,7 @@ public class ResolveTradeTest {
 		List<IPlayer> players = new ArrayList<>();
 		players.add(player1);
 		players.add(player2);
-		ITeam team = new TeamModel();
+		ITeam team = modelAbstractFactory.createTeamModel();
 		team.setPlayerList(players);
 		resolveTrade.dropToFreeAgentList(team, DEFENSE, 1);
 		assertEquals(team.getPlayerList().size(), 2);

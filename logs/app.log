@@ -916,3 +916,1592 @@
 [INFO ] 2020-11-28 20:41:51.575 [main] FreeAgentModel:189 - Calculating player strength
 [INFO ] 2020-11-28 20:41:51.577 [main] TradeDecision:41 - Validating player details
 [INFO ] 2020-11-28 20:41:51.581 [main] TradeDecision:41 - Validating player details
+[INFO ] 2020-11-28 23:23:19.201 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:23:19.228 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:23:19.234 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:23:19.236 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:23:19.237 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:23:19.237 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:23:19.237 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:23:19.280 [main] FreeAgentModel:345 - Happy Birthday your player stats will be decreased
+[INFO ] 2020-11-28 23:23:19.281 [main] FreeAgentModel:386 - Excess Players dropped to Free Agents list
+[INFO ] 2020-11-28 23:23:19.281 [main] FreeAgentModel:386 - Excess Players dropped to Free Agents list
+[INFO ] 2020-11-28 23:23:19.281 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:23:19.282 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:23:19.284 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:23:19.284 [main] FreeAgentModel:345 - Happy Birthday your player stats will be decreased
+[INFO ] 2020-11-28 23:23:19.285 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:23:19.285 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:23:19.285 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:23:19.286 [main] FreeAgentModel:386 - Excess Players dropped to Free Agents list
+[INFO ] 2020-11-28 23:23:19.287 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:23:19.287 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:23:19.287 [main] FreeAgentModel:386 - Excess Players dropped to Free Agents list
+[INFO ] 2020-11-28 23:23:19.288 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:10.660 [main] PlayerRetirement:49 - Getting status of retirement of freeAgents
+[INFO ] 2020-11-28 23:47:10.663 [main] LeagueModel:102 - Removing retired freeAgents from league
+[INFO ] 2020-11-28 23:47:11.142 [main] PlayerRetirement:13 - check whether player is retired or not
+[INFO ] 2020-11-28 23:47:11.155 [main] PlayerRetirement:13 - check whether player is retired or not
+[INFO ] 2020-11-28 23:47:11.156 [main] PlayerRetirement:13 - check whether player is retired or not
+[INFO ] 2020-11-28 23:47:11.156 [main] PlayerRetirement:60 - Getting status of retirement of players
+[INFO ] 2020-11-28 23:47:11.156 [main] TeamModel:115 - Removing retired player from team
+[INFO ] 2020-11-28 23:47:11.171 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-28 23:47:11.171 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-28 23:47:11.182 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.182 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.188 [main] PlayerModel:81 - Checking player retirement
+[INFO ] 2020-11-28 23:47:11.188 [main] PlayerRetirement:13 - check whether player is retired or not
+[INFO ] 2020-11-28 23:47:11.189 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.189 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.190 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.191 [main] PlayerModel:75 - Checking player injury
+[INFO ] 2020-11-28 23:47:11.191 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.304 [main] InjuryConfig:45 - Validating injury details
+[INFO ] 2020-11-28 23:47:11.304 [main] InjuryConfig:45 - Validating injury details
+[INFO ] 2020-11-28 23:47:11.305 [main] InjuryConfig:45 - Validating injury details
+[INFO ] 2020-11-28 23:47:11.305 [main] TrainingConfig:18 - Validating training details
+[INFO ] 2020-11-28 23:47:11.306 [main] TrainingConfig:18 - Validating training details
+[INFO ] 2020-11-28 23:47:11.306 [main] TrainingConfig:18 - Validating training details
+[INFO ] 2020-11-28 23:47:11.319 [main] LeagueModel:102 - Removing retired freeAgents from league
+[INFO ] 2020-11-28 23:47:11.321 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.322 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.323 [main] FreeAgentModel:386 - Excess Players dropped to Free Agents list
+[INFO ] 2020-11-28 23:47:11.323 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.324 [main] FreeAgentModel:386 - Excess Players dropped to Free Agents list
+[INFO ] 2020-11-28 23:47:11.325 [main] FreeAgentModel:386 - Excess Players dropped to Free Agents list
+[INFO ] 2020-11-28 23:47:11.326 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.326 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.326 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.327 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.327 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.327 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.328 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.328 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.328 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.328 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.328 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.332 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.332 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.333 [main] PlayerDraft:90 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.333 [main] PlayerDraft:90 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.333 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.333 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.333 [main] PlayerDraft:83 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.333 [main] PlayerDraft:90 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.333 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.333 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.333 [main] PlayerDraft:90 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.334 [main] PlayerDraft:90 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.334 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.334 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.334 [main] PlayerDraft:83 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.334 [main] PlayerDraft:90 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.334 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.334 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.334 [main] PlayerDraft:83 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.334 [main] PlayerDraft:90 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.334 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.335 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.335 [main] PlayerDraft:83 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.335 [main] PlayerDraft:90 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.335 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.335 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.335 [main] PlayerDraft:90 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.335 [main] PlayerDraft:90 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.335 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.335 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.336 [main] PlayerDraft:90 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.336 [main] PlayerDraft:90 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.336 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.336 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.336 [main] PlayerDraft:83 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.336 [main] PlayerDraft:90 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.336 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.336 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.336 [main] PlayerDraft:90 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.336 [main] PlayerDraft:90 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.336 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.337 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.337 [main] PlayerDraft:83 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.337 [main] PlayerDraft:90 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.337 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.337 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.337 [main] PlayerDraft:83 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.337 [main] PlayerDraft:90 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.337 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.337 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.337 [main] PlayerDraft:83 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.338 [main] PlayerDraft:90 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.338 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.338 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.338 [main] PlayerDraft:90 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.338 [main] PlayerDraft:90 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.338 [main] PlayerDraft:121 -  Team Bostonpicked player Aubrey Williams
+[INFO ] 2020-11-28 23:47:11.338 [main] PlayerDraft:121 -  Team Thunderspicked player Leonardi Whitmer
+[INFO ] 2020-11-28 23:47:11.338 [main] PlayerDraft:121 -  Team Bostonpicked player Olin Bongard
+[INFO ] 2020-11-28 23:47:11.338 [main] PlayerDraft:121 -  Team Thunderspicked player Walter Kenny
+[INFO ] 2020-11-28 23:47:11.338 [main] PlayerDraft:121 -  Team Tigerspicked player Bieker Marianela
+[INFO ] 2020-11-28 23:47:11.339 [main] PlayerDraft:121 -  Team Rockerspicked player Leavens Alfaro
+[INFO ] 2020-11-28 23:47:11.339 [main] PlayerDraft:121 -  Team Thunderspicked player Mercad Alfaro
+[INFO ] 2020-11-28 23:47:11.339 [main] PlayerDraft:121 -  Team Thunderspicked player Reardon Jacoby
+[INFO ] 2020-11-28 23:47:11.339 [main] PlayerDraft:121 -  Team Rockerspicked player Nobile Bertie
+[INFO ] 2020-11-28 23:47:11.339 [main] PlayerDraft:121 -  Team Rockerspicked player Hammers Gullion
+[INFO ] 2020-11-28 23:47:11.339 [main] PlayerDraft:121 -  Team Bostonpicked player Calder Brook
+[INFO ] 2020-11-28 23:47:11.339 [main] PlayerDraft:121 -  Team Thunderspicked player Mcentyre Gholston
+[INFO ] 2020-11-28 23:47:11.339 [main] PlayerDraft:121 -  Team Tigerspicked player Madore Bertie
+[INFO ] 2020-11-28 23:47:11.339 [main] PlayerDraft:121 -  Team Rockerspicked player Brink Gullion
+[INFO ] 2020-11-28 23:47:11.339 [main] PlayerDraft:121 -  Team Thunderspicked player Roxie Kehl Twana
+[INFO ] 2020-11-28 23:47:11.339 [main] PlayerDraft:121 -  Team Thunderspicked player Mallow Morvant
+[INFO ] 2020-11-28 23:47:11.340 [main] PlayerDraft:121 -  Team Bostonpicked player  Clifton Isabelle
+[INFO ] 2020-11-28 23:47:11.340 [main] PlayerDraft:121 -  Team Thunderspicked player Brink Francene
+[INFO ] 2020-11-28 23:47:11.340 [main] PlayerDraft:121 -  Team Rockerspicked player Olin Kenny
+[INFO ] 2020-11-28 23:47:11.340 [main] PlayerDraft:121 -  Team Thunderspicked player Roof Rockmore
+[INFO ] 2020-11-28 23:47:11.340 [main] PlayerDraft:121 -  Team Tigerspicked player Kauffman Kale
+[INFO ] 2020-11-28 23:47:11.340 [main] PlayerDraft:121 -  Team Rockerspicked player Eleonor Swofford
+[INFO ] 2020-11-28 23:47:11.340 [main] PlayerDraft:121 -  Team Thunderspicked player Eleonor Morvant
+[INFO ] 2020-11-28 23:47:11.340 [main] PlayerDraft:121 -  Team Thunderspicked player Eleonor Kieser
+[INFO ] 2020-11-28 23:47:11.340 [main] PlayerDraft:121 -  Team Tigerspicked player Brink Isabelle
+[INFO ] 2020-11-28 23:47:11.340 [main] PlayerDraft:121 -  Team Tigerspicked player Heide Morvant
+[INFO ] 2020-11-28 23:47:11.340 [main] PlayerDraft:121 -  Team Bostonpicked player Karner Isabelle
+[INFO ] 2020-11-28 23:47:11.341 [main] PlayerDraft:121 -  Team Thunderspicked player Reardon Maryrose
+[INFO ] 2020-11-28 23:47:11.341 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@2bec854f
+[INFO ] 2020-11-28 23:47:11.342 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@26adfd2d
+[INFO ] 2020-11-28 23:47:11.342 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@2bec854f
+[INFO ] 2020-11-28 23:47:11.342 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@26adfd2d
+[INFO ] 2020-11-28 23:47:11.342 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@3336e6b6
+[INFO ] 2020-11-28 23:47:11.342 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@7c3fdb62
+[INFO ] 2020-11-28 23:47:11.342 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@26adfd2d
+[INFO ] 2020-11-28 23:47:11.342 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@26adfd2d
+[INFO ] 2020-11-28 23:47:11.342 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@7c3fdb62
+[INFO ] 2020-11-28 23:47:11.343 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@7c3fdb62
+[INFO ] 2020-11-28 23:47:11.343 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@2bec854f
+[INFO ] 2020-11-28 23:47:11.343 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@26adfd2d
+[INFO ] 2020-11-28 23:47:11.343 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@3336e6b6
+[INFO ] 2020-11-28 23:47:11.343 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@7c3fdb62
+[INFO ] 2020-11-28 23:47:11.343 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@26adfd2d
+[INFO ] 2020-11-28 23:47:11.343 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@26adfd2d
+[INFO ] 2020-11-28 23:47:11.344 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@2bec854f
+[INFO ] 2020-11-28 23:47:11.344 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@26adfd2d
+[INFO ] 2020-11-28 23:47:11.345 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@7c3fdb62
+[INFO ] 2020-11-28 23:47:11.345 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@26adfd2d
+[INFO ] 2020-11-28 23:47:11.345 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@3336e6b6
+[INFO ] 2020-11-28 23:47:11.345 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@7c3fdb62
+[INFO ] 2020-11-28 23:47:11.345 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@26adfd2d
+[INFO ] 2020-11-28 23:47:11.345 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@26adfd2d
+[INFO ] 2020-11-28 23:47:11.345 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@3336e6b6
+[INFO ] 2020-11-28 23:47:11.345 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@3336e6b6
+[INFO ] 2020-11-28 23:47:11.346 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@2bec854f
+[INFO ] 2020-11-28 23:47:11.346 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@26adfd2d
+[INFO ] 2020-11-28 23:47:11.346 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.346 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.346 [main] PlayerDraft:107 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.347 [main] PlayerDraft:107 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.347 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.347 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.347 [main] PlayerDraft:100 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.347 [main] PlayerDraft:107 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.347 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.347 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.347 [main] PlayerDraft:107 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.347 [main] PlayerDraft:107 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.347 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.348 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.348 [main] PlayerDraft:100 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.348 [main] PlayerDraft:107 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.348 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.348 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.348 [main] PlayerDraft:100 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.348 [main] PlayerDraft:107 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.348 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.348 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.348 [main] PlayerDraft:100 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.349 [main] PlayerDraft:107 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.349 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.349 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.349 [main] PlayerDraft:107 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.349 [main] PlayerDraft:107 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.350 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.350 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.350 [main] PlayerDraft:107 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.350 [main] PlayerDraft:107 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.350 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.350 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.350 [main] PlayerDraft:100 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.350 [main] PlayerDraft:107 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.350 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.350 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.351 [main] PlayerDraft:107 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.351 [main] PlayerDraft:107 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.351 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.351 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.351 [main] PlayerDraft:100 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.351 [main] PlayerDraft:107 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.351 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.351 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.351 [main] PlayerDraft:100 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.351 [main] PlayerDraft:107 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.351 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.352 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.352 [main] PlayerDraft:100 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.352 [main] PlayerDraft:107 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.352 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.352 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.352 [main] PlayerDraft:107 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.352 [main] PlayerDraft:107 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.353 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.353 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.353 [main] PlayerDraft:107 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.353 [main] PlayerDraft:107 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.353 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.353 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.353 [main] PlayerDraft:100 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.353 [main] PlayerDraft:107 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.353 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.353 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.353 [main] PlayerDraft:107 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.354 [main] PlayerDraft:107 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.354 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.354 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.354 [main] PlayerDraft:100 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.354 [main] PlayerDraft:107 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.354 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.354 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.354 [main] PlayerDraft:100 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.354 [main] PlayerDraft:107 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.354 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.354 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.354 [main] PlayerDraft:100 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.355 [main] PlayerDraft:107 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.355 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.355 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.355 [main] PlayerDraft:107 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.355 [main] PlayerDraft:107 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.355 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.356 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.356 [main] PlayerDraft:107 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.356 [main] PlayerDraft:107 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.356 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.356 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.356 [main] PlayerDraft:100 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.356 [main] PlayerDraft:107 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.356 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.356 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.357 [main] PlayerDraft:107 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.357 [main] PlayerDraft:107 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.357 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.357 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.357 [main] PlayerDraft:100 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.357 [main] PlayerDraft:107 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.357 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.357 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.357 [main] PlayerDraft:100 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.358 [main] PlayerDraft:107 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.358 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.358 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.358 [main] PlayerDraft:100 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.358 [main] PlayerDraft:107 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.358 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.358 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.358 [main] PlayerDraft:107 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.358 [main] PlayerDraft:107 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.359 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.359 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.359 [main] PlayerDraft:107 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.359 [main] PlayerDraft:107 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.359 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.359 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.360 [main] PlayerDraft:100 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.360 [main] PlayerDraft:107 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.360 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.360 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.360 [main] PlayerDraft:107 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.360 [main] PlayerDraft:107 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.360 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.360 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.360 [main] PlayerDraft:100 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.360 [main] PlayerDraft:107 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.360 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.361 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.361 [main] PlayerDraft:100 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.361 [main] PlayerDraft:107 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.361 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.361 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.361 [main] PlayerDraft:100 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.361 [main] PlayerDraft:107 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.361 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.361 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.361 [main] PlayerDraft:107 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.361 [main] PlayerDraft:107 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.362 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.362 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.362 [main] PlayerDraft:107 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.362 [main] PlayerDraft:107 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.362 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.362 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.362 [main] PlayerDraft:100 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.363 [main] PlayerDraft:107 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.363 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.363 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.363 [main] PlayerDraft:107 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.363 [main] PlayerDraft:107 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.363 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.363 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.363 [main] PlayerDraft:100 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.363 [main] PlayerDraft:107 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.363 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.363 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.363 [main] PlayerDraft:100 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.364 [main] PlayerDraft:107 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.364 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.364 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:47:11.364 [main] PlayerDraft:100 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.364 [main] PlayerDraft:107 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.364 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.364 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:47:11.364 [main] PlayerDraft:107 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:47:11.364 [main] PlayerDraft:107 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:47:11.369 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.370 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.370 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.379 [main] TeamModel:102 - Calculating team strength using players strength
+[INFO ] 2020-11-28 23:47:11.380 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.380 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.380 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.380 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.380 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.380 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.381 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.383 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.383 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.384 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.384 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.384 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.384 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.384 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.385 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.385 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.385 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.385 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.386 [main] TeamModel:115 - Removing retired player from team
+[INFO ] 2020-11-28 23:47:11.386 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.386 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.411 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.411 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.411 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.411 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.411 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.411 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.411 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.412 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.412 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.412 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.412 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.412 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.412 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.412 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.412 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.412 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.412 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.412 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.413 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.413 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.413 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.413 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.413 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.413 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.413 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.413 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.413 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.413 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.414 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.414 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.414 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.414 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.414 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.414 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.414 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.414 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.414 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.414 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.415 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.415 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.415 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.415 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.415 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.415 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.415 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.415 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.415 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.415 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.416 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.416 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.416 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.416 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.416 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.416 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.416 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.416 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.416 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.416 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.417 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.417 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.417 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.417 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.417 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.417 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.417 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.417 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.417 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.417 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.417 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.418 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.418 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.418 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.418 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.418 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.418 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.418 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.418 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.418 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.419 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.419 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.419 [main] TeamModel:102 - Calculating team strength using players strength
+[INFO ] 2020-11-28 23:47:11.419 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.419 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.419 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.419 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.419 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.419 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.420 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.420 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.420 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.420 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.420 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.420 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.420 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.420 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.420 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.420 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.420 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.421 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.421 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.421 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.421 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.421 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.421 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.421 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.421 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.422 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.422 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.422 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.422 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.422 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.422 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.422 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.422 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.422 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.422 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.422 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.423 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.423 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.423 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.423 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.423 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.423 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.423 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.423 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.423 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.423 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.423 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.424 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.424 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.424 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.424 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.424 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.424 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.424 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.425 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.425 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.425 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.425 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.425 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.425 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.425 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.426 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.426 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.426 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.426 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.426 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.426 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.427 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.427 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.427 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.427 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.427 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.427 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.427 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.428 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.428 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.428 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.428 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.428 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.428 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.428 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.429 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.429 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.429 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.429 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.430 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.430 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.430 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.430 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.430 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.430 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.430 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.431 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.431 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.431 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.431 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.431 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.431 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.431 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.431 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.431 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.432 [main] TeamModel:102 - Calculating team strength using players strength
+[INFO ] 2020-11-28 23:47:11.432 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.432 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.432 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.432 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.432 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.432 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.432 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.432 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.432 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.432 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.432 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.433 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.433 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.433 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.433 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.433 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.433 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.433 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.433 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.433 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.433 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.434 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.434 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.434 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.434 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.435 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.435 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.435 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.435 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.435 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.435 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.435 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.435 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.435 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.436 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.436 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.436 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.436 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.436 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.436 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.436 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.436 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.437 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.437 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.437 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.437 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.437 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.437 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.437 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.437 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.438 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.438 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.438 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.438 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.438 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.438 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.438 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.438 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.438 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.439 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.439 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.439 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.439 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.439 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.439 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.439 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.439 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.439 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.440 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.440 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.440 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.440 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.440 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.440 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.440 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.440 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.440 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.441 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.441 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.441 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.441 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.441 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.441 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.441 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.441 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.442 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.442 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.442 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.442 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.442 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.442 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.442 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.442 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.442 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.442 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.442 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.443 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.443 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.443 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.443 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.443 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.443 [main] TeamModel:102 - Calculating team strength using players strength
+[INFO ] 2020-11-28 23:47:11.443 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.443 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.443 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.443 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.443 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.444 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.444 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.444 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.444 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.444 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.444 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.444 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.444 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.444 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.444 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.445 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.445 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.445 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.445 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.445 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.445 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.445 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.445 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.446 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.446 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.446 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.446 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.446 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.446 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.446 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.446 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.446 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.446 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.446 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.447 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.447 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.447 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.447 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.447 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.447 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.447 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.447 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.447 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.447 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.447 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.448 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.448 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.448 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.448 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.448 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.448 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.448 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.448 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.448 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.448 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.448 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.448 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.449 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.449 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.449 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.449 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.449 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.449 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.449 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.449 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.449 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.449 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.449 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.449 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.450 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.450 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.450 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.450 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.450 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.450 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.450 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.450 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.450 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.450 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.450 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.451 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.451 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.451 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.451 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.451 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.451 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.451 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.451 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.451 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.451 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.451 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.451 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.452 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.452 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.452 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.452 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.452 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.452 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.452 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.452 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.453 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.453 [main] TeamModel:102 - Calculating team strength using players strength
+[INFO ] 2020-11-28 23:47:11.453 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.453 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.453 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.453 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.453 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.453 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.453 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.454 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.454 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.454 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.454 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.454 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.454 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.454 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.454 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.454 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.454 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.455 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.455 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.455 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.455 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.455 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.455 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.455 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.455 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.456 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.456 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.456 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.456 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.456 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.456 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.456 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.456 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.457 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.457 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.457 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.457 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.457 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.457 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.457 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.458 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.458 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.458 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.458 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.458 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.458 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.458 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.458 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.459 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.459 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.459 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.459 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.459 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.459 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.459 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.459 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.460 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.460 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.460 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.460 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.460 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.460 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.460 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.460 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.461 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.461 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.461 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.461 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-28 23:47:11.461 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-28 23:47:11.461 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-28 23:47:11.461 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-28 23:47:11.462 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-28 23:47:11.462 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-28 23:47:11.462 [main] InjuryConfig:45 - Validating injury details
+[INFO ] 2020-11-28 23:47:11.462 [main] AgingConfig:45 - Validating aging details
+[INFO ] 2020-11-28 23:47:11.463 [main] TradingConfig:45 - Validating trading details
+[INFO ] 2020-11-28 23:47:11.464 [main] TrainingConfig:18 - Validating training details
+[INFO ] 2020-11-28 23:47:11.464 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.467 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.467 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.468 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.468 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.468 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.468 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.468 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.468 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.468 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.469 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.469 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.469 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.469 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.469 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.469 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.469 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.469 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.469 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.470 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.470 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.470 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.470 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.470 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.470 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.471 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.471 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.471 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.471 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.471 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.471 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.471 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.472 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.472 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.472 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.472 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.472 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.472 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.472 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.473 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.473 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.473 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.473 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.473 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.473 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.473 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.473 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.474 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.474 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.474 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.474 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.474 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.474 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.474 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.475 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.475 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.475 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.475 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.475 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.475 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.475 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.476 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.476 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.476 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.476 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.476 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.476 [main] TeamModel:102 - Calculating team strength using players strength
+[INFO ] 2020-11-28 23:47:11.476 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.476 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.477 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.477 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.477 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.477 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.477 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.477 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.477 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.478 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.478 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.478 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.478 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.478 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.478 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.478 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.478 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.478 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.478 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.479 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.479 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.479 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.479 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.479 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.479 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.479 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.479 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.480 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.480 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.480 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.480 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.480 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.480 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.480 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.480 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.480 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.480 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.481 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.481 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.481 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.481 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.481 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.481 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.481 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.481 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.481 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.482 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.482 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.482 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.482 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.482 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.482 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.482 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.482 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.482 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.482 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.482 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.483 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.483 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.483 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.483 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.483 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.483 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.483 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.483 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.483 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.483 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.484 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.484 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.484 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.484 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.484 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.484 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.484 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.484 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.485 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.485 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.485 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.485 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.485 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.485 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.485 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.486 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.486 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.486 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.486 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.486 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.486 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.486 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.486 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.486 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.486 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.487 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.487 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.487 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.487 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.487 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.487 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.487 [main] PlayerModel:56 - Validating player details
+[INFO ] 2020-11-28 23:47:11.487 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.487 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.487 [main] TeamModel:102 - Calculating team strength using players strength
+[INFO ] 2020-11-28 23:47:11.488 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.488 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.488 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.488 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.488 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.488 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.488 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.488 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.488 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.488 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.488 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.488 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.488 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.488 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.488 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.489 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.489 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.489 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.489 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.489 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.489 [main] TeamModel:125 - Validating team details
+[INFO ] 2020-11-28 23:47:11.489 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.490 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.490 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.490 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.490 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.490 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.490 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-28 23:47:11.490 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-28 23:47:11.490 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-28 23:47:11.490 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-28 23:47:11.490 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-28 23:47:11.491 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-28 23:47:11.491 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-28 23:47:11.511 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.512 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.513 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.514 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.514 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.514 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.515 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.515 [main] FreeAgentModel:345 - Happy Birthday your player stats will be decreased
+[INFO ] 2020-11-28 23:47:11.515 [main] FreeAgentModel:386 - Excess Players dropped to Free Agents list
+[INFO ] 2020-11-28 23:47:11.515 [main] FreeAgentModel:386 - Excess Players dropped to Free Agents list
+[INFO ] 2020-11-28 23:47:11.516 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.516 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.516 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.516 [main] FreeAgentModel:345 - Happy Birthday your player stats will be decreased
+[INFO ] 2020-11-28 23:47:11.517 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.517 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.517 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.517 [main] FreeAgentModel:386 - Excess Players dropped to Free Agents list
+[INFO ] 2020-11-28 23:47:11.518 [main] FreeAgentModel:207 - Validating freeAgent details - name, birthdate, statistics
+[INFO ] 2020-11-28 23:47:11.518 [main] FreeAgentModel:252 - validating freeAgent's statistics
+[INFO ] 2020-11-28 23:47:11.518 [main] FreeAgentModel:386 - Excess Players dropped to Free Agents list
+[INFO ] 2020-11-28 23:47:11.519 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.520 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.521 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.521 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.521 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.521 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.521 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.521 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.521 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.521 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.522 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.522 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.522 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.522 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.522 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.522 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.522 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.522 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.522 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.522 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.523 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.523 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.523 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.523 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.523 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.523 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.523 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.523 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.523 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.523 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.523 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.524 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.524 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.524 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.524 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.524 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.524 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.524 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.524 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.524 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.524 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.525 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.525 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.525 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.525 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.525 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.525 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.525 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.525 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.525 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.525 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.526 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.526 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.526 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.526 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.526 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.527 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.527 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.527 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.527 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.527 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.527 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.527 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.527 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.527 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.527 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.528 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.528 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.528 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.528 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.528 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.528 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.528 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.528 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.528 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.529 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.529 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.529 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.529 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.529 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.529 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.529 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.529 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.529 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.529 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.529 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.530 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.530 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.530 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.530 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.530 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.530 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.530 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.530 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.530 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.530 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.530 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.531 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.531 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.531 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.531 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.531 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.531 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.532 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.532 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.532 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.532 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.532 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.532 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.532 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.532 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.532 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.532 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.533 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.533 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.533 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.533 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.533 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.533 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.533 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.533 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.533 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.533 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.533 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.534 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.534 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.534 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.534 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.534 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.534 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.534 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.534 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.534 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.534 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.534 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.535 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.535 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.535 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.535 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.535 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.535 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.535 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.535 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.535 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.535 [main] PlayerInjury:14 - Check whether player is injured or not
+[INFO ] 2020-11-28 23:47:11.535 [main] FreeAgentModel:193 - Calculating player strength
+[INFO ] 2020-11-28 23:47:11.537 [main] AgingConfig:45 - Validating aging details
+[INFO ] 2020-11-28 23:47:11.538 [main] AgingConfig:45 - Validating aging details
+[INFO ] 2020-11-28 23:47:11.538 [main] AgingConfig:45 - Validating aging details
+[INFO ] 2020-11-28 23:47:11.538 [main] AgingConfig:45 - Validating aging details
+[INFO ] 2020-11-28 23:47:11.541 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-28 23:47:11.542 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-28 23:47:11.542 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-28 23:47:11.542 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-28 23:47:11.543 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-28 23:47:11.543 [main] CoachModel:116 - Validating coach statistics
+[INFO ] 2020-11-28 23:47:11.543 [main] CoachModel:88 - Validating coach details - name and statistics
+[INFO ] 2020-11-28 23:53:51.272 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.276 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.276 [main] PlayerDraft:90 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.276 [main] PlayerDraft:90 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.276 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.276 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.276 [main] PlayerDraft:83 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.276 [main] PlayerDraft:90 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.277 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.277 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.277 [main] PlayerDraft:90 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.277 [main] PlayerDraft:90 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.277 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.277 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.277 [main] PlayerDraft:83 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.278 [main] PlayerDraft:90 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.278 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.278 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.278 [main] PlayerDraft:83 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.278 [main] PlayerDraft:90 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.278 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.278 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.278 [main] PlayerDraft:83 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.278 [main] PlayerDraft:90 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.279 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.279 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.279 [main] PlayerDraft:90 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.279 [main] PlayerDraft:90 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.279 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.279 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.279 [main] PlayerDraft:90 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.279 [main] PlayerDraft:90 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.279 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.280 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.280 [main] PlayerDraft:83 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.280 [main] PlayerDraft:90 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.280 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.280 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.280 [main] PlayerDraft:90 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.280 [main] PlayerDraft:90 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.280 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.280 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.281 [main] PlayerDraft:83 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.281 [main] PlayerDraft:90 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.281 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.281 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.281 [main] PlayerDraft:83 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.281 [main] PlayerDraft:90 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.281 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.281 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.281 [main] PlayerDraft:83 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.282 [main] PlayerDraft:90 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.282 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.282 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.282 [main] PlayerDraft:90 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.282 [main] PlayerDraft:90 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.282 [main] PlayerDraft:121 -  Team Bostonpicked player Durbin Williams
+[INFO ] 2020-11-28 23:53:51.282 [main] PlayerDraft:121 -  Team Thunderspicked player Madore Amber
+[INFO ] 2020-11-28 23:53:51.282 [main] PlayerDraft:121 -  Team Bostonpicked player Heide Noyola
+[INFO ] 2020-11-28 23:53:51.282 [main] PlayerDraft:121 -  Team Thunderspicked player Zahn Larisa
+[INFO ] 2020-11-28 23:53:51.282 [main] PlayerDraft:121 -  Team Tigerspicked player Tirrell Dwana
+[INFO ] 2020-11-28 23:53:51.283 [main] PlayerDraft:121 -  Team Rockerspicked player Bieker Wilkes
+[INFO ] 2020-11-28 23:53:51.283 [main] PlayerDraft:121 -  Team Thunderspicked player Pleasants Kieser
+[INFO ] 2020-11-28 23:53:51.283 [main] PlayerDraft:121 -  Team Thunderspicked player Eleonor Shanell
+[INFO ] 2020-11-28 23:53:51.283 [main] PlayerDraft:121 -  Team Rockerspicked player Bieker Nolan
+[INFO ] 2020-11-28 23:53:51.283 [main] PlayerDraft:121 -  Team Rockerspicked player Fancher Servais
+[INFO ] 2020-11-28 23:53:51.283 [main] PlayerDraft:121 -  Team Bostonpicked player Roof Marianela
+[INFO ] 2020-11-28 23:53:51.283 [main] PlayerDraft:121 -  Team Thunderspicked player Adolfo Boehm Nolan
+[INFO ] 2020-11-28 23:53:51.283 [main] PlayerDraft:121 -  Team Tigerspicked player Brink Kale
+[INFO ] 2020-11-28 23:53:51.283 [main] PlayerDraft:121 -  Team Rockerspicked player Karner Amber
+[INFO ] 2020-11-28 23:53:51.283 [main] PlayerDraft:121 -  Team Thunderspicked player Valerius Daluz
+[INFO ] 2020-11-28 23:53:51.284 [main] PlayerDraft:121 -  Team Thunderspicked player Dane Larisa
+[INFO ] 2020-11-28 23:53:51.284 [main] PlayerDraft:121 -  Team Bostonpicked player Durbin Kenny
+[INFO ] 2020-11-28 23:53:51.284 [main] PlayerDraft:121 -  Team Thunderspicked player Victor Amber
+[INFO ] 2020-11-28 23:53:51.284 [main] PlayerDraft:121 -  Team Rockerspicked player Benites Francene
+[INFO ] 2020-11-28 23:53:51.284 [main] PlayerDraft:121 -  Team Thunderspicked player Yamashiro Bertie
+[INFO ] 2020-11-28 23:53:51.284 [main] PlayerDraft:121 -  Team Tigerspicked player Fred Murguia
+[INFO ] 2020-11-28 23:53:51.284 [main] PlayerDraft:121 -  Team Rockerspicked player Steil Ernest
+[INFO ] 2020-11-28 23:53:51.284 [main] PlayerDraft:121 -  Team Thunderspicked player Oliveira Twyman
+[INFO ] 2020-11-28 23:53:51.284 [main] PlayerDraft:121 -  Team Thunderspicked player Mallow Amber
+[INFO ] 2020-11-28 23:53:51.284 [main] PlayerDraft:121 -  Team Tigerspicked player Oda Boyd
+[INFO ] 2020-11-28 23:53:51.285 [main] PlayerDraft:121 -  Team Tigerspicked player Zahn Gullion
+[INFO ] 2020-11-28 23:53:51.285 [main] PlayerDraft:121 -  Team Bostonpicked player Kiara Timms
+[INFO ] 2020-11-28 23:53:51.285 [main] PlayerDraft:121 -  Team Thunderspicked player Hana Brook
+[INFO ] 2020-11-28 23:53:51.285 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@dd3b207
+[INFO ] 2020-11-28 23:53:51.286 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@58fdd99
+[INFO ] 2020-11-28 23:53:51.286 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@dd3b207
+[INFO ] 2020-11-28 23:53:51.286 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@58fdd99
+[INFO ] 2020-11-28 23:53:51.287 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@6b1274d2
+[INFO ] 2020-11-28 23:53:51.287 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@7bc1a03d
+[INFO ] 2020-11-28 23:53:51.287 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@58fdd99
+[INFO ] 2020-11-28 23:53:51.287 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@58fdd99
+[INFO ] 2020-11-28 23:53:51.287 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@7bc1a03d
+[INFO ] 2020-11-28 23:53:51.287 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@7bc1a03d
+[INFO ] 2020-11-28 23:53:51.289 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@dd3b207
+[INFO ] 2020-11-28 23:53:51.289 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@58fdd99
+[INFO ] 2020-11-28 23:53:51.289 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@6b1274d2
+[INFO ] 2020-11-28 23:53:51.289 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@7bc1a03d
+[INFO ] 2020-11-28 23:53:51.289 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@58fdd99
+[INFO ] 2020-11-28 23:53:51.289 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@58fdd99
+[INFO ] 2020-11-28 23:53:51.289 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@dd3b207
+[INFO ] 2020-11-28 23:53:51.289 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@58fdd99
+[INFO ] 2020-11-28 23:53:51.289 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@7bc1a03d
+[INFO ] 2020-11-28 23:53:51.290 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@58fdd99
+[INFO ] 2020-11-28 23:53:51.290 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@6b1274d2
+[INFO ] 2020-11-28 23:53:51.290 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@7bc1a03d
+[INFO ] 2020-11-28 23:53:51.290 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@58fdd99
+[INFO ] 2020-11-28 23:53:51.290 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@58fdd99
+[INFO ] 2020-11-28 23:53:51.290 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@6b1274d2
+[INFO ] 2020-11-28 23:53:51.290 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@6b1274d2
+[INFO ] 2020-11-28 23:53:51.290 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@dd3b207
+[INFO ] 2020-11-28 23:53:51.291 [main] PlayerDraft:135 - Removing excess players for teamcom.dhl.g05.model.TeamModel@58fdd99
+[INFO ] 2020-11-28 23:53:51.292 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.292 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.292 [main] PlayerDraft:107 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.292 [main] PlayerDraft:107 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.292 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.292 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.293 [main] PlayerDraft:100 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.293 [main] PlayerDraft:107 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.293 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.293 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.293 [main] PlayerDraft:107 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.293 [main] PlayerDraft:107 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.293 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.293 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.294 [main] PlayerDraft:100 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.294 [main] PlayerDraft:107 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.294 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.294 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.294 [main] PlayerDraft:100 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.294 [main] PlayerDraft:107 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.294 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.295 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.295 [main] PlayerDraft:100 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.295 [main] PlayerDraft:107 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.295 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.295 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.295 [main] PlayerDraft:107 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.295 [main] PlayerDraft:107 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.296 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.296 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.297 [main] PlayerDraft:107 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.297 [main] PlayerDraft:107 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.297 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.297 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.297 [main] PlayerDraft:100 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.297 [main] PlayerDraft:107 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.297 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.297 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.298 [main] PlayerDraft:107 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.298 [main] PlayerDraft:107 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.298 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.298 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.298 [main] PlayerDraft:100 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.298 [main] PlayerDraft:107 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.298 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.298 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.299 [main] PlayerDraft:100 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.299 [main] PlayerDraft:107 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.299 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.299 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.299 [main] PlayerDraft:100 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.299 [main] PlayerDraft:107 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.299 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.299 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.299 [main] PlayerDraft:107 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.300 [main] PlayerDraft:107 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.300 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.301 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.301 [main] PlayerDraft:107 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.301 [main] PlayerDraft:107 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.301 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.301 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.301 [main] PlayerDraft:100 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.301 [main] PlayerDraft:107 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.301 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.301 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.301 [main] PlayerDraft:107 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.301 [main] PlayerDraft:107 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.302 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.302 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.302 [main] PlayerDraft:100 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.302 [main] PlayerDraft:107 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.302 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.302 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.303 [main] PlayerDraft:100 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.303 [main] PlayerDraft:107 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.303 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.303 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.303 [main] PlayerDraft:100 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.304 [main] PlayerDraft:107 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.304 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.304 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.304 [main] PlayerDraft:107 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.304 [main] PlayerDraft:107 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.305 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.306 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.306 [main] PlayerDraft:107 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.306 [main] PlayerDraft:107 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.306 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.306 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.306 [main] PlayerDraft:100 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.306 [main] PlayerDraft:107 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.307 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.307 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.307 [main] PlayerDraft:107 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.307 [main] PlayerDraft:107 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.307 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.307 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.307 [main] PlayerDraft:100 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.307 [main] PlayerDraft:107 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.307 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.307 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.307 [main] PlayerDraft:100 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.308 [main] PlayerDraft:107 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.308 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.308 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.308 [main] PlayerDraft:100 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.308 [main] PlayerDraft:107 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.308 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.308 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.308 [main] PlayerDraft:107 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.308 [main] PlayerDraft:107 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.309 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.309 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.310 [main] PlayerDraft:107 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.310 [main] PlayerDraft:107 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.310 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.310 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.310 [main] PlayerDraft:100 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.310 [main] PlayerDraft:107 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.311 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.311 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.311 [main] PlayerDraft:107 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.311 [main] PlayerDraft:107 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.311 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.311 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.311 [main] PlayerDraft:100 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.311 [main] PlayerDraft:107 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.311 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.312 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.312 [main] PlayerDraft:100 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.312 [main] PlayerDraft:107 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.312 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.312 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.312 [main] PlayerDraft:100 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.312 [main] PlayerDraft:107 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.312 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.312 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.312 [main] PlayerDraft:107 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.313 [main] PlayerDraft:107 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.313 [main] PlayerDraft:83 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.313 [main] PlayerDraft:83 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.314 [main] PlayerDraft:107 - Round1 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.314 [main] PlayerDraft:107 - Round1 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.314 [main] PlayerDraft:90 - Round2 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.314 [main] PlayerDraft:90 - Round2 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.314 [main] PlayerDraft:100 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.314 [main] PlayerDraft:107 - Round2 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.315 [main] PlayerDraft:83 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.315 [main] PlayerDraft:90 - Round3 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.315 [main] PlayerDraft:107 - Round3 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.315 [main] PlayerDraft:107 - Round3 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.315 [main] PlayerDraft:90 - Round4 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.315 [main] PlayerDraft:90 - Round4 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.315 [main] PlayerDraft:100 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.315 [main] PlayerDraft:107 - Round4 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.315 [main] PlayerDraft:83 - Round5 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.315 [main] PlayerDraft:83 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.315 [main] PlayerDraft:100 - Round5 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.316 [main] PlayerDraft:107 - Round5 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.316 [main] PlayerDraft:90 - Round6 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.316 [main] PlayerDraft:90 - Round6 team pick is Rockers
+[INFO ] 2020-11-28 23:53:51.316 [main] PlayerDraft:100 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.316 [main] PlayerDraft:107 - Round6 team pick is Thunders
+[INFO ] 2020-11-28 23:53:51.316 [main] PlayerDraft:90 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.316 [main] PlayerDraft:83 - Round7 team pick is Tigers
+[INFO ] 2020-11-28 23:53:51.316 [main] PlayerDraft:107 - Round7 team pick is Boston
+[INFO ] 2020-11-28 23:53:51.316 [main] PlayerDraft:107 - Round7 team pick is Thunders
+[INFO ] 2020-11-28 23:59:32.699 [main] TradeDecision:40 - Team initiating trade is Tigers
+[INFO ] 2020-11-28 23:59:32.758 [main] StrongTeam:105 - Player offered is : Player5Team1and position is defense
+[INFO ] 2020-11-28 23:59:32.758 [main] StrongTeam:101 - Team selected for trading is Rythm
+[INFO ] 2020-11-28 23:59:32.759 [main] StrongTeam:105 - Player requested is player1Team2and position is defense
+[INFO ] 2020-11-28 23:59:32.760 [main] TradeDecision:58 - Trade Accepted
+[INFO ] 2020-11-28 23:59:32.760 [main] StrongTeam:24 - Player swapped
+[INFO ] 2020-11-28 23:59:32.774 [main] StrongTeam:105 - Player offered is : Player5Team1and position is defense
+[INFO ] 2020-11-28 23:59:32.774 [main] StrongTeam:101 - Team selected for trading is Rythm
+[INFO ] 2020-11-28 23:59:32.774 [main] StrongTeam:105 - Player requested is player1Team2and position is defense
+[INFO ] 2020-11-28 23:59:32.775 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-28 23:59:32.776 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-28 23:59:32.776 [main] StrongTeam:105 - Player offered is : Player3and position is goalie
+[INFO ] 2020-11-28 23:59:32.776 [main] StrongTeam:105 - Player offered is : Player1and position is goalie
+[INFO ] 2020-11-28 23:59:32.777 [main] StrongTeam:105 - Player offered is : Player3and position is goalie
+[INFO ] 2020-11-28 23:59:32.777 [main] StrongTeam:105 - Player offered is : Player1and position is goalie
+[INFO ] 2020-11-28 23:59:32.777 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-28 23:59:32.778 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-28 23:59:32.779 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-28 23:59:32.779 [main] StrongTeam:24 - Player swapped
+[INFO ] 2020-11-28 23:59:32.780 [main] StrongTeam:24 - Player swapped
+[INFO ] 2020-11-29 00:00:51.012 [main] TradeDecision:40 - Team initiating trade is Tigers
+[INFO ] 2020-11-29 00:00:51.070 [main] StrongTeam:105 - Player offered is : Player5Team1and position is defense
+[INFO ] 2020-11-29 00:00:51.071 [main] StrongTeam:101 - Team selected for trading is Rythm
+[INFO ] 2020-11-29 00:00:51.071 [main] StrongTeam:105 - Player requested is player1Team2and position is defense
+[INFO ] 2020-11-29 00:00:51.072 [main] TradeDecision:58 - Trade Accepted
+[INFO ] 2020-11-29 00:00:51.073 [main] StrongTeam:24 - Player swapped
+[INFO ] 2020-11-29 00:00:51.085 [main] StrongTeam:105 - Player offered is : Player5Team1and position is defense
+[INFO ] 2020-11-29 00:00:51.085 [main] StrongTeam:101 - Team selected for trading is Rythm
+[INFO ] 2020-11-29 00:00:51.085 [main] StrongTeam:105 - Player requested is player1Team2and position is defense
+[INFO ] 2020-11-29 00:00:51.086 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 00:00:51.087 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 00:00:51.087 [main] StrongTeam:105 - Player offered is : Player3and position is goalie
+[INFO ] 2020-11-29 00:00:51.087 [main] StrongTeam:105 - Player offered is : Player1and position is goalie
+[INFO ] 2020-11-29 00:00:51.087 [main] StrongTeam:105 - Player offered is : Player3and position is goalie
+[INFO ] 2020-11-29 00:00:51.088 [main] StrongTeam:105 - Player offered is : Player1and position is goalie
+[INFO ] 2020-11-29 00:00:51.088 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 00:00:51.089 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 00:00:51.089 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 00:00:51.089 [main] StrongTeam:24 - Player swapped
+[INFO ] 2020-11-29 00:00:51.090 [main] StrongTeam:24 - Player swapped
+[INFO ] 2020-11-29 00:03:07.460 [main] TradeDecision:40 - Team initiating trade is Tigers
+[INFO ] 2020-11-29 00:03:07.524 [main] StrongTeam:105 - Player offered is : Player5Team1and position is defense
+[INFO ] 2020-11-29 00:03:07.525 [main] StrongTeam:101 - Team selected for trading is Rythm
+[INFO ] 2020-11-29 00:03:07.525 [main] StrongTeam:105 - Player requested is player1Team2and position is defense
+[INFO ] 2020-11-29 00:03:07.527 [main] TradeDecision:58 - Trade Accepted
+[INFO ] 2020-11-29 00:03:07.528 [main] StrongTeam:24 - Player swapped
+[INFO ] 2020-11-29 00:03:07.541 [main] StrongTeam:105 - Player offered is : Player5Team1and position is defense
+[INFO ] 2020-11-29 00:03:07.542 [main] StrongTeam:101 - Team selected for trading is Rythm
+[INFO ] 2020-11-29 00:03:07.542 [main] StrongTeam:105 - Player requested is player1Team2and position is defense
+[INFO ] 2020-11-29 00:03:07.543 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 00:03:07.543 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 00:03:07.544 [main] StrongTeam:105 - Player offered is : Player3and position is goalie
+[INFO ] 2020-11-29 00:03:07.544 [main] StrongTeam:105 - Player offered is : Player1and position is goalie
+[INFO ] 2020-11-29 00:03:07.544 [main] StrongTeam:105 - Player offered is : Player3and position is goalie
+[INFO ] 2020-11-29 00:03:07.544 [main] StrongTeam:105 - Player offered is : Player1and position is goalie
+[INFO ] 2020-11-29 00:03:07.545 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 00:03:07.546 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 00:03:07.546 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 00:03:07.546 [main] StrongTeam:24 - Player swapped
+[INFO ] 2020-11-29 00:03:07.548 [main] StrongTeam:24 - Player swapped
+[INFO ] 2020-11-29 00:04:01.340 [main] TradeDecision:40 - Team initiating trade is Tigers
+[INFO ] 2020-11-29 00:04:01.401 [main] StrongTeam:105 - Player offered is : Player5Team1and position is defense
+[INFO ] 2020-11-29 00:04:01.401 [main] StrongTeam:101 - Team selected for trading is Rythm
+[INFO ] 2020-11-29 00:04:01.401 [main] StrongTeam:105 - Player requested is player1Team2and position is defense
+[INFO ] 2020-11-29 00:04:01.403 [main] TradeDecision:58 - Trade Accepted
+[INFO ] 2020-11-29 00:04:01.403 [main] StrongTeam:24 - Player swapped
+[INFO ] 2020-11-29 00:04:01.415 [main] StrongTeam:105 - Player offered is : Player5Team1and position is defense
+[INFO ] 2020-11-29 00:04:01.415 [main] StrongTeam:101 - Team selected for trading is Rythm
+[INFO ] 2020-11-29 00:04:01.415 [main] StrongTeam:105 - Player requested is player1Team2and position is defense
+[INFO ] 2020-11-29 00:04:01.417 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 00:04:01.417 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 00:04:01.417 [main] StrongTeam:105 - Player offered is : Player3and position is goalie
+[INFO ] 2020-11-29 00:04:01.418 [main] StrongTeam:105 - Player offered is : Player1and position is goalie
+[INFO ] 2020-11-29 00:04:01.418 [main] StrongTeam:105 - Player offered is : Player3and position is goalie
+[INFO ] 2020-11-29 00:04:01.418 [main] StrongTeam:105 - Player offered is : Player1and position is goalie
+[INFO ] 2020-11-29 00:04:01.419 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 00:04:01.419 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 00:04:01.419 [main] StrongTeam:105 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 00:04:01.420 [main] StrongTeam:24 - Player swapped
+[INFO ] 2020-11-29 00:04:01.420 [main] StrongTeam:24 - Player swapped

@@ -23,9 +23,9 @@ public class InitiateTradeOffer implements IIntiateTradeOffer {
 
 	public ILeague initiateTradeOffer(ILeague league) {
 		boolean hasBestTeamToTrade = false;
-		IWeakTeam teamInitiatingTrade = AbstractTradingFactory.instance().getWeakteam();
-		IStrongTeam teamAcceptingTrade = AbstractTradingFactory.instance().getStrongteam();
-		ITradeDecision tradeDecision = AbstractTradingFactory.instance().getTradedecision();
+		IWeakTeam teamInitiatingTrade = TradeAbstractFactory.instance().getWeakteam();
+		IStrongTeam teamAcceptingTrade = TradeAbstractFactory.instance().getStrongteam();
+		ITradeDecision tradeDecision = TradeAbstractFactory.instance().getTradedecision();
 		ITradingConfig trade = getTrade();
 		ITradeValue checkTradeValue = new TradeValue(trade);
 

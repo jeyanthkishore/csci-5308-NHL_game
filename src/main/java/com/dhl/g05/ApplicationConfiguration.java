@@ -12,7 +12,7 @@ import com.dhl.g05.model.ModelState;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.SimulationConcreteFactoryState;
 import com.dhl.g05.simulation.SimulationState;
-import com.dhl.g05.trading.AbstractTradingFactory;
+import com.dhl.g05.trading.TradeAbstractFactory;
 import com.dhl.g05.trading.TradingFactory;
 
 public class ApplicationConfiguration {
@@ -27,7 +27,7 @@ public class ApplicationConfiguration {
 		database = new DatabaseConcreteFactoryState();
 		communication = new CommunicationConcreteFactoryState();
 		model = new ModelConcreteFactoryState();
-        AbstractTradingFactory.setFactory(new TradingFactory());
+        TradeAbstractFactory.setFactory(new TradingFactory());
 	}
 	
 	public static ApplicationConfiguration instance() {

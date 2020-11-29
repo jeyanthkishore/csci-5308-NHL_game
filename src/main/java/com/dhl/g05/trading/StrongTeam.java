@@ -64,10 +64,10 @@ public class StrongTeam implements IStrongTeam {
 		boolean isTradePossible = false;
 		double strengthOfStrongestPLayer = 0.00;
 		List<IPlayer> playersRequested = new ArrayList<>();
-		IWeakTeam teamInitiatingTrade = AbstractTradingFactory.instance().getWeakteam();
+		IWeakTeam teamInitiatingTrade = TradeAbstractFactory.instance().getWeakteam();
 		String position = teamInitiatingTrade.getOfferedPlayerPosition();
 		int numberOfPlayersToTrade = teamInitiatingTrade.getNumberOfPlayersOffered();
-		ISortPlayerStrength sortPlayer = AbstractTradingFactory.instance().getSortplayerstrength();
+		ISortPlayerStrength sortPlayer = TradeAbstractFactory.instance().getSortplayerstrength();
 
 		for (IConference conference : league.getConferenceDetails()) {
 			for (IDivision division : conference.getDivisionDetails()) {

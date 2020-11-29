@@ -29,14 +29,14 @@ public class StrongTeamTest {
 
 	@Test
 	public void setStrongTeamTest() {
-		strongTeam = AbstractTradingFactory.instance().getStrongteam();
+		strongTeam = TradeAbstractFactory.instance().getStrongteam();
 		strongTeam.setStrongTeam(strongestTeam);
 		assertEquals(strongestTeam, strongTeam.getStrongTeam());
 	}
 
 	@Test
 	public void getWeakTeamTest() {
-		strongTeam = AbstractTradingFactory.instance().getStrongteam();
+		strongTeam = TradeAbstractFactory.instance().getStrongteam();
 		strongTeam.setStrongTeam(mockLeague.leagueMock4());
 		assertNotSame(mockLeague.leagueMock4(), strongTeam.getStrongTeam());
 	}
@@ -44,7 +44,7 @@ public class StrongTeamTest {
 	@Test
 	public void setConferenceNameTest() {
 		IConference conference = new ConferenceModel();
-		strongTeam = AbstractTradingFactory.instance().getStrongteam();
+		strongTeam = TradeAbstractFactory.instance().getStrongteam();
 		conference.setConferenceName("Western");
 		strongTeam.setConferenceName(conference.getConferenceName());
 		assertSame(strongTeam.getConferenceName(), conference.getConferenceName());
@@ -53,7 +53,7 @@ public class StrongTeamTest {
 	@Test
 	public void setDivisionNameTest() {
 		IDivision division = new DivisionModel();
-		strongTeam = AbstractTradingFactory.instance().getStrongteam();
+		strongTeam = TradeAbstractFactory.instance().getStrongteam();
 		division.setDivisionName("Indian");
 		strongTeam.setDivisionName(division.getDivisionName());
 		assertSame(strongTeam.getDivisionName(), division.getDivisionName());
@@ -62,7 +62,7 @@ public class StrongTeamTest {
 	@Test
 	public void getDivisionNameTest() {
 		IDivision division = new DivisionModel();
-		strongTeam = AbstractTradingFactory.instance().getStrongteam();
+		strongTeam = TradeAbstractFactory.instance().getStrongteam();
 		division.setDivisionName("Pacific");
 		strongTeam.setDivisionName(division.getDivisionName());
 		assertSame(strongTeam.getDivisionName(), division.getDivisionName());
@@ -71,7 +71,7 @@ public class StrongTeamTest {
 	@Test
 	public void setStrongestPlayersToTradeTest() {
 		MockLeagueModel mockLeague = new MockLeagueModel();
-		strongTeam = AbstractTradingFactory.instance().getStrongteam();
+		strongTeam = TradeAbstractFactory.instance().getStrongteam();
 		strongTeam.setStrongestPlayersToTrade(mockLeague.leagueMock2());
 		assertSame(strongTeam.getStrongestPlayersToTrade().size(), 2);
 	}
@@ -79,28 +79,28 @@ public class StrongTeamTest {
 	@Test
 	public void getStrongestPlayersToTradeTest1() {
 		MockLeagueModel mockLeague = new MockLeagueModel();
-		strongTeam = AbstractTradingFactory.instance().getStrongteam();
+		strongTeam = TradeAbstractFactory.instance().getStrongteam();
 		strongTeam.setStrongestPlayersToTrade(mockLeague.leagueMock3());
 		assertSame(strongTeam.getStrongestPlayersToTrade().size(), 1);
 	}
 
 	@Test
 	public void getStrengthOfStrongestPlayersTest1() {
-		strongTeam = AbstractTradingFactory.instance().getStrongteam();
+		strongTeam = TradeAbstractFactory.instance().getStrongteam();
 		strongTeam.setStrengthOfStrongestPlayers(5);
 		assertNotSame(strongTeam.getStrengthOfStrongestPlayers(), 4);
 	}
 
 	@Test
 	public void getStrengthOfStrongestPlayersTest2() {
-		strongTeam = AbstractTradingFactory.instance().getStrongteam();
+		strongTeam = TradeAbstractFactory.instance().getStrongteam();
 		strongTeam.setStrengthOfStrongestPlayers(5);
 		assertEquals(strongTeam.getStrengthOfStrongestPlayers(), 5, 0);
 	}
 
 	@Test
 	public void setStrengthOfStrongestPlayersTest() {
-		strongTeam = AbstractTradingFactory.instance().getStrongteam();
+		strongTeam = TradeAbstractFactory.instance().getStrongteam();
 		strongTeam.setStrengthOfStrongestPlayers(8);
 		assertEquals(strongTeam.getStrengthOfStrongestPlayers(), 8, 0);
 	}
@@ -109,7 +109,7 @@ public class StrongTeamTest {
 	public void findTeamToSwapTest() {
 		ILeague league = mockLeague.leagueMock();
 		ITradingConfig trade = mockLeague.TradingConfigMock();
-		weakTeam = AbstractTradingFactory.instance().getWeakteam();
+		weakTeam = TradeAbstractFactory.instance().getWeakteam();
 		for (IConference conference : league.getConferenceDetails()) {
 			for (IDivision division : conference.getDivisionDetails()) {
 				for (ITeam team : division.getTeamDetails()) {
@@ -127,7 +127,7 @@ public class StrongTeamTest {
 				}
 			}
 		}
-		strongTeam = AbstractTradingFactory.instance().getStrongteam();
+		strongTeam = TradeAbstractFactory.instance().getStrongteam();
 		boolean result = strongTeam.findTeamToSwap(league);
 		String expectedTeamName = strongTeam.getStrongTeam().getTeamName();
 		List<IPlayer> position = strongTeam.getStrongestPlayersToTrade();

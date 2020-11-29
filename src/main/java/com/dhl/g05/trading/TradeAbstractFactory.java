@@ -1,24 +1,23 @@
 package com.dhl.g05.trading;
 
-public abstract class AbstractTradingFactory {
+public abstract class TradeAbstractFactory {
 
-	public static AbstractTradingFactory abstractTradingFactory;
+	public static TradeAbstractFactory abstractTradingFactory;
 
-	private static AbstractTradingFactory uniqueInstance = null;
+	private static TradeAbstractFactory uniqueInstance = null;
 
-	public static AbstractTradingFactory instance() {
+	public static TradeAbstractFactory instance() {
 		if (uniqueInstance == null) {
 			uniqueInstance = new TradingFactory();
 		}
 		return uniqueInstance;
-
 	}
 
-	public static void setFactory(AbstractTradingFactory abstractTradingFactory) {
+	public static void setFactory(TradeAbstractFactory abstractTradingFactory) {
 		uniqueInstance = abstractTradingFactory;
 	}
 
-	public static AbstractTradingFactory getFactory() {
+	public static TradeAbstractFactory getFactory() {
 		return uniqueInstance;
 	}
 
