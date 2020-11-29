@@ -2,25 +2,25 @@ package com.dhl.g05.simulation;
 
 public interface IGamePlayConfig {
 
-	IInjury getInjuries();
+	IInjury getInjuriesConfig();
 
-	IGameResolver getGameResolver();
+	IGameResolver getGameResolverConfig();
 
-	void setGameResolver(IGameResolver gameResolver);
+	void setGameResolverConfig(IGameResolver gameResolver);
 
-	void setTrading(ITradingConfig trading);
+	void setTradingConfig(ITradingConfig trading);
 
-	void setAging(IAging aging);
+	void setAgingConfig(IAging aging);
 
-	void setInjuries(IInjury injury);
+	void setInjuriesConfig(IInjury injury);
 
-	void setTraining(ITraining training);
+	void setTrainingConfig(ITraining training);
 
-	ITraining getTraining();
+	ITraining getTrainingConfig();
 
-	IAging getAging();
+	IAging getAgingConfig();
 
-	ITradingConfig getTrading();
+	ITradingConfig getTradingConfig();
 
 	/*IGameSimulationConfig getGameSimulationConfig();
 

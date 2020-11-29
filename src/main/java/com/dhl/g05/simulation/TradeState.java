@@ -17,7 +17,7 @@ public class TradeState extends AbstractState{
 	@Override
 	public boolean performStateTask() {
 		IIntiateTradeOffer tradeClass = TradeAbstractFactory.instance().getInititatetradeoffer();
-		tradeClass.setTrade(league.getGamePlayConfig().getTrading());
+		tradeClass.setTrade(league.getGamePlayConfig().getTradingConfig());
 		tradeClass.initiateTradeOffer(league);
         return true;
 	}

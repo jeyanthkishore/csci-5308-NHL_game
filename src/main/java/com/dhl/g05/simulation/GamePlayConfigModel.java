@@ -18,52 +18,52 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 	}
 	
 	@Override
-	public void setGameResolver(IGameResolver gameResolver) {
+	public void setGameResolverConfig(IGameResolver gameResolver) {
 		this.gameResolver = gameResolver;
 	}
 
 	@Override
-	public void setAging(IAging aging) {
+	public void setAgingConfig(IAging aging) {
 		this.aging = aging;
 	}
 
 	@Override
-	public IAging getAging() {
+	public IAging getAgingConfig() {
 		return aging;
 	}
 	
 	@Override
-	public void setInjuries(IInjury injuries) {
+	public void setInjuriesConfig(IInjury injuries) {
 		this.injuries = injuries;
 	}
 	
 	@Override
-	public IInjury getInjuries() {
+	public IInjury getInjuriesConfig() {
 		return injuries;
 	}
 
 	@Override
-	public void setTraining(ITraining training) {
+	public void setTrainingConfig(ITraining training) {
 		this.training = training;
 	}
 	
 	@Override
-	public ITraining getTraining() {
+	public ITraining getTrainingConfig() {
 		return training;
 	}
 
 	@Override
-	public ITradingConfig getTrading() {
+	public ITradingConfig getTradingConfig() {
 		return trading;
 	}
 	
 	@Override
-	public void setTrading(ITradingConfig trading) {
+	public void setTradingConfig(ITradingConfig trading) {
 		this.trading = trading;
 	}
 
 	@Override
-	public IGameResolver getGameResolver() {
+	public IGameResolver getGameResolverConfig() {
 		return gameResolver;
 	}
 

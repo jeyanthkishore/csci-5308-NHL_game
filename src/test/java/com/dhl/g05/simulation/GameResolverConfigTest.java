@@ -3,36 +3,46 @@ package com.dhl.g05.simulation;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.dhl.g05.ApplicationConfiguration;
+
 public class GameResolverConfigTest {
-	
+
+	private static SimulationAbstractFactory simulationFactory;
+
+	@BeforeClass
+	public static void init() {
+		simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+	}
+
 	@Test
 	public void getRandomWinChanceTest() {
-		GameResolverConfig game = new GameResolverConfig();
+		IGameResolver game = simulationFactory.createGameResolverConfig();
 		game.setRandomWinChance(0.2);
 		assertEquals("success",0.2, game.getRandomWinChance(),0);
 	}
-	
+
 	@Test
 	public void setRandomWinChanceTest() {
-		GameResolverConfig game = new GameResolverConfig();
+		IGameResolver game = simulationFactory.createGameResolverConfig();
 		game.setRandomWinChance(0.4);
 		assertEquals("success",0.4, game.getRandomWinChance(),0);
 	}
-	
+
 	@Test
 	public void winChanceValidationTest() {
-		GameResolverConfig game = new GameResolverConfig();
+		IGameResolver game = simulationFactory.createGameResolverConfig();
 		game.setRandomWinChance(2.2);
 		assertSame(GameResolverConstant.RandWinError,game.Validate());
 	}
-	
+
 	@Test
 	public void negativeValidationTest() {
-		GameResolverConfig game = new GameResolverConfig();
+		IGameResolver game = simulationFactory.createGameResolverConfig();
 		game.setRandomWinChance(-0.9);
 		assertSame(GameResolverConstant.RandWinError,game.Validate());
 	}
-	
+
 }

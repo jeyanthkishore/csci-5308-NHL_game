@@ -84,11 +84,11 @@ class PlayerTrainingMockData {
 		aging.setMaximumAge(maximumAge);
 		aging.setStatDecayChance(statDecayChance);
 		gamePlayConfig = new GamePlayConfigModel();
-		gamePlayConfig.setAging(aging);
-		gamePlayConfig.setGameResolver(gameResolver);
-		gamePlayConfig.setInjuries(injury);
-		gamePlayConfig.setTrading(tradeConfig);
-		gamePlayConfig.setTraining(training);
+		gamePlayConfig.setAgingConfig(aging);
+		gamePlayConfig.setGameResolverConfig(gameResolver);
+		gamePlayConfig.setInjuriesConfig(injury);
+		gamePlayConfig.setTradingConfig(tradeConfig);
+		gamePlayConfig.setTrainingConfig(training);
 		leagueObject.setGamePlayConfig(gamePlayConfig);
 	}
 	
