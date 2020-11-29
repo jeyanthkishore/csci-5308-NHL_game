@@ -1,4 +1,5 @@
 package com.dhl.g05.model;
+import com.dhl.g05.ApplicationConfiguration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,7 +11,7 @@ public class PlayerRetirement implements IPlayerRetired{
     @Override
     public boolean checkPlayerRetirement(IAging aging, IPlayer player) {
         logger.info("check whether player is retired or not");
-        IRandomNumberFactory randomNumberFactory = AbstractPlayerFactory.getFactory().getRandomNumber();
+        IRandomNumberFactory randomNumberFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState().createRandomNumber();
         if(player.getAge() > aging.getMaximumAge()) {
             player.setRetirementStatus(true);
             return true;

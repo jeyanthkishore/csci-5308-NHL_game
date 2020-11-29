@@ -29,10 +29,10 @@ public abstract class SimulationAbstractFactory {
 	public abstract ILeagueStanding createLeagueStanding();
 	public abstract IScheduleModel createScheduleModel();
 	public abstract IStandingModel createStandingModel();
+
 	public abstract IAging createAgingConfig();
-    public abstract IInjury createInjuryConfig();
+	public abstract IInjury createInjuryConfig();
     public abstract ITradingConfig createTradingConfig();
     public abstract ITraining createTrainingConfig();
     public abstract IGameResolver createGameResolverConfig();
-
 }

@@ -6,11 +6,9 @@ import com.dhl.g05.communication.CommunicationState;
 import com.dhl.g05.database.DatabaseAbstractFactory;
 import com.dhl.g05.database.DatabaseConcreteFactoryState;
 import com.dhl.g05.database.DatabaseState;
-import com.dhl.g05.model.AbstractPlayerFactory;
 import com.dhl.g05.model.ModelAbstractFactory;
 import com.dhl.g05.model.ModelConcreteFactoryState;
 import com.dhl.g05.model.ModelState;
-import com.dhl.g05.model.PlayerFactory;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.SimulationConcreteFactoryState;
 import com.dhl.g05.simulation.SimulationState;
@@ -29,7 +27,6 @@ public class ApplicationConfiguration {
 		database = new DatabaseConcreteFactoryState();
 		communication = new CommunicationConcreteFactoryState();
 		model = new ModelConcreteFactoryState();
-        AbstractPlayerFactory.setFactory(new PlayerFactory());
         AbstractTradingFactory.setFactory(new TradingFactory());
 	}
 	

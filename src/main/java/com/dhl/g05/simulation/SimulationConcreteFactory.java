@@ -11,7 +11,6 @@ public class SimulationConcreteFactory extends SimulationAbstractFactory{
 		this.communication = communication;
 	}
 
-
 	@Override
 	public IStateMachine createStateMachine(AbstractState abstractState) {
 		return new StateMachine(abstractState);

@@ -1,30 +1,26 @@
 package com.dhl.g05.model;
+import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import com.dhl.g05.model.AbstractPlayerFactory;
-import com.dhl.g05.model.IRandomNumberFactory;
-import com.dhl.g05.model.PlayerFactory;
-import com.dhl.g05.model.RandomNumberFactory;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 public class RandomNumberFactoryTest {
 
-    private static AbstractPlayerFactory playerFactory;
+    private static ModelAbstractFactory modelAbstractFactory;
 
     @BeforeClass
-    public static void setup() {
-        AbstractPlayerFactory.setFactory(new PlayerFactory());
-        playerFactory = AbstractPlayerFactory.getFactory();
+    public static void init() {
+        modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
     }
 
     @Test
     public void generateRandomDoubleNumberTest() {
         IRandomNumberFactory randomNumberFactoryMock = Mockito.mock(RandomNumberFactory.class);
-        IRandomNumberFactory randomNumberFactory = playerFactory.getRandomNumber();
+        IRandomNumberFactory randomNumberFactory = modelAbstractFactory.createRandomNumber();
         when(randomNumberFactoryMock.generateRandomDoubleNumber(1,10)).thenReturn(5.6);
         double randomDecimal = randomNumberFactory.generateRandomDoubleNumber(1,10);
         assertTrue(randomDecimal>=1 && randomDecimal<=10);
@@ -33,7 +29,7 @@ public class RandomNumberFactoryTest {
     @Test
     public void generateRandomIntegerNumberTest() {
         IRandomNumberFactory randomNumberFactoryMock = Mockito.mock(RandomNumberFactory.class);
-        IRandomNumberFactory randomNumberFactory = playerFactory.getRandomNumber();
+        IRandomNumberFactory randomNumberFactory = modelAbstractFactory.createRandomNumber();
         when(randomNumberFactoryMock.generateRandomIntegerNumber(1,10)).thenReturn(5);
         int randomInteger = randomNumberFactory.generateRandomIntegerNumber(1,10);
         assertTrue(randomInteger>=1 && randomInteger<=10);
