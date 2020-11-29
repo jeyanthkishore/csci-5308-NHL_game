@@ -8,27 +8,12 @@ import java.util.ArrayList;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.*;
+import com.dhl.g05.simulation.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.simulation.AgingConfig;
-import com.dhl.g05.simulation.AgingConstant;
-import com.dhl.g05.simulation.GamePlayConfigModel;
-import com.dhl.g05.simulation.GameResolverConfig;
-import com.dhl.g05.simulation.GameResolverConstant;
-import com.dhl.g05.simulation.IAging;
-import com.dhl.g05.simulation.IGamePlayConfig;
-import com.dhl.g05.simulation.IGameResolver;
-import com.dhl.g05.simulation.IInjury;
-import com.dhl.g05.simulation.ITradingConfig;
-import com.dhl.g05.simulation.InjuryConfig;
-import com.dhl.g05.simulation.InjuryConstant;
-import com.dhl.g05.simulation.TradingConfig;
-import com.dhl.g05.simulation.TradingConstant;
-import com.dhl.g05.simulation.TrainingConfig;
-import com.dhl.g05.simulation.TrainingConstant;
 import com.mysql.cj.util.StringUtils;
 
 public class LeagueModelCreatorFromJSON implements ILeagueCreator{
@@ -37,6 +22,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 	private JSONParser parser;
 	private IPlayerCommunication playerCommunication;
 	private static ModelAbstractFactory modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+	private static SimulationAbstractFactory simulationAbstractFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 
 	public LeagueModelCreatorFromJSON(IPlayerCommunication playerCommunication) {
 		parser = new JSONParser();
@@ -47,7 +33,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		if (jsonAging == null){
 			return null;
 		}
-		IAging agingConfig = new AgingConfig();
+		IAging agingConfig = simulationAbstractFactory.createAgingConfig();
 		agingConfig.setAverageRetirementAge(((Number) jsonAging.get("averageRetirementAge")).intValue());
 		agingConfig.setMaximumAge(((Number) jsonAging.get("maximumAge")).intValue());
 		agingConfig.setStatDecayChance(((Number) jsonAging.get("statDecayChance")).doubleValue());
@@ -64,7 +50,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		if (jsonInjury == null){
 			return null;
 		}
-		InjuryConfig injuryConfig = new InjuryConfig();
+		IInjury injuryConfig = simulationAbstractFactory.createInjuryConfig();
 		injuryConfig.setRandomInjuryChance(((Number) jsonInjury.get("randomInjuryChance")).doubleValue());
 		injuryConfig.setInjuryDaysHigh(((Number) jsonInjury.get("injuryDaysHigh")).intValue());
 		injuryConfig.setInjuryDaysLow(((Number) jsonInjury.get("injuryDaysLow")).intValue());
@@ -274,7 +260,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 				playerCommunication.sendMessage("player missing field");
 				return null;
 			}
-			IPlayer newPlayer = new PlayerModel(playerName, position, captain,skating, shooting, checking, saving,birthDay,birthMonth,birthYear);
+			IPlayer newPlayer = modelAbstractFactory.createPlayerModel(playerName, position, captain,skating, shooting, checking, saving,birthDay,birthMonth,birthYear);
 			newPlayer.setPlayerStrength(newPlayer.calculatePlayerStrength());
 			FreeAgentConstant validationResult  = newPlayer.validate();
 			if (validationResult.equals(FreeAgentConstant.Success)) {

@@ -67,5 +67,4 @@ public class InjuryConfig implements IInjury {
         }
         return false;
     }
-
 }

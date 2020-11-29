@@ -7,13 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.simulation.AgingConfig;
-import com.dhl.g05.simulation.GamePlayConfigModel;
-import com.dhl.g05.simulation.GameResolverConfig;
-import com.dhl.g05.simulation.IGamePlayConfig;
-import com.dhl.g05.simulation.InjuryConfig;
-import com.dhl.g05.simulation.TradingConfig;
-import com.dhl.g05.simulation.TrainingConfig;
+import com.dhl.g05.simulation.*;
 
 public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionModel,ITeamModel,IPlayerModel,IFreeAgentModel{
 
@@ -36,11 +30,11 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 	public ArrayList<HashMap<String,Object>> leagueList;
 	public HashMap<String,Object> leagueMap;
 	public IGamePlayConfig gamePlayConfig;
-	public TradingConfig tradeConfig;
-	public TrainingConfig training;
-	public GameResolverConfig gameResolver;
-	public InjuryConfig injury;
-	public AgingConfig aging;
+	public ITradingConfig tradeConfig;
+	public ITraining training;
+	public IGameResolver gameResolver;
+	public IInjury injury;
+	public IAging aging;
 	public String teamName = "Striker Six";
 	public String teamTwoName = "Thunder Rockers";
 	public String generalManagerName = "Zidanie Zidane";
@@ -93,6 +87,7 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 	public Boolean captainTwo = false;
 	public String result = "success";
 	private static ModelAbstractFactory modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+	private static SimulationAbstractFactory simulationAbstractFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 
 	public LeagueModel getLeague() {
 		return league;
@@ -124,13 +119,13 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 		playerOneName =  "Cristiano Ronaldo";
 		positionOne = "forward";
 		captainOne = true;
-		playerList.add(new PlayerModel(playerOneName,positionOne,captainOne,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		playerList.add(modelAbstractFactory.createPlayerModel(playerOneName,positionOne,captainOne,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		playerTwoName= "Messi";
 		positionTwo =  "goalie";
 		captainTwo = false;
 		coachDetails = modelAbstractFactory.createCoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving);
-		playerList.add(new PlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
-		retiredPlayersList.add(new PlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		playerList.add(modelAbstractFactory.createPlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		retiredPlayersList.add(modelAbstractFactory.createPlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		team = new TeamModel();
 		team.setTeamName(teamName);
 		team.setCoachDetails(coachDetails);
@@ -160,7 +155,7 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 		String[] positionValue = {"forward","defense","goalie"};
 		int i=3;
 		for(int player =0;player<playerNames.length;player++) {
-			IFreeAgent freeAgent = new FreeAgentModel();
+			IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 			freeAgent.setPlayerName(playerNames[player]);
 			freeAgent.setPosition(positionValue[ (player) % i]);
 			freeAgent.setChecking(checking);
@@ -200,24 +195,24 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 		leagueList.add(leagueMap);
 		leagueMap.put("league_name","CanadaLeague");
 		leagueList.add(leagueMap);
-		tradeConfig = new TradingConfig();
+		tradeConfig = simulationAbstractFactory.createTradingConfig();
 		tradeConfig.setLossPoint(lossPoint);
 		tradeConfig.setMaxPlayersPerTrade(maxPlayerPerTrade);
 		tradeConfig.setRandomTradeOfferChance(randomTradeOffer);
 		tradeConfig.setRandomAcceptanceChance(randomAcceptanceChance);
-		training = new TrainingConfig();
+		training = simulationAbstractFactory.createTrainingConfig();
 		training.setDaysUntilStatIncreaseCheck(daysUntilTraining);
-		gameResolver = new GameResolverConfig();
+		gameResolver = simulationAbstractFactory.createGameResolverConfig();
 		gameResolver.setRandomWinChance(randownWinChance);
-		injury = new InjuryConfig();
+		injury = simulationAbstractFactory.createInjuryConfig();
 		injury.setInjuryDaysHigh(injuryDaysHigh);
 		injury.setInjuryDaysLow(injuryDaysLow);
 		injury.setRandomInjuryChance(randomInjuryChance);
-		aging = new AgingConfig();
+		aging = simulationAbstractFactory.createAgingConfig();
 		aging.setAverageRetirementAge(averageRetirementAge);
 		aging.setMaximumAge(maximumAge);
 		aging.setStatDecayChance(statDecayChance);
-		gamePlayConfig = new GamePlayConfigModel();
+		gamePlayConfig = simulationAbstractFactory.createGamePlayConfig();
 		gamePlayConfig.setAging(aging);
 		gamePlayConfig.setGameResolver(gameResolver);
 		gamePlayConfig.setInjuries(injury);
@@ -289,7 +284,7 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 
 	public void addMaximumPlayer() {
 		for(int count = 0; count<42; count++) {
-			playerList.add(new PlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+			playerList.add(modelAbstractFactory.createPlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		}
 	}
 	public void setTeamNameEmpty() {
@@ -454,7 +449,7 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 	}
 
 	@Override
-	public void loadPlayerModelData(FreeAgentModel freeAgentObject) {
+	public void loadPlayerModelData(IFreeAgent freeAgentObject) {
 		freeAgentObject.setPlayerName(playerOneName);
 		freeAgentObject.setPosition(positionOne);
 		freeAgentObject.setSkating(skating);

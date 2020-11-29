@@ -2,6 +2,8 @@ package com.dhl.g05.simulation;
 
 import static org.junit.Assert.assertSame;
 
+import com.dhl.g05.ApplicationConfiguration;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class GameConfigModelTest {
@@ -18,7 +20,13 @@ public class GameConfigModelTest {
 	public double randomTradeOffer = 0.05;
 	public double randomAcceptanceChance = 0.05;
 	public int maxPlayerPerTrade = 2;
-	
+	private static SimulationAbstractFactory simulationAbstractFactory;
+
+	@BeforeClass
+	public static void init() {
+		simulationAbstractFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+	}
+
 	@Test
 	public void setGameResolverTest() {
 		IGameResolver gameResolver = new GameResolverConfig();
@@ -30,16 +38,16 @@ public class GameConfigModelTest {
 
 	@Test
 	public void getGameResolverTest() {
-		IGameResolver gameResolver = new GameResolverConfig();
+		IGameResolver gameResolver = simulationAbstractFactory.createGameResolverConfig();
 		gameResolver.setRandomWinChance(0.9);
-		IGamePlayConfig gameConfig = new GamePlayConfigModel();
+		IGamePlayConfig gameConfig = simulationAbstractFactory.createGamePlayConfig();
 		gameConfig.setGameResolver(gameResolver);
 		assertSame(gameResolver,gameConfig.getGameResolver());
 	}
 	
 	@Test
 	public void setInjuryConfigTest() {
-		IInjury injury = new InjuryConfig();
+		IInjury injury = simulationAbstractFactory.createInjuryConfig();
 		injury.setInjuryDaysHigh(140);
 		injury.setInjuryDaysLow(5);
 		injury.setRandomInjuryChance(0.05);
@@ -50,7 +58,7 @@ public class GameConfigModelTest {
 
 	@Test
 	public void getInjuryConfigTest() {
-		IInjury injury = new InjuryConfig();
+		IInjury injury = simulationAbstractFactory.createInjuryConfig();
 		injury.setInjuryDaysHigh(120);
 		injury.setInjuryDaysLow(1);
 		injury.setRandomInjuryChance(0.05);
@@ -61,7 +69,7 @@ public class GameConfigModelTest {
 	
 	@Test
 	public void setTradingConfigTest() {
-		ITradingConfig tradeConfig = new TradingConfig();
+		ITradingConfig tradeConfig = simulationAbstractFactory.createTradingConfig();
 		tradeConfig.setLossPoint(8);
 		tradeConfig.setMaxPlayersPerTrade(2);
 		tradeConfig.setRandomTradeOfferChance(0.05);
@@ -73,7 +81,7 @@ public class GameConfigModelTest {
 	
 	@Test
 	public void getTradingConfigTest() {
-		ITradingConfig tradeConfig = new TradingConfig();
+		ITradingConfig tradeConfig = simulationAbstractFactory.createTradingConfig();
 		tradeConfig.setLossPoint(8);
 		tradeConfig.setMaxPlayersPerTrade(5);
 		tradeConfig.setRandomTradeOfferChance(0.15);
@@ -85,7 +93,7 @@ public class GameConfigModelTest {
 	
 	@Test
 	public void getTrainingConfigTest() {
-		ITraining trainingConfig = new TrainingConfig();
+		ITraining trainingConfig = simulationAbstractFactory.createTrainingConfig();
 		trainingConfig.setDaysUntilStatIncreaseCheck(100);
 		IGamePlayConfig gameConfig = new GamePlayConfigModel();
 		gameConfig.setTraining(trainingConfig);
@@ -94,7 +102,7 @@ public class GameConfigModelTest {
 	
 	@Test
 	public void setTrainingConfigTest() {
-		ITraining trainingConfig = new TrainingConfig();
+		ITraining trainingConfig = simulationAbstractFactory.createTrainingConfig();
 		trainingConfig.setDaysUntilStatIncreaseCheck(120);
 		IGamePlayConfig gameConfig = new GamePlayConfigModel();
 		gameConfig.setTraining(trainingConfig);
@@ -103,7 +111,7 @@ public class GameConfigModelTest {
 	
 	@Test
 	public void setAgingConfigTest() {
-		IAging agingConfig = new AgingConfig();
+		IAging agingConfig = simulationAbstractFactory.createAgingConfig();
 		agingConfig.setAverageRetirementAge(50);
 		agingConfig.setMaximumAge(66);
 		agingConfig.setStatDecayChance(0.07);
@@ -114,7 +122,7 @@ public class GameConfigModelTest {
 	
 	@Test
 	public void getAgingConfigTest() {
-		IAging agingConfig = new AgingConfig();
+		IAging agingConfig = simulationAbstractFactory.createAgingConfig();
 		agingConfig.setAverageRetirementAge(20);
 		agingConfig.setMaximumAge(71);
 		agingConfig.setStatDecayChance(0.09);
