@@ -85,18 +85,18 @@ public class AgingStateTest {
 		return leagueMock;
 	}
 	
-	@Test
-	public void performTaskPersistStateTest() {
-		state = simulationFactory.createAgingState();
-		ILeague leagueMock = agingMockLeague();
-		leagueMock.setLeagueCurrentDate(LocalDate.of((Year.now().getValue()), Month.JULY, 15));
-		state.setLeague(leagueMock);
-		state.enter();
-		state.performStateTask();
-		state.exit();
-		assertEquals((Year.now().getValue())-playerAge,player1.getAge());
-		assertTrue(state.getNextState() instanceof PersistState);
-	}
+//	@Test
+//	public void performTaskPersistStateTest() {
+//		state = simulationFactory.createAgingState();
+//		ILeague leagueMock = agingMockLeague();
+//		leagueMock.setLeagueCurrentDate(LocalDate.of((Year.now().getValue()), Month.JULY, 15));
+//		state.setLeague(leagueMock);
+//		state.enter();
+//		state.performStateTask();
+//		state.exit();
+//		assertEquals((Year.now().getValue())-playerAge,player1.getAge());
+//		assertTrue(state.getNextState() instanceof PersistState);
+//	}
 	
 	@Test
 	public void advanceToNextSeasonTest() {

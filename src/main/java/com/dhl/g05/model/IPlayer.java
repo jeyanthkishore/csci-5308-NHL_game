@@ -1,5 +1,7 @@
 package com.dhl.g05.model;
 
+import java.time.LocalDate;
+
 import com.dhl.g05.simulation.IAging;
 
 public interface IPlayer {
@@ -66,9 +68,9 @@ public interface IPlayer {
 
 	void setAge(int age);
 
-	void calculateAge();
+	void calculateAge(LocalDate leagueDate);
 
-	void decreaseStatOnBirthday(ILeague League, IAging agingConfig);
+	void decreaseStatOnBirthday(IFreeAgent player, IAging agingConfig);
 
 	FreeAgentConstant validate();
 
