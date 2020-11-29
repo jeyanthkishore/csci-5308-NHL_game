@@ -5,31 +5,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.model.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import com.dhl.g05.communication.IPlayerCommunication;
-import com.dhl.g05.model.CoachConstant;
-import com.dhl.g05.model.CoachModel;
-import com.dhl.g05.model.ConferenceConstant;
-import com.dhl.g05.model.ConferenceModel;
-import com.dhl.g05.model.DivisionConstant;
-import com.dhl.g05.model.DivisionModel;
-import com.dhl.g05.model.FreeAgentConstant;
-import com.dhl.g05.model.FreeAgentModel;
-import com.dhl.g05.model.ICoach;
-import com.dhl.g05.model.IConference;
-import com.dhl.g05.model.IDivision;
-import com.dhl.g05.model.IFreeAgent;
-import com.dhl.g05.model.ILeague;
-import com.dhl.g05.model.IPlayer;
-import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.LeagueConstant;
-import com.dhl.g05.model.LeagueModel;
-import com.dhl.g05.model.PlayerModel;
-import com.dhl.g05.model.TeamConstant;
-import com.dhl.g05.model.TeamModel;
 import com.dhl.g05.simulation.AgingConfig;
 import com.dhl.g05.simulation.AgingConstant;
 import com.dhl.g05.simulation.GamePlayConfigModel;
@@ -53,6 +36,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 	private FileReader reader;
 	private JSONParser parser;
 	private IPlayerCommunication playerCommunication;
+	private static ModelAbstractFactory modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 
 	public LeagueModelCreatorFromJSON(IPlayerCommunication playerCommunication) {
 		parser = new JSONParser();
@@ -343,7 +327,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		double shooting = Double.parseDouble(jsonCoachDetails.get("shooting").toString());
 		double checking = Double.parseDouble(jsonCoachDetails.get("checking").toString());
 		double saving = Double.parseDouble(jsonCoachDetails.get("saving").toString());
-		return new CoachModel(coachName,skating,shooting,checking,saving);
+		return modelAbstractFactory.createCoachModel(coachName,skating,shooting,checking,saving);
 	}
 
 	private ArrayList<ICoach> createFreeCoaches(JSONArray jsonCoaches) {
@@ -361,7 +345,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 				playerCommunication.sendMessage("player missing field");
 				return null;
 			}
-			CoachModel newCoach = new CoachModel(coachName,skating,shooting,checking,saving);
+			ICoach newCoach = modelAbstractFactory.createCoachModel(coachName,skating,shooting,checking,saving);
 			CoachConstant validationResult  = newCoach.validate();
 			if (validationResult.equals(CoachConstant.Success)) {
 				coaches.add(newCoach);

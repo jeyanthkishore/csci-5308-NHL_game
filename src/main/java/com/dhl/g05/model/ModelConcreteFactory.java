@@ -68,6 +68,11 @@ public class ModelConcreteFactory extends ModelAbstractFactory{
 	}
 
 	@Override
+	public ICoach createCoachModel(String name, double skating, double shooting, double checking, double saving) {
+		return new CoachModel(name, skating, shooting, checking, saving);
+	}
+
+	@Override
 	public IGenerateNewPlayers createNewPlayers() {
 		return new GenerateNewPlayers();
 	}

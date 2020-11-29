@@ -22,6 +22,7 @@ public abstract class ModelAbstractFactory {
 	public abstract IRandomNumberFactory createRandomNumber();
 	public abstract IFreeAgent createFreeAgentModel();
 	public abstract ICoach createCoachModel();
+	public abstract ICoach createCoachModel(String name, double skating, double shooting, double checking, double saving);
 	public abstract IGenerateNewPlayers createNewPlayers();
 	public abstract IPlayerDraft createPlayerDraft();
 	public abstract IPlayerTraining createPlayerTraining();

@@ -3,14 +3,12 @@ package com.dhl.g05.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dhl.g05.simulation.AgingConfig;
-import com.dhl.g05.simulation.GamePlayConfigModel;
-import com.dhl.g05.simulation.GameResolverConfig;
-import com.dhl.g05.simulation.IGamePlayConfig;
-import com.dhl.g05.simulation.InjuryConfig;
-import com.dhl.g05.simulation.TradingConfig;
-import com.dhl.g05.simulation.TrainingConfig;class PlayerTrainingMockData {
+import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.simulation.*;
 
+class PlayerTrainingMockData {
+
+	private static ModelAbstractFactory modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 	public LeagueModel leagueObject;
 	public PlayerModel player;
 	public int averageRetirementAge = 35;
@@ -42,7 +40,7 @@ import com.dhl.g05.simulation.TrainingConfig;class PlayerTrainingMockData {
 		player.setShooting(12);
 		player.setChecking(11);
 		player.setSaving(12);
-		ICoach coach = new CoachModel();
+		ICoach coach = modelAbstractFactory.createCoachModel();
 		coach.setName("Livingstone");
 		coach.setSkating(0.5);
 		coach.setShooting(0.6);

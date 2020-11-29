@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.AgingConfig;
 import com.dhl.g05.simulation.GamePlayConfigModel;
 import com.dhl.g05.simulation.GameResolverConfig;
@@ -14,7 +15,8 @@ import com.dhl.g05.simulation.InjuryConfig;
 import com.dhl.g05.simulation.TradingConfig;
 import com.dhl.g05.simulation.TrainingConfig;
 
-public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionModel,ITeamModel,IPlayerModel,IFreeAgentModel,ICoachModel{
+public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionModel,ITeamModel,IPlayerModel,IFreeAgentModel{
+
 	Random randomNumber = new Random();
 	public String leagueName = "HockeyLeague";
 	public Map<String,Object> firstPlayerInfo;
@@ -25,12 +27,12 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 	public List<IFreeAgent> freeAgentList;
 	public List<IConference> conferenceList;
 	public List<ICoach> coachList;
-	public List<CoachModel> coachListTwo;
+	public List<ICoach> coachListTwo;
 	public List<String> managerList;
 	public List<IFreeAgent> retiredFreeAgentsList;
 	public List<IPlayer> retiredPlayersList;
 	public List<String> managerListTwo;
-	public CoachModel coachDetails;
+	public ICoach coachDetails;
 	public ArrayList<HashMap<String,Object>> leagueList;
 	public HashMap<String,Object> leagueMap;
 	public IGamePlayConfig gamePlayConfig;
@@ -90,7 +92,8 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 	public String positionTwo = "";
 	public Boolean captainTwo = false;
 	public String result = "success";
-	
+	private static ModelAbstractFactory modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+
 	public LeagueModel getLeague() {
 		return league;
 	}
@@ -125,7 +128,7 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 		playerTwoName= "Messi";
 		positionTwo =  "goalie";
 		captainTwo = false;
-		coachDetails = new CoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving);
+		coachDetails = modelAbstractFactory.createCoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving);
 		playerList.add(new PlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		retiredPlayersList.add(new PlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		team = new TeamModel();
@@ -181,8 +184,8 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 		conference.setConferenceName(conferenceTwoName);
 		conference.setDivisionDetails(divisionList);
 		conferenceList.add(conference);
-		coachList.add(new CoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving));
-		coachListTwo.add(new CoachModel(headCoachName,coachSkating,2.2,coachChecking, coachSaving));
+		coachList.add(modelAbstractFactory.createCoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving));
+		coachListTwo.add(modelAbstractFactory.createCoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving));
 		managerList.add(generalManagerName);
 		managerList.add(generalManagerName+"Two");
 		managerList.add(generalManagerName+"Three");
@@ -461,14 +464,5 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 		freeAgentObject.setBirthDay(birthDay);
 		freeAgentObject.setBirthMonth(birthMonth);
 		freeAgentObject.setBirthYear(birthYear);
-	}
-
-	@Override
-	public void loadCoachModelData(ICoach coachObject){
-		coachObject.setName(headCoachName);
-		coachObject.setSkating(coachSkating);
-		coachObject.setShooting(coachShooting);
-		coachObject.setChecking(coachChecking);
-		coachObject.setSaving(coachSaving);
 	}
 }

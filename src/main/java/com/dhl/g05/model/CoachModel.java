@@ -29,10 +29,6 @@ public class CoachModel implements ICoach{
 		this.saving = saving;
 	}
 
-	public CoachModel(ICoachModel coach) {
-		coach.loadCoachModelData(this);
-	}
-
 	@Override
 	public String getName() {
 		return name;

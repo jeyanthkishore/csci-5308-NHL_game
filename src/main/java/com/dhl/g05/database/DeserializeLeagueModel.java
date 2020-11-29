@@ -3,25 +3,12 @@ package com.dhl.g05.database;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+import com.dhl.g05.model.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.model.CoachModel;
-import com.dhl.g05.model.ConferenceModel;
-import com.dhl.g05.model.DivisionModel;
-import com.dhl.g05.model.FreeAgentModel;
-import com.dhl.g05.model.ICoach;
-import com.dhl.g05.model.IConference;
-import com.dhl.g05.model.IDivision;
-import com.dhl.g05.model.IFreeAgent;
-import com.dhl.g05.model.ILeague;
-import com.dhl.g05.model.IPlayer;
-import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.LeagueModel;
-import com.dhl.g05.model.PlayerModel;
-import com.dhl.g05.model.TeamModel;
 import com.dhl.g05.simulation.AgingConfig;
 import com.dhl.g05.simulation.GamePlayConfigModel;
 import com.dhl.g05.simulation.GameResolverConfig;
