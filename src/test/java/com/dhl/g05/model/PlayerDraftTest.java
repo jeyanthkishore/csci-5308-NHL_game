@@ -29,6 +29,7 @@ public class PlayerDraftTest {
 		leagueStanding.setStandingList(mock.mockStandings());
 		List<IStandingModel> standings = leagueStanding.getRankingAcrossLeague();
 		playerDraft.setPickOrderAfterTrading(mock.mockTradePickLatest(standings));
+		playerDraft.setDraftPickTeamSubstraction(2);
 		playerDraft.playerDraft1(leagueStanding);
 	}
 	

@@ -240,6 +240,7 @@ public class LeagueModelTest {
 	{
 		LeagueMockData mock = new LeagueMockData();
 		ILeague leagueModel = new LeagueModel(mock);
+		leagueModel.setFreeAgent(mock.freeAgentList);
 		IFreeAgent agent= new FreeAgentModel();
 		List<IFreeAgent> freeAgentList= agent.ConvertPlayerToFreeAgent(mock.playerList);
 		leagueModel.addNewFreeAgentsToLeague(freeAgentList);

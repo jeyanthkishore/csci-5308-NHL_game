@@ -226,10 +226,18 @@ public class LeagueModel implements ILeague{
 		}
 		return LeagueConstant.Success;
 	}
+	
 	public void addNewFreeAgentsToLeague(List<IFreeAgent> freeAgentList)
 	{
 		List<IFreeAgent> AllfreeAgents = getFreeAgent();
+		if(AllfreeAgents == null)
+		{
+		 setFreeAgent(freeAgentList);
+		}
+		else
+		{
 		AllfreeAgents.addAll(freeAgentList);
+		}
 		setFreeAgent(AllfreeAgents);
 	}
 

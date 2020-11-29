@@ -24,6 +24,7 @@ public class PlayerDraftState extends AbstractState {
 		IPlayerDraft playerDraft = new PlayerDraft();
 		ILeagueStanding standing = league.getLeagueStanding();
 		List<IStandingModel> standingList = standing.getRankingAcrossLeague();
+		playerDraft.setDraftPickTeamSubstraction(16);
 		playerDraft.setPickOrderAfterTrading(mockTradePickLatest(standingList));
 		playerDraft.playerDraft1(standing);
 		
