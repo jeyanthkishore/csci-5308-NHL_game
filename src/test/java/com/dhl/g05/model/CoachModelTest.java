@@ -4,11 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import org.junit.Test;
 
-import com.dhl.g05.model.CoachConstant;
-import com.dhl.g05.model.CoachModel;
-import com.dhl.g05.model.ICoach;
+import org.junit.Test;
 
 public class CoachModelTest {
 

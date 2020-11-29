@@ -2,26 +2,21 @@ package com.dhl.g05.trading;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Test;
-
 import com.dhl.g05.model.FreeAgentModel;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.PlayerModel;
-import com.dhl.g05.model.TeamModel;
 
 public class SwapPlayersTest {
-	
-	ISwapPlayers swap = new SwapPlayers();
+
+	ISwapPlayers swap = AbstractTradingFactory.instance().getSwapplayers();
 	MockLeagueModel mockLeague = new MockLeagueModel();
 	List<ITeam> teams = new ArrayList<>();
 	List<IPlayer> swapList1 = new ArrayList<>();
 	List<IPlayer> swapList2 = new ArrayList<>();
-	
+
 	@Test
 	public void swapPlayersTest1() {
 		teams = mockLeague.leagueMock6();

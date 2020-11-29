@@ -5,10 +5,6 @@ import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
-import com.dhl.g05.model.DivisionConstant;
-import com.dhl.g05.model.DivisionModel;
-import com.dhl.g05.model.IDivision;
-
 public class DivisionModelTest {
 
 	@Test

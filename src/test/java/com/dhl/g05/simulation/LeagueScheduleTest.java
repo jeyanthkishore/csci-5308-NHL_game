@@ -21,11 +21,6 @@ import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.ITeam;
 import com.dhl.g05.model.TeamModel;
-import com.dhl.g05.simulation.DateHandler;
-import com.dhl.g05.simulation.ILeagueSchedule;
-import com.dhl.g05.simulation.IScheduleModel;
-import com.dhl.g05.simulation.LeagueSchedule;
-import com.dhl.g05.simulation.ScheduleModel;
 
 public class LeagueScheduleTest {
 

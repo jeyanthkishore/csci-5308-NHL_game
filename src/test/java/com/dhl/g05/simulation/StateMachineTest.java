@@ -9,11 +9,6 @@ import org.junit.Test;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.CommunicationAbstractFactory;
 import com.dhl.g05.communication.MockPlayerCommunication;
-import com.dhl.g05.simulation.AbstractState;
-import com.dhl.g05.simulation.CreateTeamState;
-import com.dhl.g05.simulation.IStateMachine;
-import com.dhl.g05.simulation.ImportState;
-import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class StateMachineTest {
 	private static SimulationAbstractFactory stateMachineFactory;

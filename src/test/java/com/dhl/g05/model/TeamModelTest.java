@@ -9,12 +9,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import org.junit.Test;
-
-import com.dhl.g05.model.IPlayer;
-import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.TeamConstant;
-import com.dhl.g05.model.TeamModel;
-
 public class TeamModelTest{
 
 	@Test
@@ -244,6 +238,46 @@ public class TeamModelTest{
 		mock.removeCaptain();
 		TeamModel validate = new TeamModel(mock);
 		assertSame(TeamConstant.NoTeamCaptain,validate.validate());
+	}
+	
+	@Test
+	public void adjustTeamRoasterAfterDraftSizeTest()
+	{
+		IGenerateNewPlayers newPlayers = new GenerateNewPlayers();
+		newPlayers.setNumberOfTeams(6);
+		List<IPlayer> players = newPlayers.generatePlayers();
+		ITeam team= new TeamModel();
+		team.setPlayerList(players);
+		team.adjustTeamRoasterAfterDraft(team);
+		assertTrue(team.getPlayerList().size()== 30);
+	}
+	
+	@Test
+	public void adjustTeamRoasterAfterDrafPositiontCountTest()
+	{
+		IGenerateNewPlayers newPlayers = new GenerateNewPlayers();
+		newPlayers.setNumberOfTeams(6);
+		List<IPlayer> players = newPlayers.generatePlayers();
+		ITeam team= new TeamModel();
+		team.setPlayerList(players);
+		team.adjustTeamRoasterAfterDraft(team);
+		int numberOfForwards=0,numberOfDefense=0,numberOfGoalies=0;
+		for (IPlayer player : team.getPlayerList()) {
+			if (player.getPosition().equals(PositionConstant.defense.getValue())) {
+				 numberOfDefense++;
+				
+			}
+			if(player.getPosition().equals(PositionConstant.forward.getValue())) {
+				numberOfForwards++;
+			}
+			if (player.getPosition().equals(PositionConstant.goalie.getValue())) {
+				
+				numberOfGoalies++;
+			}
+		}
+		assertTrue(numberOfDefense== 10);
+		assertTrue(numberOfForwards== 16);
+		assertTrue(numberOfGoalies== 4);
 	}
 
 	@Test

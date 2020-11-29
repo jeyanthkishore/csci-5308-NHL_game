@@ -2,13 +2,15 @@ package com.dhl.g05.trading;
 
 import java.util.Random;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.dhl.g05.communication.ITradeCommunication;
 import com.dhl.g05.communication.PlayerCommunication;
 import com.dhl.g05.simulation.ITradingConfig;
-import com.dhl.g05.simulation.TradingConfig;
-
 
 public class TradeDecision implements ITradeDecision {
+	static final Logger logger = LogManager.getLogger(TradeDecision.class);
 
 	public void TradeResult(ITradingConfig trade) {
 
@@ -18,12 +20,13 @@ public class TradeDecision implements ITradeDecision {
 		boolean tradeAccepeted = false;
 		ramdomTradeChance = random.nextDouble();
 		ITradeCommunication showDetails = new PlayerCommunication();
-		ISwapPlayers swap = Trading.instance().getSwapplayers();
-		IWeakTeam teamInitiatingTrade = Trading.instance().getWeakteam();
-		IStrongTeam teamAcceptingTrade = Trading.instance().getStrongteam();
+		ISwapPlayers swap = AbstractTradingFactory.instance().getSwapplayers();
+		IWeakTeam teamInitiatingTrade = AbstractTradingFactory.instance().getWeakteam();
+		IStrongTeam teamAcceptingTrade = AbstractTradingFactory.instance().getStrongteam();
 
 		if (teamAcceptingTrade.getStrongTeam().getUserTeam() == true) {
-			showDetails.sendTradeMessage(teamInitiatingTrade.getPlayersOffered(),teamAcceptingTrade.getStrongestPlayersToTrade());
+			showDetails.sendTradeMessage(teamInitiatingTrade.getPlayersOffered(),
+					teamAcceptingTrade.getStrongestPlayersToTrade());
 			response = showDetails.getTradeDecision();
 			do {
 				if (response == 1) {
@@ -39,9 +42,9 @@ public class TradeDecision implements ITradeDecision {
 					response = showDetails.getTradeDecision();
 				}
 			} while (response == 1 || response == 2);
-		}
-		else {
-			if (teamAcceptingTrade.getStrengthOfStrongestPlayers() > teamInitiatingTrade.getStrengthOfPlayersOffered()) {
+		} else {
+			if (teamAcceptingTrade.getStrengthOfStrongestPlayers() > teamInitiatingTrade
+					.getStrengthOfPlayersOffered()) {
 				tradeAccepeted = true;
 				teamAcceptingTrade.setStrengthOfStrongestPlayers(0.00);
 			} else {

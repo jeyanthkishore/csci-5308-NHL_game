@@ -12,8 +12,6 @@ import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.ITeam;
 import com.dhl.g05.model.LeagueModel;
 import com.dhl.g05.model.TeamModel;
-import com.dhl.g05.simulation.IStandingModel;
-import com.dhl.g05.simulation.StandingModel;
 
 public class StandingsMock {
 	

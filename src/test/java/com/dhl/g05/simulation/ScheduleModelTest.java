@@ -1,6 +1,8 @@
 package com.dhl.g05.simulation;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -15,12 +17,6 @@ import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.ITeam;
 import com.dhl.g05.model.LeagueMockData;
 import com.dhl.g05.model.TeamModel;
-import com.dhl.g05.simulation.DateHandler;
-import com.dhl.g05.simulation.IInitializeSchedule;
-import com.dhl.g05.simulation.ILeagueStanding;
-import com.dhl.g05.simulation.IScheduleModel;
-import com.dhl.g05.simulation.LeagueStanding;
-import com.dhl.g05.simulation.ScheduleModel;
 
 public class ScheduleModelTest {
 

@@ -12,12 +12,6 @@ import org.junit.Test;
 
 import com.dhl.g05.database.ISerializeModel;
 import com.dhl.g05.database.SerializeLeagueModelMock;
-import com.dhl.g05.model.FreeAgentModel;
-import com.dhl.g05.model.IFreeAgent;
-import com.dhl.g05.model.ILeague;
-import com.dhl.g05.model.IPlayer;
-import com.dhl.g05.model.LeagueConstant;
-import com.dhl.g05.model.LeagueModel;
 
 
 public class LeagueModelTest {

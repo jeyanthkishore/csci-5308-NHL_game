@@ -5,50 +5,99 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.dhl.g05.simulation.ILeagueStanding;
 import com.dhl.g05.simulation.IStandingModel;
 
+
 public class PlayerDraft implements IPlayerDraft {
 
-	private static final int draftPickTeamSubstraction = 16;
+	private static final int draftPickTeamSubstraction = 2;
+	private Map<Integer, List<Map<IStandingModel, IStandingModel>>> pickOrderAfterTrading;
 
-	public void playerDraft(ILeagueStanding leaguestanding,Map<Integer, List<IStandingModel>> pickOrderAfterTrading) {
+	public Map<Integer, List<Map<IStandingModel, IStandingModel>>> getPickOrderAfterTrading() {
+		return pickOrderAfterTrading;
+	}
+
+	public void setPickOrderAfterTrading(
+			Map<Integer, List<Map<IStandingModel, IStandingModel>>> pickOrderAfterTrading) {
+		this.pickOrderAfterTrading = pickOrderAfterTrading;
+	}
+
+	public void playerDraft1(ILeagueStanding leaguestanding) {
 		List<IStandingModel> standingForAllConference = leaguestanding.getRankingAcrossLeague();
+
 		IGenerateNewPlayers g = new GenerateNewPlayers();
-		List<IStandingModel> teamsEligibleForPick = new ArrayList<>();
-		int numberOfTeamsEligibleForPick = 0;
-		if (standingForAllConference.size() > 16) {
-			numberOfTeamsEligibleForPick = (standingForAllConference.size() - draftPickTeamSubstraction);
-		} else {
-			numberOfTeamsEligibleForPick = (standingForAllConference.size());
-		}
-		g.setNumberOfTeams(numberOfTeamsEligibleForPick);
+		g.setNumberOfTeams(standingForAllConference.size());
 		List<IPlayer> newPlayers = g.generatePlayers();
-		List<IStandingModel> teamsEligibleForPickReverseOrder = standingForAllConference.subList(standingForAllConference.size() - numberOfTeamsEligibleForPick, standingForAllConference.size());
 		newPlayers.sort(Comparator.comparing(IPlayer::getPlayerStrength));
-		for (int i = teamsEligibleForPickReverseOrder.size() - 1; i >= 0; i--) {
-			teamsEligibleForPick.add(teamsEligibleForPickReverseOrder.get(i));
+
+		List<IStandingModel> teamsEligibleForPickFirst = new ArrayList<>();
+		List<IStandingModel> teamsEligibleForPickFirstReverseOrder = new ArrayList<>();
+		List<IStandingModel> teamsEligibleForPickLater = new ArrayList<>();
+		List<IStandingModel> teamsEligibleForPickLaterReverseOrder = new ArrayList<>();
+		int numberOfTeamsEligibleForPickFirst = 0;
+
+		numberOfTeamsEligibleForPickFirst = (standingForAllConference.size() - draftPickTeamSubstraction);
+		teamsEligibleForPickFirstReverseOrder = standingForAllConference.subList(
+				standingForAllConference.size() - numberOfTeamsEligibleForPickFirst, standingForAllConference.size());
+		for (int i = teamsEligibleForPickFirstReverseOrder.size() - 1; i >= 0; i--) {
+			teamsEligibleForPickFirst.add(teamsEligibleForPickFirstReverseOrder.get(i));
 		}
-		Map<Integer, List<IStandingModel>> teamOrder= createPickOrder(teamsEligibleForPick, pickOrderAfterTrading);
+		teamsEligibleForPickLaterReverseOrder = standingForAllConference.subList(0, draftPickTeamSubstraction);
+		for (int i = teamsEligibleForPickLaterReverseOrder.size() - 1; i >= 0; i--) {
+			teamsEligibleForPickLater.add(teamsEligibleForPickFirstReverseOrder.get(i));
+		}
+		createPickOrder(teamsEligibleForPickFirst, teamsEligibleForPickLater);
+
+		Map<Integer, List<IStandingModel>> teamOrder = createPickOrder(teamsEligibleForPickFirst,
+				teamsEligibleForPickLater);
 		pickNewPlayers(teamOrder, newPlayers);
 	}
 
-	public Map<Integer, List<IStandingModel>> createPickOrder(List<IStandingModel> teamsEligibleForPick,Map<Integer, List<IStandingModel>> pickOrderAfterTrading) {
+	public Map<Integer, List<IStandingModel>> createPickOrder(List<IStandingModel> teamsEligibleForPickFirst,
+			List<IStandingModel> teamsEligibleForPickLater) {
 		Map<Integer, List<IStandingModel>> pickOrder = new HashMap<>();
-		int j = 0;
+		Map<Integer, List<Map<IStandingModel, IStandingModel>>> pickOrderAfterTrading = getPickOrderAfterTrading();
 		for (int i = 1; i <= 7; i++) {
 			List<IStandingModel> teamsPickOrder = new ArrayList<>();
 			if (pickOrderAfterTrading.get(i) == null) {
+				continue;
 			} else {
-				for (IStandingModel a : pickOrderAfterTrading.get(i)) {
-					teamsPickOrder.add(a);
+				for (IStandingModel teamToPick : teamsEligibleForPickFirst) {
+					int size1 = teamsPickOrder.size();
+					List<Map<IStandingModel, IStandingModel>> TeamsTrading = pickOrderAfterTrading.get(i);
+					for (Map<IStandingModel, IStandingModel> teamPairTrading : TeamsTrading) {
+						for (Map.Entry<IStandingModel, IStandingModel> teamPair : teamPairTrading.entrySet()) {
+							if ((teamPair.getKey().getTeam().getTeamName().equals(teamToPick.getTeam().getTeamName()))&& (teamPair.getKey().getConference().getConferenceName().equals(teamToPick.getConference().getConferenceName()))&& (teamPair.getKey().getDivision().getDivisionName().equals(teamToPick.getDivision().getDivisionName()))) {
+								teamsPickOrder.add(teamPair.getValue());
+								break;
+							}
+						}
+					}
+					if (teamsPickOrder.size() == size1) {
+						teamsPickOrder.add(teamToPick);
+					}
+				}
+				for (IStandingModel teamToPick : teamsEligibleForPickLater) {
+					int size2 = teamsPickOrder.size();
+					List<Map<IStandingModel, IStandingModel>> TeamsTrading = pickOrderAfterTrading.get(i);
+					for (Map<IStandingModel, IStandingModel> teamPairTrading : TeamsTrading) {
+						for (Map.Entry<IStandingModel, IStandingModel> teamPair : teamPairTrading.entrySet()) {
+							if ((teamPair.getKey().getTeam().getTeamName().equals(teamToPick.getTeam().getTeamName()))
+									&& (teamPair.getKey().getConference().getConferenceName()
+											.equals(teamToPick.getConference().getConferenceName()))
+									&& (teamPair.getKey().getDivision().getDivisionName()
+											.equals(teamToPick.getDivision().getDivisionName()))) {
+								teamsPickOrder.add(teamPair.getValue());
+								break;
+							}
+						}
+					}
+					if (teamsPickOrder.size() == size2) {
+						teamsPickOrder.add(teamToPick);
+					}
 				}
 			}
-				for (j = teamsPickOrder.size(); j < teamsEligibleForPick.size(); j++) {
-					teamsPickOrder.add(teamsEligibleForPick.get(j));
-				}
-			
 			pickOrder.put(i, teamsPickOrder);
 		}
 		for (int i = 1; i <= 7; i++) {
@@ -65,27 +114,27 @@ public class PlayerDraft implements IPlayerDraft {
 		}
 		return pickOrder;
 	}
-	
+
 	public void pickNewPlayers(Map<Integer, List<IStandingModel>> teamOrder, List<IPlayer> newPlayers) {
+		System.out.println("Size of new players are " + newPlayers.size());
 		for (int i = 1; i <= 7; i++) {
 			for (IStandingModel team : teamOrder.get(i)) {
 				List<IPlayer> playersInTeam = team.getTeam().getPlayerList();
 				playersInTeam.add((newPlayers.get(0)));
 				newPlayers.remove(0);
 				team.getTeam().setPlayerList(playersInTeam);
-//				for (IConference c : league.getConferenceDetails()) {
-//					for (IDivision d : c.getDivisionDetails()) {
-//						for (ITeam t : d.getTeamDetails()) {
-//				List<IPlayer> adjustPlayers=team.getTeam().adjustTeamRoasterAfterDraft(team);
 //				call roaster;
 			}
 		}
-		List<IStandingModel> a = teamOrder.get(1);
-		for (IStandingModel team : a) {
-			System.out.println(team.getTeam().getTeamName());
-			for (IPlayer player : team.getTeam().getPlayerList()) {
+
+			System.out.println("players in "+ teamOrder.get(1).get(1).getTeam().getTeamName());
+			for (IPlayer player : teamOrder.get(1).get(1).getTeam().getPlayerList()) {
 				System.out.println(((FreeAgentModel) player).getPlayerName());
 			}
 		}
+	
+
+	public void callRoasterToadjustPlayers(IStandingModel team) {
+
 	}
 }

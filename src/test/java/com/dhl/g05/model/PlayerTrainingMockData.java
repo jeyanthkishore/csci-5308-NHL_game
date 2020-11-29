@@ -3,17 +3,6 @@ package com.dhl.g05.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dhl.g05.model.CoachModel;
-import com.dhl.g05.model.ConferenceModel;
-import com.dhl.g05.model.DivisionModel;
-import com.dhl.g05.model.ICoach;
-import com.dhl.g05.model.IConference;
-import com.dhl.g05.model.IDivision;
-import com.dhl.g05.model.IPlayer;
-import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.LeagueModel;
-import com.dhl.g05.model.PlayerModel;
-import com.dhl.g05.model.TeamModel;
 import com.dhl.g05.simulation.AgingConfig;
 import com.dhl.g05.simulation.GamePlayConfigModel;
 import com.dhl.g05.simulation.GameResolverConfig;

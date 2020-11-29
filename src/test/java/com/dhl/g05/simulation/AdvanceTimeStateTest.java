@@ -11,11 +11,6 @@ import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.LeagueModel;
-import com.dhl.g05.simulation.AbstractState;
-import com.dhl.g05.simulation.DateHandler;
-import com.dhl.g05.simulation.PlayoffScheduleState;
-import com.dhl.g05.simulation.SimulationAbstractFactory;
-import com.dhl.g05.simulation.TrainingState;
 
 public class AdvanceTimeStateTest {
 	private AbstractState state;
