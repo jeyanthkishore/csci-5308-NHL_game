@@ -10,6 +10,7 @@ public class SimulationConcreteFactory extends SimulationAbstractFactory{
 			IPlayerCommunication communication) {
 		this.communication = communication;
 	}
+
 	@Override
 	public IStateMachine createStateMachine(AbstractState abstractState) {
 		return new StateMachine(abstractState);
@@ -69,7 +70,11 @@ public class SimulationConcreteFactory extends SimulationAbstractFactory{
 		return new AgingState();
 	}
 
-
+	@Override
+	public AbstractState createInjuryCheckState() {
+		return new InjuryCheckState(communication);
+	}
+	
 	@Override
 	public AbstractState createTradeState() {
 		return new TradeState();
@@ -152,4 +157,5 @@ public class SimulationConcreteFactory extends SimulationAbstractFactory{
 	public IGamePlayConfig createGamePlayConfig() {
 		return new GamePlayConfigModel();
 	}
+
 }

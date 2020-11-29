@@ -3,6 +3,7 @@ package com.dhl.g05.model;
 import java.time.LocalDate;
 
 import com.dhl.g05.simulation.IAging;
+import com.dhl.g05.simulation.IInjury;
 
 public interface IPlayer {
 
@@ -73,5 +74,6 @@ public interface IPlayer {
 	void decreaseStatOnBirthday(IFreeAgent player, IAging agingConfig);
 
 	FreeAgentConstant validate();
-
+	
+	boolean checkPlayerInjury(IPlayerInjured playerInjured, IPlayer player, IInjury injury);
 }

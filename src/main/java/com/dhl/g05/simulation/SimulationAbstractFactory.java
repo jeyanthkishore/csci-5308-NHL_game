@@ -19,6 +19,7 @@ public abstract class SimulationAbstractFactory {
 	public abstract AbstractState createAdvancedTimeState();
 	public abstract AbstractState createTrainingState();
 	public abstract AbstractState createPlayOffState();
+	public abstract AbstractState createInjuryCheckState();
 	public abstract AbstractState createAgingState();
 	public abstract AbstractState createTradeState();
 	public abstract AbstractState createStimulateGameState();

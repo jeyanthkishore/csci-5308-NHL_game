@@ -1,6 +1,7 @@
 package com.dhl.g05.simulation;
 
 import static org.junit.Assert.assertSame;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -19,8 +20,8 @@ public class GameConfigModelTest {
 		IGameResolver gameResolver = simulationFactory.createGameResolverConfig();
 		gameResolver.setRandomWinChance(0.5);
 		IGamePlayConfig gameConfig = simulationFactory.createGamePlayConfig();
-		gameConfig.setGameResolver(gameResolver);
-		assertSame(gameResolver,gameConfig.getGameResolver());
+		gameConfig.setGameResolverConfig(gameResolver);
+		assertSame(gameResolver,gameConfig.getGameResolverConfig());
 	}
 
 	@Test
@@ -28,8 +29,8 @@ public class GameConfigModelTest {
 		IGameResolver gameResolver = simulationFactory.createGameResolverConfig();
 		gameResolver.setRandomWinChance(0.9);
 		IGamePlayConfig gameConfig = simulationFactory.createGamePlayConfig();
-		gameConfig.setGameResolver(gameResolver);
-		assertSame(gameResolver,gameConfig.getGameResolver());
+		gameConfig.setGameResolverConfig(gameResolver);
+		assertSame(gameResolver,gameConfig.getGameResolverConfig());
 	}
 	
 	@Test
@@ -39,8 +40,8 @@ public class GameConfigModelTest {
 		injury.setInjuryDaysLow(5);
 		injury.setRandomInjuryChance(0.05);
 		IGamePlayConfig gameConfig = simulationFactory.createGamePlayConfig();
-		gameConfig.setInjuries(injury);
-		assertSame(injury,gameConfig.getInjuries());
+		gameConfig.setInjuriesConfig(injury);
+		assertSame(injury,gameConfig.getInjuriesConfig());
 	}
 
 	@Test
@@ -50,8 +51,8 @@ public class GameConfigModelTest {
 		injury.setInjuryDaysLow(1);
 		injury.setRandomInjuryChance(0.05);
 		IGamePlayConfig gameConfig = simulationFactory.createGamePlayConfig();
-		gameConfig.setInjuries(injury);
-		assertSame(injury,gameConfig.getInjuries());
+		gameConfig.setInjuriesConfig(injury);
+		assertSame(injury,gameConfig.getInjuriesConfig());
 	}
 	
 	@Test
@@ -62,8 +63,8 @@ public class GameConfigModelTest {
 		tradeConfig.setRandomTradeOfferChance(0.05);
 		tradeConfig.setRandomAcceptanceChance(0.05);
 		IGamePlayConfig gameConfig = simulationFactory.createGamePlayConfig();
-		gameConfig.setTrading(tradeConfig);
-		assertSame(tradeConfig,gameConfig.getTrading());
+		gameConfig.setTradingConfig(tradeConfig);
+		assertSame(tradeConfig,gameConfig.getTradingConfig());
 	}
 	
 	@Test
@@ -74,8 +75,8 @@ public class GameConfigModelTest {
 		tradeConfig.setRandomTradeOfferChance(0.15);
 		tradeConfig.setRandomAcceptanceChance(0.05);
 		IGamePlayConfig gameConfig = simulationFactory.createGamePlayConfig();
-		gameConfig.setTrading(tradeConfig);
-		assertSame(tradeConfig,gameConfig.getTrading());
+		gameConfig.setTradingConfig(tradeConfig);
+		assertSame(tradeConfig,gameConfig.getTradingConfig());
 	}
 	
 	@Test
@@ -83,8 +84,8 @@ public class GameConfigModelTest {
 		ITraining trainingConfig = simulationFactory.createTrainingConfig();
 		trainingConfig.setDaysUntilStatIncreaseCheck(100);
 		IGamePlayConfig gameConfig = simulationFactory.createGamePlayConfig();
-		gameConfig.setTraining(trainingConfig);
-		assertSame(trainingConfig,gameConfig.getTraining());
+		gameConfig.setTrainingConfig(trainingConfig);
+		assertSame(trainingConfig,gameConfig.getTrainingConfig());
 	}
 	
 	@Test
@@ -92,8 +93,8 @@ public class GameConfigModelTest {
 		ITraining trainingConfig = simulationFactory.createTrainingConfig();
 		trainingConfig.setDaysUntilStatIncreaseCheck(120);
 		IGamePlayConfig gameConfig = simulationFactory.createGamePlayConfig();
-		gameConfig.setTraining(trainingConfig);
-		assertSame(trainingConfig,gameConfig.getTraining());
+		gameConfig.setTrainingConfig(trainingConfig);
+		assertSame(trainingConfig,gameConfig.getTrainingConfig());
 	}
 	
 	@Test
@@ -103,8 +104,8 @@ public class GameConfigModelTest {
 		agingConfig.setMaximumAge(66);
 		agingConfig.setStatDecayChance(0.07);
 		IGamePlayConfig gameConfig = simulationFactory.createGamePlayConfig();
-		gameConfig.setAging(agingConfig);
-		assertSame(agingConfig,gameConfig.getAging());
+		gameConfig.setAgingConfig(agingConfig);
+		assertSame(agingConfig,gameConfig.getAgingConfig());
 	}
 	
 	@Test
@@ -114,7 +115,8 @@ public class GameConfigModelTest {
 		agingConfig.setMaximumAge(71);
 		agingConfig.setStatDecayChance(0.09);
 		IGamePlayConfig gameConfig = simulationFactory.createGamePlayConfig();
-		gameConfig.setAging(agingConfig);
-		assertSame(agingConfig,gameConfig.getAging());
+		gameConfig.setAgingConfig(agingConfig);
+		assertSame(agingConfig,gameConfig.getAgingConfig());
 	}
+	
 }

@@ -1,5 +1,7 @@
 package com.dhl.g05.simulation;
 
+import java.time.LocalDate;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.model.IConference;
@@ -31,14 +33,14 @@ public class AdvanceToNextSeasonState extends AbstractState{
 	@Override
 	public boolean performStateTask() {
 		
-		//LocalDate tempDate = DateHandler.getInstance().getRegularSeasonStartDate().plusYears(1);
+		LocalDate tempDate = DateHandler.instance().getRegularSeasonStartDate().plusYears(1);
 		IPlayerRetired playerRetirement = new PlayerRetirement();
         for (IConference conference : league.getConferenceDetails()) {
             for (IDivision division : conference.getDivisionDetails()) {
                 for (ITeam team : division.getTeamDetails()) {
                     for (IPlayer player : team.getPlayerList()) {
-                    	//player.calculateAge(tempDate);
-                        boolean isRetired = playerRetirement.checkPlayerRetirement(league.getGamePlayConfig().getAging(),player);
+                    	player.calculateAge(tempDate);
+                        boolean isRetired = playerRetirement.checkPlayerRetirement(league.getGamePlayConfig().getAgingConfig(),player);
                         if (isRetired) {
                         	communication.sendMessage(player.getPlayerName());
                         }
@@ -47,17 +49,17 @@ public class AdvanceToNextSeasonState extends AbstractState{
             }
         }
         
-//        for (IFreeAgent freeAgent : league.getFreeAgent()) {
-//            freeAgent.calculateAge();
-//        }
-//
-//        for (IFreeAgent retiredFreeAgent : league.getRetiredFreeAgentsList()) {
-//            retiredFreeAgent.calculateAge();
-//        }
-//        
-//        for (IPlayer retiredTeamPlayer : league.getRetiredPlayersList()) {
-//            retiredTeamPlayer.calculateAge();
-//        }
+        for (IFreeAgent freeAgent : league.getFreeAgent()) {
+            freeAgent.calculateAge(tempDate);
+        }
+
+        for (IFreeAgent retiredFreeAgent : league.getRetiredFreeAgentsList()) {
+            retiredFreeAgent.calculateAge(tempDate);
+        }
+        
+        for (IPlayer retiredTeamPlayer : league.getRetiredPlayersList()) {
+            retiredTeamPlayer.calculateAge(tempDate);
+        }
         
         return true;
 	}

@@ -25,7 +25,7 @@ public class TrainingState extends AbstractState{
 	public boolean performStateTask() {
 		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 		
-		int daysUntilStatIncreaseCheck = league.getGamePlayConfig().getTraining().getDaysUntilStatIncreaseCheck();
+		int daysUntilStatIncreaseCheck = league.getGamePlayConfig().getTrainingConfig().getDaysUntilStatIncreaseCheck();
         int daysSinceLastStatIncrease = league.getDaysSinceStatIncrease();
         if (daysSinceLastStatIncrease > daysUntilStatIncreaseCheck) {
         	IPlayerTraining training = modelFactory.createPlayerTraining();
@@ -34,7 +34,7 @@ public class TrainingState extends AbstractState{
         		for (IDivision division : conference.getDivisionDetails()) {
         			for (ITeam team : division.getTeamDetails()) {
         				for(IPlayer player : team.getPlayerList()) {
-        					training.performTrainingForPlayer(player,team.getCoachDetails(),league.getGamePlayConfig().getInjuries());
+        					training.performTrainingForPlayer(player,team.getCoachDetails(),league.getGamePlayConfig().getInjuriesConfig());
         				}
         			}
         		}
