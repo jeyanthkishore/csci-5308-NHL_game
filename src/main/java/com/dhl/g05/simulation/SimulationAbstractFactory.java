@@ -1,5 +1,7 @@
 package com.dhl.g05.simulation;
 
+import com.dhl.g05.model.ITeam;
+
 public abstract class SimulationAbstractFactory {
 
 	private static SimulationAbstractFactory abstractStateMachineFactory;
@@ -19,7 +21,7 @@ public abstract class SimulationAbstractFactory {
 	public abstract AbstractState createAdvancedTimeState();
 	public abstract AbstractState createTrainingState();
 	public abstract AbstractState createPlayOffState();
-	public abstract AbstractState createInjuryCheckState();
+	public abstract AbstractState createInjuryCheckState(ITeam firstTeam, ITeam secondTeam);
 	public abstract AbstractState createAgingState();
 	public abstract AbstractState createTradeState();
 	public abstract AbstractState createStimulateGameState();

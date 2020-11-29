@@ -9,6 +9,8 @@ import com.dhl.g05.model.ModelAbstractFactory;
 
 public class StimulateGameState extends AbstractState{
 	private ILeague league;
+	private ITeam firstTeam;
+	private ITeam secondTeam;
 
 	@Override
 	public boolean enter() {
@@ -27,33 +29,33 @@ public class StimulateGameState extends AbstractState{
 		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 		double randomChance = modelFactory.createRandomNumber().generateRandomDoubleNumber(0, 1);
 		IScheduleModel schedule = league.getLeagueSchedule().getMatchOnCurrentDate(league.getLeagueCurrentDate());
-		ITeam teamA = schedule.getFirstTeam();
-		ITeam teamB = schedule.getSecondTeam();
+		firstTeam = schedule.getFirstTeam();
+		secondTeam = schedule.getSecondTeam();
 
-		double teamAStrength = teamA.getTeamStrength();
-		double teamBStrength = teamB.getTeamStrength();
+		double teamAStrength = firstTeam.getTeamStrength();
+		double teamBStrength = secondTeam.getTeamStrength();
 
 		if (teamAStrength > teamBStrength) {
-			teamWon = teamA;
-			teamLost = teamB;
+			teamWon = firstTeam;
+			teamLost = secondTeam;
 		}
 		else {
-			teamWon = teamB;
-			teamLost = teamA;
+			teamWon = secondTeam;
+			teamLost = firstTeam;
 		}
 
 		if (randomChance < league.getGamePlayConfig().getGameResolverConfig().getRandomWinChance()) {
-			if (teamWon == teamA) {
-				teamWon = teamB;
-				teamLost = teamA;
+			if (teamWon == firstTeam) {
+				teamWon = secondTeam;
+				teamLost = firstTeam;
 			}
 			else {
-				teamWon = teamA;
-				teamLost = teamB;
+				teamWon = firstTeam;
+				teamLost = secondTeam;
 			}
 		}
 
-		if (teamWon == teamA) {
+		if (teamWon == firstTeam) {
 			winningTeamConference = schedule.getFirstConference();
 			winningTeamDivision = schedule.getFirstDivision();
 			losingTeamConference = schedule.getSecondConference();
@@ -76,7 +78,8 @@ public class StimulateGameState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		this.setNextState(ApplicationConfiguration.instance().getSimulationConcreteFactoryState().createInjuryCheckState());
+		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		this.setNextState(simulationFactory.createInjuryCheckState(firstTeam,secondTeam));
 		return true;
 	}
 

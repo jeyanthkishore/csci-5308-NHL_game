@@ -11,7 +11,7 @@ import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.IPlayerRetired;
 import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.PlayerRetirement;
+import com.dhl.g05.model.ModelAbstractFactory;
 
 public class AdvanceToNextSeasonState extends AbstractState{
 	private IPlayerCommunication communication;
@@ -32,9 +32,9 @@ public class AdvanceToNextSeasonState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
-		
+		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 		LocalDate tempDate = DateHandler.instance().getRegularSeasonStartDate().plusYears(1);
-		IPlayerRetired playerRetirement = new PlayerRetirement();
+		IPlayerRetired playerRetirement = modelFactory.createPlayerRetirement();
         for (IConference conference : league.getConferenceDetails()) {
             for (IDivision division : conference.getDivisionDetails()) {
                 for (ITeam team : division.getTeamDetails()) {
@@ -43,6 +43,7 @@ public class AdvanceToNextSeasonState extends AbstractState{
                         boolean isRetired = playerRetirement.checkPlayerRetirement(league.getGamePlayConfig().getAgingConfig(),player);
                         if (isRetired) {
                         	communication.sendMessage(player.getPlayerName());
+//                        	playerRetirement.isPlayerRetired(league, player, team);
                         }
                     }
                 }
