@@ -14,10 +14,6 @@ public class DivisionModel implements IDivision {
 		setTeamDetails(null);
 	}
 
-	public DivisionModel(IDivisionModel divisionObject) {
-		divisionObject.LoadDivisionModelData(this);
-	}
-
 	@Override
 	public String getDivisionName() {
 		return divisionName;

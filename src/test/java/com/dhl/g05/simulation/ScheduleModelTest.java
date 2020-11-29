@@ -105,7 +105,7 @@ public class ScheduleModelTest {
 	@Test
 	public void generatePlayOffTest() {
 		IScheduleModel schedule = new ScheduleModel();
-		StandingsMock dummyStandings = new StandingsMock();
+		StandingMockData dummyStandings = new StandingMockData();
 		ILeague league = dummyStandings.createDummyLeague();
 		DateHandler dateObject  = DateHandler.getInstance();
 		dateObject.performDateAssignment(2020);

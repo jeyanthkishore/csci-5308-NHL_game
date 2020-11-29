@@ -3,125 +3,133 @@ package com.dhl.g05.model;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.ApplicationTestConfiguration;
+
 public class ConferenceModelTest {
+	private static ModelAbstractFactory modelAbstractFactory;
+	private static ModelMockAbstractFactory modelMockFactory;
+	
+	@BeforeClass
+	public static void init() {
+		modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+		modelMockFactory = ApplicationTestConfiguration.instance().getModelMockConcreteFactoryState();
+	}
 
 	@Test
 	public void conferenceConstructorTest() {
-		IConference object = new ConferenceModel();
+		IConference object = modelAbstractFactory.createConferenceModel();
 		assertNull(object.getConferenceName());
 		assertNull(object.getDivisionDetails());
 	}
 
 	@Test
 	public void setDivisionTest() {
-		IConference object = new ConferenceModel();
+		IConference object = modelAbstractFactory.createConferenceModel();
 		object.setConferenceName("conference");
 		assertSame("conference",object.getConferenceName());
 	}
 
 	@Test
 	public void getDivisionTest() {
-		IConference object = new ConferenceModel();
+		IConference object = modelAbstractFactory.createConferenceModel();
 		object.setConferenceName("conference");
 		assertSame("conference",object.getConferenceName());
 	}
 
 	@Test
 	public void setTeamListTest() {
-		LeagueMockData data = new LeagueMockData();
-		IConference object = new ConferenceModel();
-		object.setDivisionDetails(data.divisionList);
-		assertSame(data.divisionList,object.getDivisionDetails());
+		LeagueMockData data = modelMockFactory.createLeagueMockData();
+		IConference conference = modelAbstractFactory.createConferenceModel();
+		conference.setDivisionDetails(data.divisionList);
+		assertSame(data.divisionList,conference.getDivisionDetails());
 	}
 
 	@Test
 	public void getTeamListTest() {
-		LeagueMockData data = new LeagueMockData();
-		IConference object = new ConferenceModel();
-		object.setDivisionDetails(data.divisionList);
-		assertSame(data.divisionList,object.getDivisionDetails());
-	}
-
-	@Test
-	public void divisionReferenceConstructor() {
-		LeagueMockData data = new LeagueMockData();
-		IConference conference = new ConferenceModel(data);
-		assertSame(data.conferenceName,conference.getConferenceName());
+		LeagueMockData data = modelMockFactory.createLeagueMockData();
+		IConference conference = modelAbstractFactory.createConferenceModel();
+		conference.setDivisionDetails(data.divisionList);
 		assertSame(data.divisionList,conference.getDivisionDetails());
 	}
 
 	@Test
 	public void checkConferenceNameEmpty() {
-		LeagueMockData mock = new LeagueMockData();
-		IConference conference = new ConferenceModel(mock); 
+		LeagueMockData data = modelMockFactory.createLeagueMockData();
+		IConference conference = modelAbstractFactory.createConferenceModel();
+		conference.setConferenceName(data.conferenceName);
+		conference.setDivisionDetails(data.divisionList);
 		assertSame(ConferenceConstant.Success,conference.validate());
 	}
 
 	@Test
 	public void checkConferenceNameEmptyTest() {
-		LeagueMockData mock = new LeagueMockData();
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
 		mock.setConferenceNameEmpty();
-		IConference conference = new ConferenceModel(mock);
+		IConference conference = modelAbstractFactory.createConferenceModel();
+		conference.setConferenceName(mock.conferenceName);
+		conference.setDivisionDetails(mock.divisionList);
 		assertSame(ConferenceConstant.ConferenceNameEmpty,conference.validate());
 	}
 
 	@Test
 	public void checkConferenceNameNullTest() {
-		LeagueMockData mock = new LeagueMockData();
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
 		mock.setConferenceNameNull();
-		IConference conference = new ConferenceModel(mock);
+		IConference conference = modelAbstractFactory.createConferenceModel();
+		conference.setConferenceName(mock.conferenceName);
+		conference.setDivisionDetails(mock.divisionList);
 		assertSame(ConferenceConstant.ConferenceNameEmpty,conference.validate());
 	}
 
 	@Test
-	public void isDivisonListEmptyTest() {
-		LeagueMockData mock = new LeagueMockData();
-		IConference conference = new ConferenceModel(mock);
-		assertSame(ConferenceConstant.Success,conference.validate());
-	}
-
-	@Test
 	public void divisonListEmptyTest() {
-		LeagueMockData mock = new LeagueMockData();
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
 		mock.removeDivision();
-		IConference conference = new ConferenceModel(mock);
+		IConference conference = modelAbstractFactory.createConferenceModel();
+		conference.setConferenceName(mock.conferenceName);
+		conference.setDivisionDetails(mock.divisionList);
+		assertSame(ConferenceConstant.DivisionListEmpty,conference.validate());
+	}
+	
+	@Test
+	public void divisonListNullTest() {
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+		IConference conference = modelAbstractFactory.createConferenceModel();
+		conference.setConferenceName(mock.conferenceName);
+		conference.setDivisionDetails(null);
 		assertSame(ConferenceConstant.DivisionListEmpty,conference.validate());
 	}
 
 	@Test
 	public void hasEvenDivsionTest() {
-		LeagueMockData mock = new LeagueMockData();
-		IConference conference = new ConferenceModel(mock); 
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+		IConference conference = modelAbstractFactory.createConferenceModel();
+		conference.setConferenceName(mock.conferenceName);
+		conference.setDivisionDetails(mock.divisionList); 
 		assertSame(ConferenceConstant.Success,conference.validate());
 	}
 
 	@Test
 	public void hasOddDivsionTest() {
-		LeagueMockData mock = new LeagueMockData();
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
 		mock.removeOneDivision();
-		IConference conference = new ConferenceModel(mock);
+		IConference conference = modelAbstractFactory.createConferenceModel();
+		conference.setConferenceName(mock.conferenceName);
+		conference.setDivisionDetails(mock.divisionList); 
 		assertSame(ConferenceConstant.NoEvenDivisionCount,conference.validate());
 	}
 
 	@Test
 	public void validateConferenceTest() {
-		LeagueMockData mock = new LeagueMockData();
-		IConference conference = new ConferenceModel(mock); 
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+		IConference conference = modelAbstractFactory.createConferenceModel();
+		conference.setConferenceName(mock.conferenceName);
+		conference.setDivisionDetails(mock.divisionList); 
 		assertSame(ConferenceConstant.Success,conference.validate());
-		mock = new LeagueMockData();
-		mock.setConferenceNameEmpty();
-		conference = new ConferenceModel(mock); 
-		assertSame(ConferenceConstant.ConferenceNameEmpty,conference.validate());
-		mock = new LeagueMockData();
-		mock.removeDivision();
-		conference = new ConferenceModel(mock); 
-		assertSame(ConferenceConstant.DivisionListEmpty,conference.validate());
-		mock = new LeagueMockData();
-		mock.removeOneDivision();
-		conference = new ConferenceModel(mock); 
-		assertSame(ConferenceConstant.NoEvenDivisionCount,conference.validate());
 	}
 
 }

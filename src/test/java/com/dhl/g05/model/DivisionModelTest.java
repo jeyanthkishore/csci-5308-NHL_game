@@ -3,106 +3,125 @@ package com.dhl.g05.model;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.ApplicationTestConfiguration;
+
 public class DivisionModelTest {
+	
+	private static ModelAbstractFactory modelAbstractFactory;
+	private static ModelMockAbstractFactory modelMockFactory;
+	
+	@BeforeClass
+	public static void init() {
+		modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+		modelMockFactory = ApplicationTestConfiguration.instance().getModelMockConcreteFactoryState();
+	}
 
 	@Test
 	public void divsionConstructorTest() {
-		IDivision object = new DivisionModel();
-		assertNull(object.getDivisionName());
-		assertNull(object.getTeamDetails());
+		IDivision division = modelAbstractFactory.createDivisionModel();
+		assertNull(division.getDivisionName());
+		assertNull(division.getTeamDetails());
 	}
 
 	@Test
 	public void setDivisionTest() {
-		IDivision object = new DivisionModel();
-		object.setDivisionName("Division");
-		assertSame("Division",object.getDivisionName());
+		IDivision division = modelAbstractFactory.createDivisionModel();
+		division.setDivisionName("Division");
+		assertSame("Division",division.getDivisionName());
 	}
 
 	@Test
 	public void getDivisionTest() {
-		IDivision object = new DivisionModel();
-		object.setDivisionName("Division");
-		assertSame("Division",object.getDivisionName());
+		IDivision division = modelAbstractFactory.createDivisionModel();
+		division.setDivisionName("Division");
+		assertSame("Division",division.getDivisionName());
 	}
 
 	@Test
 	public void setTeamListTest() {
-		LeagueMockData data = new LeagueMockData();
-		IDivision object = new DivisionModel();
-		object.setTeamDetails(data.teamList);;
-		assertSame(data.teamList,object.getTeamDetails());
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+		IDivision division = modelAbstractFactory.createDivisionModel();
+		division.setTeamDetails(mock.teamList);
+		assertSame(mock.teamList,division.getTeamDetails());
 	}
 
 	@Test
 	public void getTeamListTest() {
-		LeagueMockData data = new LeagueMockData();
-		IDivision object = new DivisionModel();
-		object.setTeamDetails(data.teamList);;
-		assertSame(data.teamList,object.getTeamDetails());
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+		IDivision division = modelAbstractFactory.createDivisionModel();
+		division.setTeamDetails(mock.teamList);;
+		assertSame(mock.teamList,division.getTeamDetails());
 	}
 
-	@Test
-	public void divisionReferenceConstructor() {
-		LeagueMockData data = new LeagueMockData();
-		IDivision object = new DivisionModel(data);
-		assertSame(data.divisionOneName,object.getDivisionName());
-		assertSame(data.teamList,object.getTeamDetails());
-	}
 
 	@Test
 	public void checkDivisionNameEmpty() {
-		LeagueMockData mock = new LeagueMockData();
-		IDivision division = new DivisionModel(mock); 
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+		IDivision division = modelAbstractFactory.createDivisionModel();
+		division.setDivisionName(mock.divisionOneName);
+		division.setTeamDetails(mock.teamList);
 		assertSame(DivisionConstant.Success,division.validate());
 	}
 
 	@Test
 	public void checkDivisionNameEmptyTest() {
-		LeagueMockData mock = new LeagueMockData();
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
 		mock.setDivisionNameEmpty();
-		IDivision division = new DivisionModel(mock); 
+		IDivision division = modelAbstractFactory.createDivisionModel();
+		division.setDivisionName(mock.divisionOneName);
+		division.setTeamDetails(mock.teamList);
 		assertSame(DivisionConstant.DivisionNameEmpty,division.validate());
 	}
 
 	@Test
 	public void checkDivisionNameNullTest() {
-		LeagueMockData mock = new LeagueMockData();
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
 		mock.setDivisionNameNull();
-		IDivision division = new DivisionModel(mock); 
+		IDivision division = modelAbstractFactory.createDivisionModel();
+		division.setDivisionName(mock.divisionOneName);
+		division.setTeamDetails(mock.teamList);
 		assertSame(DivisionConstant.DivisionNameEmpty,division.validate());
 	}
 
 	@Test
 	public void isTeamListEmptyTest() {
-		LeagueMockData mock = new LeagueMockData();
-		IDivision division = new DivisionModel(mock); 
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+		IDivision division = modelAbstractFactory.createDivisionModel();
+		division.setDivisionName(mock.divisionOneName);
+		division.setTeamDetails(mock.teamList);
 		assertSame(DivisionConstant.Success,division.validate());
 	}
 
 	@Test
 	public void teamListEmptyTest() {
-		LeagueMockData mock = new LeagueMockData();
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
 		mock.removeTeams();
-		IDivision division = new DivisionModel(mock); 
+		IDivision division = modelAbstractFactory.createDivisionModel();
+		division.setDivisionName(mock.divisionOneName);
+		division.setTeamDetails(mock.teamList);
+		assertSame(DivisionConstant.TeamListEmpty,division.validate());
+	}
+	
+	@Test
+	public void teamListNullTest() {
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+		IDivision division = modelAbstractFactory.createDivisionModel();
+		division.setDivisionName(mock.divisionOneName);
+		division.setTeamDetails(null);
 		assertSame(DivisionConstant.TeamListEmpty,division.validate());
 	}
 
 	@Test
 	public void validateDivisionTest() {
-		LeagueMockData mock = new LeagueMockData();
-		IDivision division = new DivisionModel(mock); 
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+		IDivision division = modelAbstractFactory.createDivisionModel();
+		division.setDivisionName(mock.divisionOneName);
+		division.setTeamDetails(mock.teamList);
 		assertSame(DivisionConstant.Success,division.validate());
-		mock = new LeagueMockData();
-		mock.setDivisionNameEmpty();
-		division = new DivisionModel(mock);
-		assertSame(DivisionConstant.DivisionNameEmpty,division.validate());
-		mock = new LeagueMockData();
-		mock.removeTeams();
-		division = new DivisionModel(mock); 
-		assertSame(DivisionConstant.TeamListEmpty,division.validate());
 	}
 
 }

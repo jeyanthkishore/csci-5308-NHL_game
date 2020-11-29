@@ -13,7 +13,7 @@ import com.dhl.g05.model.ITeam;
 import com.dhl.g05.model.LeagueModel;
 import com.dhl.g05.model.TeamModel;
 
-public class StandingsMock {
+public class StandingMockData {
 	
     public ILeague createDummyLeague() {
     	ILeague league = new LeagueModel();
