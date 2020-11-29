@@ -43,7 +43,7 @@ public class AdvanceToNextSeasonState extends AbstractState{
                         boolean isRetired = playerRetirement.checkPlayerRetirement(league.getGamePlayConfig().getAgingConfig(),player);
                         if (isRetired) {
                         	communication.sendMessage(player.getPlayerName());
-                        	playerRetirement.isPlayerRetired(league, player, team);
+//                        	playerRetirement.isPlayerRetired(league, player, team);
                         }
                     }
                 }
