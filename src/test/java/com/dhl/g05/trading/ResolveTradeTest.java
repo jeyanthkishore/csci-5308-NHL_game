@@ -29,7 +29,7 @@ public class ResolveTradeTest {
 	@Test
 	public void dropWeakestPlayersToFreeAgentListTest() {
 //		resolveTrade = abstractTradingFactory.getResolveTrade();
-		resolveTrade = TradeAbstractFactory.getFactory().getResolveTrade();
+		resolveTrade = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createResolveTrade();
 		IPlayer player1 = modelAbstractFactory.createPlayerModel();
 		((FreeAgentModel) player1).setPlayerName("Shawn");
 		player1.setPosition(DEFENSE);

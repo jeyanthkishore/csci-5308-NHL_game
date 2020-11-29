@@ -1,8 +1,10 @@
 package com.dhl.g05.trading;
 
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
 

@@ -5,24 +5,24 @@ import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.ITradeCommunication;
-import com.dhl.g05.communication.PlayerCommunication;
 import com.dhl.g05.simulation.ITradingConfig;
 
 public class TradeDecision implements ITradeDecision {
 	static final Logger logger = LogManager.getLogger(TradeDecision.class);
 
-	public void TradeResult(ITradingConfig trade) {
+	public void TradeResult(ITradingConfig trade, IWeakTeam teamInitiatingTrade,IStrongTeam teamAcceptingTrade ) {
 
 		int response = 0;
 		Random random = new Random();
 		double ramdomTradeChance = 0.0;
 		boolean tradeAccepeted = false;
 		ramdomTradeChance = random.nextDouble();
-		ITradeCommunication showDetails = new PlayerCommunication();
-		ISwapPlayers swap = TradeAbstractFactory.instance().getSwapplayers();
-		IWeakTeam teamInitiatingTrade = TradeAbstractFactory.instance().getWeakteam();
-		IStrongTeam teamAcceptingTrade = TradeAbstractFactory.instance().getStrongteam();
+		ITradeCommunication showDetails = ApplicationConfiguration.instance().getCommunicationConcreteFactoryState().getTradeCommunication();
+		ISwapPlayers swap = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createSwapplayers();
+//		IWeakTeam teamInitiatingTrade = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createWeakteam();
+//		IStrongTeam teamAcceptingTrade = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createStrongteam();
 
 		if (teamAcceptingTrade.getStrongTeam().getUserTeam() == true) {
 			showDetails.sendTradeMessage(teamInitiatingTrade.getPlayersOffered(),
