@@ -4,7 +4,9 @@ public class FileOperationMock implements IFileOperation {
 
 	@Override
 	public String getFilePath(String teamName) {
-		return "src/test/java/com/dhl/g05/jsontestfiles/OutputModel.json";
+		String path = FileOperationMockConstant.DirectoryPath.getValue()+teamName
+				+FileOperationMockConstant.FileExtension.getValue();
+		return path;
 	}
 
 	@Override

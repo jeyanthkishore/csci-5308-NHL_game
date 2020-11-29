@@ -38,7 +38,7 @@ public class SimulationConcreteFactory extends SimulationAbstractFactory{
 
 	@Override
 	public AbstractState createStimulateState(int seasons) {
-		return new SimulateState(seasons);
+		return new SeasonSimulateState(seasons);
 	}
 
 	@Override

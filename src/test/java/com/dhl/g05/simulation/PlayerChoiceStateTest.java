@@ -27,7 +27,7 @@ public class PlayerChoiceStateTest {
 		state.enter();
 		state.performStateTask();
 		state.exit();
-		assertTrue(state.getNextState() instanceof SimulateState);
+		assertTrue(state.getNextState() instanceof SeasonSimulateState);
 	}
 
 	@Test

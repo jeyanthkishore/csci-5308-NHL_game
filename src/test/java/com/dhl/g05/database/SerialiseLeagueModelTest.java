@@ -5,15 +5,19 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.LeagueModel;
 
 public class SerialiseLeagueModelTest {
-	
+	private static IDeserializeModel serial;
 	
 	 @BeforeClass
 	    public static void setup() {
-//	        CommunicationAbstractFactory.setFactory(new CommunicationFactory());
+		 	DatabaseAbstractFactory databasFactory = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
+		 	serial = databasFactory.createDeserializeObject();
+		 	DatabaseState state = new DatabaseMockFactoryState();
+			ApplicationConfiguration.instance().setDataBaseFactoryState(state);
 	    }
 	
 	
@@ -27,9 +31,8 @@ public class SerialiseLeagueModelTest {
 
 	@Test
 	public void deserialiseObjectsTest() {
-		IDeserializeModel serial = new DeserializeLeagueModel();
 		ILeague data = new LeagueModel();
-		String teamName = "dummy";
+		String teamName = "jsonfordeserialize";
 		assertNotNull(serial.deserializeObjects(teamName,data));
 	}
 	

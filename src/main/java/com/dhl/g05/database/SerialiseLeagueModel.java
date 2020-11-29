@@ -21,14 +21,12 @@ public class SerialiseLeagueModel implements ISerializeModel{
 		try {
 			if(fileValidator.isFileExist(teamName)) {
 				myWriter = new FileWriter(path);
-				String object = gson.toJson(leagueObject);
-				myWriter.write(object);
 			}else {
 				File file = new File(path);
 				myWriter = new FileWriter(file);
-				String object = gson.toJson(leagueObject);
-				myWriter.write(object);
 			}
+			String object = gson.toJson(leagueObject);
+			myWriter.write(object);
 			myWriter.flush();
 			myWriter.close();
 			return true;

@@ -59,19 +59,6 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		this.playerCommunication = playerCommunication;
 	}
 
-	public boolean isFileValidJson(String fileName) throws IOException {
-		try {
-			reader = new FileReader(new File(fileName));
-			parser.parse(reader);
-			return true;
-		} catch (ParseException | IOException e) {
-			e.printStackTrace();
-		} finally {
-			reader.close();
-		}
-		return false;
-	}
-
 	private IAging createAging(JSONObject jsonAging) {
 		if (jsonAging == null){
 			return null;
