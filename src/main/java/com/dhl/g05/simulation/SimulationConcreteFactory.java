@@ -1,6 +1,7 @@
 package com.dhl.g05.simulation;
 
 import com.dhl.g05.communication.IPlayerCommunication;
+import com.dhl.g05.model.ITeam;
 
 public class SimulationConcreteFactory extends SimulationAbstractFactory{
 
@@ -71,8 +72,8 @@ public class SimulationConcreteFactory extends SimulationAbstractFactory{
 	}
 
 	@Override
-	public AbstractState createInjuryCheckState() {
-		return new InjuryCheckState(communication);
+	public AbstractState createInjuryCheckState(ITeam firstTeam, ITeam secondTeam) {
+		return new InjuryCheckState(communication,firstTeam,secondTeam);
 	}
 	
 	@Override

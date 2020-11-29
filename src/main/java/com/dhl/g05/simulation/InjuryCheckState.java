@@ -13,10 +13,14 @@ import com.dhl.g05.model.ModelAbstractFactory;
 public class InjuryCheckState extends AbstractState{
 	private ILeague league;
 	private IPlayerCommunication communication;
+	private ITeam firstTeam;
+	private ITeam secondTeam;
 	private LocalDate currentDate;
 
-	public InjuryCheckState(IPlayerCommunication communication) {
+	public InjuryCheckState(IPlayerCommunication communication, ITeam teamOne, ITeam teamTwo) {
 		this.communication = communication;
+		this.firstTeam = teamOne;
+		this.secondTeam = teamTwo;
 	}
 
 	@Override
@@ -29,19 +33,16 @@ public class InjuryCheckState extends AbstractState{
 	@Override
 	public boolean performStateTask() {
 		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
-		IScheduleModel schedule = league.getLeagueSchedule().getMatchOnCurrentDate(currentDate);
-		ITeam teamA = schedule.getFirstTeam();
-		ITeam teamB = schedule.getSecondTeam();
 		IPlayerInjured playerInjury = modelFactory.createPlayerInjury();
 		IInjury injuryConfig = league.getGamePlayConfig().getInjuriesConfig();
-		for (IPlayer player: teamA.getPlayerList()) {
+		for (IPlayer player: firstTeam.getPlayerList()) {
 			if (player.checkPlayerInjury(playerInjury, player, injuryConfig)) {
 				communication.sendMessage(player.getPlayerName() +" is injured in match for days :" 
 						+player.getInjuredForNumberOfDays());
 			}
 		}
 
-		for (IPlayer player: teamB.getPlayerList()) {
+		for (IPlayer player: secondTeam.getPlayerList()) {
 			if (player.checkPlayerInjury(playerInjury, player, injuryConfig)) {
 				communication.sendMessage(player.getPlayerName() +" is injured in match for days :" 
 						+player.getInjuredForNumberOfDays());
