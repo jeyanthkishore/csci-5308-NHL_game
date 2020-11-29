@@ -26,24 +26,24 @@ public class AgingState extends AbstractState{
             for (IDivision division : conference.getDivisionDetails()) {
                 for (ITeam team : division.getTeamDetails()) {
                     for (IPlayer player : team.getPlayerList()) {
-                    	player.calculateAge();
+//                    	player.calculateAge();
                     	//decreaseStats
                     }
                 }
             }
         }
 
-        for (IFreeAgent freeAgent : league.getFreeAgent()) {
-            freeAgent.calculateAge();
-        }
-
-        for (IFreeAgent retiredFreeAgent : league.getRetiredFreeAgentsList()) {
-            retiredFreeAgent.calculateAge();
-        }
-        
-        for (IPlayer retiredTeamPlayer : league.getRetiredPlayersList()) {
-            retiredTeamPlayer.calculateAge();
-        }
+//        for (IFreeAgent freeAgent : league.getFreeAgent()) {
+//            freeAgent.calculateAge();
+//        }
+//
+//        for (IFreeAgent retiredFreeAgent : league.getRetiredFreeAgentsList()) {
+//            retiredFreeAgent.calculateAge();
+//        }
+//        
+//        for (IPlayer retiredTeamPlayer : league.getRetiredPlayersList()) {
+//            retiredTeamPlayer.calculateAge();
+//        }
         
         return true;
 	}

@@ -47,17 +47,17 @@ public class AdvanceToNextSeasonState extends AbstractState{
             }
         }
         
-        for (IFreeAgent freeAgent : league.getFreeAgent()) {
-            freeAgent.calculateAge();
-        }
-
-        for (IFreeAgent retiredFreeAgent : league.getRetiredFreeAgentsList()) {
-            retiredFreeAgent.calculateAge();
-        }
-        
-        for (IPlayer retiredTeamPlayer : league.getRetiredPlayersList()) {
-            retiredTeamPlayer.calculateAge();
-        }
+//        for (IFreeAgent freeAgent : league.getFreeAgent()) {
+//            freeAgent.calculateAge();
+//        }
+//
+//        for (IFreeAgent retiredFreeAgent : league.getRetiredFreeAgentsList()) {
+//            retiredFreeAgent.calculateAge();
+//        }
+//        
+//        for (IPlayer retiredTeamPlayer : league.getRetiredPlayersList()) {
+//            retiredTeamPlayer.calculateAge();
+//        }
         
         return true;
 	}

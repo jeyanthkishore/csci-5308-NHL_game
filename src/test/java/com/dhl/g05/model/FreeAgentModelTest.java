@@ -8,14 +8,12 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.simulation.AgingConfig;
 import com.dhl.g05.simulation.IAging;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 
@@ -441,7 +439,8 @@ public class FreeAgentModelTest {
 		validate.setBirthDay(22);
 		validate.setBirthMonth(9);
 		validate.setBirthYear(1994);
-		validate.calculateAge();
+		LocalDate today= LocalDate.now();
+		validate.calculateAge(today);
 		assertEquals(validate.getAge(),26);
 	}
 	
@@ -477,16 +476,14 @@ public class FreeAgentModelTest {
 		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
 		LeagueMockData data = new LeagueMockData();
 		List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
-		data.playerList.get(1).calculateAge();
-		freeAgentList.get(1).calculateAge();
+		data.playerList.get(1).calculateAge(LocalDate.now());
+		freeAgentList.get(1).calculateAge(LocalDate.now());
 		assertSame(data.playerList.get(1).getAge(),freeAgentList.get(1).getAge());
 	}
 	
 	@Test
 	public void FreeAgentStatDecayOnBirthdayTest()
 	{
-		List<IFreeAgent> freeAgents = new ArrayList<>();
-		ILeague league= modelAbstractFactory.createLeagueModel();
 		IAging aging = simulationAbstractFactory.createAgingConfig();
 		IFreeAgent freeagent=modelAbstractFactory.createFreeAgentModel();
 		freeagent.setPlayerName("FreeAgent1");
@@ -499,10 +496,8 @@ public class FreeAgentModelTest {
 		freeagent.setShooting(12);
 		freeagent.setChecking(15);
 		freeagent.setSaving(18);
-		freeAgents.add(freeagent);
-		league.setFreeAgent(freeAgents);
 		aging.setStatDecayChance(1);
-		freeagent.decreaseStatOnBirthday(league, aging);
+		freeagent.decreaseStatOnBirthday(freeagent, aging);
 		assertEquals(freeagent.getChecking(), 14, 0);
 		assertEquals(freeagent.getSaving(), 17, 0);
 		assertEquals(freeagent.getSkating(), 9, 0);
@@ -512,8 +507,6 @@ public class FreeAgentModelTest {
 	@Test
 	public void FreeAgentStatNotDecayOnBirthdayTest()
 	{
-		List<IFreeAgent> freeAgents = new ArrayList<>();
-		ILeague league= modelAbstractFactory.createLeagueModel();
 		IAging aging = simulationAbstractFactory.createAgingConfig();
 		IFreeAgent freeagent=modelAbstractFactory.createFreeAgentModel();
 		freeagent.setPlayerName("FreeAgent1");
@@ -526,10 +519,8 @@ public class FreeAgentModelTest {
 		freeagent.setShooting(12);
 		freeagent.setChecking(15);
 		freeagent.setSaving(18);
-		freeAgents.add(freeagent);
-		league.setFreeAgent(freeAgents);
 		aging.setStatDecayChance(0);
-		freeagent.decreaseStatOnBirthday(league, aging);
+		freeagent.decreaseStatOnBirthday(freeagent, aging);
 		assertEquals(freeagent.getChecking(), 15, 0);
 		assertEquals(freeagent.getSaving(), 18, 0);
 		assertEquals(freeagent.getSkating(), 10, 0);

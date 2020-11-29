@@ -327,9 +327,9 @@ public class FreeAgentModel implements IFreeAgent {
 		return notValid;
 	}
 
-	public void calculateAge() {
+	public void calculateAge(LocalDate leagueDate) {
 		int age = 0;
-		LocalDate currentDate = LocalDate.now();
+		LocalDate currentDate = leagueDate;
 		if (isBirthDateNotValid()) {
 			setAge(age);
 		}else {
@@ -339,26 +339,25 @@ public class FreeAgentModel implements IFreeAgent {
 		}
 	}
 
-	public void decreaseStatOnBirthday(ILeague league, IAging agingConfig) {
+	public void decreaseStatOnBirthday(IFreeAgent player, IAging agingConfig) {
 		Random random = new Random();
-		for (IFreeAgent p : league.getFreeAgent()) {
-			if (LocalDate.now().getMonthValue() == p.getBirthMonth() && LocalDate.now().getDayOfMonth() == p.getBirthDay()) {
-				logger.info("Happy Birthday your player stats will be decreased");if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
-					p.setSkating((p.getSkating()) - DECREASE_STAT_BY);
+			if (LocalDate.now().getMonthValue() == player.getBirthMonth() && LocalDate.now().getDayOfMonth() == player.getBirthDay()) {
+				logger.info("Happy Birthday your stats will be decreased");
+				if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
+					player.setSkating((player.getSkating()) - DECREASE_STAT_BY);
 				}
 				if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
-					p.setShooting((p.getShooting()) - DECREASE_STAT_BY);
+					player.setShooting((player.getShooting()) - DECREASE_STAT_BY);
 				}
 				if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
-					p.setChecking((p.getChecking()) - DECREASE_STAT_BY);
+					player.setChecking((player.getChecking()) - DECREASE_STAT_BY);
 				}
 				if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
-					p.setSaving((p.getSaving()) - DECREASE_STAT_BY);
+					player.setSaving((player.getSaving()) - DECREASE_STAT_BY);
 				}
-			} else
-				continue;
+			}
 		}
-	}
+	
 	
 	public List<IFreeAgent> ConvertPlayerToFreeAgent(List<IPlayer> excessPlayers) {
 		List<IFreeAgent> freeAgents = new ArrayList<>();

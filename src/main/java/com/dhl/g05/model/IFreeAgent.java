@@ -1,5 +1,6 @@
 package com.dhl.g05.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.dhl.g05.simulation.IAging;
@@ -74,12 +75,12 @@ public interface IFreeAgent {
 
 	void setRetirementStatus(boolean isRetired);
 
-	void decreaseStatOnBirthday(ILeague league, IAging agingConfig);
+	void decreaseStatOnBirthday(IFreeAgent player, IAging agingConfig);
 
 	void setBirthYear(int year);
 
 	List<IFreeAgent> ConvertPlayerToFreeAgent(List<IPlayer> releaseExtraPlayers);
 
-	void calculateAge();
+	void calculateAge(LocalDate leagueDate);
 
 }
