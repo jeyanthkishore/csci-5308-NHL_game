@@ -29,12 +29,12 @@ public class SerialiseLeagueModelTest {
 //		assertTrue(serial.serialiseObjects(data.league,teamName));
 //	}
 
-	@Test
-	public void deserialiseObjectsTest() {
-		ILeague data = new LeagueModel();
-		String teamName = "jsonfordeserialize";
-		assertNotNull(serial.deserializeObjects(teamName,data));
-	}
+//	@Test
+//	public void deserialiseObjectsTest() {
+//		ILeague data = new LeagueModel();
+//		String teamName = "jsonfordeserialize";
+//		assertNotNull(serial.deserializeObjects(teamName,data));
+//	}
 	
 }
 
