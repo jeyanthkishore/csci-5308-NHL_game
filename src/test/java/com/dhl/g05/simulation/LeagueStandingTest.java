@@ -13,7 +13,7 @@ public class LeagueStandingTest {
 	@Test
 	public void setStandingTest() {
 		ILeagueStanding standings = new LeagueStanding();
-		StandingsMock mock = new StandingsMock();
+		StandingMockData mock = new StandingMockData();
 		standings.setStandingList(mock.createDummyStandings(mock.createDummyLeague()));
 		assertSame(20,standings.getStandingList().size());
 	}
@@ -21,7 +21,7 @@ public class LeagueStandingTest {
 	@Test
 	public void createStandingsTest() {
 		ILeagueStanding standings = new LeagueStanding();
-		StandingsMock mock = new StandingsMock();
+		StandingMockData mock = new StandingMockData();
 		standings.createStandingList(mock.createDummyLeague());
 		assertSame(20,standings.getStandingList().size());
 	}
@@ -29,7 +29,7 @@ public class LeagueStandingTest {
 	@Test
 	public void updateStatisticsForWinningTeamTest() {
 		ILeagueStanding leagueStandings = new LeagueStanding();
-		StandingsMock mock = new StandingsMock();
+		StandingMockData mock = new StandingMockData();
 		List<IStandingModel> standings = mock.createDummyStandings(mock.createDummyLeague());
 		leagueStandings.setStandingList(standings);
 		
@@ -46,7 +46,7 @@ public class LeagueStandingTest {
 	@Test
 	public void updateStatisticsForLosingTeamTest() {
 		ILeagueStanding leagueStandings = new LeagueStanding();
-		StandingsMock mock = new StandingsMock();
+		StandingMockData mock = new StandingMockData();
 		List<IStandingModel> standings = mock.createDummyStandings(mock.createDummyLeague());
 		leagueStandings.setStandingList(standings);
 		
@@ -61,7 +61,7 @@ public class LeagueStandingTest {
     @Test
     public void getRankingAcrossLeagueTest() {
     	ILeagueStanding leagueStanding = new LeagueStanding();
-        StandingsMock mock = new StandingsMock();
+        StandingMockData mock = new StandingMockData();
 		List<IStandingModel> standings = mock.createDummyStandings(mock.createDummyLeague());
 		leagueStanding.setStandingList(standings);
 
@@ -76,7 +76,7 @@ public class LeagueStandingTest {
     @Test
     public void getRankingAcrossDivisionTest() {
         ILeagueStanding leagueStanding = new LeagueStanding();
-        StandingsMock mock = new StandingsMock();
+        StandingMockData mock = new StandingMockData();
 		List<IStandingModel> standings = mock.createDummyStandings(mock.createDummyLeague());
 		leagueStanding.setStandingList(standings);
 
@@ -92,7 +92,7 @@ public class LeagueStandingTest {
     @Test
     public void getRankingAcrossConferenceTest() {
     	ILeagueStanding leagueStanding = new LeagueStanding();
-        StandingsMock mock = new StandingsMock();
+        StandingMockData mock = new StandingMockData();
 		List<IStandingModel> standings = mock.createDummyStandings(mock.createDummyLeague());
 		leagueStanding.setStandingList(standings);
 
