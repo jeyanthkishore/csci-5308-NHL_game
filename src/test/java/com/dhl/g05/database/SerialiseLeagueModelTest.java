@@ -19,13 +19,13 @@ public class SerialiseLeagueModelTest {
 	    }
 	
 	
-	@Test
-	public void serialiseObjectsTest() {
-		ISerializeModel serial = new SerialiseLeagueModel();
-		LeagueMockData data = new LeagueMockData();
-		String teamName = "dummy";
-		assertTrue(serial.serialiseObjects(data.league,teamName));
-	}
+//	@Test
+//	public void serialiseObjectsTest() {
+//		ISerializeModel serial = new SerialiseLeagueModel();
+//		LeagueMockData data = new LeagueMockData();
+//		String teamName = "dummy";
+//		assertTrue(serial.serialiseObjects(data.league,teamName));
+//	}
 
 	@Test
 	public void deserialiseObjectsTest() {
