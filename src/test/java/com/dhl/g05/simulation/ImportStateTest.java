@@ -10,15 +10,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.communication.MockPlayerCommunication;
 
 public class ImportStateTest {
 	private AbstractState state;
-	private static MockPlayerCommunication communicate;
 
 	@Before
 	public void init() {
-//		communicate = new MockPlayerCommunication();
 		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		state = stateFactory.createImportState();
 	}

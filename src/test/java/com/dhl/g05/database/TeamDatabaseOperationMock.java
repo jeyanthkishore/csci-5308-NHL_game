@@ -1,6 +1,6 @@
 package com.dhl.g05.database;
 
-public class CheckTeamMock implements ICheckTeam {
+public class TeamDatabaseOperationMock implements ITeamDatabaseOperation {
 
 	@Override
 	public Boolean isTeamExist(String name) {

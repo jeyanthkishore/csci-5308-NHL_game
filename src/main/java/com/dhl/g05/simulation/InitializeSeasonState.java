@@ -5,17 +5,11 @@ import java.time.Month;
 import java.time.Year;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.model.ILeague;
 
 public class InitializeSeasonState extends AbstractState{
-	private IPlayerCommunication communication;
 	private LocalDate currentDate;
 	private ILeague league;
-
-	public InitializeSeasonState(IPlayerCommunication communicate) {
-		this.communication = communicate;
-	}
 
 	@Override
 	public boolean enter() {

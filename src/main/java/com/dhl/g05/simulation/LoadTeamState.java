@@ -2,7 +2,13 @@ package com.dhl.g05.simulation;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
+import com.dhl.g05.database.DatabaseAbstractFactory;
+import com.dhl.g05.database.ITeamDatabaseOperation;
+import com.dhl.g05.database.IDeserializeModel;
 import com.dhl.g05.model.ILeague;
+import com.dhl.g05.model.ITeam;
+import com.dhl.g05.model.ModelAbstractFactory;
+import com.dhl.g05.model.TeamModel;
 
 public class LoadTeamState extends AbstractState{
 
@@ -16,7 +22,8 @@ public class LoadTeamState extends AbstractState{
 
 	@Override
 	public boolean enter() {
-		league = this.getLeague();
+		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState(); 
+		league = modelFactory.createLeagueModel();
 		communication.sendMessage("Enter team name:");
 		teamName = communication.getResponse();
 
@@ -25,18 +32,18 @@ public class LoadTeamState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
-		//Team Name Check
-		//League Object load team
-//		ITeam team = new TeamModel();
-//		ICheckTeam checkTeam = AbstractDataBaseFactory.getFactory().getCheckTeam();
-//		IDeserializeModel loadLeague = AbstractDataBaseFactory.getFactory().getDeserializeModel();
-//		if (team.isTeamExist(teamName,checkTeam)) {
-//			league.loadLeagueObject(loadLeague,teamName);
+		ITeam team = new TeamModel();
+		DatabaseAbstractFactory databaseFactory = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
+		ITeamDatabaseOperation checkTeam = databaseFactory.createTeamDatabaseOperation();
+		IDeserializeModel loadLeague = databaseFactory.createDeserializeObject();
+		if (team.isTeamExist(teamName,checkTeam)) {
+			ILeague loadedLeague = league.loadLeagueObject(loadLeague,teamName);
+			this.setLeague(loadedLeague);
 			return true;
-//		} else {
-//			communication.sendMessage("Team does not exist");
-//			return false;
-//		}
+		} else {
+			communication.sendMessage("Team does not exist");
+			return false;
+		}
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package com.dhl.g05.model;
 
 import java.util.List;
 
-import com.dhl.g05.database.ICheckTeam;
+import com.dhl.g05.database.ITeamDatabaseOperation;
 
 public interface ITeam {
 
@@ -48,7 +48,7 @@ public interface ITeam {
 
 	TeamConstant validate();
 
-	boolean isTeamExist(String teamName, ICheckTeam checkTeam);
+	boolean isTeamExist(String teamName, ITeamDatabaseOperation checkTeam);
 	
 	double calculateTeamStrength(List<IPlayer> playerList);
 

@@ -9,8 +9,7 @@ public class FileOperationMock implements IFileOperation {
 
 	@Override
 	public boolean isFileExist(String path) {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }

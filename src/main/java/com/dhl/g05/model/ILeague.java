@@ -77,6 +77,6 @@ public interface ILeague {
 
 	boolean saveLeagueObject(ISerializeModel saveLeague,String teamName);
 
-	void loadLeagueObject(IDeserializeModel loadLeague, String teamName);
+	ILeague loadLeagueObject(IDeserializeModel loadLeague, String teamName);
 
 }

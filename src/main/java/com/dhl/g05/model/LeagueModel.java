@@ -199,8 +199,8 @@ public class LeagueModel implements ILeague{
 	}
 	
 	@Override
-	public void loadLeagueObject(IDeserializeModel loadLeague, String teamName) {
-		loadLeague.deserializeObjects(teamName,this);
+	public ILeague loadLeagueObject(IDeserializeModel loadLeague, String teamName) {
+		return loadLeague.deserializeObjects(teamName,this);
 	}
 	
 	@Override

@@ -43,7 +43,7 @@ public class SimulationConcreteFactory extends SimulationAbstractFactory{
 
 	@Override
 	public AbstractState createInitializeSeasonState() {
-		return new InitializeSeasonState(communication);
+		return new InitializeSeasonState();
 	}
 
 
@@ -85,7 +85,7 @@ public class SimulationConcreteFactory extends SimulationAbstractFactory{
 
 	@Override
 	public AbstractState createAdvanceToNextSeasonState() {
-		return new AdvanceToNextSeasonState();
+		return new AdvanceToNextSeasonState(communication);
 	}
 
 

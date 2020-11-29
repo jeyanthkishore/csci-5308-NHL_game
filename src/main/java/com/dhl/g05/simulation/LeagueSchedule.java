@@ -215,21 +215,23 @@ public class LeagueSchedule implements ILeagueSchedule {
 			List<Object> winningDetails = new ArrayList<>();
 			int index = playoffSeasonSchedule.indexOf(matchSchedule);
 			int indexTotalLength = playoffSeasonSchedule.size() - 1;
-			if (index % 2 == 0) {
-				IScheduleModel newPlayoffGame = new ScheduleModel();
-				LocalDate lastPlayoffDate = playoffSeasonSchedule.get(indexTotalLength).getScheduleDate();
-				winningDetails = getWinDetails(matchSchedule);
-				newPlayoffGame.setFirstConference((IConference) winningDetails.get(0));
-				newPlayoffGame.setFirstDivision((IDivision) winningDetails.get(1));
-				newPlayoffGame.setFirstTeam((ITeam) winningDetails.get(2));
-				newPlayoffGame.setScheduleDate(lastPlayoffDate.plusDays(1));
-				playoffSeasonSchedule.add(newPlayoffGame);
-			} else {
-				IScheduleModel oldSchedule = playoffSeasonSchedule.get(indexTotalLength);
-				winningDetails = getWinDetails(matchSchedule);
-				oldSchedule.setSecondConference((IConference) winningDetails.get(0));
-				oldSchedule.setSecondDivision((IDivision) winningDetails.get(1));
-				oldSchedule.setSecondTeam((ITeam) winningDetails.get(2));
+			if( index < indexTotalLength) {
+				if (index % 2 == 0) {
+					IScheduleModel newPlayoffGame = new ScheduleModel();
+					LocalDate lastPlayoffDate = playoffSeasonSchedule.get(indexTotalLength).getScheduleDate();
+					winningDetails = getWinDetails(matchSchedule);
+					newPlayoffGame.setFirstConference((IConference) winningDetails.get(0));
+					newPlayoffGame.setFirstDivision((IDivision) winningDetails.get(1));
+					newPlayoffGame.setFirstTeam((ITeam) winningDetails.get(2));
+					newPlayoffGame.setScheduleDate(lastPlayoffDate.plusDays(1));
+					playoffSeasonSchedule.add(newPlayoffGame);
+				} else {
+					IScheduleModel oldSchedule = playoffSeasonSchedule.get(indexTotalLength);
+					winningDetails = getWinDetails(matchSchedule);
+					oldSchedule.setSecondConference((IConference) winningDetails.get(0));
+					oldSchedule.setSecondDivision((IDivision) winningDetails.get(1));
+					oldSchedule.setSecondTeam((ITeam) winningDetails.get(2));
+				}
 			}
 		}
 	}

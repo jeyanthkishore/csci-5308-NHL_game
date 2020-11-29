@@ -13,8 +13,8 @@ public class DataBaseMockFactory extends DatabaseAbstractFactory{
 	}
 
 	@Override
-	public ICheckTeam createTeamDatabaseOperation() {
-		return new CheckTeamMock();
+	public ITeamDatabaseOperation createTeamDatabaseOperation() {
+		return new TeamDatabaseOperationMock();
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package com.dhl.g05.database;
 
-public interface ICheckTeam {
+public interface ITeamDatabaseOperation {
 
 	Boolean isTeamExist(String name);
 }

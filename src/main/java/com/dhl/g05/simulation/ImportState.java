@@ -1,10 +1,5 @@
 package com.dhl.g05.simulation;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import org.json.simple.parser.ParseException;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.filehandler.LeagueModelCreatorFromJSON;
@@ -34,23 +29,13 @@ public class ImportState extends AbstractState {
 		} 
 
 		creator = new LeagueModelCreatorFromJSON(communication);
-
-		try {
-			ILeague league = creator.createLeagueFromFile(fileName);
-			if (league == null) {
-				this.setLeague(null);
-				communication.sendMessage("Issue creating league, try again");
-			} else {
-				this.setLeague(league);
-				return true;
-			}
-
-		} catch (FileNotFoundException e) {
-			communication.sendMessage("File not found\n");
-		} catch (IOException e) {
-			communication.sendMessage(e.toString());
-		} catch (ParseException e) {
-			communication.sendMessage(e.toString());
+		ILeague league = creator.createLeagueFromFile(fileName);
+		if (league == null) {
+			this.setLeague(null);
+			communication.sendMessage("Issue creating league, try again");
+		} else {
+			this.setLeague(league);
+			return true;
 		}
 
 		return false;
