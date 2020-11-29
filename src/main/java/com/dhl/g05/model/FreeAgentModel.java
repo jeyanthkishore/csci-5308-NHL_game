@@ -9,6 +9,7 @@ import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.IAging;
 import com.mysql.cj.util.StringUtils;
 
@@ -383,6 +384,8 @@ public class FreeAgentModel implements IFreeAgent {
 			freeAgents.add(new FreeAgentModel(name, position, skating, shooting, checking, saving, birthDay, birthMonth,
 					birthYear));
 		}
+		ILeague league =ApplicationConfiguration.instance().getModelConcreteFactoryState().createLeagueModel();
+		league.addNewFreeAgentsToLeague(freeAgents);
 		logger.info("Excess Players dropped to Free Agents list");
 		return freeAgents;
 	}

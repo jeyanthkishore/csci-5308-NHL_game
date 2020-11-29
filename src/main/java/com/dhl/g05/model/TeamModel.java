@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.database.ICheckTeam;
 import com.mysql.cj.util.StringUtils;
 
@@ -17,7 +18,6 @@ public class TeamModel implements ITeam {
 	private static final int numberOfGoalie = 4;
 	private static final int numberOfPlayers = 30;
 	private String teamName;
-	private IFreeAgent agent;
 	private ICoach headCoach;
 	private String generalManager;
 	private List<IPlayer> players;
@@ -217,7 +217,7 @@ public class TeamModel implements ITeam {
 		}
 	}
 
-	public List<IPlayer> adjustTeamRoasterAfterDraft(ITeam team) {
+	public void adjustTeamRoasterAfterDraft(ITeam team) {
 		List<IPlayer> allPlayers = team.getPlayerList();
 		allPlayers.sort(Comparator.comparing(IPlayer::getPlayerStrength).reversed());
 		List<IPlayer> adjustedTeam = new ArrayList<>();
@@ -254,9 +254,9 @@ public class TeamModel implements ITeam {
 				}
 			}
 		}
-		// agent.ConvertPlayerToFreeAgent(releaseExtraPlayers);
+		IFreeAgent agent= ApplicationConfiguration.instance().getModelConcreteFactoryState().createFreeAgentModel();
+		agent.ConvertPlayerToFreeAgent(releaseExtraPlayers);
 		team.setPlayerList(adjustedTeam);
-		return releaseExtraPlayers;
 	}
 
 }
