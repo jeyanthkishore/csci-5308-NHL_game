@@ -9,22 +9,29 @@ import org.junit.AfterClass;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.ApplicationTestConfiguration;
 import com.dhl.g05.communication.CommunicationPlayerMockFactoryState;
 import com.dhl.g05.communication.CommunicationState;
 import com.dhl.g05.communication.CommunicationTeamMockFactoryState;
+import com.dhl.g05.database.DatabaseMockFactoryState;
+import com.dhl.g05.database.DatabaseState;
 import com.dhl.g05.model.LeagueMockData;
+import com.dhl.g05.model.ModelMockAbstractFactory;
 
 public class CreateTeamStateTest {
 	IStateMachine machine;
 	private static AbstractState create;
 
-
+	/*Function called after setting up the ByteArrayInputStream to manipulate user input*/
 	 public static void setup() {
 		 	CommunicationState communication = new CommunicationTeamMockFactoryState();
 		    ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
+		    DatabaseState state = new DatabaseMockFactoryState();
+			ApplicationConfiguration.instance().setDataBaseFactoryState(state);
 		    SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		    ModelMockAbstractFactory modelMockFactory = ApplicationTestConfiguration.instance().getModelMockConcreteFactoryState();
 		    create = stateFactory.createCreateTeamState();
-	        LeagueMockData data = new LeagueMockData();
+	        LeagueMockData data = modelMockFactory.createLeagueMockData();
 			create.setLeague(data.league);
 	    }
 	 
@@ -32,8 +39,6 @@ public class CreateTeamStateTest {
 	 public static void setCommunication() {
 		 CommunicationState communication = new CommunicationPlayerMockFactoryState();
 		 ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
-//		 CommunicationState communication = ApplicationConfiguration.instance().getCommunicationState();
-//		 ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
 	 }
 
 	 @Test
@@ -65,5 +70,6 @@ public class CreateTeamStateTest {
 		 create.enter();
 		 create.performStateTask();
 		 assertTrue(create.exit());
+		 assertTrue(create.getNextState() instanceof PlayerChoiceState);
 	 }
 }

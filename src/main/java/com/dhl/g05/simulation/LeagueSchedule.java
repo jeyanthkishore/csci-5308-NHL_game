@@ -37,8 +37,8 @@ public class LeagueSchedule implements ILeagueSchedule {
 
 	@Override
 	public void addRegularSeasonDates() {
-		int totalDaysforRegualarSeason = (int)DateHandler.getInstance().getDaysBetweenRegularSeason();
-		LocalDate regularSeasonStartDate = DateHandler.getInstance().getRegularSeasonStartDate();
+		int totalDaysforRegualarSeason = (int)DateHandler.instance().getDaysBetweenRegularSeason();
+		LocalDate regularSeasonStartDate = DateHandler.instance().getRegularSeasonStartDate();
 		addDatesToSchedule(regularSeasonSchedule,totalDaysforRegualarSeason,regularSeasonStartDate);
 	}
 
@@ -78,8 +78,8 @@ public class LeagueSchedule implements ILeagueSchedule {
 
 	@Override
 	public void addPlayoffSeasonDates() {
-		int totalDaysforPlayoff = (int)DateHandler.getInstance().getDaysBetweenPlayoff();
-		LocalDate playoffSeasonStartDate = DateHandler.getInstance().getPlayoffSeasonStartDate();
+		int totalDaysforPlayoff = (int)DateHandler.instance().getDaysBetweenPlayoff();
+		LocalDate playoffSeasonStartDate = DateHandler.instance().getPlayoffSeasonStartDate();
 		addDatesToSchedule(playoffSeasonSchedule,totalDaysforPlayoff,playoffSeasonStartDate);
 	}
 
@@ -163,9 +163,9 @@ public class LeagueSchedule implements ILeagueSchedule {
 	@Override
 	public boolean isGamesUnplayedOnCurrentDay(LocalDate date) {
 		List<IScheduleModel> scheduleList = null;
-		if (DateHandler.getInstance().isRegularSeasonActive(date)) {
+		if (DateHandler.instance().isRegularSeasonActive(date)) {
 			scheduleList = regularSeasonSchedule;
-		} else if (DateHandler.getInstance().isPlayoffSeasonActive(date)) {
+		} else if (DateHandler.instance().isPlayoffSeasonActive(date)) {
 			scheduleList = playoffSeasonSchedule;
 		} else {
 			return false;
@@ -183,7 +183,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 	public IScheduleModel getMatchOnCurrentDate(LocalDate date) {
 		List<IScheduleModel> scheduleList;
 		IScheduleModel currentSchedule = null;
-		if (DateHandler.getInstance().isRegularSeasonActive(date)) {
+		if (DateHandler.instance().isRegularSeasonActive(date)) {
 			scheduleList = regularSeasonSchedule;
 		} else {
 			scheduleList = playoffSeasonSchedule;
@@ -214,7 +214,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 	public void updateScheduleAfterGame(IScheduleModel matchSchedule) {
 		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		matchSchedule.setIsGameCompleted(true);
-		if (DateHandler.getInstance().isPlayoffSeasonActive(matchSchedule.getScheduleDate())) {
+		if (DateHandler.instance().isPlayoffSeasonActive(matchSchedule.getScheduleDate())) {
 			List<Object> winningDetails = new ArrayList<>();
 			int index = playoffSeasonSchedule.indexOf(matchSchedule);
 			int indexTotalLength = playoffSeasonSchedule.size() - 1;

@@ -149,4 +149,9 @@ public class SimulationConcreteFactory extends SimulationAbstractFactory{
 		return new GameResolverConfig();
 	}
 
+	@Override
+	public IGamePlayConfig createGamePlayConfig() {
+		return new GamePlayConfigModel();
+	}
+
 }

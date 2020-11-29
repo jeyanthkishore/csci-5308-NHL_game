@@ -52,7 +52,7 @@ public class AgingState extends AbstractState{
 	public boolean exit() {
 		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		LocalDate currentDate = league.getLeagueCurrentDate();
-		if (league.getLeagueSchedule().isStanleyCupWinnerDetermined() && DateHandler.getInstance().isTodayPlayerDraftDate(currentDate)) {
+		if (league.getLeagueSchedule().isStanleyCupWinnerDetermined() && DateHandler.instance().isTodayPlayerDraftDate(currentDate)) {
 			this.setNextState(stateFactory.createPlayerDraftState());
 		}
 		else {

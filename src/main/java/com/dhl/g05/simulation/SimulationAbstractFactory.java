@@ -34,4 +34,5 @@ public abstract class SimulationAbstractFactory {
     public abstract ITradingConfig createTradingConfig();
     public abstract ITraining createTrainingConfig();
     public abstract IGameResolver createGameResolverConfig();
+    public abstract IGamePlayConfig createGamePlayConfig();
 }

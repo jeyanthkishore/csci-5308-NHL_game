@@ -10,24 +10,26 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.model.LeagueModel;
+import com.dhl.g05.model.ILeague;
+import com.dhl.g05.model.ModelAbstractFactory;
 
 public class AdvanceTimeStateTest {
 	private AbstractState state;
+	private ILeague league;
 
 	@Before
 	public void init() {
 		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		state = stateFactory.createAdvancedTimeState();
+		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+		league = modelFactory.createLeagueModel();
 	}
 	
 	@Test
 	public void performTaskTrainingTest() {
-		LeagueModel league = new LeagueModel();
 		league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue(), Month.SEPTEMBER, 30));
 		state.setLeague(league);
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(Year.now().getValue());
+		DateHandler.instance().performDateAssignment(Year.now().getValue());
 		state.enter();
 		state.performStateTask();
 		state.exit();
@@ -36,11 +38,9 @@ public class AdvanceTimeStateTest {
 	
 	@Test
 	public void performTaskPlayoffTest() {
-		LeagueModel league = new LeagueModel();
 		league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 02));
 		state.setLeague(league);
-		DateHandler dateObject  = DateHandler.getInstance();
-		dateObject.performDateAssignment(Year.now().getValue());
+		DateHandler.instance().performDateAssignment(Year.now().getValue());
 		state.enter();
 		state.performStateTask();
 		state.exit();
