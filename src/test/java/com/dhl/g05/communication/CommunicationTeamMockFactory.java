@@ -7,4 +7,9 @@ public class CommunicationTeamMockFactory extends CommunicationAbstractFactory{
 			return new MockCreateTeamCommnication();
 	}
 
+	@Override
+	public ITradeCommunication getTradeCommunication() {
+		return new MockTradeCommunication();
+	}
+
 }

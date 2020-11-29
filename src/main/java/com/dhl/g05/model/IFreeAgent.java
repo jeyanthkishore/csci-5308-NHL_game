@@ -52,6 +52,14 @@ public interface IFreeAgent {
 
 	boolean isPlayerAgeNotValid();
 
+	boolean isbirthYearValid();
+
+	boolean isbirthDayValid();
+
+	boolean isBirthDateNotValid();
+
+	boolean isbirthMonthValid();
+
 	boolean isPlayerStatNotValid();
 
 	FreeAgentConstant validate();

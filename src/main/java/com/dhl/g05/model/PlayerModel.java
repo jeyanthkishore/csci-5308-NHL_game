@@ -11,8 +11,10 @@ import com.dhl.g05.simulation.IInjury;
 public class PlayerModel extends FreeAgentModel implements IPlayerInjury, IPlayer, IPlayerRetirement{
 
 	static final Logger logger = LogManager.getLogger(PlayerModel.class);
+	private final int DECREASE_STAT_BY=1;
 	private Boolean captain;
 	private int injuredForNumberOfDays;
+	
 
 	public PlayerModel() {
 		setCaptain(null);
@@ -89,16 +91,16 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury, IPlaye
 					for (IPlayer p : t.getPlayerList()) {
 						if (LocalDate.now().getMonthValue() == p.getBirthMonth() && LocalDate.now().getDayOfMonth() == p.getBirthDay()) {
 							if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
-								p.setSkating((p.getSkating()) - 1);
+								p.setSkating((p.getSkating()) - DECREASE_STAT_BY);
 							}
 							if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
-								p.setShooting((p.getShooting()) - 1);
+								p.setShooting((p.getShooting()) - DECREASE_STAT_BY);
 							}
 							if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
-								p.setChecking((p.getChecking()) - 1);
+								p.setChecking((p.getChecking()) - DECREASE_STAT_BY);
 							}
 							if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
-								p.setSaving((p.getSaving()) - 1);
+								p.setSaving((p.getSaving()) - DECREASE_STAT_BY);
 							}
 						} else
 							continue;

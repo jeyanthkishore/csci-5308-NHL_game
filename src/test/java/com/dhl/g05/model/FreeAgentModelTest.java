@@ -11,17 +11,28 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.AgingConfig;
-import com.dhl.g05.simulation.AgingState;
 import com.dhl.g05.simulation.IAging;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class FreeAgentModelTest {
+	
+	private static SimulationAbstractFactory simulationAbstractFactory;
+    private static ModelAbstractFactory modelAbstractFactory;
+
+    @BeforeClass
+    public static void init() {
+        simulationAbstractFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+        modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+    }
 
 	@Test
 	public void constructorTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		assertNull(freeAgent.getPlayerName());
 		assertNull(freeAgent.getPosition());
 		assertFalse(freeAgent.getInjuryStatus());
@@ -45,77 +56,77 @@ public class FreeAgentModelTest {
 
 	@Test
 	public void getPlayerNameTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setPlayerName("Ronaldo");
 		assertSame(freeAgent.getPlayerName(),"Ronaldo");
 	}
 
 	@Test
 	public void setPlayerNameTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setPlayerName("Ronaldo");
 		assertSame(freeAgent.getPlayerName(),"Ronaldo");
 	}
 
 	@Test
 	public void getPositionTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setPosition("forward");
 		assertSame(freeAgent.getPosition(),"forward");
 	}
 
 	@Test
 	public void setPositionTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setPosition("forward");
 		assertSame(freeAgent.getPosition(),"forward");
 	}
 
 	@Test
 	public void setAgeTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setAge(10);
 		assertSame(freeAgent.getAge(),10);
 	}
 
 	@Test
 	public void getAgeTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setAge(10);
 		assertSame(freeAgent.getAge(),10);
 	}
 
 	@Test
 	public void getSkatingTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setSkating(10.0);
 		assertEquals(freeAgent.getSkating(),10.0,0);
 	}
 
 	@Test
 	public void setSkatingTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setSkating(10.0);
 		assertEquals(freeAgent.getSkating(),10.0,0);
 	}
 
 	@Test
 	public void getShootingTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setShooting(10.0);
 		assertEquals(freeAgent.getShooting(),10.0,0);
 	}
 
 	@Test
 	public void setShootingTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setShooting(10.0);
 		assertEquals(freeAgent.getShooting(),10.0,0);
 	}
 
 	@Test
 	public void getCheckingTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setChecking(10.0);
 		assertEquals(freeAgent.getChecking(),10.0,0);
 	}
@@ -129,63 +140,63 @@ public class FreeAgentModelTest {
 
 	@Test
 	public void getSavingTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setSaving(10.0);
 		assertEquals(freeAgent.getSaving(),10.0,0);
 	}
 
 	@Test
 	public void setSavingTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setSaving(10.0);
 		assertEquals(freeAgent.getSaving(),10.0,0);
 	}
 
 	@Test
 	public void getPlayerStrengthTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setPlayerStrength(15);
 		assertEquals(freeAgent.getPlayerStrength(),15,0);
 	}
 
 	@Test
 	public void setPlayerStrengthTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setPlayerStrength(15);
 		assertEquals(freeAgent.getPlayerStrength(),15,0);
 	}
 
 	@Test
 	public void getInjuryStatusTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setInjuryStatus(true);
 		assertTrue(freeAgent.getInjuryStatus());
 	}
 
 	@Test
 	public void setInjuryStatusTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setInjuryStatus(true);
 		assertTrue(freeAgent.getInjuryStatus());
 	}
 
 	@Test
 	public void getRetirementStatusTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setRetirementStatus(true);
 		assertTrue(freeAgent.getRetirementStatus());
 	}
 
 	@Test
 	public void setRetirementStatusTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setRetirementStatus(true);
 		assertTrue(freeAgent.getRetirementStatus());
 	}
 
 	@Test
 	public void calculateForwardPlayerStrengthTest(){
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setSkating(12);
 		freeAgent.setShooting(12);
 		freeAgent.setChecking(12);
@@ -195,7 +206,7 @@ public class FreeAgentModelTest {
 
 	@Test
 	public void calculateDefensePlayerStrengthTest(){
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setSkating(12);
 		freeAgent.setShooting(12);
 		freeAgent.setChecking(12);
@@ -205,7 +216,7 @@ public class FreeAgentModelTest {
 
 	@Test
 	public void calculateGoaliePlayerStrengthTest(){
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setSaving(12);
 		freeAgent.setSkating(12);
 		freeAgent.setPosition("goalie");
@@ -214,35 +225,35 @@ public class FreeAgentModelTest {
 
 	@Test
 	public void isPlayerPositionValidTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setPosition("forward");
 		assertFalse(freeAgent.isPlayerPositionNotValid());
 	}
 
 	@Test
 	public void isPlayerPositionNotValidTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setPosition("Keeper");
 		assertTrue(freeAgent.isPlayerPositionNotValid());
 	}
 
 	@Test
 	public void isPlayerAgeValidTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setAge(25);
 		assertFalse(freeAgent.isPlayerAgeNotValid());
 	}
 
 	@Test
 	public void isPlayerAgeNotValidTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setAge(-2);
 		assertTrue(freeAgent.isPlayerAgeNotValid());
 	}
 
 	@Test
 	public void isPlayerStatValidTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setSkating(12);
 		freeAgent.setShooting(10);
 		freeAgent.setChecking(6);
@@ -252,7 +263,7 @@ public class FreeAgentModelTest {
 
 	@Test
 	public void isPlayerStatNotValidTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setSkating(12);
 		freeAgent.setShooting(10);
 		freeAgent.setChecking(-6);
@@ -262,7 +273,7 @@ public class FreeAgentModelTest {
 
 	@Test
 	public void playerPositionValidateTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setPlayerName("Alex");
 		freeAgent.setPosition("Keeper");
 		assertSame(FreeAgentConstant.PlayerPositionWrong,freeAgent.validate());
@@ -270,7 +281,7 @@ public class FreeAgentModelTest {
 
 	@Test
 	public void playerStatValidateTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setPlayerName("Alex");
 		freeAgent.setPosition("forward");
 		freeAgent.setSkating(-1);
@@ -279,7 +290,7 @@ public class FreeAgentModelTest {
 
 	@Test
 	public void validateTest() {
-		IFreeAgent freeAgent = new FreeAgentModel();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setPlayerName("Alex");
 		freeAgent.setPosition("forward");
 		freeAgent.setSkating(10);
@@ -325,7 +336,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void isbirthDayValidTest1()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate =  modelAbstractFactory.createFreeAgentModel();
 		validate.setBirthDay(22);
 		assertEquals(validate.isbirthDayValid(),true);
 	}
@@ -333,7 +344,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void isbirthDayValidTest2()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate =  modelAbstractFactory.createFreeAgentModel();
 		validate.setBirthDay(-1);
 		assertEquals(validate.isbirthDayValid(),false);
 	}
@@ -341,7 +352,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void isbirthDayValidTest3()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
 		validate.setBirthDay(33);
 		assertEquals(validate.isbirthDayValid(),false);
 	}
@@ -349,7 +360,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void isbirthYearValidTest1()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
 		validate.setBirthYear(1995);
 		assertEquals(validate.isbirthYearValid(),true);
 	}
@@ -357,7 +368,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void isbirthYearValidTest2()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
 		validate.setBirthYear(-1997);
 		assertEquals(validate.isbirthYearValid(),false);
 	}
@@ -365,7 +376,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void isbirthYearValidTest3()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
 		validate.setBirthYear(997);
 		assertEquals(validate.isbirthYearValid(),false);
 	}
@@ -373,7 +384,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void isbirthMonthValidTest1()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
 		validate.setBirthMonth(12);
 		assertEquals(validate.isbirthMonthValid(),true);
 	}
@@ -381,7 +392,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void isbirthMonthValidTest2()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
 		validate.setBirthMonth(-1);
 		assertEquals(validate.isbirthMonthValid(),false);
 	}
@@ -389,7 +400,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void isbirthMonthValidTest3()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate =modelAbstractFactory.createFreeAgentModel();
 		validate.setBirthMonth(16);
 		assertEquals(validate.isbirthMonthValid(),false);
 	}
@@ -397,7 +408,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void isBirthDateValidTest1()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
 		validate.setBirthDay(20);
 		validate.setBirthMonth(10);
 		validate.setBirthYear(2000);
@@ -407,7 +418,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void isBirthDateValidTest2()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate =modelAbstractFactory.createFreeAgentModel();
 		validate.setBirthDay(31);
 		validate.setBirthMonth(11);
 		validate.setBirthYear(2000);
@@ -417,7 +428,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void isBirthDateValidTest3()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
 		validate.setBirthDay(29);
 		validate.setBirthMonth(2);
 		validate.setBirthYear(2004);
@@ -427,7 +438,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void calculateAgeTest()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate =modelAbstractFactory.createFreeAgentModel();
 		validate.setBirthDay(22);
 		validate.setBirthMonth(9);
 		validate.setBirthYear(1994);
@@ -438,7 +449,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void ConvertPlayerToFreeAgentTestSize()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
 		LeagueMockData data = new LeagueMockData();
 		 List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
 		assertEquals(data.playerList.size(),freeAgentList.size());
@@ -446,7 +457,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void ConvertPlayerToFreeAgentTestName()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
 		LeagueMockData data = new LeagueMockData();
 		 List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
 		assertEquals(((FreeAgentModel) data.playerList.get(1)).getPlayerName(),freeAgentList.get(1).getPlayerName());
@@ -455,7 +466,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void ConvertPlayerToFreeAgentTestCaptain()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
 		LeagueMockData data = new LeagueMockData();
 		 List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
 		assertNotEquals(data.playerList.get(1),freeAgentList.get(1));
@@ -464,7 +475,7 @@ public class FreeAgentModelTest {
 	@Test
 	public void ConvertPlayerToFreeAgentTestAge()
 	{
-		FreeAgentModel validate = new FreeAgentModel();
+		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
 		LeagueMockData data = new LeagueMockData();
 		List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
 		data.playerList.get(1).calculateAge();
@@ -476,9 +487,9 @@ public class FreeAgentModelTest {
 	public void FreeAgentStatDecayOnBirthdayTest()
 	{
 		List<IFreeAgent> freeAgents = new ArrayList<>();
-		ILeague league= new LeagueModel();
-		IAging aging = new AgingConfig();
-		IFreeAgent freeagent=new FreeAgentModel();
+		ILeague league= modelAbstractFactory.createLeagueModel();
+		IAging aging = simulationAbstractFactory.createAgingConfig();
+		IFreeAgent freeagent=modelAbstractFactory.createFreeAgentModel();
 		freeagent.setPlayerName("FreeAgent1");
 		freeagent.setPosition("goalie");
 		LocalDate todaysDate= LocalDate.now();
@@ -503,9 +514,9 @@ public class FreeAgentModelTest {
 	public void FreeAgentStatNotDecayOnBirthdayTest()
 	{
 		List<IFreeAgent> freeAgents = new ArrayList<>();
-		ILeague league= new LeagueModel();
-		IAging aging = new AgingConfig();
-		IFreeAgent freeagent=new FreeAgentModel();
+		ILeague league= modelAbstractFactory.createLeagueModel();
+		IAging aging = simulationAbstractFactory.createAgingConfig();
+		IFreeAgent freeagent=modelAbstractFactory.createFreeAgentModel();
 		freeagent.setPlayerName("FreeAgent1");
 		freeagent.setPosition("goalie");
 		LocalDate todaysDate= LocalDate.now();

@@ -7,4 +7,9 @@ public class CommunicationPlayerMockFactory extends CommunicationAbstractFactory
 			return new MockPlayerCommunication();
 	}
 
+	@Override
+	public ITradeCommunication getTradeCommunication() {
+		return null;
+	}
+
 }
