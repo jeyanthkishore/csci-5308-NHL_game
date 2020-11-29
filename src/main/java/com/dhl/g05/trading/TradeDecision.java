@@ -55,6 +55,7 @@ public class TradeDecision implements ITradeDecision {
 		}
 		if (tradeAccepeted == true) {
 			teamInitiatingTrade.getWeakTeam().setLossCount(0);
+			logger.info("Trade Accepted");
 			swap.swapPlayers(teamInitiatingTrade.getWeakTeam(), teamAcceptingTrade.getStrongTeam(),
 					teamInitiatingTrade.getPlayersOffered(), teamAcceptingTrade.getStrongestPlayersToTrade());
 

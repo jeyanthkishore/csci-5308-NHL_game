@@ -22,16 +22,16 @@ public class PlayerDraftState extends AbstractState {
 	@Override
 	public boolean performStateTask() {
 		IPlayerDraft playerDraft = new PlayerDraft();
-		//PlayerDraftMock tradeMock = new PlayerDraftMock();
 		ILeagueStanding standing = league.getLeagueStanding();
 		List<IStandingModel> standingList = standing.getRankingAcrossLeague();
 		playerDraft.setPickOrderAfterTrading(mockTradePickLatest(standingList));
 		playerDraft.playerDraft1(standing);
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 
 	public Map<Integer, List<Map<IStandingModel,IStandingModel>>> mockTradePickLatest(List<IStandingModel> standing) {
+		
 		List<IStandingModel> standings = standing;
 		Map<Integer, List<Map<IStandingModel,IStandingModel>>> finalRoundtradeTeamPick=new HashMap<>();
 		List<Map<IStandingModel,IStandingModel>> listOfTeamsExchangingPickInRound1=new ArrayList<>();

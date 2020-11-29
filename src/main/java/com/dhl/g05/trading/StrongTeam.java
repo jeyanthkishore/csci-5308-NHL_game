@@ -2,7 +2,8 @@ package com.dhl.g05.trading;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ILeague;
@@ -10,7 +11,8 @@ import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
 
 public class StrongTeam implements IStrongTeam {
-
+	
+	static final Logger logger = LogManager.getLogger(StrongTeam.class);
 	private ITeam strongTeam;
 	private String conferenceName;
 	private String divisionName;
@@ -72,9 +74,7 @@ public class StrongTeam implements IStrongTeam {
 				for (ITeam team : division.getTeamDetails()) {
 					int countOfPlayers = 0;
 					double strengthOfPlayers = 0.00;
-					if (((teamInitiatingTrade.getWeakTeam().getTeamName()).equals(team.getTeamName()))
-							&& ((teamInitiatingTrade.getConferenceName()).equals(conference.getConferenceName()))
-							&& ((teamInitiatingTrade.getDivisionName()).equals(division.getDivisionName()))) {
+					if (((teamInitiatingTrade.getWeakTeam().getTeamName()).equals(team.getTeamName())) && ((teamInitiatingTrade.getConferenceName()).equals(conference.getConferenceName())) && ((teamInitiatingTrade.getDivisionName()).equals(division.getDivisionName()))) {
 						continue;
 					} else {
 						List<IPlayer> strongestPlayers = sortPlayer.sortByDescending(team.getPlayerList());
@@ -97,10 +97,13 @@ public class StrongTeam implements IStrongTeam {
 								break;
 							}
 						}
-						if ((strengthOfPlayers > strengthOfStrongestPLayer)
-								&& countOfPlayers == numberOfPlayersToTrade) {
+						if ((strengthOfPlayers > strengthOfStrongestPLayer)&& countOfPlayers == numberOfPlayersToTrade) {
+							logger.info("Team selected for trading is " +team.getTeamName());
 							setStrengthOfStrongestPlayers(strengthOfPlayers);
 							setStrongTeam(team);
+							for (IPlayer player : playersRequested) {
+								logger.info("Player requested is " + player.getPlayerName() + "and position is "+ player.getPosition());
+							}
 							setStrongestPlayersToTrade(playersRequested);
 							this.setConferenceName(conference.getConferenceName());
 							this.setDivisionName(division.getDivisionName());

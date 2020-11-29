@@ -16,6 +16,10 @@ public class FreeAgentModel implements IFreeAgent {
 
 	static final Logger logger = LogManager.getLogger(FreeAgentModel.class);
 	private final static int MIN_AGE = 0;
+	private final int DECREASE_STAT_BY=1;
+	private final int MONTH_LIST_WITH_31_DAYS[] = { 1, 3, 5, 7, 8, 10, 12 };
+	private final int MONTH_LIST_WITH_30_DAYS[] = { 4, 6, 9, 11 };
+	private final int MONTH_LIST_WITH_28_DAYS[] = { 2 };
 	private String playerName;
 	private String position;
 	private int age;
@@ -287,11 +291,8 @@ public class FreeAgentModel implements IFreeAgent {
 	int birthDay=getBirthDay(); 
 	int birthMonth=getBirthMonth();
 	int birthYear=getBirthYear();
-		int monthlist1[] = { 1, 3, 5, 7, 8, 10, 12 };
-		int monthlist2[] = { 4, 6, 9, 11 };
-		int monthlist3[] = { 2 };
 		boolean notValid = true;
-		for (int month : monthlist1) {
+		for (int month : MONTH_LIST_WITH_31_DAYS) {
 			if (birthMonth == month) {
 				if (birthDay >= 1 && birthDay <= 31) {
 					notValid = false;
@@ -299,7 +300,7 @@ public class FreeAgentModel implements IFreeAgent {
 
 			}
 		}
-		for (int month : monthlist2) {
+		for (int month : MONTH_LIST_WITH_30_DAYS) {
 			if (birthMonth == month) {
 				if (birthDay >= 1 && birthDay <= 30) {
 					notValid = false;
@@ -307,7 +308,7 @@ public class FreeAgentModel implements IFreeAgent {
 
 			}
 		}
-		if (birthMonth == monthlist3[0]) {
+		if (birthMonth == MONTH_LIST_WITH_28_DAYS[0]) {
 			if ((birthYear % 4 == 0)) {
 				if (birthDay >= 1 && birthDay <= 29) {
 					notValid = false;
@@ -341,17 +342,17 @@ public class FreeAgentModel implements IFreeAgent {
 		Random random = new Random();
 		for (IFreeAgent p : league.getFreeAgent()) {
 			if (LocalDate.now().getMonthValue() == p.getBirthMonth() && LocalDate.now().getDayOfMonth() == p.getBirthDay()) {
-				if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
-					p.setSkating((p.getSkating()) - 1);
+				logger.info("Happy Birthday your player stats will be decreased");if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
+					p.setSkating((p.getSkating()) - DECREASE_STAT_BY);
 				}
 				if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
-					p.setShooting((p.getShooting()) - 1);
+					p.setShooting((p.getShooting()) - DECREASE_STAT_BY);
 				}
 				if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
-					p.setChecking((p.getChecking()) - 1);
+					p.setChecking((p.getChecking()) - DECREASE_STAT_BY);
 				}
 				if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
-					p.setSaving((p.getSaving()) - 1);
+					p.setSaving((p.getSaving()) - DECREASE_STAT_BY);
 				}
 			} else
 				continue;
@@ -382,6 +383,7 @@ public class FreeAgentModel implements IFreeAgent {
 			freeAgents.add(new FreeAgentModel(name, position, skating, shooting, checking, saving, birthDay, birthMonth,
 					birthYear));
 		}
+		logger.info("Excess Players dropped to Free Agents list");
 		return freeAgents;
 	}
 	

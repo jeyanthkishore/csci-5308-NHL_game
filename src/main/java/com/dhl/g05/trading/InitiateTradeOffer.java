@@ -1,9 +1,7 @@
 package com.dhl.g05.trading;
 
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ILeague;
@@ -11,6 +9,7 @@ import com.dhl.g05.model.ITeam;
 import com.dhl.g05.simulation.ITradingConfig;
 
 public class InitiateTradeOffer implements IIntiateTradeOffer {
+	
 	static final Logger logger = LogManager.getLogger(TradeDecision.class);
 	private ITradingConfig trade;
 
@@ -38,7 +37,7 @@ public class InitiateTradeOffer implements IIntiateTradeOffer {
 							if (t.getUserTeam() == false) {
 							}
 						}
-						logger.info("Validating player details");
+						logger.info("Team initiating trade is "+ t.getTeamName());
 						teamInitiatingTrade.setWeakTeam(t);
 						teamInitiatingTrade.setConferenceName(c.getConferenceName());
 						teamInitiatingTrade.setDivisionName(d.getDivisionName());
@@ -47,13 +46,12 @@ public class InitiateTradeOffer implements IIntiateTradeOffer {
 						if (hasBestTeamToTrade == true) {
 							tradeDecision.TradeResult(trade);
 						} else 
+							logger.info("No suitable Team to trade with");
 							break;
 						}
-
 					}
 				}
 			}
-
 		return league;
 	}
 }
