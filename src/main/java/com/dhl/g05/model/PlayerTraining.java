@@ -1,18 +1,23 @@
 package com.dhl.g05.model;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.IInjury;
 
 public class PlayerTraining implements IPlayerTraining {
 
-	private ILeague leagueObject;
+	private IInjury injury;
 	private IRandomNumberFactory randomGeneratorFactory;
+	
+	public PlayerTraining() {
+		randomGeneratorFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState().createRandomNumber();
+	}
 
-	public PlayerTraining(IRandomNumberFactory randomGeneratorFactory) {
+	public void setRandomGeneratorFactory(IRandomNumberFactory randomGeneratorFactory) {
 		this.randomGeneratorFactory = randomGeneratorFactory;
 	}
 
-	public IPlayer performTrainingForPlayer(IPlayer player, ICoach headCoach,ILeague league) {
-		this.leagueObject = league;
+	public IPlayer performTrainingForPlayer(IPlayer player, ICoach headCoach,IInjury injury) {
+		this.injury = injury;
 
 		Boolean playerInjured = false;
 
@@ -47,6 +52,7 @@ public class PlayerTraining implements IPlayerTraining {
 		}else {
 			playerInjured = isPlayerInjured(player);
 		}
+		
 		player.setPlayerStrength(player.calculatePlayerStrength());
 		player.setInjuryStatus(playerInjured);
 		return player;
@@ -54,7 +60,6 @@ public class PlayerTraining implements IPlayerTraining {
 
 	private Boolean isPlayerInjured(IPlayer player) {
 		IPlayerInjured playerProgress= new PlayerInjury();
-		IInjury injury = leagueObject.getGamePlayConfig().getInjuries();
 		if(playerProgress.checkPlayerInjury(player,injury)) {
 			return true;
 		}

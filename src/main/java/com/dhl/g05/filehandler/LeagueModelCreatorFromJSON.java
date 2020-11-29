@@ -59,19 +59,6 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		this.playerCommunication = playerCommunication;
 	}
 
-	public boolean isFileValidJson(String fileName) throws IOException {
-		try {
-			reader = new FileReader(new File(fileName));
-			parser.parse(reader);
-			return true;
-		} catch (ParseException | IOException e) {
-			e.printStackTrace();
-		} finally {
-			reader.close();
-		}
-		return false;
-	}
-
 	private IAging createAging(JSONObject jsonAging) {
 		if (jsonAging == null){
 			return null;
@@ -121,10 +108,20 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		return null;
 	}
 
-	public ILeague createLeagueFromFile(String fileName) throws FileNotFoundException, IOException, ParseException {
-		File file = new File(fileName);
-		reader = new FileReader(file);
-		ILeague league = createLeague((JSONObject)parser.parse(reader));
+	public ILeague createLeagueFromFile(String fileName) {
+		ILeague league = null;
+		try {
+			File file = new File(fileName);
+			reader = new FileReader(file);
+			league = createLeague((JSONObject)parser.parse(reader));
+			reader.close();
+		} catch (FileNotFoundException e) {
+			playerCommunication.sendMessage("File not found\n");
+		} catch (IOException e) {
+			playerCommunication.sendMessage(e.toString());
+		} catch (ParseException e) {
+			playerCommunication.sendMessage(e.toString());
+		}
 		return league;
 	}
 	
@@ -204,6 +201,9 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		ArrayList<IConference> conferences = new ArrayList<>();
 		for (Object c: jsonConferences) {
 			ArrayList<IDivision> divisions = createDivisions((JSONArray)((JSONObject) c).get("divisions"));
+			if(divisions == null ) {
+				return null;
+			}
 			IConference newConference = new ConferenceModel();
 			newConference.setConferenceName((String)((JSONObject) c).get("conferenceName"));
 			newConference.setDivisionDetails(divisions);
@@ -226,6 +226,9 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		ArrayList<IDivision> divisions = new ArrayList<>();
 		for (Object d: jsonDivisions) {
 			ArrayList<ITeam> teams = createTeams((JSONArray)((JSONObject) d).get("teams"));
+			if(teams == null) {
+				return null;
+			}
 			IDivision newDivision = new DivisionModel();
 			newDivision.setDivisionName((String)((JSONObject) d).get("divisionName"));
 			newDivision.setTeamDetails(teams);
@@ -247,6 +250,9 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		ArrayList<ITeam> teams = new ArrayList<>();
 		for (Object t: jsonTeams) {
 			ArrayList<IPlayer> players = createPlayers((JSONArray)((JSONObject) t).get("players"));
+			if(players == null) {
+				return null;
+			}
 			ITeam newTeam = new TeamModel();
 			newTeam.setTeamName((String)((JSONObject) t).get("teamName"));
 			newTeam.setGeneralManagerName((String)((JSONObject) t).get("generalManager"));
@@ -291,7 +297,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 				players.add(newPlayer);
 			} else {
 				playerCommunication.sendMessage(validationResult.getValue());
-//				return null;
+				return null;
 			}
 		}
 		return players;

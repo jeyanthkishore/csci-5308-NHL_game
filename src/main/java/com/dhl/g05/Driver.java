@@ -12,7 +12,7 @@ public class Driver {
 
 	public static void main(String[] args) {
 		logger.info("Started DHL Application");
-		SimulationAbstractFactory factory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory factory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		AbstractState importState = factory.createImportState();
 		factory.createStateMachine(importState).enterState();
 	}

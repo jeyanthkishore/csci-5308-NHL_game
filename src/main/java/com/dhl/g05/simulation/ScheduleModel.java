@@ -7,7 +7,7 @@ import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.ITeam;
 
-public class ScheduleModel implements IScheduleModel, IInitializeSchedule {
+public class ScheduleModel implements IScheduleModel {
 
 	private IConference firstConference;
 	private IDivision firstDivision;

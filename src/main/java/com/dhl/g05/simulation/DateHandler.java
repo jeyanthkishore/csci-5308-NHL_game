@@ -1,11 +1,10 @@
 package com.dhl.g05.simulation;
 
-import static java.time.temporal.ChronoUnit.DAYS;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.temporal.TemporalAdjusters;
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class DateHandler {
 	private static DateHandler instance;
@@ -73,4 +72,5 @@ public class DateHandler {
 	public boolean isTodayPlayerDraftDate(LocalDate currentdate) {
 		return currentdate.isEqual(playerDraftDate);
 	}
+	
 }

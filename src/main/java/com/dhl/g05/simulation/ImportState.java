@@ -1,10 +1,5 @@
 package com.dhl.g05.simulation;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import org.json.simple.parser.ParseException;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.filehandler.LeagueModelCreatorFromJSON;
@@ -22,35 +17,25 @@ public class ImportState extends AbstractState {
 
 	@Override
 	public boolean enter() {
-		communication.sendMessage("Enter a file name to create a new team or hit enter to load an existing team:");
+		communication.sendMessage(StateMachineConstant.ImportStart.getValue());
 		fileName = communication.getFile();
 		return true;
 	}
 
 	@Override
 	public boolean performStateTask() {
-		if (fileName.equals("")||fileName.isEmpty()) {
+		if (StringUtils.isNullOrEmpty(fileName)) {
 			return true;
 		} 
 
 		creator = new LeagueModelCreatorFromJSON(communication);
-
-		try {
-			ILeague league = creator.createLeagueFromFile(fileName);
-			if (league == null) {
-				this.setLeague(null);
-				communication.sendMessage("Issue creating league, try again");
-			} else {
-				this.setLeague(league);
-				return true;
-			}
-
-		} catch (FileNotFoundException e) {
-			communication.sendMessage("File not found\n");
-		} catch (IOException e) {
-			communication.sendMessage(e.toString());
-		} catch (ParseException e) {
-			communication.sendMessage(e.toString());
+		ILeague league = creator.createLeagueFromFile(fileName);
+		if (league == null) {
+			this.setLeague(null);
+			communication.sendMessage(StateMachineConstant.LeagueCreationIssue.getValue());
+		} else {
+			this.setLeague(league);
+			return true;
 		}
 
 		return false;
@@ -59,7 +44,7 @@ public class ImportState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		if (StringUtils.isNullOrEmpty(fileName)) {
 			this.setNextState(stateFactory.createLoadTeamState()); 
 		} else {

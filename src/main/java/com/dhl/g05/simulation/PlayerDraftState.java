@@ -8,7 +8,7 @@ import java.util.Map;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.IPlayerDraft;
-import com.dhl.g05.model.PlayerDraft;
+import com.dhl.g05.model.ModelAbstractFactory;
 
 public class PlayerDraftState extends AbstractState {
 
@@ -21,92 +21,69 @@ public class PlayerDraftState extends AbstractState {
 
 	@Override
 	public boolean performStateTask() {
-		IPlayerDraft playerDraft = new PlayerDraft();
-		ILeagueStanding standing = league.getLeagueStanding();
-		List<IStandingModel> standingList = standing.getRankingAcrossLeague();
-		playerDraft.setDraftPickTeamSubstraction(16);
-		playerDraft.setPickOrderAfterTrading(mockTradePickLatest(standingList));
-		playerDraft.playerDraft1(standing);
-		
+		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+		IPlayerDraft playerDraft = modelFactory.createPlayerDraft();
+		//PlayerDraftMock tradeMock = new PlayerDraftMock();
+//		ILeagueStanding standing = league.getLeagueStanding();
+//		List<IStandingModel> standingList = standing.getRankingAcrossLeague();
+//		playerDraft.playerDraft(standing, mockTradePick(standingList));
+		// TODO Auto-generated method stub
 		return true;
 	}
 
-	public Map<Integer, List<Map<IStandingModel,IStandingModel>>> mockTradePickLatest(List<IStandingModel> standing) {
-		
+	private Map<Integer,List<IStandingModel>> mockTradePick(List<IStandingModel> standing) {
+		Map<Integer,List<IStandingModel>> afterTradePickOrder= new HashMap<>() ;
 		List<IStandingModel> standings = standing;
-		Map<Integer, List<Map<IStandingModel,IStandingModel>>> finalRoundtradeTeamPick=new HashMap<>();
-		List<Map<IStandingModel,IStandingModel>> listOfTeamsExchangingPickInRound1=new ArrayList<>();
-		Map<IStandingModel,IStandingModel> teamsExchangingPickInRound1= new HashMap<>();
-		teamsExchangingPickInRound1.put(standings.get(3), standings.get(1));
-		teamsExchangingPickInRound1.put(standings.get(2), standings.get(0));
-		listOfTeamsExchangingPickInRound1.add(teamsExchangingPickInRound1);
-		finalRoundtradeTeamPick.put(1, listOfTeamsExchangingPickInRound1);
-		
-		List<Map<IStandingModel,IStandingModel>> listOfTeamsExchangingPickInRound2=new ArrayList<>();
-		Map<IStandingModel,IStandingModel> teamsExchangingPickInRound2= new HashMap<>();
-		teamsExchangingPickInRound2.put(standings.get(1), standings.get(0));
-		listOfTeamsExchangingPickInRound2.add(teamsExchangingPickInRound2);
-		finalRoundtradeTeamPick.put(2, listOfTeamsExchangingPickInRound2);
-		
-		List<Map<IStandingModel,IStandingModel>> listOfTeamsExchangingPickInRound3=new ArrayList<>();
-		Map<IStandingModel,IStandingModel> teamsExchangingPickInRound3= new HashMap<>();
-		teamsExchangingPickInRound3.put(standings.get(3), standings.get(2));
-		listOfTeamsExchangingPickInRound3.add(teamsExchangingPickInRound3);
-		finalRoundtradeTeamPick.put(3, listOfTeamsExchangingPickInRound3);
-		
-		List<Map<IStandingModel,IStandingModel>> listOfTeamsExchangingPickInRound4=new ArrayList<>();
-		Map<IStandingModel,IStandingModel> teamsExchangingPickInRound4= new HashMap<>();
-		teamsExchangingPickInRound4.put(standings.get(1), standings.get(0));
-		listOfTeamsExchangingPickInRound4.add(teamsExchangingPickInRound4);
-		finalRoundtradeTeamPick.put(4, listOfTeamsExchangingPickInRound4);
-		
-		List<Map<IStandingModel,IStandingModel>> listOfTeamsExchangingPickInRound5=new ArrayList<>();
-		Map<IStandingModel,IStandingModel> teamsExchangingPickInRound5= new HashMap<>();
-		teamsExchangingPickInRound5.put(standings.get(1), standings.get(2));
-		teamsExchangingPickInRound5.put(standings.get(2), standings.get(0));
-		teamsExchangingPickInRound5.put(standings.get(3), standings.get(1));
-		listOfTeamsExchangingPickInRound5.add(teamsExchangingPickInRound5);
-		finalRoundtradeTeamPick.put(5, listOfTeamsExchangingPickInRound5);
-		
-		List<Map<IStandingModel,IStandingModel>> listOfTeamsExchangingPickInRound6=new ArrayList<>();
-		Map<IStandingModel,IStandingModel> teamsExchangingPickInRound6= new HashMap<>();
-		teamsExchangingPickInRound6.put(standings.get(1), standings.get(0));
-		listOfTeamsExchangingPickInRound6.add(teamsExchangingPickInRound6);
-		finalRoundtradeTeamPick.put(6, listOfTeamsExchangingPickInRound6);
-		
-		List<Map<IStandingModel,IStandingModel>> listOfTeamsExchangingPickInRound7=new ArrayList<>();
-		Map<IStandingModel,IStandingModel> teamsExchangingPickInRound7= new HashMap<>();
-		teamsExchangingPickInRound7.put(standings.get(2), standings.get(3));
-		listOfTeamsExchangingPickInRound7.add(teamsExchangingPickInRound7);
-		finalRoundtradeTeamPick.put(7, listOfTeamsExchangingPickInRound7);
-		
+		List<IStandingModel> Round1= new ArrayList<>();
+		Round1.add(0, standings.get(3));
+		Round1.add(0,standings.get(1));
+
+		List<IStandingModel> Round2= new ArrayList<>();
+		Round2.add(0, standings.get(1));
+		List<IStandingModel> Round3= new ArrayList<>();
+		Round3.add(standings.get(2));
+		Round3.add(standings.get(3));
+		List<IStandingModel> Round4= new ArrayList<>();
+		Round4.add(standings.get(0));
+		Round4.add(standings.get(1));
+		List<IStandingModel> Round5= new ArrayList<>();
+
+		Round5.add(standings.get(1));
+		Round5.add(standings.get(3));
+		List<IStandingModel> Round6= null;
+		List<IStandingModel> Round7= Round1;
+		afterTradePickOrder.put(1, Round1);
+		afterTradePickOrder.put(2, Round2);
+		afterTradePickOrder.put(3, Round3);
+		afterTradePickOrder.put(4, Round4);
+		afterTradePickOrder.put(5, Round5);
+		afterTradePickOrder.put(6, Round6);
+		afterTradePickOrder.put(7, Round7);
 		for (int i = 1; i <=7; i++)
 		{
 			System.out.println();
 			System.out.print("Round" +(i) + " Teams ");
-			if(finalRoundtradeTeamPick.get(i) == null)
+			if(afterTradePickOrder.get(i) == null)
 			{
 				continue;
 			}
 			else
 			{
-			List<Map<IStandingModel,IStandingModel>> a = finalRoundtradeTeamPick.get(i);
-			for(Map<IStandingModel, IStandingModel> list: a)
-			{ 
-			for (Map.Entry<IStandingModel, IStandingModel> standingTeam : list.entrySet())
-			{
-				System.out.print(" Team " + standingTeam.getKey().getTeam().getTeamName()+ " pick taken by "+ standingTeam.getValue().getTeam().getTeamName());
-			}	
-		}
+				List<IStandingModel> a = afterTradePickOrder.get(i);
+				for (IStandingModel standingTeam : a)
+				{
+					System.out.print("  " + standingTeam.getTeam().getTeamName());
+				}
+
+			}
 		}
 		System.out.println();
-		}
-		return finalRoundtradeTeamPick;
+		return afterTradePickOrder;
 	}
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		this.setNextState(stateFactory.createAdvanceToNextSeasonState());
 		return true;
 	}

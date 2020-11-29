@@ -37,7 +37,7 @@ public class ApplicationConfiguration {
 		return uniqueInstance;
 	}
 	
-	public SimulationAbstractFactory getStateMachineConcreteFactoryState() {
+	public SimulationAbstractFactory getSimulationConcreteFactoryState() {
 		return SimulationAbstractFactory.getInstance(statemachine);
 	}
 	

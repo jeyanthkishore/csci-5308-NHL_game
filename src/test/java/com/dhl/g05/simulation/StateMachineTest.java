@@ -17,7 +17,7 @@ public class StateMachineTest {
 
 	@BeforeClass
 	public static void setup() {
-		stateMachineFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		stateMachineFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		communication = new MockPlayerCommunication();
 	}
 

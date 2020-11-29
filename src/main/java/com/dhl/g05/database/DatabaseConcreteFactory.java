@@ -13,7 +13,7 @@ public class DatabaseConcreteFactory extends DatabaseAbstractFactory{
 	}
 
 	@Override
-	public ICheckTeam createTeamDatabaseOperation() {
+	public ITeamDatabaseOperation createTeamDatabaseOperation() {
 		return new TeamDatabaseOperation();
 	}
 

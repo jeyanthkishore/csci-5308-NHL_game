@@ -5,6 +5,7 @@ import com.dhl.g05.model.ILeague;
 
 public class PlayoffScheduleState extends AbstractState{
 	private ILeague league;
+	SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 
 	@Override
 	public boolean enter() {
@@ -14,14 +15,13 @@ public class PlayoffScheduleState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
-		IInitializeSchedule leagueSchedule = new ScheduleModel();
+		IScheduleModel leagueSchedule = stateFactory.createScheduleModel();
 		leagueSchedule.generatePlayOff(league, league.getLeagueStanding());
 		return true;
 	}
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 		this.setNextState(stateFactory.createTrainingState());
 		return true;
 	}

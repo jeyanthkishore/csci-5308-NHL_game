@@ -15,7 +15,7 @@ public class PlayerChoiceStateTest {
 	
 	@Before
 	public void init() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		state = stateFactory.createPlayerChoiceState();
 	}
 
@@ -27,7 +27,7 @@ public class PlayerChoiceStateTest {
 		state.enter();
 		state.performStateTask();
 		state.exit();
-		assertTrue(state.getNextState() instanceof SimulateState);
+		assertTrue(state.getNextState() instanceof SeasonSimulateState);
 	}
 
 	@Test

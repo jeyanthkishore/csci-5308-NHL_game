@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.database.ICheckTeam;
+import com.dhl.g05.database.ITeamDatabaseOperation;
 import com.mysql.cj.util.StringUtils;
 
 public class TeamModel implements ITeam {
@@ -94,7 +94,7 @@ public class TeamModel implements ITeam {
 	}
 
 	@Override
-	public boolean isTeamExist(String teamName, ICheckTeam checkTeam) {
+	public boolean isTeamExist(String teamName, ITeamDatabaseOperation checkTeam) {
 		return checkTeam.isTeamExist(teamName);
 	}
 

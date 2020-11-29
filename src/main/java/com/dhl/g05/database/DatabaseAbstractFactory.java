@@ -10,7 +10,7 @@ public abstract class DatabaseAbstractFactory {
 
 	public abstract ISerializeModel createSerializeObject();
 	public abstract IFileOperation createFileOperation();
-	public abstract ICheckTeam createTeamDatabaseOperation();
+	public abstract ITeamDatabaseOperation createTeamDatabaseOperation();
 	public abstract IDeserializeModel createDeserializeObject();
 	
 }

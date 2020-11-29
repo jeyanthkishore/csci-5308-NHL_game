@@ -88,7 +88,7 @@ public class StimulateGameState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		this.setNextState(ApplicationConfiguration.instance().getStateMachineConcreteFactoryState().createAgingState());
+		this.setNextState(ApplicationConfiguration.instance().getSimulationConcreteFactoryState().createAgingState());
 		return true;
 	}
 

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ILeague;
@@ -43,6 +44,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 
 	@Override
 	public void generateRegularSeasonSchedule(ILeague league) {
+		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		regularSeasonSchedule = new ArrayList<>();
 		List<IConference> totalConferences = new ArrayList<>();
 		List<IDivision> totalDivisions = new ArrayList<>();
@@ -62,7 +64,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 		totalNumberOfTeams = totalTeams.size();
 		for (int i = 0; i < totalNumberOfTeams - 1; i++) {
 			for (int j = i + 1; j < totalNumberOfTeams; j++) {
-				IScheduleModel matchSchedule = new ScheduleModel();
+				IScheduleModel matchSchedule = simulationFactory.createScheduleModel();
 				matchSchedule.setFirstConference(totalConferences.get(i));
 				matchSchedule.setFirstDivision(totalDivisions.get(i));
 				matchSchedule.setFirstTeam(totalTeams.get(i));
@@ -83,6 +85,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 
 	@Override
 	public void generatePlayoffSchedule(ILeague league, ILeagueStanding standingSystem) {
+		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		playoffSeasonSchedule = new ArrayList<>();
 		for (IConference conference: league.getConferenceDetails()) {
 			List<List<IStandingModel>> totalStandings = new ArrayList<>();
@@ -96,7 +99,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 
 			for(int i = 0 ; i < 2 ; i++) {
 				int j = 1;
-				IScheduleModel matchSchedule = new ScheduleModel();
+				IScheduleModel matchSchedule = simulationFactory.createScheduleModel();
 				matchSchedule.setFirstConference(totalStandings.get(i).get(j).getConference());
 				matchSchedule.setFirstDivision(totalStandings.get(i).get(j).getDivision());
 				matchSchedule.setFirstTeam(totalStandings.get(i).get(j).getTeam());
@@ -110,7 +113,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 			wildCardDivision = selectWildCardDivision(wildCardDivision);
 			for(int k = 0, i =0 ; k < 2 ; k++ , i++) {
 				int j = 0;
-				IScheduleModel matchSchedule = new ScheduleModel();
+				IScheduleModel matchSchedule = simulationFactory.createScheduleModel();
 				matchSchedule.setFirstConference(totalStandings.get(i).get(j).getConference());
 				matchSchedule.setFirstDivision(totalStandings.get(i).get(j).getDivision());
 				matchSchedule.setFirstTeam(totalStandings.get(i).get(j).getTeam());
@@ -209,27 +212,29 @@ public class LeagueSchedule implements ILeagueSchedule {
 
 	@Override
 	public void updateScheduleAfterGame(IScheduleModel matchSchedule) {
-
+		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		matchSchedule.setIsGameCompleted(true);
 		if (DateHandler.getInstance().isPlayoffSeasonActive(matchSchedule.getScheduleDate())) {
 			List<Object> winningDetails = new ArrayList<>();
 			int index = playoffSeasonSchedule.indexOf(matchSchedule);
 			int indexTotalLength = playoffSeasonSchedule.size() - 1;
-			if (index % 2 == 0) {
-				IScheduleModel newPlayoffGame = new ScheduleModel();
-				LocalDate lastPlayoffDate = playoffSeasonSchedule.get(indexTotalLength).getScheduleDate();
-				winningDetails = getWinDetails(matchSchedule);
-				newPlayoffGame.setFirstConference((IConference) winningDetails.get(0));
-				newPlayoffGame.setFirstDivision((IDivision) winningDetails.get(1));
-				newPlayoffGame.setFirstTeam((ITeam) winningDetails.get(2));
-				newPlayoffGame.setScheduleDate(lastPlayoffDate.plusDays(1));
-				playoffSeasonSchedule.add(newPlayoffGame);
-			} else {
-				IScheduleModel oldSchedule = playoffSeasonSchedule.get(indexTotalLength);
-				winningDetails = getWinDetails(matchSchedule);
-				oldSchedule.setSecondConference((IConference) winningDetails.get(0));
-				oldSchedule.setSecondDivision((IDivision) winningDetails.get(1));
-				oldSchedule.setSecondTeam((ITeam) winningDetails.get(2));
+			if( index < indexTotalLength) {
+				if (index % 2 == 0) {
+					IScheduleModel newPlayoffGame = simulationFactory.createScheduleModel();
+					LocalDate lastPlayoffDate = playoffSeasonSchedule.get(indexTotalLength).getScheduleDate();
+					winningDetails = getWinDetails(matchSchedule);
+					newPlayoffGame.setFirstConference((IConference) winningDetails.get(0));
+					newPlayoffGame.setFirstDivision((IDivision) winningDetails.get(1));
+					newPlayoffGame.setFirstTeam((ITeam) winningDetails.get(2));
+					newPlayoffGame.setScheduleDate(lastPlayoffDate.plusDays(1));
+					playoffSeasonSchedule.add(newPlayoffGame);
+				} else {
+					IScheduleModel oldSchedule = playoffSeasonSchedule.get(indexTotalLength);
+					winningDetails = getWinDetails(matchSchedule);
+					oldSchedule.setSecondConference((IConference) winningDetails.get(0));
+					oldSchedule.setSecondDivision((IDivision) winningDetails.get(1));
+					oldSchedule.setSecondTeam((ITeam) winningDetails.get(2));
+				}
 			}
 		}
 	}

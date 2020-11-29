@@ -16,7 +16,7 @@ public class InitializeSeasonStateTest {
 	
 	@Before
 	public void init() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		state = stateFactory.createInitializeSeasonState();
 	}
 	

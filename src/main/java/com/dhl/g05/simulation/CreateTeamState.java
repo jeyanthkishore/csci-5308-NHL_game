@@ -7,7 +7,7 @@ import java.util.List;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.database.DatabaseAbstractFactory;
-import com.dhl.g05.database.ICheckTeam;
+import com.dhl.g05.database.ITeamDatabaseOperation;
 import com.dhl.g05.model.CoachConstant;
 import com.dhl.g05.model.CoachModel;
 import com.dhl.g05.model.ICoach;
@@ -51,7 +51,7 @@ public class CreateTeamState extends AbstractState {
 			teamName =  communicate.getResponse();
 			ITeam team = new TeamModel();
 			DatabaseAbstractFactory database = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
-			ICheckTeam checkTeam = database.createTeamDatabaseOperation();
+			ITeamDatabaseOperation checkTeam = database.createTeamDatabaseOperation();
 			boolean notUnique = team.isTeamExist(teamName,checkTeam);
 			if(notUnique) {
 				communicate.sendMessage("Please Enter Unique Team Name");
@@ -236,14 +236,14 @@ public class CreateTeamState extends AbstractState {
 			}
 			if(freeAgentList.get(responseNumber-1).getPosition().equals(CreateTeamConstant.Goalie.getValue())) {
 				goalie++;
-				if(goalie > 2) {
+				if(goalie > 4) {
 					goalie--;
 					communicate.sendMessage(CreateTeamConstant.MaximumGoalieMessage.getValue());
 					continue;
 				}
 			}else {
 				skaters++;
-				if(skaters > 18) {
+				if(skaters > 26) {
 					skaters--;
 					communicate.sendMessage(CreateTeamConstant.MaximumSkatersMessage.getValue());
 					continue;
@@ -299,7 +299,7 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		this.setNextState(stateFactory.createPlayerChoiceState());
 		return true;
 	}

@@ -14,7 +14,7 @@ public class AgingConfigTest {
 
     @BeforeClass
     public static void init() {
-        simulationAbstractFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+        simulationAbstractFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
     }
 
     @Test

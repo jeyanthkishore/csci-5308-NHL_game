@@ -248,7 +248,7 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 			newPlayer.setPosition((String)((JSONObject) player).get("position"));
 			newPlayer.setAge(((Number) ((JSONObject) player).get("saving")).intValue());
 			newPlayer.setPlayerStrength(((Number) ((JSONObject) player).get("playerStrength")).doubleValue());
-			newPlayer.setCaptain((Boolean)((JSONObject) player).get("position"));
+			newPlayer.setCaptain((Boolean)((JSONObject) player).get("captain"));
 			newPlayer.setInjuryStatus((Boolean)((JSONObject) player).get("isInjured"));
 			newPlayer.setRetirementStatus((Boolean)((JSONObject) player).get("isRetired"));
 			players.add(newPlayer);

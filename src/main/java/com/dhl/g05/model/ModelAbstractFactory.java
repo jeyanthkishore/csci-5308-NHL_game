@@ -24,5 +24,6 @@ public abstract class ModelAbstractFactory {
 	public abstract ICoach createCoachModel();
 	public abstract IGenerateNewPlayers createNewPlayers();
 	public abstract IPlayerDraft createPlayerDraft();
+	public abstract IPlayerTraining createPlayerTraining();
 
 }

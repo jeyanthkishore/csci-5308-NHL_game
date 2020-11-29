@@ -22,7 +22,7 @@ public class CreateTeamStateTest {
 	 public static void setup() {
 		 	CommunicationState communication = new CommunicationTeamMockFactoryState();
 		    ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
-		    SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
+		    SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		    create = stateFactory.createCreateTeamState();
 	        LeagueMockData data = new LeagueMockData();
 			create.setLeague(data.league);

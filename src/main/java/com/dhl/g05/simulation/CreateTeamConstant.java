@@ -22,7 +22,7 @@ public enum CreateTeamConstant {
 	Yes("yes"),
 	Goalie("goalie"),
 	Separator(" | "),
-	MaximumGoalieMessage("Maximum Two Goalie per Team"),
+	MaximumGoalieMessage("Maximum Four Goalie per Team"),
 	MaximumSkatersMessage("Maximum Skater Count Reached,Pls Select Goalie");
 	
 	private String value; 
