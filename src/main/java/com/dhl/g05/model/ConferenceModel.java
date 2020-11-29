@@ -32,10 +32,6 @@ public class ConferenceModel implements IConference {
 		this.divisions = divisionDetails;
 	}
 
-	public ConferenceModel(IConferenceModel conferenceObject) {
-		conferenceObject.loadConferenceModelData(this);
-	}
-
 	@Override
 	public ConferenceConstant validate() {
 		if(isNameEmptyOrNull()) {

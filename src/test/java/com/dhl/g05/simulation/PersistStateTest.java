@@ -30,7 +30,7 @@ public class PersistStateTest {
 	
 	@Test
 	public void performTaskTest() {
-		StandingsMock mock = new StandingsMock();
+		StandingMockData mock = new StandingMockData();
 		ILeague league = mock.createDummyLeague();
 		league.setLeagueName("HockeyLeague");
 		
@@ -51,7 +51,7 @@ public class PersistStateTest {
 	
 	@Test
 	public void performTaskAdvancedTimeTest() {
-		StandingsMock mock = new StandingsMock();
+		StandingMockData mock = new StandingMockData();
 		ILeague league = mock.createDummyLeague();
 		league.setLeagueName("HockeyLeague");
 		

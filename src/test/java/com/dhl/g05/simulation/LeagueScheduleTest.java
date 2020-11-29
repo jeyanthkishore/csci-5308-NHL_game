@@ -43,7 +43,7 @@ public class LeagueScheduleTest {
 	@Test
 	public void generateRegularSeasonTest() {
 		ILeagueSchedule leagueSchedule = new LeagueSchedule();
-		StandingsMock mock = new StandingsMock();
+		StandingMockData mock = new StandingMockData();
 		DateHandler dateObject  = DateHandler.getInstance();
 		dateObject.performDateAssignment(2020);
 		ILeague league = mock.createDummyLeague();
@@ -58,7 +58,7 @@ public class LeagueScheduleTest {
 	@Test
 	public void generatePlayoffScheduleTest() {
 		ILeagueSchedule leagueSchedule = new LeagueSchedule();
-		StandingsMock mock = new StandingsMock();
+		StandingMockData mock = new StandingMockData();
 		DateHandler dateObject  = DateHandler.getInstance();
 		dateObject.performDateAssignment(2020);
 		ILeague league = mock.createDummyLeague();

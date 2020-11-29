@@ -17,13 +17,13 @@ import com.dhl.g05.trading.TradingFactory;
 
 public class ApplicationConfiguration {
 	private static ApplicationConfiguration uniqueInstance = null;
-	private SimulationState statemachine;
+	private SimulationState simulation;
 	private DatabaseState database;
 	private CommunicationState communication;
 	private ModelState model;
 	
 	private ApplicationConfiguration() {
-		statemachine = new SimulationConcreteFactoryState();
+		simulation = new SimulationConcreteFactoryState();
 		database = new DatabaseConcreteFactoryState();
 		communication = new CommunicationConcreteFactoryState();
 		model = new ModelConcreteFactoryState();
@@ -38,7 +38,7 @@ public class ApplicationConfiguration {
 	}
 	
 	public SimulationAbstractFactory getSimulationConcreteFactoryState() {
-		return SimulationAbstractFactory.getInstance(statemachine);
+		return SimulationAbstractFactory.getInstance(simulation);
 	}
 	
 	public DatabaseAbstractFactory getDatabaseConcreteFactoryState() {
