@@ -10,7 +10,17 @@ import com.dhl.g05.communication.ITradeCommunication;
 import com.dhl.g05.simulation.ITradingConfig;
 
 public class TradeDecision implements ITradeDecision {
+	
 	static final Logger logger = LogManager.getLogger(TradeDecision.class);
+	private boolean TradeDecision;
+
+	public boolean getTradeDecision() {
+		return TradeDecision;
+	}
+
+	public void setTradeDecision(boolean tradeDecision) {
+		TradeDecision = tradeDecision;
+	}
 
 	public void TradeResult(ITradingConfig trade, IWeakTeam teamInitiatingTrade,IStrongTeam teamAcceptingTrade ) {
 
@@ -21,8 +31,6 @@ public class TradeDecision implements ITradeDecision {
 		ramdomTradeChance = random.nextDouble();
 		ITradeCommunication showDetails = ApplicationConfiguration.instance().getCommunicationConcreteFactoryState().getTradeCommunication();
 		ISwapPlayers swap = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createSwapplayers();
-//		IWeakTeam teamInitiatingTrade = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createWeakteam();
-//		IStrongTeam teamAcceptingTrade = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createStrongteam();
 
 		if (teamAcceptingTrade.getStrongTeam().getUserTeam() == true) {
 			showDetails.sendTradeMessage(teamInitiatingTrade.getPlayersOffered(),
@@ -53,6 +61,7 @@ public class TradeDecision implements ITradeDecision {
 				}
 			}
 		}
+		setTradeDecision(tradeAccepeted);
 		if (tradeAccepeted == true) {
 			teamInitiatingTrade.getWeakTeam().setLossCount(0);
 			logger.info("Trade Accepted");

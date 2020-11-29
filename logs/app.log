@@ -13560,3 +13560,40 @@
 [INFO ] 2020-11-30 03:31:01.613 [main] CoachModel:84 - Validating coach details - name and statistics
 [INFO ] 2020-11-30 03:31:01.613 [main] CoachModel:112 - Validating coach statistics
 [INFO ] 2020-11-30 03:31:01.613 [main] LeagueModel:208 - Validating league details
+[INFO ] 2020-11-29 18:24:20.873 [main] TradeDecision:41 - Team initiating trade is Tigers
+[INFO ] 2020-11-29 18:24:20.982 [main] StrongTeam:108 - Player offered is : Player5Team1and position is defense
+[INFO ] 2020-11-29 18:24:20.983 [main] StrongTeam:104 - Team selected for trading is Rythm
+[INFO ] 2020-11-29 18:24:20.984 [main] StrongTeam:108 - Player requested is player1Team2and position is defense
+[INFO ] 2020-11-29 18:24:20.988 [main] TradeDecision:67 - Trade Accepted
+[INFO ] 2020-11-29 18:24:20.988 [main] StrongTeam:26 - Player swapped
+[INFO ] 2020-11-29 18:24:20.990 [main] TradeDecision:41 - Team initiating trade is Tigers
+[INFO ] 2020-11-29 18:24:20.990 [main] StrongTeam:108 - Player offered is : Player5Team1and position is defense
+[INFO ] 2020-11-29 18:24:20.991 [main] StrongTeam:104 - Team selected for trading is Rythm
+[INFO ] 2020-11-29 18:24:20.991 [main] StrongTeam:108 - Player requested is player1Team2and position is defense
+[INFO ] 2020-11-29 18:24:20.991 [main] TradeDecision:67 - Trade Accepted
+[INFO ] 2020-11-29 18:24:20.991 [main] StrongTeam:26 - Player swapped
+[INFO ] 2020-11-29 18:24:20.992 [main] TradeDecision:41 - Team initiating trade is Tigers
+[INFO ] 2020-11-29 18:24:20.992 [main] StrongTeam:108 - Player offered is : Player5Team1and position is defense
+[INFO ] 2020-11-29 18:24:20.993 [main] StrongTeam:104 - Team selected for trading is Rythm
+[INFO ] 2020-11-29 18:24:20.993 [main] StrongTeam:108 - Player requested is player1Team2and position is defense
+[INFO ] 2020-11-29 18:24:20.993 [main] TradeDecision:67 - Trade Accepted
+[INFO ] 2020-11-29 18:24:20.993 [main] StrongTeam:26 - Player swapped
+[INFO ] 2020-11-29 18:24:21.000 [main] StrongTeam:108 - Player offered is : Player5Team1and position is defense
+[INFO ] 2020-11-29 18:24:21.001 [main] StrongTeam:108 - Player offered is : Player5Team1and position is defense
+[INFO ] 2020-11-29 18:24:21.001 [main] StrongTeam:104 - Team selected for trading is Rythm
+[INFO ] 2020-11-29 18:24:21.001 [main] StrongTeam:108 - Player requested is player1Team2and position is defense
+[INFO ] 2020-11-29 18:24:21.004 [main] StrongTeam:108 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 18:24:21.004 [main] StrongTeam:108 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 18:24:21.005 [main] StrongTeam:108 - Player offered is : Player3and position is goalie
+[INFO ] 2020-11-29 18:24:21.005 [main] StrongTeam:108 - Player offered is : Player1and position is goalie
+[INFO ] 2020-11-29 18:24:21.006 [main] StrongTeam:108 - Player offered is : Player3and position is goalie
+[INFO ] 2020-11-29 18:24:21.006 [main] StrongTeam:108 - Player offered is : Player1and position is goalie
+[INFO ] 2020-11-29 18:24:21.008 [main] StrongTeam:108 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 18:24:21.010 [main] StrongTeam:108 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 18:24:21.011 [main] StrongTeam:108 - Player offered is : Shawnand position is defense
+[INFO ] 2020-11-29 18:24:21.013 [main] StrongTeam:108 - Player offered is : Player5Team1and position is defense
+[INFO ] 2020-11-29 18:24:21.014 [main] StrongTeam:108 - Player offered is : Player5Team1and position is defense
+[INFO ] 2020-11-29 18:24:21.014 [main] TradeDecision:67 - Trade Accepted
+[INFO ] 2020-11-29 18:24:21.015 [main] StrongTeam:26 - Player swapped
+[INFO ] 2020-11-29 18:24:21.016 [main] StrongTeam:26 - Player swapped
+[INFO ] 2020-11-29 18:24:21.017 [main] StrongTeam:26 - Player swapped

@@ -10,7 +10,7 @@ import com.dhl.g05.simulation.ITradingConfig;
 public class TradeValueTest {
 	
 	MockLeagueModel mockLeague = new MockLeagueModel();
-	ITradingConfig trade = mockLeague.TradingConfigMock();
+	ITradingConfig trade = mockLeague.tradingConfigMock();
 
 	@Test
 	public void generateRandomValueTest() {

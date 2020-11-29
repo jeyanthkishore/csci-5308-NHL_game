@@ -19,8 +19,9 @@ public abstract class TradingAbstractFactory {
 
 	public abstract IWeakTeam createWeakteam();
 
-	public abstract IResolveTrade createResolveTrade();
+	public abstract ITradePickToPlayerDraft createTradePickToPlayerDraft();
 
 	public abstract IIntiateTradeOffer createInititatetradeoffer();
+	
+	}
 
-}
