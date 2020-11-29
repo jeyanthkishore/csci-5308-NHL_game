@@ -7,6 +7,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlayerModelTest {
 
     private static SimulationAbstractFactory simulationAbstractFactory;
