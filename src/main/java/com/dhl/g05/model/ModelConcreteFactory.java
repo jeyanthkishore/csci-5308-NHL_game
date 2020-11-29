@@ -8,6 +8,11 @@ public class ModelConcreteFactory extends ModelAbstractFactory{
 	}
 
 	@Override
+	public ILeague createLeagueModel(ILeagueModel league) {
+		return new LeagueModel(league);
+	}
+
+	@Override
 	public IConference createConferenceModel() {
 		return new ConferenceModel();
 	}
@@ -23,6 +28,11 @@ public class ModelConcreteFactory extends ModelAbstractFactory{
 	}
 
 	@Override
+	public ITeam createTeamModel(ITeamModel team) {
+		return new TeamModel(team);
+	}
+
+	@Override
 	public IPlayer createPlayerModel() {
 		return new PlayerModel();
 	}
@@ -30,6 +40,11 @@ public class ModelConcreteFactory extends ModelAbstractFactory{
 	@Override
 	public IPlayer createPlayerModel(String playerName, String position, Boolean captain, double skating, double shooting, double checking, double saving, int birthDay, int birthMonth, int birthYear) {
 		return new PlayerModel(playerName, position, captain, skating, shooting, checking, saving, birthDay, birthMonth, birthYear);
+	}
+
+	@Override
+	public IPlayer createPlayerModel(IPlayerModel player) {
+		return new PlayerModel(player);
 	}
 
 	@Override
@@ -65,6 +80,11 @@ public class ModelConcreteFactory extends ModelAbstractFactory{
 	@Override
 	public IFreeAgent createFreeAgentModel(String playerName, String position, double skating, double shooting, double checking, double saving, int birthDay, int birthMonth, int birthYear) {
 		return new FreeAgentModel(playerName, position, skating, shooting, checking, saving, birthDay, birthMonth, birthYear);
+	}
+
+	@Override
+	public IFreeAgent createFreeAgentModel(IFreeAgentModel freeAgent) {
+		return new FreeAgentModel(freeAgent);
 	}
 
 	@Override

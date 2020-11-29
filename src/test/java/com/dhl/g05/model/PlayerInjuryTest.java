@@ -22,7 +22,6 @@ public class PlayerInjuryTest {
 
     @Test
     public void checkPlayerInjuryTest() {
-        IRandomNumberFactory randomNumberFactoryMock = Mockito.mock(RandomNumberFactory.class);
         playerInjured = modelAbstractFactory.createPlayerInjury();
         IInjury injury = simulationAbstractFactory.createInjuryConfig();
         IPlayer player = modelAbstractFactory.createPlayerModel();
@@ -30,9 +29,6 @@ public class PlayerInjuryTest {
         injury.setInjuryDaysLow(10);
         injury.setRandomInjuryChance(1.5);
         player.setInjuryStatus(true);
-        assertTrue(playerInjured.checkPlayerInjury(player,injury));
-        player.setInjuryStatus(false);
-        when(randomNumberFactoryMock.generateRandomDoubleNumber(0,1)).thenReturn(0.01);
         assertTrue(playerInjured.checkPlayerInjury(player,injury));
     }
 }
