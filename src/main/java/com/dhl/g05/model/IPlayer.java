@@ -1,5 +1,7 @@
 package com.dhl.g05.model;
 
+import com.dhl.g05.simulation.IAging;
+
 public interface IPlayer {
 
 	String getPlayerName();
@@ -10,9 +12,9 @@ public interface IPlayer {
 
 	void setPosition(String position);
 
-    Boolean getCaptain();
+	Boolean getCaptain();
 
-    void setCaptain(Boolean captain);
+	void setCaptain(Boolean captain);
 
 	double getSkating();
 
@@ -36,7 +38,7 @@ public interface IPlayer {
 
 	int getInjuredForNumberOfDays();
 
-    void setInjuredForNumberOfDays(int injuredForNumberOfDays);
+	void setInjuredForNumberOfDays(int injuredForNumberOfDays);
 
 	boolean getRetirementStatus();
 
@@ -65,6 +67,8 @@ public interface IPlayer {
 	void setAge(int age);
 
 	void calculateAge();
+
+	void decreaseStatOnBirthday(ILeague League, IAging agingConfig);
 
 	FreeAgentConstant validate();
 
