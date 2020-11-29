@@ -21,6 +21,7 @@ public abstract class ModelAbstractFactory {
 	public abstract IPlayerRetirement createRetiredPlayer();
 	public abstract IRandomNumberFactory createRandomNumber();
 	public abstract IFreeAgent createFreeAgentModel();
+	public abstract IFreeAgent createFreeAgentModel(String playerName, String position, double skating, double shooting, double checking, double saving, int birthDay, int birthMonth, int birthYear);
 	public abstract ICoach createCoachModel();
 	public abstract ICoach createCoachModel(String name, double skating, double shooting, double checking, double saving);
 	public abstract IGenerateNewPlayers createNewPlayers();

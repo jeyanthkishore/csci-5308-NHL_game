@@ -63,6 +63,11 @@ public class ModelConcreteFactory extends ModelAbstractFactory{
 	}
 
 	@Override
+	public IFreeAgent createFreeAgentModel(String playerName, String position, double skating, double shooting, double checking, double saving, int birthDay, int birthMonth, int birthYear) {
+		return new FreeAgentModel(playerName, position, skating, shooting, checking, saving, birthDay, birthMonth, birthYear);
+	}
+
+	@Override
 	public ICoach createCoachModel() {
 		return new CoachModel();
 	}

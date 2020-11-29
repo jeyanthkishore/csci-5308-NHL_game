@@ -306,7 +306,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 				playerCommunication.sendMessage("player missing field");
 				return null;
 			}
-			FreeAgentModel newPlayer = new FreeAgentModel(playerName, position,skating, shooting, checking, saving,birthDay,birthMonth,birthYear);
+			IFreeAgent newPlayer = modelAbstractFactory.createFreeAgentModel(playerName, position,skating, shooting, checking, saving,birthDay,birthMonth,birthYear);
 			FreeAgentConstant validationResult  = newPlayer.validate();
 			if (validationResult.equals(FreeAgentConstant.Success)) {
 				freeAgent.add(newPlayer);
