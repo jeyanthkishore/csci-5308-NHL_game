@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
 import com.dhl.g05.simulation.ITradingConfig;
 
 public class WeakTeam implements IWeakTeam {
-
+	
+	static final Logger logger = LogManager.getLogger(StrongTeam.class);
 	private ITeam weakTeam;
 	private String conferenceName;
 	private String divisionName;
@@ -100,6 +102,7 @@ public class WeakTeam implements IWeakTeam {
 		for (IPlayer player : weakestPLayersToTrade) {
 			if (player.getPosition().equals(weakPosition)) {
 				offeredPlayers.add(player);
+				logger.info("Player offered is : "+ player.getPlayerName() + "and position is "+ player.getPosition());
 				strength += player.getPlayerStrength();
 				weakPlayers++;
 			}

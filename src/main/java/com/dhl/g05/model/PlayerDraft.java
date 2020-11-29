@@ -5,14 +5,25 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.dhl.g05.simulation.ILeagueStanding;
 import com.dhl.g05.simulation.IStandingModel;
 
 
 public class PlayerDraft implements IPlayerDraft {
-
-	private static final int draftPickTeamSubstraction = 2;
+	
+	static final Logger logger = LogManager.getLogger(PlayerDraft.class);
+	private int draftPickTeamSubstraction;
 	private Map<Integer, List<Map<IStandingModel, IStandingModel>>> pickOrderAfterTrading;
+	
+	public int getDraftPickTeamSubstraction() {
+		return draftPickTeamSubstraction;
+	}
+
+	public void setDraftPickTeamSubstraction(int draftPickTeamSubstraction) {
+		this.draftPickTeamSubstraction = draftPickTeamSubstraction;
+	}
 
 	public Map<Integer, List<Map<IStandingModel, IStandingModel>>> getPickOrderAfterTrading() {
 		return pickOrderAfterTrading;
@@ -25,7 +36,6 @@ public class PlayerDraft implements IPlayerDraft {
 
 	public void playerDraft1(ILeagueStanding leaguestanding) {
 		List<IStandingModel> standingForAllConference = leaguestanding.getRankingAcrossLeague();
-
 		IGenerateNewPlayers g = new GenerateNewPlayers();
 		g.setNumberOfTeams(standingForAllConference.size());
 		List<IPlayer> newPlayers = g.generatePlayers();
@@ -70,12 +80,14 @@ public class PlayerDraft implements IPlayerDraft {
 						for (Map.Entry<IStandingModel, IStandingModel> teamPair : teamPairTrading.entrySet()) {
 							if ((teamPair.getKey().getTeam().getTeamName().equals(teamToPick.getTeam().getTeamName()))&& (teamPair.getKey().getConference().getConferenceName().equals(teamToPick.getConference().getConferenceName()))&& (teamPair.getKey().getDivision().getDivisionName().equals(teamToPick.getDivision().getDivisionName()))) {
 								teamsPickOrder.add(teamPair.getValue());
+								logger.info( "Round" + i+ " team pick is "+ teamPair.getValue().getTeam().getTeamName());
 								break;
 							}
 						}
 					}
 					if (teamsPickOrder.size() == size1) {
 						teamsPickOrder.add(teamToPick);
+						logger.info("Round" + i + " team pick is " + teamToPick.getTeam().getTeamName());
 					}
 				}
 				for (IStandingModel teamToPick : teamsEligibleForPickLater) {
@@ -83,58 +95,46 @@ public class PlayerDraft implements IPlayerDraft {
 					List<Map<IStandingModel, IStandingModel>> TeamsTrading = pickOrderAfterTrading.get(i);
 					for (Map<IStandingModel, IStandingModel> teamPairTrading : TeamsTrading) {
 						for (Map.Entry<IStandingModel, IStandingModel> teamPair : teamPairTrading.entrySet()) {
-							if ((teamPair.getKey().getTeam().getTeamName().equals(teamToPick.getTeam().getTeamName()))
-									&& (teamPair.getKey().getConference().getConferenceName()
-											.equals(teamToPick.getConference().getConferenceName()))
-									&& (teamPair.getKey().getDivision().getDivisionName()
-											.equals(teamToPick.getDivision().getDivisionName()))) {
+							if ((teamPair.getKey().getTeam().getTeamName().equals(teamToPick.getTeam().getTeamName()))&& (teamPair.getKey().getConference().getConferenceName().equals(teamToPick.getConference().getConferenceName()))&& (teamPair.getKey().getDivision().getDivisionName().equals(teamToPick.getDivision().getDivisionName()))) {
 								teamsPickOrder.add(teamPair.getValue());
+								logger.info( "Round" + i+ " team pick is "+ teamPair.getValue().getTeam().getTeamName());
 								break;
 							}
 						}
 					}
 					if (teamsPickOrder.size() == size2) {
 						teamsPickOrder.add(teamToPick);
+						logger.info("Round" + i + " team pick is " + teamToPick.getTeam().getTeamName());
 					}
 				}
 			}
 			pickOrder.put(i, teamsPickOrder);
 		}
-		for (int i = 1; i <= 7; i++) {
-			System.out.println();
-			System.out.print("Round" + (i) + " Teams ");
-			if (pickOrder.get(i) == null) {
-				continue;
-			} else {
-				List<IStandingModel> a = pickOrder.get(i);
-				for (IStandingModel standingTeam : a) {
-					System.out.print("  " + standingTeam.getTeam().getTeamName());
-				}
-			}
-		}
 		return pickOrder;
 	}
 
 	public void pickNewPlayers(Map<Integer, List<IStandingModel>> teamOrder, List<IPlayer> newPlayers) {
-		System.out.println("Size of new players are " + newPlayers.size());
 		for (int i = 1; i <= 7; i++) {
 			for (IStandingModel team : teamOrder.get(i)) {
 				List<IPlayer> playersInTeam = team.getTeam().getPlayerList();
 				playersInTeam.add((newPlayers.get(0)));
+				logger.info(" Team "+ team.getTeam().getTeamName()+ "picked player " + newPlayers.get(0).getPlayerName());
 				newPlayers.remove(0);
 				team.getTeam().setPlayerList(playersInTeam);
-//				call roaster;
 			}
 		}
-
-			System.out.println("players in "+ teamOrder.get(1).get(1).getTeam().getTeamName());
-			for (IPlayer player : teamOrder.get(1).get(1).getTeam().getPlayerList()) {
-				System.out.println(((FreeAgentModel) player).getPlayerName());
-			}
+		callRoasterToAdjustPlayers(teamOrder);
 		}
 	
 
-	public void callRoasterToadjustPlayers(IStandingModel team) {
-
+		public void callRoasterToAdjustPlayers(Map<Integer, List<IStandingModel>> teamOrder) {
+			ITeam teamHavingExcessPlayers = new TeamModel();
+			for (int i = 1; i <= 7; i++) {
+				for (IStandingModel team : teamOrder.get(i)) {
+					teamHavingExcessPlayers = team.getTeam();
+					logger.info("Removing excess players for team" + team.getTeam());
+					teamHavingExcessPlayers.adjustTeamRoasterAfterDraft(team.getTeam());
+				}
+			}
+		}
 	}
-}
