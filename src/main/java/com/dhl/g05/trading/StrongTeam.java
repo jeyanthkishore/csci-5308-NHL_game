@@ -2,8 +2,11 @@ package com.dhl.g05.trading;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ILeague;
@@ -59,15 +62,15 @@ public class StrongTeam implements IStrongTeam {
 		this.strongestPlayersToTrade = strongestPlayersToTrade;
 	}
 
-	public boolean findTeamToSwap(ILeague league) {
+	public boolean findTeamToSwap(ILeague league, IWeakTeam teamInitiatingTrade) {
 
 		boolean isTradePossible = false;
 		double strengthOfStrongestPLayer = 0.00;
 		List<IPlayer> playersRequested = new ArrayList<>();
-		IWeakTeam teamInitiatingTrade = TradeAbstractFactory.instance().getWeakteam();
+		//IWeakTeam teamInitiatingTrade = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createWeakteam();
 		String position = teamInitiatingTrade.getOfferedPlayerPosition();
 		int numberOfPlayersToTrade = teamInitiatingTrade.getNumberOfPlayersOffered();
-		ISortPlayerStrength sortPlayer = TradeAbstractFactory.instance().getSortplayerstrength();
+		ISortPlayerStrength sortPlayer = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createSortplayerstrength();
 
 		for (IConference conference : league.getConferenceDetails()) {
 			for (IDivision division : conference.getDivisionDetails()) {

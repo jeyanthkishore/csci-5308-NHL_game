@@ -28,5 +28,5 @@ public interface IStrongTeam {
 
 	public void setStrongestPlayersToTrade(List<IPlayer> strongestPlayersToTrade);
 
-	public boolean findTeamToSwap(ILeague league);
+	public boolean findTeamToSwap(ILeague league, IWeakTeam teamInitiatingTrade);
 }

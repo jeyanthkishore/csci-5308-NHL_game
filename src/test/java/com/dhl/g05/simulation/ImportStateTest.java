@@ -1,5 +1,6 @@
 package com.dhl.g05.simulation;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -21,44 +22,40 @@ public class ImportStateTest {
 	}
 
 	@Test
-	public void testPerformStateTask() {
+	public void performCreateTeamStateTest() {
 		String userInput = "src/test/java/com/dhl/g05/jsontestfiles/jsonGoodInfo.json";
 		ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(testInput);
 		state.enter();
 		state.performStateTask();
 		state.exit();
-		assertNotNull(state.getLeague());;
+		assertNotNull(state.getLeague());
 		assertTrue(state.getNextState() instanceof CreateTeamState);
 	}
 
 	@Test
-	public void testPerformStateFailTask() {
+	public void performStateTaskFailTest() {
 		String userInput = "src/test/java/com/dhl/g05/jsontestfiles/jsonInvalidInfo.json";
 		ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(testInput);
 		state.enter();
-		state.performStateTask();
-		state.exit();
-		assertNotNull(state);
+		assertFalse(state.performStateTask());
 		assertNull(state.getLeague());
 	}
 	
 	@Test
-	public void testPerformLeagueNullTask() {
+	public void performLeagueNullTaskTest() {
 		String userInput = "src/test/java/com/dhl/g05/jsontestfiles/jsonBadConferenceInfo.json";
 		ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(testInput);
 		state.enter();
-		state.performStateTask();
-		state.exit();
-		assertNotNull(state);
+		assertFalse(state.performStateTask());
 		assertNull(state.getLeague());
 	}
 	
 	
 	@Test
-	public void testExitNoFile() {
+	public void exitNoFileTest() {
 		String userInput = "\r\n";
 		ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(testInput);

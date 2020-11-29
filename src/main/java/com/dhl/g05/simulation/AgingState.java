@@ -22,28 +22,29 @@ public class AgingState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
+		LocalDate currentDate = league.getLeagueCurrentDate();
 		for (IConference conference : league.getConferenceDetails()) {
             for (IDivision division : conference.getDivisionDetails()) {
                 for (ITeam team : division.getTeamDetails()) {
                     for (IPlayer player : team.getPlayerList()) {
-//                    	player.calculateAge();
+                    	player.calculateAge(currentDate);
                     	//decreaseStats
                     }
                 }
             }
         }
 
-//        for (IFreeAgent freeAgent : league.getFreeAgent()) {
-//            freeAgent.calculateAge();
-//        }
-//
-//        for (IFreeAgent retiredFreeAgent : league.getRetiredFreeAgentsList()) {
-//            retiredFreeAgent.calculateAge();
-//        }
-//        
-//        for (IPlayer retiredTeamPlayer : league.getRetiredPlayersList()) {
-//            retiredTeamPlayer.calculateAge();
-//        }
+        for (IFreeAgent freeAgent : league.getFreeAgent()) {
+            freeAgent.calculateAge(currentDate);
+        }
+
+        for (IFreeAgent retiredFreeAgent : league.getRetiredFreeAgentsList()) {
+            retiredFreeAgent.calculateAge(currentDate);
+        }
+        
+        for (IPlayer retiredTeamPlayer : league.getRetiredPlayersList()) {
+            retiredTeamPlayer.calculateAge(currentDate);
+        }
         
         return true;
 	}

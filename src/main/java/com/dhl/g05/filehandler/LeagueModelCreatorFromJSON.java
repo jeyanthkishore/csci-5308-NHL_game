@@ -122,11 +122,11 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		}
 		
 		IGamePlayConfig gamePlayconfig = new GamePlayConfigModel();
-		gamePlayconfig.setInjuries(createInjury((JSONObject)gamePlayConfigs.get("injuries")));
-		gamePlayconfig.setAging(createAging((JSONObject)gamePlayConfigs.get("aging")));
-		gamePlayconfig.setGameResolver(createGameResolver((JSONObject)gamePlayConfigs.get("gameResolver")));
-		gamePlayconfig.setTrading(createTradingConfig((JSONObject)gamePlayConfigs.get("trading")));
-		gamePlayconfig.setTraining(createTrainingConfig((JSONObject)gamePlayConfigs.get("training")));
+		gamePlayconfig.setInjuriesConfig(createInjury((JSONObject)gamePlayConfigs.get("injuries")));
+		gamePlayconfig.setAgingConfig(createAging((JSONObject)gamePlayConfigs.get("aging")));
+		gamePlayconfig.setGameResolverConfig(createGameResolver((JSONObject)gamePlayConfigs.get("gameResolver")));
+		gamePlayconfig.setTradingConfig(createTradingConfig((JSONObject)gamePlayConfigs.get("trading")));
+		gamePlayconfig.setTrainingConfig(createTrainingConfig((JSONObject)gamePlayConfigs.get("training")));
 		
 		return gamePlayconfig;
 }

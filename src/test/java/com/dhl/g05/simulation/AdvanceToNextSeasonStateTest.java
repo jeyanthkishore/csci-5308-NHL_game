@@ -1,6 +1,5 @@
 package com.dhl.g05.simulation;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
@@ -21,22 +20,21 @@ import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
 import com.dhl.g05.model.ModelAbstractFactory;
 
-public class AgingStateTest {
-	private AbstractState state;
-	private IPlayer player1;
-	private ModelAbstractFactory modelFactory;
-	private SimulationAbstractFactory simulationFactory;
-	private final int playerAge = 2000;
+public class AdvanceToNextSeasonStateTest {
 	
+	private AbstractState state;
+	private static SimulationAbstractFactory simulationAbstractFactory;
+
 	@Before
 	public void init() {
-		simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
-		modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
-		player1 = modelFactory.createPlayerModel();
+		simulationAbstractFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		state = simulationAbstractFactory.createAdvanceToNextSeasonState();
+		DateHandler.instance().performDateAssignment(Year.now().getValue());
 	}
 	
-	
-	private ILeague agingMockLeague() {
+	@Test
+	public void performTaskTest() {
+		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 		ILeague leagueMock = modelFactory.createLeagueModel();
 		IConference conference = modelFactory.createConferenceModel();
 		List<IConference> conferenceDetails = new ArrayList<>();
@@ -52,13 +50,16 @@ public class AgingStateTest {
 		ITeam team = modelFactory.createTeamModel();
 		teamDetails.add(team);
 		division.setTeamDetails(teamDetails);
+		IPlayer player1 = modelFactory.createPlayerModel();
 		IPlayer player2 = modelFactory.createPlayerModel();
 		player1.setBirthDay(10);
 		player1.setBirthMonth(04);
-		player1.setBirthYear(playerAge);
+		player1.setBirthYear(2000);
+		player1.setAge(22);
 		player2.setBirthDay(LocalDate.now().getDayOfMonth());
 		player2.setBirthMonth(12);
 		player2.setBirthYear(2000);
+		player1.setAge(25);
 		playerDetails.add(player1);
 		playerDetails.add(player2);
 		team.setPlayerList(playerDetails);
@@ -68,48 +69,38 @@ public class AgingStateTest {
 		freeAgent1.setBirthDay(22);
 		freeAgent1.setBirthMonth(11);
 		freeAgent1.setBirthYear(2000);
+		freeAgent1.setAge(25);
 		freeAgent2.setBirthDay(LocalDate.now().getDayOfMonth());
 		freeAgent2.setBirthMonth(12);
+		freeAgent2.setAge(25);
 		freeAgent2.setBirthYear(2000);
 		freeAgentDetails.add(freeAgent1);
 		freeAgentDetails.add(freeAgent2);
 		leagueMock.setRetiredFreeAgentsList(freeAgentDetails);
-		leagueMock.setFreeAgent(freeAgentDetails);
-		IScheduleModel schedule = simulationFactory.createScheduleModel();
-		schedule.setIsGameCompleted(true);
-		List<IScheduleModel> playoffSchedule = new ArrayList<>();
-		playoffSchedule.add(schedule);
-		DateHandler.instance().performDateAssignment(Year.now().getValue());
-		leagueMock.getLeagueSchedule().setPlayoffSeasonSchedule(playoffSchedule);
+		leagueMock.setFreeAgent(freeAgentDetails); 
 		
-		return leagueMock;
-	}
-	
-	@Test
-	public void performTaskPersistStateTest() {
-		state = simulationFactory.createAgingState();
-		ILeague leagueMock = agingMockLeague();
-		leagueMock.setLeagueCurrentDate(LocalDate.of((Year.now().getValue()), Month.JULY, 15));
+		ITeam winningTteam = modelFactory.createTeamModel();
+		List<IScheduleModel> scheduleList = new ArrayList<>();
+		IScheduleModel schedule = simulationAbstractFactory.createScheduleModel();
+		schedule.setIsGameCompleted(true);
+		schedule.setWinningTeam(winningTteam);
+		schedule.setScheduleDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
+		scheduleList.add(schedule);
+		
+		IAging aging = simulationAbstractFactory.createAgingConfig();
+		aging.setAverageRetirementAge(40);
+		aging.setMaximumAge(50);
+		aging.setStatDecayChance(0.02);
+		IGamePlayConfig gamePlayConfig = simulationAbstractFactory.createGamePlayConfig();
+		gamePlayConfig.setAgingConfig(aging);
+		leagueMock.setGamePlayConfig(gamePlayConfig);
+		
+		leagueMock.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
 		state.setLeague(leagueMock);
 		state.enter();
 		state.performStateTask();
 		state.exit();
-		assertEquals((Year.now().getValue())-playerAge,player1.getAge());
 		assertTrue(state.getNextState() instanceof PersistState);
 	}
-	
-	@Test
-	public void advanceToNextSeasonTest() {
-		state = simulationFactory.createAgingState();
-		ILeague leagueMock = agingMockLeague();
-		leagueMock.setLeagueCurrentDate(LocalDate.of((Year.now().getValue()+1), Month.JULY, 15));
-		state = simulationFactory.createAgingState();
-		state.setLeague(leagueMock);
-		state.enter();
-		state.performStateTask();
-		state.exit();
-		assertEquals((Year.now().getValue()+1)-playerAge,player1.getAge());
-		assertTrue(state.getNextState() instanceof PlayerDraftState);
-	}
-	
+
 }

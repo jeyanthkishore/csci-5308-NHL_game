@@ -29,7 +29,7 @@ public class PlayerTrainingTest {
     		for (IDivision division : conference.getDivisionDetails()) {
     			for (ITeam team : division.getTeamDetails()) {
     				for(IPlayer player : team.getPlayerList()) {
-    					playerTraining.performTrainingForPlayer(player,team.getCoachDetails(),league.getGamePlayConfig().getInjuries());
+    					playerTraining.performTrainingForPlayer(player,team.getCoachDetails(),league.getGamePlayConfig().getInjuriesConfig());
     				}
     			}
     		}
@@ -49,7 +49,7 @@ public class PlayerTrainingTest {
     		for (IDivision division : conference.getDivisionDetails()) {
     			for (ITeam team : division.getTeamDetails()) {
     				for(IPlayer player : team.getPlayerList()) {
-    					playerTraining.performTrainingForPlayer(player,team.getCoachDetails(),league.getGamePlayConfig().getInjuries());
+    					playerTraining.performTrainingForPlayer(player,team.getCoachDetails(),league.getGamePlayConfig().getInjuriesConfig());
     				}
     			}
     		}

@@ -64,7 +64,7 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 	public int averageRetirementAge = 35;
 	public int maximumAge = 60;
 	public double statDecayChance=0.05;
-	public double randownWinChance = 0.1;
+	public double randownWinChance = 0.0;
 	public double randomInjuryChance = 0.05;
 	public int injuryDaysLow = 1;
 	public int injuryDaysHigh = 120;
@@ -191,6 +191,8 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 		league.setFreeAgent(freeAgentList);
 		league.setFreeCoach(coachList);
 		league.setManagerList(managerList);
+		league.setRetiredFreeAgentsList(retiredFreeAgentsList);
+		league.setRetiredPlayersList(retiredPlayersList);
 		leagueMap.put("league_name","HockeyLeague");
 		leagueList.add(leagueMap);
 		leagueMap.put("league_name","CanadaLeague");
@@ -213,11 +215,11 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 		aging.setMaximumAge(maximumAge);
 		aging.setStatDecayChance(statDecayChance);
 		gamePlayConfig = simulationAbstractFactory.createGamePlayConfig();
-		gamePlayConfig.setAging(aging);
-		gamePlayConfig.setGameResolver(gameResolver);
-		gamePlayConfig.setInjuries(injury);
-		gamePlayConfig.setTrading(tradeConfig);
-		gamePlayConfig.setTraining(training);
+		gamePlayConfig.setAgingConfig(aging);
+		gamePlayConfig.setGameResolverConfig(gameResolver);
+		gamePlayConfig.setInjuriesConfig(injury);
+		gamePlayConfig.setTradingConfig(tradeConfig);
+		gamePlayConfig.setTrainingConfig(training);
 		league.setGamePlayConfig(gamePlayConfig);
 	}
 	

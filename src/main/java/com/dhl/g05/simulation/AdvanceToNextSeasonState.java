@@ -1,5 +1,7 @@
 package com.dhl.g05.simulation;
 
+import java.time.LocalDate;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.model.IConference;
@@ -9,7 +11,7 @@ import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.IPlayerRetired;
 import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.PlayerRetirement;
+import com.dhl.g05.model.ModelAbstractFactory;
 
 public class AdvanceToNextSeasonState extends AbstractState{
 	private IPlayerCommunication communication;
@@ -30,34 +32,35 @@ public class AdvanceToNextSeasonState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
-		
-		//LocalDate tempDate = DateHandler.getInstance().getRegularSeasonStartDate().plusYears(1);
-		IPlayerRetired playerRetirement = new PlayerRetirement();
+		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+		LocalDate tempDate = DateHandler.instance().getRegularSeasonStartDate().plusYears(1);
+		IPlayerRetired playerRetirement = modelFactory.createPlayerRetirement();
         for (IConference conference : league.getConferenceDetails()) {
             for (IDivision division : conference.getDivisionDetails()) {
                 for (ITeam team : division.getTeamDetails()) {
                     for (IPlayer player : team.getPlayerList()) {
-                    	//player.calculateAge(tempDate);
-                        boolean isRetired = playerRetirement.checkPlayerRetirement(league.getGamePlayConfig().getAging(),player);
+                    	player.calculateAge(tempDate);
+                        boolean isRetired = playerRetirement.checkPlayerRetirement(league.getGamePlayConfig().getAgingConfig(),player);
                         if (isRetired) {
                         	communication.sendMessage(player.getPlayerName());
+//                        	playerRetirement.isPlayerRetired(league, player, team);
                         }
                     }
                 }
             }
         }
         
-//        for (IFreeAgent freeAgent : league.getFreeAgent()) {
-//            freeAgent.calculateAge();
-//        }
-//
-//        for (IFreeAgent retiredFreeAgent : league.getRetiredFreeAgentsList()) {
-//            retiredFreeAgent.calculateAge();
-//        }
-//        
-//        for (IPlayer retiredTeamPlayer : league.getRetiredPlayersList()) {
-//            retiredTeamPlayer.calculateAge();
-//        }
+        for (IFreeAgent freeAgent : league.getFreeAgent()) {
+            freeAgent.calculateAge(tempDate);
+        }
+
+        for (IFreeAgent retiredFreeAgent : league.getRetiredFreeAgentsList()) {
+            retiredFreeAgent.calculateAge(tempDate);
+        }
+        
+        for (IPlayer retiredTeamPlayer : league.getRetiredPlayersList()) {
+            retiredTeamPlayer.calculateAge(tempDate);
+        }
         
         return true;
 	}
