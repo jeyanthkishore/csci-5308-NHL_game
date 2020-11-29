@@ -31,7 +31,7 @@ public class InitiateTradeOfferTest {
 		MockLeagueModel mock = new MockLeagueModel();
 		ILeague league = mock.leagueMock();
 		ITradingConfig trade = mock.TradingConfigMock();
-		intiateTradeOffer = AbstractTradingFactory.instance().getInititatetradeoffer();
+		intiateTradeOffer = TradeAbstractFactory.instance().getInititatetradeoffer();
 		intiateTradeOffer.setTrade(trade);
 		return intiateTradeOffer.initiateTradeOffer(league);
 	}

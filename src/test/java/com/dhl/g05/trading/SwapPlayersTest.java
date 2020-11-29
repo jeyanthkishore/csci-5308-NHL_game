@@ -11,7 +11,7 @@ import com.dhl.g05.model.ITeam;
 
 public class SwapPlayersTest {
 
-	ISwapPlayers swap = AbstractTradingFactory.instance().getSwapplayers();
+	ISwapPlayers swap = TradeAbstractFactory.instance().getSwapplayers();
 	MockLeagueModel mockLeague = new MockLeagueModel();
 	List<ITeam> teams = new ArrayList<>();
 	List<IPlayer> swapList1 = new ArrayList<>();

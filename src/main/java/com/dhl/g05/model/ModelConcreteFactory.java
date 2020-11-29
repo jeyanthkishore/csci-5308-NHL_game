@@ -67,5 +67,15 @@ public class ModelConcreteFactory extends ModelAbstractFactory{
 		return new CoachModel();
 	}
 
+	@Override
+	public IGenerateNewPlayers createNewPlayers() {
+		return new GenerateNewPlayers();
+	}
+
+	@Override
+	public IPlayerDraft createPlayerDraft() {
+		return new PlayerDraft();
+	}
+
 
 }

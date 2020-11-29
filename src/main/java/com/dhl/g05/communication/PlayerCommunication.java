@@ -13,6 +13,7 @@ import com.dhl.g05.model.IFreeAgent;
 import com.dhl.g05.model.IPlayer;
 
 public class PlayerCommunication implements IPlayerCommunication, ITradeCommunication {
+	
 	private Scanner scanner;
 
 	public void sendMessage(String message) {
@@ -178,7 +179,6 @@ public class PlayerCommunication implements IPlayerCommunication, ITradeCommunic
 					+ " Strength -  " + player.getPlayerStrength());
 		}
 		System.out.println();
-
 	}
 
 }

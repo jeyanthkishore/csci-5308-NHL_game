@@ -9,5 +9,7 @@ public abstract class CommunicationAbstractFactory {
 	}
 	
 	public abstract IPlayerCommunication getCommunication();
+	
+	public abstract ITradeCommunication getTradeCommunication();
 
 }

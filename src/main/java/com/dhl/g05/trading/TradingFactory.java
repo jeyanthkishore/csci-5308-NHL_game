@@ -1,6 +1,6 @@
 package com.dhl.g05.trading;
 
-public class TradingFactory extends AbstractTradingFactory {
+public class TradingFactory extends TradeAbstractFactory {
 
 	private ITradeDecision tradeDecision;
 	private ISortPlayerStrength sortPlayerStrength;

@@ -99,4 +99,5 @@ public class PlayerModelTest {
 		player.setBirthYear(11);
 		assertEquals(FreeAgentConstant.Success, player.validate() );
 	}
+	
 }

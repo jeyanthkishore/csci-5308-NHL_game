@@ -22,8 +22,8 @@ public class ResolveTrade implements IResolveTrade {
 
 	public void resolveTrade() {
 
-		IWeakTeam teamInitiatingTrade = AbstractTradingFactory.getFactory().getWeakteam();
-		IStrongTeam teamAcceptingTrade = AbstractTradingFactory.getFactory().getStrongteam();
+		IWeakTeam teamInitiatingTrade = TradeAbstractFactory.getFactory().getWeakteam();
+		IStrongTeam teamAcceptingTrade = TradeAbstractFactory.getFactory().getStrongteam();
 		if (teamAcceptingTrade.getStrongTeam().getUserTeam() == null) {
 			adjustAITeam(teamAcceptingTrade.getStrongTeam());
 		}
@@ -75,7 +75,7 @@ public class ResolveTrade implements IResolveTrade {
 
 	public void dropToFreeAgentList(ITeam team, String position, int count) {
 		LeagueModel leagueDetails = new LeagueModel();
-		ISortPlayerStrength sortPlayer = AbstractTradingFactory.instance().getSortplayerstrength();
+		ISortPlayerStrength sortPlayer = TradeAbstractFactory.instance().getSortplayerstrength();
 		List<IPlayer> players = getPlayerPosition(team.getPlayerList(), position);
 		List<IPlayer> weakestPlayers = sortPlayer.sortByDescending(players);
 		List<IPlayer> weakestPLayersToTrade = weakestPlayers.stream().limit(count).collect(Collectors.toList());

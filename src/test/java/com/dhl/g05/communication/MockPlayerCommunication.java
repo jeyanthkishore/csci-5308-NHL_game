@@ -56,5 +56,4 @@ public class MockPlayerCommunication implements IPlayerCommunication{
 		ByteArrayInputStream testInput = new ByteArrayInputStream(data.getBytes());
 		System.setIn(testInput);
 	}
-
 }
