@@ -9,8 +9,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.simulation.ILeagueStanding;
-import com.dhl.g05.simulation.IStandingModel;
+import com.dhl.g05.simulation.leaguesimulation.ILeagueStanding;
+import com.dhl.g05.simulation.leaguesimulation.IStandingModel;
 
 public class PlayerDraft implements IPlayerDraft {
 

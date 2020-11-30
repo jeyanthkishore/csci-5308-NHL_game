@@ -5,6 +5,13 @@ import java.util.List;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.*;
+import com.dhl.g05.simulation.statemachine.AgingConfig;
+import com.dhl.g05.simulation.statemachine.GamePlayConfigModel;
+import com.dhl.g05.simulation.statemachine.GameResolverConfig;
+import com.dhl.g05.simulation.statemachine.IGamePlayConfig;
+import com.dhl.g05.simulation.statemachine.InjuryConfig;
+import com.dhl.g05.simulation.statemachine.TradingConfig;
+import com.dhl.g05.simulation.statemachine.TrainingConfig;
 
 class PlayerTrainingMockData {
 

@@ -14,8 +14,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.simulation.IAging;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
+import com.dhl.g05.simulation.statemachine.IAging;
 
 public class FreeAgentModelTest {
 	

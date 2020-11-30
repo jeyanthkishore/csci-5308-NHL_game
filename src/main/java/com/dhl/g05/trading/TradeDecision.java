@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.ITradeCommunication;
-import com.dhl.g05.simulation.ITradingConfig;
+import com.dhl.g05.simulation.statemachine.ITradingConfig;
 
 public class TradeDecision implements ITradeDecision {
 	

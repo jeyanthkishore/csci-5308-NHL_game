@@ -2,8 +2,8 @@ package com.dhl.g05.model;
 
 import java.time.LocalDate;
 
-import com.dhl.g05.simulation.IAging;
-import com.dhl.g05.simulation.IInjury;
+import com.dhl.g05.simulation.statemachine.IAging;
+import com.dhl.g05.simulation.statemachine.IInjury;
 
 public interface IPlayer {
 

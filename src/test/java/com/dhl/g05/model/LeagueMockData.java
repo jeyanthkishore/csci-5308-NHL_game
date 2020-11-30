@@ -8,6 +8,12 @@ import java.util.Random;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.*;
+import com.dhl.g05.simulation.statemachine.IAging;
+import com.dhl.g05.simulation.statemachine.IGamePlayConfig;
+import com.dhl.g05.simulation.statemachine.IGameResolver;
+import com.dhl.g05.simulation.statemachine.IInjury;
+import com.dhl.g05.simulation.statemachine.ITradingConfig;
+import com.dhl.g05.simulation.statemachine.ITraining;
 
 public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionModel,ITeamModel,IPlayerModel,IFreeAgentModel{
 
