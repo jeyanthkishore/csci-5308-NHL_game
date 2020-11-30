@@ -15,6 +15,7 @@ import com.dhl.g05.simulation.leaguesimulation.IStandingModel;
 public class PlayerDraft implements IPlayerDraft {
 
 	static final Logger logger = LogManager.getLogger(PlayerDraft.class);
+	private static final int NUMBER_OF_ROUNDS=7;
 	private int draftPickTeamSubstraction;
 	private Map<Integer, List<Map<IStandingModel, IStandingModel>>> pickOrderAfterTrading;
 	IGenerateNewPlayers youngPlayers =ApplicationConfiguration.instance().getModelConcreteFactoryState().createNewPlayers();
@@ -66,7 +67,7 @@ public class PlayerDraft implements IPlayerDraft {
 					teamsEligibleForPickLater);
 			pickNewPlayers(teamOrder, newPlayers);
 		} catch (Exception e) {
-			logger.info("No League Standing, cannot perform player Draft");
+			logger.info("Exit player Draft");
 		}
 	}
 
@@ -75,7 +76,7 @@ public class PlayerDraft implements IPlayerDraft {
 		Map<Integer, List<IStandingModel>> pickOrder = new HashMap<>();
 		Map<Integer, List<Map<IStandingModel, IStandingModel>>> pickOrderAfterTrading = getPickOrderAfterTrading();
 		try {
-			for (int i = 1; i <= 7; i++) {
+			for (int i = 1; i <= NUMBER_OF_ROUNDS; i++) {
 				List<IStandingModel> teamsPickOrder = new ArrayList<>();
 				if (pickOrderAfterTrading.get(i) == null) {
 					continue;
@@ -127,7 +128,7 @@ public class PlayerDraft implements IPlayerDraft {
 
 	public void pickNewPlayers(Map<Integer, List<IStandingModel>> teamOrder, List<IPlayer> newPlayers) {
 		try {
-			for (int i = 1; i <= 7; i++) {
+			for (int i = 1; i <= NUMBER_OF_ROUNDS; i++) {
 				for (IStandingModel team : teamOrder.get(i)) {
 					List<IPlayer> playersInTeam = team.getTeam().getPlayerList();
 					playersInTeam.add((newPlayers.get(0)));
@@ -143,7 +144,7 @@ public class PlayerDraft implements IPlayerDraft {
 	}
 
 	public void callRoasterToAdjustPlayers(Map<Integer, List<IStandingModel>> teamOrder) {
-		for (int i = 1; i <= 7; i++) {
+		for (int i = 1; i <= NUMBER_OF_ROUNDS; i++) {
 			for (IStandingModel team : teamOrder.get(i)) {
 				if (team.getTeam().getPlayerList().size() > 30) {
 					teamHavingExcessPlayers = team.getTeam();
