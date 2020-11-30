@@ -6,8 +6,7 @@ public class FileOperation implements IFileOperation{
 
 	@Override
 	public String getFilePath(String teamName) {
-		String path = FileOperationConstant.DirectoryPath.getValue()+teamName
-				+FileOperationConstant.FileExtension.getValue();
+		String path = teamName+FileOperationConstant.FileExtension.getValue();
 		return path;
 	}
 
