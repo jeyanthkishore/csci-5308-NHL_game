@@ -105,7 +105,7 @@ public class WeakTeam implements IWeakTeam {
 		for (IPlayer player : weakestPLayersToTrade) {
 			if (player.getPosition().equals(weakPosition)) {
 				offeredPlayers.add(player);
-				logger.info("Player offered is : "+ player.getPlayerName() + "and position is "+ player.getPosition());
+				logger.info("Player(s) offered is : "+ player.getPlayerName() + "and position is "+ player.getPosition());
 				strength += player.getPlayerStrength();
 				weakPlayers++;
 			}

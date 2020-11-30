@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.dhl.g05.model.PlayerDraft;
 import com.dhl.g05.simulation.leaguesimulation.IStandingModel;
 
 public class TradePickToPlayerDraft implements ITradePickToPlayerDraft {
@@ -71,8 +68,7 @@ public class TradePickToPlayerDraft implements ITradePickToPlayerDraft {
 				List<Map<IStandingModel, IStandingModel>> a = finalRoundtradeTeamPick.get(i);
 				for (Map<IStandingModel, IStandingModel> list : a) {
 					for (Map.Entry<IStandingModel, IStandingModel> standingTeam : list.entrySet()) {
-						logger.info(" Team " + standingTeam.getKey().getTeam().getTeamName() + " pick taken by "
-								+ standingTeam.getValue().getTeam().getTeamName());
+						logger.info(" Team " + standingTeam.getKey().getTeam().getTeamName() + " pick taken by " + standingTeam.getValue().getTeam().getTeamName());
 					}
 				}
 			}

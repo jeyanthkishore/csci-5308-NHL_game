@@ -47,7 +47,7 @@ public class InitiateTradeOffer implements IIntiateTradeOffer {
 						if (hasBestTeamToTrade == true) {
 							tradeDecision.TradeResult(trade, teamInitiatingTrade, teamAcceptingTrade);
 						} else 
-							logger.info("No suitable Team to trade with");
+							logger.info("No suitable Team for "+ t.getTeamName() + "to trade with");
 							break;
 						}
 					}

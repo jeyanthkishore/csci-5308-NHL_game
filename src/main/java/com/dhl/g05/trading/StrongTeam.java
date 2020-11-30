@@ -2,10 +2,8 @@ package com.dhl.g05.trading;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
@@ -67,7 +65,6 @@ public class StrongTeam implements IStrongTeam {
 		boolean isTradePossible = false;
 		double strengthOfStrongestPLayer = 0.00;
 		List<IPlayer> playersRequested = new ArrayList<>();
-		//IWeakTeam teamInitiatingTrade = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createWeakteam();
 		String position = teamInitiatingTrade.getOfferedPlayerPosition();
 		int numberOfPlayersToTrade = teamInitiatingTrade.getNumberOfPlayersOffered();
 		ISortPlayerStrength sortPlayer = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createSortplayerstrength();
@@ -105,11 +102,12 @@ public class StrongTeam implements IStrongTeam {
 							setStrengthOfStrongestPlayers(strengthOfPlayers);
 							setStrongTeam(team);
 							for (IPlayer player : playersRequested) {
-								logger.info("Player requested is " + player.getPlayerName() + "and position is "+ player.getPosition());
+								logger.info("Players requested is " + player.getPlayerName() + "and position is "+ player.getPosition());
 							}
 							setStrongestPlayersToTrade(playersRequested);
 							this.setConferenceName(conference.getConferenceName());
 							this.setDivisionName(division.getDivisionName());
+							logger.info("Trade is potentially possible");
 							isTradePossible = true;
 						}
 					}

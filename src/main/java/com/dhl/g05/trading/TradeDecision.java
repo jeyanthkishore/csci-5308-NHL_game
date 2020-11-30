@@ -36,14 +36,17 @@ public class TradeDecision implements ITradeDecision {
 				do {
 					if (response == 1) {
 						showDetails.sendMessage("You have decided to accept the trade! Bravo !");
+						logger.info(" User has accepted the trade ");
 						tradeAccepeted = true;
 						break;
 					} else if (response == 2) {
 						showDetails.sendMessage("You have decided not to accept the trade! Good Decision !");
+						logger.info(" User has not accepted the trade ");
 						tradeAccepeted = false;
 						break;
 					} else {
 						showDetails.sendMessage("OOPS invalid entry, try again !");
+						logger.info(" Not the right input : InputMismatch");
 						response = showDetails.getTradeDecision();
 					}
 				} while (response == 1 || response == 2);
@@ -60,12 +63,12 @@ public class TradeDecision implements ITradeDecision {
 			setTradeDecision(tradeAccepeted);
 			if (tradeAccepeted == true) {
 			teamInitiatingTrade.getWeakTeam().setLossCount(0);
-			logger.info("Trade Accepted");
+			logger.info(" Trade Accepted ");
 			swap.swapPlayers(teamInitiatingTrade.getWeakTeam(), teamAcceptingTrade.getStrongTeam(),
 					teamInitiatingTrade.getPlayersOffered(), teamAcceptingTrade.getStrongestPlayersToTrade());
 		}
 	} catch (Exception e) {
-		logger.info("Need a strong and a weak team for making a trading decission");
+		logger.info("Need a strong team and a weak team for making a trading decission");
 	}
 }
 }
