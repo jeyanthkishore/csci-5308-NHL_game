@@ -4,13 +4,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.simulation.SimulationAbstractFactory;
-import com.dhl.g05.simulation.statemachine.AgingConstant;
-import com.dhl.g05.simulation.statemachine.IAging;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class AgingConfigTest {
 

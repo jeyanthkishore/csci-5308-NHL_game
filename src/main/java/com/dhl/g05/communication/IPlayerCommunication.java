@@ -7,18 +7,18 @@ import com.dhl.g05.model.IFreeAgent;
 
 public interface IPlayerCommunication {
 
-	public void sendMessage(String message);
+	void sendMessage(String message);
 
-	public String getResponse();
+	String getResponse();
 
-	public int getResponseNumber();
+	int getResponseNumber();
 
-	public String getFile();
+	String getFile();
 
-	public void sendMessage(List<IFreeAgent> free);
+	void displayFreeAgentList(List<IFreeAgent> freeAgentList);
 
-	public void sendCoachMessage(List<ICoach> coachList);
+	void displayCoachList(List<ICoach> coachList);
 
-	public void sendManagerMessage(List<String> managerList);
+	void displayManagerList(List<String> managerList);
 
 }

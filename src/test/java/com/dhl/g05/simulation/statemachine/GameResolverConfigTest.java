@@ -8,8 +8,6 @@ import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
-import com.dhl.g05.simulation.statemachine.GameResolverConstant;
-import com.dhl.g05.simulation.statemachine.IGameResolver;
 
 public class GameResolverConfigTest {
 

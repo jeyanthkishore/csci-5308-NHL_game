@@ -21,9 +21,7 @@ public interface IGamePlayConfig {
 	IAging getAgingConfig();
 
 	ITradingConfig getTradingConfig();
-
-	/*IGameSimulationConfig getGameSimulationConfig();
-
-	void setGameSimulationConfig(IGameSimulationConfig gameSimulationConfig);*/
+	
+	GamePlayConfigConstant validate();
 
 }

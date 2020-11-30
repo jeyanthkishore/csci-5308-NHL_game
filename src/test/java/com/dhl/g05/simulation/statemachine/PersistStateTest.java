@@ -15,15 +15,12 @@ import org.junit.Test;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.ApplicationTestConfiguration;
 import com.dhl.g05.database.DatabaseMockAbstractFactory;
-import com.dhl.g05.database.DatabaseMockOperationFactoryState;
 import com.dhl.g05.database.DatabaseState;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.leaguesimulation.IScheduleModel;
 import com.dhl.g05.simulation.leaguesimulation.ScheduleModel;
 import com.dhl.g05.simulation.leaguesimulation.StandingMockData;
-import com.dhl.g05.simulation.statemachine.AbstractState;
-import com.dhl.g05.simulation.statemachine.AdvanceTimeState;
 
 public class PersistStateTest {
 	private AbstractState state;
