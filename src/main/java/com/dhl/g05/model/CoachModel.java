@@ -21,7 +21,7 @@ public class CoachModel implements ICoach{
 	@Expose
 	private double saving;
 
-	public CoachModel(){
+	public CoachModel() {
 		setName(null);
 		setSkating(0.0);
 		setSkating(0.0);
@@ -29,7 +29,7 @@ public class CoachModel implements ICoach{
 		setSaving(0.0);
 	}
 
-	public CoachModel(String name, double skating, double shooting, double checking, double saving){
+	public CoachModel(String name, double skating, double shooting, double checking, double saving) {
 		this.name = name;
 		this.skating = skating;
 		this.shooting = shooting;
@@ -99,24 +99,21 @@ public class CoachModel implements ICoach{
 		return CoachConstant.Success;
 	}
 
-	@Override
-	public boolean isCoachNameNull() {
+	private boolean isCoachNameNull() {
 		if(name == null) {
 			return true;
 		}
 		return false;
 	}
 
-	@Override
-	public boolean isCoachNameEmpty() {
+	private boolean isCoachNameEmpty() {
 		if(name.isEmpty()) {
 			return true;
 		}
 		return false;
 	}
 
-	@Override
-	public boolean isCoachStatNotValid() {
+	private boolean isCoachStatNotValid() {
 		logger.info("Validating coach statistics");
 		if (validateStat(skating) && validateStat(shooting) && validateStat(checking) && validateStat(saving)) {
 			return false;

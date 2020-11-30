@@ -127,38 +127,5 @@ public class CoachModelTest {
 		coach.setChecking(0.1);
 		assertEquals(CoachConstant.Success, coach.validate());
 	}
-
-	@Test
-	public void isCoachNameNullTest() {
-		ICoach coach = modelAbstractFactory.createCoachModel();
-		assertTrue(coach.isCoachNameNull());
-	}
-
-	@Test
-	public void isCoachNameEmptyTest() {
-		ICoach coach = modelAbstractFactory.createCoachModel();
-		coach.setName("");
-		assertTrue(coach.isCoachNameEmpty());
-	}
-
-	@Test
-	public void isCoachStatNotValidTest() {
-		ICoach coach = modelAbstractFactory.createCoachModel();
-		coach.setSkating(0.5);
-		coach.setShooting(0.3);
-		coach.setChecking(0.5);
-		coach.setSaving(0.6);
-		assertEquals(coach.isCoachStatNotValid(),false);
-	}
-
-	@Test
-	public void isCoachStatValidTest() {
-		ICoach coach = modelAbstractFactory.createCoachModel();
-		coach.setSkating(1.5);
-		coach.setShooting(0.3);
-		coach.setChecking(0.5);
-		coach.setSaving(0.6);
-		assertEquals(coach.isCoachStatNotValid(),true);
-	}
 }
 
