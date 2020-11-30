@@ -1,20 +1,24 @@
 package com.dhl.g05.model;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.gson.annotations.Expose;
 import com.mysql.cj.util.StringUtils;
 
 public class ConferenceModel implements IConference {
-
+	static final Logger logger = LogManager.getLogger(ConferenceModel.class);
 	@Expose
 	private String conferenceName;
 	@Expose
 	private List<IDivision> divisions;
 	
 	public ConferenceModel() {
-		// TODO Auto-generated constructor stub
+		setConferenceName(null);
+		setDivisionDetails(null);
 	}
-
+	
 	@Override
 	public void setConferenceName(String conference) {
 		this.conferenceName = conference;
@@ -37,6 +41,7 @@ public class ConferenceModel implements IConference {
 
 	@Override
 	public ConferenceConstant validate() {
+		logger.info("Validating Conference Details");
 		if(isNameEmptyOrNull()) {
 			return ConferenceConstant.ConferenceNameEmpty;
 		}
