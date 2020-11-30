@@ -11,6 +11,7 @@ public class ImportState extends AbstractState {
 	private IPlayerCommunication communication;
 	private ILeagueCreator creator;
 	private String fileName;
+	private static SimulationAbstractFactory simulationFactory;
 
 	public ImportState(IPlayerCommunication communication) {
 		this.communication = communication;
@@ -18,6 +19,7 @@ public class ImportState extends AbstractState {
 
 	@Override
 	public boolean enter() {
+		simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		communication.sendMessage(StateMachineConstant.ImportStart.getValue());
 		fileName = communication.getFile();
 		return true;
@@ -25,7 +27,6 @@ public class ImportState extends AbstractState {
 
 	@Override
 	public boolean performStateTask() {
-		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		if (StringUtils.isNullOrEmpty(fileName)) {
 			return true;
 		} 
@@ -46,11 +47,10 @@ public class ImportState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		if (StringUtils.isNullOrEmpty(fileName)) {
-			this.setNextState(stateFactory.createLoadTeamState()); 
+			this.setNextState(simulationFactory.createLoadTeamState()); 
 		} else {
-			this.setNextState(stateFactory.createCreateTeamState());
+			this.setNextState(simulationFactory.createCreateTeamState());
 		}
 		return true;
 	}

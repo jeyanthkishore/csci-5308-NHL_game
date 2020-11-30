@@ -34,8 +34,8 @@ public class PlayerChoiceState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
-		this.setNextState(stateFactory.createStimulateState(choice));
+		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		this.setNextState(simulationFactory.createStimulateState(choice));
 		return true;
 	}
 }

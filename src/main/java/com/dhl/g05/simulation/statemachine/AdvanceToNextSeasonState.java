@@ -26,7 +26,7 @@ public class AdvanceToNextSeasonState extends AbstractState{
 	@Override
 	public boolean enter() {
 		league = this.getLeague();
-		communication.sendMessage("Stanley Cup Winner is ");
+		communication.sendMessage(StateMachineConstant.StanleyCupWinner.getValue());
 		ITeam winTeam= league.getLeagueSchedule().getStanleyCupWinner();
 		communication.sendMessage(winTeam.getTeamName());
 		return true;
@@ -69,8 +69,8 @@ public class AdvanceToNextSeasonState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
-		this.setNextState(stateFactory.createPersistState());
+		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		this.setNextState(simulationFactory.createPersistState());
 		return true;
 	}
 

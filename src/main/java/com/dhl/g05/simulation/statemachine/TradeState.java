@@ -26,9 +26,9 @@ public class TradeState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance()
+		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance()
 				.getSimulationConcreteFactoryState();
-		this.setNextState(stateFactory.createAgingState());
+		this.setNextState(simulationFactory.createAgingState());
 		return true;
 	}
 

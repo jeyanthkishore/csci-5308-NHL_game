@@ -80,4 +80,7 @@ public interface IPlayer {
 	FreeAgentConstant validate();
 
 	boolean checkPlayerInjury(IPlayerInjured playerInjured, IPlayer player, IInjury injury);
+	
+	IPlayer convertFreeAgentToPlayer(IFreeAgent freeAgent,boolean captainValue);
+	
 }
