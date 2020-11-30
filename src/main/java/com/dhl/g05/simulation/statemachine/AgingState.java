@@ -1,8 +1,10 @@
 package com.dhl.g05.simulation.statemachine;
 
 import java.time.LocalDate;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
@@ -64,8 +66,12 @@ public class AgingState extends AbstractState{
 		
 		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		LocalDate currentDate = league.getLeagueCurrentDate();
-		if (league.getLeagueSchedule().isStanleyCupWinnerDetermined() && DateHandler.instance().isTodayPlayerDraftDate(currentDate)) {
-			this.setNextState(stateFactory.createPlayerDraftState());
+		if (league.getLeagueSchedule().isStanleyCupWinnerDetermined()) {
+			if(DateHandler.instance().isTodayPlayerDraftDate(currentDate)) {
+					this.setNextState(stateFactory.createPlayerDraftState());
+			}else {
+				this.setNextState(stateFactory.createAdvancedTimeState());
+			}
 		}
 		else {
 			this.setNextState(stateFactory.createPersistState());

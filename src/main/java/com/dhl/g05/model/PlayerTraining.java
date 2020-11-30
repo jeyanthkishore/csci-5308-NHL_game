@@ -2,11 +2,12 @@ package com.dhl.g05.model;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.statemachine.IInjury;
 
 public class PlayerTraining implements IPlayerTraining {
-
+	
 	static final Logger logger = LogManager.getLogger(PlayerTraining.class);
 	private IInjury injury;
 	private IRandomNumberFactory randomGeneratorFactory;
@@ -21,8 +22,8 @@ public class PlayerTraining implements IPlayerTraining {
 
 	public IPlayer performTrainingForPlayer(IPlayer player, ICoach headCoach,IInjury injury) {
 		logger.info("Performing Training for Player");
+		
 		this.injury = injury;
-
 		Boolean playerInjured = false;
 
 		if(trainingAlgorithm(headCoach.getChecking())) {
@@ -61,13 +62,13 @@ public class PlayerTraining implements IPlayerTraining {
 			playerInjured = isPlayerInjured(player);
 		}
 		
-		player.setPlayerStrength(player.calculatePlayerStrength());
 		player.setInjuryStatus(playerInjured);
 		return player;
 	}
 
 	private Boolean isPlayerInjured(IPlayer player) {
-		logger.info("Checking injur for "+player.getPlayerName());
+		logger.info("Checking injury for "+player.getPlayerName());
+		
 		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 		IPlayerInjured playerProgress= modelFactory.createPlayerInjury();
 		if(playerProgress.checkPlayerInjury(player,injury)) {

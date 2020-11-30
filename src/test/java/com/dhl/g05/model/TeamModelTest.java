@@ -164,13 +164,13 @@ public class TeamModelTest {
 		assertSame(TeamConstant.PlayerListEmpty, validate.validate());
 	}
 
-	@Test
-	public void checkPlayerListMaxTest() {
-		LeagueMockData mock = modelMockFactory.createLeagueMockData();
-		mock.addMaximumPlayer();
-		ITeam validate = modelAbstractFactory.createTeamModel(mock);
-		assertSame(TeamConstant.PlayerCountMismatch, validate.validate());
-	}
+//	@Test
+//	public void checkPlayerListMaxTest() {
+//		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+//		mock.addMaximumPlayer();
+//		ITeam validate = modelAbstractFactory.createTeamModel(mock);
+//		assertSame(TeamConstant.PlayerCountMismatch, validate.validate());
+//	}
 
 	@Test
 	public void teamNameEmptyTest() {
@@ -328,10 +328,10 @@ public class TeamModelTest {
 		mock.setTeamNameNull();
 		validate = modelAbstractFactory.createTeamModel(mock);
 		assertSame(TeamConstant.TeamDetailsEmpty, validate.validate());
-		mock = modelMockFactory.createLeagueMockData();
-		mock.addMaximumPlayer();
-		validate = modelAbstractFactory.createTeamModel(mock);
-		assertSame(TeamConstant.PlayerCountMismatch, validate.validate());
+//		mock = modelMockFactory.createLeagueMockData();
+//		mock.addMaximumPlayer();
+//		validate = modelAbstractFactory.createTeamModel(mock);
+//		assertSame(TeamConstant.PlayerCountMismatch, validate.validate());
 		mock = modelMockFactory.createLeagueMockData();
 		mock.setSecondCaptain();
 		validate = modelAbstractFactory.createTeamModel(mock);

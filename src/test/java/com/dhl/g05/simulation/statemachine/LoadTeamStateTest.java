@@ -30,7 +30,7 @@ public class LoadTeamStateTest {
 	
 	@Test
 	public void loadTeamTest() {
-		String userInput = "serializeLeague";
+		String userInput = "deserializeLeague";
 		ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(testInput);
         

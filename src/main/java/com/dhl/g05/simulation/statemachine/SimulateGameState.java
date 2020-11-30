@@ -78,6 +78,7 @@ public class SimulateGameState extends AbstractState{
 		}
 
 		logger.info("Match Won by "+teamWon.getTeamName());
+		logger.info("Match Lost by "+teamLost.getTeamName());
 		schedule.setWinningTeam(teamWon);
 		league.getLeagueSchedule().updateScheduleAfterGame(schedule);
 		league.getLeagueStanding().updateStatisticsForWinningTeam(winningTeamConference, winningTeamDivision, teamWon);

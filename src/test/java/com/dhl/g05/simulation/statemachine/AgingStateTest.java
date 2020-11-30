@@ -96,7 +96,7 @@ public class AgingStateTest {
 	}
 	
 	@Test
-	public void performTaskPersistStateTest() {
+	public void performTaskAdvanceTimeStateTest() {
 		state = simulationFactory.createAgingState();
 		ILeague leagueMock = agingMockLeague();
 		leagueMock.setLeagueCurrentDate(LocalDate.of((Year.now().getValue()), Month.JULY, 15));
@@ -105,7 +105,7 @@ public class AgingStateTest {
 		state.performStateTask();
 		state.exit();
 		assertEquals((Year.now().getValue())-playerAge,player1.getAge());
-		assertTrue(state.getNextState() instanceof PersistState);
+		assertTrue(state.getNextState() instanceof AdvanceTimeState);
 	}
 	
 	@Test
@@ -120,6 +120,21 @@ public class AgingStateTest {
 		state.exit();
 		assertEquals((Year.now().getValue()+1)-playerAge,player1.getAge());
 		assertTrue(state.getNextState() instanceof PlayerDraftState);
+	}
+	
+	@Test
+	public void performPersistStateTest() {
+		state = simulationFactory.createAgingState();
+		ILeague leagueMock = agingMockLeague();
+		leagueMock.setLeagueCurrentDate(LocalDate.of((Year.now().getValue()+1), Month.JULY, 19));
+		leagueMock.getLeagueSchedule().getPlayoffSeasonSchedule().get(0).setIsGameCompleted(false);
+		state = simulationFactory.createAgingState();
+		state.setLeague(leagueMock);
+		state.enter();
+		state.performStateTask();
+		state.exit();
+		assertEquals((Year.now().getValue()+1)-playerAge,player1.getAge());
+		assertTrue(state.getNextState() instanceof PersistState);
 	}
 	
 }

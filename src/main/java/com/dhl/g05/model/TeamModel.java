@@ -136,9 +136,9 @@ public class TeamModel implements ITeam {
 		if (isPlayerListEmpty()) {
 			return TeamConstant.PlayerListEmpty;
 		}
-		if (isPlayerListValid()) {
-			return TeamConstant.PlayerCountMismatch;
-		}
+//		if (isPlayerListValid()) {
+//			return TeamConstant.PlayerCountMismatch;
+//		}
 		if (containOneTeamCaptain() == 0) {
 			return TeamConstant.NoTeamCaptain;
 		}

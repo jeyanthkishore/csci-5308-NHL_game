@@ -1,12 +1,18 @@
 package com.dhl.g05.simulation;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.temporal.TemporalAdjusters;
-import static java.time.temporal.ChronoUnit.DAYS;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class DateHandler {
+	
+	static final Logger logger = LogManager.getLogger(DateHandler.class);
 	private static DateHandler instance;
 	private static LocalDate regularSeasonStartDate;
 	private static LocalDate regularSeasonEndDate;
@@ -16,6 +22,8 @@ public class DateHandler {
 	private static LocalDate playerDraftDate;
 
 	public void performDateAssignment(int year) {
+		logger.info("Assign date for simulation in year :" +year);
+		
 		LocalDate regularSeason = LocalDate.of(year + 1, Month.APRIL, 1);
 		regularSeasonStartDate = LocalDate.of(year, Month.OCTOBER, 1);
 		regularSeasonEndDate = regularSeason.with(TemporalAdjusters.firstInMonth(DayOfWeek.SATURDAY));
@@ -34,10 +42,14 @@ public class DateHandler {
 	}
 
 	public boolean isRegularSeasonEndDate(LocalDate inputDate) {
+		logger.info("Checking if currentdate is regular season end date");
+		
 		return inputDate.isEqual(regularSeasonEndDate);
 	}
 
 	public boolean isTradeDeadlinePassed(LocalDate inputDate) {
+		logger.info("Checking if Trade deadline is over");
+		
 		return inputDate.isAfter(tradeDeadLine);
 	}
 
@@ -58,18 +70,24 @@ public class DateHandler {
 	}
 
 	public boolean isRegularSeasonActive(LocalDate date) {
+		logger.info("Checking if current date is in regular season");
+		
 		return date.isEqual(regularSeasonStartDate) ||
 				(date.isAfter(regularSeasonStartDate) && date.isBefore(regularSeasonEndDate)) ||
 				date.isEqual(regularSeasonEndDate);
 	}
 
 	public boolean isPlayoffSeasonActive(LocalDate date) {
+		logger.info("Checking if current date is in playoff season");
+		
 		return date.isEqual(playOffStartDate) ||
 				(date.isAfter(playOffStartDate) && date.isBefore(playOffEndDate)) ||
 				date.isEqual(playOffEndDate);
 	}
 	
 	public boolean isTodayPlayerDraftDate(LocalDate currentdate) {
+		logger.info("Checking if current date is Player Draft Date");
+		
 		return currentdate.isEqual(playerDraftDate);
 	}
 	

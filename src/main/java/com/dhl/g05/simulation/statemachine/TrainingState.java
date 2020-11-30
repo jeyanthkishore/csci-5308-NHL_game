@@ -48,6 +48,8 @@ public class TrainingState extends AbstractState{
         			}
         		}
         	}
+        	logger.info("Resetting DaysSinceStatIncrease");
+        	league.resetDaysSinceStatIncrease();
         }
 		return true;
 	}

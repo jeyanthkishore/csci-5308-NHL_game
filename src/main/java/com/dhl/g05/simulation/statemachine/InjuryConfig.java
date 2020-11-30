@@ -2,12 +2,17 @@ package com.dhl.g05.simulation.statemachine;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.gson.annotations.Expose;
+
 public class InjuryConfig implements IInjury {
 
     static final Logger logger = LogManager.getLogger(InjuryConfig.class);
     private int MIN_RANDOM_INJURY_CHANCE = -1;
+    @Expose
     private double randomInjuryChance;
+    @Expose
     private int injuryDaysLow;
+    @Expose
     private int injuryDaysHigh;
 
     @Override
