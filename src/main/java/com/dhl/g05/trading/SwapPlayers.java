@@ -23,6 +23,6 @@ public class SwapPlayers implements ISwapPlayers {
 		weakTeamPlayers.removeAll(weakPlayersToTrade);
 		weakTeam.setPlayerList(weakTeamPlayers);
 		strongTeam.setPlayerList(strongTeamPlayers);
-		logger.info("Player swapped");
+		logger.info("Players swapped");
 	}
 }

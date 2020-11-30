@@ -19,6 +19,7 @@ public class PlayerDraft implements IPlayerDraft {
 	private Map<Integer, List<Map<IStandingModel, IStandingModel>>> pickOrderAfterTrading;
 	IGenerateNewPlayers youngPlayers =ApplicationConfiguration.instance().getModelConcreteFactoryState().createNewPlayers();
     ITeam teamHavingExcessPlayers = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
+    
     public int getDraftPickTeamSubstraction() {
 		return draftPickTeamSubstraction;
 	}
@@ -37,6 +38,7 @@ public class PlayerDraft implements IPlayerDraft {
 	}
 
 	public void playerDraft1(ILeagueStanding leaguestanding) {
+		
 		List<IStandingModel> standingForAllConference = new ArrayList<>();
 		List<IStandingModel> teamsEligibleForPickFirst = new ArrayList<>();
 		List<IStandingModel> teamsEligibleForPickLater = new ArrayList<>();
@@ -69,6 +71,7 @@ public class PlayerDraft implements IPlayerDraft {
 	}
 
 	public Map<Integer, List<IStandingModel>> createPickOrder(List<IStandingModel> teamsEligibleForPickFirst,List<IStandingModel> teamsEligibleForPickLater) {
+		
 		Map<Integer, List<IStandingModel>> pickOrder = new HashMap<>();
 		Map<Integer, List<Map<IStandingModel, IStandingModel>>> pickOrderAfterTrading = getPickOrderAfterTrading();
 		try {
@@ -84,7 +87,8 @@ public class PlayerDraft implements IPlayerDraft {
 							for (Map.Entry<IStandingModel, IStandingModel> teamPair : teamPairTrading.entrySet()) {
 								if ((teamPair.getKey().getTeam().getTeamName().equals(teamToPick.getTeam().getTeamName()))&& (teamPair.getKey().getConference().getConferenceName().equals(teamToPick.getConference().getConferenceName())) && (teamPair.getKey().getDivision().getDivisionName().equals(teamToPick.getDivision().getDivisionName()))) {
 									teamsPickOrder.add(teamPair.getValue());
-									logger.info("Round" + i + " team pick is " + teamPair.getValue().getTeam().getTeamName());
+									logger.info("Round" + i + " team pick was " + teamPair.getKey().getTeam().getTeamName());
+									logger.info("Pick taken by team after trading  " + teamPair.getValue().getTeam().getTeamName());
 									break;
 								}
 							}
@@ -101,7 +105,8 @@ public class PlayerDraft implements IPlayerDraft {
 							for (Map.Entry<IStandingModel, IStandingModel> teamPair : teamPairTrading.entrySet()) {
 								if ((teamPair.getKey().getTeam().getTeamName().equals(teamToPick.getTeam().getTeamName()))&& (teamPair.getKey().getConference().getConferenceName().equals(teamToPick.getConference().getConferenceName()))&& (teamPair.getKey().getDivision().getDivisionName().equals(teamToPick.getDivision().getDivisionName()))) {
 									teamsPickOrder.add(teamPair.getValue());
-									logger.info("Round" + i + " team pick is " + teamPair.getValue().getTeam().getTeamName());
+									logger.info("Round" + i + " team pick was " + teamPair.getKey().getTeam().getTeamName());
+									logger.info("Pick taken by team after trading " + teamPair.getValue().getTeam().getTeamName());
 									break;
 								}
 							}
