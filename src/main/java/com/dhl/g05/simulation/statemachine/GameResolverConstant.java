@@ -14,4 +14,5 @@ public enum GameResolverConstant {
 	public String getValue() {
 		return value;
 	}
+
 }

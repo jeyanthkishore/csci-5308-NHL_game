@@ -16,4 +16,5 @@ public enum DivisionConstant {
 	public String getValue() {
 		return value;
 	}
+
 }

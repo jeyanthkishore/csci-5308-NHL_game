@@ -1034,25 +1034,6 @@
       "isRetired": false
     }
   ],
-  "retiredPlayersList": [
-    {
-      "captain": false,
-      "injuredForNumberOfDays": 0,
-      "playerName": "Messi",
-      "position": "goalie",
-      "age": 0,
-      "birthDay": 20,
-      "birthMonth": 10,
-      "birthYear": 2000,
-      "skating": 10.0,
-      "shooting": 15.0,
-      "checking": 10.0,
-      "saving": 5.0,
-      "playerStrength": 0.0,
-      "isInjured": false,
-      "isRetired": false
-    }
-  ],
   "coaches": [
     {
       "name": "Diego Marradona",
@@ -1068,6 +1049,9 @@
     "Zidanie ZidaneThree"
   ],
   "gameplayConfig": {},
+  "daysSinceStatIncrease": 0,
+  "leagueStanding": {},
+  "leagueSchedule": {},
   "retiredFreeAgentsList": [
     {
       "playerName": "Cristiano Ronaldo",
@@ -1670,7 +1654,23 @@
       "isRetired": false
     }
   ],
-  "daysSinceStatIncrease": 0,
-  "leagueStanding": {},
-  "leagueSchedule": {}
+  "retiredPlayersList": [
+    {
+      "captain": false,
+      "injuredForNumberOfDays": 0,
+      "playerName": "Messi",
+      "position": "goalie",
+      "age": 0,
+      "birthDay": 20,
+      "birthMonth": 10,
+      "birthYear": 2000,
+      "skating": 10.0,
+      "shooting": 15.0,
+      "checking": 10.0,
+      "saving": 5.0,
+      "playerStrength": 0.0,
+      "isInjured": false,
+      "isRetired": false
+    }
+  ]
 }

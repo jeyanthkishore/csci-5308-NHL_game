@@ -1,4 +1,5 @@
 package com.dhl.g05.simulation.statemachine;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -75,4 +76,5 @@ public class AgingConfig implements IAging {
 		}
 		return true;
 	}
+
 }

@@ -1,14 +1,13 @@
 package com.dhl.g05.model;
 
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.google.gson.annotations.Expose;
 import com.mysql.cj.util.StringUtils;
 
 public class DivisionModel implements IDivision {
+
 	static final Logger logger = LogManager.getLogger(ConferenceModel.class);
 	@Expose
 	private String divisionName;
@@ -62,4 +61,5 @@ public class DivisionModel implements IDivision {
 		}
 		return false;
 	}
+
 }

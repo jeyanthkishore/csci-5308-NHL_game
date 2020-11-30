@@ -2,11 +2,11 @@ package com.dhl.g05.model;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.statemachine.IInjury;
 
 public class PlayerTraining implements IPlayerTraining {
+
 	static final Logger logger = LogManager.getLogger(PlayerTraining.class);
 	private IInjury injury;
 	private IRandomNumberFactory randomGeneratorFactory;

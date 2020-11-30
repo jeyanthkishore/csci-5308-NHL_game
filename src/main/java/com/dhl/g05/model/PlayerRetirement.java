@@ -45,26 +45,4 @@ public class PlayerRetirement implements IPlayerRetired{
         }
     }
 
-    @Override
-    public boolean isFreeAgentsRetired(ILeague league, IFreeAgent freeAgent) {
-        logger.info("Getting status of retirement of freeAgents");
-        boolean isFreeAgentRemovedFromLeague = league.removeRetiredFreeAgentsFromLeague(freeAgent);
-        if (isFreeAgentRemovedFromLeague) {
-            league.addRetiredFreeAgentToList(freeAgent);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean isPlayerRetired(ILeague league, IPlayer player, ITeam team) {
-        logger.info("Getting status of retirement of players");
-        boolean isPlayerRemovedFromTeam = team.removeRetiredPlayerFromTeam(player);
-        if (isPlayerRemovedFromTeam) {
-            league.addRetiredPlayersToList(player);
-            return true;
-        }
-        return false;
-    }
-
 }

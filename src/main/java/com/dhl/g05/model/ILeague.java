@@ -2,7 +2,6 @@ package com.dhl.g05.model;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import com.dhl.g05.database.IDeserializeModel;
 import com.dhl.g05.database.ISerializeModel;
 import com.dhl.g05.simulation.leaguesimulation.ILeagueSchedule;
@@ -29,29 +28,15 @@ public interface ILeague {
 
 	List<String> getManagerList();
 
-	boolean removeRetiredFreeAgentsFromLeague(IFreeAgent freeAgent);
-
-	List<IFreeAgent> getRetiredFreeAgentsList();
-
-	void setRetiredFreeAgentsList(List<IFreeAgent> retiredFreeAgentsList);
-
 	void setManagerList(List<String> managerList);
 
-	void addRetiredFreeAgentToList(IFreeAgent freeAgent);
-
 	void addNewFreeAgentsToLeague(List<IFreeAgent> freeAgentList);
-
-	void addRetiredPlayersToList(IPlayer player);
 
 	IGamePlayConfig getGamePlayConfig();
 
 	void setGamePlayConfig(IGamePlayConfig gamePlayConfig);
 
 	LeagueConstant validate();
-
-	List<IPlayer> getRetiredPlayersList();
-
-	void setRetiredPlayersList(List<IPlayer> retiredPlayersList);
 
 	void incrementDaysSinceStatIncrease();
 
@@ -78,5 +63,13 @@ public interface ILeague {
 	boolean saveLeagueObject(ISerializeModel saveLeague, String teamName);
 
 	ILeague loadLeagueObject(IDeserializeModel loadLeague, String teamName);
+
+	List<IFreeAgent> getRetiredFreeAgentsList();
+
+	void setRetiredFreeAgentsList(List<IFreeAgent> retiredFreeAgentsList);
+
+	List<IPlayer> getRetiredPlayersList();
+
+	void setRetiredPlayersList(List<IPlayer> retiredPlayersList);
 
 }

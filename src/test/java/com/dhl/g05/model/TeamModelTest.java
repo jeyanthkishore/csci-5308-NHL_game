@@ -70,15 +70,6 @@ public class TeamModelTest {
 	}
 
 	@Test
-	public void removeRetiredPlayerFromTeamTest() {
-		LeagueMockData mock = modelMockFactory.createLeagueMockData();
-		ITeam team = modelAbstractFactory.createTeamModel(mock);
-		List<IPlayer> players = mock.playerList;
-		team.removeRetiredPlayerFromTeam(players.get(0));
-		assertEquals(mock.playerList.size() - 1, team.getPlayerList().size() - 1);
-	}
-
-	@Test
 	public void getGeneralManagerNameTest() {
 		ITeam team = modelAbstractFactory.createTeamModel();
 		team.setGeneralManagerName("Rubinho");

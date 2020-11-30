@@ -157,23 +157,7 @@ public class LeagueModelTest {
 		assertSame(LeagueConstant.NoEvenConferenceCount,league.validate());
 	}
 
-	@Test
-	public void addRetiredFreeAgentToListTest() {
-		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
-		ILeague leagueModel = modelAbstractFactory.createLeagueModel(leagueMock);
-		leagueModel.addRetiredFreeAgentToList(new FreeAgentModel(leagueMock.freeAgentOne, leagueMock.positionForward, leagueMock.skating, leagueMock.shooting, leagueMock.checking, leagueMock.saving, leagueMock.birthDay, leagueMock.birthMonth, leagueMock.birthYear));
-		assertEquals(41,leagueModel.getRetiredFreeAgentsList().size());
-	}
 
-	@Test
-	public void addRetiredPlayersToListTest() {
-		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
-		ILeague leagueModel = modelAbstractFactory.createLeagueModel(leagueMock);
-		List<IPlayer> players = leagueMock.playerList;
-		IPlayer player = players.get(0);
-		leagueModel.addRetiredPlayersToList(player);
-		assertEquals(2,leagueModel.getRetiredPlayersList().size());
-	}
 
 	@Test
 	public void setRetiredFreeAgentsListTest() {
@@ -237,16 +221,6 @@ public class LeagueModelTest {
 		assertSame(league.getManagerList(), leagueMock.managerList);
 	}
 
-
-	@Test
-	public void removeRetiredFreeAgentsFromLeagueTest() {
-		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
-		ILeague leagueModel = modelAbstractFactory.createLeagueModel(leagueMock);
-		List<IFreeAgent> freeAgents = leagueMock.freeAgentList;
-		leagueModel.removeRetiredFreeAgentsFromLeague(freeAgents.get(0));
-		assertEquals(leagueMock.freeAgentList.size()-1,leagueModel.getFreeAgent().size()-1);
-
-	}
 	@Test
 	public void addNewFreeAgentsToLeagueSizeTest()
 	{

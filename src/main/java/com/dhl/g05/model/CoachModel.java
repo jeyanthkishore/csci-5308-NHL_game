@@ -1,7 +1,7 @@
 package com.dhl.g05.model;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.google.gson.annotations.Expose;
 
 public class CoachModel implements ICoach{
@@ -127,4 +127,5 @@ public class CoachModel implements ICoach{
 		}
 		return false;
 	}
+
 }

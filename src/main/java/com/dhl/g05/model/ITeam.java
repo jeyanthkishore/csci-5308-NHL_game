@@ -1,7 +1,6 @@
 package com.dhl.g05.model;
 
 import java.util.List;
-
 import com.dhl.g05.database.ITeamDatabaseOperation;
 
 public interface ITeam {
@@ -26,19 +25,17 @@ public interface ITeam {
 
 	void setCoachDetails(ICoach coachDetails);
 
-	public int getLossCount();
+	int getLossCount();
 
-	public void assignOneCaptain(ITeam team);
+	void assignOneCaptain(ITeam team);
 
-	boolean removeRetiredPlayerFromTeam(IPlayer player);
+	void adjustTeamRoasterAfterDraft(ITeam team);
 
-	public void adjustTeamRoasterAfterDraft(ITeam team);
+	void setLossCount(int lossCount);
 
-	public void setLossCount(int lossCount);
+	List<IPlayer> setActiveRoster(ITeam team);
 
-	public List<IPlayer> setActiveRoster(ITeam team);
-
-	public List<IPlayer> setInActiveRoster(ITeam team);
+	List<IPlayer> setInActiveRoster(ITeam team);
 
 	double getTeamStrength();
 

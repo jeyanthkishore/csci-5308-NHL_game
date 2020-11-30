@@ -3,10 +3,8 @@ package com.dhl.g05.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.database.IDeserializeModel;
 import com.dhl.g05.database.ISerializeModel;
@@ -27,15 +25,11 @@ public class LeagueModel implements ILeague {
 	@Expose
 	private List<IFreeAgent> freeAgents;
 	@Expose
-	private List<IPlayer> retiredPlayersList;
-	@Expose
 	private List<ICoach> coaches;
 	@Expose
 	private List<String> generalManagers;
 	@Expose
 	private IGamePlayConfig gameplayConfig;
-	@Expose
-	private List<IFreeAgent> retiredFreeAgentsList;
 	@Expose
 	private int daysSinceStatIncrease;
 	@Expose
@@ -44,6 +38,10 @@ public class LeagueModel implements ILeague {
 	private ILeagueStanding leagueStanding;
 	@Expose
 	private ILeagueSchedule leagueSchedule;
+	@Expose
+	private List<IFreeAgent> retiredFreeAgentsList;
+	@Expose
+	private List<IPlayer> retiredPlayersList;
 	private SimulationAbstractFactory simulationAbstractFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 
 	public LeagueModel() {
@@ -94,16 +92,6 @@ public class LeagueModel implements ILeague {
 	}
 
 	@Override
-	public List<IPlayer> getRetiredPlayersList() {
-		return retiredPlayersList;
-	}
-
-	@Override
-	public void setRetiredPlayersList(List<IPlayer> retiredPlayersList) {
-		this.retiredPlayersList = retiredPlayersList;
-	}
-
-	@Override
 	public List<ICoach> getFreeCoach() {
 		return coaches;
 	}
@@ -111,37 +99,6 @@ public class LeagueModel implements ILeague {
 	@Override
 	public void setFreeCoach(List<ICoach> freeCoach) {
 		this.coaches = freeCoach;
-	}
-
-	@Override
-	public boolean removeRetiredFreeAgentsFromLeague(IFreeAgent freeAgent) {
-		logger.info("Removing retired freeAgents from league");
-		int numberOfFreeAgents = freeAgents.size();
-		if (numberOfFreeAgents > 0) {
-			freeAgents.remove(freeAgent);
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public List<IFreeAgent> getRetiredFreeAgentsList() {
-		return retiredFreeAgentsList;
-	}
-
-	@Override
-	public void setRetiredFreeAgentsList(List<IFreeAgent> retiredFreeAgentsList) {
-		this.retiredFreeAgentsList = retiredFreeAgentsList;
-	}
-
-	@Override
-	public void addRetiredFreeAgentToList(IFreeAgent freeAgent) {
-		retiredFreeAgentsList.add(freeAgent);
-	}
-
-	@Override
-	public void addRetiredPlayersToList(IPlayer player) {
-		retiredPlayersList.add(player);
 	}
 
 	@Override
@@ -162,6 +119,26 @@ public class LeagueModel implements ILeague {
 	@Override
 	public void setGamePlayConfig(IGamePlayConfig gamePlayConfig) {
 		this.gameplayConfig = gamePlayConfig;
+	}
+
+	@Override
+	public List<IFreeAgent> getRetiredFreeAgentsList() {
+		return retiredFreeAgentsList;
+	}
+
+	@Override
+	public void setRetiredFreeAgentsList(List<IFreeAgent> retiredFreeAgentsList) {
+		this.retiredFreeAgentsList = retiredFreeAgentsList;
+	}
+
+	@Override
+	public List<IPlayer> getRetiredPlayersList() {
+		return retiredPlayersList;
+	}
+
+	@Override
+	public void setRetiredPlayersList(List<IPlayer> retiredPlayersList) {
+		this.retiredPlayersList = retiredPlayersList;
 	}
 
 	public ILeagueStanding getLeagueStanding() {

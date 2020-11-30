@@ -1,10 +1,8 @@
 package com.dhl.g05.simulation.statemachine;
 
 import java.time.LocalDate;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;

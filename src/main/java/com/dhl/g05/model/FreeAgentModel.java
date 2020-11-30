@@ -5,10 +5,8 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.statemachine.IAging;
 import com.google.gson.annotations.Expose;
@@ -57,8 +55,7 @@ public class FreeAgentModel implements IFreeAgent {
 		setRetirementStatus(false);
 	}
 
-	public FreeAgentModel(String playerName, String position, double skating, double shooting, double checking,
-			double saving, int birthDay, int birthMonth, int birthYear) {
+	public FreeAgentModel(String playerName, String position, double skating, double shooting, double checking, double saving, int birthDay, int birthMonth, int birthYear) {
 		this.playerName = playerName;
 		this.position = position;
 		this.skating = skating;

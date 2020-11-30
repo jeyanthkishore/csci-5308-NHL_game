@@ -1,13 +1,13 @@
 package com.dhl.g05.model;
-import java.util.List;
 
+import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.google.gson.annotations.Expose;
 import com.mysql.cj.util.StringUtils;
 
 public class ConferenceModel implements IConference {
+
 	static final Logger logger = LogManager.getLogger(ConferenceModel.class);
 	@Expose
 	private String conferenceName;
@@ -71,4 +71,5 @@ public class ConferenceModel implements IConference {
 		}
 		return false;
 	}
+
 }

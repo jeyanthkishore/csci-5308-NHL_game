@@ -1,7 +1,6 @@
 package com.dhl.g05.model;
 
 import java.time.LocalDate;
-
 import com.dhl.g05.simulation.statemachine.IAging;
 import com.dhl.g05.simulation.statemachine.IInjury;
 
@@ -59,7 +58,7 @@ public interface IPlayer {
 
 	int getBirthMonth();
 
-	public void setIsActive(boolean active);
+	void setIsActive(boolean active);
 
 	void setBirthMonth(int month);
 
@@ -71,7 +70,7 @@ public interface IPlayer {
 
 	void setAge(int age);
 
-	public boolean getIsActive();
+	boolean getIsActive();
 
 	void calculateAge(LocalDate leagueDate);
 

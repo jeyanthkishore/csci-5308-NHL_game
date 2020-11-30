@@ -2,7 +2,6 @@ package com.dhl.g05;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.statemachine.AbstractState;
 

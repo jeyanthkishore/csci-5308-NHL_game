@@ -3,10 +3,8 @@ package com.dhl.g05.model;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.database.ITeamDatabaseOperation;
 import com.google.gson.annotations.Expose;
@@ -127,17 +125,6 @@ public class TeamModel implements ITeam {
 			}
 		}
 		return teamStrength;
-	}
-
-	@Override
-	public boolean removeRetiredPlayerFromTeam(IPlayer player) {
-		logger.info("Removing retired player from team");
-		int numberOfPlayer = players.size();
-		if (numberOfPlayer > 0) {
-			players.remove(player);
-			return true;
-		}
-		return false;
 	}
 
 	@Override
@@ -302,4 +289,5 @@ public class TeamModel implements ITeam {
 		agent.ConvertPlayerToFreeAgent(releaseExtraPlayers);
 		team.setPlayerList(adjustedTeam);
 	}
+
 }

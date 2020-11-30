@@ -3,14 +3,13 @@ package com.dhl.g05.simulation.statemachine;
 import com.dhl.g05.model.ILeague;
 
 public abstract class AbstractState {
+
 	private AbstractState nextState;
 	private static ILeague league;
 	private static String currentUserTeam;
-
 	public abstract boolean enter();
 	public abstract boolean performStateTask();
 	public abstract boolean exit();
-
 
 	public void setNextState(AbstractState state) {
 		this.nextState = state;
@@ -35,4 +34,5 @@ public abstract class AbstractState {
 	public String getCurrentUserTeam() {
 		return currentUserTeam;
 	}
+
 }
