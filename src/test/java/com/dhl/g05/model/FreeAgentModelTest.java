@@ -221,54 +221,6 @@ public class FreeAgentModelTest {
 	}
 
 	@Test
-	public void isPlayerPositionValidTest() {
-		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
-		freeAgent.setPosition("forward");
-		assertFalse(freeAgent.isPlayerPositionNotValid());
-	}
-
-	@Test
-	public void isPlayerPositionNotValidTest() {
-		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
-		freeAgent.setPosition("Keeper");
-		assertTrue(freeAgent.isPlayerPositionNotValid());
-	}
-
-	@Test
-	public void isPlayerAgeValidTest() {
-		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
-		freeAgent.setAge(25);
-		assertFalse(freeAgent.isPlayerAgeNotValid());
-	}
-
-	@Test
-	public void isPlayerAgeNotValidTest() {
-		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
-		freeAgent.setAge(-2);
-		assertTrue(freeAgent.isPlayerAgeNotValid());
-	}
-
-	@Test
-	public void isPlayerStatValidTest() {
-		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
-		freeAgent.setSkating(12);
-		freeAgent.setShooting(10);
-		freeAgent.setChecking(6);
-		freeAgent.setSaving(15);
-		assertFalse(freeAgent.isPlayerStatNotValid());
-	}
-
-	@Test
-	public void isPlayerStatNotValidTest() {
-		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
-		freeAgent.setSkating(12);
-		freeAgent.setShooting(10);
-		freeAgent.setChecking(-6);
-		freeAgent.setSaving(15);
-		assertTrue(freeAgent.isPlayerStatNotValid());
-	}
-
-	@Test
 	public void playerPositionValidateTest() {
 		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setPlayerName("Alex");

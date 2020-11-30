@@ -51,8 +51,6 @@ public interface IFreeAgent {
 
 	double calculatePlayerStrength();
 
-	boolean isPlayerAgeNotValid();
-
 	boolean isbirthYearValid();
 
 	boolean isbirthDayValid();
@@ -61,11 +59,7 @@ public interface IFreeAgent {
 
 	boolean isbirthMonthValid();
 
-	boolean isPlayerStatNotValid();
-
 	FreeAgentConstant validate();
-
-	boolean isPlayerPositionNotValid();
 
 	boolean getInjuryStatus();
 
