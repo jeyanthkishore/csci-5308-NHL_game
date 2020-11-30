@@ -17,10 +17,6 @@ import com.dhl.g05.simulation.DateHandler;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.leaguesimulation.IScheduleModel;
 import com.dhl.g05.simulation.leaguesimulation.ScheduleModel;
-import com.dhl.g05.simulation.statemachine.AbstractState;
-import com.dhl.g05.simulation.statemachine.AgingState;
-import com.dhl.g05.simulation.statemachine.SimulateGameState;
-import com.dhl.g05.simulation.statemachine.TradeState;
 
 public class TrainingStateTest {
 	private AbstractState state;

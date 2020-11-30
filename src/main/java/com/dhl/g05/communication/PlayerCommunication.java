@@ -41,7 +41,7 @@ public class PlayerCommunication implements IPlayerCommunication, ITradeCommunic
 	}
 
 	@Override
-	public void sendMessage(List<IFreeAgent> free) {
+	public void displayFreeAgentList(List<IFreeAgent> free) {
 		Map<Integer, Integer> columnLength = new HashMap<Integer, Integer>();
 		StringBuilder format = new StringBuilder();
 		String header[] = { "Number", "Name", "Position", "Age", "Checking", "Skating", "Shooting", "Saving" };
@@ -74,7 +74,7 @@ public class PlayerCommunication implements IPlayerCommunication, ITradeCommunic
 	}
 
 	@Override
-	public void sendCoachMessage(List<ICoach> coachList) {
+	public void displayCoachList(List<ICoach> coachList) {
 		Map<Integer, Integer> columnLength = new HashMap<Integer, Integer>();
 		StringBuilder format = new StringBuilder();
 		String header[] = { "Number", "Name", "Checking", "Skating", "Shooting", "Saving" };
@@ -103,7 +103,7 @@ public class PlayerCommunication implements IPlayerCommunication, ITradeCommunic
 	}
 
 	@Override
-	public void sendManagerMessage(List<String> managerList) {
+	public void displayManagerList(List<String> managerList) {
 		Map<Integer, Integer> columnLength = new HashMap<Integer, Integer>();
 		StringBuilder format = new StringBuilder();
 		String header[] = { "Number", "Name" };

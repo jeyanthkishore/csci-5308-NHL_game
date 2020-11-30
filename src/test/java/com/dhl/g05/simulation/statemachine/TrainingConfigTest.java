@@ -4,10 +4,6 @@ import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
-import com.dhl.g05.simulation.statemachine.ITraining;
-import com.dhl.g05.simulation.statemachine.TrainingConfig;
-import com.dhl.g05.simulation.statemachine.TrainingConstant;
-
 public class TrainingConfigTest {
 	
 	@Test

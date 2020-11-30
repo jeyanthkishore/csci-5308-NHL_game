@@ -28,7 +28,7 @@ public class PlayerDraftStateTest {
 		state = simulationFactory.createPlayerDraftState();
 		DateHandler.instance().performDateAssignment(2020);
 	}
-
+	
 	@Test
 	public void playerDraftStateTest() {
 		SimulationMockAbstractFactory simulationMockFactory = ApplicationTestConfiguration.instance().getSimulationMockConcreteFactoryState();
@@ -38,12 +38,13 @@ public class PlayerDraftStateTest {
 		leagueStanding.setStandingList(standingList);
 		league.setLeagueStanding(leagueStanding);
 		league.setLeagueCurrentDate(LocalDate.of(2021, Month.JULY, 15));
-
+		
 		state.setLeague(league);
 		state.enter();
 		state.performStateTask();
 		state.exit();
 		assertTrue(state.getNextState() instanceof AdvanceToNextSeasonState);
 	}
-
+	
+	
 }

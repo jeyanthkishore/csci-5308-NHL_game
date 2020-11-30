@@ -14,7 +14,7 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 		this.gameResolver = null;
 		this.training = null;
 	}
-	
+
 	@Override
 	public void setGameResolverConfig(IGameResolver gameResolver) {
 		this.gameResolver = gameResolver;
@@ -29,12 +29,12 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 	public IAging getAgingConfig() {
 		return aging;
 	}
-	
+
 	@Override
 	public void setInjuriesConfig(IInjury injuries) {
 		this.injuries = injuries;
 	}
-	
+
 	@Override
 	public IInjury getInjuriesConfig() {
 		return injuries;
@@ -44,7 +44,7 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 	public void setTrainingConfig(ITraining training) {
 		this.training = training;
 	}
-	
+
 	@Override
 	public ITraining getTrainingConfig() {
 		return training;
@@ -54,7 +54,7 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 	public ITradingConfig getTradingConfig() {
 		return trading;
 	}
-	
+
 	@Override
 	public void setTradingConfig(ITradingConfig trading) {
 		this.trading = trading;
@@ -64,5 +64,15 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 	public IGameResolver getGameResolverConfig() {
 		return gameResolver;
 	}
-	
+
+	@Override
+	public GamePlayConfigConstant validate() {
+		if(gameResolver == null || trading ==null || training == null
+				|| aging == null || injuries == null) {
+			return GamePlayConfigConstant.ErrorInConfig;
+		}
+
+		return GamePlayConfigConstant.Success;
+	}
+
 }

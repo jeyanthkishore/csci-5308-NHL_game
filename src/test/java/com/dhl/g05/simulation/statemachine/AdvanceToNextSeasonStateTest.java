@@ -22,10 +22,6 @@ import com.dhl.g05.model.ModelAbstractFactory;
 import com.dhl.g05.simulation.DateHandler;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.leaguesimulation.IScheduleModel;
-import com.dhl.g05.simulation.statemachine.AbstractState;
-import com.dhl.g05.simulation.statemachine.IAging;
-import com.dhl.g05.simulation.statemachine.IGamePlayConfig;
-import com.dhl.g05.simulation.statemachine.PersistState;
 
 public class AdvanceToNextSeasonStateTest {
 	

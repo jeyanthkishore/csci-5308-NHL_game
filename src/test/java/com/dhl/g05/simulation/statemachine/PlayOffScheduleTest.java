@@ -14,8 +14,6 @@ import com.dhl.g05.model.ILeague;
 import com.dhl.g05.simulation.DateHandler;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.leaguesimulation.StandingMockData;
-import com.dhl.g05.simulation.statemachine.AbstractState;
-import com.dhl.g05.simulation.statemachine.TrainingState;
 
 public class PlayOffScheduleTest {
 	private AbstractState state;

@@ -123,7 +123,7 @@ public class CreateTeamState extends AbstractState {
 		}
 
 		playerList = pickPlayers();
-		if(playerList.size()<20 || playerList.size()>20) {
+		if(playerList.size()<30 || playerList.size()>30) {
 			communicate.sendMessage(CreateTeamConstant.ErrorPlayerCreation.getValue());
 			return false;
 		} else {
@@ -142,7 +142,7 @@ public class CreateTeamState extends AbstractState {
 
 		while(coachNotSelected) {
 			communicate.sendMessage(CreateTeamConstant.SelectCoach.getValue());
-			communicate.sendCoachMessage(coachList);
+			communicate.displayCoachList(coachList);
 			communicate.sendMessage(CreateTeamConstant.AddCoach.getValue());
 			try {
 				number = communicate.getResponseNumber();
@@ -170,7 +170,7 @@ public class CreateTeamState extends AbstractState {
 		int number;
 		while(ManagerNotSelected) {
 			communicate.sendMessage(CreateTeamConstant.SelectManager.getValue());
-			communicate.sendManagerMessage(managerList);
+			communicate.displayManagerList(managerList);
 			communicate.sendMessage(CreateTeamConstant.AddManager.getValue());
 			try {
 				number = communicate.getResponseNumber();
@@ -207,14 +207,14 @@ public class CreateTeamState extends AbstractState {
 	    int birthYear =0;
 		String name ="";
 		String position="";
-		while(playerList.size()<20) {
+		while(playerList.size()<30) {
 			String teamCount = CreateTeamConstant.TeamCount.getValue() + playerList.size();
 			String skaterscount = CreateTeamConstant.SkaterCount.getValue() +skaters;
 			String goaliecount = CreateTeamConstant.GoalieCount.getValue() +goalie;
 			communicate.sendMessage(teamCount+CreateTeamConstant.Separator.getValue()
 			+skaterscount+CreateTeamConstant.Separator.getValue()+goaliecount);
 			communicate.sendMessage(CreateTeamConstant.SelectFreeAgent.getValue());
-			communicate.sendMessage(freeAgentList);
+			communicate.displayFreeAgentList(freeAgentList);
 			communicate.sendMessage(CreateTeamConstant.AddPlayer.getValue());
 			try {
 				responseNumber = communicate.getResponseNumber();

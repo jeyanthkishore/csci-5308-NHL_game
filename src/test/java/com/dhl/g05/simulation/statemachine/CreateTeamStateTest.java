@@ -11,7 +11,6 @@ import org.junit.Test;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.ApplicationTestConfiguration;
 import com.dhl.g05.communication.CommunicationMockAbstractFactory;
-import com.dhl.g05.communication.CommunicationPlayerOperationMockFactoryState;
 import com.dhl.g05.communication.CommunicationState;
 import com.dhl.g05.database.DatabaseMockAbstractFactory;
 import com.dhl.g05.database.DatabaseState;

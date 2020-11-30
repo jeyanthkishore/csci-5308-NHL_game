@@ -7,12 +7,6 @@ import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
-import com.dhl.g05.simulation.statemachine.IAging;
-import com.dhl.g05.simulation.statemachine.IGamePlayConfig;
-import com.dhl.g05.simulation.statemachine.IGameResolver;
-import com.dhl.g05.simulation.statemachine.IInjury;
-import com.dhl.g05.simulation.statemachine.ITradingConfig;
-import com.dhl.g05.simulation.statemachine.ITraining;
 
 public class GameConfigModelTest {
 	private static SimulationAbstractFactory simulationFactory;

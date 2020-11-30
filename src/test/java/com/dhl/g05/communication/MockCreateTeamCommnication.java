@@ -33,19 +33,19 @@ public class MockCreateTeamCommnication implements IPlayerCommunication{
 	}
 
 	@Override
-	public void sendMessage(List<IFreeAgent> free) {
+	public void displayFreeAgentList(List<IFreeAgent> free) {
 		System.out.println("Player List Will be Displayed");
 		
 	}
 
 	@Override
-	public void sendCoachMessage(List<ICoach> coachList) {
+	public void displayCoachList(List<ICoach> coachList) {
 		System.out.println("Coach List Will be Displayed");
 		
 	}
 
 	@Override
-	public void sendManagerMessage(List<String> managerList) {
+	public void displayManagerList(List<String> managerList) {
 		System.out.println("Manager List Will be Displayed");
 	}
 

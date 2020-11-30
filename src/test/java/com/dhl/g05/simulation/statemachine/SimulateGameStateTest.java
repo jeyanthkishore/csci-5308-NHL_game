@@ -25,8 +25,6 @@ import com.dhl.g05.simulation.leaguesimulation.ILeagueSchedule;
 import com.dhl.g05.simulation.leaguesimulation.ILeagueStanding;
 import com.dhl.g05.simulation.leaguesimulation.IScheduleModel;
 import com.dhl.g05.simulation.leaguesimulation.IStandingModel;
-import com.dhl.g05.simulation.statemachine.AbstractState;
-import com.dhl.g05.simulation.statemachine.InjuryCheckState;
 
 public class SimulateGameStateTest {
 	private AbstractState state;

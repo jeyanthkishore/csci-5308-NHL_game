@@ -7,37 +7,35 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.ApplicationTestConfiguration;
 import com.dhl.g05.communication.CommunicationAbstractFactory;
 import com.dhl.g05.communication.MockPlayerCommunication;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
-import com.dhl.g05.simulation.statemachine.AbstractState;
-import com.dhl.g05.simulation.statemachine.CreateTeamState;
-import com.dhl.g05.simulation.statemachine.IStateMachine;
-import com.dhl.g05.simulation.statemachine.ImportState;
+import com.dhl.g05.simulation.SimulationMockAbstractFactory;
 
 public class StateMachineTest {
-	private static SimulationAbstractFactory stateMachineFactory;
+	private static SimulationAbstractFactory simulationFactory;
 	private static MockPlayerCommunication communication;
 
 
 	@BeforeClass
 	public static void setup() {
-		stateMachineFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		communication = new MockPlayerCommunication();
 	}
 
 
 	@Test
 	public void ConstructorTest() {
-		AbstractState importState = stateMachineFactory.createImportState();
-		IStateMachine stateMachine = stateMachineFactory.createStateMachine(importState);
+		AbstractState importState = simulationFactory.createImportState();
+		IStateMachine stateMachine = simulationFactory.createStateMachine(importState);
 		assertTrue(stateMachine.getCurrentState() instanceof ImportState);
 	}
 
 	@Test
 	public void setCurrentStateTest() {
-		AbstractState createTeamState = stateMachineFactory.createCreateTeamState();
-		IStateMachine stateMachine = stateMachineFactory.createStateMachine(createTeamState);
+		AbstractState createTeamState = simulationFactory.createCreateTeamState();
+		IStateMachine stateMachine = simulationFactory.createStateMachine(createTeamState);
 
 		stateMachine.setCurrentState(createTeamState);
 		assertTrue(stateMachine.getCurrentState() instanceof CreateTeamState);
@@ -45,9 +43,10 @@ public class StateMachineTest {
 	
 	@Test 
 	public void taskStateTest() {
+		SimulationMockAbstractFactory simulationMockFactory = ApplicationTestConfiguration.instance().getSimulationMockConcreteFactoryState(); 
 		CommunicationAbstractFactory communicationState = ApplicationConfiguration.instance().getCommunicationConcreteFactoryState();
-		AbstractState createState = new MockAbstractState(communicationState.getCommunication());
-		IStateMachine stateMachine = stateMachineFactory.createStateMachine(createState);
+		AbstractState createState = simulationMockFactory.createMockAbstractState(communicationState.getCommunication());
+		IStateMachine stateMachine = simulationFactory.createStateMachine(createState);
 		communication.commandLineInput("1\n2");
         stateMachine.enterState();
         assertNull(stateMachine.getCurrentState());

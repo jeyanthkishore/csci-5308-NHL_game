@@ -11,8 +11,6 @@ import org.junit.Test;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.LeagueMockData;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
-import com.dhl.g05.simulation.statemachine.AbstractState;
-import com.dhl.g05.simulation.statemachine.AdvanceTimeState;
 
 public class InitializeSeasonStateTest {
 	private AbstractState state;
@@ -26,7 +24,7 @@ public class InitializeSeasonStateTest {
 	@Test
 	public void seasonInitializeTest() {
 		LeagueMockData mock = new LeagueMockData();
-		state.setLeague(mock.league);
+		state.setLeague(mock.getLeague());
 		state.enter();
 		state.performStateTask();
 		state.exit();

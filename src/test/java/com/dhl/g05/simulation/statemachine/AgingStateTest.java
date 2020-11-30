@@ -23,9 +23,6 @@ import com.dhl.g05.model.ModelAbstractFactory;
 import com.dhl.g05.simulation.DateHandler;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.leaguesimulation.IScheduleModel;
-import com.dhl.g05.simulation.statemachine.AbstractState;
-import com.dhl.g05.simulation.statemachine.PersistState;
-import com.dhl.g05.simulation.statemachine.PlayerDraftState;
 
 public class AgingStateTest {
 	private AbstractState state;

@@ -10,8 +10,6 @@ import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
-import com.dhl.g05.simulation.statemachine.AbstractState;
-import com.dhl.g05.simulation.statemachine.SeasonSimulateState;
 
 public class PlayerChoiceStateTest {
 	private AbstractState state;
@@ -35,7 +33,7 @@ public class PlayerChoiceStateTest {
 
 	@Test
 	public void performStateTaskFailTest() {
-		String userInput = "Jeyanth";
+		String userInput = "Demo";
 		ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(testInput);
 		state.enter();

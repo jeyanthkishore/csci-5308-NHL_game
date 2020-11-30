@@ -1,6 +1,8 @@
 package com.dhl.g05.simulation;
 
+import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.simulation.leaguesimulation.StandingMockData;
+import com.dhl.g05.simulation.statemachine.MockAbstractState;
 
 public abstract class SimulationMockAbstractFactory {
 	
@@ -12,5 +14,6 @@ public abstract class SimulationMockAbstractFactory {
 	}
 	
 	public abstract StandingMockData createStandingMock();
-	
+	public abstract MockAbstractState createMockAbstractState(IPlayerCommunication communication);
+
 }

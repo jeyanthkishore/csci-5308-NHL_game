@@ -12,9 +12,6 @@ import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
-import com.dhl.g05.simulation.statemachine.AbstractState;
-import com.dhl.g05.simulation.statemachine.CreateTeamState;
-import com.dhl.g05.simulation.statemachine.LoadTeamState;
 
 public class ImportStateTest {
 	private AbstractState state;
