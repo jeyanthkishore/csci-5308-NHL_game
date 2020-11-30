@@ -7,6 +7,6 @@ import com.dhl.g05.simulation.IStandingModel;
 
 public interface ITradePickToPlayerDraft {
 
-	public Map<Integer, List<IStandingModel>> mockTradePick(List<IStandingModel> standing);
+	public Map<Integer, List<Map<IStandingModel, IStandingModel>>> mockTradePickLatest(List<IStandingModel> standing);
 
 }
