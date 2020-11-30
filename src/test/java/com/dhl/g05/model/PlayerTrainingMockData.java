@@ -2,7 +2,6 @@ package com.dhl.g05.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.statemachine.IAging;

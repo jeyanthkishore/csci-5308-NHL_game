@@ -292,6 +292,7 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 			playerList.add(modelAbstractFactory.createPlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		}
 	}
+
 	public void setTeamNameEmpty() {
 		teamName = "";
 	}
@@ -347,15 +348,19 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 	public void removeDivision() {
 		divisionList.clear();
 	}
+
 	public void removeOneDivision() {
 		divisionList.remove(0);
 	}
+
 	public void removeConference() {
 		conferenceList.clear();
 	}
+
 	public void removeOneConference() {
 		conferenceList.remove(0);
 	}
+
 	public void setFreeAgentListEmpty() {
 		freeAgentList.clear();
 	}
@@ -367,6 +372,7 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 		}
 		
 	}
+
 	public void setFreeAgentNameEmpty() {
 		freeAgentList.get(0).setPlayerName("");
 	}

@@ -1,7 +1,7 @@
 package com.dhl.g05.model;
+
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
-
 import com.dhl.g05.ApplicationConfiguration;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -33,4 +33,5 @@ public class RandomNumberFactoryTest {
         int randomInteger = randomNumberFactory.generateRandomIntegerNumber(1,10);
         assertTrue(randomInteger>=1 && randomInteger<=10);
     }
+
 }

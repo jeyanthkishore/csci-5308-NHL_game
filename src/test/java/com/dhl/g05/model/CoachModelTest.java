@@ -126,5 +126,6 @@ public class CoachModelTest {
 		coach.setChecking(0.1);
 		assertEquals(CoachConstant.Success, coach.validate());
 	}
+
 }
 

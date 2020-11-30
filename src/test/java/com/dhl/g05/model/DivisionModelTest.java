@@ -2,10 +2,8 @@ package com.dhl.g05.model;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.ApplicationTestConfiguration;
 
@@ -56,7 +54,6 @@ public class DivisionModelTest {
 		division.setTeamDetails(mock.teamList);;
 		assertSame(mock.teamList,division.getTeamDetails());
 	}
-
 
 	@Test
 	public void checkDivisionNameEmpty() {

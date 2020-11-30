@@ -9,17 +9,17 @@ import java.time.LocalDate;
 import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import com.dhl.g05.ApplicationConfiguration;
 
 public class GenerateNewPlayersTest {
-	 private IGenerateNewPlayers generateNewPlayers; 
-	 private static ModelAbstractFactory modelAbstractFactory;
 
-	    @BeforeClass
-	    public static void init() {
-	        modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
-	    }
+	private IGenerateNewPlayers generateNewPlayers;
+	private static ModelAbstractFactory modelAbstractFactory;
+
+	@BeforeClass
+	public static void init() {
+		modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+	}
 	    
 	@Test
 	public void generateRandomNameTest1() {
@@ -115,4 +115,5 @@ public class GenerateNewPlayersTest {
 		}
 		assertTrue(numberOfGoalies == 3);
 	}
+
 }

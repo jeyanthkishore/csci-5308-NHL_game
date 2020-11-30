@@ -5,12 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-
 import java.util.List;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.ApplicationTestConfiguration;
 
@@ -348,4 +345,5 @@ public class TeamModelTest {
 		validate = modelAbstractFactory.createTeamModel(mock);
 		assertSame(TeamConstant.CoachDetailsEmpty, validate.validate());
 	}
+
 }

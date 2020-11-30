@@ -1,12 +1,8 @@
 package com.dhl.g05.simulation.statemachine;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
 
+import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 
@@ -85,4 +81,5 @@ public class InjuryConfigTest {
         injury.setRandomInjuryChance(0.1);
         assertSame(InjuryConstant.Success, injury.validate());
     }
+
 }

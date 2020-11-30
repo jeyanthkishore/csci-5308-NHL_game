@@ -13,7 +13,6 @@ import org.junit.Test;
 import com.dhl.g05.database.ISerializeModel;
 import com.dhl.g05.database.SerializeLeagueModelMock;
 
-
 public class LeagueModelTest {
 
 	private static ModelAbstractFactory modelAbstractFactory;
@@ -139,8 +138,7 @@ public class LeagueModelTest {
 		league.setFreeAgent(null);
 		assertSame(LeagueConstant.FreeAgentsNotValid,league.validate());
 	}
-	
-	
+
 	@Test
 	public void checkNullConference() {
 		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
@@ -156,8 +154,6 @@ public class LeagueModelTest {
 		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
 		assertSame(LeagueConstant.NoEvenConferenceCount,league.validate());
 	}
-
-
 
 	@Test
 	public void setRetiredFreeAgentsListTest() {
@@ -233,6 +229,7 @@ public class LeagueModelTest {
 		assertEquals(leagueModel.getFreeAgent().size(),size + (leagueMock.playerList.size()));
 		
 	}
+
 	@Test
 	public void addNewFreeAgentsToLeaguePlayer1Test()
 	{

@@ -6,14 +6,11 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-
 import java.time.LocalDate;
 import java.util.List;
-
 import com.dhl.g05.ApplicationTestConfiguration;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.statemachine.IAging;
@@ -495,4 +492,5 @@ public class FreeAgentModelTest {
 		assertEquals(freeagent.getSkating(), 10, 0);
 		assertEquals(freeagent.getShooting(), 12, 0);
 	}
+
 }

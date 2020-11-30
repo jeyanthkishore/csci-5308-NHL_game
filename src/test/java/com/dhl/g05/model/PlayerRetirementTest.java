@@ -1,12 +1,11 @@
 package com.dhl.g05.model;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.ApplicationTestConfiguration;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.statemachine.IAging;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mockito;
 import static org.junit.Assert.assertTrue;
 
 public class PlayerRetirementTest {
@@ -31,4 +30,5 @@ public class PlayerRetirementTest {
         aging.setMaximumAge(40);
         assertTrue(playerRetired.checkPlayerRetirement(aging,player));
     }
+
 }
