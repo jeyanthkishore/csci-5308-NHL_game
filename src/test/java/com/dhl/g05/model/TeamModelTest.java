@@ -5,9 +5,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+
 import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.ApplicationTestConfiguration;
 
@@ -254,16 +257,16 @@ public class TeamModelTest {
 		assertEquals(activePlayers.size(),20);
 	}
 	
-//	@Test
-//	public void setActiveRosterPlayerTest() {
-//		IGenerateNewPlayers newPlayers = modelAbstractFactory.createNewPlayers();
-//		newPlayers.setNumberOfTeams(5);
-//		ITeam team = modelAbstractFactory.createTeamModel();
-//		List<IPlayer> players = newPlayers.generatePlayers();
-//		team.setPlayerList(players);
-//		List<IPlayer> activePlayers=team.setActiveRoster(team);
-//		assertEquals(activePlayers.get(1).getIsActive(),true);
-//	}
+	@Test
+	public void setActiveRosterPlayerTest() {
+		IGenerateNewPlayers newPlayers = modelAbstractFactory.createNewPlayers();
+		newPlayers.setNumberOfTeams(5);
+		ITeam team = modelAbstractFactory.createTeamModel();
+		List<IPlayer> players = newPlayers.generatePlayers();
+		team.setPlayerList(players);
+		List<IPlayer> activePlayers=team.setActiveRoster(team);
+		assertEquals(activePlayers.get(1).getIsActive(),true);
+	}
 	
 	@Test
 	public void setInActiveRosterTest() {
@@ -272,20 +275,20 @@ public class TeamModelTest {
 		newPlayers.setNumberOfTeams(6);
 		List<IPlayer> players = newPlayers.generatePlayers();
 		team.setPlayerList(players);
-		List<IPlayer> inActivePlayers=team.setInActiveRoster(players,team);
+		List<IPlayer> inActivePlayers=team.setInActiveRoster(team);
 		assertEquals(inActivePlayers.size(),10);
 	}
 	
-//	@Test
-//	public void setInActiveRosterPlayerTest() {
-//		IGenerateNewPlayers newPlayers = modelAbstractFactory.createNewPlayers();
-//		ITeam team = modelAbstractFactory.createTeamModel();
-//		newPlayers.setNumberOfTeams(6);
-//		List<IPlayer> players = newPlayers.generatePlayers();
-//		team.setPlayerList(players);
-//		List<IPlayer> inActivePlayers=team.setInActiveRoster(players,team);
-//		assertEquals(inActivePlayers.get(1).getIsActive(),false);
-//	}
+	@Test
+	public void setInActiveRosterPlayerTest() {
+		IGenerateNewPlayers newPlayers = modelAbstractFactory.createNewPlayers();
+		ITeam team = modelAbstractFactory.createTeamModel();
+		newPlayers.setNumberOfTeams(6);
+		List<IPlayer> players = newPlayers.generatePlayers();
+		team.setPlayerList(players);
+		List<IPlayer> inActivePlayers=team.setInActiveRoster(team);
+		assertEquals(inActivePlayers.get(1).getIsActive(),false);
+	}
 	
 	@Test
 	public void adjustTeamRoasterAfterDraftSizeTest() {

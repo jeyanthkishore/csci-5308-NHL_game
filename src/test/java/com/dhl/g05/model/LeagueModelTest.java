@@ -161,8 +161,6 @@ public class LeagueModelTest {
 	public void addRetiredFreeAgentToListTest() {
 		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
 		ILeague leagueModel = modelAbstractFactory.createLeagueModel(leagueMock);
-		List<IFreeAgent> freeAgents = leagueMock.freeAgentList;
-		IFreeAgent freeAgent = freeAgents.get(0);
 		leagueModel.addRetiredFreeAgentToList(new FreeAgentModel(leagueMock.freeAgentOne, leagueMock.positionForward, leagueMock.skating, leagueMock.shooting, leagueMock.checking, leagueMock.saving, leagueMock.birthDay, leagueMock.birthMonth, leagueMock.birthYear));
 		assertEquals(41,leagueModel.getRetiredFreeAgentsList().size());
 	}
