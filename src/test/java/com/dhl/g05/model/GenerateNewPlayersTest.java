@@ -1,5 +1,6 @@
 package com.dhl.g05.model;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
@@ -15,13 +16,11 @@ import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class GenerateNewPlayersTest {
-	
 	 private IGenerateNewPlayers generateNewPlayers; 
 	 private static ModelAbstractFactory modelAbstractFactory;
 
 	    @BeforeClass
 	    public static void init() {
-	       // simulationAbstractFactory = ApplicationConfiguration.instance().getStateMachineConcreteFactoryState();
 	        modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 	    }
 	    
@@ -68,6 +67,14 @@ public class GenerateNewPlayersTest {
 		generateNewPlayers.setNumberOfTeams(10);
 		List<IPlayer> newPlayers = generateNewPlayers.generatePlayers();
 		assertTrue(newPlayers.size() == 70);
+	}
+	
+	@Test
+	public void generatePlayersTest5() {
+		generateNewPlayers = modelAbstractFactory.createNewPlayers();
+		generateNewPlayers.setNumberOfTeams(70);
+		List<IPlayer> newPlayers = generateNewPlayers.generatePlayers();
+		assertEquals(newPlayers.size(),490);
 	}
 
 	@Test
