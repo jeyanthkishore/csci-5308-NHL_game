@@ -1,7 +1,5 @@
 package com.dhl.g05.simulation;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +7,6 @@ import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.IPlayerDraft;
 import com.dhl.g05.model.ModelAbstractFactory;
-import com.dhl.g05.trading.ITradePickToPlayerDraft;
 import com.dhl.g05.trading.TradingAbstractFactory;
 
 public class PlayerDraftState extends AbstractState {
@@ -28,7 +25,7 @@ public class PlayerDraftState extends AbstractState {
 		IPlayerDraft playerDraft = modelFactory.createPlayerDraft();
 		ILeagueStanding standing = league.getLeagueStanding();
 		List<IStandingModel> standingList = standing.getRankingAcrossLeague();
-		 Map<Integer, List<Map<IStandingModel, IStandingModel>>> tradePick = tradeFactory.createTradePickToPlayerDraft().mockTradePickLatest(standingList);
+		Map<Integer, List<Map<IStandingModel, IStandingModel>>> tradePick = tradeFactory.createTradePickToPlayerDraft().mockTradePickLatest(standingList);
 		playerDraft.setPickOrderAfterTrading(tradePick);
 		playerDraft.setDraftPickTeamSubstraction(16);
 		playerDraft.playerDraft1(standing);
