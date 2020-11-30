@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.simulation.ITradingConfig;
+import com.dhl.g05.simulation.statemachine.ITradingConfig;
 
 public class TradeDecisionTest {
 	

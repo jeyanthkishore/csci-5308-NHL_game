@@ -1,7 +1,8 @@
 package com.dhl.g05.model;
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.simulation.IInjury;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
+import com.dhl.g05.simulation.statemachine.IInjury;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;

@@ -9,7 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.dhl.g05.model.PlayerDraft;
-import com.dhl.g05.simulation.IStandingModel;
+import com.dhl.g05.simulation.leaguesimulation.IStandingModel;
 
 public class TradePickToPlayerDraft implements ITradePickToPlayerDraft {
 	

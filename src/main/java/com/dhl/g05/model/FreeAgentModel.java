@@ -10,7 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.simulation.IAging;
+import com.dhl.g05.simulation.statemachine.IAging;
 import com.mysql.cj.util.StringUtils;
 
 public class FreeAgentModel implements IFreeAgent {

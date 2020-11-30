@@ -3,7 +3,7 @@ package com.dhl.g05.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.dhl.g05.simulation.IAging;
+import com.dhl.g05.simulation.statemachine.IAging;
 
 public interface IFreeAgent {
 

@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
-import com.dhl.g05.simulation.ITradingConfig;
+import com.dhl.g05.simulation.statemachine.ITradingConfig;
 
 public class WeakTeam implements IWeakTeam {
 	
