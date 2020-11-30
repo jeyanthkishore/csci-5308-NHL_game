@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
@@ -14,6 +17,7 @@ import com.dhl.g05.simulation.DateHandler;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class LeagueSchedule implements ILeagueSchedule {
+	static final Logger logger = LogManager.getLogger(LeagueSchedule.class);
 	private List<IScheduleModel> regularSeasonSchedule;
 	private List<IScheduleModel> playoffSeasonSchedule;
 
@@ -39,6 +43,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 
 	@Override
 	public void addRegularSeasonDates() {
+		logger.info("Adding Dates to Regular Season");
 		int totalDaysforRegualarSeason = (int)DateHandler.instance().getDaysBetweenRegularSeason();
 		LocalDate regularSeasonStartDate = DateHandler.instance().getRegularSeasonStartDate();
 		addDatesToSchedule(regularSeasonSchedule,totalDaysforRegualarSeason,regularSeasonStartDate);
@@ -46,6 +51,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 
 	@Override
 	public void generateRegularSeasonSchedule(ILeague league) {
+		logger.info("Generating Regular Season Schdeule");
 		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		regularSeasonSchedule = new ArrayList<>();
 		List<IConference> totalConferences = new ArrayList<>();
@@ -80,6 +86,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 
 	@Override
 	public void addPlayoffSeasonDates() {
+		logger.info("Adding Dates to Playoff Season");
 		int totalDaysforPlayoff = (int)DateHandler.instance().getDaysBetweenPlayoff();
 		LocalDate playoffSeasonStartDate = DateHandler.instance().getPlayoffSeasonStartDate();
 		addDatesToSchedule(playoffSeasonSchedule,totalDaysforPlayoff,playoffSeasonStartDate);
@@ -87,6 +94,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 
 	@Override
 	public void generatePlayoffSchedule(ILeague league, ILeagueStanding standingSystem) {
+		logger.info("Generating PlayOff Season Schdeule");
 		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		playoffSeasonSchedule = new ArrayList<>();
 		for (IConference conference: league.getConferenceDetails()) {
@@ -133,6 +141,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 	}
 
 	private List<List<IStandingModel>> selectWildCardDivision(List<List<IStandingModel>> totalStandings) {
+		logger.info("Selecting wild card teams");
 		for (int i = 0; i < 3; i++) {
 			totalStandings.get(0).remove(0);
 			totalStandings.get(1).remove(0);
@@ -143,6 +152,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 	}
 
 	private void addDatesToSchedule(List<IScheduleModel> Schedule, int days,LocalDate gameDate) {
+		logger.info("Adding Dates to the schedule");
 		int totalGames = Schedule.size();
 		int noOfGamesPerDay = (totalGames / days);
 		int remainingGames = (totalGames % days);
@@ -164,6 +174,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 
 	@Override
 	public boolean isGamesUnplayedOnCurrentDay(LocalDate date) {
+		logger.info("Checking unplayed games on data : "+date);
 		List<IScheduleModel> scheduleList = null;
 		if (DateHandler.instance().isRegularSeasonActive(date)) {
 			scheduleList = regularSeasonSchedule;
@@ -183,6 +194,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 
 	@Override
 	public IScheduleModel getMatchOnCurrentDate(LocalDate date) {
+		logger.info("Getting match on date :"+date);
 		List<IScheduleModel> scheduleList;
 		IScheduleModel currentSchedule = null;
 		if (DateHandler.instance().isRegularSeasonActive(date)) {
@@ -201,6 +213,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 
 	@Override
 	public boolean isStanleyCupWinnerDetermined() {
+		logger.info("Checking PlayOff(StanleyCup) is Over");
 		if (playoffSeasonSchedule == null) {
 			return false;
 		}
@@ -214,6 +227,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 
 	@Override
 	public void updateScheduleAfterGame(IScheduleModel matchSchedule) {
+		logger.info("Updating Schedule after game");
 		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		matchSchedule.setIsGameCompleted(true);
 		if (DateHandler.instance().isPlayoffSeasonActive(matchSchedule.getScheduleDate())) {
@@ -258,6 +272,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 
 	@Override
 	public ITeam getStanleyCupWinner() {
+		logger.info("Getting Stanley Cup winner");
 		int finalMatch = playoffSeasonSchedule.size() - 1;
 		return playoffSeasonSchedule.get(finalMatch).getWinningTeam();
 	}

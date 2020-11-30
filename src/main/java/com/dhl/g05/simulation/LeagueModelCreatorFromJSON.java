@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -42,7 +44,7 @@ import com.dhl.g05.simulation.statemachine.TrainingConstant;
 import com.mysql.cj.util.StringUtils;
 
 public class LeagueModelCreatorFromJSON implements ILeagueCreator{
-
+	static final Logger logger = LogManager.getLogger(LeagueModelCreatorFromJSON.class);
 	private static final String  LEAGUE_NAME = "leagueName";
 	private static final String CONFERENCES = "conferences";
 	private static final String FREE_AGENTS = "freeAgents";
@@ -98,6 +100,8 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 	}
 
 	public ILeague createLeagueFromFile(String fileName) {
+		logger.info("Creating League for the import file");
+		
 		ILeague league = null;
 		try {
 			File file = new File(fileName);
@@ -115,9 +119,12 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 	}
 
 	private ILeague createLeague(JSONObject leagueData) {
+		logger.info("Creating League Objects");
+		
 		if (leagueData == null) {
 			return null;
 		}
+		
 		ILeague league = modelAbstractFactory.createLeagueModel();
 		league.setLeagueName((String)leagueData.get(LEAGUE_NAME));
 		league.setConferenceDetails(createConferences((JSONArray)leagueData.get(CONFERENCES)));
@@ -129,6 +136,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		if (validationResult.equals(LeagueConstant.Success)) {
 			return league;
 		} else {
+			logger.info(validationResult.getValue());
 			playerCommunication.sendMessage(validationResult.getValue());
 		}
 
@@ -136,9 +144,12 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 	}
 
 	public IGamePlayConfig setGamePlayConfigsFromFile(JSONObject gamePlayConfigs) {
+		logger.info("Creating GamePlay Configuration Objects");
+		
 		if (gamePlayConfigs == null) {
 			return null;
 		}
+		
 		try {
 			IGamePlayConfig gamePlayconfig = simulationAbstractFactory.createGamePlayConfig();
 			gamePlayconfig.setInjuriesConfig(createInjury((JSONObject)gamePlayConfigs.get(INJURIES)));
@@ -150,19 +161,24 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if(result.equals(GamePlayConfigConstant.Success)) {
 				return gamePlayconfig;
 			}else {
+				logger.info(result.getValue());
 				playerCommunication.sendMessage(result.getValue());
 			}
 			return null;
 		} catch (NullPointerException e) {
+			logger.error("GamePlay Config contains null values");
 			playerCommunication.sendMessage(LeagueCreatorConstant.GameplayConfigNull.getValue());
 			return null;
 		}
 	}
 
 	private IAging createAging(JSONObject jsonAging) {
+		logger.info("Creating Aging Configuration Objects");
+		
 		if (jsonAging == null){
 			return null;
 		}
+		
 		try {
 			IAging agingConfig = simulationAbstractFactory.createAgingConfig();
 			agingConfig.setAverageRetirementAge(((Number) jsonAging.get(AVERAGE_RETIREMENTAGE)).intValue());
@@ -172,19 +188,24 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if(result.equals(AgingConstant.Success)) {
 				return agingConfig;
 			}else {
+				logger.info(result.getValue());
 				playerCommunication.sendMessage(result.getValue());
 			}
 			return null;
 		} catch (NullPointerException e) {
+			logger.error("Aging Config contains null values");
 			playerCommunication.sendMessage(LeagueCreatorConstant.AgingConfigNull.getValue());
 			return null;
 		}
 	}
 
 	private IInjury createInjury(JSONObject jsonInjury) {
+		logger.info("Creating Injury Configuration Objects");
+		
 		if (jsonInjury == null){
 			return null;
 		}
+		
 		try {
 			IInjury injuryConfig = simulationAbstractFactory.createInjuryConfig();
 			injuryConfig.setRandomInjuryChance(((Number) jsonInjury.get(RANDOM_INJURY_CHANCE)).doubleValue());
@@ -194,19 +215,24 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if(result.equals(InjuryConstant.Success)) {
 				return injuryConfig;
 			}else {
+				logger.info(result.getValue());
 				playerCommunication.sendMessage(result.getValue());
 			}
 			return null;
 		} catch (NullPointerException e) {
+			logger.error("Injury Config contains null values");
 			playerCommunication.sendMessage(LeagueCreatorConstant.InjuryConfigNull.getValue());
 			return null;
 		}
 	}
 
 	private ITraining createTrainingConfig(JSONObject training) {
+		logger.info("Creating Training Configuration Objects");
+		
 		if (training == null) {
 			return null;
 		} 
+		
 		try {
 			ITraining trainConfig = simulationAbstractFactory.createTrainingConfig();
 			trainConfig.setDaysUntilStatIncreaseCheck(((Number) training.get(DAYS_UNTIL_STAT_INCREASE_CHECK)).intValue());
@@ -214,19 +240,24 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if(result.equals(TrainingConstant.Success)) {
 				return trainConfig;
 			}else {
+				logger.info(result.getValue());
 				playerCommunication.sendMessage(result.getValue());
 			}
 			return null;
 		} catch (NullPointerException e) {
+			logger.error("GameResolver Config contains null values");
 			playerCommunication.sendMessage(LeagueCreatorConstant.TrainingConfigNull.getValue());
 			return null;
 		}
 	}
 
 	private IGameResolver createGameResolver(JSONObject gameResolver) {
+		logger.info("Creating GameResolver configuration Objects");
+		
 		if (gameResolver == null) {
 			return null;
 		} 
+		
 		try {
 			IGameResolver resolverConfig = simulationAbstractFactory.createGameResolverConfig();
 			resolverConfig.setRandomWinChance(((Number) gameResolver.get(RANDOM_WIN_CHANCE)).doubleValue());
@@ -234,19 +265,24 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if(result.equals(GameResolverConstant.Success)) {
 				return resolverConfig;
 			}else {
+				logger.info(result.getValue());
 				playerCommunication.sendMessage(result.getValue());
 			}
 			return null;
 		} catch (NullPointerException e){
+			logger.error("GameResolver Config contains null values");
 			playerCommunication.sendMessage(LeagueCreatorConstant.GameResolverConfigNull.getValue());
 			return null;
 		}
 	}
 
 	private ITradingConfig createTradingConfig(JSONObject tradingObject) {
+		logger.info("Creating Trading configuration Objects");
+		
 		if (tradingObject == null) {
 			return null;
 		} 
+		
 		try {
 			ITradingConfig tradeConfig =  simulationAbstractFactory.createTradingConfig();
 			tradeConfig.setLossPoint(((Number) tradingObject.get(LOSS_POINT)).intValue());
@@ -257,19 +293,24 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if(result.equals(TradingConstant.Success)) {
 				return tradeConfig;
 			}else {
+				logger.info(result.getValue());
 				playerCommunication.sendMessage(result.getValue());
 			}
 			return null;
 		} catch (NullPointerException e){
+			logger.error("Trading Config contains null values");
 			playerCommunication.sendMessage(LeagueCreatorConstant.TradingConfigNull.getValue());
 			return null;
 		}
 	}
 
 	private ArrayList<IConference> createConferences(JSONArray jsonConferences) {
+		logger.info("Creating Conference Objects");
+		
 		if (jsonConferences == null) {
 			return null;
 		}
+		
 		ArrayList<IConference> conferences = new ArrayList<>();
 		for (Object c: jsonConferences) {
 			ArrayList<IDivision> divisions = createDivisions((JSONArray)((JSONObject) c).get(DIVISIONS));
@@ -283,14 +324,18 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if (validationResult.equals(ConferenceConstant.Success)) {
 				conferences.add(newConference);
 			} else {
+				logger.info(validationResult.getValue());
 				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
 		}
+		
 		return conferences;
 	}
 
 	private ArrayList<IDivision> createDivisions(JSONArray jsonDivisions) {
+		logger.info("Creating Division Objects");
+		
 		if (jsonDivisions == null) {
 			return null;
 		}
@@ -308,17 +353,22 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if (validationResult.equals(DivisionConstant.Success)) {
 				divisions.add(newDivision);
 			} else {
+				logger.info(validationResult.getValue());
 				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
 		}
+		
 		return divisions;
 	}
 
 	private ArrayList<ITeam> createTeams(JSONArray jsonTeams) {
+		logger.info("Creating Team Objects");
+		
 		if (jsonTeams == null) {
 			return null;
 		}
+		
 		ArrayList<ITeam> teams = new ArrayList<>();
 		for (Object t: jsonTeams) {
 			ArrayList<IPlayer> players = createPlayers((JSONArray)((JSONObject) t).get(PLAYERS));
@@ -335,17 +385,22 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if (validationResult.equals(TeamConstant.Success)) {
 				teams.add(newTeam);
 			}  else {
+				logger.info(validationResult.getValue());
 				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
 		}
+		
 		return teams;
 	}
 
 	private ArrayList<IPlayer> createPlayers(JSONArray jsonPlayers) {
+		logger.info("Creating Player Objects");
+		
 		if (jsonPlayers == null) {
 			return null;
 		}
+		
 		ArrayList<IPlayer> players = new ArrayList<>();
 		for (Object p: jsonPlayers) {
 			String playerName = (String)((JSONObject) p).get(PLAYER_NAME);
@@ -368,14 +423,18 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if (validationResult.equals(FreeAgentConstant.Success)) {
 				players.add(newPlayer);
 			} else {
+				logger.info(validationResult.getValue());
 				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
 		}
+		
 		return players;
 	}
 
 	private ArrayList<IFreeAgent> createFreeAgents(JSONArray jsonPlayers) {
+		logger.info("Creating FreeAgent Objects");
+		
 		if (jsonPlayers == null) {
 			return null;
 		}
@@ -399,6 +458,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if (validationResult.equals(FreeAgentConstant.Success)) {
 				freeAgent.add(newPlayer);
 			} else {
+				logger.info(validationResult.getValue());
 				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
@@ -407,6 +467,8 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 	}
 
 	private ICoach createCoach(JSONObject jsonCoachDetails) {
+		logger.info("Creating Coach Objects");
+		
 		if (jsonCoachDetails == null){
 			return null;
 		}
@@ -419,9 +481,12 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 	}
 
 	private ArrayList<ICoach> createFreeCoaches(JSONArray jsonCoaches) {
+		logger.info("Creating Free Coach Objects");
+		
 		if (jsonCoaches == null){
 			return null;
 		}
+		
 		ArrayList<ICoach> coaches = new ArrayList<>();
 		for (Object p: jsonCoaches) {
 			String coachName = (String)((JSONObject) p).get(NAME);
@@ -438,6 +503,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if (validationResult.equals(CoachConstant.Success)) {
 				coaches.add(newCoach);
 			} else {
+				logger.info(validationResult.getValue());
 				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
@@ -446,6 +512,8 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 	}
 
 	private ArrayList<String> createFreeManagers(JSONArray jsonManagers) {
+		logger.info("Creating Manager Objects");
+		
 		if (jsonManagers == null){
 			return null;
 		}
@@ -453,6 +521,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		for (int i=0; i<jsonManagers.size(); i++){
 			String name = (String) jsonManagers.get(i);
 			if (StringUtils.isNullOrEmpty(name)) {
+				logger.info("Manager name is empty");
 				playerCommunication.sendMessage(("Manager name is empty"));
 			}
 			managers.add(name);

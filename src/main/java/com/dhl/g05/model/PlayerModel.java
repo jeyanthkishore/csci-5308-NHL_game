@@ -114,6 +114,7 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury, IPlaye
 	}
 	
 	public IPlayer convertFreeAgentToPlayer(IFreeAgent freeAgent,boolean captainValue) {
+		logger.info("Converting FreeAgent to Player");
 		this.setPlayerName(freeAgent.getPlayerName());
 		this.setAge(freeAgent.getAge());
 		this.setBirthDay(freeAgent.getBirthDay());

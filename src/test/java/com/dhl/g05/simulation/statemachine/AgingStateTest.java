@@ -84,6 +84,13 @@ public class AgingStateTest {
 		playoffSchedule.add(schedule);
 		DateHandler.instance().performDateAssignment(Year.now().getValue());
 		leagueMock.getLeagueSchedule().setPlayoffSeasonSchedule(playoffSchedule);
+		IAging agingConfig = simulationFactory.createAgingConfig();
+		agingConfig.setAverageRetirementAge(30);
+		agingConfig.setMaximumAge(60);
+		agingConfig.setStatDecayChance(0.04);
+		IGamePlayConfig gamePlayConfig = simulationFactory.createGamePlayConfig();
+		gamePlayConfig.setAgingConfig(agingConfig);
+		leagueMock.setGamePlayConfig(gamePlayConfig);
 		
 		return leagueMock;
 	}
