@@ -1,7 +1,7 @@
 package com.dhl.g05.trading;
 
 import com.dhl.g05.model.ILeague;
-import com.dhl.g05.simulation.ITradingConfig;
+import com.dhl.g05.simulation.statemachine.ITradingConfig;
 
 public interface IIntiateTradeOffer {
 

@@ -8,11 +8,11 @@ import org.apache.logging.log4j.Logger;
 
 import com.dhl.g05.database.IDeserializeModel;
 import com.dhl.g05.database.ISerializeModel;
-import com.dhl.g05.simulation.IGamePlayConfig;
-import com.dhl.g05.simulation.ILeagueSchedule;
-import com.dhl.g05.simulation.ILeagueStanding;
-import com.dhl.g05.simulation.LeagueSchedule;
-import com.dhl.g05.simulation.LeagueStanding;
+import com.dhl.g05.simulation.leaguesimulation.ILeagueSchedule;
+import com.dhl.g05.simulation.leaguesimulation.ILeagueStanding;
+import com.dhl.g05.simulation.leaguesimulation.LeagueSchedule;
+import com.dhl.g05.simulation.leaguesimulation.LeagueStanding;
+import com.dhl.g05.simulation.statemachine.IGamePlayConfig;
 import com.mysql.cj.util.StringUtils;
 
 public class LeagueModel implements ILeague{

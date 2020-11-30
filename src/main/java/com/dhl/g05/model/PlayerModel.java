@@ -2,8 +2,8 @@ package com.dhl.g05.model;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.dhl.g05.simulation.IAging;
-import com.dhl.g05.simulation.IInjury;
+import com.dhl.g05.simulation.statemachine.IAging;
+import com.dhl.g05.simulation.statemachine.IInjury;
 
 public class PlayerModel extends FreeAgentModel implements IPlayerInjury, IPlayer, IPlayerRetirement{
 

@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.simulation.ILeagueStanding;
-import com.dhl.g05.simulation.IStandingModel;
-import com.dhl.g05.simulation.StandingModel;
+import com.dhl.g05.simulation.leaguesimulation.ILeagueStanding;
+import com.dhl.g05.simulation.leaguesimulation.IStandingModel;
+import com.dhl.g05.simulation.leaguesimulation.StandingModel;
 
 public class PlayerDraftMock {
 	
