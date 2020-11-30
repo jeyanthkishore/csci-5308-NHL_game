@@ -22,6 +22,7 @@ public class FreeAgentModel implements IFreeAgent {
 	private final int MONTH_LIST_WITH_31_DAYS[] = { 1, 3, 5, 7, 8, 10, 12 };
 	private final int MONTH_LIST_WITH_30_DAYS[] = { 4, 6, 9, 11 };
 	private final int MONTH_LIST_WITH_28_DAYS[] = { 2 };
+
 	@Expose
 	private String playerName;
 	@Expose
@@ -218,6 +219,7 @@ public class FreeAgentModel implements IFreeAgent {
 		return playerStrength;
 	}
 
+	@Override
 	public FreeAgentConstant validate() {
 		logger.info("Validating freeAgent details - name, birthdate, statistics");
 		if (isPlayerDetailsNullOrEmpty()) {
@@ -245,8 +247,7 @@ public class FreeAgentModel implements IFreeAgent {
 		return false;
 	}
 
-	@Override
-	public boolean isPlayerPositionNotValid() {
+	private boolean isPlayerPositionNotValid() {
 		if (position.equals(PositionConstant.forward.getValue()) || position.equals(PositionConstant.defense.getValue())
 				|| position.equals(PositionConstant.goalie.getValue())) {
 			return false;
@@ -254,16 +255,7 @@ public class FreeAgentModel implements IFreeAgent {
 		return true;
 	}
 
-	@Override
-	public boolean isPlayerAgeNotValid() {
-		if (age > MIN_AGE) {
-			return false;
-		}
-		return true;
-	}
-
-	@Override
-	public boolean isPlayerStatNotValid() {
+	private boolean isPlayerStatNotValid() {
 		logger.info("validating freeAgent's statistics");
 		if (validateStat(skating) && validateStat(shooting) && validateStat(checking) && validateStat(saving)) {
 			return false;
