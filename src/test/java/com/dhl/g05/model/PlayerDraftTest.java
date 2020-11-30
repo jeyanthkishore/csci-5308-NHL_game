@@ -1,5 +1,6 @@
 package com.dhl.g05.model;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 
@@ -9,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
+
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.ILeagueStanding;
 import com.dhl.g05.simulation.IStandingModel;
 import com.dhl.g05.simulation.LeagueStanding;
@@ -17,12 +20,13 @@ import com.dhl.g05.simulation.LeagueStanding;
 
 public class PlayerDraftTest {
 	
+	IGenerateNewPlayers youngPlayers =ApplicationConfiguration.instance().getModelConcreteFactoryState().createNewPlayers();
+    ITeam teamHavingExcessPlayers = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
+    IPlayerDraft playerDraft= ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerDraft();
+    ILeagueStanding leagueStanding=	ApplicationConfiguration.instance().getSimulationConcreteFactoryState().createLeagueStanding();	
+    ILeague league=ApplicationConfiguration.instance().getModelConcreteFactoryState().createLeagueModel();
 	PlayerDraftMock mock = new PlayerDraftMock();
-	IPlayerDraft playerDraft= new PlayerDraft();
-	ILeague league = mock.mockLeagueForStanding();
-	ILeagueStanding leagueStanding = new LeagueStanding();
-	IGenerateNewPlayers generate = new GenerateNewPlayers();
-	List<IPlayer> newPlayers = generate.generatePlayers();
+	List<IPlayer> newPlayers = youngPlayers.generatePlayers();
 	
 	@Test
 	public void playerDraftPick() {
@@ -85,24 +89,35 @@ public class PlayerDraftTest {
         assertSame(teamThatShouldPick,"Tigers");
 	}
 	
-//	@Test
-//	public void pickNewPlayersTest()
-//	{
-//		Map<Integer, List<IStandingModel>> pickOrder = new HashMap<>();
-//		JsonMockDataDb mock = new JsonMockDataDb();
-//		pickOrder = getPickOrder();
-//		int teamSizeBeforePick=pickOrder.get(1).get(1).getTeam().getPlayerList().size(); 
-//		playerDraft.pickNewPlayers(pickOrder,generate.generatePlayers());
-//		int teamSizeAfterPick=pickOrder.get(1).get(1).getTeam().getPlayerList().size();
-//		assertNotSame(teamSizeBeforePick,teamSizeAfterPick);
-//	}
+	@Test
+	public void pickNewPlayersTest()
+	{
+		Map<Integer, List<IStandingModel>> pickOrder = new HashMap<>();
+		pickOrder = getPickOrder();
+		int teamSizeBeforePick=pickOrder.get(1).get(1).getTeam().getPlayerList().size();
+		youngPlayers.setNumberOfTeams(10);
+		playerDraft.pickNewPlayers(pickOrder,youngPlayers.generatePlayers());
+		int teamSizeAfterPick=pickOrder.get(1).get(1).getTeam().getPlayerList().size();
+		assertNotSame(teamSizeBeforePick,teamSizeAfterPick);
+	}
+	
+	@Test
+	public void pickNewPlayersWithNoNewPlayerTest()
+	{
+		Map<Integer, List<IStandingModel>> pickOrder = new HashMap<>();
+		pickOrder = getPickOrder();
+		int teamSizeBeforePick=pickOrder.get(1).get(1).getTeam().getPlayerList().size();
+		youngPlayers.setNumberOfTeams(0);
+		playerDraft.pickNewPlayers(pickOrder,youngPlayers.generatePlayers());
+		int teamSizeAfterPick=pickOrder.get(1).get(1).getTeam().getPlayerList().size();
+		assertSame(teamSizeBeforePick,teamSizeAfterPick);
+	}
 
 	public Map<Integer, List<IStandingModel>> getPickOrder() {
 		leagueStanding.setStandingList(mock.mockStandings());
 		List<IStandingModel> standings = leagueStanding.getRankingAcrossLeague();
 		List<IStandingModel> weakTeamFirst=new ArrayList<>();
-		for(int i=standings.size()-1; i>=0;i--)
-		{
+		for (int i = standings.size() - 1; i >= 0; i--) {
 			weakTeamFirst.add(standings.get(i));
 		}
 		List<IStandingModel> teamsEligibleForPickFirst = weakTeamFirst.subList(0,2);
@@ -113,5 +128,4 @@ public class PlayerDraftTest {
 		pickOrder = playerDraft.createPickOrder(teamsEligibleForPickFirst,teamsEligibleForPickLater);
 		return pickOrder;
 	}
-
 }

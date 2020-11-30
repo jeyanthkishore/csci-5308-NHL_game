@@ -5,13 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.simulation.ILeagueStanding;
 import com.dhl.g05.simulation.IStandingModel;
 import com.dhl.g05.simulation.StandingModel;
 
 public class PlayerDraftMock {
-
+	
+	IGenerateNewPlayers youngPlayers =ApplicationConfiguration.instance().getModelConcreteFactoryState().createNewPlayers();
+    ITeam teamHavingExcessPlayers = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
+    IPlayerDraft playerDraft= ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerDraft();
+    ILeagueStanding leagueStanding=	ApplicationConfiguration.instance().getSimulationConcreteFactoryState().createLeagueStanding();	
+    ILeague league=ApplicationConfiguration.instance().getModelConcreteFactoryState().createLeagueModel();
+     
 	public  List<IStandingModel> mockStandings() {
-		ILeague league = new LeagueModel();
+
 		league.setLeagueName("DHL");
 		IConference conference1 = new ConferenceModel();
 		conference1.setConferenceName("Eastern");
@@ -27,19 +35,9 @@ public class PlayerDraftMock {
 		division4.setDivisionName("Mediterranean");
 		ITeam team1 = new TeamModel();
 		team1.setTeamName("Tigers");
-		IPlayer player1 = new PlayerModel();
-		((FreeAgentModel) player1).setPlayerName("Player1");
-		player1.setPosition("goalie");
-		player1.setPlayerStrength(7);
-		IPlayer player2 = new PlayerModel();
-		((FreeAgentModel) player2).setPlayerName("Player2");
-		player2.setPosition("forward");
-		player2.setPlayerStrength(10);
-		List<IPlayer> playerDetails1 = new ArrayList<>();
-		playerDetails1.add(player1);
-		playerDetails1.add(player2);
-		team1.setPlayerList(playerDetails1);
-		
+		youngPlayers.setNumberOfTeams(7);
+		List<IPlayer> newPlayers= youngPlayers.generatePlayers();
+		team1.setPlayerList(newPlayers);
 		ITeam team2 = new TeamModel();
 		team2.setTeamName("Thunders");
 		IPlayer player1T2 = new PlayerModel();
@@ -152,22 +150,11 @@ public class PlayerDraftMock {
 		division1.setDivisionName("Indian");
 		IDivision division4 = new DivisionModel();
 		division1.setDivisionName("Mediterranean");
-		
 		ITeam team1 = new TeamModel();
 		team1.setTeamName("Tigers");
-		IPlayer player1 = new PlayerModel();
-		((FreeAgentModel) player1).setPlayerName("Player1");
-		player1.setPosition("goalie");
-		player1.setPlayerStrength(7);
-		IPlayer player2 = new PlayerModel();
-		((FreeAgentModel) player2).setPlayerName("Player2");
-		player2.setPosition("forward");
-		player2.setPlayerStrength(10);
-		List<IPlayer> playerDetails1 = new ArrayList<>();
-		playerDetails1.add(player1);
-		playerDetails1.add(player2);
-		team1.setPlayerList(playerDetails1);
-		
+		youngPlayers.setNumberOfTeams(4);
+		List<IPlayer> newPlayers= youngPlayers.generatePlayers();
+		team1.setPlayerList(newPlayers);
 		ITeam team2 = new TeamModel();
 		team2.setTeamName("Thunders");
 		IPlayer player1T2 = new PlayerModel();
@@ -217,18 +204,24 @@ public class PlayerDraftMock {
 		List<IConference> conferenceDetails = new ArrayList<>();
 		List<IDivision> divisionDetails1 = new ArrayList<>();
 		List<IDivision> divisionDetails2 = new ArrayList<>();
+		List<ITeam> teamDetaile1=new ArrayList<>(); 
+		teamDetaile1.add(team1);
+		teamDetaile1.add(team2);
+		List<ITeam> teamDetaile2=new ArrayList<>();
+		teamDetaile2.add(team3);
+		teamDetaile2.add(team4);
+		division1.setTeamDetails(teamDetaile1);
+		division2.setTeamDetails(teamDetaile2);
 		conferenceDetails.add(conference1);
 		conferenceDetails.add(conference2);
 		divisionDetails1.add(division1);
 		divisionDetails1.add(division2);
-		divisionDetails2.add(division3);
-		divisionDetails2.add(division4);
 		conference1.setDivisionDetails(divisionDetails1);
 		conference2.setDivisionDetails(divisionDetails2);
 		league.setConferenceDetails(conferenceDetails);
 		return league;
 	}
-	
+
 	public Map<Integer, List<Map<IStandingModel,IStandingModel>>> mockTradePickLatest(List<IStandingModel> standing) {
 		List<IStandingModel> standings = standing;
 		Map<Integer, List<Map<IStandingModel,IStandingModel>>> finalRoundtradeTeamPick=new HashMap<>();
@@ -277,27 +270,6 @@ public class PlayerDraftMock {
 		listOfTeamsExchangingPickInRound7.add(teamsExchangingPickInRound7);
 		finalRoundtradeTeamPick.put(7, listOfTeamsExchangingPickInRound7);
 		
-		for (int i = 1; i <=7; i++)
-		{
-			System.out.println();
-			System.out.print("Round" +(i) + " Teams ");
-			if(finalRoundtradeTeamPick.get(i) == null)
-			{
-				continue;
-			}
-			else
-			{
-			List<Map<IStandingModel,IStandingModel>> a = finalRoundtradeTeamPick.get(i);
-			for(Map<IStandingModel, IStandingModel> list: a)
-			{ 
-			for (Map.Entry<IStandingModel, IStandingModel> standingTeam : list.entrySet())
-			{
-				System.out.print(" Team " + standingTeam.getKey().getTeam().getTeamName()+ " pick taken by "+ standingTeam.getValue().getTeam().getTeamName());
-			}	
-		}
-		}
-		System.out.println();
-		}
 		return finalRoundtradeTeamPick;
 	}
 

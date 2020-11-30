@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.ILeagueStanding;
 import com.dhl.g05.simulation.IStandingModel;
 
@@ -15,8 +17,9 @@ public class PlayerDraft implements IPlayerDraft {
 	static final Logger logger = LogManager.getLogger(PlayerDraft.class);
 	private int draftPickTeamSubstraction;
 	private Map<Integer, List<Map<IStandingModel, IStandingModel>>> pickOrderAfterTrading;
-
-	public int getDraftPickTeamSubstraction() {
+	IGenerateNewPlayers youngPlayers =ApplicationConfiguration.instance().getModelConcreteFactoryState().createNewPlayers();
+    ITeam teamHavingExcessPlayers = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
+    public int getDraftPickTeamSubstraction() {
 		return draftPickTeamSubstraction;
 	}
 
@@ -35,19 +38,16 @@ public class PlayerDraft implements IPlayerDraft {
 
 	public void playerDraft1(ILeagueStanding leaguestanding) {
 		List<IStandingModel> standingForAllConference = new ArrayList<>();
+		List<IStandingModel> teamsEligibleForPickFirst = new ArrayList<>();
+		List<IStandingModel> teamsEligibleForPickLater = new ArrayList<>();
+		List<IStandingModel> teamsEligibleForPickFirstReverseOrder = new ArrayList<>();
+		List<IStandingModel> teamsEligibleForPickLaterReverseOrder = new ArrayList<>();
+		int numberOfTeamsEligibleForPickFirst = 0;
 		try {
 			standingForAllConference = leaguestanding.getRankingAcrossLeague();
-			IGenerateNewPlayers g = new GenerateNewPlayers();
-			g.setNumberOfTeams(standingForAllConference.size());
-			List<IPlayer> newPlayers = g.generatePlayers();
+			youngPlayers.setNumberOfTeams(standingForAllConference.size());
+			List<IPlayer> newPlayers = youngPlayers.generatePlayers();
 			newPlayers.sort(Comparator.comparing(IPlayer::getPlayerStrength));
-
-			List<IStandingModel> teamsEligibleForPickFirst = new ArrayList<>();
-			List<IStandingModel> teamsEligibleForPickFirstReverseOrder = new ArrayList<>();
-			List<IStandingModel> teamsEligibleForPickLater = new ArrayList<>();
-			List<IStandingModel> teamsEligibleForPickLaterReverseOrder = new ArrayList<>();
-			int numberOfTeamsEligibleForPickFirst = 0;
-
 			numberOfTeamsEligibleForPickFirst = (standingForAllConference.size() - draftPickTeamSubstraction);
 			teamsEligibleForPickFirstReverseOrder = standingForAllConference.subList(
 					standingForAllConference.size() - numberOfTeamsEligibleForPickFirst,
@@ -132,18 +132,19 @@ public class PlayerDraft implements IPlayerDraft {
 				}
 			}
 			callRoasterToAdjustPlayers(teamOrder);
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (IndexOutOfBoundsException e) {
 			logger.info("Not enough new players to replenish");
 		}
 	}
 
 	public void callRoasterToAdjustPlayers(Map<Integer, List<IStandingModel>> teamOrder) {
-		ITeam teamHavingExcessPlayers = new TeamModel();
 		for (int i = 1; i <= 7; i++) {
 			for (IStandingModel team : teamOrder.get(i)) {
-				teamHavingExcessPlayers = team.getTeam();
-				logger.info("Adjusting Team Roaster after Drafting" + team.getTeam());
-				teamHavingExcessPlayers.adjustTeamRoasterAfterDraft(team.getTeam());
+				if (team.getTeam().getPlayerList().size() > 30) {
+					teamHavingExcessPlayers = team.getTeam();
+					logger.info("Adjusting Team Roaster after Drafting" + team.getTeam());
+					teamHavingExcessPlayers.adjustTeamRoasterAfterDraft(team.getTeam());
+				}
 			}
 		}
 	}
