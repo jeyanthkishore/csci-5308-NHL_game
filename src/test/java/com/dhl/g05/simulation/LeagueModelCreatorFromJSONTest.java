@@ -8,10 +8,6 @@ import org.junit.Test;
 
 import com.dhl.g05.communication.MockPlayerCommunication;
 import com.dhl.g05.model.ILeague;
-import com.dhl.g05.simulation.LeagueModelCreatorFromJSON;
-
-
-
 
 public class LeagueModelCreatorFromJSONTest {
 	LeagueModelCreatorFromJSON leagueModelCreator;

@@ -13,8 +13,6 @@ import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.ApplicationTestConfiguration;
 import com.dhl.g05.database.DatabaseMockAbstractFactory;
 import com.dhl.g05.database.DatabaseState;
-import com.dhl.g05.model.ILeague;
-import com.dhl.g05.model.LeagueModel;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class LoadTeamStateTest {
@@ -31,12 +29,11 @@ public class LoadTeamStateTest {
 
 	
 	@Test
-	public void operationTest() {
+	public void loadTeamTest() {
 		String userInput = "serializeLeague";
 		ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(testInput);
-        ILeague league = new LeagueModel(); 
-        state.setLeague(league);
+        
 		state.enter();
 		state.performStateTask();
 		state.exit();
@@ -45,18 +42,12 @@ public class LoadTeamStateTest {
 	}
 	
 	@Test
-	public void operationNoTeamTest() {
+	public void noUniqueTeamTest() {
 		String userInput = "Striker Six";
 		ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
 		System.setIn(testInput);
 		state.enter();
 		assertFalse(state.performStateTask());
-	}
-
-	@Test
-	public void testExit() {
-		assertTrue(state.exit());
-		assertTrue(state.getNextState() instanceof PlayerChoiceState);
 	}
 
 }

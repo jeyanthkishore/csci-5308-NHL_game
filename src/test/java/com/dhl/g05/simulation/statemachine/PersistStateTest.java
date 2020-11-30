@@ -18,17 +18,18 @@ import com.dhl.g05.database.DatabaseMockAbstractFactory;
 import com.dhl.g05.database.DatabaseState;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
+import com.dhl.g05.simulation.SimulationMockAbstractFactory;
 import com.dhl.g05.simulation.leaguesimulation.IScheduleModel;
-import com.dhl.g05.simulation.leaguesimulation.ScheduleModel;
 import com.dhl.g05.simulation.leaguesimulation.StandingMockData;
 
 public class PersistStateTest {
 	private AbstractState state;
+	private static SimulationAbstractFactory simulationFactory;
 	
 	@Before
 	public void init() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
-		state = stateFactory.createPersistState();
+		simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		state = simulationFactory.createPersistState();
 		DatabaseMockAbstractFactory mockDatabaseState = ApplicationTestConfiguration.instance().getDatabaseMockConcreteFactoryState();
 	    DatabaseState state = mockDatabaseState.createMockDatabaseState();
 		ApplicationConfiguration.instance().setDataBaseFactoryState(state);
@@ -36,12 +37,13 @@ public class PersistStateTest {
 	
 	@Test
 	public void performTaskTest() {
-		StandingMockData mock = new StandingMockData();
+		SimulationMockAbstractFactory simulationMockFactory = ApplicationTestConfiguration.instance().getSimulationMockConcreteFactoryState();
+		StandingMockData mock = simulationMockFactory.createStandingMock();
 		ILeague league = mock.createDummyLeague();
 		league.setLeagueName("HockeyLeague");
 		
 		league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
-		IScheduleModel schedule = new ScheduleModel();
+		IScheduleModel schedule = simulationFactory.createScheduleModel();
 		schedule.setIsGameCompleted(true);
 		schedule.setScheduleDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
 		List<IScheduleModel> scheduleList = new ArrayList<>();
@@ -57,12 +59,13 @@ public class PersistStateTest {
 	
 	@Test
 	public void performTaskAdvancedTimeTest() {
-		StandingMockData mock = new StandingMockData();
+		SimulationMockAbstractFactory simulationMockFactory = ApplicationTestConfiguration.instance().getSimulationMockConcreteFactoryState();
+		StandingMockData mock = simulationMockFactory.createStandingMock();
 		ILeague league = mock.createDummyLeague();
 		league.setLeagueName("HockeyLeague");
 		
 		league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
-		IScheduleModel schedule = new ScheduleModel();
+		IScheduleModel schedule = simulationFactory.createScheduleModel();
 		schedule.setIsGameCompleted(false);
 		schedule.setScheduleDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
 		List<IScheduleModel> scheduleList = new ArrayList<>();
