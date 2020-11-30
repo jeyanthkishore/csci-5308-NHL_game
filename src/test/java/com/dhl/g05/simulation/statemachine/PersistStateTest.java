@@ -13,7 +13,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.database.DatabaseMockFactoryState;
+import com.dhl.g05.ApplicationTestConfiguration;
+import com.dhl.g05.database.DatabaseMockAbstractFactory;
+import com.dhl.g05.database.DatabaseMockOperationFactoryState;
 import com.dhl.g05.database.DatabaseState;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
@@ -30,7 +32,8 @@ public class PersistStateTest {
 	public void init() {
 		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		state = stateFactory.createPersistState();
-		DatabaseState state = new DatabaseMockFactoryState();
+		DatabaseMockAbstractFactory mockDatabaseState = ApplicationTestConfiguration.instance().getDatabaseMockConcreteFactoryState();
+	    DatabaseState state = mockDatabaseState.createMockDatabaseState();
 		ApplicationConfiguration.instance().setDataBaseFactoryState(state);
 	}
 	

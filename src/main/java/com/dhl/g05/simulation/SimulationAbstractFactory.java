@@ -18,7 +18,7 @@ public abstract class SimulationAbstractFactory {
 
 	private static SimulationAbstractFactory abstractStateMachineFactory;
 
-	public static SimulationAbstractFactory getInstance(SimulationState state) {
+	public static SimulationAbstractFactory instance(SimulationState state) {
 		abstractStateMachineFactory = state.concreteMethod();
 		return abstractStateMachineFactory;
 	}

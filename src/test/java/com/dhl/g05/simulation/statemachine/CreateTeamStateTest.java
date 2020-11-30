@@ -10,27 +10,27 @@ import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.ApplicationTestConfiguration;
-import com.dhl.g05.communication.CommunicationPlayerMockFactoryState;
+import com.dhl.g05.communication.CommunicationMockAbstractFactory;
+import com.dhl.g05.communication.CommunicationPlayerOperationMockFactoryState;
 import com.dhl.g05.communication.CommunicationState;
-import com.dhl.g05.communication.CommunicationTeamMockFactoryState;
-import com.dhl.g05.database.DatabaseMockFactoryState;
+import com.dhl.g05.database.DatabaseMockAbstractFactory;
 import com.dhl.g05.database.DatabaseState;
 import com.dhl.g05.model.LeagueMockData;
 import com.dhl.g05.model.ModelMockAbstractFactory;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
-import com.dhl.g05.simulation.statemachine.AbstractState;
-import com.dhl.g05.simulation.statemachine.IStateMachine;
-import com.dhl.g05.simulation.statemachine.PlayerChoiceState;
 
 public class CreateTeamStateTest {
 	IStateMachine machine;
 	private static AbstractState create;
+	private static CommunicationMockAbstractFactory mockCommunication;
 
 	/*Function called after setting up the ByteArrayInputStream to manipulate user input*/
 	 public static void setup() {
-		 	CommunicationState communication = new CommunicationTeamMockFactoryState();
+		 	mockCommunication = ApplicationTestConfiguration.instance().getCommunicationMockConcreteFactoryState();
+		 	CommunicationState communication = mockCommunication.createMockTeamCommunicationState();
 		    ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
-		    DatabaseState state = new DatabaseMockFactoryState();
+		    DatabaseMockAbstractFactory mockDatabaseState = ApplicationTestConfiguration.instance().getDatabaseMockConcreteFactoryState();
+		    DatabaseState state = mockDatabaseState.createMockDatabaseState();
 			ApplicationConfiguration.instance().setDataBaseFactoryState(state);
 		    SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		    ModelMockAbstractFactory modelMockFactory = ApplicationTestConfiguration.instance().getModelMockConcreteFactoryState();
@@ -41,7 +41,7 @@ public class CreateTeamStateTest {
 	 
 	 @AfterClass
 	 public static void setCommunication() {
-		 CommunicationState communication = new CommunicationPlayerMockFactoryState();
+		 CommunicationState communication = mockCommunication.createMockPlayerCommunicationState();
 		 ApplicationConfiguration.instance().setCommunicationFactoryState(communication);
 	 }
 

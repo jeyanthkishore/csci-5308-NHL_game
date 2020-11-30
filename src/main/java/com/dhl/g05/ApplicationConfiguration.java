@@ -40,21 +40,25 @@ public class ApplicationConfiguration {
 	}
 
 	public SimulationAbstractFactory getSimulationConcreteFactoryState() {
-		return SimulationAbstractFactory.getInstance(simulation);
+		return SimulationAbstractFactory.instance(simulation);
 	}
 
 	public DatabaseAbstractFactory getDatabaseConcreteFactoryState() {
-		return DatabaseAbstractFactory.getInstance(database);
+		return DatabaseAbstractFactory.instance(database);
 	}
 
 	public CommunicationAbstractFactory getCommunicationConcreteFactoryState() {
-		return CommunicationAbstractFactory.getInstance(communication);
+		return CommunicationAbstractFactory.instance(communication);
 	}
 
 	public ModelAbstractFactory getModelConcreteFactoryState() {
-		return ModelAbstractFactory.getInstance(model);
+		return ModelAbstractFactory.instance(model);
 	}
 
+	public TradingAbstractFactory getTradingConcreteFactoryState() {
+		return TradingAbstractFactory.instance(trade);
+	}
+	
 	public void setDataBaseFactoryState(DatabaseState newDatabase) {
 		database = newDatabase;
 	}
@@ -63,7 +67,4 @@ public class ApplicationConfiguration {
 		communication = newCommunication;
 	}
 
-	public TradingAbstractFactory getTradingConcreteFactoryState() {
-		return TradingAbstractFactory.getInstance(trade);
-	}
 }

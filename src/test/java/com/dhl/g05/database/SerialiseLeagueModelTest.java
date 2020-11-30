@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.ApplicationTestConfiguration;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.LeagueModel;
 
@@ -16,7 +17,8 @@ public class SerialiseLeagueModelTest {
 	    public static void setup() {
 		 	DatabaseAbstractFactory databasFactory = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
 		 	serial = databasFactory.createDeserializeObject();
-		 	DatabaseState state = new DatabaseMockFactoryState();
+		 	DatabaseMockAbstractFactory mockDatabaseState = ApplicationTestConfiguration.instance().getDatabaseMockConcreteFactoryState();
+		    DatabaseState state = mockDatabaseState.createMockDatabaseState();
 			ApplicationConfiguration.instance().setDataBaseFactoryState(state);
 	    }
 	
