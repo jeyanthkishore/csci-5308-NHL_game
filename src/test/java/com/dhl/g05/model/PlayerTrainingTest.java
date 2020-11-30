@@ -7,14 +7,17 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.ApplicationTestConfiguration;
 
 public class PlayerTrainingTest {
 	
     private static IPlayerTraining playerTraining;
     private static IRandomNumberFactory randomGeneratorFactoryMock;
+    private static ModelMockAbstractFactory modelMockFactory;
 
     @BeforeClass
     public static void setup() {
+    	modelMockFactory = ApplicationTestConfiguration.instance().getModelMockConcreteFactoryState();
     	playerTraining = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerTraining();
         randomGeneratorFactoryMock = Mockito.mock(RandomNumberFactory.class);
         playerTraining.setRandomGeneratorFactory(randomGeneratorFactoryMock);
@@ -22,7 +25,7 @@ public class PlayerTrainingTest {
 
 	@Test
 	public void performanceCheckTest() {
-		PlayerTrainingMockData data = new PlayerTrainingMockData();
+		PlayerTrainingMockData data = modelMockFactory.createPlayerTrainingMock();
 		ILeague league = data.leagueObject;
 		Mockito.when(randomGeneratorFactoryMock.generateRandomDoubleNumber(0,1)).thenReturn(0.4);
 		for (IConference conference : league.getConferenceDetails()) {
@@ -42,7 +45,7 @@ public class PlayerTrainingTest {
 	
 	@Test
 	public void performanceCheckInjuryTest() {
-		PlayerTrainingMockData data = new PlayerTrainingMockData();
+		PlayerTrainingMockData data = modelMockFactory.createPlayerTrainingMock();
 		ILeague league = data.leagueObject;
 		Mockito.when(randomGeneratorFactoryMock.generateRandomDoubleNumber(0,1)).thenReturn(0.8);
 		for (IConference conference : league.getConferenceDetails()) {
