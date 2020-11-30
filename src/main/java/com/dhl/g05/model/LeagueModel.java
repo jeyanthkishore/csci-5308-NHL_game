@@ -13,8 +13,6 @@ import com.dhl.g05.database.ISerializeModel;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.leaguesimulation.ILeagueSchedule;
 import com.dhl.g05.simulation.leaguesimulation.ILeagueStanding;
-import com.dhl.g05.simulation.leaguesimulation.LeagueSchedule;
-import com.dhl.g05.simulation.leaguesimulation.LeagueStanding;
 import com.dhl.g05.simulation.statemachine.IGamePlayConfig;
 import com.google.gson.annotations.Expose;
 import com.mysql.cj.util.StringUtils;

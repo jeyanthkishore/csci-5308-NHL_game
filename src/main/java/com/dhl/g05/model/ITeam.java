@@ -38,7 +38,7 @@ public interface ITeam {
 
 	public List<IPlayer> setActiveRoster(ITeam team);
 
-	public List<IPlayer> setInActiveRoster(List<IPlayer> injuredPlayers, ITeam team);
+	public List<IPlayer> setInActiveRoster(ITeam team);
 
 	double getTeamStrength();
 
