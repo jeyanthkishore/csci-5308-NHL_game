@@ -1,16 +1,19 @@
 package com.dhl.g05.model;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+
+import java.time.LocalDate;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.statemachine.IAging;
 import com.dhl.g05.simulation.statemachine.IInjury;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PlayerModelTest {
 
@@ -104,5 +107,50 @@ public class PlayerModelTest {
 		player.setBirthYear(11);
 		assertEquals(FreeAgentConstant.Success, player.validate() );
 	}
+	@Test
+	public void PlayerStatDecayOnBirthdayTest()
+	{
+		IAging aging = simulationAbstractFactory.createAgingConfig();
+		IPlayer player=modelAbstractFactory.createPlayerModel();
+		player.setPlayerName("Player1");
+		player.setPosition("goalie");
+		LocalDate todaysDate= LocalDate.now();
+		player.setBirthDay(todaysDate.getDayOfMonth());
+		player.setBirthMonth(todaysDate.getMonthValue());
+		player.setBirthYear(2000);
+		player.setSkating(10);
+		player.setShooting(12);
+		player.setChecking(15);
+		player.setSaving(18);
+		aging.setStatDecayChance(1);
+		player.decreasePlayerStatOnBirthday(player, aging);
+		assertEquals(player.getChecking(), 14, 0);
+		assertEquals(player.getSaving(), 17, 0);
+		assertEquals(player.getSkating(), 9, 0);
+		assertEquals(player.getShooting(), 11, 0);
+	}
 	
+	@Test
+	public void PlayerStatNotDecayOnBirthdayTest()
+	{
+		IAging aging = simulationAbstractFactory.createAgingConfig();
+		IPlayer player=modelAbstractFactory.createPlayerModel();
+		player.setPlayerName("Player1");
+		player.setPosition("goalie");
+		LocalDate todaysDate= LocalDate.now();
+		player.setBirthDay(todaysDate.getDayOfMonth());
+		player.setBirthMonth(todaysDate.getMonthValue());
+		player.setBirthYear(2000);
+		player.setSkating(10);
+		player.setShooting(12);
+		player.setChecking(15);
+		player.setSaving(18);
+		aging.setStatDecayChance(0);
+		player.decreasePlayerStatOnBirthday(player, aging);
+		assertEquals(player.getChecking(), 15, 0);
+		assertEquals(player.getSaving(), 18, 0);
+		assertEquals(player.getSkating(), 10, 0);
+		assertEquals(player.getShooting(), 12, 0);
+	}
 }
+	

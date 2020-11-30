@@ -11,47 +11,47 @@ import com.dhl.g05.simulation.statemachine.IGamePlayConfig;
 
 public interface ILeague {
 
-    String getLeagueName();
+	String getLeagueName();
 
-    void setLeagueName(String league);
+	void setLeagueName(String league);
 
-    List<IConference> getConferenceDetails();
+	List<IConference> getConferenceDetails();
 
-    void setConferenceDetails(List<IConference> conferencedetail);
+	void setConferenceDetails(List<IConference> conferencedetail);
 
-    List<IFreeAgent> getFreeAgent();
+	List<IFreeAgent> getFreeAgent();
 
-    void setFreeAgent(List<IFreeAgent> agent);
+	void setFreeAgent(List<IFreeAgent> agent);
 
-    List<ICoach> getFreeCoach();
+	List<ICoach> getFreeCoach();
 
-    void setFreeCoach(List<ICoach> freeCoach);
+	void setFreeCoach(List<ICoach> freeCoach);
 
-    List<String> getManagerList();
+	List<String> getManagerList();
 
-    boolean removeRetiredFreeAgentsFromLeague(IFreeAgent freeAgent);
+	boolean removeRetiredFreeAgentsFromLeague(IFreeAgent freeAgent);
 
-    List<IFreeAgent> getRetiredFreeAgentsList();
+	List<IFreeAgent> getRetiredFreeAgentsList();
 
-    void setRetiredFreeAgentsList(List<IFreeAgent> retiredFreeAgentsList);
+	void setRetiredFreeAgentsList(List<IFreeAgent> retiredFreeAgentsList);
 
-    void setManagerList(List<String> managerList);
+	void setManagerList(List<String> managerList);
 
-    void addRetiredFreeAgentToList(IFreeAgent freeAgent);
-    
-    void addNewFreeAgentsToLeague(List<IFreeAgent> freeAgentList);
+	void addRetiredFreeAgentToList(IFreeAgent freeAgent);
 
-    void addRetiredPlayersToList(IPlayer player);
+	void addNewFreeAgentsToLeague(List<IFreeAgent> freeAgentList);
 
-    IGamePlayConfig getGamePlayConfig();
+	void addRetiredPlayersToList(IPlayer player);
 
-    void setGamePlayConfig(IGamePlayConfig gamePlayConfig);
+	IGamePlayConfig getGamePlayConfig();
 
-    LeagueConstant validate();
+	void setGamePlayConfig(IGamePlayConfig gamePlayConfig);
 
-    List<IPlayer> getRetiredPlayersList();
+	LeagueConstant validate();
 
-    void setRetiredPlayersList(List<IPlayer> retiredPlayersList);
+	List<IPlayer> getRetiredPlayersList();
+
+	void setRetiredPlayersList(List<IPlayer> retiredPlayersList);
 
 	void incrementDaysSinceStatIncrease();
 
@@ -68,14 +68,14 @@ public interface ILeague {
 	void setLeagueCurrentDate(LocalDate currentDate);
 
 	ILeagueStanding getLeagueStanding();
-	
+
 	void setLeagueStanding(ILeagueStanding leagueStanding);
-	
+
 	void setLeagueSchedule(ILeagueSchedule leagueSchedule);
 
 	void setDaysSinceStatIncrease(int days);
 
-	boolean saveLeagueObject(ISerializeModel saveLeague,String teamName);
+	boolean saveLeagueObject(ISerializeModel saveLeague, String teamName);
 
 	ILeague loadLeagueObject(IDeserializeModel loadLeague, String teamName);
 

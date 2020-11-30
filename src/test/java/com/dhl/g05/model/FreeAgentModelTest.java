@@ -497,7 +497,7 @@ public class FreeAgentModelTest {
 		freeagent.setChecking(15);
 		freeagent.setSaving(18);
 		aging.setStatDecayChance(1);
-		freeagent.decreaseStatOnBirthday(freeagent, aging);
+		freeagent.decreaseFreeAgentStatOnBirthday(freeagent, aging);
 		assertEquals(freeagent.getChecking(), 14, 0);
 		assertEquals(freeagent.getSaving(), 17, 0);
 		assertEquals(freeagent.getSkating(), 9, 0);
@@ -520,7 +520,7 @@ public class FreeAgentModelTest {
 		freeagent.setChecking(15);
 		freeagent.setSaving(18);
 		aging.setStatDecayChance(0);
-		freeagent.decreaseStatOnBirthday(freeagent, aging);
+		freeagent.decreaseFreeAgentStatOnBirthday(freeagent, aging);
 		assertEquals(freeagent.getChecking(), 15, 0);
 		assertEquals(freeagent.getSaving(), 18, 0);
 		assertEquals(freeagent.getSkating(), 10, 0);

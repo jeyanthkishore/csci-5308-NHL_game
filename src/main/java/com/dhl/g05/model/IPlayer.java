@@ -71,7 +71,7 @@ public interface IPlayer {
 
 	void calculateAge(LocalDate leagueDate);
 
-	void decreaseStatOnBirthday(IFreeAgent player, IAging agingConfig);
+	void decreasePlayerStatOnBirthday(IPlayer player, IAging agingConfig);
 
 	FreeAgentConstant validate();
 	

@@ -75,7 +75,7 @@ public interface IFreeAgent {
 
 	void setRetirementStatus(boolean isRetired);
 
-	void decreaseStatOnBirthday(IFreeAgent player, IAging agingConfig);
+	void decreaseFreeAgentStatOnBirthday(IFreeAgent player, IAging agingConfig);
 
 	void setBirthYear(int year);
 
