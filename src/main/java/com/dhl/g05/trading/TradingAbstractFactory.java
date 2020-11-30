@@ -1,5 +1,7 @@
 package com.dhl.g05.trading;
 
+import com.dhl.g05.simulation.statemachine.ITradingConfig;
+
 public abstract class TradingAbstractFactory {
 	
 	private static TradingAbstractFactory abstractTradingFactory;
@@ -22,6 +24,8 @@ public abstract class TradingAbstractFactory {
 	public abstract ITradePickToPlayerDraft createTradePickToPlayerDraft();
 
 	public abstract IIntiateTradeOffer createInititatetradeoffer();
+	
+	public abstract ITradeValue createTradeValue (ITradingConfig trade);
 	
 	}
 

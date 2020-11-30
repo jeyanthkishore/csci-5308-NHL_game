@@ -13,6 +13,9 @@ public class TradeValue implements ITradeValue {
 		this.tradeChanceInConfig = trade.getRandomTradeOfferChance();
 	}
 
+	public TradeValue() {
+	}
+
 	public double generateRandomValue() {
 		Random randomValue = new Random();
 		randomTradeValue = randomValue.nextDouble();
