@@ -17,6 +17,10 @@ public class TeamModel implements ITeam {
 	private static final int numberOfDefense = 10;
 	private static final int numberOfForward = 16;
 	private static final int numberOfGoalie = 4;
+	private static final int numberOfActiveGoalies=2;
+	private static final int numberOfActiveSKaters=18;
+	private static final int numberOfActivePlayers = 20;
+	private static final int numberOfInActivePlayers = 10;
 	private static final int numberOfPlayers = 30;
 	@Expose
 	private String teamName;
@@ -164,7 +168,7 @@ public class TeamModel implements ITeam {
 	}
 
 	private boolean isPlayerListValid() {
-		if (players.size() >= 30) {
+		if (players.size() >= numberOfPlayers) {
 			return true;
 		}
 		return false;
@@ -182,28 +186,6 @@ public class TeamModel implements ITeam {
 		return false;
 	}
 
-	public int numberOfSkaters(ITeam team) {
-		int skater = 0;
-		for (IPlayer player : team.getPlayerList()) {
-			if ((player.getPosition().equalsIgnoreCase("Forward"))
-					|| (player.getPosition().equalsIgnoreCase("Defense"))) {
-				skater++;
-			}
-		}
-		return skater;
-	}
-
-	public int numberOfGoalies(ITeam team) {
-		int goalie = 0;
-		for (IPlayer player : team.getPlayerList()) {
-			if (player.getPosition().equalsIgnoreCase("Goalie")) {
-				goalie++;
-			}
-		}
-		return goalie;
-	}
-
-
 	public void assignOneCaptain(ITeam team) {
 		int captainCount = 0;
 		for (int i = 1; i < team.getPlayerList().size(); i++) {
@@ -214,6 +196,61 @@ public class TeamModel implements ITeam {
 				}
 			}
 		}
+	}
+	
+	public List<IPlayer> setActiveRoster(ITeam team) {
+		int skaterCount = 0;
+		int goalieCount = 0;
+		int activeRosterSize = 0;
+		List<IPlayer> players = team.getPlayerList();
+		List<IPlayer> activePlayers = new ArrayList<>();
+		List<IPlayer> inactivePlayers = new ArrayList<>();
+		players.sort(Comparator.comparing(IPlayer::getPlayerStrength).reversed());
+		for (IPlayer p : players) {
+			if (activeRosterSize == numberOfActivePlayers) {
+				break;
+			} else {
+				if ((p.getPosition().equals(PositionConstant.defense.getValue()) || (p.getPosition().equals(PositionConstant.forward.getValue())))) {
+					if (skaterCount == numberOfActiveSKaters) {
+						continue;
+					} else {
+						p.setIsActive(BooleanValue.True.getValue());
+						skaterCount++;
+						activeRosterSize++;
+						activePlayers.add(p);
+					}
+				}
+				if (p.getPosition().equals(PositionConstant.goalie.getValue())) {
+					if (goalieCount == numberOfActiveGoalies) {
+						continue;
+					} else {
+						p.setIsActive(BooleanValue.True.getValue());
+						goalieCount++;
+						activeRosterSize++;
+						activePlayers.add(p);
+					}
+				}
+			}
+		}
+		team.setPlayerList(activePlayers);
+		setInActiveRoster(players, team);
+		return activePlayers;
+	}
+				
+	public List<IPlayer> setInActiveRoster(List<IPlayer> injuredPlayers,ITeam team) {
+		int activeRosterSize = 0;
+		List<IPlayer> InActivePlayers = new ArrayList<>();
+		for (IPlayer p : injuredPlayers) {
+			if (activeRosterSize == numberOfInActivePlayers) {
+				break;
+			} else {
+				p.setIsActive(BooleanValue.False.getValue());
+				InActivePlayers.add(p);
+				activeRosterSize++;
+			}
+		}
+		team.setPlayerList(InActivePlayers);
+		return InActivePlayers;
 	}
 
 	public void adjustTeamRoasterAfterDraft(ITeam team) {

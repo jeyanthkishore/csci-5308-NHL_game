@@ -12,13 +12,13 @@ import com.google.gson.annotations.Expose;
 public class PlayerModel extends FreeAgentModel implements IPlayerInjury, IPlayer, IPlayerRetirement{
 
 	static final Logger logger = LogManager.getLogger(PlayerModel.class);
+	private boolean IsActive;
 	private final int DECREASE_STAT_BY=1;
 	@Expose
 	private Boolean captain;
 	@Expose
 	private int injuredForNumberOfDays;
 	
-
 	public PlayerModel() {
 		setCaptain(null);
 		setPlayerName(null);
@@ -33,6 +33,14 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury, IPlaye
 	@Override
 	public Boolean getCaptain() {
 		return captain;
+	}
+	
+	public boolean getIsActive() {
+		return IsActive;
+	}
+
+	public void setIsActive(boolean active) {
+		this.IsActive = active;
 	}
 
 	@Override

@@ -59,6 +59,8 @@ public interface IPlayer {
 
 	int getBirthMonth();
 
+	public void setIsActive(boolean active);
+
 	void setBirthMonth(int month);
 
 	int getBirthYear();
@@ -69,11 +71,13 @@ public interface IPlayer {
 
 	void setAge(int age);
 
+	public boolean getIsActive();
+
 	void calculateAge(LocalDate leagueDate);
 
 	void decreasePlayerStatOnBirthday(IPlayer player, IAging agingConfig);
 
 	FreeAgentConstant validate();
-	
+
 	boolean checkPlayerInjury(IPlayerInjured playerInjured, IPlayer player, IInjury injury);
 }
