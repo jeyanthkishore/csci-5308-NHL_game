@@ -8,12 +8,11 @@ import java.util.List;
 import java.util.Map;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.ApplicationTestConfiguration;
-import com.dhl.g05.simulation.ILeagueStanding;
-import com.dhl.g05.simulation.IStandingModel;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
+import com.dhl.g05.simulation.leaguesimulation.ILeagueStanding;
+import com.dhl.g05.simulation.leaguesimulation.IStandingModel;
 
 public class PlayerDraftTest {
 
@@ -59,6 +58,7 @@ public class PlayerDraftTest {
 		String teamInRound1Pick1 = pickOrder.get(1).get(0).getTeam().getTeamName();
 		assertSame(teamInRound1Pick1, "Boston");
 	}
+	
 	@Test
 	public void createPickOrderPick4Round3Test() {
 		Map<Integer, List<IStandingModel>> pickOrder = new HashMap<>();
@@ -66,6 +66,7 @@ public class PlayerDraftTest {
 		String teamInRound1Pick1 = pickOrder.get(3).get(3).getTeam().getTeamName();
 		assertSame(teamInRound1Pick1, "Thunders");
 	}
+	
 	@Test
 	public void createPickOrderPick1Round7Test() {
 		Map<Integer, List<IStandingModel>> pickOrder = new HashMap<>();
