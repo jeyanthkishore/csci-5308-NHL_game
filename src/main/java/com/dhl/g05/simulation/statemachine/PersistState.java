@@ -26,11 +26,11 @@ public class PersistState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		if(league.getLeagueSchedule().isStanleyCupWinnerDetermined()) {
 			this.setNextState(null);
 		} else {
-			this.setNextState(stateFactory.createAdvancedTimeState());
+			this.setNextState(simulationFactory.createAdvancedTimeState());
 		}
 		return true;
 	}

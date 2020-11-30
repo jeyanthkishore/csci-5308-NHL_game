@@ -9,7 +9,6 @@ import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.database.DatabaseAbstractFactory;
 import com.dhl.g05.database.ITeamDatabaseOperation;
 import com.dhl.g05.model.CoachConstant;
-import com.dhl.g05.model.CoachModel;
 import com.dhl.g05.model.ICoach;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
@@ -17,8 +16,7 @@ import com.dhl.g05.model.IFreeAgent;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.PlayerModel;
-import com.dhl.g05.model.TeamModel;
+import com.dhl.g05.model.ModelAbstractFactory;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.mysql.cj.util.StringUtils;
 
@@ -33,6 +31,7 @@ public class CreateTeamState extends AbstractState {
 	private List<IFreeAgent> freeAgentList = new ArrayList<>();
 	private List<ICoach> coachList = new ArrayList<>();
 	private List<String> managerList = new ArrayList<>();
+	private ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 
 	public CreateTeamState(IPlayerCommunication communication) {
 		communicate = communication;
@@ -50,7 +49,7 @@ public class CreateTeamState extends AbstractState {
 		while(teamNotEntered) {
 			communicate.sendMessage(CreateTeamConstant.EnterTeam.getValue());
 			teamName =  communicate.getResponse();
-			ITeam team = new TeamModel();
+			ITeam team = modelFactory.createTeamModel();
 			DatabaseAbstractFactory database = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
 			ITeamDatabaseOperation checkTeam = database.createTeamDatabaseOperation();
 			boolean notUnique = team.isTeamExist(teamName,checkTeam);
@@ -65,7 +64,7 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean performStateTask() {
-		
+
 		if (StringUtils.isNullOrEmpty(teamName) || StringUtils.isNullOrEmpty(divisionName)
 				|| StringUtils.isNullOrEmpty(conferenceName)){
 			communicate.sendMessage(CreateTeamConstant.MissingField.getValue());
@@ -86,7 +85,6 @@ public class CreateTeamState extends AbstractState {
 		return false;
 	}
 
-
 	private Boolean createOperation() {
 
 		if(teamCreation()){
@@ -100,9 +98,10 @@ public class CreateTeamState extends AbstractState {
 	}
 
 	private boolean teamCreation() {
+		String managerObject = "";
 		List<IPlayer> playerList = new ArrayList<>();
 		freeAgentList = league.getFreeAgent();
-		newTeam = new TeamModel();
+		newTeam = modelFactory.createTeamModel();
 		newTeam.setTeamName(teamName);
 
 		ICoach coach = pickCoach();
@@ -113,7 +112,6 @@ public class CreateTeamState extends AbstractState {
 			return false;
 		}
 
-		String managerObject = "";
 		managerObject = pickManager();
 		if(StringUtils.isNullOrEmpty(managerObject)) {
 			communicate.sendMessage(CreateTeamConstant.ErrorManagerCreation.getValue());
@@ -135,7 +133,7 @@ public class CreateTeamState extends AbstractState {
 	}
 
 	private ICoach pickCoach() {
-		ICoach selectedCoach = new CoachModel();
+		ICoach selectedCoach = modelFactory.createCoachModel();
 		coachList = league.getFreeCoach();
 		Boolean coachNotSelected = true;
 		int number;
@@ -198,15 +196,6 @@ public class CreateTeamState extends AbstractState {
 		int goalie = 0;
 		int skaters = 0;
 		int responseNumber;
-		double skating = 0;
-		double shooting = 0;
-		double checking = 0;
-		double saving = 0;
-		int birthDay=0;
-		int birthMonth=0;
-	    int birthYear =0;
-		String name ="";
-		String position="";
 		while(playerList.size()<30) {
 			String teamCount = CreateTeamConstant.TeamCount.getValue() + playerList.size();
 			String skaterscount = CreateTeamConstant.SkaterCount.getValue() +skaters;
@@ -250,24 +239,17 @@ public class CreateTeamState extends AbstractState {
 					continue;
 				}
 			}
-			name = freeAgentList.get(responseNumber-1).getPlayerName();
-			position = freeAgentList.get(responseNumber-1).getPosition();
-			checking = freeAgentList.get(responseNumber-1).getChecking();
-			skating = freeAgentList.get(responseNumber-1).getSkating();
-			shooting = freeAgentList.get(responseNumber-1).getShooting();
-			saving = freeAgentList.get(responseNumber-1).getSaving();
-			birthDay = freeAgentList.get(responseNumber-1).getBirthDay();
-			birthMonth = freeAgentList.get(responseNumber-1).getBirthMonth();
-			birthYear = freeAgentList.get(responseNumber-1).getBirthYear();
-			playerList.add(new PlayerModel(name,position,captain,checking,skating,shooting,saving,birthDay,birthMonth,birthYear));
+			IPlayer player = modelFactory.createPlayerModel();
+			player.convertFreeAgentToPlayer(freeAgentList.get(responseNumber-1), captain);
+			playerList.add(player);
 			captain = false;
 			freeAgentList.remove(responseNumber-1);
 		}
 
 		return playerList;
 	}
-	
-	
+
+
 	private void addNewTeamtoLeagueObject() {
 		List<IConference> conferences = league.getConferenceDetails();
 		for (IConference c: conferences) {
@@ -300,8 +282,8 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
-		this.setNextState(stateFactory.createPlayerChoiceState());
+		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		this.setNextState(simulationFactory.createPlayerChoiceState());
 		return true;
 	}
 

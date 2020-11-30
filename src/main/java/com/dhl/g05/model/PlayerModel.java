@@ -112,6 +112,20 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury, IPlaye
 			}
 		}
 	}
+	
+	public IPlayer convertFreeAgentToPlayer(IFreeAgent freeAgent,boolean captainValue) {
+		this.setPlayerName(freeAgent.getPlayerName());
+		this.setAge(freeAgent.getAge());
+		this.setBirthDay(freeAgent.getBirthDay());
+		this.setBirthMonth(freeAgent.getBirthMonth());
+		this.setBirthYear(freeAgent.getBirthYear());
+		this.setChecking(freeAgent.getChecking());
+		this.setSaving(freeAgent.getSaving());
+		this.setShooting(freeAgent.getShooting());
+		this.setSkating(freeAgent.getSkating());
+		this.setCaptain(captain);
+		return this;
+	}
 }
 		
 	

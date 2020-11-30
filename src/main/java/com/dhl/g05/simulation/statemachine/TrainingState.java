@@ -47,17 +47,17 @@ public class TrainingState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		LocalDate currentDate = league.getLeagueCurrentDate();
 		System.out.println(currentDate);
 		if (league.getLeagueSchedule().isGamesUnplayedOnCurrentDay(currentDate)) {
-            this.setNextState(stateFactory.createStimulateGameState());
+            this.setNextState(simulationFactory.createStimulateGameState());
         }
         else if (DateHandler.instance().isTradeDeadlinePassed(currentDate)) {
-        	this.setNextState(stateFactory.createAgingState());
+        	this.setNextState(simulationFactory.createAgingState());
         }
         else {
-        	this.setNextState(stateFactory.createTradeState());
+        	this.setNextState(simulationFactory.createTradeState());
         }
 		return true;
 	}
