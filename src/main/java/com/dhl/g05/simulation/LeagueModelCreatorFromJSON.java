@@ -5,12 +5,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.model.CoachConstant;
@@ -107,10 +109,13 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			league = createLeague((JSONObject)parser.parse(reader));
 			reader.close();
 		} catch (FileNotFoundException e) {
+			logger.error("File Not Found");
 			playerCommunication.sendMessage(LeagueCreatorConstant.FileNotFound.getValue());
 		} catch (IOException e) {
+			logger.error("IO Exception Occured");
 			playerCommunication.sendMessage(e.toString());
 		} catch (ParseException e) {
+			logger.error("Execption Occured during parsing");
 			playerCommunication.sendMessage(e.toString());
 		}
 		return league;
@@ -134,7 +139,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		if (validationResult.equals(LeagueConstant.Success)) {
 			return league;
 		} else {
-			logger.info(validationResult.getValue());
+			logger.error(validationResult.getValue());
 			playerCommunication.sendMessage(validationResult.getValue());
 		}
 
@@ -159,7 +164,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if(result.equals(GamePlayConfigConstant.Success)) {
 				return gamePlayconfig;
 			}else {
-				logger.info(result.getValue());
+				logger.error(result.getValue());
 				playerCommunication.sendMessage(result.getValue());
 			}
 			return null;
@@ -186,7 +191,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if(result.equals(AgingConstant.Success)) {
 				return agingConfig;
 			}else {
-				logger.info(result.getValue());
+				logger.error(result.getValue());
 				playerCommunication.sendMessage(result.getValue());
 			}
 			return null;
@@ -213,7 +218,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if(result.equals(InjuryConstant.Success)) {
 				return injuryConfig;
 			}else {
-				logger.info(result.getValue());
+				logger.error(result.getValue());
 				playerCommunication.sendMessage(result.getValue());
 			}
 			return null;
@@ -238,7 +243,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if(result.equals(TrainingConstant.Success)) {
 				return trainConfig;
 			}else {
-				logger.info(result.getValue());
+				logger.error(result.getValue());
 				playerCommunication.sendMessage(result.getValue());
 			}
 			return null;
@@ -263,7 +268,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if(result.equals(GameResolverConstant.Success)) {
 				return resolverConfig;
 			}else {
-				logger.info(result.getValue());
+				logger.error(result.getValue());
 				playerCommunication.sendMessage(result.getValue());
 			}
 			return null;
@@ -291,7 +296,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if(result.equals(TradingConstant.Success)) {
 				return tradeConfig;
 			}else {
-				logger.info(result.getValue());
+				logger.error(result.getValue());
 				playerCommunication.sendMessage(result.getValue());
 			}
 			return null;
@@ -322,7 +327,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if (validationResult.equals(ConferenceConstant.Success)) {
 				conferences.add(newConference);
 			} else {
-				logger.info(validationResult.getValue());
+				logger.error(validationResult.getValue());
 				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
@@ -351,7 +356,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if (validationResult.equals(DivisionConstant.Success)) {
 				divisions.add(newDivision);
 			} else {
-				logger.info(validationResult.getValue());
+				logger.error(validationResult.getValue());
 				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
@@ -383,7 +388,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if (validationResult.equals(TeamConstant.Success)) {
 				teams.add(newTeam);
 			}  else {
-				logger.info(validationResult.getValue());
+				logger.error(validationResult.getValue());
 				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
@@ -421,7 +426,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if (validationResult.equals(FreeAgentConstant.Success)) {
 				players.add(newPlayer);
 			} else {
-				logger.info(validationResult.getValue());
+				logger.error(validationResult.getValue());
 				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
@@ -456,7 +461,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if (validationResult.equals(FreeAgentConstant.Success)) {
 				freeAgent.add(newPlayer);
 			} else {
-				logger.info(validationResult.getValue());
+				logger.error(validationResult.getValue());
 				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}
@@ -501,7 +506,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 			if (validationResult.equals(CoachConstant.Success)) {
 				coaches.add(newCoach);
 			} else {
-				logger.info(validationResult.getValue());
+				logger.error(validationResult.getValue());
 				playerCommunication.sendMessage(validationResult.getValue());
 				return null;
 			}

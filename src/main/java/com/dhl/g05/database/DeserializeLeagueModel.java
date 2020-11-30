@@ -120,25 +120,40 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 	}
 
 	private IAging createAging(JSONObject jsonAging) {
-		IAging agingConfig = simulationFactory.createAgingConfig();
-		agingConfig.setAverageRetirementAge(((Number) jsonAging.get(AVERAGE_RETIREMENTAGE)).intValue());
-		agingConfig.setMaximumAge(((Number) jsonAging.get(MAXIMUM_AGE)).intValue());
-		agingConfig.setStatDecayChance(((Number) jsonAging.get(STAT_DECAY_CHANCE)).doubleValue());
-		return agingConfig;
+		try {
+			IAging agingConfig = simulationFactory.createAgingConfig();
+			agingConfig.setAverageRetirementAge(((Number) jsonAging.get(AVERAGE_RETIREMENTAGE)).intValue());
+			agingConfig.setMaximumAge(((Number) jsonAging.get(MAXIMUM_AGE)).intValue());
+			agingConfig.setStatDecayChance(((Number) jsonAging.get(STAT_DECAY_CHANCE)).doubleValue());
+			return agingConfig;
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	private IInjury createInjury(JSONObject jsonInjury) {
-		IInjury injuryConfig = simulationFactory.createInjuryConfig();
-		injuryConfig.setRandomInjuryChance(((Number) jsonInjury.get(RANDOM_INJURY_CHANCE)).doubleValue());
-		injuryConfig.setInjuryDaysHigh(((Number) jsonInjury.get(INJURY_DAYS_HIGH)).intValue());
-		injuryConfig.setInjuryDaysLow(((Number) jsonInjury.get(INJURY_DAYS_LOW)).intValue());
-		return injuryConfig;
+		try {
+			IInjury injuryConfig = simulationFactory.createInjuryConfig();
+			injuryConfig.setRandomInjuryChance(((Number) jsonInjury.get(RANDOM_INJURY_CHANCE)).doubleValue());
+			injuryConfig.setInjuryDaysHigh(((Number) jsonInjury.get(INJURY_DAYS_HIGH)).intValue());
+			injuryConfig.setInjuryDaysLow(((Number) jsonInjury.get(INJURY_DAYS_LOW)).intValue());
+			return injuryConfig;
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	private ITraining createTrainingConfig(JSONObject training) {
-		ITraining trainConfig = simulationFactory.createTrainingConfig();
-		trainConfig.setDaysUntilStatIncreaseCheck(((Number) training.get(DAYS_UNTIL_STAT_INCREASE_CHECK)).intValue());
-		return trainConfig;
+		try {
+			ITraining trainConfig = simulationFactory.createTrainingConfig();
+			trainConfig.setDaysUntilStatIncreaseCheck(((Number) training.get(DAYS_UNTIL_STAT_INCREASE_CHECK)).intValue());
+			return trainConfig;
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	private ILeague deserialzieFileData(JSONObject leagueData) {
@@ -242,29 +257,45 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 	}
 
 	public IGamePlayConfig setGamePlayConfigsFromFile(JSONObject gamePlayConfigs){
-		IGamePlayConfig gamePlayconfig = new GamePlayConfigModel();
-		gamePlayconfig.setInjuriesConfig(createInjury((JSONObject)gamePlayConfigs.get(INJURIES)));
-		gamePlayconfig.setAgingConfig(createAging((JSONObject)gamePlayConfigs.get(AGING)));
-		gamePlayconfig.setGameResolverConfig(createGameResolver((JSONObject)gamePlayConfigs.get(GAME_RESOLVER)));
-		gamePlayconfig.setTradingConfig(createTradingConfig((JSONObject)gamePlayConfigs.get(TRADING)));
-		gamePlayconfig.setTrainingConfig(createTrainingConfig((JSONObject)gamePlayConfigs.get(TRAINING)));
-
-		return gamePlayconfig;
+		
+		try {
+			IGamePlayConfig gamePlayconfig = new GamePlayConfigModel();
+			gamePlayconfig.setInjuriesConfig(createInjury((JSONObject)gamePlayConfigs.get(INJURIES)));
+			gamePlayconfig.setAgingConfig(createAging((JSONObject)gamePlayConfigs.get(AGING)));
+			gamePlayconfig.setGameResolverConfig(createGameResolver((JSONObject)gamePlayConfigs.get(GAME_RESOLVER)));
+			gamePlayconfig.setTradingConfig(createTradingConfig((JSONObject)gamePlayConfigs.get(TRADING)));
+			gamePlayconfig.setTrainingConfig(createTrainingConfig((JSONObject)gamePlayConfigs.get(TRAINING)));
+			
+			return gamePlayconfig;
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	private IGameResolver createGameResolver(JSONObject gameResolver) {
-		IGameResolver resolverConfig = simulationFactory.createGameResolverConfig();
-		resolverConfig.setRandomWinChance(((Number) gameResolver.get(RANDOM_WIN_CHANCE)).doubleValue());
-		return resolverConfig;
+		try {
+			IGameResolver resolverConfig = simulationFactory.createGameResolverConfig();
+			resolverConfig.setRandomWinChance(((Number) gameResolver.get(RANDOM_WIN_CHANCE)).doubleValue());
+			return resolverConfig;
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	private ITradingConfig createTradingConfig(JSONObject tradingObject) {
-		ITradingConfig tradeConfig =  simulationFactory.createTradingConfig();
-		tradeConfig.setLossPoint(((Number) tradingObject.get(LOSS_POINT)).intValue());
-		tradeConfig.setMaxPlayersPerTrade(((Number) tradingObject.get(MAX_PLAYERS_PER_TRADE)).intValue());
-		tradeConfig.setRandomAcceptanceChance(((Double) tradingObject.get(RANDOM_ACCEPTANCE_CHANCE)).doubleValue());
-		tradeConfig.setRandomTradeOfferChance((Double)((JSONObject) tradingObject).get(RANDOM_TRADE_OFFER_CHANCE));
-		return tradeConfig;
+		try {
+			ITradingConfig tradeConfig =  simulationFactory.createTradingConfig();
+			tradeConfig.setLossPoint(((Number) tradingObject.get(LOSS_POINT)).intValue());
+			tradeConfig.setMaxPlayersPerTrade(((Number) tradingObject.get(MAX_PLAYERS_PER_TRADE)).intValue());
+			tradeConfig.setRandomAcceptanceChance(((Double) tradingObject.get(RANDOM_ACCEPTANCE_CHANCE)).doubleValue());
+			tradeConfig.setRandomTradeOfferChance((Double)((JSONObject) tradingObject).get(RANDOM_TRADE_OFFER_CHANCE));
+			return tradeConfig;
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	private ArrayList<IDivision> createDivisions(JSONArray jsonDivisions) {
@@ -295,61 +326,76 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 	}
 
 	private ArrayList<IPlayer> createPlayers(JSONArray jsonPlayers) {
-		ArrayList<IPlayer> players = new ArrayList<>();
-		for (Object player: jsonPlayers) {
-			IPlayer newPlayer = modelFactory.createPlayerModel();
-			newPlayer.setBirthDay(((Number) ((JSONObject) player).get(BIRTH_DAY)).intValue());
-			newPlayer.setBirthMonth(((Number) ((JSONObject) player).get(BIRTH_MONTH)).intValue());
-			newPlayer.setBirthYear(((Number) ((JSONObject) player).get(BIRTH_YEAR)).intValue());
-			newPlayer.setSkating(((Number) ((JSONObject) player).get(SKATING)).doubleValue());
-			newPlayer.setShooting(((Number) ((JSONObject) player).get(SHOOTING)).doubleValue());
-			newPlayer.setChecking(((Number) ((JSONObject) player).get(CHECKING)).doubleValue());
-			newPlayer.setSaving(((Number) ((JSONObject) player).get(SAVING)).doubleValue());
-			newPlayer.setPlayerName((String)((JSONObject) player).get(PLAYER_NAME));
-			newPlayer.setPosition((String)((JSONObject) player).get(POSITION));
-			newPlayer.setAge(((Number) ((JSONObject) player).get(SAVING)).intValue());
-			newPlayer.setPlayerStrength(((Number) ((JSONObject) player).get(PLAYER_STRENGTH)).doubleValue());
-			newPlayer.setCaptain((Boolean)((JSONObject) player).get(CAPTAIN));
-			newPlayer.setInjuryStatus((Boolean)((JSONObject) player).get(IS_INJURED));
-			newPlayer.setRetirementStatus((Boolean)((JSONObject) player).get(IS_RETIRED));
-			players.add(newPlayer);
+		try {
+			ArrayList<IPlayer> players = new ArrayList<>();
+			for (Object player: jsonPlayers) {
+				IPlayer newPlayer = modelFactory.createPlayerModel();
+				newPlayer.setBirthDay(((Number) ((JSONObject) player).get(BIRTH_DAY)).intValue());
+				newPlayer.setBirthMonth(((Number) ((JSONObject) player).get(BIRTH_MONTH)).intValue());
+				newPlayer.setBirthYear(((Number) ((JSONObject) player).get(BIRTH_YEAR)).intValue());
+				newPlayer.setSkating(((Number) ((JSONObject) player).get(SKATING)).doubleValue());
+				newPlayer.setShooting(((Number) ((JSONObject) player).get(SHOOTING)).doubleValue());
+				newPlayer.setChecking(((Number) ((JSONObject) player).get(CHECKING)).doubleValue());
+				newPlayer.setSaving(((Number) ((JSONObject) player).get(SAVING)).doubleValue());
+				newPlayer.setPlayerName((String)((JSONObject) player).get(PLAYER_NAME));
+				newPlayer.setPosition((String)((JSONObject) player).get(POSITION));
+				newPlayer.setAge(((Number) ((JSONObject) player).get(SAVING)).intValue());
+				newPlayer.setPlayerStrength(((Number) ((JSONObject) player).get(PLAYER_STRENGTH)).doubleValue());
+				newPlayer.setCaptain((Boolean)((JSONObject) player).get(CAPTAIN));
+				newPlayer.setInjuryStatus((Boolean)((JSONObject) player).get(IS_INJURED));
+				newPlayer.setRetirementStatus((Boolean)((JSONObject) player).get(IS_RETIRED));
+				players.add(newPlayer);
+			}
+			return players;
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			return null;
 		}
-		return players;
 	}
 
 	private ArrayList<IFreeAgent> createFreeAgents(JSONArray jsonPlayers) {
 		if (jsonPlayers == null) {
 			return null;
 		}
-		ArrayList<IFreeAgent> freeAgent = new ArrayList<>();
-		for (Object player: jsonPlayers) {
-			IFreeAgent newPlayer = modelFactory.createFreeAgentModel();
-			newPlayer.setBirthDay(((Number) ((JSONObject) player).get(BIRTH_DAY)).intValue());
-			newPlayer.setBirthMonth(((Number) ((JSONObject) player).get(BIRTH_MONTH)).intValue());
-			newPlayer.setBirthYear(((Number) ((JSONObject) player).get(BIRTH_YEAR)).intValue());
-			newPlayer.setSkating(((Number) ((JSONObject) player).get(SKATING)).doubleValue());
-			newPlayer.setShooting(((Number) ((JSONObject) player).get(SHOOTING)).doubleValue());
-			newPlayer.setChecking(((Number) ((JSONObject) player).get(CHECKING)).doubleValue());
-			newPlayer.setSaving(((Number) ((JSONObject) player).get(SAVING)).doubleValue());
-			newPlayer.setPlayerName((String)((JSONObject) player).get(PLAYER_NAME));
-			newPlayer.setPosition((String)((JSONObject) player).get(POSITION));
-			newPlayer.setAge(((Number) ((JSONObject) player).get(SAVING)).intValue());
-			newPlayer.setPlayerStrength(((Number) ((JSONObject) player).get(PLAYER_STRENGTH)).doubleValue());
-			newPlayer.setInjuryStatus((Boolean)((JSONObject) player).get(IS_INJURED));
-			newPlayer.setRetirementStatus((Boolean)((JSONObject) player).get(IS_RETIRED));
-			freeAgent.add(newPlayer);
+		try {
+			ArrayList<IFreeAgent> freeAgent = new ArrayList<>();
+			for (Object player: jsonPlayers) {
+				IFreeAgent newPlayer = modelFactory.createFreeAgentModel();
+				newPlayer.setBirthDay(((Number) ((JSONObject) player).get(BIRTH_DAY)).intValue());
+				newPlayer.setBirthMonth(((Number) ((JSONObject) player).get(BIRTH_MONTH)).intValue());
+				newPlayer.setBirthYear(((Number) ((JSONObject) player).get(BIRTH_YEAR)).intValue());
+				newPlayer.setSkating(((Number) ((JSONObject) player).get(SKATING)).doubleValue());
+				newPlayer.setShooting(((Number) ((JSONObject) player).get(SHOOTING)).doubleValue());
+				newPlayer.setChecking(((Number) ((JSONObject) player).get(CHECKING)).doubleValue());
+				newPlayer.setSaving(((Number) ((JSONObject) player).get(SAVING)).doubleValue());
+				newPlayer.setPlayerName((String)((JSONObject) player).get(PLAYER_NAME));
+				newPlayer.setPosition((String)((JSONObject) player).get(POSITION));
+				newPlayer.setAge(((Number) ((JSONObject) player).get(SAVING)).intValue());
+				newPlayer.setPlayerStrength(((Number) ((JSONObject) player).get(PLAYER_STRENGTH)).doubleValue());
+				newPlayer.setInjuryStatus((Boolean)((JSONObject) player).get(IS_INJURED));
+				newPlayer.setRetirementStatus((Boolean)((JSONObject) player).get(IS_RETIRED));
+				freeAgent.add(newPlayer);
+			}
+			return freeAgent;
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			return null;
 		}
-		return freeAgent;
 	}
 
 	private ICoach createCoach(JSONObject jsonCoachDetails) {
-		ICoach newCoach = modelFactory.createCoachModel();
-		newCoach.setName((String) jsonCoachDetails.get(NAME));
-		newCoach.setSkating(((Number) ((JSONObject) jsonCoachDetails).get(SKATING)).doubleValue());
-		newCoach.setShooting(((Number) ((JSONObject) jsonCoachDetails).get(SHOOTING)).doubleValue());
-		newCoach.setChecking(((Number) ((JSONObject) jsonCoachDetails).get(CHECKING)).doubleValue());
-		newCoach.setSaving(((Number) ((JSONObject) jsonCoachDetails).get(SAVING)).doubleValue());
-		return newCoach;
+		try{
+			ICoach newCoach = modelFactory.createCoachModel();
+			newCoach.setName((String) jsonCoachDetails.get(NAME));
+			newCoach.setSkating(((Number) ((JSONObject) jsonCoachDetails).get(SKATING)).doubleValue());
+			newCoach.setShooting(((Number) ((JSONObject) jsonCoachDetails).get(SHOOTING)).doubleValue());
+			newCoach.setChecking(((Number) ((JSONObject) jsonCoachDetails).get(CHECKING)).doubleValue());
+			newCoach.setSaving(((Number) ((JSONObject) jsonCoachDetails).get(SAVING)).doubleValue());
+			return newCoach;
+		} catch(NullPointerException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	private ArrayList<ICoach> createFreeCoaches(JSONArray jsonCoaches) {

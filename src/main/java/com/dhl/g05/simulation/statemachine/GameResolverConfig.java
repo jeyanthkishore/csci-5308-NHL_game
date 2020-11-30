@@ -3,9 +3,12 @@ package com.dhl.g05.simulation.statemachine;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.gson.annotations.Expose;
+
 public class GameResolverConfig implements IGameResolver{
 
 	static final Logger logger = LogManager.getLogger(GameResolverConfig.class);
+	@Expose
 	private double randomWinChance;
 
 	public void setRandomWinChance(double winChance) {

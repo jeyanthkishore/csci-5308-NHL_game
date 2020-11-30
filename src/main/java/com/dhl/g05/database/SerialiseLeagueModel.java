@@ -16,26 +16,18 @@ public class SerialiseLeagueModel implements ISerializeModel{
 		DatabaseAbstractFactory databaseFactory = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
 		IFileOperation fileValidator = databaseFactory.createFileOperation();
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
-		System.out.println(teamName);
 		String path = fileValidator.getFilePath(teamName);
-		System.out.println(path);
 		FileWriter myWriter;
 		try {
 			if(fileValidator.isFileExist(teamName)) {
-				System.out.println("File PRESENT");
 				myWriter = new FileWriter(path);
 			}else {
-				System.out.println("NEW FILE");
 				File file = new File(path);
 				myWriter = new FileWriter(file);
 			}
-			System.out.println("CONVERTION");
 			String object = gson.toJson(leagueObject);
-			System.out.println("WRITING");
 			myWriter.write(object);
-			System.out.println("FLUSH");
 			myWriter.flush();
-			System.out.println("CLOSE");
 			myWriter.close();
 			return true;
 		} catch (IOException e) {

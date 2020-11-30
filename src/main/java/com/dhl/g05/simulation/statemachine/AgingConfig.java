@@ -3,14 +3,19 @@ package com.dhl.g05.simulation.statemachine;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.gson.annotations.Expose;
+
 public class AgingConfig implements IAging {
 
 	static final Logger logger = LogManager.getLogger(AgingConfig.class);
 	private int MAX_STAT_DECAY_CHANCE = 1;
 	private int MIN_STAT_DECAY_CHANCE = 0;
 	private int MIN_AGE = 0;
+	@Expose
 	private int averageRetirementAge;
+	@Expose
 	private int maximumAge;
+	@Expose
 	private double statDecayChance;
 
 	@Override

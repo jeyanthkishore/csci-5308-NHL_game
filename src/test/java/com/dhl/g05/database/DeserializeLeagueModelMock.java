@@ -10,7 +10,7 @@ public class DeserializeLeagueModelMock implements IDeserializeModel {
 	@Override
 	public ILeague deserializeObjects(String name, ILeague leagueModel) {
 		ModelMockAbstractFactory modelMockFactory = ApplicationTestConfiguration.instance().getModelMockConcreteFactoryState();
-		if(name.equalsIgnoreCase("serializeLeague")) {
+		if(name.equalsIgnoreCase("deserializeLeague")) {
 			LeagueMockData mock = modelMockFactory.createLeagueMockData();
 			leagueModel = mock.getLeague();
 			return leagueModel;

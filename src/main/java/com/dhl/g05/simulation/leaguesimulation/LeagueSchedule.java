@@ -54,6 +54,7 @@ public class LeagueSchedule implements ILeagueSchedule {
 		logger.info("Generating Regular Season Schdeule");
 		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		regularSeasonSchedule = new ArrayList<>();
+		playoffSeasonSchedule = null;
 		List<IConference> totalConferences = new ArrayList<>();
 		List<IDivision> totalDivisions = new ArrayList<>();
 		List<ITeam> totalTeams = new ArrayList<>();

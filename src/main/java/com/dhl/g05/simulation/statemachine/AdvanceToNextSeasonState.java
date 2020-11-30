@@ -2,6 +2,9 @@ package com.dhl.g05.simulation.statemachine;
 
 import java.time.LocalDate;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.model.IConference;
@@ -16,6 +19,8 @@ import com.dhl.g05.simulation.DateHandler;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class AdvanceToNextSeasonState extends AbstractState{
+	
+	static final Logger logger = LogManager.getLogger(AdvanceToNextSeasonState.class);
 	private IPlayerCommunication communication;
 	private ILeague league;
 
@@ -25,10 +30,13 @@ public class AdvanceToNextSeasonState extends AbstractState{
 
 	@Override
 	public boolean enter() {
+		logger.info("Entering into AdvanceToNextSeasonState");
+		
 		league = this.getLeague();
 		communication.sendMessage(StateMachineConstant.StanleyCupWinner.getValue());
 		ITeam winTeam= league.getLeagueSchedule().getStanleyCupWinner();
 		communication.sendMessage(winTeam.getTeamName());
+		logger.info(StateMachineConstant.StanleyCupWinner.getValue() + winTeam.getTeamName());
 		return true;
 	}
 
@@ -44,7 +52,8 @@ public class AdvanceToNextSeasonState extends AbstractState{
                     	player.calculateAge(tempDate);
                         boolean isRetired = playerRetirement.checkPlayerRetirement(league.getGamePlayConfig().getAgingConfig(),player);
                         if (isRetired) {
-                        	communication.sendMessage(player.getPlayerName());
+                        	communication.sendMessage(StateMachineConstant.RetiredPlayer.getValue() + player.getPlayerName());
+                        	logger.info(StateMachineConstant.RetiredPlayer.getValue() + player.getPlayerName());
                         }
                     }
                 }
@@ -68,6 +77,8 @@ public class AdvanceToNextSeasonState extends AbstractState{
 
 	@Override
 	public boolean exit() {
+		logger.info("Exiting AdvanceToNextSeasonState");
+		
 		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		this.setNextState(simulationFactory.createPersistState());
 		return true;
