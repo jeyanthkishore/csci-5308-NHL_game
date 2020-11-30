@@ -2,11 +2,14 @@ package com.dhl.g05.model;
 
 import java.util.List;
 
+import com.google.gson.annotations.Expose;
 import com.mysql.cj.util.StringUtils;
 
 public class DivisionModel implements IDivision {
-
+	
+	@Expose
 	private String divisionName;
+	@Expose
 	private List<ITeam> teams;
 
 	public DivisionModel() {

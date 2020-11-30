@@ -1,11 +1,14 @@
 package com.dhl.g05.model;
 import java.util.List;
 
+import com.google.gson.annotations.Expose;
 import com.mysql.cj.util.StringUtils;
 
 public class ConferenceModel implements IConference {
 
+	@Expose
 	private String conferenceName;
+	@Expose
 	private List<IDivision> divisions;
 	
 	public ConferenceModel() {
