@@ -28,10 +28,6 @@ public interface ITeam {
 
 	public int getLossCount();
 
-	public int numberOfSkaters(ITeam team);
-
-	public int numberOfGoalies(ITeam team);
-
 	public void assignOneCaptain(ITeam team);
 
 	boolean removeRetiredPlayerFromTeam(IPlayer player);
@@ -40,6 +36,10 @@ public interface ITeam {
 
 	public void setLossCount(int lossCount);
 
+	public List<IPlayer> setActiveRoster(ITeam team);
+
+	public List<IPlayer> setInActiveRoster(List<IPlayer> injuredPlayers, ITeam team);
+
 	double getTeamStrength();
 
 	void setTeamStrength(double teamStrength);
@@ -47,7 +47,7 @@ public interface ITeam {
 	TeamConstant validate();
 
 	boolean isTeamExist(String teamName, ITeamDatabaseOperation checkTeam);
-	
+
 	double calculateTeamStrength(List<IPlayer> playerList);
 
 }
