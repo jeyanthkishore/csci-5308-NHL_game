@@ -176,7 +176,7 @@ public class TeamModel implements ITeam {
 	}
 
 	private boolean isPlayerListValid() {
-		if (players.size() >= numberOfPlayers) {
+		if (players.size() > numberOfPlayers)   {
 			return true;
 		}
 		return false;
@@ -212,7 +212,6 @@ public class TeamModel implements ITeam {
 		int activeRosterSize = 0;
 		List<IPlayer> players = team.getPlayerList();
 		List<IPlayer> activePlayers = new ArrayList<>();
-		List<IPlayer> inactivePlayers = new ArrayList<>();
 		players.sort(Comparator.comparing(IPlayer::getPlayerStrength).reversed());
 		for (IPlayer p : players) {
 			if (activeRosterSize == numberOfActivePlayers) {
@@ -241,14 +240,15 @@ public class TeamModel implements ITeam {
 			}
 		}
 		team.setPlayerList(activePlayers);
-		setInActiveRoster(players, team);
 		return activePlayers;
 	}
 				
-	public List<IPlayer> setInActiveRoster(List<IPlayer> injuredPlayers,ITeam team) {
+	public List<IPlayer> setInActiveRoster(ITeam team) {
 		int activeRosterSize = 0;
 		List<IPlayer> InActivePlayers = new ArrayList<>();
-		for (IPlayer p : injuredPlayers) {
+		List<IPlayer> players = team.getPlayerList();
+		players.sort(Comparator.comparing(IPlayer::getPlayerStrength));
+		for (IPlayer p : players) {
 			if (activeRosterSize == numberOfInActivePlayers) {
 				break;
 			} else {
