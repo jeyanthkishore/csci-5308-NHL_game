@@ -164,7 +164,7 @@ public class TeamModel implements ITeam {
 	}
 
 	private boolean isPlayerListValid() {
-		if (players.size() > 30) {
+		if (players.size() >= 30) {
 			return true;
 		}
 		return false;
@@ -203,15 +203,6 @@ public class TeamModel implements ITeam {
 		return goalie;
 	}
 
-	public boolean isTeamBalanced(ITeam team) {
-		int goalie = numberOfSkaters(team);
-		int skater = numberOfGoalies(team);
-		if (goalie == 2 && skater == 18) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 
 	public void assignOneCaptain(ITeam team) {
 		int captainCount = 0;
@@ -266,5 +257,6 @@ public class TeamModel implements ITeam {
 		agent.ConvertPlayerToFreeAgent(releaseExtraPlayers);
 		team.setPlayerList(adjustedTeam);
 	}
+
 
 }

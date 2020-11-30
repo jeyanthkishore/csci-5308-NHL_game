@@ -1,4 +1,5 @@
 package com.dhl.g05.model;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,8 @@ import com.dhl.g05.simulation.statemachine.IGamePlayConfig;
 import com.google.gson.annotations.Expose;
 import com.mysql.cj.util.StringUtils;
 
-public class LeagueModel implements ILeague{
+public class LeagueModel implements ILeague {
+	
 	static final Logger logger = LogManager.getLogger(LeagueModel.class);
 	@Expose
 	private String leagueName;
@@ -114,7 +116,7 @@ public class LeagueModel implements ILeague{
 	public boolean removeRetiredFreeAgentsFromLeague(IFreeAgent freeAgent) {
 		logger.info("Removing retired freeAgents from league");
 		int numberOfFreeAgents = freeAgents.size();
-		if(numberOfFreeAgents > 0) {
+		if (numberOfFreeAgents > 0) {
 			freeAgents.remove(freeAgent);
 			return true;
 		}
@@ -160,7 +162,7 @@ public class LeagueModel implements ILeague{
 	public void setGamePlayConfig(IGamePlayConfig gamePlayConfig) {
 		this.gameplayConfig = gamePlayConfig;
 	}
-	
+
 	public ILeagueStanding getLeagueStanding() {
 		return leagueStanding;
 	}
@@ -172,7 +174,7 @@ public class LeagueModel implements ILeague{
 	public LocalDate getLeagueCurrentDate() {
 		return leagueCurrentDate;
 	}
-	
+
 	public void incrementCurrentDate() {
 		leagueCurrentDate = leagueCurrentDate.plusDays(1);
 	}
@@ -188,15 +190,15 @@ public class LeagueModel implements ILeague{
 	public void setDaysSinceStatIncrease(int daysSinceStatIncrease) {
 		this.daysSinceStatIncrease = daysSinceStatIncrease;
 	}
-	
-    public void resetDaysSinceStatIncrease() {
-        this.daysSinceStatIncrease = 0;
-    }
-    
-    public void incrementDaysSinceStatIncrease() {
-    	this.daysSinceStatIncrease +=1;
-    }
-	
+
+	public void resetDaysSinceStatIncrease() {
+		this.daysSinceStatIncrease = 0;
+	}
+
+	public void incrementDaysSinceStatIncrease() {
+		this.daysSinceStatIncrease += 1;
+	}
+
 	public ILeagueSchedule getLeagueSchedule() {
 		return leagueSchedule;
 	}
@@ -206,49 +208,45 @@ public class LeagueModel implements ILeague{
 	}
 
 	@Override
-	public boolean saveLeagueObject(ISerializeModel saveLeague,String teamName) {
-		return saveLeague.serialiseObjects(this,teamName);
+	public boolean saveLeagueObject(ISerializeModel saveLeague, String teamName) {
+		return saveLeague.serialiseObjects(this, teamName);
 	}
-	
+
 	@Override
 	public ILeague loadLeagueObject(IDeserializeModel loadLeague, String teamName) {
-		return loadLeague.deserializeObjects(teamName,this);
+		return loadLeague.deserializeObjects(teamName, this);
 	}
-	
+
 	@Override
 	public LeagueConstant validate() {
 		logger.info("Validating league details");
-		if(isLeagueNameEmptyOrNull()) {
+		if (isLeagueNameEmptyOrNull()) {
 			return LeagueConstant.LeagueNameEmpty;
 		}
-		if(isConferenceListEmpty()) {
+		if (isConferenceListEmpty()) {
 			return LeagueConstant.ConferenceListEmpty;
 		}
-		if(hasOddNumberConference()) {
+		if (hasOddNumberConference()) {
 			return LeagueConstant.NoEvenConferenceCount;
 		}
-		if(isFreeAgentListNotValid()) {
+		if (isFreeAgentListNotValid()) {
 			return LeagueConstant.FreeAgentsNotValid;
 		}
-		if(isCoachListEmpty()){
+		if (isCoachListEmpty()) {
 			return LeagueConstant.CoachListEmpty;
 		}
-		if(isManagerListEmpty()){
+		if (isManagerListEmpty()) {
 			return LeagueConstant.ManagerListEmpty;
 		}
 		return LeagueConstant.Success;
 	}
-	
-	public void addNewFreeAgentsToLeague(List<IFreeAgent> freeAgentList)
-	{
+
+	public void addNewFreeAgentsToLeague(List<IFreeAgent> freeAgentList) {
 		List<IFreeAgent> AllfreeAgents = getFreeAgent();
-		if(AllfreeAgents == null)
-		{
-		 setFreeAgent(freeAgentList);
-		}
-		else
-		{
-		AllfreeAgents.addAll(freeAgentList);
+		if (AllfreeAgents == null) {
+			setFreeAgent(freeAgentList);
+		} else {
+			AllfreeAgents.addAll(freeAgentList);
 		}
 		setFreeAgent(AllfreeAgents);
 	}
@@ -258,32 +256,32 @@ public class LeagueModel implements ILeague{
 	}
 
 	private boolean isConferenceListEmpty() {
-		if(conferences == null) {
+		if (conferences == null) {
 			return true;
 		}
-		return (conferences.size()<=0);
+		return (conferences.size() <= 0);
 	}
 
 	private boolean hasOddNumberConference() {
-		return (conferences.size()%2 ==1);
+		return (conferences.size() % 2 == 1);
 	}
 
 	private boolean isFreeAgentListNotValid() {
-		if(freeAgents == null) {
+		if (freeAgents == null) {
 			return true;
-		}
-		else return (freeAgents.size()<=20);
+		} else
+			return (freeAgents.size() <= 20);
 	}
 
 	private boolean isCoachListEmpty() {
-		if(coaches.isEmpty()) {
+		if (coaches.isEmpty()) {
 			return true;
 		}
 		return false;
 	}
 
 	private boolean isManagerListEmpty() {
-		if( generalManagers == null ||generalManagers.isEmpty()) {
+		if (generalManagers == null || generalManagers.isEmpty()) {
 			return true;
 		}
 		return false;

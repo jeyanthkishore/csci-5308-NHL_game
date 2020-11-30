@@ -353,10 +353,10 @@ public class FreeAgentModel implements IFreeAgent {
 		}
 	}
 
-	public void decreaseStatOnBirthday(IFreeAgent player, IAging agingConfig) {
+	public void decreaseFreeAgentStatOnBirthday(IFreeAgent player, IAging agingConfig) {
 		Random random = new Random();
 			if (LocalDate.now().getMonthValue() == player.getBirthMonth() && LocalDate.now().getDayOfMonth() == player.getBirthDay()) {
-				logger.info("Happy Birthday your stats will be decreased");
+				logger.info("Free Agent stats decreased on birthday");
 				if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
 					player.setSkating((player.getSkating()) - DECREASE_STAT_BY);
 				}
@@ -371,7 +371,6 @@ public class FreeAgentModel implements IFreeAgent {
 				}
 			}
 		}
-	
 	
 	public List<IFreeAgent> ConvertPlayerToFreeAgent(List<IPlayer> excessPlayers) {
 		List<IFreeAgent> freeAgents = new ArrayList<>();

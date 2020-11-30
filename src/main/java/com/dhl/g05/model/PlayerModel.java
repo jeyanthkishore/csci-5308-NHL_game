@@ -1,4 +1,7 @@
 package com.dhl.g05.model;
+import java.time.LocalDate;
+import java.util.Random;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,7 +12,7 @@ import com.google.gson.annotations.Expose;
 public class PlayerModel extends FreeAgentModel implements IPlayerInjury, IPlayer, IPlayerRetirement{
 
 	static final Logger logger = LogManager.getLogger(PlayerModel.class);
-//	private final int DECREASE_STAT_BY=1;
+	private final int DECREASE_STAT_BY=1;
 	@Expose
 	private Boolean captain;
 	@Expose
@@ -81,4 +84,26 @@ public class PlayerModel extends FreeAgentModel implements IPlayerInjury, IPlaye
 		logger.info("Checking player retirement");
 		return playerRetired.checkPlayerRetirement(aging, player);
 	}
+
+	@Override
+	public void decreasePlayerStatOnBirthday(IPlayer player, IAging agingConfig) {
+		Random random = new Random();
+		if (LocalDate.now().getMonthValue() == player.getBirthMonth() && LocalDate.now().getDayOfMonth() == player.getBirthDay()) {
+			logger.info("Player stats decreased on birthday");
+			if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
+				player.setSkating((player.getSkating()) - DECREASE_STAT_BY);
+			}
+			if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
+				player.setShooting((player.getShooting()) - DECREASE_STAT_BY);
+			}
+			if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
+				player.setChecking((player.getChecking()) - DECREASE_STAT_BY);
+			}
+			if (agingConfig.getStatDecayChance() >= random.nextDouble()) {
+				player.setSaving((player.getSaving()) - DECREASE_STAT_BY);
+			}
+		}
+	}
 }
+		
+	
