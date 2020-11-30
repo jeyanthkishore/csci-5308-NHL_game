@@ -27,7 +27,7 @@ public class SerialiseLeagueModelTest {
 	public void serialiseObjectsTest() {
 		ModelMockAbstractFactory modelFactory = ApplicationTestConfiguration.instance().getModelMockConcreteFactoryState();
 		LeagueMockData data = modelFactory.createLeagueMockData();
-		String teamName = "serializeTest";
+		String teamName = "serializeLeague";
 		assertTrue(serial.serialiseObjects(data.getLeague(),teamName));
 	}
 

@@ -321,7 +321,7 @@ public class LeagueModelTest {
 	public void saveLeagueObjectTest() {
 		ILeague league = modelAbstractFactory.createLeagueModel();
 		ISerializeModel serializeLeague = new SerializeLeagueModelMock();
-		assertTrue(league.saveLeagueObject(serializeLeague, "TeamName"));
+		assertTrue(league.saveLeagueObject(serializeLeague, "serializeLeague"));
 	}
 
 }
