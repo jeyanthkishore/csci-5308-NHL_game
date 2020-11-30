@@ -2,15 +2,23 @@ package com.dhl.g05.model;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.gson.annotations.Expose;
+
 public class CoachModel implements ICoach{
 
 	static final Logger logger = LogManager.getLogger(CoachModel.class);
 	private final static double MAX_STAT = 1.0;
 	private final static double MIN_STAT = 0.0;
+	
+	@Expose
 	private String name;
+	@Expose
 	private double skating;
+	@Expose
 	private double shooting;
+	@Expose
 	private double checking;
+	@Expose
 	private double saving;
 
 	public CoachModel(){

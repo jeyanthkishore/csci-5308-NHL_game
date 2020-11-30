@@ -15,7 +15,7 @@ public class SerialiseLeagueModel implements ISerializeModel{
 	public Boolean serialiseObjects(ILeague leagueObject, String teamName) {
 		DatabaseAbstractFactory databaseFactory = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
 		IFileOperation fileValidator = databaseFactory.createFileOperation();
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 		String path = fileValidator.getFilePath(teamName);
 		FileWriter myWriter;
 		try {

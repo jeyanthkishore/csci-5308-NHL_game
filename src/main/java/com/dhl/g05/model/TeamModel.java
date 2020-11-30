@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.database.ITeamDatabaseOperation;
+import com.google.gson.annotations.Expose;
 import com.mysql.cj.util.StringUtils;
 
 public class TeamModel implements ITeam {
@@ -17,12 +18,19 @@ public class TeamModel implements ITeam {
 	private static final int numberOfForward = 16;
 	private static final int numberOfGoalie = 4;
 	private static final int numberOfPlayers = 30;
+	@Expose
 	private String teamName;
+	@Expose
 	private ICoach headCoach;
+	@Expose
 	private String generalManager;
+	@Expose
 	private List<IPlayer> players;
+	@Expose
 	private double teamStrength;
+	@Expose
 	private Boolean userTeam;
+	@Expose
 	private int LossCount;
 
 	public TeamModel() {

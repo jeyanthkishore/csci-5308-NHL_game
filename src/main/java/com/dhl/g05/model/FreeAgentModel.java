@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.statemachine.IAging;
+import com.google.gson.annotations.Expose;
 import com.mysql.cj.util.StringUtils;
 
 public class FreeAgentModel implements IFreeAgent {
@@ -21,18 +22,31 @@ public class FreeAgentModel implements IFreeAgent {
 	private final int MONTH_LIST_WITH_31_DAYS[] = { 1, 3, 5, 7, 8, 10, 12 };
 	private final int MONTH_LIST_WITH_30_DAYS[] = { 4, 6, 9, 11 };
 	private final int MONTH_LIST_WITH_28_DAYS[] = { 2 };
+	@Expose
 	private String playerName;
+	@Expose
 	private String position;
+	@Expose
 	private int age;
+	@Expose
 	private int birthDay;
+	@Expose
 	private int birthMonth;
+	@Expose
 	private int birthYear;
+	@Expose
 	private double skating;
+	@Expose
 	private double shooting;
+	@Expose
 	private double checking;
+	@Expose
 	private double saving;
+	@Expose
 	private double playerStrength;
+	@Expose
 	private boolean isInjured;
+	@Expose
 	private boolean isRetired;
 
 	public FreeAgentModel() {

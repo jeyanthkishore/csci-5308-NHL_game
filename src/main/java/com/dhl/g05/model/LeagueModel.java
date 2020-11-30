@@ -13,21 +13,34 @@ import com.dhl.g05.simulation.leaguesimulation.ILeagueStanding;
 import com.dhl.g05.simulation.leaguesimulation.LeagueSchedule;
 import com.dhl.g05.simulation.leaguesimulation.LeagueStanding;
 import com.dhl.g05.simulation.statemachine.IGamePlayConfig;
+import com.google.gson.annotations.Expose;
 import com.mysql.cj.util.StringUtils;
 
 public class LeagueModel implements ILeague{
 	static final Logger logger = LogManager.getLogger(LeagueModel.class);
+	@Expose
 	private String leagueName;
+	@Expose
 	private List<IConference> conferences;
+	@Expose
 	private List<IFreeAgent> freeAgents;
+	@Expose
 	private List<IPlayer> retiredPlayersList;
+	@Expose
 	private List<ICoach> coaches;
+	@Expose
 	private List<String> generalManagers;
+	@Expose
 	private IGamePlayConfig gameplayConfig;
+	@Expose
 	private List<IFreeAgent> retiredFreeAgentsList;
+	@Expose
 	private int daysSinceStatIncrease;
+	@Expose
 	private LocalDate leagueCurrentDate;
+	@Expose
 	private ILeagueStanding leagueStanding;
+	@Expose
 	private ILeagueSchedule leagueSchedule;
 
 	public LeagueModel() {

@@ -4,12 +4,15 @@ import org.apache.logging.log4j.Logger;
 
 import com.dhl.g05.simulation.statemachine.IAging;
 import com.dhl.g05.simulation.statemachine.IInjury;
+import com.google.gson.annotations.Expose;
 
 public class PlayerModel extends FreeAgentModel implements IPlayerInjury, IPlayer, IPlayerRetirement{
 
 	static final Logger logger = LogManager.getLogger(PlayerModel.class);
 //	private final int DECREASE_STAT_BY=1;
+	@Expose
 	private Boolean captain;
+	@Expose
 	private int injuredForNumberOfDays;
 	
 
