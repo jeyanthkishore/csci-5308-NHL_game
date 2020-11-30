@@ -50,4 +50,5 @@ public abstract class SimulationAbstractFactory {
     public abstract ITraining createTrainingConfig();
     public abstract IGameResolver createGameResolverConfig();
     public abstract IGamePlayConfig createGamePlayConfig();
+    public abstract ILeagueCreator createLeagueCreator();
 }

@@ -6,19 +6,16 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dhl.g05.communication.MockPlayerCommunication;
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.ILeague;
-import com.dhl.g05.simulation.LeagueModelCreatorFromJSON;
-
-
-
 
 public class LeagueModelCreatorFromJSONTest {
-	LeagueModelCreatorFromJSON leagueModelCreator;
+	ILeagueCreator leagueModelCreator;
 
 	@Before
 	public void init() {
-		leagueModelCreator = new LeagueModelCreatorFromJSON(new MockPlayerCommunication());
+		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		leagueModelCreator = simulationFactory.createLeagueCreator();
 	}
 
 	@Test

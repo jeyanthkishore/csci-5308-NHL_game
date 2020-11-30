@@ -3,13 +3,13 @@ package com.dhl.g05.simulation.statemachine;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.model.ILeague;
-import com.dhl.g05.simulation.LeagueModelCreatorFromJSON;
+import com.dhl.g05.simulation.ILeagueCreator;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.mysql.cj.util.StringUtils;
 
 public class ImportState extends AbstractState {
 	private IPlayerCommunication communication;
-	private LeagueModelCreatorFromJSON creator;
+	private ILeagueCreator creator;
 	private String fileName;
 
 	public ImportState(IPlayerCommunication communication) {
@@ -25,11 +25,12 @@ public class ImportState extends AbstractState {
 
 	@Override
 	public boolean performStateTask() {
+		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		if (StringUtils.isNullOrEmpty(fileName)) {
 			return true;
 		} 
 
-		creator = new LeagueModelCreatorFromJSON(communication);
+		creator = simulationFactory.createLeagueCreator();
 		ILeague league = creator.createLeagueFromFile(fileName);
 		if (league == null) {
 			this.setLeague(null);

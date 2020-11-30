@@ -12,30 +12,37 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.ApplicationTestConfiguration;
+import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.LeagueMockData;
+import com.dhl.g05.model.ModelMockAbstractFactory;
 import com.dhl.g05.simulation.DateHandler;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.leaguesimulation.IScheduleModel;
-import com.dhl.g05.simulation.leaguesimulation.ScheduleModel;
 
 public class TrainingStateTest {
 	private AbstractState state;
+	private static SimulationAbstractFactory simulationFactory;
+	private static ModelMockAbstractFactory modelMockFactory;
 	
 	@Before
 	public void init() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
-		state = stateFactory.createTrainingState();
+		modelMockFactory = ApplicationTestConfiguration.instance().getModelMockConcreteFactoryState();
+		simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		state = simulationFactory.createTrainingState();
+		DateHandler.instance().performDateAssignment(Year.now().getValue());
 	}
 	
 	
 	@Test
 	public void performTaskTrainingTest() {
-		LeagueMockData mock = new LeagueMockData();
-		mock.league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue(), Month.AUGUST, 30));
-		mock.league.setDaysSinceStatIncrease(140);
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+		ILeague league = mock.getLeague();
+		league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue(), Month.AUGUST, 30));
+		league.setDaysSinceStatIncrease(140);
 		
-		state.setLeague(mock.league);
-		DateHandler.instance().performDateAssignment(Year.now().getValue());
+		state.setLeague(league);
+		
 		state.enter();
 		state.performStateTask();
 		state.exit();
@@ -44,17 +51,19 @@ public class TrainingStateTest {
 	
 	@Test
 	public void performTaskAgingTest() {
-		LeagueMockData data = new LeagueMockData();
-		data.league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
-		data.league.setDaysSinceStatIncrease(140);
-		IScheduleModel schedule = new ScheduleModel();
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+		ILeague league = mock.getLeague();
+		league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
+		league.setDaysSinceStatIncrease(140);
+		
+		IScheduleModel schedule = simulationFactory.createScheduleModel();
 		schedule.setIsGameCompleted(true);
 		schedule.setScheduleDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
 		List<IScheduleModel> scheduleList = new ArrayList<>();
 		scheduleList.add(schedule);
-		data.league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
-		state.setLeague(data.league);
-		DateHandler.instance().performDateAssignment(Year.now().getValue());
+		league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
+		
+		state.setLeague(league);
 		state.enter();
 		state.performStateTask();
 		state.exit();
@@ -63,17 +72,19 @@ public class TrainingStateTest {
 	
 	@Test
 	public void performTaskStimulateGameTest() {
-		LeagueMockData data = new LeagueMockData();
-		data.league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
-		data.league.setDaysSinceStatIncrease(140);
-		IScheduleModel schedule = new ScheduleModel();
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+		ILeague league = mock.getLeague();
+		league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
+		league.setDaysSinceStatIncrease(140);
+		
+		IScheduleModel schedule = simulationFactory.createScheduleModel();
 		schedule.setIsGameCompleted(false);
 		schedule.setScheduleDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
 		List<IScheduleModel> scheduleList = new ArrayList<>();
 		scheduleList.add(schedule);
-		data.league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
-		state.setLeague(data.league);
-		DateHandler.instance().performDateAssignment(Year.now().getValue());
+		league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
+		state.setLeague(league);
+		
 		state.enter();
 		state.performStateTask();
 		state.exit();

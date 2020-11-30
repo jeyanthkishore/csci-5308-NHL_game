@@ -19,7 +19,6 @@ import com.dhl.g05.model.ModelAbstractFactory;
 import com.dhl.g05.simulation.DateHandler;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.leaguesimulation.IScheduleModel;
-import com.dhl.g05.simulation.leaguesimulation.ScheduleModel;
 
 public class InjuryCheckTest {
 	private static ITeam teamOne;
@@ -44,12 +43,10 @@ public class InjuryCheckTest {
 		teamOne.setPlayerList(playerList);
 		teamTwo.setPlayerList(playerList);
 	}
-	
-	
+
+
 	private ILeague createInjuryCheckLeague() {
-		
 		ILeague league = modelFactory.createLeagueModel();
-		
 		IInjury injuryConfig = simulationfactory.createInjuryConfig();
 		injuryConfig.setInjuryDaysHigh(100);
 		injuryConfig.setInjuryDaysLow(1);
@@ -59,7 +56,7 @@ public class InjuryCheckTest {
 		league.setGamePlayConfig(gamePlayConfig);
 		return league;
 	}
-	
+
 	@Test
 	public void injuryStateNextTradeStateTest() {
 		ILeague league = createInjuryCheckLeague();
@@ -72,19 +69,20 @@ public class InjuryCheckTest {
 		state.exit();
 		assertTrue(state.getNextState() instanceof TradeState);
 	}
-	
+
 	@Test
 	public void injuryStateNextAgingStateTest() {
+		SimulationAbstractFactory simulationFactoy = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		ILeague league = createInjuryCheckLeague();
 		league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
 		league.setDaysSinceStatIncrease(140);
-		IScheduleModel schedule = new ScheduleModel();
+		IScheduleModel schedule = simulationFactoy.createScheduleModel();
 		schedule.setIsGameCompleted(true);
 		schedule.setScheduleDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
 		List<IScheduleModel> scheduleList = new ArrayList<>();
 		scheduleList.add(schedule);
 		league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
-		
+
 		AbstractState state = simulationfactory.createInjuryCheckState(teamOne, teamTwo);
 		state.setLeague(league);
 		state.enter();
@@ -92,19 +90,20 @@ public class InjuryCheckTest {
 		state.exit();
 		assertTrue(state.getNextState() instanceof AgingState);
 	}
-	
+
 	@Test
 	public void injuryStateNextGameStateTest() {
+		SimulationAbstractFactory simulationFactoy = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		ILeague league = createInjuryCheckLeague();
 		league.setLeagueCurrentDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
 		league.setDaysSinceStatIncrease(140);
-		IScheduleModel schedule = new ScheduleModel();
+		IScheduleModel schedule = simulationFactoy.createScheduleModel();
 		schedule.setIsGameCompleted(false);
 		schedule.setScheduleDate(LocalDate.of(Year.now().getValue()+1, Month.APRIL, 30));
 		List<IScheduleModel> scheduleList = new ArrayList<>();
 		scheduleList.add(schedule);
 		league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
-		
+
 		AbstractState state = simulationfactory.createInjuryCheckState(teamOne, teamTwo);
 		state.setLeague(league);
 		state.enter();
@@ -112,6 +111,6 @@ public class InjuryCheckTest {
 		state.exit();
 		assertTrue(state.getNextState() instanceof SimulateGameState);
 	}
-	
-	
+
+
 }

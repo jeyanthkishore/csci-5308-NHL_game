@@ -12,26 +12,33 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.dhl.g05.model.ConferenceModel;
-import com.dhl.g05.model.DivisionModel;
+import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.ApplicationTestConfiguration;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.TeamModel;
+import com.dhl.g05.model.ModelAbstractFactory;
 import com.dhl.g05.simulation.DateHandler;
-import com.dhl.g05.simulation.leaguesimulation.ILeagueSchedule;
-import com.dhl.g05.simulation.leaguesimulation.IScheduleModel;
-import com.dhl.g05.simulation.leaguesimulation.LeagueSchedule;
-import com.dhl.g05.simulation.leaguesimulation.ScheduleModel;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
+import com.dhl.g05.simulation.SimulationMockAbstractFactory;
 
 public class LeagueScheduleTest {
+	private static SimulationAbstractFactory simulationFactory;
+	private static SimulationMockAbstractFactory simulationMockFactory;
+	
+	@BeforeClass
+	public static void init() {
+		simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		simulationMockFactory = ApplicationTestConfiguration.instance().getSimulationMockConcreteFactoryState();
+	}
 
 	@Test
 	public void getPlayoffScheduleTest() {
-		ILeagueSchedule leagueSchedule = new LeagueSchedule();
+		ILeagueSchedule leagueSchedule = simulationFactory.createLeagueSchedule();
 		List<IScheduleModel> scheduleList = new ArrayList<>();
 		leagueSchedule.setPlayoffSeasonSchedule(scheduleList);
 		assertSame(scheduleList,leagueSchedule.getPlayoffSeasonSchedule());
@@ -39,7 +46,7 @@ public class LeagueScheduleTest {
 	
 	@Test
 	public void getRegularScheduleTest() {
-		ILeagueSchedule leagueSchedule = new LeagueSchedule();
+		ILeagueSchedule leagueSchedule = simulationFactory.createLeagueSchedule();
 		List<IScheduleModel> scheduleList = new ArrayList<>();
 		leagueSchedule.setRegularSeasonSchedule(scheduleList);
 		assertSame(scheduleList,leagueSchedule.getRegularSeasonSchedule());
@@ -47,8 +54,8 @@ public class LeagueScheduleTest {
 	
 	@Test
 	public void generateRegularSeasonTest() {
-		ILeagueSchedule leagueSchedule = new LeagueSchedule();
-		StandingMockData mock = new StandingMockData();
+		ILeagueSchedule leagueSchedule = simulationFactory.createLeagueSchedule();
+		StandingMockData mock = simulationMockFactory.createStandingMock();
 		DateHandler.instance().performDateAssignment(2020);
 		ILeague league = mock.createDummyLeague();
 		
@@ -61,8 +68,8 @@ public class LeagueScheduleTest {
 	
 	@Test
 	public void generatePlayoffScheduleTest() {
-		ILeagueSchedule leagueSchedule = new LeagueSchedule();
-		StandingMockData mock = new StandingMockData();
+		ILeagueSchedule leagueSchedule = simulationFactory.createLeagueSchedule();
+		StandingMockData mock = simulationMockFactory.createStandingMock();
 		DateHandler.instance().performDateAssignment(2020);
 		ILeague league = mock.createDummyLeague();
 		league.getLeagueStanding().createStandingList(league);
@@ -77,11 +84,11 @@ public class LeagueScheduleTest {
 	
 	@Test
 	public void anyUnplayedGamesOnGivenDateTest() {
-		ILeagueSchedule leagueSchedule = new LeagueSchedule();
+		ILeagueSchedule leagueSchedule = simulationFactory.createLeagueSchedule();
 		DateHandler.instance().performDateAssignment(2020);
 		
 		List<IScheduleModel> regularSeasonSchedule = new ArrayList<>();
-		IScheduleModel schedule = new ScheduleModel();
+		IScheduleModel schedule = simulationFactory.createScheduleModel();
 		schedule.setScheduleDate(LocalDate.of(2020, Month.DECEMBER, 07));
 		schedule.setIsGameCompleted(false);
 		regularSeasonSchedule.add(schedule);
@@ -92,11 +99,11 @@ public class LeagueScheduleTest {
 	
 	@Test
 	public void anyUnplayedGamesOnGivenDateFalseTest() {
-		ILeagueSchedule leagueSchedule = new LeagueSchedule();
+		ILeagueSchedule leagueSchedule = simulationFactory.createLeagueSchedule();
 		DateHandler.instance().performDateAssignment(2020);
 		
 		List<IScheduleModel> regularSeasonSchedule = new ArrayList<>();
-		IScheduleModel schedule = new ScheduleModel();
+		IScheduleModel schedule = simulationFactory.createScheduleModel();
 		schedule.setScheduleDate(LocalDate.of(2020, Month.DECEMBER, 07));
 		schedule.setIsGameCompleted(true);
 		regularSeasonSchedule.add(schedule);
@@ -107,11 +114,11 @@ public class LeagueScheduleTest {
 	
 	@Test
 	public void anyUnplayedPlayOffGamesOnGivenDateTest() {
-		ILeagueSchedule leagueSchedule = new LeagueSchedule();
+		ILeagueSchedule leagueSchedule = simulationFactory.createLeagueSchedule();
 		DateHandler.instance().performDateAssignment(2020);
 		
 		List<IScheduleModel> playoffSchedule = new ArrayList<>();
-		IScheduleModel schedule = new ScheduleModel();
+		IScheduleModel schedule = simulationFactory.createScheduleModel();
 		schedule.setScheduleDate(LocalDate.of(2021, Month.APRIL, 27));
 		schedule.setIsGameCompleted(false);
 		playoffSchedule.add(schedule);
@@ -122,18 +129,18 @@ public class LeagueScheduleTest {
 	
     @Test
     public void isStanleyCupWinnerDeterminedNoPlayoffTest() {
-    	ILeagueSchedule leagueSchedule = new LeagueSchedule();
+    	ILeagueSchedule leagueSchedule = simulationFactory.createLeagueSchedule();
     	assertFalse(leagueSchedule.isStanleyCupWinnerDetermined());
     }
 	
     @Test
     public void isStanleyCupWinnerDeterminedNotTest() {
-    	ILeagueSchedule leagueSchedule = new LeagueSchedule();
+    	ILeagueSchedule leagueSchedule = simulationFactory.createLeagueSchedule();
 
         List<IScheduleModel> playoffSchedule = new ArrayList<>();
-        IScheduleModel schedule1 = new ScheduleModel();
+        IScheduleModel schedule1 = simulationFactory.createScheduleModel();
         schedule1.setIsGameCompleted(true);
-        IScheduleModel schedule2 = new ScheduleModel();
+        IScheduleModel schedule2 = simulationFactory.createScheduleModel();
         schedule2.setIsGameCompleted(false);
         playoffSchedule.add(schedule1);
         playoffSchedule.add(schedule2);
@@ -144,12 +151,12 @@ public class LeagueScheduleTest {
     
     @Test
     public void isStanleyCupWinnerDeterminedTest() {
-    	ILeagueSchedule leagueSchedule = new LeagueSchedule();
+    	ILeagueSchedule leagueSchedule = simulationFactory.createLeagueSchedule();
 
         List<IScheduleModel> playoffSchedule = new ArrayList<>();
-        IScheduleModel schedule1 = new ScheduleModel();
+        IScheduleModel schedule1 = simulationFactory.createScheduleModel();
         schedule1.setIsGameCompleted(true);
-        IScheduleModel schedule2 = new ScheduleModel();
+        IScheduleModel schedule2 = simulationFactory.createScheduleModel();
         schedule2.setIsGameCompleted(true);
         playoffSchedule.add(schedule1);
         playoffSchedule.add(schedule2);
@@ -160,17 +167,18 @@ public class LeagueScheduleTest {
     
     @Test
     public void getStanleyCupWinnerTest() {
-    	ILeagueSchedule leagueSchedule = new LeagueSchedule();
+    	ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+    	ILeagueSchedule leagueSchedule = simulationFactory.createLeagueSchedule();
 		
-		IConference conference1 = new ConferenceModel();
-		IConference conference2 = new ConferenceModel();
-		IDivision division1 = new DivisionModel();
-		IDivision division2 = new DivisionModel();
-		ITeam team1 = new TeamModel();
-		ITeam team2 = new TeamModel();
+		IConference conference1 = modelFactory.createConferenceModel();
+		IConference conference2 = modelFactory.createConferenceModel();
+		IDivision division1 = modelFactory.createDivisionModel();
+		IDivision division2 = modelFactory.createDivisionModel();
+		ITeam team1 = modelFactory.createTeamModel();
+		ITeam team2 = modelFactory.createTeamModel();
 
         List<IScheduleModel> playoffSchedule = new ArrayList<>();
-        IScheduleModel schedule1 = new ScheduleModel();
+        IScheduleModel schedule1 = simulationFactory.createScheduleModel();
         schedule1.setIsGameCompleted(true);
         schedule1.setFirstConference(conference1);
         schedule1.setFirstDivision(division1);
@@ -187,7 +195,7 @@ public class LeagueScheduleTest {
     
     @Test
     public void getScheduledMatchOnThisDateInRegularSeasonTest() {
-        ILeagueSchedule scheduleSystem = new LeagueSchedule();
+    	ILeagueSchedule leagueSchedule = simulationFactory.createLeagueSchedule();
         DateHandler.instance().performDateAssignment(2020);
 
         List<IScheduleModel> regularSeasonSchedule = new ArrayList<>();
@@ -199,16 +207,16 @@ public class LeagueScheduleTest {
         schedule2.setIsGameCompleted(false);
         regularSeasonSchedule.add(schedule1);
         regularSeasonSchedule.add(schedule2);
-        scheduleSystem.setRegularSeasonSchedule(regularSeasonSchedule);
+        leagueSchedule.setRegularSeasonSchedule(regularSeasonSchedule);
 
-        IScheduleModel currentDaySchedule = scheduleSystem.getMatchOnCurrentDate(LocalDate.of(2020, Month.DECEMBER, 8));
+        IScheduleModel currentDaySchedule = leagueSchedule.getMatchOnCurrentDate(LocalDate.of(2020, Month.DECEMBER, 8));
         assertEquals(LocalDate.of(2020, Month.DECEMBER, 8), currentDaySchedule.getScheduleDate());
         assertFalse(currentDaySchedule.getIsGameCompleted());
     }
 	
     @Test
     public void getScheduledMatchOnThisDateInPlayOffTest() {
-    	ILeagueSchedule scheduleSystem = new LeagueSchedule();
+    	ILeagueSchedule leagueSchedule = simulationFactory.createLeagueSchedule();
     	DateHandler.instance().performDateAssignment(2020);
 
     	List<IScheduleModel> playoffSchedule = new ArrayList<>();
@@ -220,9 +228,9 @@ public class LeagueScheduleTest {
     	schedule2.setIsGameCompleted(false);
     	playoffSchedule.add(schedule1);
     	playoffSchedule.add(schedule2);
-    	scheduleSystem.setPlayoffSeasonSchedule(playoffSchedule);
+    	leagueSchedule.setPlayoffSeasonSchedule(playoffSchedule);
 
-    	IScheduleModel currentDaySchedule = scheduleSystem.getMatchOnCurrentDate(LocalDate.of(2021, Month.APRIL, 28));
+    	IScheduleModel currentDaySchedule = leagueSchedule.getMatchOnCurrentDate(LocalDate.of(2021, Month.APRIL, 28));
     	assertEquals(LocalDate.of(2021, Month.APRIL, 28), currentDaySchedule.getScheduleDate());
     	assertFalse(currentDaySchedule.getIsGameCompleted());
     }
@@ -230,24 +238,25 @@ public class LeagueScheduleTest {
     
     @Test
     public void updateScheduleAfterPlayoffGameOneTest() {
-    	ILeagueSchedule scheduleSystem = new LeagueSchedule();
+    	ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+    	ILeagueSchedule leagueSchedule = simulationFactory.createLeagueSchedule();
     	DateHandler.instance().performDateAssignment(2020);
 
-    	IConference conference1 = new ConferenceModel();
-        IConference conference2 = new ConferenceModel();
-        IConference conference3 = new ConferenceModel();
-        IConference conference4 = new ConferenceModel();
-        IDivision division1 = new DivisionModel();
-        IDivision division2 = new DivisionModel();
-        IDivision division3 = new DivisionModel();
-        IDivision division4 = new DivisionModel();
-        ITeam team1 = new TeamModel();
-        ITeam team2 = new TeamModel();
-        ITeam team3 = new TeamModel();
-        ITeam team4 = new TeamModel();
+    	IConference conference1 = modelFactory.createConferenceModel();
+		IConference conference2 = modelFactory.createConferenceModel();
+		IDivision division1 = modelFactory.createDivisionModel();
+		IDivision division2 = modelFactory.createDivisionModel();
+		ITeam team1 = modelFactory.createTeamModel();
+		ITeam team2 = modelFactory.createTeamModel();
+		IConference conference3 = modelFactory.createConferenceModel();
+		IConference conference4 = modelFactory.createConferenceModel();
+		IDivision division3 = modelFactory.createDivisionModel();
+		IDivision division4 = modelFactory.createDivisionModel();
+		ITeam team3 = modelFactory.createTeamModel();
+		ITeam team4 = modelFactory.createTeamModel();
 
     	List<IScheduleModel> playoffSchedule = new ArrayList<>();
-    	IScheduleModel schedule1 = new ScheduleModel();
+    	IScheduleModel schedule1 = simulationFactory.createScheduleModel();
     	schedule1.setFirstConference(conference1);
     	schedule1.setFirstDivision(division1);
     	schedule1.setFirstTeam(team1);
@@ -257,7 +266,7 @@ public class LeagueScheduleTest {
     	schedule1.setScheduleDate(LocalDate.of(2021, Month.APRIL, 28));
     	schedule1.setIsGameCompleted(false);
 
-    	IScheduleModel schedule2 = new ScheduleModel();
+    	IScheduleModel schedule2 = simulationFactory.createScheduleModel();
     	schedule1.setFirstConference(conference3);
     	schedule1.setFirstDivision(division3);
     	schedule1.setFirstTeam(team3);
@@ -269,14 +278,14 @@ public class LeagueScheduleTest {
 
     	playoffSchedule.add(schedule1);
     	playoffSchedule.add(schedule2);
-    	scheduleSystem.setPlayoffSeasonSchedule(playoffSchedule);
+    	leagueSchedule.setPlayoffSeasonSchedule(playoffSchedule);
 
     	schedule1.setWinningTeam(team1);
     	schedule2.setWinningTeam(team4);
 
-    	scheduleSystem.updateScheduleAfterGame(schedule1);
-    	scheduleSystem.updateScheduleAfterGame(schedule2);
-    	List<IScheduleModel> playoffScheduleList = scheduleSystem.getPlayoffSeasonSchedule();
+    	leagueSchedule.updateScheduleAfterGame(schedule1);
+    	leagueSchedule.updateScheduleAfterGame(schedule2);
+    	List<IScheduleModel> playoffScheduleList = leagueSchedule.getPlayoffSeasonSchedule();
 
     	assertEquals(3, playoffScheduleList.size());
     	assertTrue(playoffScheduleList.get(0).getIsGameCompleted());
@@ -286,24 +295,25 @@ public class LeagueScheduleTest {
     
     @Test
     public void updateScheduleAfterPlayoffGameTwoTest() {
-    	ILeagueSchedule scheduleSystem = new LeagueSchedule();
+    	ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+    	ILeagueSchedule leagueSchedule = simulationFactory.createLeagueSchedule();
     	DateHandler.instance().performDateAssignment(2020);
 
-        IConference conference1 = new ConferenceModel();
-        IConference conference2 = new ConferenceModel();
-        IConference conference3 = new ConferenceModel();
-        IConference conference4 = new ConferenceModel();
-        IDivision division1 = new DivisionModel();
-        IDivision division2 = new DivisionModel();
-        IDivision division3 = new DivisionModel();
-        IDivision division4 = new DivisionModel();
-        ITeam team1 = new TeamModel();
-        ITeam team2 = new TeamModel();
-        ITeam team3 = new TeamModel();
-        ITeam team4 = new TeamModel();
+    	IConference conference1 = modelFactory.createConferenceModel();
+		IConference conference2 = modelFactory.createConferenceModel();
+		IDivision division1 = modelFactory.createDivisionModel();
+		IDivision division2 = modelFactory.createDivisionModel();
+		ITeam team1 = modelFactory.createTeamModel();
+		ITeam team2 = modelFactory.createTeamModel();
+		IConference conference3 = modelFactory.createConferenceModel();
+		IConference conference4 = modelFactory.createConferenceModel();
+		IDivision division3 = modelFactory.createDivisionModel();
+		IDivision division4 = modelFactory.createDivisionModel();
+		ITeam team3 = modelFactory.createTeamModel();
+		ITeam team4 = modelFactory.createTeamModel();
 
         List<IScheduleModel> playoffSchedule = new ArrayList<>();
-        IScheduleModel schedule1 = new ScheduleModel();
+        IScheduleModel schedule1 = simulationFactory.createScheduleModel();
         schedule1.setFirstConference(conference1);
         schedule1.setFirstDivision(division1);
         schedule1.setFirstTeam(team1);
@@ -314,7 +324,7 @@ public class LeagueScheduleTest {
         schedule1.setIsGameCompleted(true);
         schedule1.setWinningTeam(team1);
 
-        IScheduleModel schedule2 = new ScheduleModel();
+        IScheduleModel schedule2 = simulationFactory.createScheduleModel();
         schedule2.setFirstConference(conference3);
         schedule2.setFirstDivision(division3);
         schedule2.setFirstTeam(team3);
@@ -325,7 +335,7 @@ public class LeagueScheduleTest {
         schedule2.setIsGameCompleted(false);
         schedule2.setWinningTeam(team3);
 
-        IScheduleModel schedule3 = new ScheduleModel();
+        IScheduleModel schedule3 = simulationFactory.createScheduleModel();
         schedule3.setFirstConference(conference1);
         schedule3.setFirstDivision(division1);
         schedule3.setFirstTeam(team1);
@@ -334,11 +344,11 @@ public class LeagueScheduleTest {
         playoffSchedule.add(schedule1);
         playoffSchedule.add(schedule2);
         playoffSchedule.add(schedule3);
-        scheduleSystem.setPlayoffSeasonSchedule(playoffSchedule);
+        leagueSchedule.setPlayoffSeasonSchedule(playoffSchedule);
 
-        scheduleSystem.updateScheduleAfterGame(schedule1);
-        scheduleSystem.updateScheduleAfterGame(schedule2);
-        List<IScheduleModel> playoffScheduleList = scheduleSystem.getPlayoffSeasonSchedule();
+        leagueSchedule.updateScheduleAfterGame(schedule1);
+        leagueSchedule.updateScheduleAfterGame(schedule2);
+        List<IScheduleModel> playoffScheduleList = leagueSchedule.getPlayoffSeasonSchedule();
 
         assertEquals(4, playoffScheduleList.size());
         assertTrue(playoffScheduleList.get(1).getIsGameCompleted());

@@ -8,7 +8,7 @@ import org.junit.Test;
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 
-public class SimulateStateTest {
+public class SeasonSimulateStateTest {
 	private AbstractState state;
 
 	@Before

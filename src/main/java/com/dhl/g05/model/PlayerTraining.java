@@ -59,7 +59,8 @@ public class PlayerTraining implements IPlayerTraining {
 	}
 
 	private Boolean isPlayerInjured(IPlayer player) {
-		IPlayerInjured playerProgress= new PlayerInjury();
+		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+		IPlayerInjured playerProgress= modelFactory.createPlayerInjury();
 		if(playerProgress.checkPlayerInjury(player,injury)) {
 			return true;
 		}

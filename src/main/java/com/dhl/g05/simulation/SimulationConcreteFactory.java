@@ -198,4 +198,9 @@ public class SimulationConcreteFactory extends SimulationAbstractFactory{
 		return new GamePlayConfigModel();
 	}
 
+	@Override
+	public ILeagueCreator createLeagueCreator() {
+		return new LeagueModelCreatorFromJSON(communication);
+	}
+
 }

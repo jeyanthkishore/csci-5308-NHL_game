@@ -9,7 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.ApplicationTestConfiguration;
 import com.dhl.g05.model.LeagueMockData;
+import com.dhl.g05.model.ModelMockAbstractFactory;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class InitializeSeasonStateTest {
@@ -23,7 +25,8 @@ public class InitializeSeasonStateTest {
 	
 	@Test
 	public void seasonInitializeTest() {
-		LeagueMockData mock = new LeagueMockData();
+		ModelMockAbstractFactory modelMockFactory = ApplicationTestConfiguration.instance().getModelMockConcreteFactoryState();
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
 		state.setLeague(mock.getLeague());
 		state.enter();
 		state.performStateTask();
@@ -33,9 +36,10 @@ public class InitializeSeasonStateTest {
 	
 	@Test
 	public void dateInitializeTest() {
-		LeagueMockData mock = new LeagueMockData();
-		mock.league.setLeagueCurrentDate(LocalDate.of(2020, Month.DECEMBER, 07));
-		state.setLeague(mock.league);
+		ModelMockAbstractFactory modelMockFactory = ApplicationTestConfiguration.instance().getModelMockConcreteFactoryState();
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+		mock.getLeague().setLeagueCurrentDate(LocalDate.of(2020, Month.DECEMBER, 07));
+		state.setLeague(mock.getLeague());
 		state.enter();
 		state.performStateTask();
 		state.exit();
