@@ -5,15 +5,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
 import java.time.LocalDate;
 import java.util.List;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class GenerateNewPlayersTest {
 	 private IGenerateNewPlayers generateNewPlayers; 
@@ -118,5 +115,4 @@ public class GenerateNewPlayersTest {
 		}
 		assertTrue(numberOfGoalies == 3);
 	}
-
 }

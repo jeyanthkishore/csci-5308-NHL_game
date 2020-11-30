@@ -6,45 +6,38 @@ import java.util.List;
 import java.util.Map;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.simulation.leaguesimulation.ILeagueStanding;
-import com.dhl.g05.simulation.leaguesimulation.IStandingModel;
-import com.dhl.g05.simulation.leaguesimulation.StandingModel;
+import com.dhl.g05.simulation.IStandingModel;
 
 public class PlayerDraftMock {
-	
-	IGenerateNewPlayers youngPlayers =ApplicationConfiguration.instance().getModelConcreteFactoryState().createNewPlayers();
-    ITeam teamHavingExcessPlayers = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
-    IPlayerDraft playerDraft= ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerDraft();
-    ILeagueStanding leagueStanding=	ApplicationConfiguration.instance().getSimulationConcreteFactoryState().createLeagueStanding();	
-    ILeague league=ApplicationConfiguration.instance().getModelConcreteFactoryState().createLeagueModel();
-     
+   
 	public  List<IStandingModel> mockStandings() {
-
+		ILeague league=ApplicationConfiguration.instance().getModelConcreteFactoryState().createLeagueModel();
 		league.setLeagueName("DHL");
-		IConference conference1 = new ConferenceModel();
+		IConference conference1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createConferenceModel();
 		conference1.setConferenceName("Eastern");
-		IConference conference2 = new ConferenceModel();
+		IConference conference2 =  ApplicationConfiguration.instance().getModelConcreteFactoryState().createConferenceModel();
 		conference2.setConferenceName("Northern");
-		IDivision division1 = new DivisionModel();
+		IDivision division1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createDivisionModel();
 		division1.setDivisionName("Atlantic");
-		IDivision division2 = new DivisionModel();
+		IDivision division2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createDivisionModel();
 		division2.setDivisionName("Pacific");
-		IDivision division3 = new DivisionModel();
+		IDivision division3 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createDivisionModel();
 		division3.setDivisionName("Indian");
-		IDivision division4 = new DivisionModel();
+		IDivision division4 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createDivisionModel();
 		division4.setDivisionName("Mediterranean");
-		ITeam team1 = new TeamModel();
+		ITeam team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
 		team1.setTeamName("Tigers");
+		IGenerateNewPlayers youngPlayers =ApplicationConfiguration.instance().getModelConcreteFactoryState().createNewPlayers();
 		youngPlayers.setNumberOfTeams(7);
 		List<IPlayer> newPlayers= youngPlayers.generatePlayers();
 		team1.setPlayerList(newPlayers);
-		ITeam team2 = new TeamModel();
+		ITeam team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
 		team2.setTeamName("Thunders");
-		IPlayer player1T2 = new PlayerModel();
+		IPlayer player1T2 =ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		((FreeAgentModel) player1T2).setPlayerName("Player1");
 		player1T2.setPosition("goalie");
 		player1T2.setPlayerStrength(7);
-		IPlayer player2T2 = new PlayerModel();
+		IPlayer player2T2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		((FreeAgentModel) player2T2).setPlayerName("Player2");
 		player2T2.setPosition("forward");
 		player2T2.setPlayerStrength(10);
@@ -53,13 +46,13 @@ public class PlayerDraftMock {
 		playerDetails2.add(player2T2);
 		team2.setPlayerList(playerDetails2);
 		
-		ITeam team3 = new TeamModel();
+		ITeam team3 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
 		team3.setTeamName("Boston");
-		IPlayer player1T3 = new PlayerModel();
+		IPlayer player1T3 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		((FreeAgentModel) player1T3).setPlayerName("Player1");
 		player1T3.setPosition("goalie");
 		player1T3.setPlayerStrength(7);
-		IPlayer player2T3 = new PlayerModel();
+		IPlayer player2T3 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		((FreeAgentModel) player2T3).setPlayerName("Player2");
 		player2T3.setPosition("forward");
 		player2T3.setPlayerStrength(10);
@@ -68,14 +61,14 @@ public class PlayerDraftMock {
 		playerDetails3.add(player2T2);
 		team3.setPlayerList(playerDetails3);
 		
-		ITeam team4 = new TeamModel();
+		ITeam team4 =ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
 		team4.setTeamName("Rockers");
 		team3.setTeamName("Boston");
-		IPlayer player1T4 = new PlayerModel();
+		IPlayer player1T4 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		((FreeAgentModel) player1T4).setPlayerName("Player1");
 		player1T4.setPosition("goalie");
 		player1T4.setPlayerStrength(7);
-		IPlayer player2T4 = new PlayerModel();
+		IPlayer player2T4 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		((FreeAgentModel) player2T3).setPlayerName("Player2");
 		player2T4.setPosition("forward");
 		player2T4.setPlayerStrength(10);
@@ -96,14 +89,14 @@ public class PlayerDraftMock {
 		conferenceDetails.add(conference1);
 		conferenceDetails.add(conference2);
 		league.setConferenceDetails(conferenceDetails);
-		IStandingModel standing1 = new StandingModel();
+		IStandingModel standing1 = ApplicationConfiguration.instance().getSimulationConcreteFactoryState().createStandingModel();
 		standing1.setConference(conference1);
 		standing1.setDivision(division1);
 		standing1.setTeam(team1);
 		standing1.setTotalGamesPlayed(7);
 		standing1.setTotalGamesWon(1);
 		standing1.setTotalPoints(2);
-		IStandingModel standing2 = new StandingModel();
+		IStandingModel standing2 = ApplicationConfiguration.instance().getSimulationConcreteFactoryState().createStandingModel();
 		standing2.setConference(conference1);
 		standing2.setDivision(division2);
 		standing2.setTeam(team2);
@@ -111,7 +104,7 @@ public class PlayerDraftMock {
 		standing2.setTotalGamesWon(3);
 		standing2.setTotalPoints(6);
 
-		IStandingModel standing3 = new StandingModel();
+		IStandingModel standing3 = ApplicationConfiguration.instance().getSimulationConcreteFactoryState().createStandingModel();
 		standing3.setConference(conference2);
 		standing3.setDivision(division3);
 		standing3.setTeam(team3);
@@ -119,7 +112,7 @@ public class PlayerDraftMock {
 		standing3.setTotalGamesWon(2);
 		standing3.setTotalPoints(4);
 
-		IStandingModel standing4 = new StandingModel();
+		IStandingModel standing4 =ApplicationConfiguration.instance().getSimulationConcreteFactoryState().createStandingModel();
 		standing4.setConference(conference2);
 		standing4.setDivision(division4);
 		standing4.setTeam(team4);
@@ -136,32 +129,31 @@ public class PlayerDraftMock {
 	}
 
 	public ILeague mockLeagueForStanding() {
-		ILeague league = new LeagueModel();
+		ILeague league=ApplicationConfiguration.instance().getModelConcreteFactoryState().createLeagueModel();
 		league.setLeagueName("DHL");
-		IConference conference1 = new ConferenceModel();
+		IConference conference1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createConferenceModel();
 		conference1.setConferenceName("Eastern");
-		IConference conference2 = new ConferenceModel();
+		IConference conference2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createConferenceModel();
 		conference2.setConferenceName("Northern");
-		IDivision division1 = new DivisionModel();
+		IDivision division1 =ApplicationConfiguration.instance().getModelConcreteFactoryState().createDivisionModel();
 		division1.setDivisionName("Atlantic");
-		IDivision division2 = new DivisionModel();
+		IDivision division2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createDivisionModel();
 		division1.setDivisionName("Pacific");
-		IDivision division3 = new DivisionModel();
-		division1.setDivisionName("Indian");
-		IDivision division4 = new DivisionModel();
+        division1.setDivisionName("Indian");
 		division1.setDivisionName("Mediterranean");
-		ITeam team1 = new TeamModel();
+		ITeam team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
 		team1.setTeamName("Tigers");
+		IGenerateNewPlayers youngPlayers =ApplicationConfiguration.instance().getModelConcreteFactoryState().createNewPlayers();
 		youngPlayers.setNumberOfTeams(4);
 		List<IPlayer> newPlayers= youngPlayers.generatePlayers();
 		team1.setPlayerList(newPlayers);
 		ITeam team2 = new TeamModel();
 		team2.setTeamName("Thunders");
-		IPlayer player1T2 = new PlayerModel();
+		IPlayer player1T2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		((FreeAgentModel) player1T2).setPlayerName("Player1");
 		player1T2.setPosition("goalie");
 		player1T2.setPlayerStrength(7);
-		IPlayer player2T2 = new PlayerModel();
+		IPlayer player2T2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		((FreeAgentModel) player2T2).setPlayerName("Player2");
 		player2T2.setPosition("forward");
 		player2T2.setPlayerStrength(10);
@@ -170,13 +162,13 @@ public class PlayerDraftMock {
 		playerDetails2.add(player2T2);
 		team2.setPlayerList(playerDetails2);
 		
-		ITeam team3 = new TeamModel();
+		ITeam team3 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
 		team3.setTeamName("Boston");
-		IPlayer player1T3 = new PlayerModel();
+		IPlayer player1T3 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		((FreeAgentModel) player1T3).setPlayerName("Player1");
 		player1T3.setPosition("goalie");
 		player1T3.setPlayerStrength(7);
-		IPlayer player2T3 = new PlayerModel();
+		IPlayer player2T3 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		((FreeAgentModel) player2T3).setPlayerName("Player2");
 		player2T3.setPosition("forward");
 		player2T3.setPlayerStrength(10);
@@ -185,14 +177,14 @@ public class PlayerDraftMock {
 		playerDetails3.add(player2T2);
 		team3.setPlayerList(playerDetails3);
 		
-		ITeam team4 = new TeamModel();
+		ITeam team4 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
 		team4.setTeamName("Rockers");
 		team3.setTeamName("Boston");
-		IPlayer player1T4 = new PlayerModel();
+		IPlayer player1T4 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		((FreeAgentModel) player1T4).setPlayerName("Player1");
 		player1T4.setPosition("goalie");
 		player1T4.setPlayerStrength(7);
-		IPlayer player2T4 = new PlayerModel();
+		IPlayer player2T4 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		((FreeAgentModel) player2T3).setPlayerName("Player2");
 		player2T4.setPosition("forward");
 		player2T4.setPlayerStrength(10);
