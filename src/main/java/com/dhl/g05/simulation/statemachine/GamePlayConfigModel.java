@@ -1,6 +1,11 @@
 package com.dhl.g05.simulation.statemachine;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class GamePlayConfigModel implements IGamePlayConfig {
+	
+	static final Logger logger = LogManager.getLogger(GamePlayConfigModel.class);
 	ITradingConfig trading;
 	IAging aging;
 	IInjury injuries;
@@ -67,6 +72,8 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 
 	@Override
 	public GamePlayConfigConstant validate() {
+		logger.info("Validating GamePlay Config");
+		
 		if(gameResolver == null || trading ==null || training == null
 				|| aging == null || injuries == null) {
 			return GamePlayConfigConstant.ErrorInConfig;

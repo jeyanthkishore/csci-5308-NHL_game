@@ -37,6 +37,71 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 	private static ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 	private static SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 	
+	private static final String  LEAGUE_NAME = "leagueName";
+	private static final String CONFERENCES = "conferences";
+	private static final String FREE_AGENTS = "freeAgents";
+	private static final String COACHES = "coaches";
+	private static final String GENERAL_MANAGERS = "generalManagers";
+	private static final String GAMEPLAY_CONFIG = "gameplayConfig";
+	private static final String LEAGUE_SCHEDULE = "leagueSchedule";
+	private static final String LEAGUE_STANDING = "leagueStanding";
+	private static final String INJURIES= "injuries";
+	private static final String AGING= "aging";
+	private static final String GAME_RESOLVER= "gameResolver";
+	private static final String TRADING = "trading";
+	private static final String TRAINING = "training";
+	private static final String AVERAGE_RETIREMENTAGE = "averageRetirementAge";
+	private static final String MAXIMUM_AGE= "maximumAge";
+	private static final String STAT_DECAY_CHANCE= "statDecayChance";
+	private static final String RANDOM_INJURY_CHANCE = "randomInjuryChance";
+	private static final String INJURY_DAYS_HIGH = "injuryDaysHigh";
+	private static final String INJURY_DAYS_LOW = "injuryDaysLow";
+	private static final String DAYS_UNTIL_STAT_INCREASE_CHECK = "daysUntilStatIncreaseCheck";
+	private static final String RANDOM_WIN_CHANCE = "randomWinChance";
+	private static final String LOSS_POINT = "lossPoint";
+	private static final String MAX_PLAYERS_PER_TRADE = "maxPlayersPerTrade";
+	private static final String RANDOM_ACCEPTANCE_CHANCE = "randomAcceptanceChance";
+	private static final String  RANDOM_TRADE_OFFER_CHANCE= "randomTradeOfferChance";
+	private static final String  DIVISIONS = "divisions";
+	private static final String  CONFERENCE_NAME = "conferenceName";
+	private static final String  TEAMS= "teams";
+	private static final String  DIVISION_NAME = "divisionName";
+	private static final String PLAYERS = "players";
+	private static final String  TEAM_NAME= "teamName";
+	private static final String  GENERAL_MANAGER = "generalManager";
+	private static final String  HEAD_COACH = "headCoach";
+	private static final String PLAYER_NAME = "playerName";
+	private static final String POSITION = "position";
+	private static final String PLAYER_STRENGTH = "playerStrength";
+	private static final String CAPTAIN = "captain";
+	private static final String SKATING = "skating";
+	private static final String SHOOTING = "shooting";
+	private static final String CHECKING = "checking";
+	private static final String SAVING = "saving";
+	private static final String IS_INJURED = "isInjured";
+	private static final String IS_RETIRED = "isRetired";
+	private static final String BIRTH_DAY = "birthDay";
+	private static final String BIRTH_MONTH = "birthMonth";
+	private static final String BIRTH_YEAR = "birthYear";
+	private static final String NAME = "name";
+	private static final String STANDING_LIST = "standingsList";
+	private static final String CONFERENCE = "conference";
+	private static final String DIVISION = "division";
+	private static final String TEAM = "team";
+	private static final String NUMBER_OF_LOSS = "numberOfLoss";
+	private static final String TOTAL_GAMES_PLAYED = "totalGamesPlayed";
+	private static final String NUMBER_OF_WINS = "numberOfWins";
+	private static final String TOTAL_POINTS = "totalPoints";
+	private static final String REGULAR_SEASON_SCHEDULE = "regularSeasonSchedule";
+	private static final String PLAYOFF_SEASON_SCHEDULE = "playOffSeasonSchedule";
+	private static final String FIRST_CONFERENCE = "firstConference";
+	private static final String FIRST_DIVISION = "firstDivision";
+	private static final String FIRST_TEAM = "firstTeam";
+	private static final String SECOND_CONFERENCE = "secondConference";
+	private static final String SECOND_DIVISION = "secondDivision";
+	private static final String SECOND_TEAM = "secondTeam";
+	
+	
 	@Override
 	public ILeague deserializeObjects(String name, ILeague leagueModel) {
 		FileReader reader = null;
@@ -56,23 +121,23 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 
 	private IAging createAging(JSONObject jsonAging) {
 		IAging agingConfig = simulationFactory.createAgingConfig();
-		agingConfig.setAverageRetirementAge(((Number) jsonAging.get("averageRetirementAge")).intValue());
-		agingConfig.setMaximumAge(((Number) jsonAging.get("maximumAge")).intValue());
-		agingConfig.setStatDecayChance(((Number) jsonAging.get("statDecayChance")).doubleValue());
+		agingConfig.setAverageRetirementAge(((Number) jsonAging.get(AVERAGE_RETIREMENTAGE)).intValue());
+		agingConfig.setMaximumAge(((Number) jsonAging.get(MAXIMUM_AGE)).intValue());
+		agingConfig.setStatDecayChance(((Number) jsonAging.get(STAT_DECAY_CHANCE)).doubleValue());
 		return agingConfig;
 	}
 
 	private IInjury createInjury(JSONObject jsonInjury) {
 		IInjury injuryConfig = simulationFactory.createInjuryConfig();
-		injuryConfig.setRandomInjuryChance(((Number) jsonInjury.get("randomInjuryChance")).doubleValue());
-		injuryConfig.setInjuryDaysHigh(((Number) jsonInjury.get("injuryDaysHigh")).intValue());
-		injuryConfig.setInjuryDaysLow(((Number) jsonInjury.get("injuryDaysLow")).intValue());
+		injuryConfig.setRandomInjuryChance(((Number) jsonInjury.get(RANDOM_INJURY_CHANCE)).doubleValue());
+		injuryConfig.setInjuryDaysHigh(((Number) jsonInjury.get(INJURY_DAYS_HIGH)).intValue());
+		injuryConfig.setInjuryDaysLow(((Number) jsonInjury.get(INJURY_DAYS_LOW)).intValue());
 		return injuryConfig;
 	}
 
 	private ITraining createTrainingConfig(JSONObject training) {
 		ITraining trainConfig = simulationFactory.createTrainingConfig();
-		trainConfig.setDaysUntilStatIncreaseCheck(((Number) training.get("daysUntilStatIncreaseCheck")).intValue());
+		trainConfig.setDaysUntilStatIncreaseCheck(((Number) training.get(DAYS_UNTIL_STAT_INCREASE_CHECK)).intValue());
 		return trainConfig;
 	}
 
@@ -81,37 +146,37 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 			return null;
 		}
 		ILeague league = modelFactory.createLeagueModel();
-		league.setLeagueName((String)leagueData.get("leagueName"));
-		league.setConferenceDetails(createConferences((JSONArray)leagueData.get("conferences")));
-		league.setFreeAgent(createFreeAgents((JSONArray)leagueData.get("freeAgents")));
-		league.setFreeCoach(createFreeCoaches((JSONArray)leagueData.get("coaches")));
-		league.setManagerList(createFreeManagers((JSONArray)leagueData.get("generalManagers")));
-		league.setGamePlayConfig(setGamePlayConfigsFromFile((JSONObject) leagueData.get("gameplayConfig")));
-		league.setLeagueSchedule(createLeagueSchedule((JSONObject)leagueData.get("leagueSchedule")));
-		league.setLeagueStanding(createLeagueStandings((JSONObject)leagueData.get("leagueStanding")));
+		league.setLeagueName((String)leagueData.get(LEAGUE_NAME));
+		league.setConferenceDetails(createConferences((JSONArray)leagueData.get(CONFERENCES)));
+		league.setFreeAgent(createFreeAgents((JSONArray)leagueData.get(FREE_AGENTS)));
+		league.setFreeCoach(createFreeCoaches((JSONArray)leagueData.get(COACHES)));
+		league.setManagerList(createFreeManagers((JSONArray)leagueData.get(GENERAL_MANAGERS)));
+		league.setGamePlayConfig(setGamePlayConfigsFromFile((JSONObject) leagueData.get(GAMEPLAY_CONFIG)));
+		league.setLeagueSchedule(createLeagueSchedule((JSONObject)leagueData.get(LEAGUE_SCHEDULE)));
+		league.setLeagueStanding(createLeagueStandings((JSONObject)leagueData.get(LEAGUE_STANDING)));
 		return league;
 	}
 
 	@SuppressWarnings("unchecked")
 	private ILeagueStanding createLeagueStandings(JSONObject jsonStanding) {
-
+		
 		ArrayList<IStandingModel> leagueStandingList = new ArrayList<>();
-		JSONArray standingList = (JSONArray)jsonStanding.get("standingsList");
+		JSONArray standingList = (JSONArray)jsonStanding.get(STANDING_LIST);
 		for(Object standing : standingList) {
 			IStandingModel newStanding = new StandingModel();
 			JSONArray arrayFormation = new JSONArray();
-			arrayFormation.add((JSONObject) ((JSONObject) standing).get("conference"));
+			arrayFormation.add((JSONObject) ((JSONObject) standing).get(CONFERENCE));
 			newStanding.setConference(createConferences((JSONArray)arrayFormation).get(0));
 			arrayFormation = new JSONArray();
-			arrayFormation.add((JSONObject) ((JSONObject) standing).get("division"));
+			arrayFormation.add((JSONObject) ((JSONObject) standing).get(DIVISION));
 			newStanding.setDivision(createDivisions((JSONArray)arrayFormation).get(0));
 			arrayFormation = new JSONArray();
-			arrayFormation.add((JSONObject) ((JSONObject) standing).get("team"));
+			arrayFormation.add((JSONObject) ((JSONObject) standing).get(TEAM));
 			newStanding.setTeam(createTeams((JSONArray)arrayFormation).get(0));
-			newStanding.setTotalGamesLost(((Number) ((JSONObject) standing).get("numberOfLoss")).intValue());
-			newStanding.setTotalGamesPlayed(((Number) ((JSONObject) standing).get("totalGamesPlayed")).intValue());
-			newStanding.setTotalGamesWon(((Number) ((JSONObject) standing).get("numberOfWins")).intValue());
-			newStanding.setTotalPoints(((Number) ((JSONObject) standing).get("totalPoints")).intValue());
+			newStanding.setTotalGamesLost(((Number) ((JSONObject) standing).get(NUMBER_OF_LOSS)).intValue());
+			newStanding.setTotalGamesPlayed(((Number) ((JSONObject) standing).get(TOTAL_GAMES_PLAYED)).intValue());
+			newStanding.setTotalGamesWon(((Number) ((JSONObject) standing).get(NUMBER_OF_WINS)).intValue());
+			newStanding.setTotalPoints(((Number) ((JSONObject) standing).get(TOTAL_POINTS)).intValue());
 			leagueStandingList.add(newStanding);
 		}
 
@@ -121,12 +186,13 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 	}
 
 	private ILeagueSchedule createLeagueSchedule(JSONObject jsonObject) {
+		
 		ArrayList<IScheduleModel> regularSchedule = new ArrayList<>();
 		ArrayList<IScheduleModel> playoffSchedule = new ArrayList<>();
 		ILeagueSchedule schedule = new LeagueSchedule();
-		regularSchedule = generateSchedule((JSONArray) (jsonObject).get("regularSeasonSchedule"));
+		regularSchedule = generateSchedule((JSONArray) (jsonObject).get(REGULAR_SEASON_SCHEDULE));
 		schedule.setRegularSeasonSchedule(regularSchedule);
-		playoffSchedule = generateSchedule((JSONArray) (jsonObject).get("playOffSeasonSchedule"));
+		playoffSchedule = generateSchedule((JSONArray) (jsonObject).get(PLAYOFF_SEASON_SCHEDULE));
 		schedule.setRegularSeasonSchedule(playoffSchedule);
 		return schedule;
 	}
@@ -136,26 +202,27 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 		if(fullSchedule == null) {
 			return null;
 		}
+		
 		ArrayList<IScheduleModel> scheduleList = new ArrayList<>();
 		for(Object schedule : fullSchedule) {
 			JSONArray arrayFormation = new JSONArray();
 			IScheduleModel currentschedule = new ScheduleModel();
-			arrayFormation.add((JSONObject) ((JSONObject) schedule).get("firstConference"));
+			arrayFormation.add((JSONObject) ((JSONObject) schedule).get(FIRST_CONFERENCE));
 			currentschedule.setFirstConference(createConferences((JSONArray)arrayFormation).get(0));
 			arrayFormation = new JSONArray();
-			arrayFormation.add((JSONObject)((JSONObject) schedule).get("firstDivision"));
+			arrayFormation.add((JSONObject)((JSONObject) schedule).get(FIRST_DIVISION));
 			currentschedule.setFirstDivision(createDivisions((JSONArray)arrayFormation).get(0));
 			arrayFormation = new JSONArray();
-			arrayFormation.add((JSONObject)((JSONObject) schedule).get("firstTeam"));
+			arrayFormation.add((JSONObject)((JSONObject) schedule).get(FIRST_TEAM));
 			currentschedule.setFirstTeam(createTeams((JSONArray)arrayFormation).get(0));
 			arrayFormation = new JSONArray();
-			arrayFormation.add((JSONObject)((JSONObject) schedule).get("secondConference"));
+			arrayFormation.add((JSONObject)((JSONObject) schedule).get(SECOND_CONFERENCE));
 			currentschedule.setSecondConference(createConferences((JSONArray)arrayFormation).get(0));
 			arrayFormation = new JSONArray();
-			arrayFormation.add((JSONObject)((JSONObject) schedule).get("secondDivision"));
+			arrayFormation.add((JSONObject)((JSONObject) schedule).get(SECOND_DIVISION));
 			currentschedule.setSecondDivision(createDivisions((JSONArray)arrayFormation).get(0));
 			arrayFormation = new JSONArray();
-			arrayFormation.add((JSONObject)((JSONObject) schedule).get("secondTeam"));
+			arrayFormation.add((JSONObject)((JSONObject) schedule).get(SECOND_TEAM));
 			currentschedule.setSecondTeam(createTeams((JSONArray)arrayFormation).get(0));
 			scheduleList.add(currentschedule);
 		}
@@ -165,9 +232,9 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 	private ArrayList<IConference> createConferences(JSONArray jsonConferences) {
 		ArrayList<IConference> conferences = new ArrayList<>();
 		for (Object c: jsonConferences) {
-			ArrayList<IDivision> divisions = createDivisions((JSONArray)((JSONObject) c).get("divisions"));
+			ArrayList<IDivision> divisions = createDivisions((JSONArray)((JSONObject) c).get(DIVISIONS));
 			IConference newConference = modelFactory.createConferenceModel();
-			newConference.setConferenceName((String)((JSONObject) c).get("conferenceName"));
+			newConference.setConferenceName((String)((JSONObject) c).get(CONFERENCE_NAME));
 			newConference.setDivisionDetails(divisions);
 			conferences.add(newConference);
 		}
@@ -176,27 +243,27 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 
 	public IGamePlayConfig setGamePlayConfigsFromFile(JSONObject gamePlayConfigs){
 		IGamePlayConfig gamePlayconfig = new GamePlayConfigModel();
-		gamePlayconfig.setInjuriesConfig(createInjury((JSONObject)gamePlayConfigs.get("injuries")));
-		gamePlayconfig.setAgingConfig(createAging((JSONObject)gamePlayConfigs.get("aging")));
-		gamePlayconfig.setGameResolverConfig(createGameResolver((JSONObject)gamePlayConfigs.get("gameResolver")));
-		gamePlayconfig.setTradingConfig(createTradingConfig((JSONObject)gamePlayConfigs.get("trading")));
-		gamePlayconfig.setTrainingConfig(createTrainingConfig((JSONObject)gamePlayConfigs.get("training")));
+		gamePlayconfig.setInjuriesConfig(createInjury((JSONObject)gamePlayConfigs.get(INJURIES)));
+		gamePlayconfig.setAgingConfig(createAging((JSONObject)gamePlayConfigs.get(AGING)));
+		gamePlayconfig.setGameResolverConfig(createGameResolver((JSONObject)gamePlayConfigs.get(GAME_RESOLVER)));
+		gamePlayconfig.setTradingConfig(createTradingConfig((JSONObject)gamePlayConfigs.get(TRADING)));
+		gamePlayconfig.setTrainingConfig(createTrainingConfig((JSONObject)gamePlayConfigs.get(TRAINING)));
 
 		return gamePlayconfig;
 	}
 
 	private IGameResolver createGameResolver(JSONObject gameResolver) {
 		IGameResolver resolverConfig = simulationFactory.createGameResolverConfig();
-		resolverConfig.setRandomWinChance(((Number) gameResolver.get("randomWinChance")).doubleValue());
+		resolverConfig.setRandomWinChance(((Number) gameResolver.get(RANDOM_WIN_CHANCE)).doubleValue());
 		return resolverConfig;
 	}
 
 	private ITradingConfig createTradingConfig(JSONObject tradingObject) {
 		ITradingConfig tradeConfig =  simulationFactory.createTradingConfig();
-		tradeConfig.setLossPoint(((Number) tradingObject.get("lossPoint")).intValue());
-		tradeConfig.setMaxPlayersPerTrade(((Number) tradingObject.get("maxPlayersPerTrade")).intValue());
-		tradeConfig.setRandomAcceptanceChance(((Double) tradingObject.get("randomAcceptanceChance")).doubleValue());
-		tradeConfig.setRandomTradeOfferChance((Double)((JSONObject) tradingObject).get("randomTradeOfferChance"));
+		tradeConfig.setLossPoint(((Number) tradingObject.get(LOSS_POINT)).intValue());
+		tradeConfig.setMaxPlayersPerTrade(((Number) tradingObject.get(MAX_PLAYERS_PER_TRADE)).intValue());
+		tradeConfig.setRandomAcceptanceChance(((Double) tradingObject.get(RANDOM_ACCEPTANCE_CHANCE)).doubleValue());
+		tradeConfig.setRandomTradeOfferChance((Double)((JSONObject) tradingObject).get(RANDOM_TRADE_OFFER_CHANCE));
 		return tradeConfig;
 	}
 
@@ -204,9 +271,9 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 
 		ArrayList<IDivision> divisions = new ArrayList<>();
 		for (Object d: jsonDivisions) {
-			ArrayList<ITeam> teams = createTeams((JSONArray)((JSONObject) d).get("teams"));
+			ArrayList<ITeam> teams = createTeams((JSONArray)((JSONObject) d).get(TEAMS));
 			IDivision newDivision = modelFactory.createDivisionModel();
-			newDivision.setDivisionName((String)((JSONObject) d).get("divisionName"));
+			newDivision.setDivisionName((String)((JSONObject) d).get(DIVISION_NAME));
 			newDivision.setTeamDetails(teams);
 			divisions.add(newDivision);
 		}
@@ -216,11 +283,11 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 	private ArrayList<ITeam> createTeams(JSONArray jsonTeams) {
 		ArrayList<ITeam> teams = new ArrayList<>();
 		for (Object t: jsonTeams) {
-			ArrayList<IPlayer> players = createPlayers((JSONArray)((JSONObject) t).get("players"));
+			ArrayList<IPlayer> players = createPlayers((JSONArray)((JSONObject) t).get(PLAYERS));
 			ITeam newTeam = modelFactory.createTeamModel();
-			newTeam.setTeamName((String)((JSONObject) t).get("teamName"));
-			newTeam.setGeneralManagerName((String)((JSONObject) t).get("generalManager"));
-			newTeam.setCoachDetails(createCoach((JSONObject) ((JSONObject) t).get("headCoach")));
+			newTeam.setTeamName((String)((JSONObject) t).get(TEAM_NAME));
+			newTeam.setGeneralManagerName((String)((JSONObject) t).get(GENERAL_MANAGER));
+			newTeam.setCoachDetails(createCoach((JSONObject) ((JSONObject) t).get(HEAD_COACH)));
 			newTeam.setPlayerList(players);
 			teams.add(newTeam);
 		}
@@ -231,20 +298,20 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 		ArrayList<IPlayer> players = new ArrayList<>();
 		for (Object player: jsonPlayers) {
 			IPlayer newPlayer = modelFactory.createPlayerModel();
-			newPlayer.setBirthDay(((Number) ((JSONObject) player).get("birthDay")).intValue());
-			newPlayer.setBirthMonth(((Number) ((JSONObject) player).get("birthMonth")).intValue());
-			newPlayer.setBirthYear(((Number) ((JSONObject) player).get("birthYear")).intValue());
-			newPlayer.setSkating(((Number) ((JSONObject) player).get("skating")).doubleValue());
-			newPlayer.setShooting(((Number) ((JSONObject) player).get("shooting")).doubleValue());
-			newPlayer.setChecking(((Number) ((JSONObject) player).get("checking")).doubleValue());
-			newPlayer.setSaving(((Number) ((JSONObject) player).get("saving")).doubleValue());
-			newPlayer.setPlayerName((String)((JSONObject) player).get("playerName"));
-			newPlayer.setPosition((String)((JSONObject) player).get("position"));
-			newPlayer.setAge(((Number) ((JSONObject) player).get("saving")).intValue());
-			newPlayer.setPlayerStrength(((Number) ((JSONObject) player).get("playerStrength")).doubleValue());
-			newPlayer.setCaptain((Boolean)((JSONObject) player).get("captain"));
-			newPlayer.setInjuryStatus((Boolean)((JSONObject) player).get("isInjured"));
-			newPlayer.setRetirementStatus((Boolean)((JSONObject) player).get("isRetired"));
+			newPlayer.setBirthDay(((Number) ((JSONObject) player).get(BIRTH_DAY)).intValue());
+			newPlayer.setBirthMonth(((Number) ((JSONObject) player).get(BIRTH_MONTH)).intValue());
+			newPlayer.setBirthYear(((Number) ((JSONObject) player).get(BIRTH_YEAR)).intValue());
+			newPlayer.setSkating(((Number) ((JSONObject) player).get(SKATING)).doubleValue());
+			newPlayer.setShooting(((Number) ((JSONObject) player).get(SHOOTING)).doubleValue());
+			newPlayer.setChecking(((Number) ((JSONObject) player).get(CHECKING)).doubleValue());
+			newPlayer.setSaving(((Number) ((JSONObject) player).get(SAVING)).doubleValue());
+			newPlayer.setPlayerName((String)((JSONObject) player).get(PLAYER_NAME));
+			newPlayer.setPosition((String)((JSONObject) player).get(POSITION));
+			newPlayer.setAge(((Number) ((JSONObject) player).get(SAVING)).intValue());
+			newPlayer.setPlayerStrength(((Number) ((JSONObject) player).get(PLAYER_STRENGTH)).doubleValue());
+			newPlayer.setCaptain((Boolean)((JSONObject) player).get(CAPTAIN));
+			newPlayer.setInjuryStatus((Boolean)((JSONObject) player).get(IS_INJURED));
+			newPlayer.setRetirementStatus((Boolean)((JSONObject) player).get(IS_RETIRED));
 			players.add(newPlayer);
 		}
 		return players;
@@ -257,19 +324,19 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 		ArrayList<IFreeAgent> freeAgent = new ArrayList<>();
 		for (Object player: jsonPlayers) {
 			IFreeAgent newPlayer = modelFactory.createFreeAgentModel();
-			newPlayer.setBirthDay(((Number) ((JSONObject) player).get("birthDay")).intValue());
-			newPlayer.setBirthMonth(((Number) ((JSONObject) player).get("birthMonth")).intValue());
-			newPlayer.setBirthYear(((Number) ((JSONObject) player).get("birthYear")).intValue());
-			newPlayer.setSkating(((Number) ((JSONObject) player).get("skating")).doubleValue());
-			newPlayer.setShooting(((Number) ((JSONObject) player).get("shooting")).doubleValue());
-			newPlayer.setChecking(((Number) ((JSONObject) player).get("checking")).doubleValue());
-			newPlayer.setSaving(((Number) ((JSONObject) player).get("saving")).doubleValue());
-			newPlayer.setPlayerName((String)((JSONObject) player).get("playerName"));
-			newPlayer.setPosition((String)((JSONObject) player).get("position"));
-			newPlayer.setAge(((Number) ((JSONObject) player).get("saving")).intValue());
-			newPlayer.setPlayerStrength(((Number) ((JSONObject) player).get("playerStrength")).doubleValue());
-			newPlayer.setInjuryStatus((Boolean)((JSONObject) player).get("isInjured"));
-			newPlayer.setRetirementStatus((Boolean)((JSONObject) player).get("isRetired"));
+			newPlayer.setBirthDay(((Number) ((JSONObject) player).get(BIRTH_DAY)).intValue());
+			newPlayer.setBirthMonth(((Number) ((JSONObject) player).get(BIRTH_MONTH)).intValue());
+			newPlayer.setBirthYear(((Number) ((JSONObject) player).get(BIRTH_YEAR)).intValue());
+			newPlayer.setSkating(((Number) ((JSONObject) player).get(SKATING)).doubleValue());
+			newPlayer.setShooting(((Number) ((JSONObject) player).get(SHOOTING)).doubleValue());
+			newPlayer.setChecking(((Number) ((JSONObject) player).get(CHECKING)).doubleValue());
+			newPlayer.setSaving(((Number) ((JSONObject) player).get(SAVING)).doubleValue());
+			newPlayer.setPlayerName((String)((JSONObject) player).get(PLAYER_NAME));
+			newPlayer.setPosition((String)((JSONObject) player).get(POSITION));
+			newPlayer.setAge(((Number) ((JSONObject) player).get(SAVING)).intValue());
+			newPlayer.setPlayerStrength(((Number) ((JSONObject) player).get(PLAYER_STRENGTH)).doubleValue());
+			newPlayer.setInjuryStatus((Boolean)((JSONObject) player).get(IS_INJURED));
+			newPlayer.setRetirementStatus((Boolean)((JSONObject) player).get(IS_RETIRED));
 			freeAgent.add(newPlayer);
 		}
 		return freeAgent;
@@ -277,11 +344,11 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 
 	private ICoach createCoach(JSONObject jsonCoachDetails) {
 		ICoach newCoach = modelFactory.createCoachModel();
-		newCoach.setName((String) jsonCoachDetails.get("name"));
-		newCoach.setSkating(((Number) ((JSONObject) jsonCoachDetails).get("skating")).doubleValue());
-		newCoach.setShooting(((Number) ((JSONObject) jsonCoachDetails).get("shooting")).doubleValue());
-		newCoach.setChecking(((Number) ((JSONObject) jsonCoachDetails).get("checking")).doubleValue());
-		newCoach.setSaving(((Number) ((JSONObject) jsonCoachDetails).get("saving")).doubleValue());
+		newCoach.setName((String) jsonCoachDetails.get(NAME));
+		newCoach.setSkating(((Number) ((JSONObject) jsonCoachDetails).get(SKATING)).doubleValue());
+		newCoach.setShooting(((Number) ((JSONObject) jsonCoachDetails).get(SHOOTING)).doubleValue());
+		newCoach.setChecking(((Number) ((JSONObject) jsonCoachDetails).get(CHECKING)).doubleValue());
+		newCoach.setSaving(((Number) ((JSONObject) jsonCoachDetails).get(SAVING)).doubleValue());
 		return newCoach;
 	}
 

@@ -1,5 +1,8 @@
 package com.dhl.g05.simulation.statemachine;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.database.DatabaseAbstractFactory;
@@ -12,6 +15,7 @@ import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class LoadTeamState extends AbstractState{
 
+	static final Logger logger = LogManager.getLogger(LoadTeamState.class);
 	private IPlayerCommunication communication;
 	private ILeague league;
 	private String teamName;
@@ -22,6 +26,8 @@ public class LoadTeamState extends AbstractState{
 
 	@Override
 	public boolean enter() {
+		logger.info("Entering into LoadTeamState");
+		
 		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState(); 
 		league = modelFactory.createLeagueModel();
 		communication.sendMessage(StateMachineConstant.EnterTeam.getValue());
@@ -32,6 +38,8 @@ public class LoadTeamState extends AbstractState{
 
 	@Override
 	public boolean performStateTask() {
+		logger.info("Performing operation for loading team");
+		
 		ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 		DatabaseAbstractFactory databaseFactory = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
 		ITeam team = modelFactory.createTeamModel();
@@ -42,6 +50,7 @@ public class LoadTeamState extends AbstractState{
 			this.setLeague(loadedLeague);
 			return true;
 		} else {
+			logger.info("Entered team is not present in database");
 			communication.sendMessage(StateMachineConstant.NoTeam.getValue());
 			return false;
 		}
@@ -49,8 +58,10 @@ public class LoadTeamState extends AbstractState{
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
-		this.setNextState(stateFactory.createPlayerChoiceState());
+		logger.info("Exiting LoadTeamState");
+		
+		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		this.setNextState(simulationFactory.createPlayerChoiceState());
 		return true;
 	}
 

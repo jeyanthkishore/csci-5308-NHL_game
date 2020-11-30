@@ -2,6 +2,9 @@ package com.dhl.g05.simulation.statemachine;
 
 import java.time.LocalDate;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
@@ -14,10 +17,13 @@ import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class AgingState extends AbstractState{
 	
+	static final Logger logger = LogManager.getLogger(AgingState.class);
 	private ILeague league;
 
 	@Override
 	public boolean enter() {
+		logger.info("Entering into Aging State");
+		
 		league = this.getLeague();
 		return true;
 	}
@@ -25,12 +31,14 @@ public class AgingState extends AbstractState{
 	@Override
 	public boolean performStateTask() {
 		LocalDate currentDate = league.getLeagueCurrentDate();
+		IAging agingConfig = league.getGamePlayConfig().getAgingConfig();
+		
 		for (IConference conference : league.getConferenceDetails()) {
             for (IDivision division : conference.getDivisionDetails()) {
                 for (ITeam team : division.getTeamDetails()) {
                     for (IPlayer player : team.getPlayerList()) {
                     	player.calculateAge(currentDate);
-                    	//decreaseStats
+                    	player.decreasePlayerStatOnBirthday(player,agingConfig);
                     }
                 }
             }
@@ -38,6 +46,7 @@ public class AgingState extends AbstractState{
 
         for (IFreeAgent freeAgent : league.getFreeAgent()) {
             freeAgent.calculateAge(currentDate);
+            freeAgent.decreaseFreeAgentStatOnBirthday(freeAgent, agingConfig);
         }
 
         for (IFreeAgent retiredFreeAgent : league.getRetiredFreeAgentsList()) {
@@ -53,9 +62,10 @@ public class AgingState extends AbstractState{
 
 	@Override
 	public boolean exit() {
+		logger.info("Exiting Aging State");
+		
 		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		LocalDate currentDate = league.getLeagueCurrentDate();
-		System.out.println(currentDate);
 		if (league.getLeagueSchedule().isStanleyCupWinnerDetermined() && DateHandler.instance().isTodayPlayerDraftDate(currentDate)) {
 			this.setNextState(stateFactory.createPlayerDraftState());
 		}

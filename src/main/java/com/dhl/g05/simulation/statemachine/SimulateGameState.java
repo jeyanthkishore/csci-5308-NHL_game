@@ -1,5 +1,8 @@
 package com.dhl.g05.simulation.statemachine;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
@@ -10,12 +13,16 @@ import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.leaguesimulation.IScheduleModel;
 
 public class SimulateGameState extends AbstractState{
+	
+	static final Logger logger = LogManager.getLogger(SimulateGameState.class);
 	private ILeague league;
 	private ITeam firstTeam;
 	private ITeam secondTeam;
 
 	@Override
 	public boolean enter() {
+		logger.info("Entering into SimulateGameState");
+		
 		league = this.getLeague();
 		return true;
 	}
@@ -70,6 +77,7 @@ public class SimulateGameState extends AbstractState{
 			losingTeamDivision = schedule.getFirstDivision();
 		}
 
+		logger.info("Match Won by "+teamWon.getTeamName());
 		schedule.setWinningTeam(teamWon);
 		league.getLeagueSchedule().updateScheduleAfterGame(schedule);
 		league.getLeagueStanding().updateStatisticsForWinningTeam(winningTeamConference, winningTeamDivision, teamWon);
@@ -80,6 +88,8 @@ public class SimulateGameState extends AbstractState{
 
 	@Override
 	public boolean exit() {
+		logger.info("Exiting SimulateGameState");
+		
 		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		this.setNextState(simulationFactory.createInjuryCheckState(firstTeam,secondTeam));
 		return true;

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
@@ -12,7 +15,7 @@ import com.dhl.g05.model.ITeam;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class LeagueStanding implements ILeagueStanding{
-
+	static final Logger logger = LogManager.getLogger(LeagueStanding.class);
 	private List<IStandingModel> standingsList;
 
 	@Override
@@ -27,6 +30,7 @@ public class LeagueStanding implements ILeagueStanding{
 
 	@Override
 	public void createStandingList(ILeague	league) {
+		logger.info("Creating New Standing List");
 		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		standingsList = new ArrayList<>();
 
@@ -45,6 +49,7 @@ public class LeagueStanding implements ILeagueStanding{
 
 	@Override
 	public List<IStandingModel> getRankingAcrossLeague() {
+		logger.info("Calculationg Ranking Across League");
 		List<IStandingModel> leagueStandings = new ArrayList<>();
 		for (IStandingModel standing: standingsList) {
 			leagueStandings.add(standing);
@@ -55,6 +60,7 @@ public class LeagueStanding implements ILeagueStanding{
 
 	@Override
 	public List<IStandingModel> getRankingAcrossDivision(IDivision division) {
+		logger.info("Calculationg Ranking Across Division");
 		List<IStandingModel> divisionStandings = new ArrayList<>();
 		for (IStandingModel standing: standingsList) {
 			if (standing.getDivision() == division) {
@@ -67,6 +73,7 @@ public class LeagueStanding implements ILeagueStanding{
 
 	@Override
 	public List<IStandingModel> getRankingAcrossConference(IConference conference) {
+		logger.info("Calculationg Ranking Conference League");
 		List<IStandingModel> conferenceStandings = new ArrayList<>();
 		for (IStandingModel standing: standingsList){
 			if (standing.getConference() == conference) {
@@ -79,6 +86,7 @@ public class LeagueStanding implements ILeagueStanding{
 
 	@Override
 	public void updateStatisticsForWinningTeam(IConference conference, IDivision division, ITeam team) {
+		logger.info("Updating Standing for Winning Team");
 		for (IStandingModel teamstanding: standingsList) {
 			if (teamstanding.getConference() == conference && teamstanding.getDivision() == division
 					&& teamstanding.getTeam() == team) {
@@ -91,6 +99,7 @@ public class LeagueStanding implements ILeagueStanding{
 
 	@Override
 	public void updateStatisticsForLosingTeam(IConference conference, IDivision division, ITeam team) {
+		logger.info("Updating Standing for Losing Team");
 		for (IStandingModel teamstanding: standingsList) {
 			if (teamstanding.getConference() == conference && teamstanding.getDivision() == division
 					&& teamstanding.getTeam() == team) {

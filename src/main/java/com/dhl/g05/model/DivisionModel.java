@@ -2,11 +2,14 @@ package com.dhl.g05.model;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.gson.annotations.Expose;
 import com.mysql.cj.util.StringUtils;
 
 public class DivisionModel implements IDivision {
-	
+	static final Logger logger = LogManager.getLogger(ConferenceModel.class);
 	@Expose
 	private String divisionName;
 	@Expose
@@ -39,6 +42,7 @@ public class DivisionModel implements IDivision {
 
 	@Override
 	public DivisionConstant validate() {
+		logger.info("Validating Division Details");
 		if(isDivisionNameEmptyorNull()) {
 			return DivisionConstant.DivisionNameEmpty;
 		}

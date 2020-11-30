@@ -168,5 +168,27 @@ public class PlayerModelTest {
 		assertEquals(player.getSkating(), 10, 0);
 		assertEquals(player.getShooting(), 12, 0);
 	}
+	
+	@Test
+	public void convertFreeAgentToPlayerTest() {
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
+		freeAgent.setAge(20);
+		freeAgent.setBirthDay(19);
+		freeAgent.setBirthMonth(2);
+		freeAgent.setBirthYear(2000);
+		freeAgent.setChecking(11);
+		freeAgent.setSaving(12);
+		freeAgent.setShooting(12);
+		freeAgent.setSkating(15);
+		freeAgent.setPosition("forward");
+		freeAgent.setPlayerName("Rahul");
+		
+		IPlayer player = modelAbstractFactory.createPlayerModel();
+		player.convertFreeAgentToPlayer(freeAgent, true);
+		assertEquals("Rahul",player.getPlayerName());
+		assertEquals(15,player.getSkating(),0);
+		assertEquals(2000,player.getBirthYear());
+	}
+	
 }
 	

@@ -8,7 +8,8 @@ public enum StateMachineConstant {
 	NoTeam("Team does not exist"), 
 	SeasonSimulate("Enter the number of Season to stimulate"),
 	NoNumberEntered("No Number Was Entered, Please Enter a Number.."),
-	InjurDaysText(" is injured in match for days :");
+	InjurDaysText(" is injured in match for days :"),
+	StanleyCupWinner("Stanley Cup Winner is ");
 	
 	private String value; 
 

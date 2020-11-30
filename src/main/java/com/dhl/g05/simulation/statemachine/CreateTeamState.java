@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.database.DatabaseAbstractFactory;
 import com.dhl.g05.database.ITeamDatabaseOperation;
 import com.dhl.g05.model.CoachConstant;
-import com.dhl.g05.model.CoachModel;
 import com.dhl.g05.model.ICoach;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
@@ -17,13 +19,13 @@ import com.dhl.g05.model.IFreeAgent;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.PlayerModel;
-import com.dhl.g05.model.TeamModel;
+import com.dhl.g05.model.ModelAbstractFactory;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.mysql.cj.util.StringUtils;
 
 public class CreateTeamState extends AbstractState {
-
+	
+	static final Logger logger = LogManager.getLogger(CreateTeamState.class);
 	private ITeam newTeam;
 	private String conferenceName;
 	private String divisionName;
@@ -33,6 +35,7 @@ public class CreateTeamState extends AbstractState {
 	private List<IFreeAgent> freeAgentList = new ArrayList<>();
 	private List<ICoach> coachList = new ArrayList<>();
 	private List<String> managerList = new ArrayList<>();
+	private ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 
 	public CreateTeamState(IPlayerCommunication communication) {
 		communicate = communication;
@@ -41,6 +44,7 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean enter() {
+		logger.info("Asking user to enter details for creating new team");
 		Boolean teamNotEntered = true;
 		communicate.sendMessage(CreateTeamConstant.CreateNewTeam.getValue());
 		communicate.sendMessage(CreateTeamConstant.EnterConference.getValue());
@@ -50,11 +54,12 @@ public class CreateTeamState extends AbstractState {
 		while(teamNotEntered) {
 			communicate.sendMessage(CreateTeamConstant.EnterTeam.getValue());
 			teamName =  communicate.getResponse();
-			ITeam team = new TeamModel();
+			ITeam team = modelFactory.createTeamModel();
 			DatabaseAbstractFactory database = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
 			ITeamDatabaseOperation checkTeam = database.createTeamDatabaseOperation();
 			boolean notUnique = team.isTeamExist(teamName,checkTeam);
 			if(notUnique) {
+				logger.info("User entered Team Name alreadty exists");
 				communicate.sendMessage(CreateTeamConstant.EnterUniqueName.getValue());
 				continue;
 			}
@@ -65,14 +70,16 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean performStateTask() {
-		
+
 		if (StringUtils.isNullOrEmpty(teamName) || StringUtils.isNullOrEmpty(divisionName)
 				|| StringUtils.isNullOrEmpty(conferenceName)){
+			logger.info("Required details missing from user");
 			communicate.sendMessage(CreateTeamConstant.MissingField.getValue());
 			return false;
 		}
 
 		if  (isDivisionConferenceNotExists()) {
+			logger.info("Division Conference combo does not exist");
 			communicate.sendMessage(CreateTeamConstant.ComboDoesnotExist.getValue());
 			return false;
 		}
@@ -85,7 +92,6 @@ public class CreateTeamState extends AbstractState {
 
 		return false;
 	}
-
 
 	private Boolean createOperation() {
 
@@ -100,22 +106,24 @@ public class CreateTeamState extends AbstractState {
 	}
 
 	private boolean teamCreation() {
+		String managerObject = "";
 		List<IPlayer> playerList = new ArrayList<>();
 		freeAgentList = league.getFreeAgent();
-		newTeam = new TeamModel();
+		newTeam = modelFactory.createTeamModel();
 		newTeam.setTeamName(teamName);
 
 		ICoach coach = pickCoach();
 		if(coach.validate().equals(CoachConstant.Success)) {
 			newTeam.setCoachDetails(coach);
 		} else {
+			logger.info("Error exist in coach object");
 			communicate.sendMessage(CreateTeamConstant.ErrorCoachCreation.getValue());
 			return false;
 		}
 
-		String managerObject = "";
 		managerObject = pickManager();
 		if(StringUtils.isNullOrEmpty(managerObject)) {
+			logger.info("Manager name is empty");
 			communicate.sendMessage(CreateTeamConstant.ErrorManagerCreation.getValue());
 			return false;
 		} else {
@@ -124,6 +132,7 @@ public class CreateTeamState extends AbstractState {
 
 		playerList = pickPlayers();
 		if(playerList.size()<30 || playerList.size()>30) {
+			logger.info("Error in creating PlayerList");
 			communicate.sendMessage(CreateTeamConstant.ErrorPlayerCreation.getValue());
 			return false;
 		} else {
@@ -135,7 +144,8 @@ public class CreateTeamState extends AbstractState {
 	}
 
 	private ICoach pickCoach() {
-		ICoach selectedCoach = new CoachModel();
+		logger.info("Coach selection begins");
+		ICoach selectedCoach = modelFactory.createCoachModel();
 		coachList = league.getFreeCoach();
 		Boolean coachNotSelected = true;
 		int number;
@@ -148,10 +158,12 @@ public class CreateTeamState extends AbstractState {
 				number = communicate.getResponseNumber();
 				System.out.println(number);
 			}catch(InputMismatchException e) {
+				logger.warn("User entered a string instead of number");
 				communicate.sendMessage(CreateTeamConstant.NoNumberResponse.getValue());
 				continue;
 			}
 			if(number ==0 || number>coachList.size()) {
+				logger.info("Selected coach number is out of range");
 				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
 				continue;
 			}
@@ -164,6 +176,7 @@ public class CreateTeamState extends AbstractState {
 	}
 
 	private String pickManager() {
+		logger.info("Manager Selection Begins");
 		managerList = league.getManagerList();
 		Boolean ManagerNotSelected = true;
 		String selectedManager ="";
@@ -175,10 +188,12 @@ public class CreateTeamState extends AbstractState {
 			try {
 				number = communicate.getResponseNumber();
 			}catch(InputMismatchException e) {
+				logger.warn("User entered a string instead of number");
 				communicate.sendMessage(CreateTeamConstant.NoNumberResponse.getValue());
 				continue;
 			}
 			if(number == 0 || number>managerList.size()) {
+				logger.info("Selected manager number is out of range");
 				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
 				continue;
 			}
@@ -191,6 +206,7 @@ public class CreateTeamState extends AbstractState {
 	}
 
 	private List<IPlayer> pickPlayers() {
+		logger.info("Team Player Selection Begins");
 		List<IPlayer> playerList = new ArrayList<>();
 		Boolean captainNotAssigned = true;
 		String captainResponse ="";
@@ -198,15 +214,6 @@ public class CreateTeamState extends AbstractState {
 		int goalie = 0;
 		int skaters = 0;
 		int responseNumber;
-		double skating = 0;
-		double shooting = 0;
-		double checking = 0;
-		double saving = 0;
-		int birthDay=0;
-		int birthMonth=0;
-	    int birthYear =0;
-		String name ="";
-		String position="";
 		while(playerList.size()<30) {
 			String teamCount = CreateTeamConstant.TeamCount.getValue() + playerList.size();
 			String skaterscount = CreateTeamConstant.SkaterCount.getValue() +skaters;
@@ -219,11 +226,13 @@ public class CreateTeamState extends AbstractState {
 			try {
 				responseNumber = communicate.getResponseNumber();
 			}catch(InputMismatchException e) {
+				logger.warn("User entered a string instead of number");
 				communicate.sendMessage(CreateTeamConstant.NoNumberResponse.getValue());
 				continue;
 			}
 
 			if(responseNumber == 0 || responseNumber>freeAgentList.size()) {
+				logger.info("Selected free Agent is out of range");
 				communicate.sendMessage(CreateTeamConstant.InvalidNumber.getValue());
 				continue;
 			}
@@ -250,25 +259,19 @@ public class CreateTeamState extends AbstractState {
 					continue;
 				}
 			}
-			name = freeAgentList.get(responseNumber-1).getPlayerName();
-			position = freeAgentList.get(responseNumber-1).getPosition();
-			checking = freeAgentList.get(responseNumber-1).getChecking();
-			skating = freeAgentList.get(responseNumber-1).getSkating();
-			shooting = freeAgentList.get(responseNumber-1).getShooting();
-			saving = freeAgentList.get(responseNumber-1).getSaving();
-			birthDay = freeAgentList.get(responseNumber-1).getBirthDay();
-			birthMonth = freeAgentList.get(responseNumber-1).getBirthMonth();
-			birthYear = freeAgentList.get(responseNumber-1).getBirthYear();
-			playerList.add(new PlayerModel(name,position,captain,checking,skating,shooting,saving,birthDay,birthMonth,birthYear));
+			IPlayer player = modelFactory.createPlayerModel();
+			player.convertFreeAgentToPlayer(freeAgentList.get(responseNumber-1), captain);
+			playerList.add(player);
 			captain = false;
 			freeAgentList.remove(responseNumber-1);
 		}
 
 		return playerList;
 	}
-	
-	
+
+
 	private void addNewTeamtoLeagueObject() {
+		logger.info("Adding new team to leage object");
 		List<IConference> conferences = league.getConferenceDetails();
 		for (IConference c: conferences) {
 			if (c.getConferenceName().equalsIgnoreCase(conferenceName)) {
@@ -284,6 +287,7 @@ public class CreateTeamState extends AbstractState {
 	}
 
 	private boolean isDivisionConferenceNotExists() {
+		logger.info("Checking Division Conference combo");
 		List<IConference> conferences = league.getConferenceDetails();
 		for (IConference c: conferences) {
 			if (c.getConferenceName().equalsIgnoreCase(conferenceName)) {
@@ -300,8 +304,8 @@ public class CreateTeamState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
-		this.setNextState(stateFactory.createPlayerChoiceState());
+		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		this.setNextState(simulationFactory.createPlayerChoiceState());
 		return true;
 	}
 

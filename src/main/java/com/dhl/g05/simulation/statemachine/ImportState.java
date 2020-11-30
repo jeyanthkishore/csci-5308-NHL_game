@@ -1,5 +1,8 @@
 package com.dhl.g05.simulation.statemachine;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.communication.IPlayerCommunication;
 import com.dhl.g05.model.ILeague;
@@ -8,9 +11,12 @@ import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.mysql.cj.util.StringUtils;
 
 public class ImportState extends AbstractState {
+	
+	static final Logger logger = LogManager.getLogger(ImportState.class);
 	private IPlayerCommunication communication;
 	private ILeagueCreator creator;
 	private String fileName;
+	private static SimulationAbstractFactory simulationFactory;
 
 	public ImportState(IPlayerCommunication communication) {
 		this.communication = communication;
@@ -18,6 +24,9 @@ public class ImportState extends AbstractState {
 
 	@Override
 	public boolean enter() {
+		logger.info("Entering into ImportState");
+		
+		simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 		communication.sendMessage(StateMachineConstant.ImportStart.getValue());
 		fileName = communication.getFile();
 		return true;
@@ -25,7 +34,7 @@ public class ImportState extends AbstractState {
 
 	@Override
 	public boolean performStateTask() {
-		SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		
 		if (StringUtils.isNullOrEmpty(fileName)) {
 			return true;
 		} 
@@ -34,6 +43,7 @@ public class ImportState extends AbstractState {
 		ILeague league = creator.createLeagueFromFile(fileName);
 		if (league == null) {
 			this.setLeague(null);
+			logger.info(StateMachineConstant.LeagueCreationIssue.getValue());
 			communication.sendMessage(StateMachineConstant.LeagueCreationIssue.getValue());
 		} else {
 			this.setLeague(league);
@@ -46,11 +56,12 @@ public class ImportState extends AbstractState {
 
 	@Override
 	public boolean exit() {
-		SimulationAbstractFactory stateFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+		logger.info("Exiting ImportState");
+		
 		if (StringUtils.isNullOrEmpty(fileName)) {
-			this.setNextState(stateFactory.createLoadTeamState()); 
+			this.setNextState(simulationFactory.createLoadTeamState()); 
 		} else {
-			this.setNextState(stateFactory.createCreateTeamState());
+			this.setNextState(simulationFactory.createCreateTeamState());
 		}
 		return true;
 	}

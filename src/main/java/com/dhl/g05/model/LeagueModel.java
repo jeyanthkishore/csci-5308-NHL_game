@@ -7,8 +7,10 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.database.IDeserializeModel;
 import com.dhl.g05.database.ISerializeModel;
+import com.dhl.g05.simulation.SimulationAbstractFactory;
 import com.dhl.g05.simulation.leaguesimulation.ILeagueSchedule;
 import com.dhl.g05.simulation.leaguesimulation.ILeagueStanding;
 import com.dhl.g05.simulation.leaguesimulation.LeagueSchedule;
@@ -44,6 +46,7 @@ public class LeagueModel implements ILeague {
 	private ILeagueStanding leagueStanding;
 	@Expose
 	private ILeagueSchedule leagueSchedule;
+	private SimulationAbstractFactory simulationAbstractFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 
 	public LeagueModel() {
 		setLeagueName(null);
@@ -53,9 +56,9 @@ public class LeagueModel implements ILeague {
 		setManagerList(null);
 		setGamePlayConfig(null);
 		retiredPlayersList = new ArrayList<>();
-		this.leagueStanding = new LeagueStanding();
-		this.leagueSchedule = new LeagueSchedule();
 		retiredFreeAgentsList = new ArrayList<>();
+		this.leagueStanding = simulationAbstractFactory.createLeagueStanding();
+		this.leagueSchedule = simulationAbstractFactory.createLeagueSchedule();
 	}
 
 	public LeagueModel(ILeagueModel leagueObject) {
