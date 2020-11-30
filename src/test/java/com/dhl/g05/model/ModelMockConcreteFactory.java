@@ -1,6 +1,6 @@
 package com.dhl.g05.model;
 
-public class ModelMockConcreteFactory extends ModelMockAbstractFactory{
+public class ModelMockConcreteFactory extends ModelMockAbstractFactory {
 
 	@Override
 	public LeagueMockData createLeagueMockData() {
@@ -10,6 +10,11 @@ public class ModelMockConcreteFactory extends ModelMockAbstractFactory{
 	@Override
 	public PlayerTrainingMockData createPlayerTrainingMock() {
 		return new PlayerTrainingMockData();
+	}
+
+	@Override
+	public PlayerDraftMock createPlayerDraftMock() {
+		return new PlayerDraftMock();
 	}
 
 }

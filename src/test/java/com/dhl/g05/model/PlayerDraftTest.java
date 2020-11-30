@@ -1,31 +1,39 @@
 package com.dhl.g05.model;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.ApplicationTestConfiguration;
 import com.dhl.g05.simulation.ILeagueStanding;
 import com.dhl.g05.simulation.IStandingModel;
-import com.dhl.g05.simulation.LeagueStanding;
-
-
+import com.dhl.g05.simulation.SimulationAbstractFactory;
 
 public class PlayerDraftTest {
+
+	private static ModelAbstractFactory modelAbstractFactory;
+	private static ModelMockAbstractFactory modelMockFactory;
+	private static SimulationAbstractFactory simulationAbstractFactory;
+
+	@BeforeClass
+	public static void init() {
+		modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+		modelMockFactory = ApplicationTestConfiguration.instance().getModelMockConcreteFactoryState();
+		simulationAbstractFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
+	}
 	
-	IGenerateNewPlayers youngPlayers =ApplicationConfiguration.instance().getModelConcreteFactoryState().createNewPlayers();
-    ITeam teamHavingExcessPlayers = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
-    IPlayerDraft playerDraft= ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerDraft();
-    ILeagueStanding leagueStanding=	ApplicationConfiguration.instance().getSimulationConcreteFactoryState().createLeagueStanding();	
-    ILeague league=ApplicationConfiguration.instance().getModelConcreteFactoryState().createLeagueModel();
-	PlayerDraftMock mock = new PlayerDraftMock();
+	IGenerateNewPlayers youngPlayers =modelAbstractFactory.createNewPlayers();
+    ITeam teamHavingExcessPlayers = modelAbstractFactory.createTeamModel();
+    IPlayerDraft playerDraft= modelAbstractFactory.createPlayerDraft();
+    ILeagueStanding leagueStanding=	simulationAbstractFactory.createLeagueStanding();	
+    ILeague league=modelAbstractFactory.createLeagueModel();
+	PlayerDraftMock mock = modelMockFactory.createPlayerDraftMock();
 	List<IPlayer> newPlayers = youngPlayers.generatePlayers();
 	
 	@Test

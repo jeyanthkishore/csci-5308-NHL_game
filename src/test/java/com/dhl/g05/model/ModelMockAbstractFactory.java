@@ -8,7 +8,10 @@ public abstract class ModelMockAbstractFactory {
 		modelMockAbstractFactory = state.concreteMethod();
 		return modelMockAbstractFactory;
 	}
-	
+
 	public abstract LeagueMockData createLeagueMockData();
+
 	public abstract PlayerTrainingMockData createPlayerTrainingMock();
+
+	public abstract PlayerDraftMock createPlayerDraftMock();
 }

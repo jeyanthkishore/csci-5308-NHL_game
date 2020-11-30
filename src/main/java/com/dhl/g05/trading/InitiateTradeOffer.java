@@ -2,7 +2,6 @@ package com.dhl.g05.trading;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
@@ -29,7 +28,8 @@ public class InitiateTradeOffer implements IIntiateTradeOffer {
 		ITradeDecision tradeDecision = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createTradedecision();
 		ITradingConfig trade = getTrade();
 		ITradeValue checkTradeValue = new TradeValue(trade);
-
+        try
+        {
 		for (IConference c : league.getConferenceDetails()) {
 			for (IDivision d : c.getDivisionDetails()) {
 				for (ITeam t : d.getTeamDetails()) {
@@ -54,6 +54,11 @@ public class InitiateTradeOffer implements IIntiateTradeOffer {
 					
 				}
 			}
+        }
+        catch(NullPointerException e)
+        {
+        	logger.info("No league for trading");
+        }
 		return league;
 	}
 }

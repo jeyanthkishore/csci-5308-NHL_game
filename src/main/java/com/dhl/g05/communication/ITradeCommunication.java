@@ -6,7 +6,7 @@ import com.dhl.g05.model.IFreeAgent;
 import com.dhl.g05.model.IPlayer;
 
 public interface ITradeCommunication {
-	
+
 	public void sendTradeMessage(List<IPlayer> list, List<IPlayer> list2);
 
 	public int getTradeDecision();
