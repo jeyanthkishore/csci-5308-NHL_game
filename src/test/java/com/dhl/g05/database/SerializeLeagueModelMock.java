@@ -6,7 +6,7 @@ public class SerializeLeagueModelMock implements ISerializeModel{
 
 	@Override
 	public Boolean serialiseObjects(ILeague object, String teamName) {
-		if(teamName.equals("TeamName")) {
+		if(teamName.equals("serializeLeague")) {
 			return true;
 		}
 		return false;

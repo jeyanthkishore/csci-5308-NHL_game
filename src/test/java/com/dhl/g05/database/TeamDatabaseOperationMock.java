@@ -4,7 +4,7 @@ public class TeamDatabaseOperationMock implements ITeamDatabaseOperation {
 
 	@Override
 	public Boolean isTeamExist(String name) {
-		if(name.equals("TeamName")) {
+		if(name.equals("serializeLeague")) {
 			return true;
 		}
 		return false;

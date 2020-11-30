@@ -50,7 +50,7 @@ public class PersistStateTest {
 		List<IScheduleModel> scheduleList = new ArrayList<>();
 		scheduleList.add(schedule);
 		league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
-		state.setCurrentUserTeam("TeamName");
+		state.setCurrentUserTeam("serializeLeague");
 		state.setLeague(league);
 		state.enter();
 		state.performStateTask();
@@ -71,7 +71,7 @@ public class PersistStateTest {
 		List<IScheduleModel> scheduleList = new ArrayList<>();
 		scheduleList.add(schedule);
 		league.getLeagueSchedule().setPlayoffSeasonSchedule(scheduleList);
-		state.setCurrentUserTeam("TeamName");
+		state.setCurrentUserTeam("serializeLeague");
 		state.setLeague(league);
 		state.enter();
 		state.performStateTask();

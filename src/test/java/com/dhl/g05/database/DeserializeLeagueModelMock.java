@@ -7,7 +7,7 @@ public class DeserializeLeagueModelMock implements IDeserializeModel {
 
 	@Override
 	public ILeague deserializeObjects(String name, ILeague leagueModel) {
-		if(name.equalsIgnoreCase("TeamName")) {
+		if(name.equalsIgnoreCase("serializeLeague")) {
 			LeagueMockData mock = new LeagueMockData();
 			leagueModel = mock.league;
 			return leagueModel;

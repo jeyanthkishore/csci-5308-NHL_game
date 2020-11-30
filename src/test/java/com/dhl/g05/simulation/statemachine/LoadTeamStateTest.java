@@ -35,7 +35,7 @@ public class LoadTeamStateTest {
 	
 	@Test
 	public void operationTest() {
-		String userInput = "TeamName";
+		String userInput = "serializeLeague";
 		ByteArrayInputStream testInput = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(testInput);
         ILeague league = new LeagueModel(); 
