@@ -99,7 +99,7 @@ public class LeagueModelCreatorFromJSON implements ILeagueCreator{
 		if (leagueData == null) {
 			return null;
 		}
-		ILeague league = new LeagueModel();
+		ILeague league = modelAbstractFactory.createLeagueModel();
 		league.setLeagueName((String)leagueData.get("leagueName"));
 		league.setConferenceDetails(createConferences((JSONArray)leagueData.get("conferences")));
 		league.setFreeAgent(createFreeAgents((JSONArray)leagueData.get("freeAgents")));

@@ -5,126 +5,137 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-
 import java.util.List;
-
+import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.ApplicationTestConfiguration;
+import org.junit.BeforeClass;
 import org.junit.Test;
-
 import com.dhl.g05.database.ISerializeModel;
 import com.dhl.g05.database.SerializeLeagueModelMock;
 
 
 public class LeagueModelTest {
 
+	private static ModelAbstractFactory modelAbstractFactory;
+	private static ModelMockAbstractFactory modelMockAbstractFactory;
+
+	@BeforeClass
+	public static void init() {
+		modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+		modelMockAbstractFactory = ApplicationTestConfiguration.instance().getModelMockConcreteFactoryState();
+	}
+
 	@Test
 	public void leagueConstructorTest() {
-		LeagueModel object = new LeagueModel();
-		assertNull(object.getLeagueName());
-		assertNull(object.getConferenceDetails());
-		assertNull(object.getFreeAgent());
-		assertNull(object.getFreeCoach());
+		ILeague league = modelAbstractFactory.createLeagueModel();
+		assertNull(league.getLeagueName());
+		assertNull(league.getConferenceDetails());
+		assertNull(league.getFreeAgent());
+		assertNull(league.getFreeCoach());
+		assertNull(league.getManagerList());
+		assertNull(league.getGamePlayConfig());
 	}
 
 	@Test
 	public void leagueReferenceConstructor() {
-		LeagueMockData data = new LeagueMockData();
-		LeagueModel object = new LeagueModel(data);
-		assertSame(data.leagueName,object.getLeagueName());
-		assertSame(data.freeAgentList,object.getFreeAgent());
-		assertSame(data.conferenceList,object.getConferenceDetails());
-		assertSame(data.coachList, object.getFreeCoach());
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
+		assertSame(leagueMock.leagueName,league.getLeagueName());
+		assertSame(leagueMock.freeAgentList,league.getFreeAgent());
+		assertSame(leagueMock.conferenceList,league.getConferenceDetails());
+		assertSame(leagueMock.coachList, league.getFreeCoach());
 	}
 
 	@Test
 	public void getLeagueNameTest() {
-		LeagueModel object = new LeagueModel();
-		object.setLeagueName("League");
-		assertSame("League",object.getLeagueName());
+		ILeague league = modelAbstractFactory.createLeagueModel();
+		league.setLeagueName("League");
+		assertSame("League",league.getLeagueName());
 	}
 
 	@Test
 	public void setLeagueNameTest() {
-		LeagueModel object = new LeagueModel();
-		object.setLeagueName("LeagueTest");
-		assertSame("LeagueTest",object.getLeagueName());
+		ILeague league = modelAbstractFactory.createLeagueModel();
+		league.setLeagueName("LeagueTest");
+		assertSame("LeagueTest",league.getLeagueName());
 	}
 
 	@Test
 	public void getConferenceDetailsTest() {
-		LeagueMockData data = new LeagueMockData();
-		LeagueModel object = new LeagueModel();
-		object.setConferenceDetails(data.conferenceList);
-		assertSame(data.conferenceList,object.getConferenceDetails());
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel();
+		league.setConferenceDetails(leagueMock.conferenceList);
+		assertSame(leagueMock.conferenceList,league.getConferenceDetails());
 	}
 
 	@Test
 	public void setConferenceDetailsTest() {
-		LeagueMockData data = new LeagueMockData();
-		LeagueModel object = new LeagueModel();
-		object.setConferenceDetails(data.conferenceList);
-		assertSame(data.conferenceList,object.getConferenceDetails());
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel();
+		league.setConferenceDetails(leagueMock.conferenceList);
+		assertSame(leagueMock.conferenceList,league.getConferenceDetails());
 	}
 
 	@Test
 	public void getFreeAgentTest() {
-		LeagueMockData data = new LeagueMockData();
-		LeagueModel object = new LeagueModel();
-		object.setFreeAgent(data.freeAgentList);
-		assertSame(data.freeAgentList,object.getFreeAgent());
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel();
+		league.setFreeAgent(leagueMock.freeAgentList);
+		assertSame(leagueMock.freeAgentList,league.getFreeAgent());
 	}
 
 	@Test
 	public void setFreeAgentTest() {
-		LeagueMockData data = new LeagueMockData();
-		LeagueModel object = new LeagueModel();
-		object.setFreeAgent(data.freeAgentList);
-		assertSame(data.freeAgentList,object.getFreeAgent());
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel();
+		league.setFreeAgent(leagueMock.freeAgentList);
+		assertSame(leagueMock.freeAgentList,league.getFreeAgent());
 	}
 
 	@Test
 	public void getFreeCoachTest() {
-		LeagueMockData data = new LeagueMockData();
-		LeagueModel object = new LeagueModel();
-		object.setFreeCoach(data.coachList);
-		assertSame(data.coachList, object.getFreeCoach());
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel();
+		league.setFreeCoach(leagueMock.coachList);
+		assertSame(leagueMock.coachList, league.getFreeCoach());
 	}
 
 	@Test
 	public void setFreeCoachTest() {
-		LeagueMockData data = new LeagueMockData();
-		LeagueModel object = new LeagueModel();
-		object.setFreeCoach(data.coachList);
-		assertSame(data.coachList, object.getFreeCoach());
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel();
+		league.setFreeCoach(leagueMock.coachList);
+		assertSame(leagueMock.coachList, league.getFreeCoach());
 	}
 
 	@Test
 	public void isLeagueNameEmptyTest() {
-		LeagueMockData mock = new LeagueMockData();
-		mock.setLeagueEmpty();
-		LeagueModel league = new LeagueModel(mock);
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		leagueMock.setLeagueEmpty();
+		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
 		assertSame(LeagueConstant.LeagueNameEmpty,league.validate());
 	}
 
 	@Test
 	public void isLeagueNameNullTest() {
-		LeagueMockData mock = new LeagueMockData();
-		mock.setLeagueNull();
-		LeagueModel league = new LeagueModel(mock);
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		leagueMock.setLeagueNull();
+		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
 		assertSame(LeagueConstant.LeagueNameEmpty,league.validate());
 	}
 
 	@Test
 	public void checkEmptyConference() {
-		LeagueMockData mock = new LeagueMockData();
-		mock.removeConference();
-		LeagueModel league = new LeagueModel(mock);
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		leagueMock.removeConference();
+		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
 		assertSame(LeagueConstant.ConferenceListEmpty,league.validate());
 	}
 	
 	@Test
 	public void checkNullFreeAgent() {
-		LeagueMockData mock = new LeagueMockData();
-		LeagueModel league = new LeagueModel(mock);
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
 		league.setFreeAgent(null);
 		assertSame(LeagueConstant.FreeAgentsNotValid,league.validate());
 	}
@@ -132,35 +143,35 @@ public class LeagueModelTest {
 	
 	@Test
 	public void checkNullConference() {
-		LeagueMockData mock = new LeagueMockData();
-		LeagueModel league = new LeagueModel(mock);
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
 		league.setConferenceDetails(null);
 		assertSame(LeagueConstant.ConferenceListEmpty,league.validate());
 	}
 	
 	@Test
 	public void checkOddConference() {
-		LeagueMockData mock = new LeagueMockData();
-		mock.removeOneConference();
-		LeagueModel league = new LeagueModel(mock);
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		leagueMock.removeOneConference();
+		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
 		assertSame(LeagueConstant.NoEvenConferenceCount,league.validate());
 	}
 
 	@Test
 	public void addRetiredFreeAgentToListTest(){
-		LeagueMockData mock = new LeagueMockData();
-		ILeague leagueModel = new LeagueModel(mock);
-		List<IFreeAgent> freeAgents = mock.freeAgentList;
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague leagueModel = modelAbstractFactory.createLeagueModel(leagueMock);
+		List<IFreeAgent> freeAgents = leagueMock.freeAgentList;
 		IFreeAgent freeAgent = freeAgents.get(0);
-		leagueModel.addRetiredFreeAgentToList(new FreeAgentModel(mock.freeAgentOne, mock.positionForward, mock.skating, mock.shooting, mock.checking, mock.saving, mock.birthDay, mock.birthMonth, mock.birthYear));
+		leagueModel.addRetiredFreeAgentToList(new FreeAgentModel(leagueMock.freeAgentOne, leagueMock.positionForward, leagueMock.skating, leagueMock.shooting, leagueMock.checking, leagueMock.saving, leagueMock.birthDay, leagueMock.birthMonth, leagueMock.birthYear));
 		assertEquals(41,leagueModel.getRetiredFreeAgentsList().size());
 	}
 
 	@Test
 	public void addRetiredPlayersToListTest(){
-		LeagueMockData mock = new LeagueMockData();
-		ILeague leagueModel = new LeagueModel(mock);
-		List<IPlayer> players = mock.playerList;
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague leagueModel = modelAbstractFactory.createLeagueModel(leagueMock);
+		List<IPlayer> players = leagueMock.playerList;
 		IPlayer player = players.get(0);
 		leagueModel.addRetiredPlayersToList(player);
 		assertEquals(2,leagueModel.getRetiredPlayersList().size());
@@ -168,81 +179,96 @@ public class LeagueModelTest {
 
 	@Test
 	public void setRetiredFreeAgentsListTest() {
-		LeagueMockData mock = new LeagueMockData();
-		ILeague league = new LeagueModel(mock);
-		league.setRetiredFreeAgentsList(mock.retiredFreeAgentsList);
-		assertEquals(mock.retiredFreeAgentsList.size(),league.getRetiredFreeAgentsList().size());
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
+		league.setRetiredFreeAgentsList(leagueMock.retiredFreeAgentsList);
+		assertEquals(leagueMock.retiredFreeAgentsList.size(),league.getRetiredFreeAgentsList().size());
 	}
 
 	@Test
 	public void getRetiredFreeAgentsListTest() {
-		LeagueMockData mock = new LeagueMockData();
-		ILeague league = new LeagueModel(mock);
-		league.setRetiredFreeAgentsList(mock.retiredFreeAgentsList);
-		assertEquals(mock.retiredFreeAgentsList.size(),league.getRetiredFreeAgentsList().size());
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
+		league.setRetiredFreeAgentsList(leagueMock.retiredFreeAgentsList);
+		assertEquals(leagueMock.retiredFreeAgentsList.size(),league.getRetiredFreeAgentsList().size());
 	}
 
 	@Test
 	public void getRetiredPlayersListTest() {
-		LeagueMockData mock = new LeagueMockData();
-		ILeague league = new LeagueModel(mock);
-		league.setRetiredPlayersList(mock.retiredPlayersList);
-		assertEquals(mock.retiredPlayersList.size(),league.getRetiredPlayersList().size());
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
+		league.setRetiredPlayersList(leagueMock.retiredPlayersList);
+		assertEquals(leagueMock.retiredPlayersList.size(),league.getRetiredPlayersList().size());
 	}
 
 	@Test
 	public void setRetiredPlayersListTest() {
-		LeagueMockData mock = new LeagueMockData();
-		ILeague league = new LeagueModel(mock);
-		league.setRetiredPlayersList(mock.retiredPlayersList);
-		assertEquals(mock.retiredPlayersList.size(),league.getRetiredPlayersList().size());
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
+		league.setRetiredPlayersList(leagueMock.retiredPlayersList);
+		assertEquals(leagueMock.retiredPlayersList.size(),league.getRetiredPlayersList().size());
 	}
 
 	@Test
-	public void isCoachListEmptyTest() {
-		LeagueMockData mock = new LeagueMockData();
-		mock.setCoachListEmpty();
-		LeagueModel league = new LeagueModel(mock);
+	public void isCoachListEmptyValidateTest() {
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		leagueMock.setCoachListEmpty();
+		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
 		assertSame(LeagueConstant.CoachListEmpty,league.validate());
 	}
 
 	@Test
-	public void isManagerListEmptyTest() {
-		LeagueMockData mock = new LeagueMockData();
-		mock.setCoachListEmpty();
-		LeagueModel league = new LeagueModel(mock);
+	public void isManagerListEmptyValidateTest() {
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		leagueMock.setCoachListEmpty();
+		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
 		assertSame(LeagueConstant.CoachListEmpty,league.validate());
 	}
+
+	@Test
+	public void getManagerListTest() {
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
+		assertSame(league.getManagerList(), leagueMock.managerList);
+	}
+
+	@Test
+	public void setManagerListTest() {
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
+		assertSame(league.getManagerList(), leagueMock.managerList);
+	}
+
 
 	@Test
 	public void removeRetiredFreeAgentsFromLeagueTest() {
-		LeagueMockData mock = new LeagueMockData();
-		ILeague leagueModel = new LeagueModel(mock);
-		List<IFreeAgent> freeAgents = mock.freeAgentList;
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague leagueModel = modelAbstractFactory.createLeagueModel(leagueMock);
+		List<IFreeAgent> freeAgents = leagueMock.freeAgentList;
 		leagueModel.removeRetiredFreeAgentsFromLeague(freeAgents.get(0));
-		assertEquals(mock.freeAgentList.size()-1,leagueModel.getFreeAgent().size()-1);
+		assertEquals(leagueMock.freeAgentList.size()-1,leagueModel.getFreeAgent().size()-1);
 
 	}
 	@Test
 	public void addNewFreeAgentsToLeagueSizeTest()
 	{
-		LeagueMockData mock = new LeagueMockData();
-		ILeague leagueModel = new LeagueModel(mock);
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague leagueModel = modelAbstractFactory.createLeagueModel(leagueMock);
 		IFreeAgent agent= new FreeAgentModel();
 		int size=leagueModel.getFreeAgent().size();
-		List<IFreeAgent> freeAgentList= agent.ConvertPlayerToFreeAgent(mock.playerList);
+		List<IFreeAgent> freeAgentList= agent.ConvertPlayerToFreeAgent(leagueMock.playerList);
 		leagueModel.addNewFreeAgentsToLeague(freeAgentList);
-		assertEquals(leagueModel.getFreeAgent().size(),size + (mock.playerList.size()));
+		assertEquals(leagueModel.getFreeAgent().size(),size + (leagueMock.playerList.size()));
 		
 	}
 	@Test
 	public void addNewFreeAgentsToLeaguePlayer1Test()
 	{
-		LeagueMockData mock = new LeagueMockData();
-		ILeague leagueModel = new LeagueModel(mock);
-		leagueModel.setFreeAgent(mock.freeAgentList);
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague leagueModel = modelAbstractFactory.createLeagueModel(leagueMock);
+		leagueModel.setFreeAgent(leagueMock.freeAgentList);
 		IFreeAgent agent= new FreeAgentModel();
-		List<IFreeAgent> freeAgentList= agent.ConvertPlayerToFreeAgent(mock.playerList);
+		List<IFreeAgent> freeAgentList= agent.ConvertPlayerToFreeAgent(leagueMock.playerList);
 		leagueModel.addNewFreeAgentsToLeague(freeAgentList);
 		assertTrue(leagueModel.getFreeAgent().contains(freeAgentList.get(1)));
 	}
@@ -250,10 +276,10 @@ public class LeagueModelTest {
 	@Test
 	public void addNewFreeAgentsToLeagueAgentNotPresentTest()
 	{
-		LeagueMockData mock = new LeagueMockData();
-		ILeague leagueModel = new LeagueModel(mock);
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague leagueModel = modelAbstractFactory.createLeagueModel(leagueMock);
 		IFreeAgent agent= new FreeAgentModel();
-		List<IFreeAgent> freeAgentList= agent.ConvertPlayerToFreeAgent(mock.playerList);
+		List<IFreeAgent> freeAgentList= agent.ConvertPlayerToFreeAgent(leagueMock.playerList);
 		IFreeAgent newPlayer= freeAgentList.get(1); 
 		freeAgentList.remove(1);
 		leagueModel.addNewFreeAgentsToLeague(freeAgentList);
@@ -262,30 +288,30 @@ public class LeagueModelTest {
  
 	@Test
 	public void validateLeagueTest() {
-		LeagueMockData mock = new LeagueMockData();
-		LeagueModel league = new LeagueModel();
-		league = new LeagueModel(mock);
-		mock.setLeagueEmpty();
-		league = new LeagueModel(mock);
+		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		ILeague league = modelAbstractFactory.createLeagueModel();
+		league = modelAbstractFactory.createLeagueModel(leagueMock);
+		leagueMock.setLeagueEmpty();
+		league = modelAbstractFactory.createLeagueModel(leagueMock);
 		assertSame(LeagueConstant.LeagueNameEmpty,league.validate());
-		mock = new LeagueMockData();
-		mock.removeConference();
-		league = new LeagueModel(mock);
+		leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		leagueMock.removeConference();
+		league = modelAbstractFactory.createLeagueModel(leagueMock);
 		assertSame(LeagueConstant.ConferenceListEmpty,league.validate());
-		mock = new LeagueMockData();
-		mock.removeOneConference();
-		league = new LeagueModel(mock);
+		leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		leagueMock.removeOneConference();
+		league = modelAbstractFactory.createLeagueModel(leagueMock);
 		assertSame(LeagueConstant.NoEvenConferenceCount,league.validate());
-		mock = new LeagueMockData();
-		mock.setFreeAgentListEmpty();
-		league = new LeagueModel(mock);
+		leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		leagueMock.setFreeAgentListEmpty();
+		league = modelAbstractFactory.createLeagueModel(leagueMock);
 		assertSame(LeagueConstant.FreeAgentsNotValid,league.validate());
-		mock = new LeagueMockData();
-		mock.setFreeAgentListNotValid();
-		league = new LeagueModel(mock);
+		leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		leagueMock.setFreeAgentListNotValid();
+		league = modelAbstractFactory.createLeagueModel(leagueMock);
 		assertSame(LeagueConstant.FreeAgentsNotValid,league.validate());
-		mock = new LeagueMockData();
-		league = new LeagueModel(mock);
+		leagueMock = modelMockAbstractFactory.createLeagueMockData();
+		league = modelAbstractFactory.createLeagueModel(leagueMock);
 		league.setLeagueName("DummyLEague");
 		league.setManagerList(null);
 		assertSame(LeagueConstant.ManagerListEmpty,league.validate());
@@ -293,7 +319,7 @@ public class LeagueModelTest {
 	
 	@Test
 	public void saveLeagueObjectTest() {
-		ILeague league = new LeagueModel();
+		ILeague league = modelAbstractFactory.createLeagueModel();
 		ISerializeModel serializeLeague = new SerializeLeagueModelMock();
 		assertTrue(league.saveLeagueObject(serializeLeague, "TeamName"));
 	}

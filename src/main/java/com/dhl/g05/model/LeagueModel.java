@@ -163,7 +163,6 @@ public class LeagueModel implements ILeague{
 	public void incrementCurrentDate() {
 		leagueCurrentDate = leagueCurrentDate.plusDays(1);
 	}
-	
 
 	public void setLeagueCurrentDate(LocalDate leagueCurrentDate) {
 		this.leagueCurrentDate = leagueCurrentDate;

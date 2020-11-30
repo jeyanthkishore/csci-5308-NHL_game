@@ -73,7 +73,7 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 	public double randomTradeOffer = 0.05;
 	public double randomAcceptanceChance = 0.05;
 	public int maxPlayerPerTrade = 2;
-	public LeagueModel league;
+	public ILeague league;
 	public String playerOneName = "";
 	public String positionOne = "";
 	public String position = "";
@@ -89,7 +89,7 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 	private static ModelAbstractFactory modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 	private static SimulationAbstractFactory simulationAbstractFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
 
-	public LeagueModel getLeague() {
+	public ILeague getLeague() {
 		return league;
 	}
 
@@ -115,7 +115,7 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 		retiredPlayersList = new ArrayList<>();
 		leagueList = new ArrayList<>();
 		leagueMap = new HashMap<>();
-		league = new LeagueModel();
+		league = modelAbstractFactory.createLeagueModel();
 		playerOneName =  "Cristiano Ronaldo";
 		positionOne = "forward";
 		captainOne = true;
