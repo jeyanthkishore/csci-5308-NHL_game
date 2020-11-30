@@ -10,6 +10,7 @@ import static org.junit.Assert.assertTrue;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.dhl.g05.ApplicationTestConfiguration;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -21,11 +22,13 @@ public class FreeAgentModelTest {
 	
 	private static SimulationAbstractFactory simulationAbstractFactory;
     private static ModelAbstractFactory modelAbstractFactory;
+    private static ModelMockAbstractFactory modelMockAbstractFactory;
 
     @BeforeClass
     public static void init() {
         simulationAbstractFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
         modelAbstractFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
+		modelMockAbstractFactory = ApplicationTestConfiguration.instance().getModelMockConcreteFactoryState();
     }
 
 	@Test
@@ -268,32 +271,32 @@ public class FreeAgentModelTest {
 
 	@Test
 	public void playerListEmptyTest() {
-		LeagueMockData mock = new LeagueMockData();
-		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertSame(FreeAgentConstant.Success,validate.validate());
+		LeagueMockData mock = modelMockAbstractFactory.createLeagueMockData();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel(mock);
+		assertSame(FreeAgentConstant.Success,freeAgent.validate());
 	}
 
 	@Test
 	public void checkPlayerDetailsEmpty() {
-		LeagueMockData mock = new LeagueMockData();
-		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertSame(FreeAgentConstant.Success,validate.validate());
+    	LeagueMockData mock = modelMockAbstractFactory.createLeagueMockData();
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel(mock);
+		assertSame(FreeAgentConstant.Success,freeAgent.validate());
 	}
 
 	@Test
 	public void playerNameEmptyTest() {
-		LeagueMockData mock = new LeagueMockData();
+    	LeagueMockData mock = modelMockAbstractFactory.createLeagueMockData();
 		mock.setPlayerNameEmpty();
-		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertSame(FreeAgentConstant.PlayerValueEmpty,validate.validate());
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel(mock);
+		assertSame(FreeAgentConstant.PlayerValueEmpty,freeAgent.validate());
 	}
 
 	@Test
 	public void playerNameNullTest() {
-		LeagueMockData mock = new LeagueMockData();
+    	LeagueMockData mock = modelMockAbstractFactory.createLeagueMockData();
 		mock.setPlayerNameNull();
-		FreeAgentModel validate = new FreeAgentModel(mock);
-		assertSame(FreeAgentConstant.PlayerValueEmpty,validate.validate());
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel(mock);
+		assertSame(FreeAgentConstant.PlayerValueEmpty,freeAgent.validate());
 	}
 
 	@Test
@@ -414,7 +417,7 @@ public class FreeAgentModelTest {
 	public void ConvertPlayerToFreeAgentTestSize()
 	{
 		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
-		LeagueMockData data = new LeagueMockData();
+		LeagueMockData data = modelMockAbstractFactory.createLeagueMockData();
 		 List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
 		assertEquals(data.playerList.size(),freeAgentList.size());
 	}
@@ -422,7 +425,7 @@ public class FreeAgentModelTest {
 	public void ConvertPlayerToFreeAgentTestName()
 	{
 		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
-		LeagueMockData data = new LeagueMockData();
+		LeagueMockData data = modelMockAbstractFactory.createLeagueMockData();
 		 List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
 		assertEquals(((FreeAgentModel) data.playerList.get(1)).getPlayerName(),freeAgentList.get(1).getPlayerName());
 	}
@@ -431,7 +434,7 @@ public class FreeAgentModelTest {
 	public void ConvertPlayerToFreeAgentTestCaptain()
 	{
 		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
-		LeagueMockData data = new LeagueMockData();
+		LeagueMockData data = modelMockAbstractFactory.createLeagueMockData();
 		 List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
 		assertNotEquals(data.playerList.get(1),freeAgentList.get(1));
 	}
@@ -440,7 +443,7 @@ public class FreeAgentModelTest {
 	public void ConvertPlayerToFreeAgentTestAge()
 	{
 		IFreeAgent validate = modelAbstractFactory.createFreeAgentModel();
-		LeagueMockData data = new LeagueMockData();
+		LeagueMockData data = modelMockAbstractFactory.createLeagueMockData();
 		List<IFreeAgent> freeAgentList = validate.ConvertPlayerToFreeAgent(data.playerList);
 		data.playerList.get(1).calculateAge(LocalDate.now());
 		freeAgentList.get(1).calculateAge(LocalDate.now());

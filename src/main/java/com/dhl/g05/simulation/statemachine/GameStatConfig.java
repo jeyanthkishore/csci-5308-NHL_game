@@ -1,7 +1,11 @@
 package com.dhl.g05.simulation.statemachine;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class GameStatConfig implements IGameStatConfig{
 
+    static final Logger logger = LogManager.getLogger(GameStatConfig.class);
     private double penaltyChance;
     private int MIN_PENALTY_CHANCE = 0;
     private int MAX_PENALTY_CHANCE = 1;
@@ -18,6 +22,7 @@ public class GameStatConfig implements IGameStatConfig{
 
     @Override
     public GameStatConfigConstant validate() {
+        logger.info("Validating GameStatConfig values");
         if(isPenaltyChanceNotValid(penaltyChance)) {
             return GameStatConfigConstant.PenaltyChanceNotValid;
         }

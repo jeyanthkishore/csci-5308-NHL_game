@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.simulation.*;
 import com.dhl.g05.simulation.statemachine.IAging;
@@ -17,7 +15,6 @@ import com.dhl.g05.simulation.statemachine.ITraining;
 
 public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionModel,ITeamModel,IPlayerModel,IFreeAgentModel{
 
-	Random randomNumber = new Random();
 	public String leagueName = "HockeyLeague";
 	public Map<String,Object> firstPlayerInfo;
 	public Map<String,Object> secondPlayerInfo;
