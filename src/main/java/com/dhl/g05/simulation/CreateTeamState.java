@@ -41,20 +41,20 @@ public class CreateTeamState extends AbstractState {
 	@Override
 	public boolean enter() {
 		Boolean teamNotEntered = true;
-		communicate.sendMessage("Creating a New Team");
-		communicate.sendMessage("Enter conference name:");
+		communicate.sendMessage(CreateTeamConstant.CreateNewTeam.getValue());
+		communicate.sendMessage(CreateTeamConstant.EnterConference.getValue());
 		conferenceName = communicate.getResponse();
-		communicate.sendMessage("Enter division name:");
+		communicate.sendMessage(CreateTeamConstant.EnterDivision.getValue());
 		divisionName = communicate.getResponse();
 		while(teamNotEntered) {
-			communicate.sendMessage("Enter team name:");
+			communicate.sendMessage(CreateTeamConstant.EnterTeam.getValue());
 			teamName =  communicate.getResponse();
 			ITeam team = new TeamModel();
 			DatabaseAbstractFactory database = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
 			ITeamDatabaseOperation checkTeam = database.createTeamDatabaseOperation();
 			boolean notUnique = team.isTeamExist(teamName,checkTeam);
 			if(notUnique) {
-				communicate.sendMessage("Please Enter Unique Team Name");
+				communicate.sendMessage(CreateTeamConstant.EnterUniqueName.getValue());
 				continue;
 			}
 			teamNotEntered = false;
@@ -67,12 +67,12 @@ public class CreateTeamState extends AbstractState {
 		
 		if (StringUtils.isNullOrEmpty(teamName) || StringUtils.isNullOrEmpty(divisionName)
 				|| StringUtils.isNullOrEmpty(conferenceName)){
-			communicate.sendMessage("Missing feild, team not created");
+			communicate.sendMessage(CreateTeamConstant.MissingField.getValue());
 			return false;
 		}
 
 		if  (isDivisionConferenceNotExists()) {
-			communicate.sendMessage("Conference/Division combo does not exist in current league ");
+			communicate.sendMessage(CreateTeamConstant.ComboDoesnotExist.getValue());
 			return false;
 		}
 

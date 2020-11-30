@@ -2,7 +2,13 @@ package com.dhl.g05.simulation;
 
 public enum CreateTeamConstant {
 	
-	
+	CreateNewTeam("Creating a New Team"),
+	EnterConference("Enter conference name:"),
+	EnterDivision("Enter division name:"),
+	EnterTeam("Enter Team Name"),
+	EnterUniqueName("Please Enter Unique Team Name"),
+	MissingField("Missing feild, team not created"),
+	ComboDoesnotExist("Conference/Division combo does not exist in current league "),
 	ErrorCoachCreation("Error Creating Coach for the team"),
 	ErrorPlayerCreation("Error Creating players for the team"),
 	ErrorManagerCreation("Error Creating Manager for the team"),

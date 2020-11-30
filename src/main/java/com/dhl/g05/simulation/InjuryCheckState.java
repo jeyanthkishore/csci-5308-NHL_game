@@ -37,14 +37,14 @@ public class InjuryCheckState extends AbstractState{
 		IInjury injuryConfig = league.getGamePlayConfig().getInjuriesConfig();
 		for (IPlayer player: firstTeam.getPlayerList()) {
 			if (player.checkPlayerInjury(playerInjury, player, injuryConfig)) {
-				communication.sendMessage(player.getPlayerName() +" is injured in match for days :" 
+				communication.sendMessage(player.getPlayerName() +StateMachineConstant.InjurDaysText.getValue()
 						+player.getInjuredForNumberOfDays());
 			}
 		}
 
 		for (IPlayer player: secondTeam.getPlayerList()) {
 			if (player.checkPlayerInjury(playerInjury, player, injuryConfig)) {
-				communication.sendMessage(player.getPlayerName() +" is injured in match for days :" 
+				communication.sendMessage(player.getPlayerName() + StateMachineConstant.InjurDaysText.getValue() 
 						+player.getInjuredForNumberOfDays());
 			}
 		}
