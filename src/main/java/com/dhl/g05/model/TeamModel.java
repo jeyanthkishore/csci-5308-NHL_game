@@ -13,6 +13,7 @@ import com.google.gson.annotations.Expose;
 import com.mysql.cj.util.StringUtils;
 
 public class TeamModel implements ITeam {
+
 	static final Logger logger = LogManager.getLogger(TeamModel.class);
 	private static final int numberOfDefense = 10;
 	private static final int numberOfForward = 16;
@@ -22,6 +23,7 @@ public class TeamModel implements ITeam {
 	private static final int numberOfActivePlayers = 20;
 	private static final int numberOfInActivePlayers = 10;
 	private static final int numberOfPlayers = 30;
+
 	@Expose
 	private String teamName;
 	@Expose
@@ -89,18 +91,22 @@ public class TeamModel implements ITeam {
 		this.players = playerList;
 	}
 
+	@Override
 	public ICoach getCoachDetails() {
 		return headCoach;
 	}
 
+	@Override
 	public void setCoachDetails(ICoach coach) {
 		this.headCoach = coach;
 	}
 
+	@Override
 	public double getTeamStrength() {
 		return teamStrength;
 	}
 
+	@Override
 	public void setTeamStrength(double teamStrength) {
 		this.teamStrength = teamStrength;
 	}
@@ -110,6 +116,7 @@ public class TeamModel implements ITeam {
 		return checkTeam.isTeamExist(teamName);
 	}
 
+	@Override
 	public double calculateTeamStrength(List<IPlayer> playerList) {
 		logger.info("Calculating team strength using players strength");
 		for (IPlayer player : playerList) {
@@ -133,6 +140,7 @@ public class TeamModel implements ITeam {
 		return false;
 	}
 
+	@Override
 	public TeamConstant validate() {
 		logger.info("Validating team details");
 		if (isTeamDetailsEmptyOrNull()) {
@@ -294,6 +302,4 @@ public class TeamModel implements ITeam {
 		agent.ConvertPlayerToFreeAgent(releaseExtraPlayers);
 		team.setPlayerList(adjustedTeam);
 	}
-
-
 }

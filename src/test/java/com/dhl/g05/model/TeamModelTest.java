@@ -25,45 +25,45 @@ public class TeamModelTest {
 	@Test
 	public void TeamObjectConstructorTest() {
 		LeagueMockData data = modelMockFactory.createLeagueMockData();
-		ITeam object = modelAbstractFactory.createTeamModel();
-		assertNull(object.getCoachDetails());
-		object.setGeneralManagerName("");
-		assertTrue(object.getGeneralManagerName().isEmpty());
-		assertNull(object.getTeamName());
-		assertNull(object.getPlayerList());
-		object.setPlayerList(data.playerList);
-		assertFalse(object.getPlayerList().isEmpty());
+		ITeam team = modelAbstractFactory.createTeamModel();
+		assertNull(team.getCoachDetails());
+		team.setGeneralManagerName("");
+		assertTrue(team.getGeneralManagerName().isEmpty());
+		assertNull(team.getTeamName());
+		assertNull(team.getPlayerList());
+		team.setPlayerList(data.playerList);
+		assertFalse(team.getPlayerList().isEmpty());
 	}
 
 	@Test
 	public void teamReferenceConstructorTest() {
 		LeagueMockData data = modelMockFactory.createLeagueMockData();
-		ITeam object = modelAbstractFactory.createTeamModel(data);
-		assertSame(data.teamName, object.getTeamName());
-		assertSame(data.coachDetails, object.getCoachDetails());
-		assertSame(data.generalManagerName, object.getGeneralManagerName());
-		assertSame(data.playerList, object.getPlayerList());
+		ITeam team = modelAbstractFactory.createTeamModel(data);
+		assertSame(data.teamName, team.getTeamName());
+		assertSame(data.coachDetails, team.getCoachDetails());
+		assertSame(data.generalManagerName, team.getGeneralManagerName());
+		assertSame(data.playerList, team.getPlayerList());
 	}
 
 	@Test
 	public void setTeamNameTest() {
-		ITeam object = modelAbstractFactory.createTeamModel();
-		object.setTeamName("Strikers");
-		assertTrue(object.getTeamName().equals("Strikers"));
+		ITeam team = modelAbstractFactory.createTeamModel();
+		team.setTeamName("Strikers");
+		assertTrue(team.getTeamName().equals("Strikers"));
 	}
 
 	@Test
 	public void getTeamNameTest() {
-		ITeam object = modelAbstractFactory.createTeamModel();
-		object.setTeamName("Strikers");
-		assertTrue(object.getTeamName().equals("Strikers"));
+		ITeam team = modelAbstractFactory.createTeamModel();
+		team.setTeamName("Strikers");
+		assertTrue(team.getTeamName().equals("Strikers"));
 	}
 
 	@Test
-	public void setManagerNameTest() {
-		ITeam object = modelAbstractFactory.createTeamModel();
-		object.setGeneralManagerName("Rubinho");
-		assertTrue(object.getGeneralManagerName().equals("Rubinho"));
+	public void setGeneralManagerNameTest() {
+		ITeam team = modelAbstractFactory.createTeamModel();
+		team.setGeneralManagerName("Rubinho");
+		assertTrue(team.getGeneralManagerName().equals("Rubinho"));
 	}
 
 	@Test
@@ -76,86 +76,86 @@ public class TeamModelTest {
 	}
 
 	@Test
-	public void getManagerNameTest() {
-		ITeam object = modelAbstractFactory.createTeamModel();
-		object.setGeneralManagerName("Rubinho");
-		assertTrue(object.getGeneralManagerName().equals("Rubinho"));
+	public void getGeneralManagerNameTest() {
+		ITeam team = modelAbstractFactory.createTeamModel();
+		team.setGeneralManagerName("Rubinho");
+		assertTrue(team.getGeneralManagerName().equals("Rubinho"));
 	}
 
 	@Test
 	public void setUserTeamTest() {
-		ITeam object = modelAbstractFactory.createTeamModel();
-		object.setUserTeam(false);
-		assertFalse(object.getUserTeam());
+		ITeam team = modelAbstractFactory.createTeamModel();
+		team.setUserTeam(false);
+		assertFalse(team.getUserTeam());
 	}
 
 	@Test
 	public void getUserTeamTest() {
-		ITeam object = modelAbstractFactory.createTeamModel();
-		object.setUserTeam(true);
-		assertTrue(object.getUserTeam());
+		ITeam team = modelAbstractFactory.createTeamModel();
+		team.setUserTeam(true);
+		assertTrue(team.getUserTeam());
 	}
 
 	@Test
 	public void setPlayerListTest() {
 		LeagueMockData data = modelMockFactory.createLeagueMockData();
-		ITeam object = modelAbstractFactory.createTeamModel();
-		object.setPlayerList(data.playerList);
-		assertSame(data.playerList, object.getPlayerList());
+		ITeam team = modelAbstractFactory.createTeamModel();
+		team.setPlayerList(data.playerList);
+		assertSame(data.playerList, team.getPlayerList());
 	}
 
 	@Test
 	public void getPlayerListTest() {
 		LeagueMockData data = modelMockFactory.createLeagueMockData();
-		ITeam object = modelAbstractFactory.createTeamModel();
-		object.setPlayerList(data.playerList);
-		assertSame(data.playerList, object.getPlayerList());
+		ITeam team = modelAbstractFactory.createTeamModel();
+		team.setPlayerList(data.playerList);
+		assertSame(data.playerList, team.getPlayerList());
 	}
 
 	@Test
 	public void setCoachDetailsTest() {
-		LeagueMockData data = modelMockFactory.createLeagueMockData();
-		ITeam object = modelAbstractFactory.createTeamModel();
-		object.setCoachDetails(data.coachDetails);
-		assertSame(data.coachDetails, object.getCoachDetails());
+		LeagueMockData leagueMock = modelMockFactory.createLeagueMockData();
+		ITeam team = modelAbstractFactory.createTeamModel();
+		team.setCoachDetails(leagueMock.coachDetails);
+		assertSame(leagueMock.coachDetails, team.getCoachDetails());
 	}
 
 	@Test
 	public void getCoachDetailsTest() {
-		LeagueMockData data = modelMockFactory.createLeagueMockData();
-		ITeam object = modelAbstractFactory.createTeamModel();
-		object.setCoachDetails(data.coachDetails);
-		assertSame(data.coachDetails, object.getCoachDetails());
+		LeagueMockData leagueMock = modelMockFactory.createLeagueMockData();
+		ITeam team = modelAbstractFactory.createTeamModel();
+		team.setCoachDetails(leagueMock.coachDetails);
+		assertSame(leagueMock.coachDetails, team.getCoachDetails());
 	}
 
 	@Test
 	public void setTeamStrengthTest() {
-		ITeam object = modelAbstractFactory.createTeamModel();
-		object.setTeamStrength(25);
-		assertEquals(object.getTeamStrength(), 25, 0);
+		ITeam team = modelAbstractFactory.createTeamModel();
+		team.setTeamStrength(25);
+		assertEquals(team.getTeamStrength(), 25, 0);
 	}
 
 	@Test
 	public void getTeamStrengthTest() {
-		ITeam object = modelAbstractFactory.createTeamModel();
-		object.setTeamStrength(25);
-		assertEquals(object.getTeamStrength(), 25, 0);
+		ITeam team = modelAbstractFactory.createTeamModel();
+		team.setTeamStrength(25);
+		assertEquals(team.getTeamStrength(), 25, 0);
 	}
 
 	@Test
 	public void isCoachDetailsEmpty() {
 		LeagueMockData mock = modelMockFactory.createLeagueMockData();
 		mock.setCoachDetailsNull();
-		ITeam object = modelAbstractFactory.createTeamModel(mock);
-		assertSame(TeamConstant.CoachDetailsEmpty, object.validate());
+		ITeam team = modelAbstractFactory.createTeamModel(mock);
+		assertSame(TeamConstant.CoachDetailsEmpty, team.validate());
 	}
 
 	@Test
 	public void isCoachDetailsNull() {
 		LeagueMockData mock = modelMockFactory.createLeagueMockData();
 		mock.setCoachDetailsNull();
-		ITeam object = modelAbstractFactory.createTeamModel(mock);
-		assertSame(TeamConstant.CoachDetailsEmpty, object.validate());
+		ITeam team = modelAbstractFactory.createTeamModel(mock);
+		assertSame(TeamConstant.CoachDetailsEmpty, team.validate());
 	}
 
 	@Test
@@ -231,8 +231,8 @@ public class TeamModelTest {
 	@Test
 	public void calculateTeamStrengthTest() {
 		LeagueMockData mock = modelMockFactory.createLeagueMockData();
-		ITeam object = modelAbstractFactory.createTeamModel(mock);
-		assertEquals(object.calculateTeamStrength(mock.playerList), mock.calculateTeamStrength(mock.playerList), 0);
+		ITeam team = modelAbstractFactory.createTeamModel(mock);
+		assertEquals(60, team.calculateTeamStrength(mock.playerList),0);
 	}
 
 	@Test
@@ -354,5 +354,4 @@ public class TeamModelTest {
 		validate = modelAbstractFactory.createTeamModel(mock);
 		assertSame(TeamConstant.CoachDetailsEmpty, validate.validate());
 	}
-
 }

@@ -125,12 +125,12 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 		playerOneName =  "Cristiano Ronaldo";
 		positionOne = "forward";
 		captainOne = true;
-		playerList.add(modelAbstractFactory.createPlayerModel(playerOneName,positionOne,captainOne,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		playerList.add(modelAbstractFactory.createPlayerModel(playerOneName,positionForward,captainOne,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		playerTwoName= "Messi";
 		positionTwo =  "goalie";
 		captainTwo = false;
 		coachDetails = modelAbstractFactory.createCoachModel(headCoachName,coachSkating,coachShooting,coachChecking, coachSaving);
-		playerList.add(modelAbstractFactory.createPlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
+		playerList.add(modelAbstractFactory.createPlayerModel(playerTwoName,positionForward,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		retiredPlayersList.add(modelAbstractFactory.createPlayerModel(playerTwoName,positionTwo,captainTwo,skating,shooting,checking,saving,birthDay,birthMonth,birthYear));
 		team = modelAbstractFactory.createTeamModel();
 		team.setTeamName(teamName);
@@ -396,18 +396,6 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 
 	public void setCoachDetailsNull() {
 		coachDetails = null;
-	}
-
-	public double calculateTeamStrength(List<IPlayer> playerList){
-		for (IPlayer player: playerList) {
-			if(player.getInjuryStatus()){
-				teamStrength +=	player.calculatePlayerStrength()/2;
-			}
-			else{
-				teamStrength += player.calculatePlayerStrength();
-			}
-		}
-		return  teamStrength;
 	}
 
 	@Override
