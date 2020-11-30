@@ -62,48 +62,6 @@ public class AgingConfigTest {
     }
 
     @Test
-    public void isStatDecayChanceValidTest() {
-        IAging aging = simulationAbstractFactory.createAgingConfig();
-        aging.setStatDecayChance(0.05);
-        assertFalse(aging.isStatDecayChanceNotValid(aging.getStatDecayChance()));
-    }
-
-    @Test
-    public void isStatDecayChanceNotValidTest() {
-        IAging aging = simulationAbstractFactory.createAgingConfig();
-        aging.setStatDecayChance(-0.05);
-        assertTrue(aging.isStatDecayChanceNotValid(aging.getStatDecayChance()));
-    }
-
-    @Test
-    public void isAverageRetirementAgeValidTest() {
-        IAging aging = simulationAbstractFactory.createAgingConfig();
-        aging.setAverageRetirementAge(50);
-        assertFalse(aging.isAverageRetirementAgeNotValid(aging.getAverageRetirementAge()));
-    }
-
-    @Test
-    public void isAverageRetirementAgeNotValidTest() {
-        IAging aging = simulationAbstractFactory.createAgingConfig();
-        aging.setAverageRetirementAge(0);
-        assertTrue(aging.isAverageRetirementAgeNotValid(aging.getAverageRetirementAge()));
-    }
-
-    @Test
-    public void isMaximumAgeValidTest() {
-        IAging aging = simulationAbstractFactory.createAgingConfig();
-        aging.setMaximumAge(40);
-        assertFalse(aging.isMaximumAgeNotValid(aging.getMaximumAge()));
-    }
-
-    @Test
-    public void isMaximumAgeNotValidTest() {
-        IAging aging = simulationAbstractFactory.createAgingConfig();
-        aging.setMaximumAge(0);
-        assertTrue(aging.isMaximumAgeNotValid(aging.getMaximumAge()));
-    }
-
-    @Test
     public void maximumAgeValidateTest() {
         IAging aging = simulationAbstractFactory.createAgingConfig();
         aging.setMaximumAge(-1);

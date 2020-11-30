@@ -23,7 +23,7 @@ public class TeamModelTest {
 	}
 
 	@Test
-	public void TeamObjectConstructorTest() {
+	public void teamObjectConstructorTest() {
 		LeagueMockData data = modelMockFactory.createLeagueMockData();
 		ITeam team = modelAbstractFactory.createTeamModel();
 		assertNull(team.getCoachDetails());
@@ -325,7 +325,7 @@ public class TeamModelTest {
 	}
 
 	@Test
-	public void validateTeamTest() {
+	public void validateTest() {
 		LeagueMockData mock = modelMockFactory.createLeagueMockData();
 		ITeam validate = modelAbstractFactory.createTeamModel(mock);
 		assertSame(TeamConstant.Success, validate.validate());

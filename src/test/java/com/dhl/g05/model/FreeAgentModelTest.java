@@ -52,6 +52,20 @@ public class FreeAgentModelTest {
 	}
 
 	@Test
+	public void referenceConstructorTest() {
+		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel("Alex", "Defense", 10, 11, 12, 13, 14, 11, 2000);
+		assertSame("Alex", freeAgent.getPlayerName());
+		assertSame("Defense", freeAgent.getPosition());
+		assertEquals(10, freeAgent.getSkating(),0);
+		assertEquals(11, freeAgent.getShooting(),0);
+		assertEquals(12, freeAgent.getChecking(),0);
+		assertEquals(13, freeAgent.getSaving(),0);
+		assertEquals(14, freeAgent.getBirthDay());
+		assertEquals(11, freeAgent.getBirthMonth());
+		assertEquals(2000, freeAgent.getBirthYear());
+	}
+
+	@Test
 	public void getPlayerNameTest() {
 		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setPlayerName("Ronaldo");
@@ -192,7 +206,7 @@ public class FreeAgentModelTest {
 	}
 
 	@Test
-	public void calculateForwardPlayerStrengthTest(){
+	public void calculateForwardPlayerStrengthTest() {
 		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setSkating(12);
 		freeAgent.setShooting(12);
@@ -202,7 +216,7 @@ public class FreeAgentModelTest {
 	}
 
 	@Test
-	public void calculateDefensePlayerStrengthTest(){
+	public void calculateDefensePlayerStrengthTest() {
 		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setSkating(12);
 		freeAgent.setShooting(12);
@@ -212,7 +226,7 @@ public class FreeAgentModelTest {
 	}
 
 	@Test
-	public void calculateGoaliePlayerStrengthTest(){
+	public void calculateGoaliePlayerStrengthTest() {
 		IFreeAgent freeAgent = modelAbstractFactory.createFreeAgentModel();
 		freeAgent.setSaving(12);
 		freeAgent.setSkating(12);

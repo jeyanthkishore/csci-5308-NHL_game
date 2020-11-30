@@ -62,36 +62,6 @@ public class InjuryConfigTest {
     }
 
     @Test
-    public void isRandomInjuryChanceValidTest() {
-        IInjury injury = simulationAbstractFactory.createInjuryConfig();
-        injury.setRandomInjuryChance(1.5);
-        assertFalse(injury.isRandomInjuryChanceNotValid(injury.getRandomInjuryChance()));
-    }
-
-    @Test
-    public void isRandomInjuryChanceNotValidTest() {
-        IInjury injury = simulationAbstractFactory.createInjuryConfig();
-        injury.setRandomInjuryChance(-5);
-        assertTrue(injury.isRandomInjuryChanceNotValid(injury.getRandomInjuryChance()));
-    }
-
-    @Test
-    public void isInjuryDaysHighValueValidTest() {
-        IInjury injury = simulationAbstractFactory.createInjuryConfig();
-        injury.setInjuryDaysHigh(60);
-        injury.setInjuryDaysLow(50);
-        assertFalse(injury.isInjuryDaysHighValueNotValid(injury.getInjuryDaysLow(), injury.getInjuryDaysHigh()));
-    }
-
-    @Test
-    public void isInjuryDaysHighValueNotValidTest() {
-        IInjury injury = simulationAbstractFactory.createInjuryConfig();
-        injury.setInjuryDaysHigh(60);
-        injury.setInjuryDaysLow(70);
-        assertTrue(injury.isInjuryDaysHighValueNotValid(injury.getInjuryDaysLow(), injury.getInjuryDaysHigh()));
-    }
-
-    @Test
     public void randomInjuryChanceValidateTest() {
         IInjury injury = simulationAbstractFactory.createInjuryConfig();
         injury.setRandomInjuryChance(-5);

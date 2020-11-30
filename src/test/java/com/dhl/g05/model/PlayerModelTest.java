@@ -51,6 +51,22 @@ public class PlayerModelTest {
 	}
 
 	@Test
+	public void referenceConstructorTest() {
+		LeagueMockData playerMock = new LeagueMockData();
+		IPlayer player = modelAbstractFactory.createPlayerModel(playerMock.playerOneName, playerMock.positionForward, playerMock.captainOne, playerMock.skating, playerMock.shooting, playerMock.checking, playerMock.saving, playerMock.birthDay, playerMock.birthMonth, playerMock.birthYear);
+		assertSame(playerMock.playerOneName, player.getPlayerName());
+		assertSame(playerMock.positionForward, player.getPosition());
+		assertSame(playerMock.captainOne, player.getCaptain());
+		assertEquals(playerMock.skating, player.getSkating(),0);
+		assertEquals(playerMock.shooting, player.getShooting(),0);
+		assertEquals(playerMock.checking, player.getChecking(),0);
+		assertEquals(playerMock.saving, player.getSaving(),0);
+		assertEquals(playerMock.birthDay, player.getBirthDay());
+		assertEquals(playerMock.birthMonth, player.getBirthMonth());
+		assertEquals(playerMock.birthYear, player.getBirthYear());
+	}
+
+	@Test
 	public void getCaptainTest() {
 		IPlayer player = modelAbstractFactory.createPlayerModel();
 		player.setCaptain(true);

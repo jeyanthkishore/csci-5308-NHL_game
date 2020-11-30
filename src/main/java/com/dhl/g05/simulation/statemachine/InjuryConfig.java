@@ -52,16 +52,14 @@ public class InjuryConfig implements IInjury {
         return InjuryConstant.Success;
     }
 
-    @Override
-    public boolean isRandomInjuryChanceNotValid(double randomInjuryChance) {
+    private boolean isRandomInjuryChanceNotValid(double randomInjuryChance) {
         if (randomInjuryChance > MIN_RANDOM_INJURY_CHANCE) {
             return false;
         }
         return true;
     }
 
-    @Override
-    public boolean isInjuryDaysHighValueNotValid(int injuryDaysLow, int injuryDaysHigh) {
+    private boolean isInjuryDaysHighValueNotValid(int injuryDaysLow, int injuryDaysHigh) {
         if(injuryDaysHigh <= injuryDaysLow) {
             return true;
         }

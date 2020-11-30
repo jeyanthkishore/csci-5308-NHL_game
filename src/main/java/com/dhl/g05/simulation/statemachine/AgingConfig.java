@@ -55,24 +55,21 @@ public class AgingConfig implements IAging {
 		return AgingConstant.Success;
 	}
 
-	@Override
-	public boolean isMaximumAgeNotValid(int maximumAge) {
+	private boolean isMaximumAgeNotValid(int maximumAge) {
 		if (maximumAge > MIN_AGE) {
 			return false;
 		}
 		return true;
 	}
 
-	@Override
-    public boolean isAverageRetirementAgeNotValid(int averageRetirementAge) {
+    private boolean isAverageRetirementAgeNotValid(int averageRetirementAge) {
         if(averageRetirementAge > MIN_AGE) {
             return false;
         }
         return true;
     }
 
-    @Override
-	public boolean isStatDecayChanceNotValid(double statDecayChance) {
+	private boolean isStatDecayChanceNotValid(double statDecayChance) {
 		if (statDecayChance < MAX_STAT_DECAY_CHANCE && statDecayChance > MIN_STAT_DECAY_CHANCE) {
 			return false;
 		}

@@ -16,10 +16,4 @@ public interface IAging {
 
 	AgingConstant validate();
 
-	boolean isStatDecayChanceNotValid(double statDecayChance);
-
-	boolean isAverageRetirementAgeNotValid(int averageRetirementAge);
-
-	boolean isMaximumAgeNotValid(int maximumAge);
-
 }

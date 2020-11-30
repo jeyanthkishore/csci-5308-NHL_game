@@ -14,10 +14,6 @@ public interface IInjury {
 
     void setInjuryDaysHigh(int injuryDaysHigh);
 
-    boolean isRandomInjuryChanceNotValid(double randomInjuryChance);
-
-    boolean isInjuryDaysHighValueNotValid(int injuryDaysLow, int injuryDaysHigh);
-
     InjuryConstant validate();
 
 }

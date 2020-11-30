@@ -37,7 +37,7 @@ public class LeagueModelTest {
 	}
 
 	@Test
-	public void leagueReferenceConstructor() {
+	public void leagueReferenceConstructorTest() {
 		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
 		ILeague league = modelAbstractFactory.createLeagueModel(leagueMock);
 		assertSame(leagueMock.leagueName,league.getLeagueName());
@@ -158,7 +158,7 @@ public class LeagueModelTest {
 	}
 
 	@Test
-	public void addRetiredFreeAgentToListTest(){
+	public void addRetiredFreeAgentToListTest() {
 		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
 		ILeague leagueModel = modelAbstractFactory.createLeagueModel(leagueMock);
 		List<IFreeAgent> freeAgents = leagueMock.freeAgentList;
@@ -168,7 +168,7 @@ public class LeagueModelTest {
 	}
 
 	@Test
-	public void addRetiredPlayersToListTest(){
+	public void addRetiredPlayersToListTest() {
 		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
 		ILeague leagueModel = modelAbstractFactory.createLeagueModel(leagueMock);
 		List<IPlayer> players = leagueMock.playerList;
@@ -287,7 +287,7 @@ public class LeagueModelTest {
 	}
  
 	@Test
-	public void validateLeagueTest() {
+	public void validateTest() {
 		LeagueMockData leagueMock = modelMockAbstractFactory.createLeagueMockData();
 		ILeague league = modelAbstractFactory.createLeagueModel();
 		league = modelAbstractFactory.createLeagueModel(leagueMock);

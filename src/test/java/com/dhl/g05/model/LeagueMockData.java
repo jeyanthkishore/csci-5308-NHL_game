@@ -407,7 +407,7 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 	}
 
 	@Override
-	public void loadPlayerModelData(PlayerModel playerModelObject) {
+	public void loadPlayerModelData(IPlayer playerModelObject) {
 		playerModelObject.setCaptain(captainOne);
 		playerModelObject.setPlayerName(playerOneName);
 		playerModelObject.setPosition(positionOne);
@@ -427,7 +427,7 @@ public class LeagueMockData implements ILeagueModel,IConferenceModel,IDivisionMo
 	}
 
 	@Override
-	public void loadLeagueModelData(LeagueModel leagueModelObject) {
+	public void loadLeagueModelData(ILeague leagueModelObject) {
 		leagueModelObject.setLeagueName(leagueName);
 		leagueModelObject.setConferenceDetails(conferenceList);
 		leagueModelObject.setFreeAgent(freeAgentList);

@@ -46,8 +46,7 @@ public class SimulationConcreteFactory extends SimulationAbstractFactory{
 
 	private final IPlayerCommunication communication;
 
-	public SimulationConcreteFactory(
-			IPlayerCommunication communication) {
+	public SimulationConcreteFactory(IPlayerCommunication communication) {
 		this.communication = communication;
 	}
 
