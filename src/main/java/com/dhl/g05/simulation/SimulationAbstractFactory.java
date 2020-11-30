@@ -5,14 +5,7 @@ import com.dhl.g05.simulation.leaguesimulation.ILeagueSchedule;
 import com.dhl.g05.simulation.leaguesimulation.ILeagueStanding;
 import com.dhl.g05.simulation.leaguesimulation.IScheduleModel;
 import com.dhl.g05.simulation.leaguesimulation.IStandingModel;
-import com.dhl.g05.simulation.statemachine.AbstractState;
-import com.dhl.g05.simulation.statemachine.IAging;
-import com.dhl.g05.simulation.statemachine.IGamePlayConfig;
-import com.dhl.g05.simulation.statemachine.IGameResolver;
-import com.dhl.g05.simulation.statemachine.IInjury;
-import com.dhl.g05.simulation.statemachine.IStateMachine;
-import com.dhl.g05.simulation.statemachine.ITradingConfig;
-import com.dhl.g05.simulation.statemachine.ITraining;
+import com.dhl.g05.simulation.statemachine.*;
 
 public abstract class SimulationAbstractFactory {
 
@@ -46,6 +39,7 @@ public abstract class SimulationAbstractFactory {
 	public abstract IStandingModel createStandingModel();
 	public abstract IAging createAgingConfig();
 	public abstract IInjury createInjuryConfig();
+	public abstract IGameStatConfig createGameStatConfig();
     public abstract ITradingConfig createTradingConfig();
     public abstract ITraining createTrainingConfig();
     public abstract IGameResolver createGameResolverConfig();

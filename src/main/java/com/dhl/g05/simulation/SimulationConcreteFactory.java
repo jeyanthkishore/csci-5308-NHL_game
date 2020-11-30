@@ -10,37 +10,7 @@ import com.dhl.g05.simulation.leaguesimulation.LeagueSchedule;
 import com.dhl.g05.simulation.leaguesimulation.LeagueStanding;
 import com.dhl.g05.simulation.leaguesimulation.ScheduleModel;
 import com.dhl.g05.simulation.leaguesimulation.StandingModel;
-import com.dhl.g05.simulation.statemachine.AbstractState;
-import com.dhl.g05.simulation.statemachine.AdvanceTimeState;
-import com.dhl.g05.simulation.statemachine.AdvanceToNextSeasonState;
-import com.dhl.g05.simulation.statemachine.AgingConfig;
-import com.dhl.g05.simulation.statemachine.AgingState;
-import com.dhl.g05.simulation.statemachine.CreateTeamState;
-import com.dhl.g05.simulation.statemachine.GamePlayConfigModel;
-import com.dhl.g05.simulation.statemachine.GameResolverConfig;
-import com.dhl.g05.simulation.statemachine.IAging;
-import com.dhl.g05.simulation.statemachine.IGamePlayConfig;
-import com.dhl.g05.simulation.statemachine.IGameResolver;
-import com.dhl.g05.simulation.statemachine.IInjury;
-import com.dhl.g05.simulation.statemachine.IStateMachine;
-import com.dhl.g05.simulation.statemachine.ITradingConfig;
-import com.dhl.g05.simulation.statemachine.ITraining;
-import com.dhl.g05.simulation.statemachine.ImportState;
-import com.dhl.g05.simulation.statemachine.InitializeSeasonState;
-import com.dhl.g05.simulation.statemachine.InjuryCheckState;
-import com.dhl.g05.simulation.statemachine.InjuryConfig;
-import com.dhl.g05.simulation.statemachine.LoadTeamState;
-import com.dhl.g05.simulation.statemachine.PersistState;
-import com.dhl.g05.simulation.statemachine.PlayerChoiceState;
-import com.dhl.g05.simulation.statemachine.PlayerDraftState;
-import com.dhl.g05.simulation.statemachine.PlayoffScheduleState;
-import com.dhl.g05.simulation.statemachine.SeasonSimulateState;
-import com.dhl.g05.simulation.statemachine.StateMachine;
-import com.dhl.g05.simulation.statemachine.SimulateGameState;
-import com.dhl.g05.simulation.statemachine.TradeState;
-import com.dhl.g05.simulation.statemachine.TradingConfig;
-import com.dhl.g05.simulation.statemachine.TrainingConfig;
-import com.dhl.g05.simulation.statemachine.TrainingState;
+import com.dhl.g05.simulation.statemachine.*;
 
 public class SimulationConcreteFactory extends SimulationAbstractFactory{
 
@@ -175,6 +145,11 @@ public class SimulationConcreteFactory extends SimulationAbstractFactory{
 	@Override
 	public IInjury createInjuryConfig() {
 		return new InjuryConfig();
+	}
+
+	@Override
+	public IGameStatConfig createGameStatConfig() {
+		return new GameStatConfig();
 	}
 
 	@Override

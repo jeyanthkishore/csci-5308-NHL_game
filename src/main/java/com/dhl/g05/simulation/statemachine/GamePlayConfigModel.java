@@ -73,12 +73,10 @@ public class GamePlayConfigModel implements IGamePlayConfig {
 	@Override
 	public GamePlayConfigConstant validate() {
 		logger.info("Validating GamePlay Config");
-		
 		if(gameResolver == null || trading ==null || training == null
 				|| aging == null || injuries == null) {
 			return GamePlayConfigConstant.ErrorInConfig;
 		}
-
 		return GamePlayConfigConstant.Success;
 	}
 
