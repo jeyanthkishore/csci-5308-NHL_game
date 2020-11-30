@@ -4,7 +4,7 @@ public abstract class ModelMockAbstractFactory {
 
 	private static ModelMockAbstractFactory modelMockAbstractFactory;
 
-	public static ModelMockAbstractFactory getInstance(ModelMockState state) {
+	public static ModelMockAbstractFactory instance(ModelMockState state) {
 		modelMockAbstractFactory = state.concreteMethod();
 		return modelMockAbstractFactory;
 	}

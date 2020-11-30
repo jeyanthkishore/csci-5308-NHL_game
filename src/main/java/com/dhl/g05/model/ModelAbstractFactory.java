@@ -4,7 +4,7 @@ public abstract class ModelAbstractFactory {
 
 	private static ModelAbstractFactory modelAsbtractFactory;
 
-	public static ModelAbstractFactory getInstance(ModelState state) {
+	public static ModelAbstractFactory instance(ModelState state) {
 		modelAsbtractFactory = state.concreteMethod();
 		return modelAsbtractFactory;
 	}

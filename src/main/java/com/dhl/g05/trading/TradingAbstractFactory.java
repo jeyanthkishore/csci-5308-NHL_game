@@ -4,7 +4,7 @@ public abstract class TradingAbstractFactory {
 	
 	private static TradingAbstractFactory abstractTradingFactory;
 
-	public static TradingAbstractFactory getInstance(TradingState trade) {
+	public static TradingAbstractFactory instance(TradingState trade) {
 		abstractTradingFactory = trade.concreteMethod();
 		return abstractTradingFactory;
 	}

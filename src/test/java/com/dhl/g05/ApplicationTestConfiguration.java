@@ -1,5 +1,11 @@
 package com.dhl.g05;
 
+import com.dhl.g05.communication.CommunicationMockAbstractFactory;
+import com.dhl.g05.communication.CommunicationMockConcreteFactoryState;
+import com.dhl.g05.communication.CommunicationMockState;
+import com.dhl.g05.database.DatabaseMockAbstractFactory;
+import com.dhl.g05.database.DatabaseMockConcreteFactoryState;
+import com.dhl.g05.database.DatabaseMockState;
 import com.dhl.g05.model.ModelMockAbstractFactory;
 import com.dhl.g05.model.ModelMockConcreteFactoryState;
 import com.dhl.g05.model.ModelMockState;
@@ -10,13 +16,15 @@ import com.dhl.g05.simulation.SimulationMockState;
 public class ApplicationTestConfiguration {
 	private static ApplicationTestConfiguration uniqueInstance = null;
 	private SimulationMockState simulation;
-	//	private DatabaseState database;
-	//	private CommunicationState communication;
+	private DatabaseMockState database;
 	private ModelMockState model;
+	private CommunicationMockState communication;
 
 	private ApplicationTestConfiguration() {
 		simulation = new SimulationMockConcreteFactoryState();
 		model = new ModelMockConcreteFactoryState();
+		database = new DatabaseMockConcreteFactoryState();
+		communication = new CommunicationMockConcreteFactoryState();
 	}
 
 	public static ApplicationTestConfiguration instance() {
@@ -27,11 +35,19 @@ public class ApplicationTestConfiguration {
 	}
 
 	public SimulationMockAbstractFactory getSimulationMockConcreteFactoryState() {
-		return SimulationMockAbstractFactory.getInstance(simulation);
+		return SimulationMockAbstractFactory.instance(simulation);
 	}
 
 	public ModelMockAbstractFactory getModelMockConcreteFactoryState() {
-		return ModelMockAbstractFactory.getInstance(model);
+		return ModelMockAbstractFactory.instance(model);
+	}
+	
+	public DatabaseMockAbstractFactory getDatabaseMockConcreteFactoryState() {
+		return DatabaseMockAbstractFactory.instance(database);
+	}
+	
+	public CommunicationMockAbstractFactory getCommunicationMockConcreteFactoryState() {
+		return CommunicationMockAbstractFactory.instance(communication);
 	}
 
 }

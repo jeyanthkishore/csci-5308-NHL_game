@@ -6,7 +6,7 @@ public abstract class SimulationMockAbstractFactory {
 	
 	private static SimulationMockAbstractFactory simulationMockAbstractFactory;
 
-	public static SimulationMockAbstractFactory getInstance(SimulationMockState state) {
+	public static SimulationMockAbstractFactory instance(SimulationMockState state) {
 		simulationMockAbstractFactory = state.concreteMethod();
 		return simulationMockAbstractFactory;
 	}
