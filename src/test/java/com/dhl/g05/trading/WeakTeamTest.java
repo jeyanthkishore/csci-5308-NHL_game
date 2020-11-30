@@ -9,8 +9,6 @@ import java.util.List;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.model.ConferenceModel;
-import com.dhl.g05.model.DivisionModel;
 import com.dhl.g05.model.FreeAgentModel;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
@@ -41,7 +39,7 @@ public class WeakTeamTest {
 
 	@Test
 	public void setConferenceNameTest() {
-		IConference conference = new ConferenceModel();
+		IConference conference = ApplicationConfiguration.instance().getModelConcreteFactoryState().createConferenceModel();
 		weakTeam = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createWeakteam();
 		conference.setConferenceName("Eastern");
 		weakTeam.setConferenceName(conference.getConferenceName());
@@ -50,7 +48,7 @@ public class WeakTeamTest {
 
 	@Test
 	public void setDivisionNameTest() {
-		IDivision division = new DivisionModel();
+		IDivision division = ApplicationConfiguration.instance().getModelConcreteFactoryState().createDivisionModel();
 		weakTeam = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createWeakteam();
 		division.setDivisionName("Atlantic");
 		weakTeam.setDivisionName(division.getDivisionName());
@@ -59,7 +57,7 @@ public class WeakTeamTest {
 
 	@Test
 	public void getDivisionNameTest() {
-		IDivision division = new DivisionModel();
+		IDivision division =ApplicationConfiguration.instance().getModelConcreteFactoryState().createDivisionModel();
 		weakTeam = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createWeakteam();
 		division.setDivisionName("Pacific");
 		weakTeam.setDivisionName(division.getDivisionName());

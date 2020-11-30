@@ -3,11 +3,12 @@ package com.dhl.g05.trading;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
+
 import java.util.List;
+
 import org.junit.Test;
+
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.model.ConferenceModel;
-import com.dhl.g05.model.DivisionModel;
 import com.dhl.g05.model.FreeAgentModel;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
@@ -39,7 +40,7 @@ public class StrongTeamTest {
 
 	@Test
 	public void setConferenceNameTest() {
-		IConference conference = new ConferenceModel();
+		IConference conference = ApplicationConfiguration.instance().getModelConcreteFactoryState().createConferenceModel();
 		strongTeam =ApplicationConfiguration.instance().getTradingConcreteFactoryState().createStrongteam();
 		conference.setConferenceName("Western");
 		strongTeam.setConferenceName(conference.getConferenceName());
@@ -48,7 +49,7 @@ public class StrongTeamTest {
 
 	@Test
 	public void setDivisionNameTest() {
-		IDivision division = new DivisionModel();
+		IDivision division = ApplicationConfiguration.instance().getModelConcreteFactoryState().createDivisionModel();
 		strongTeam = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createStrongteam();
 		division.setDivisionName("Indian");
 		strongTeam.setDivisionName(division.getDivisionName());
@@ -57,7 +58,7 @@ public class StrongTeamTest {
 
 	@Test
 	public void getDivisionNameTest() {
-		IDivision division = new DivisionModel();
+		IDivision division = ApplicationConfiguration.instance().getModelConcreteFactoryState().createDivisionModel();
 		strongTeam = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createStrongteam();
 		division.setDivisionName("Pacific");
 		strongTeam.setDivisionName(division.getDivisionName());
@@ -74,7 +75,6 @@ public class StrongTeamTest {
 
 	@Test
 	public void getStrongestPlayersToTradeTest1() {
-		MockLeagueModel mockLeague = new MockLeagueModel();
 		strongTeam = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createStrongteam();
 		strongTeam.setStrongestPlayersToTrade(mockLeague.leagueMock3());
 		assertSame(strongTeam.getStrongestPlayersToTrade().size(), 1);

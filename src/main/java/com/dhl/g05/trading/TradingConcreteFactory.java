@@ -1,5 +1,7 @@
 package com.dhl.g05.trading;
 
+import com.dhl.g05.simulation.statemachine.ITradingConfig;
+
 public class TradingConcreteFactory extends TradingAbstractFactory {
 
 	@Override
@@ -37,4 +39,11 @@ public class TradingConcreteFactory extends TradingAbstractFactory {
 	public IIntiateTradeOffer createInititatetradeoffer() {
 		return new InitiateTradeOffer();
 	}
+
+	@Override
+	public ITradeValue createTradeValue(ITradingConfig trade) {
+		return new TradeValue();
+	}
+
+
 }

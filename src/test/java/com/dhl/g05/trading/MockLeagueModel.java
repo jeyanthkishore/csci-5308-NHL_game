@@ -2,44 +2,38 @@ package com.dhl.g05.trading;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.dhl.g05.ApplicationConfiguration;
-import com.dhl.g05.model.ConferenceModel;
-import com.dhl.g05.model.DivisionModel;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
-import com.dhl.g05.model.LeagueModel;
-import com.dhl.g05.model.PlayerModel;
 import com.dhl.g05.model.TeamModel;
 import com.dhl.g05.simulation.statemachine.ITradingConfig;
-import com.dhl.g05.simulation.statemachine.TradingConfig;
 
 public class MockLeagueModel {
-
+	
 	IWeakTeam weakTeam = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createWeakteam();
 	IStrongTeam strongTeam = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createStrongteam();
 
 	public ILeague leagueMock() {
-		ILeague leagueMock = new LeagueModel();
+		ILeague leagueMock = ApplicationConfiguration.instance().getModelConcreteFactoryState().createLeagueModel();
 		leagueMock.setLeagueName("DHL");
-		IConference conference1 = new ConferenceModel();
+		IConference conference1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createConferenceModel();
 		conference1.setConferenceName("Eastern");
 		ArrayList<IConference> conferenceDetails = new ArrayList<>();
 		conferenceDetails.add(conference1);
 		leagueMock.setConferenceDetails(conferenceDetails);
-		IDivision division1 = new DivisionModel();
+		IDivision division1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createDivisionModel();
 		division1.setDivisionName("Atlantic");
 		ArrayList<IDivision> divisionDetails = new ArrayList<>();
 		divisionDetails.add(division1);
 		conference1.setDivisionDetails(divisionDetails);
-		ITeam team1 = new TeamModel();
+		ITeam team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
 		team1.setTeamName("Tigers");
 		team1.setUserTeam(false);
 		team1.setLossCount(10);
-		ITeam team2 = new TeamModel();
+		ITeam team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
 		team2.setTeamName("Rythm");
 		team2.setUserTeam(false);
 		team2.setLossCount(2);
@@ -47,16 +41,16 @@ public class MockLeagueModel {
 		teamDetails1.add(team1);
 		teamDetails1.add(team2);
 		division1.setTeamDetails(teamDetails1);
-		PlayerModel player1Team1 = new PlayerModel();
-		PlayerModel player2Team1 = new PlayerModel();
-		PlayerModel player3Team1 = new PlayerModel();
-		PlayerModel player4Team1 = new PlayerModel();
-		PlayerModel player5Team1 = new PlayerModel();
-		PlayerModel player1Team2 = new PlayerModel();
-		PlayerModel player2Team2 = new PlayerModel();
-		PlayerModel player3Team2 = new PlayerModel();
-		PlayerModel player4Team2 = new PlayerModel();
-		PlayerModel player5Team2 = new PlayerModel();
+		IPlayer player1Team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player2Team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player3Team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player4Team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player5Team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player1Team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player2Team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player3Team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player4Team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player5Team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		ArrayList<IPlayer> playerDetailsTeam1 = new ArrayList<>();
 		ArrayList<IPlayer> playerDetailsTeam2 = new ArrayList<>();
 		player1Team1.setPlayerName("Player1Team1");
@@ -105,23 +99,23 @@ public class MockLeagueModel {
 	}
 
 	public ILeague leagueMock1() {
-		ILeague leagueMock = new LeagueModel();
+		ILeague leagueMock =  ApplicationConfiguration.instance().getModelConcreteFactoryState().createLeagueModel();
 		leagueMock.setLeagueName("DHL");
-		IConference conference1 = new ConferenceModel();
+		IConference conference1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createConferenceModel();
 		conference1.setConferenceName("Eastern");
 		ArrayList<IConference> conferenceDetails = new ArrayList<>();
 		conferenceDetails.add(conference1);
 		leagueMock.setConferenceDetails(conferenceDetails);
-		IDivision division1 = new DivisionModel();
+		IDivision division1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createDivisionModel();
 		division1.setDivisionName("Atlantic");
 		ArrayList<IDivision> divisionDetails = new ArrayList<>();
 		divisionDetails.add(division1);
 		conference1.setDivisionDetails(divisionDetails);
-		ITeam team1 = new TeamModel();
+		ITeam team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
 		team1.setTeamName("Tigers");
 		team1.setUserTeam(false);
 		team1.setLossCount(10);
-		TeamModel team2 = new TeamModel();
+		ITeam team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
 		team2.setTeamName("Rythm");
 		team2.setUserTeam(false);
 		team2.setLossCount(1);
@@ -129,16 +123,16 @@ public class MockLeagueModel {
 		teamDetails1.add(team1);
 		teamDetails1.add(team2);
 		division1.setTeamDetails(teamDetails1);
-		PlayerModel player1Team1 = new PlayerModel();
-		PlayerModel player2Team1 = new PlayerModel();
-		PlayerModel player3Team1 = new PlayerModel();
-		PlayerModel player4Team1 = new PlayerModel();
-		PlayerModel player5Team1 = new PlayerModel();
-		PlayerModel player1Team2 = new PlayerModel();
-		PlayerModel player2Team2 = new PlayerModel();
-		PlayerModel player3Team2 = new PlayerModel();
-		PlayerModel player4Team2 = new PlayerModel();
-		PlayerModel player5Team2 = new PlayerModel();
+		IPlayer player1Team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player2Team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player3Team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player4Team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player5Team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player1Team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player2Team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player3Team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player4Team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player5Team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		ArrayList<IPlayer> playerDetailsTeam1 = new ArrayList<>();
 		ArrayList<IPlayer> playerDetailsTeam2 = new ArrayList<>();
 		player1Team1.setPlayerName("Player1Team1");
@@ -188,8 +182,8 @@ public class MockLeagueModel {
 
 	public List<IPlayer> leagueMock2() {
 		List<IPlayer> playersOffered = new ArrayList<>();
-		PlayerModel player1 = new PlayerModel();
-		PlayerModel player2 = new PlayerModel();
+		IPlayer player1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		player1.setPlayerName("Brian");
 		player1.setPlayerStrength(4);
 		player1.setPosition("goalie");
@@ -203,7 +197,7 @@ public class MockLeagueModel {
 
 	public List<IPlayer> leagueMock3() {
 		List<IPlayer> playersRequested = new ArrayList<>();
-		PlayerModel player1 = new PlayerModel();
+		IPlayer player1 =  ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		player1.setPlayerName("Shawn");
 		player1.setPlayerStrength(8);
 		player1.setPosition("goalie");
@@ -212,25 +206,25 @@ public class MockLeagueModel {
 	}
 
 	public ITeam leagueMock4() {
-		ITeam weakTeam = new TeamModel();
+		ITeam weakTeam = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
 		weakTeam.setTeamName("Tigers");
-		PlayerModel player1 = new PlayerModel();
+		IPlayer player1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		player1.setPlayerName("Brian");
 		player1.setPosition("defense");
 		player1.setPlayerStrength(8);
-		PlayerModel player2 = new PlayerModel();
+		IPlayer player2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		player2.setPlayerName("James");
 		player2.setPlayerStrength(10);
 		player2.setPosition("forward");
-		PlayerModel player3 = new PlayerModel();
+		IPlayer player3 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		player3.setPlayerName("Lily");
 		player3.setPlayerStrength(6);
 		player3.setPosition("goalie");
-		PlayerModel player4 = new PlayerModel();
+		IPlayer player4 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		player4.setPlayerName("Harry");
 		player4.setPlayerStrength(4);
 		player4.setPosition("forward");
-		PlayerModel player5 = new PlayerModel();
+		IPlayer player5 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		player5.setPlayerName("Shawn");
 		player5.setPlayerStrength(3);
 		player5.setPosition("defense");
@@ -245,21 +239,21 @@ public class MockLeagueModel {
 	}
 
 	public ITeam leagueMock5() {
-		ITeam weakTeam = new TeamModel();
+		ITeam weakTeam = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
 		weakTeam.setTeamName("TeamA");
-		PlayerModel player1 = new PlayerModel();
+		IPlayer player1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		player1.setPlayerName("Player1");
 		player1.setPosition("goalie");
 		player1.setPlayerStrength(7);
-		PlayerModel player2 = new PlayerModel();
+		IPlayer player2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		player2.setPlayerName("Player2");
 		player2.setPosition("forward");
 		player2.setPlayerStrength(10);
-		PlayerModel player3 = new PlayerModel();
+		IPlayer player3 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		player3.setPlayerName("Player3");
 		player3.setPosition("goalie");
 		player3.setPlayerStrength(5);
-		PlayerModel player4 = new PlayerModel();
+		IPlayer player4 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		player4.setPlayerName("Player4");
 		player4.setPosition("defense");
 		player4.setPlayerStrength(7);
@@ -273,19 +267,19 @@ public class MockLeagueModel {
 	}
 
 	public List<ITeam> leagueMock6() {
-		ITeam team1 = new TeamModel();
+		ITeam team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createTeamModel();
 		team1.setTeamName("Tigers");
 		TeamModel team2 = new TeamModel();
 		team2.setTeamName("Rythm");
 		ArrayList<ITeam> teamDetails1 = new ArrayList<>();
 		teamDetails1.add(team1);
 		teamDetails1.add(team2);
-		PlayerModel player1Team1 = new PlayerModel();
-		PlayerModel player2Team1 = new PlayerModel();
-		PlayerModel player3Team1 = new PlayerModel();
-		PlayerModel player1Team2 = new PlayerModel();
-		PlayerModel player2Team2 = new PlayerModel();
-		PlayerModel player3Team2 = new PlayerModel();
+		IPlayer player1Team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player2Team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player3Team1 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player1Team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player2Team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
+		IPlayer player3Team2 = ApplicationConfiguration.instance().getModelConcreteFactoryState().createPlayerModel();
 		player1Team1.setPlayerName("ShawnTeam1");
 		player2Team1.setPlayerName("KristenTeam1");
 		player3Team1.setPlayerName("ZackTeam1");
@@ -308,7 +302,7 @@ public class MockLeagueModel {
 	}
 
 	public ITradingConfig tradingConfigMock() {
-		ITradingConfig trading = new TradingConfig();
+		ITradingConfig trading = ApplicationConfiguration.instance().getSimulationConcreteFactoryState().createTradingConfig();
 		trading.setLossPoint(8);
 		trading.setMaxPlayersPerTrade(2);
 		trading.setRandomTradeOfferChance(1.00);
