@@ -12,9 +12,7 @@ public class FileOperation implements IFileOperation{
 	@Override
 	public String getFilePath(String teamName) {
 		logger.info("Fetching the file path from database");
-		
-		String path = FileOperationConstant.DirectoryPath.getValue()+teamName
-				+FileOperationConstant.FileExtension.getValue();
+		String path = teamName+FileOperationConstant.FileExtension.getValue();
 		return path;
 	}
 
