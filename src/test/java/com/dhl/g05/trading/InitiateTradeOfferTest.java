@@ -5,9 +5,11 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.ApplicationTestConfiguration;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ILeague;
@@ -16,7 +18,15 @@ import com.dhl.g05.model.ITeam;
 import com.dhl.g05.simulation.statemachine.ITradingConfig;
 
 public class InitiateTradeOfferTest {
+	
+	private static TradingMockAbstractFactory tradingMockFactory;
+	
+	@BeforeClass
+	public static void init() {
+		tradingMockFactory = ApplicationTestConfiguration.instance().getTradingMockConcreteFactoryState();
+	}
 
+	MockLeagueModel mock = tradingMockFactory.createMockLeagueModel();
 	private static IIntiateTradeOffer intiateTradeOffer;
 
 	@Test
@@ -42,10 +52,11 @@ public class InitiateTradeOfferTest {
 	}
 
 	public List<ITeam> initiateTradeOfferTest() {
-		MockLeagueModel mock = new MockLeagueModel();
+
 		ILeague league = mock.leagueMock();
 		ITradingConfig trade = mock.tradingConfigMock();
-		intiateTradeOffer = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createInititatetradeoffer();
+		intiateTradeOffer = ApplicationConfiguration.instance().getTradingConcreteFactoryState()
+				.createInititatetradeoffer();
 		intiateTradeOffer.setTrade(trade);
 		ILeague newLeague = intiateTradeOffer.initiateTradeOffer(league);
 		List<ITeam> teams = new ArrayList<>();

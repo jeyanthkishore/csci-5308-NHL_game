@@ -6,17 +6,27 @@ import static org.junit.Assert.assertSame;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.ApplicationTestConfiguration;
 import com.dhl.g05.model.FreeAgentModel;
 import com.dhl.g05.model.IPlayer;
 import com.dhl.g05.model.ITeam;
 
 public class SwapPlayersTest {
 
+	private static TradingMockAbstractFactory tradingMockFactory;
+
+	@BeforeClass
+	public static void init() {
+		tradingMockFactory = ApplicationTestConfiguration.instance().getTradingMockConcreteFactoryState();
+	}
+
+	MockLeagueModel mockLeague = tradingMockFactory.createMockLeagueModel();
 	ISwapPlayers swap = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createSwapplayers();
-	MockLeagueModel mockLeague = new MockLeagueModel();
+
 	List<ITeam> teams = new ArrayList<>();
 	List<IPlayer> swapList1 = new ArrayList<>();
 	List<IPlayer> swapList2 = new ArrayList<>();

@@ -15,7 +15,6 @@ import com.mysql.cj.util.StringUtils;
 public class FreeAgentModel implements IFreeAgent {
 
 	static final Logger logger = LogManager.getLogger(FreeAgentModel.class);
-	private final static int MIN_AGE = 0;
 	private final int DECREASE_STAT_BY=1;
 	private final int MONTH_LIST_WITH_31_DAYS[] = { 1, 3, 5, 7, 8, 10, 12 };
 	private final int MONTH_LIST_WITH_30_DAYS[] = { 4, 6, 9, 11 };
