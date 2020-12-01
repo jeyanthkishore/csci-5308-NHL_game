@@ -89,7 +89,7 @@ public class CoachModel implements ICoach{
 
 	@Override
 	public CoachConstant validate() {
-		logger.info("Validating coach details - name and statistics");
+		logger.info("Validating coach details of - name and statistics of Coach : " + getName());
 		if(isCoachNameNull() || isCoachNameEmpty()) {
 			return CoachConstant.CoachNameEmpty;
 		}
@@ -114,7 +114,7 @@ public class CoachModel implements ICoach{
 	}
 
 	private boolean isCoachStatNotValid() {
-		logger.info("Validating coach statistics");
+		logger.info("Validating coach statistics of Coach "+ getName());
 		if (validateStat(skating) && validateStat(shooting) && validateStat(checking) && validateStat(saving)) {
 			return false;
 		}

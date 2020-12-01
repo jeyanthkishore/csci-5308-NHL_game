@@ -203,7 +203,7 @@ public class FreeAgentModel implements IFreeAgent {
 
 	@Override
 	public double calculatePlayerStrength() {
-		logger.info("Calculating player strength");
+		logger.info("Calculating player strength of Player/FreeAgent Name : "+getPlayerName());
 		if (position.equalsIgnoreCase(PositionConstant.forward.getValue())) {
 			playerStrength = skating + shooting + (checking / 2);
 		}
@@ -213,12 +213,13 @@ public class FreeAgentModel implements IFreeAgent {
 		if (position.equalsIgnoreCase(PositionConstant.goalie.getValue())) {
 			playerStrength = skating + saving;
 		}
+		logger.info("Strength of Player/FreeAgent is : "+playerStrength);
 		return playerStrength;
 	}
 
 	@Override
 	public FreeAgentConstant validate() {
-		logger.info("Validating freeAgent details - name, birthdate, statistics");
+		logger.info("Validating freeAgent details - name, birthdate, statistics of Player/FreeAgent Name : "+getPlayerName());
 		if (isPlayerDetailsNullOrEmpty()) {
 			return FreeAgentConstant.PlayerValueEmpty;
 		}
@@ -231,6 +232,7 @@ public class FreeAgentModel implements IFreeAgent {
 		if (isBirthDateNotValid()) {
 			return FreeAgentConstant.PlayerBirthdateInvalid;
 		}
+		logger.info("FreeAgent/Player is validated successfully.");
 		return FreeAgentConstant.Success;
 	}
 
@@ -253,7 +255,7 @@ public class FreeAgentModel implements IFreeAgent {
 	}
 
 	private boolean isPlayerStatNotValid() {
-		logger.info("validating freeAgent's statistics");
+		logger.info("validating freeAgent's statistics with Name : "+getPlayerName());
 		if (validateStat(skating) && validateStat(shooting) && validateStat(checking) && validateStat(saving)) {
 			return false;
 		}

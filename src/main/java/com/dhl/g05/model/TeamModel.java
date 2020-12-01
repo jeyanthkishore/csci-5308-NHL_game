@@ -116,7 +116,7 @@ public class TeamModel implements ITeam {
 
 	@Override
 	public double calculateTeamStrength(List<IPlayer> playerList) {
-		logger.info("Calculating team strength using players strength");
+		logger.info("Calculating team strength using players strength of Team : "+getTeamName());
 		for (IPlayer player : playerList) {
 			if (player.getInjuryStatus()) {
 				teamStrength += player.calculatePlayerStrength() / 2;
@@ -124,21 +124,19 @@ public class TeamModel implements ITeam {
 				teamStrength += player.calculatePlayerStrength();
 			}
 		}
+		logger.info("Team Strength is : "+getTeamStrength());
 		return teamStrength;
 	}
 
 	@Override
 	public TeamConstant validate() {
-		logger.info("Validating team details");
+		logger.info("Validating team details of Team : "+getTeamName());
 		if (isTeamDetailsEmptyOrNull()) {
 			return TeamConstant.TeamDetailsEmpty;
 		}
 		if (isPlayerListEmpty()) {
 			return TeamConstant.PlayerListEmpty;
 		}
-//		if (isPlayerListValid()) {
-//			return TeamConstant.PlayerCountMismatch;
-//		}
 		if (containOneTeamCaptain() == 0) {
 			return TeamConstant.NoTeamCaptain;
 		}
@@ -148,6 +146,7 @@ public class TeamModel implements ITeam {
 		if (isCoachDetailsEmptyOrNull()) {
 			return TeamConstant.CoachDetailsEmpty;
 		}
+		logger.info(getTeamName()+" team validated successfully.");
 		return TeamConstant.Success;
 	}
 

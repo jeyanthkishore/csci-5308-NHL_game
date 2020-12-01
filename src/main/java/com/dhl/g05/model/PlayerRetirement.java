@@ -11,7 +11,7 @@ public class PlayerRetirement implements IPlayerRetired{
 
     @Override
     public boolean checkPlayerRetirement(IAging aging, IPlayer player) {
-        logger.info("check whether player is retired or not");
+        logger.info("check whether player is retired or not having name : "+player.getPlayerName());
         IRandomNumberFactory randomNumberFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState().createRandomNumber();
         if(player.getAge() > aging.getMaximumAge()) {
             player.setRetirementStatus(true);

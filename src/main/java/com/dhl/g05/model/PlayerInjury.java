@@ -11,7 +11,7 @@ public class PlayerInjury implements IPlayerInjured {
 
     @Override
     public boolean checkPlayerInjury(IPlayer player, IInjury injury) {
-        logger.info("Check whether player is injured or not");
+        logger.info("Check whether player is injured or not having name : "+player.getPlayerName());
         IRandomNumberFactory randomNumberFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState().createRandomNumber();
         if(player.getInjuryStatus()) {
             return true;
