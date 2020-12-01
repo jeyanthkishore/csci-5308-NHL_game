@@ -142,7 +142,7 @@ public class TeamModel implements ITeam {
 
 	@Override
 	public TeamConstant validate() {
-		logger.info("Validating team details");
+		logger.info("Validating team details of Team : "+getTeamName());
 		if (isTeamDetailsEmptyOrNull()) {
 			return TeamConstant.TeamDetailsEmpty;
 		}
@@ -161,6 +161,7 @@ public class TeamModel implements ITeam {
 		if (isCoachDetailsEmptyOrNull()) {
 			return TeamConstant.CoachDetailsEmpty;
 		}
+		logger.info("team validated successfully");
 		return TeamConstant.Success;
 	}
 
