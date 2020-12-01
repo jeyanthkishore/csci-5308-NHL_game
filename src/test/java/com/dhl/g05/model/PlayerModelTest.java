@@ -93,6 +93,22 @@ public class PlayerModelTest {
 		player.setInjuredForNumberOfDays(30);
 		assertSame(player.getInjuredForNumberOfDays(), 30);
 	}
+	
+	@Test 
+	public void setISActiveTest()
+	{
+		IPlayer player = modelAbstractFactory.createPlayerModel();
+		player.setIsActive(BooleanValue.True.getValue());
+		assertTrue(player.getIsActive());
+	}
+	
+	@Test 
+	public void setISInActiveTest()
+	{
+		IPlayer player = modelAbstractFactory.createPlayerModel();
+		player.setIsActive(BooleanValue.False.getValue());
+		assertFalse(player.getIsActive());
+	}
 
 	@Test
 	public void checkPlayerInjuryTest() {
