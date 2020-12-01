@@ -1,6 +1,7 @@
 package com.dhl.g05.model;
 
 import java.util.List;
+
 import com.dhl.g05.database.ITeamDatabaseOperation;
 
 public interface ITeam {
@@ -40,6 +41,8 @@ public interface ITeam {
 	double getTeamStrength();
 
 	void setTeamStrength(double teamStrength);
+
+	public boolean removeRetiredPlayerFromTeam(IPlayer player);
 
 	TeamConstant validate();
 

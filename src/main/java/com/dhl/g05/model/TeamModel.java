@@ -3,8 +3,10 @@ package com.dhl.g05.model;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.database.ITeamDatabaseOperation;
 import com.google.gson.annotations.Expose;
@@ -116,7 +118,7 @@ public class TeamModel implements ITeam {
 
 	@Override
 	public double calculateTeamStrength(List<IPlayer> playerList) {
-		logger.info("Calculating team strength using players strength of Team : "+getTeamName());
+		logger.info("Calculating team strength using players strength");
 		for (IPlayer player : playerList) {
 			if (player.getInjuryStatus()) {
 				teamStrength += player.calculatePlayerStrength() / 2;
@@ -124,18 +126,31 @@ public class TeamModel implements ITeam {
 				teamStrength += player.calculatePlayerStrength();
 			}
 		}
-		logger.info("Team Strength is : "+getTeamStrength());
 		return teamStrength;
 	}
 
 	@Override
+	public boolean removeRetiredPlayerFromTeam(IPlayer player) {
+		logger.info("Removing retired player from team");
+		int numberOfPlayer = players.size();
+		if (numberOfPlayer > 0) {
+			players.remove(player);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
 	public TeamConstant validate() {
-		logger.info("Validating team details of Team : "+getTeamName());
+		logger.info("Validating team details");
 		if (isTeamDetailsEmptyOrNull()) {
 			return TeamConstant.TeamDetailsEmpty;
 		}
 		if (isPlayerListEmpty()) {
 			return TeamConstant.PlayerListEmpty;
+		}
+		if (isPlayerListValid()) {
+			return TeamConstant.PlayerCountMismatch;
 		}
 		if (containOneTeamCaptain() == 0) {
 			return TeamConstant.NoTeamCaptain;
@@ -146,7 +161,6 @@ public class TeamModel implements ITeam {
 		if (isCoachDetailsEmptyOrNull()) {
 			return TeamConstant.CoachDetailsEmpty;
 		}
-		logger.info(getTeamName()+" team validated successfully.");
 		return TeamConstant.Success;
 	}
 
@@ -288,5 +302,4 @@ public class TeamModel implements ITeam {
 		agent.ConvertPlayerToFreeAgent(releaseExtraPlayers);
 		team.setPlayerList(adjustedTeam);
 	}
-
 }

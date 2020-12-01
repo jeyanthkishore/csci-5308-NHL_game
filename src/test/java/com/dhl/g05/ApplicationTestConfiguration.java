@@ -12,12 +12,16 @@ import com.dhl.g05.model.ModelMockState;
 import com.dhl.g05.simulation.SimulationMockAbstractFactory;
 import com.dhl.g05.simulation.SimulationMockConcreteFactoryState;
 import com.dhl.g05.simulation.SimulationMockState;
+import com.dhl.g05.trading.TradingMockAbstractFactory;
+import com.dhl.g05.trading.TradingMockConcreteFactoryState;
+import com.dhl.g05.trading.TradingMockState;
 
 public class ApplicationTestConfiguration {
 	private static ApplicationTestConfiguration uniqueInstance = null;
 	private SimulationMockState simulation;
 	private DatabaseMockState database;
 	private ModelMockState model;
+	private TradingMockState trade;
 	private CommunicationMockState communication;
 
 	private ApplicationTestConfiguration() {
@@ -25,10 +29,11 @@ public class ApplicationTestConfiguration {
 		model = new ModelMockConcreteFactoryState();
 		database = new DatabaseMockConcreteFactoryState();
 		communication = new CommunicationMockConcreteFactoryState();
+		trade = new TradingMockConcreteFactoryState();
 	}
 
 	public static ApplicationTestConfiguration instance() {
-		if(uniqueInstance == null) {
+		if (uniqueInstance == null) {
 			uniqueInstance = new ApplicationTestConfiguration();
 		}
 		return uniqueInstance;
@@ -41,13 +46,17 @@ public class ApplicationTestConfiguration {
 	public ModelMockAbstractFactory getModelMockConcreteFactoryState() {
 		return ModelMockAbstractFactory.instance(model);
 	}
-	
+
 	public DatabaseMockAbstractFactory getDatabaseMockConcreteFactoryState() {
 		return DatabaseMockAbstractFactory.instance(database);
 	}
-	
+
 	public CommunicationMockAbstractFactory getCommunicationMockConcreteFactoryState() {
 		return CommunicationMockAbstractFactory.instance(communication);
+	}
+
+	public TradingMockAbstractFactory getTradingMockConcreteFactoryState() {
+		return TradingMockAbstractFactory.instance(trade);
 	}
 
 }

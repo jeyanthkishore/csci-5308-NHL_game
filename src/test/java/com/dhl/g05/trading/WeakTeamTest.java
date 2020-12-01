@@ -6,9 +6,11 @@ import static org.junit.Assert.assertSame;
 
 import java.util.List;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.dhl.g05.ApplicationConfiguration;
+import com.dhl.g05.ApplicationTestConfiguration;
 import com.dhl.g05.model.FreeAgentModel;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
@@ -18,14 +20,22 @@ import com.dhl.g05.simulation.statemachine.ITradingConfig;
 
 public class WeakTeamTest {
 
-	private static IWeakTeam weakTeam;
+	private static TradingMockAbstractFactory tradingMockFactory;
 
-	MockLeagueModel mockLeague = new MockLeagueModel();
+	@BeforeClass
+	public static void init() {
+		tradingMockFactory = ApplicationTestConfiguration.instance().getTradingMockConcreteFactoryState();
+	}
+
+	private static IWeakTeam weakTeam;
+	MockLeagueModel mockLeague = tradingMockFactory.createMockLeagueModel();
 	ITradingConfig trade = mockLeague.tradingConfigMock();
 	ITeam weak = mockLeague.leagueMock4();
 
 	@Test
 	public void setWeakTeamTest() {
+		MockLeagueModel mockLeague = tradingMockFactory.createMockLeagueModel();
+		ITeam weak = mockLeague.leagueMock4();
 		weakTeam = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createWeakteam();
 		weakTeam.setWeakTeam(weak);
 		assertSame(weak, weakTeam.getWeakTeam());
@@ -39,7 +49,8 @@ public class WeakTeamTest {
 
 	@Test
 	public void setConferenceNameTest() {
-		IConference conference = ApplicationConfiguration.instance().getModelConcreteFactoryState().createConferenceModel();
+		IConference conference = ApplicationConfiguration.instance().getModelConcreteFactoryState()
+				.createConferenceModel();
 		weakTeam = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createWeakteam();
 		conference.setConferenceName("Eastern");
 		weakTeam.setConferenceName(conference.getConferenceName());
@@ -57,7 +68,7 @@ public class WeakTeamTest {
 
 	@Test
 	public void getDivisionNameTest() {
-		IDivision division =ApplicationConfiguration.instance().getModelConcreteFactoryState().createDivisionModel();
+		IDivision division = ApplicationConfiguration.instance().getModelConcreteFactoryState().createDivisionModel();
 		weakTeam = ApplicationConfiguration.instance().getTradingConcreteFactoryState().createWeakteam();
 		division.setDivisionName("Pacific");
 		weakTeam.setDivisionName(division.getDivisionName());

@@ -5,9 +5,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+
 import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import com.dhl.g05.ApplicationConfiguration;
 import com.dhl.g05.ApplicationTestConfiguration;
 
@@ -64,6 +67,15 @@ public class TeamModelTest {
 		ITeam team = modelAbstractFactory.createTeamModel();
 		team.setGeneralManagerName("Rubinho");
 		assertTrue(team.getGeneralManagerName().equals("Rubinho"));
+	}
+
+	@Test
+	public void removeRetiredPlayerFromTeamTest() {
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+		ITeam team = modelAbstractFactory.createTeamModel(mock);
+		List<IPlayer> players = mock.playerList;
+		team.removeRetiredPlayerFromTeam(players.get(0));
+		assertEquals(mock.playerList.size() - 1, team.getPlayerList().size() - 1);
 	}
 
 	@Test
@@ -164,13 +176,13 @@ public class TeamModelTest {
 		assertSame(TeamConstant.PlayerListEmpty, validate.validate());
 	}
 
-//	@Test
-//	public void checkPlayerListMaxTest() {
-//		LeagueMockData mock = modelMockFactory.createLeagueMockData();
-//		mock.addMaximumPlayer();
-//		ITeam validate = modelAbstractFactory.createTeamModel(mock);
-//		assertSame(TeamConstant.PlayerCountMismatch, validate.validate());
-//	}
+	@Test
+	public void checkPlayerListMaxTest() {
+		LeagueMockData mock = modelMockFactory.createLeagueMockData();
+		mock.addMaximumPlayer();
+		ITeam validate = modelAbstractFactory.createTeamModel(mock);
+		assertSame(TeamConstant.PlayerCountMismatch, validate.validate());
+	}
 
 	@Test
 	public void teamNameEmptyTest() {
@@ -328,10 +340,10 @@ public class TeamModelTest {
 		mock.setTeamNameNull();
 		validate = modelAbstractFactory.createTeamModel(mock);
 		assertSame(TeamConstant.TeamDetailsEmpty, validate.validate());
-//		mock = modelMockFactory.createLeagueMockData();
-//		mock.addMaximumPlayer();
-//		validate = modelAbstractFactory.createTeamModel(mock);
-//		assertSame(TeamConstant.PlayerCountMismatch, validate.validate());
+		mock = modelMockFactory.createLeagueMockData();
+		mock.addMaximumPlayer();
+		validate = modelAbstractFactory.createTeamModel(mock);
+		assertSame(TeamConstant.PlayerCountMismatch, validate.validate());
 		mock = modelMockFactory.createLeagueMockData();
 		mock.setSecondCaptain();
 		validate = modelAbstractFactory.createTeamModel(mock);
@@ -345,5 +357,4 @@ public class TeamModelTest {
 		validate = modelAbstractFactory.createTeamModel(mock);
 		assertSame(TeamConstant.CoachDetailsEmpty, validate.validate());
 	}
-
 }
