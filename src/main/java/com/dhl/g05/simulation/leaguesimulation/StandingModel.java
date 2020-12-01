@@ -5,15 +5,23 @@ import java.util.Comparator;
 import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ITeam;
+import com.google.gson.annotations.Expose;
 
 public class StandingModel implements IStandingModel {
 	
+	@Expose
 	private IConference conference;
+	@Expose
 	private IDivision division;
+	@Expose
 	private ITeam team;
+	@Expose
 	private int totalGamesPlayed;
+	@Expose
     private int numberOfWins;
+	@Expose
     private int numberOfLoss;
+	@Expose
     private int totalPoints;
 	
 	@Override

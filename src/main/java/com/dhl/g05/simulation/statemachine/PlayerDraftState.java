@@ -39,7 +39,7 @@ public class PlayerDraftState extends AbstractState {
 		List<IStandingModel> standingList = standing.getRankingAcrossLeague();
 		Map<Integer, List<Map<IStandingModel, IStandingModel>>> tradePick = tradeFactory.createTradePickToPlayerDraft().mockTradePickLatest(standingList);
 		playerDraft.setPickOrderAfterTrading(tradePick);
-		playerDraft.setDraftPickTeamSubstraction(4);
+		playerDraft.setDraftPickTeamSubstraction(16);
 		playerDraft.playerDraft1(standing);
 		return true;
 	}

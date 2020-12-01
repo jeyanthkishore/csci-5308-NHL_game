@@ -2,11 +2,17 @@ package com.dhl.g05.simulation.statemachine;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.gson.annotations.Expose;
+
 public class TradingConfig implements ITradingConfig{
     static final Logger logger = LogManager.getLogger(TradingConfig.class);
+    @Expose
 	private int lossPoint;
+    @Expose
     private double randomTradeOfferChance;
+    @Expose
     private int maxPlayersPerTrade;
+    @Expose
     private double randomAcceptanceChance;
     
 	public int getLossPoint() {

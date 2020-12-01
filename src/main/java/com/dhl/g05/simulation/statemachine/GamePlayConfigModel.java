@@ -3,13 +3,20 @@ package com.dhl.g05.simulation.statemachine;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.gson.annotations.Expose;
+
 public class GamePlayConfigModel implements IGamePlayConfig {
 	
 	static final Logger logger = LogManager.getLogger(GamePlayConfigModel.class);
+	@Expose
 	ITradingConfig trading;
+	@Expose
 	IAging aging;
+	@Expose
 	IInjury injuries;
+	@Expose
 	IGameResolver gameResolver;
+	@Expose
 	ITraining training;
 
 	public GamePlayConfigModel() {

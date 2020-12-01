@@ -6,17 +6,27 @@ import com.dhl.g05.model.IConference;
 import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.ITeam;
+import com.google.gson.annotations.Expose;
 
 public class ScheduleModel implements IScheduleModel {
-
+	
+	@Expose
 	private IConference firstConference;
+	@Expose
 	private IDivision firstDivision;
+	@Expose
 	private ITeam firstTeam;
+	@Expose
 	private IConference secondConference;
+	@Expose
 	private IDivision secondDivision;
+	@Expose
 	private ITeam secondTeam;
+	@Expose
 	private LocalDate scheduleDate;
+	@Expose
 	private boolean isGamePlayedCompleted;
+	@Expose
 	private ITeam winningTeam;
 
 	@Override

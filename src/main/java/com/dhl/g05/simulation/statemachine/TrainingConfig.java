@@ -2,9 +2,12 @@ package com.dhl.g05.simulation.statemachine;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.gson.annotations.Expose;
+
 public class TrainingConfig implements ITraining {
 	
 	static final Logger logger = LogManager.getLogger(TrainingConfig.class);
+	@Expose
 	private int daysUntilStatIncreaseCheck;
 	
 	public int getDaysUntilStatIncreaseCheck() {
