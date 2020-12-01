@@ -15,10 +15,13 @@ import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.ITeam;
 import com.dhl.g05.simulation.DateHandler;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
+import com.google.gson.annotations.Expose;
 
 public class LeagueSchedule implements ILeagueSchedule {
 	static final Logger logger = LogManager.getLogger(LeagueSchedule.class);
+	@Expose
 	private List<IScheduleModel> regularSeasonSchedule;
+	@Expose
 	private List<IScheduleModel> playoffSeasonSchedule;
 
 	@Override

@@ -15,16 +15,15 @@ public class DeserializeLeagueModelTest {
 	
 	 @BeforeClass
 	    public static void setup() {
-		 	DatabaseAbstractFactory databasFactory = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
-		 	serial = databasFactory.createDeserializeObject();
 		 	DatabaseMockAbstractFactory mockDatabaseState = ApplicationTestConfiguration.instance().getDatabaseMockConcreteFactoryState();
 		    DatabaseState state = mockDatabaseState.createMockDatabaseState();
 			ApplicationConfiguration.instance().setDataBaseFactoryState(state);
+			serial = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState().createDeserializeObject();
 	    }
 	
 	
 	@Test
-	public void serialiseObjectsTest() {
+	public void deserialiseObjectsTest() {
 		ModelMockAbstractFactory modelFactory = ApplicationTestConfiguration.instance().getModelMockConcreteFactoryState();
 		LeagueMockData data = modelFactory.createLeagueMockData();
 		String teamName = "deserializeLeague";

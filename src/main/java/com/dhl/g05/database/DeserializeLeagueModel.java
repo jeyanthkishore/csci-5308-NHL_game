@@ -3,6 +3,8 @@ package com.dhl.g05.database;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -34,9 +36,11 @@ import com.dhl.g05.simulation.statemachine.ITradingConfig;
 import com.dhl.g05.simulation.statemachine.ITraining;
 
 public class DeserializeLeagueModel implements IDeserializeModel {
+
+	static final Logger logger = LogManager.getLogger(DeserializeLeagueModel.class);
 	private static ModelAbstractFactory modelFactory = ApplicationConfiguration.instance().getModelConcreteFactoryState();
 	private static SimulationAbstractFactory simulationFactory = ApplicationConfiguration.instance().getSimulationConcreteFactoryState();
-	
+
 	private static final String  LEAGUE_NAME = "leagueName";
 	private static final String CONFERENCES = "conferences";
 	private static final String FREE_AGENTS = "freeAgents";
@@ -100,10 +104,11 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 	private static final String SECOND_CONFERENCE = "secondConference";
 	private static final String SECOND_DIVISION = "secondDivision";
 	private static final String SECOND_TEAM = "secondTeam";
-	
-	
+
+
 	@Override
 	public ILeague deserializeObjects(String name, ILeague leagueModel) {
+		logger.info("Deserializing JSON Files");
 		FileReader reader = null;
 		DatabaseAbstractFactory databaseFactory = ApplicationConfiguration.instance().getDatabaseConcreteFactoryState();
 		IFileOperation file = databaseFactory.createFileOperation();
@@ -114,12 +119,16 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 			leagueModel = deserialzieFileData((JSONObject)parser.parse(reader));
 			reader.close();
 		} catch(Exception exception) {
+			logger.error("Deserializing failed due to error");
 			exception.printStackTrace();
+			return null;
 		}
 		return leagueModel;
 	}
 
 	private IAging createAging(JSONObject jsonAging) {
+		logger.info("Deserializing Aging Config");
+
 		try {
 			IAging agingConfig = simulationFactory.createAgingConfig();
 			agingConfig.setAverageRetirementAge(((Number) jsonAging.get(AVERAGE_RETIREMENTAGE)).intValue());
@@ -127,12 +136,15 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 			agingConfig.setStatDecayChance(((Number) jsonAging.get(STAT_DECAY_CHANCE)).doubleValue());
 			return agingConfig;
 		} catch (NullPointerException e) {
+			logger.error("Error in Aging config");
 			e.printStackTrace();
 			return null;
 		}
 	}
 
 	private IInjury createInjury(JSONObject jsonInjury) {
+		logger.info("Deserializing Injury Config");
+
 		try {
 			IInjury injuryConfig = simulationFactory.createInjuryConfig();
 			injuryConfig.setRandomInjuryChance(((Number) jsonInjury.get(RANDOM_INJURY_CHANCE)).doubleValue());
@@ -140,23 +152,29 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 			injuryConfig.setInjuryDaysLow(((Number) jsonInjury.get(INJURY_DAYS_LOW)).intValue());
 			return injuryConfig;
 		} catch (NullPointerException e) {
+			logger.error("Error in Injury config");
 			e.printStackTrace();
 			return null;
 		}
 	}
 
 	private ITraining createTrainingConfig(JSONObject training) {
+		logger.info("Deserializing Training Config");
+
 		try {
 			ITraining trainConfig = simulationFactory.createTrainingConfig();
 			trainConfig.setDaysUntilStatIncreaseCheck(((Number) training.get(DAYS_UNTIL_STAT_INCREASE_CHECK)).intValue());
 			return trainConfig;
 		} catch (NullPointerException e) {
+			logger.error("Error in Training config");
 			e.printStackTrace();
 			return null;
 		}
 	}
 
 	private ILeague deserialzieFileData(JSONObject leagueData) {
+		logger.info("Deserializing FileData");
+
 		if (leagueData == null) {
 			return null;
 		}
@@ -174,8 +192,13 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 
 	@SuppressWarnings("unchecked")
 	private ILeagueStanding createLeagueStandings(JSONObject jsonStanding) {
-		
+		logger.info("Deserializing LeagueStandings");
+		if(jsonStanding == null || jsonStanding.isEmpty()) {
+			return null;
+		}
+
 		ArrayList<IStandingModel> leagueStandingList = new ArrayList<>();
+		
 		JSONArray standingList = (JSONArray)jsonStanding.get(STANDING_LIST);
 		for(Object standing : standingList) {
 			IStandingModel newStanding = new StandingModel();
@@ -201,7 +224,8 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 	}
 
 	private ILeagueSchedule createLeagueSchedule(JSONObject jsonObject) {
-		
+		logger.info("Deserializing LeagueStchedules");
+
 		ArrayList<IScheduleModel> regularSchedule = new ArrayList<>();
 		ArrayList<IScheduleModel> playoffSchedule = new ArrayList<>();
 		ILeagueSchedule schedule = new LeagueSchedule();
@@ -214,10 +238,11 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 
 	@SuppressWarnings("unchecked")
 	private ArrayList<IScheduleModel> generateSchedule(JSONArray fullSchedule) {
+
 		if(fullSchedule == null) {
 			return null;
 		}
-		
+
 		ArrayList<IScheduleModel> scheduleList = new ArrayList<>();
 		for(Object schedule : fullSchedule) {
 			JSONArray arrayFormation = new JSONArray();
@@ -245,6 +270,8 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 	}
 
 	private ArrayList<IConference> createConferences(JSONArray jsonConferences) {
+		logger.info("Deserializing Conferences");
+
 		ArrayList<IConference> conferences = new ArrayList<>();
 		for (Object c: jsonConferences) {
 			ArrayList<IDivision> divisions = createDivisions((JSONArray)((JSONObject) c).get(DIVISIONS));
@@ -257,7 +284,8 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 	}
 
 	public IGamePlayConfig setGamePlayConfigsFromFile(JSONObject gamePlayConfigs){
-		
+		logger.info("Deserializing GamePlay Configuration");
+
 		try {
 			IGamePlayConfig gamePlayconfig = new GamePlayConfigModel();
 			gamePlayconfig.setInjuriesConfig(createInjury((JSONObject)gamePlayConfigs.get(INJURIES)));
@@ -265,26 +293,32 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 			gamePlayconfig.setGameResolverConfig(createGameResolver((JSONObject)gamePlayConfigs.get(GAME_RESOLVER)));
 			gamePlayconfig.setTradingConfig(createTradingConfig((JSONObject)gamePlayConfigs.get(TRADING)));
 			gamePlayconfig.setTrainingConfig(createTrainingConfig((JSONObject)gamePlayConfigs.get(TRAINING)));
-			
+
 			return gamePlayconfig;
 		} catch (NullPointerException e) {
+			logger.error("Error in gamePlay config");
 			e.printStackTrace();
 			return null;
 		}
 	}
 
 	private IGameResolver createGameResolver(JSONObject gameResolver) {
+		logger.info("Deserializing GameResolver Config");
+
 		try {
 			IGameResolver resolverConfig = simulationFactory.createGameResolverConfig();
 			resolverConfig.setRandomWinChance(((Number) gameResolver.get(RANDOM_WIN_CHANCE)).doubleValue());
 			return resolverConfig;
 		} catch (NullPointerException e) {
+			logger.error("Error in gameresolver coach");
 			e.printStackTrace();
 			return null;
 		}
 	}
 
 	private ITradingConfig createTradingConfig(JSONObject tradingObject) {
+		logger.info("Deserializing Trading Config");
+
 		try {
 			ITradingConfig tradeConfig =  simulationFactory.createTradingConfig();
 			tradeConfig.setLossPoint(((Number) tradingObject.get(LOSS_POINT)).intValue());
@@ -293,12 +327,14 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 			tradeConfig.setRandomTradeOfferChance((Double)((JSONObject) tradingObject).get(RANDOM_TRADE_OFFER_CHANCE));
 			return tradeConfig;
 		} catch (NullPointerException e) {
+			logger.error("Error in deserializing trading config");
 			e.printStackTrace();
 			return null;
 		}
 	}
 
 	private ArrayList<IDivision> createDivisions(JSONArray jsonDivisions) {
+		logger.info("Deserializing Divisions");
 
 		ArrayList<IDivision> divisions = new ArrayList<>();
 		for (Object d: jsonDivisions) {
@@ -312,6 +348,8 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 	}
 
 	private ArrayList<ITeam> createTeams(JSONArray jsonTeams) {
+		logger.info("Deserializing Teams");
+
 		ArrayList<ITeam> teams = new ArrayList<>();
 		for (Object t: jsonTeams) {
 			ArrayList<IPlayer> players = createPlayers((JSONArray)((JSONObject) t).get(PLAYERS));
@@ -326,6 +364,8 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 	}
 
 	private ArrayList<IPlayer> createPlayers(JSONArray jsonPlayers) {
+		logger.info("Deserializings Players");
+
 		try {
 			ArrayList<IPlayer> players = new ArrayList<>();
 			for (Object player: jsonPlayers) {
@@ -348,12 +388,15 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 			}
 			return players;
 		} catch (NullPointerException e) {
+			logger.error("Error in deserializing players");
 			e.printStackTrace();
 			return null;
 		}
 	}
 
 	private ArrayList<IFreeAgent> createFreeAgents(JSONArray jsonPlayers) {
+		logger.info("Deserializings FreeAgent");
+
 		if (jsonPlayers == null) {
 			return null;
 		}
@@ -378,12 +421,15 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 			}
 			return freeAgent;
 		} catch (NullPointerException e) {
+			logger.error("Error in deserializing freeagents");
 			e.printStackTrace();
 			return null;
 		}
 	}
 
 	private ICoach createCoach(JSONObject jsonCoachDetails) {
+		logger.info("Deserializings Coach");
+
 		try{
 			ICoach newCoach = modelFactory.createCoachModel();
 			newCoach.setName((String) jsonCoachDetails.get(NAME));
@@ -393,12 +439,15 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 			newCoach.setSaving(((Number) ((JSONObject) jsonCoachDetails).get(SAVING)).doubleValue());
 			return newCoach;
 		} catch(NullPointerException e) {
+			logger.error("Error in deserializing coach");
 			e.printStackTrace();
 			return null;
 		}
 	}
 
 	private ArrayList<ICoach> createFreeCoaches(JSONArray jsonCoaches) {
+		logger.info("Deserializings Free Agent Coach");
+
 		ArrayList<ICoach> coaches = new ArrayList<>();
 		for (Object coach: jsonCoaches) {
 			ICoach newCoach = createCoach((JSONObject) coach);
@@ -408,6 +457,8 @@ public class DeserializeLeagueModel implements IDeserializeModel {
 	}
 
 	private ArrayList<String> createFreeManagers(JSONArray jsonManagers) {
+		logger.info("Deserializings Managers");
+
 		ArrayList<String> managers = new ArrayList<>();
 		for (int i=0; i<jsonManagers.size(); i++){
 			String name = (String) jsonManagers.get(i);

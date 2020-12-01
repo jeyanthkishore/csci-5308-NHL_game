@@ -22,7 +22,7 @@ public class DateHandler {
 	private static LocalDate playerDraftDate;
 
 	public void performDateAssignment(int year) {
-		logger.info("Assign date for simulation in year :" +year);
+		logger.info("Assigning date for simulation in year :" +year);
 		
 		LocalDate regularSeason = LocalDate.of(year + 1, Month.APRIL, 1);
 		regularSeasonStartDate = LocalDate.of(year, Month.OCTOBER, 1);

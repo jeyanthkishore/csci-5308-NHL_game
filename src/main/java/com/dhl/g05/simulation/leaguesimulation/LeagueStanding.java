@@ -13,9 +13,11 @@ import com.dhl.g05.model.IDivision;
 import com.dhl.g05.model.ILeague;
 import com.dhl.g05.model.ITeam;
 import com.dhl.g05.simulation.SimulationAbstractFactory;
+import com.google.gson.annotations.Expose;
 
 public class LeagueStanding implements ILeagueStanding{
 	static final Logger logger = LogManager.getLogger(LeagueStanding.class);
+	@Expose
 	private List<IStandingModel> standingsList;
 
 	@Override
